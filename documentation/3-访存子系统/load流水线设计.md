@@ -3,7 +3,7 @@
 
 香山处理器(雁栖湖架构)包含两条 load 流水线, 每条 load 流水线分成3个流水级:
 
-![loadpipe](../images/load-pipeline.png)  
+![loadpipe](../images/lsu/load-pipeline.png)  
 
 各级流水线的划分如下:
 

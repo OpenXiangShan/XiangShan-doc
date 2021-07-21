@@ -1,7 +1,7 @@
 核内访存子系统整体设计
 ===========
 
-![整体流水线](../images/ls-pipe.png)  
+![整体流水线](../images/lsu/ls-pipe.png)  
 
 香山处理器(雁栖湖架构)核内的访存子系统如上图所示. 其中包含
 两条 [load 流水线](./load流水线设计.md)和两条 [store 流水线](./store流水线设计.md). [load queue](load-queue.md) 和 [store queue](./store-queue.md) 负责维护访存指令的顺序信息. load queue 会在 load 指令在一级缓存中缺失时负责监听后续的重填结果并执行写回操作. store queue 负责在指令提交之前暂存 store 的数据, 并为 store 向 load 的前递提供数据. 

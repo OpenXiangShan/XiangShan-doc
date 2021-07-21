@@ -3,7 +3,7 @@
 
 香山处理器(雁栖湖架构)包含两条 store 流水线, 每条 store 流水线分成4个流水级. 前两个流水级负责将 store 的指令与数据传递给 store queue, 后两个流水级负责等待访存依赖检查完成.
 
-![storepipe](../images/store-pipeline.png)  
+![storepipe](../images/lsu/store-pipeline.png)  
 
 各级流水线的划分如下:
 

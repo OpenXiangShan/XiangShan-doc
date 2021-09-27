@@ -8,6 +8,16 @@ Documentation for XiangShan
 
 Mailing list: xiangshan-all@ict.ac.cn
 
+## 关注我们
+
+- **微信公众号：香山开源处理器**
+
+![wechat](articles/wechat.png)
+
+- **知乎：[香山开源处理器](https://www.zhihu.com/people/openxiangshan)**
+
+- **微博：[香山开源处理器](https://weibo.com/u/7706264932)**
+
 ## Translations needed
 
 We need to translate most of the documentations to English and other languages. Contributions welcomed!

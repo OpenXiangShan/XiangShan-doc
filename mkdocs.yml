@@ -1,0 +1,27 @@
+site_name: XiangShan官方文档
+theme:
+    name: readthedocs
+    language: zh
+    locale: zh_CN
+nav:
+    - 简介:
+        - 香山项目总体介绍: index.md
+        - 香山总体架构: arch.md
+    - 处理器核介绍:
+        - 前端:
+            - IFU: ifu.md
+            - ICache: icache.md
+            - Branch Prediction: bp.md
+            - Decode Stage: decode.md
+        - 后端:
+            - Rename Stage: rename.md
+            - Dispatch Stage: dispatch.md
+            - ROB: rob.md
+        - 访存子系统:
+            - LSQ: ldq.md
+        - 缓存系统:
+            - 总体架构: huancun.md
+            - 目录设计: directory.md
+    - 敏捷验证框架:
+        - DiffTest: difftest.md
+        - LightSSS: lightsss.md

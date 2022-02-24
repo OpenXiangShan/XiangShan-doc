@@ -13,8 +13,8 @@ nav:
             - 总体架构: frontend/frontend.md
             - IFU: frontend/ifu.md
             - ICache: frontend/icache.md
-            - Branch Prediction: frontend/bp.md
-            - Fetch Target Queue: frontend/ftq.md
+            - 分支预测: frontend/bp.md
+            - 取指目标队列: frontend/ftq.md
             - Decode Stage: frontend/decode.md
         - 后端:
             - Rename Stage: rename.md

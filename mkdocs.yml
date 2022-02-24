@@ -10,12 +10,12 @@ nav:
         - 香山总体架构: arch.md
     - 处理器核介绍:
         - 前端:
-            - 总体架构: frontend.md
-            - IFU: ifu.md
-            - ICache: icache.md
-            - Branch Prediction: bp.md
-            - Fetch Target Queue: ftq.md
-            - Decode Stage: decode.md
+            - 总体架构: frontend/frontend.md
+            - IFU: frontend/ifu.md
+            - ICache: frontend/icache.md
+            - Branch Prediction: frontend/bp.md
+            - Fetch Target Queue: frontend/ftq.md
+            - Decode Stage: frontend/decode.md
         - 后端:
             - Rename Stage: rename.md
             - Dispatch Stage: dispatch.md

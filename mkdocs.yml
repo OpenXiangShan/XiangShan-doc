@@ -5,7 +5,8 @@ theme:
     locale: zh_CN
 nav:
     - 简介:
-        - 香山项目总体介绍: index.md
+        - 写前必读: index.md
+        - 香山项目总体介绍: intro.md
         - 香山总体架构: arch.md
     - 处理器核介绍:
         - 前端:

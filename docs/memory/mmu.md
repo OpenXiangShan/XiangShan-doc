@@ -35,6 +35,6 @@ Filter 在 Repeater 的基础上进行强化，接受 DTLB 的请求，发送给
 
 ## PMP 与 PMA
 
-香山实现了 PMP（Physical Memory Protection），具体实现上分为四部分：CSR Unit，ITLB，DTLB，L2TLB。在 CSR Unit 中，负责读写。在 ITLB，DTLB 和 L2 TLB 中，负责读写以及地址检查的功能。在 DTLB 中，因为时序因素，分为动态检查和静态检查两部分。回填 DTLB 时，进行 PMP 检查，将结果存到 DTLB 中，PMP 的结果随 TLB 检查一并查询，此为静态检查。TLB 翻译后得到物理地址，再进行 PMP 检查，此为动态检查。为了实现静态检查，将 PMP 粒度提升至 4KB。
+香山实现了 PMP（Physical Memory Protection），具体实现上分为四部分：CSR Unit，ITLB，DTLB，L2TLB。在 CSR Unit 中，负责读写。在 ITLB，DTLB 和 L2 TLB 中，负责写以及地址检查的功能。在 DTLB 中，因为时序因素，分为动态检查和静态检查两部分。回填 DTLB 时，进行 PMP 检查，将结果存到 DTLB 中，PMP 的结果随 TLB 检查一并查询，此为静态检查。TLB 翻译后得到物理地址，再进行 PMP 检查，此为动态检查。为了实现静态检查，将 PMP 粒度提升至 4KB。
 
 PMA 为自定义实现，采用类 PMP 的方式，利用 PMP Configure 寄存器的保留位实现 Cachable 和 Atmoic 的检查。PMA 与 PMP 并行查询。除此之外，额外提供 Memory Mapped 形式的 PMA，供 DMA 等外设使用。

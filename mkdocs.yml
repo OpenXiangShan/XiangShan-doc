@@ -21,7 +21,8 @@ nav:
             - Dispatch Stage: dispatch.md
             - ROB: rob.md
         - 访存子系统:
-            - LSQ: ldq.md
+            - LSQ: memory/ldq.md
+            - MMU: memory/mmu.md
         - L2/L3 Cache:
             - 总体架构: huancun/overview.md
             - 目录设计: huancun/directory.md

@@ -1,5 +1,28 @@
-访存相关机制介绍
+香山 load 流水线设计
 ===========
+
+香山处理器(雁栖湖架构)包含两条 load 流水线, 每条 load 流水线分成3个流水级:
+
+![loadpipe](../images/lsu/load-pipeline.png)  
+
+各级流水线的划分如下:
+
+Stage 0
+* 计算虚拟地址
+* 虚拟地址送入 TLB
+* 虚拟地址送入一级数据缓存
+
+Stage 1
+* TLB 产生物理地址
+* 物理地址送进数据缓存
+* 物理地址送进 store queue 开始进行 store 到 load 的前递操作
+* 根据一级数据缓存返回的命中向量准备唤醒后续指令
+
+Stage 2
+* 根据一级数据缓存及前递返回的结果选择数据
+* 更新 load queue 中的对应项
+* 结果 (整数) 写回到公共数据总线
+* 结果 (浮点) 送到浮点模块
 
 # DCache Miss
 
@@ -36,21 +59,6 @@ store 到 load 的前递操作被分配到三级流水执行. 在前递操作期
 # load 违例检查和恢复
 
 在 store 指令到达 stage 1 时开始进行 load 违例检查. 如果在检查过程中发现了 load 违例, 则触发 load 违例的 store 不会在 ROB 中被标记为*可以提交*的状态. 同时, 回滚操作会立刻被触发, 无需等待触发 load 违例的 store 指令提交.
-
-# 访存依赖预测
-
-香山处理器在 decode 附近根据 PC 预测访存依赖. 目前的代码支持两种预测方式: 
-
-* Load Wait Table[1]
-* Store Sets[2]
-
-雁栖湖架构只实现了基于 Wait Table 的访存依赖预测. 如果预测到一条 load 指令可能违例, 则这条 load 指令需要在保留站中等待到之前的 store 都发射之后才能发射.
-
-# 参考文献
-
-[1] Kessler R E . The Alpha 21264 Microprocessor[J]. IEEE Micro, 1999, 19(2):24-36.
-
-[2] Chrysos G Z ,  Emer J S . Memory Dependence Prediction using Store Sets[J]. ACM SIGARCH Computer Architecture News, 2002, 26(3):142-153.
 
 
 

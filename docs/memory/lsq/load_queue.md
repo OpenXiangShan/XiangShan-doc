@@ -1,5 +1,4 @@
-Load Queue
-===========
+# Load Queue
 
 雁栖湖架构的 load queue 是一个64项循环队列. 其每周期至多: 
 * 从 dispatch 处接收6条指令

@@ -1,5 +1,4 @@
-Committed Store Buffer
-==================
+# Committed Store Buffer
 
 雁栖湖架构的 Committed Store Buffer 中最多可以存放16项以  cacheline 为单位组织的数据. Committed Store Buffer 每周期至多:
 

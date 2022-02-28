@@ -21,8 +21,19 @@ nav:
             - Dispatch Stage: dispatch.md
             - ROB: rob.md
         - 访存子系统:
-            - LSQ: memory/ldq.md
+            - 总体架构: memory/overview.md
+            - 访存流水线:
+                - Load Pipeline: memory/fu/load_pipeline.md
+                - Store Pipeline: memory/fu/store_pipeline.md
+            - LSQ:
+                - Load Queue: memory/lsq/load_queue.md
+                - Store Queue: memory/lsq/store_queue.md
+                - Committed Store Buffer: memory/lsq/committed_store_buffer.md
             - MMU: memory/mmu/mmu.md
+            - 数据缓存:
+                - 总体架构: memory/dcache/dcache.md
+                - Load Pipeline: memory/dcache/load_pipeline.md
+            - 访存预测器: memory/mdp/mdp.md
         - L2/L3 Cache:
             - 总体架构: huancun/overview.md
             - 目录设计: huancun/directory.md

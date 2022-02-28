@@ -1,11 +1,12 @@
-香山 load 流水线设计
-===========
+# Load Pipeline
 
 香山处理器(雁栖湖架构)包含两条 load 流水线, 每条 load 流水线分成3个流水级:
 
 ![loadpipe](../images/lsu/load-pipeline.png)  
 
-各级流水线的划分如下:
+## 流水线的划分
+
+load 指令执行流水线各级划分如下:
 
 Stage 0
 * 计算虚拟地址
@@ -30,7 +31,7 @@ Stage 2
 
 ![before-refill](../images/lsu/before-refill.png)  
 
-![after-refill](../images/lsu/after-refill.png)  
+![after-refill](../images/lsu/一级数据缓存fter-refill.png)  
 
 一次 refill 会将数据传递到所有等待这一 cacheline 的 load queue 项. 这些项的数据状态被标识为有效, 随后可以被写回.
 

@@ -1,5 +1,4 @@
-Store Queue
-===========
+# Store Queue
 
 雁栖湖架构的 store queue 是一个48项循环队列. 其每周期至多: 
 * 从 dispatch 处接收6条指令

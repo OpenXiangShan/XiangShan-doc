@@ -8,6 +8,8 @@
 
 香山的 MMU 主要分为三部分，和流水线紧耦合的分别位于前端和后端的 ITLB 和 DTLB，需要考虑流水线的需求，考虑时序问题，比如拆成两拍等操作。当 ITLB 和 DTLB 如果 miss，会发送请求 L2 TLB，当 L2 TLB 也 miss，就会使用 Hardware Page Table Walker 去访问内存中的页表内容。L2 TLB 主要考虑是如何提高并行度和过滤重复的请求。Repeater 是一级 TLB 到 L2 TLB 的请求缓冲。PMP 和 PMA 需要对所有的物理地址访问进行权限检查。
 
+![mmu-overall](../../figs/memblock/mmu-overall.png)
+
 ## TLB
 
 香山的 TLB 可以对组织结构进行配置，包括相联模式、项数及替换策略等。默认配置为 ITLB 32 项普通页和 4 项大页（superpage），全相联，伪 LRU 替换；DTLB 为 128 项普通页直接相连，8 项全相联负责所有大小的页，伪 LRU 替换策略。DTLB 的直接相联项是全相联项的 victim cache。如右图所示，查询 TLB 时，部分内容负责权限检查，部分内容负责地址翻译。

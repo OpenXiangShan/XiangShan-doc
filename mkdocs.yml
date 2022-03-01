@@ -33,6 +33,9 @@ nav:
             - 数据缓存:
                 - 总体架构: memory/dcache/dcache.md
                 - Load Pipeline: memory/dcache/load_pipeline.md
+                - Miss Queue: memory/dcache/miss_queue.md
+                - Probe Queue: memory/dcache/probe_queue.md
+                - Refill Pipeline: memory/dcache/refill_pipe.md
             - 访存预测器: memory/mdp/mdp.md
         - L2/L3 Cache:
             - 总体架构: huancun/overview.md

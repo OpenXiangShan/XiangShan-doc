@@ -3,7 +3,9 @@
 本章介绍huancun中non-inclusive MSHR(Miss Status Holding Registers)的设计。
 
 当huancun接收到上层cache的Acquire/Release请求，或者接收到下层cache的Probe请求时，会为该请求分配一项MSHR，同时通过读目录获取该地址在本层及以上cache中的权限信息，MSHR根据这些信息决定：
+
 * [权限控制](#meta_control)：如何更新self directory/client directory中的权限；
+
 * [请求控制](#request_control)：是否需要向上下层cache发送子请求，并等待这些子请求的响应；
 <!--
 TODO

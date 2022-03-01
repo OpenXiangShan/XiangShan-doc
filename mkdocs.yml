@@ -4,8 +4,17 @@ theme:
     name: readthedocs
     language: zh
     locale: zh_CN
-# plugins:
-#     - with-pdf
+plugins:
+    # - with-pdf:
+    #     author: XiangShan Team
+    #     copyright: XiangShan Team, 2022
+    #     cover: true
+    #     cover_title: XiangShan 微架构文档
+    #     cover_subtitle: 南湖架构
+    #     cover_logo: figs/LOGO.png
+    #     toc_level: 4
+    #     enabled_if_env: ENABLE_PDF_EXPORT
+    #     output_path: /tmp/doc/document.pdf
 nav:
     - 简介:
         - 写前必读: index.md

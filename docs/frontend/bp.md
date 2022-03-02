@@ -62,6 +62,32 @@
 
 ### ITTAGE
 
+
+
+RISC-V指令集中jalr指令支持以寄存器取值加一立即数的方式指定无条件跳转指令目标地址。不同于在指令中直接编码跳转偏移量的jal指令，jalr的跳转地址需要借助寄存器访问间接获取，因而被称为间接跳转指令。跳转地址来自寄存器引入的地址多样性使得该指令的目标地址难以使用[uBTB](#ubtb)预测，需要使用其他预测机制。在香山处理器中，这一预测机制体现为[FTB](#ftb)，[RAS](#ras)与[ITTAGE](#ittage)预测器的协作。部分jalr指令具有固定的跳转地址，可以使用[FTB](#ftb)进行高正确率的预测，不需要高级预测器介入；函数调用和返回是jalr指令中较为常见的应用场景，具有显著的配对性，在南湖架构中使用[RAS](#ras)预测器进行预测；不符合以上特征的jalr指令交由[ITTAGE](#ittage)预测。
+
+![ittage_struct](../figs/frontend/ITTAGE.png)
+
+如上图所示，[ITTAGE](#ittage)预测器是[[4]](#ittage_orig)中提出，在[[5]](#ittage_improve)中详细叙述实现细节的间接分支预测器。它基于[TAGE](#tage)预测器基本原理，针对间接预测器所面临的地址预测问题而调整预测表项设计。具体地，如下图所示，[ITTAGE](#ittage)将[TAGE](#tage)中用于预测跳转方向的计数器替换为所预测的跳转地址。在当前的[FTB](#ftb)设计中，每个FTB项仅存储至多一条间接跳转指令信息，[ITTAGE](#ittage)预测器的预测宽度也相应设置为1，即每周期的输出最多为一条间接跳转指令提供预测结果。工作时，[ITTAGE](#ittage)使用与[TAGE](#tage)预测器相同的分支历史信息和[FTB](#ftb)项起始地址start生成index并在多个预测表中寻址，若多个表中出现命中，优先选择分支历史较长的预测表所给出的信息或根据[备选预测](#alt_pred)参数决定采用次长历史预测结果。[ITTAGE](#ittage)更新也仿效[TAGE](#tage)预测器，当出现误预测时会在预测表中尝试添加新表项，但仅在其对应useful bit为0时才会实际完成替换，useful bit会周期性清零以实现不活跃表项回收利用。
+
+![ittage_entry](../figs/frontend/ITTAGE_entry.png)
+
+[ITTAGE](#ittage)预测器具体到每个流水阶段的核心动作如下：
+
+**Stage 0**：接收[FTB](#ftb)项起始地址start和经折叠的分支历史，生成对应的index传入利用SRAM实现的预测表作为地址寻址
+
+**Stage 1**：获得由各SRAM预测表读出的表项数据，利用Reg暂存
+
+**Stage 2**：利用[ITTAGE](#ittage)表项数据根据历史长度自高到低选出至多2个命中结果并决策选出最终结果，生成index、是否使用[备选预测](#alt_pred)等meta数据暂存到Reg
+
+**Stage 3**：将预测结果更新到[FTB](#ftb)项并将暂存的meta数据更新到meta通道，[ITTAGE](#ittage)预测流程结束
+
+**Update Stage 0**：训练数据中包含间接误预测时，从meta数据中提取作出该预测时index、是否使用[备选预测](#alt_pred)等信息，从训练数据中提取正确target等信息暂存到寄存器中
+
+**Update Stage 1**：利用暂存的更新信息生成SRAM预测表项更新信号
+
+**Update Stage 2**：预测表项完成更新
+
 ### RAS
 
 <h2 id=predictor-update>预测器的训练</h2>
@@ -79,6 +105,7 @@
 
 <b id="global-history">全局分支历史</b> 指令流中所有条件分支指令的执行结果序列，每一条分支指令的执行结果作为一位（0/1）存在于全局分支历史中，一般以移位寄存器的方式实现
 
+<b id="alt_pred">备选预测</b> TAGE/ITTAGE预测器一种优化，当对长历史预测结果信心不足时选择次长历史下的命中结果作为最终预测，可提升整体预测正确率
 
 
 ## 引用
@@ -87,3 +114,7 @@
 <b id="ftbcitequalcomm">2</b> Perais A, Sheikh R, Yen L, et al. Elastic instruction fetching[C]//2019 IEEE International Symposium on High Performance Computer Architecture (HPCA). IEEE, 2019: 478-490.
 
 <b id="amd">3</b> Software Optimization Guide for AMD Family 19h Processors (PUB), Chap. 2.8.1.5, [https://www.amd.com/system/files/TechDocs/56665.zip](https://www.amd.com/system/files/TechDocs/56665.zip)
+
+<b id="ittage_orig">4</b> Seznec A, Michaud P. A case for (partially) TAgged GEometric history length branch prediction[J]. The Journal of Instruction-Level Parallelism, 2006, 8: 23.
+
+<b id="ittage_improve">5</b> Seznec A. A 64-Kbytes ITTAGE indirect branch predictor[C]//JWAC-2: Championship Branch Prediction. 2011.

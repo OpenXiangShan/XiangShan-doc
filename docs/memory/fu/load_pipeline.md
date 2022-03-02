@@ -1,5 +1,7 @@
 # Load Pipeline
 
+本章介绍香山处理器南湖架构 load 流水线的设计以及 load 指令的处理流程.
+
 香山处理器(雁栖湖架构)包含两条 load 流水线, 每条 load 流水线分成3个流水级:
 
 ![loadpipe](../../figs/memblock/load-pipeline.png)  
@@ -18,7 +20,7 @@ load 指令执行流水线各级划分如下:
 ### Stage 1
 
 * TLB 产生物理地址
-* PMA 完成初步结果生成
+* 完成快速异常检查
 * 物理地址送进数据缓存进行 Data 查询
 * 物理地址送进 store queue / committed store buffer 开始进行 store 到 load 的前递操作
 * 根据一级数据缓存返回的命中向量以及初步异常判断的结果，产生提前唤醒信号送给保留站
@@ -26,6 +28,7 @@ load 指令执行流水线各级划分如下:
 
 ### Stage 2
 
+* 完成异常检查
 * 根据一级数据缓存及前递返回的结果选择数据
 * 根据 load 指令的要求，对返回的结果做裁剪操作
 * 更新 load queue 中对应项的状态
@@ -231,7 +234,7 @@ dcache MSHR 满/冲突的原因参见 dcache/MSHR 部分（TODO）
 
 TODO
 
-<!-- ### 性能计数器（物理）
+## 硬件性能计数器
 
 计数器名称|描述
 -|-
@@ -246,4 +249,4 @@ load_s2_in_fire|
 load_s2_dcache_miss|
 load_s2_replay|
 load_s2_replay_tlb_miss|
-load_s2_replay_cache| -->
+load_s2_replay_cache|

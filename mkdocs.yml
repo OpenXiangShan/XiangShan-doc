@@ -12,7 +12,7 @@ plugins:
     #     cover_title: XiangShan 微架构文档
     #     cover_subtitle: 南湖架构
     #     cover_logo: figs/LOGO.png
-    #     toc_level: 4
+    #     toc_level: 3
     #     enabled_if_env: ENABLE_PDF_EXPORT
     #     output_path: /tmp/doc/document.pdf
 nav:

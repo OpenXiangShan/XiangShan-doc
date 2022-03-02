@@ -1,5 +1,5 @@
 # 取指令单元（Instruction Fetch Unit）文档
-![ifu](../figs/IFU.png)
+![ifu](../figs/frontend/IFU.png)
 
 这一章描述香山处理器取指单元（IFU）的实现,取值单元流水线如上图所示。
 

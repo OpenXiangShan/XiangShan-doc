@@ -1,9 +1,11 @@
 # doc for pdf plug-in: https://pypi.org/project/mkdocs-with-pdf/
 site_name: XiangShan官方文档
 theme:
-    name: readthedocs
-    language: zh
-    locale: zh_CN
+    name: material
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
 plugins:
     # - with-pdf:
     #     author: XiangShan Team

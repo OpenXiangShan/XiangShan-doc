@@ -32,6 +32,8 @@ Stage 3
 * 完成访存依赖检查 
 * 通知 ROB 可以提交指令
 
+[store queue](../lsq/store_queue.md) 一章描述了 sta 更新 store queue 的详细情况.
+
 ## std 流水线的划分
 
 Stage 0

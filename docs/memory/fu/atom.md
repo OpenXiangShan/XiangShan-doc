@@ -19,9 +19,7 @@
 * s_cache_resp
 * s_finish
 
-对于 store 指令, 只有在
-
-它的 addr 和 data 都就绪时, 处理流程才会开始. (TODO)
+对于 store 指令, 只有在它的 addr 和 data 都就绪时, 处理流程才会开始. (TODO)
 
 ## dcache 对原子指令的支持
 
@@ -32,7 +30,7 @@
 原子指令 miss 的处理流程
 
 ### 对于 lr/sc 的特殊支持
-
+jin x
 lr/sc 的要求(TODO: 展开描述):
 
 * 分配保留区

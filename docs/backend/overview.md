@@ -4,7 +4,7 @@
 
 香山处理器后端可以分为 CtrlBlock、IntBlock、FloatBlock、Memblock 4个部分， CtrlBlock 负责指令的译码、重命名和分派， Intblock、FloatBlock、MemBlock 分别负责整数、浮点、访存指令的乱序执行。
 
-![backend](./images/backend/backend.png)
+![backend](../figs/backend/backend.png)
 
 在雁栖湖版本中，上述4个Block分别采用如下配置：
 - CtrlBlock
@@ -21,11 +21,11 @@
 
 ## CtrlBlock
 
-![ctrl-block](./images/backend/ctrl-block.png)
+![ctrl-block](../figs/backend/ctrl-block.png)
 
 ### 寄存器重命名
 
-![rename](./images/backend/rename.png)
+![rename](../figs/backend/rename.png)
 
 - 统一物理寄存器重命名，将32个逻辑寄存器映射到160个物理寄存器
 - 重命名部件每拍可分配或释放6个物理寄存器
@@ -34,13 +34,13 @@
 
 ### 流水线重定向
 
-![redirect](./images/backend/redirect.png)
+![redirect](../figs/backend/redirect.png)
 
 雁栖湖版本中，在异常和中断之外，流水线后端还有6个重定向来源，包括4个 ALU 、1个 JMP 部件以及1个来自 Memory Violation 的重定向源，香山会根据6个来源的年龄关系选出一个最老的重定向发到前端进行重新取指并对后端进行选择性刷新。
 
 ## IntBlock
 
-![int-block](./images/backend/int-block.png)
+![int-block](../figs/backend/int-block.png)
 
 - 7个定点保留站
 - ALU 部件可提前唤醒其他保留站中的指令，实现背靠背执行
@@ -49,7 +49,7 @@
 
 ## FloatBlock
 
-![float-block](./images/backend/float-block.png)
+![float-block](../figs/backend/float-block.png)
 
 - FPR 内部采用 recode [1] 格式存储浮点数(65-bit)
 - 浮点功能单元基于Hardflaot [1]，对其原版 FMAC 和 FDIVSQRT 进行了优化
@@ -57,7 +57,7 @@
 
 ### recode 格式
 
-![recode](./images/backend/recode.png)
+![recode](../figs/backend/recode.png)
 
 - recode 格式简化了浮点功能部件的设计(尤其是对 subnormal 的处理)
 - recode 格式需要在 FloatBlock 与外部进行数据交互时对浮点数做转换，带来了额外的延迟

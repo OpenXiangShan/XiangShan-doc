@@ -67,11 +67,7 @@ nav:
             - 通道控制: huancun/channels.md
             - L2预取: huancun/prefetch.md
             - Cache 别名问题: huancun/cache_alias.md
-            - Miscs:
-                - RequestBuffer: huancun/req_buffer.md
-                - RefillBuffer: huancun/refill_buffer.md
-                - MSHRAlloc: huancun/alloc.md
-                - ProbeHelper: huancun/probe_helper.md
+            - Miscs: huancun/misc.md
         - 其他:
             - 参数配置: misc/config.md
             - 调试设计: misc/debug.md

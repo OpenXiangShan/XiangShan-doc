@@ -27,11 +27,19 @@ nav:
             - ICache: frontend/icache.md
             - 分支预测: frontend/bp.md
             - 取指目标队列: frontend/ftq.md
-            - Decode Stage: frontend/decode.md
+            - 译码: frontend/decode.md
         - 后端:
-            - Rename Stage: rename.md
-            - Dispatch Stage: dispatch.md
-            - ROB: rob.md
+            - 总体架构: backend/overview.md
+            - 重命名: backend/rename.md
+            - 派遣: backend/dispatch.md
+            - ROB: backend/rob.md
+            - 乱序调度器:
+                - 总体架构: backend/scheduler.md
+                - 发射队列/保留站: backend/issue.md
+            - 执行单元:
+                - 总体架构: backend/exu.md
+                - 定点部件: backend/exu_int.md
+                - 浮点部件: backend/exu_fp.md
         - 访存子系统:
             - 总体架构: memory/overview.md
             - 访存流水线:
@@ -62,6 +70,9 @@ nav:
                 - RefillBuffer: huancun/refill_buffer.md
                 - MSHRAlloc: huancun/alloc.md
                 - ProbeHelper: huancun/probe_helper.md
-    - 敏捷验证框架:
+        - 其他:
+            - 参数配置: misc/config.md
+            - 调试设计: misc/debug.md
+    - 敏捷开发框架:
         - DiffTest: difftest.md
         - LightSSS: lightsss.md

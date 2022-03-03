@@ -30,7 +30,7 @@ Load Queue 每项包含以下的信息:
 
 TODO: 解释
 
-## load queue 分配和 enqueue
+## load queue enqueue
 
 load 指令进入 load queue 实际分两步完成: enqPtr 的提前分配和 load queue 的实际写入. 
 
@@ -46,17 +46,13 @@ TODO
 
 Currently, LoadQueue only allows enqueue when #emptyEntries > EnqWidth
 
-## 流水线中的 load 指令更新 load queue
+## load 写回到 load queue
 
-Most load instructions writeback to regfile at the same time.
+load 写回到 load queue 指 流水线中的 load 指令更新 load queue 这一过程.
 
-However,
+Most load instructions writeback to regfile at the same time. (TODO: 两个 stage)
 
-* (1) For an mmio instruction with exceptions, it writes back to ROB immediately.
-* (2) For an mmio instruction without exceptions, it does not write back. The mmio instruction will be sent to lower level when it reaches ROB's head. After uncache response, it will write back through arbiter with loadUnit.
-* (3) For cache misses, it is marked miss and sent to dcache later. After cache refills, it will write back through arbiter with loadUnit.
-
-### load stage 2 的更新
+### load stage 2
 
 这一 stage, dcache 和前递返回结果. 写入的内容包括:
 
@@ -73,17 +69,30 @@ However,
 * pending
 * released
 
-### load stage 3 的更新
+### load stage 3
 
 这一 stage, 部分在上个周期来不及完成的检查返回结果. load queue 会使用这些结果来更新其状态.
 
 dcacheRequireReplay 事件会将 miss 和 datavalid flag 更新为 false. 这标志着这条指令会从保留站重发, 而不是在 load queue 中等待 refill 将其唤醒. 这一操作与 load 指令流水线中 stage 3 的保留站反馈操作同步发生. 参见 load pipeline 部分 (TODO).
 
+### 特例
+
+However,
+
+* (1) For an mmio instruction with exceptions, it writes back to ROB immediately.
+* (2) For an mmio instruction without exceptions, it does not write back. The mmio instruction will be sent to lower level when it reaches ROB's head. After uncache response, it will write back through arbiter with loadUnit.
+* (3) For cache misses, it is marked miss and sent to dcache later. After cache refills, it will write back through arbiter with loadUnit.
+
 ## load refill 相关机制
 
 TODO
 
-## load 写回相关机制
+## load 指令的完成
+
+指 load 写回 rob 和 rf 的操作.
+
+!!! note
+    注意区分 load 指令写回到 load queue 和 load 从 load queue 写回到 rob 和 rf. 两者是不同的操作.
 
 写回 load 的选择分奇偶两部分进行, 较老的指令优先被选择. 每周期至多选出两条指令被写回.
 

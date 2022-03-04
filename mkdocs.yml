@@ -74,3 +74,6 @@ nav:
     - 敏捷开发框架:
         - DiffTest: difftest.md
         - LightSSS: lightsss.md
+
+markdown_extensions:
+  - footnotes

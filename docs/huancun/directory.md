@@ -2,7 +2,7 @@
 
 本章将介绍 huancun 中目录的设计。本章中所指的“目录”是广义的，包含元数据和 Tag。
 
-huancun 是基于目录结构的 Non-inclusive Cache，在设计过程中受到了 NCID 的启发。多级 Cache 之间，数据是 Non-inclusive 的，而目录则是 Inclusive 的。在结构组织上，huancun 将上层数据的目录与本地数据的目录分开存储，两者结构类似。目录使用 SRAM 搭建，以 Set 为索引，每一个 Set 中有 Way 路数据。
+huancun 是基于目录结构的 Non-inclusive Cache，在设计过程中受到了 NCID[^ncid] 的启发。多级 Cache 之间，数据是 Non-inclusive 的，而目录则是 Inclusive 的。在结构组织上，huancun 将上层数据的目录与本地数据的目录分开存储，两者结构类似。目录使用 SRAM 搭建，以 Set 为索引，每一个 Set 中有 Way 路数据。
 
 
 
@@ -49,3 +49,7 @@ huancun 是基于目录结构的 Non-inclusive Cache，在设计过程中受到�
 #### 目录是否会出现读写竞争冒险？
 
 * 我们的 MSHR 是按照 Set 阻塞的，且仅当 MSHR 释放后才会让新请求进入并读取目录，因此不会出现读写竞争冒险。
+
+
+
+[^ncid]: Zhao, Li, et al. "NCID: a non-inclusive cache, inclusive directory architecture for flexible and efficient cache hierarchies." *Proceedings of the 7th ACM international conference on Computing frontiers*. 2010.

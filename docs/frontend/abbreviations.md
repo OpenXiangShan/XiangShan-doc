@@ -1,0 +1,11 @@
+*[APD]: Accurate Predictor, 精确预测器
+*[NLP]: Next Line Predictor, 下一行预测器
+*[uBTB]: Micro Branch Target Buffer
+*[FTB]: Fetch Target Buffer
+*[TAGE-SC]: TAgged GEometric length predictor with Statistical Corrector
+*[ITTAGE]: Indirect Target TAgged GEometric length predictor
+*[TAGE]: TAgged GEometric length predictor
+*[RAS]: Return Address Stack
+*[SC]: Statistical Corrector
+*[BPU]: Branch Prediction Unit
+*[FTQ]: Fetch Target Queue

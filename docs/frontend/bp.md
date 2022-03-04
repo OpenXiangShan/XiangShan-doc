@@ -64,7 +64,7 @@ RISC-V 指令集中 jalr 指令支持以寄存器取值加一立即数的方式�
 
 ![ittage_struct](../figs/frontend/ITTAGE.png)
 
-[ITTAGE](#ittage)[^ittage_orig][^ittage_improve] 是一种准确率很高的间接分支预测器，它的基本结构如上图所示。它基于 [TAGE](#tage) 预测器基本原理，针对间接预测器所面临的地址预测问题而调整预测表项设计。具体地，如下图所示，[ITTAGE](#ittage) 将 [TAGE](#tage) 中用于预测跳转方向的计数器替换为所预测的跳转地址。在当前的 [FTB](#ftb) 设计中，每个FTB项仅存储至多一条间接跳转指令信息，[ITTAGE](#ittage) 预测器的预测宽度也相应设置为 1，即每周期的输出最多为一条间接跳转指令提供预测结果。工作时，[ITTAGE](#ittage) 使用与 [TAGE](#tage) 预测器相同的分支历史信息和 [FTB](#ftb) 项起始地址 start 生成 index 并在多个预测表中寻址，若多个表中出现命中，优先选择分支历史较长的预测表所给出的信息或根据[备选预测](#alt_pred)参数决定采用次长历史预测结果。[ITTAGE](#ittage) 更新也仿效 [TAGE](#tage) 预测器，当出现误预测时会在预测表中尝试添加新表项，但仅在其对应 useful bit 为 0 时才会实际完成替换，useful bit 会周期性清零以实现不活跃表项回收利用。
+[ITTAGE](#ittage)[^ittage_orig][^ittage_improve] 是一种准确率很高的间接分支预测器，它的基本结构如上图所示。它基于 [TAGE](#tage) 预测器基本原理，针对间接预测器所面临的地址预测问题而调整预测表项设计。具体地，如下图所示，[ITTAGE](#ittage) 将 [TAGE](#tage) 中用于预测跳转方向的计数器替换为所预测的跳转地址。在当前的 [FTB](#ftb) 设计中，每个 FTB 项仅存储至多一条间接跳转指令信息，[ITTAGE](#ittage) 预测器的预测宽度也相应设置为 1，即每周期的输出最多为一条间接跳转指令提供预测结果。工作时，[ITTAGE](#ittage) 使用与 [TAGE](#tage) 预测器相同的分支历史信息和 [FTB](#ftb) 项起始地址 start 生成 index 并在多个预测表中寻址，若多个表中出现命中，优先选择分支历史较长的预测表所给出的信息或根据[备选预测](#alt_pred)参数决定采用次长历史预测结果。[ITTAGE](#ittage) 更新也仿效 [TAGE](#tage) 预测器，当出现误预测时会在预测表中尝试添加新表项，但仅在其对应 useful bit 为 0 时才会实际完成替换，useful bit 会周期性清零以实现不活跃表项回收利用。
 
 ![ittage_entry](../figs/frontend/ITTAGE_entry.png)
 
@@ -93,15 +93,15 @@ RISC-V 指令集中 jalr 指令支持以寄存器取值加一立即数的方式�
 
 ## 名词解释
 
-<b id="pred-block">预测块</b> 分支预测单元 ([BPU](#bpu)) 每次给取指目标队列 ([FTQ](ftq.md)) 的请求基本单位，它描述了一个取指请求的范围，以及其中分支指令的情况
+<b id="pred-block">预测块</b> 分支预测单元 (BPU) 每次给取指目标队列 (FTQ) 的请求基本单位，它描述了一个取指请求的范围，以及其中分支指令的情况
 
-<b id="pred-width">预测宽度</b> 每次预测提供给取指单元的最大指令流宽度，在南湖架构中与取指宽度相同，都为 32 字节。当 [FTB](#ftb) 预测未命中时，目标地址默认为当前地址和预测宽度相加
+<b id="pred-width">预测宽度</b> 每次预测提供给取指单元的最大指令流宽度，在南湖架构中与取指宽度相同，都为 32 字节。当 FTB 预测未命中时，目标地址默认为当前地址和预测宽度相加
 
 <b id="overriding-predictor">覆盖预测器</b> 一种多个不同延迟的预测器的组织形式，延迟大的、相对更准确的预测器被放在后面的流水级，其产生的预测结果会与前面的预测器进行比较，如果不同则会冲刷流水线，整体预测结果以最准确的预测器为准
 
 <b id="global-history">全局分支历史</b> 指令流中所有条件分支指令的执行结果序列，每一条分支指令的执行结果作为一位（0/1）存在于全局分支历史中，一般以移位寄存器的方式实现
 
-<b id="alt_pred">备选预测</b> TAGE/ITTAGE预测器一种优化，当对长历史预测结果信心不足时选择次长历史下的命中结果作为最终预测，可提升整体预测正确率
+<b id="alt_pred">备选预测</b> TAGE/ITTAGE 预测器一种优化，当对长历史预测结果信心不足时选择次长历史下的命中结果作为最终预测，可提升整体预测正确率
 
 ## 引用
 [^ftbcite]: Reinman G, Austin T, Calder B. A scalable front-end architecture for fast instruction delivery[J]. ACM SIGARCH Computer Architecture News, 1999, 27(2): 234-245.
@@ -113,3 +113,5 @@ RISC-V 指令集中 jalr 指令支持以寄存器取值加一立即数的方式�
 [^ittage_orig]: Seznec A, Michaud P. A case for (partially) TAgged GEometric history length branch prediction[J]. The Journal of Instruction-Level Parallelism, 2006, 8: 23.
 
 [^ittage_improve]: Seznec A. A 64-Kbytes ITTAGE indirect branch predictor[C]//JWAC-2: Championship Branch Prediction. 2011.
+
+--8<-- "docs/frontend/abbreviations.md"

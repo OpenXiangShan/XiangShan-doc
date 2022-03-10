@@ -65,7 +65,7 @@ nav:
             - 数据存储: huancun/data.md
             - MSHR: huancun/mshr.md
             - 通道控制: huancun/channels.md
-            - L2预取: huancun/prefetch.md
+            - L2 预取: huancun/prefetch.md
             - Cache 别名问题: huancun/cache_alias.md
             - Miscs: huancun/misc.md
         - 其他:

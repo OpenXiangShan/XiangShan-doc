@@ -6,6 +6,9 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - footnotes
+  - abbr
+  - pymdownx.snippets
 plugins:
     # - with-pdf:
     #     author: XiangShan Team
@@ -44,6 +47,7 @@ nav:
                 - 浮点部件: backend/exu_fp.md
         - 访存子系统:
             - 总体架构: memory/overview.md
+            - 乱序访存机制: memory/mechanism.md
             - 访存流水线:
                 - Load Pipeline: memory/fu/load_pipeline.md
                 - Store Pipeline: memory/fu/store_pipeline.md
@@ -74,8 +78,3 @@ nav:
     - 敏捷开发框架:
         - DiffTest: difftest.md
         - LightSSS: lightsss.md
-
-markdown_extensions:
-  - footnotes
-  - abbr
-  - pymdownx.snippets

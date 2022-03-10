@@ -10,7 +10,7 @@
 
 ![storepipe](../../figs/memblock/store-pipeline.png)  
 
-## sta 流水线的划分
+## Sta Pipeline
 
 各级流水线的划分如下:
 
@@ -34,7 +34,7 @@ Stage 3
 
 [store queue](../lsq/store_queue.md) 一章描述了 sta 更新 store queue 的详细情况.
 
-## std 流水线的划分
+## Std Pipeline
 
 Stage 0
 * 保留站给出 store data

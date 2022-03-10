@@ -9,5 +9,5 @@
 下面举一个例子说明L2如何解决cache别名问题。如下图所示，DCache中有有一个虚地址为0x0000的块，虚地址0x0000和0x1000映射到了同一个物理地址，且这两个地址的别名是不一样的；此时DCache向L2 Acquire了地址为0x1000的块，并在Acquire请求的user域中记录了别名(0x1)，L2在读目录后发现请求命中，但是Acquire的别名(0x1)和L2记录的DCache在该物理地址的别名(0x0)不同，于是L2会发起一个Probe子请求，并在Probe的data域中记录要probe下来的别名(0x0)；Probe子请求完成后，L2再将这个块返回给DCache，并将L2 client directory中的别名改为(0x1)。
 
 <div align="center">
-<img src=../figs/huancun_cache_alias-2.jpg width=50%>
+<img src="../figs/huancun_cache_alias-2.jpg" width=50%>
 <div>

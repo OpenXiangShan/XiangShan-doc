@@ -41,10 +41,7 @@ issuePtr 是一个非精确的指针(尽量精确, 但不强求). issuePtr 的�
 
 ### store addr
 
-一条 store 指令会在 sta 流水线的 store stage 1 / stage 2 更新 store queue. 其中, store stage 1 更新地址和绝大多数状态位. 如果没有 TLB miss 等问题的话, 设置 addrvalid flag. stage 2 更新 mmio 和 pending 两个 flag.
-
-!!! note
-    在 stage 2 才更新 mmio 和 pending flag 的原因是 PMA 检查指令是否位于 MMIO 区域的时序紧张.
+一条 store 指令会在 sta 流水线的 store stage 1 / stage 2 更新 store queue. 其中, store stage 1 更新地址和绝大多数状态位. 如果没有 TLB miss 等问题的话, 设置 addrvalid flag. stage 2 更新 mmio 和 pending 两个 flag. 其中, 在 stage 2 才更新 mmio 和 pending flag 的原因是 PMA 检查指令是否位于 MMIO 区域的时序紧张.
 
 ### store data
 
@@ -67,8 +64,7 @@ committed stores will not be cancelled and can be sent to lower level. store que
 
 As store queue grows larger and larger, time needed to read data from data module keeps growing higher. Now we give data read a whole cycle. 在下一个 cycle, store queue 才会尝试将前一个周期读出的 data 写入 sbuffer 中.
 
-!!! note
-    sbuffer 在接受来自 store queue 写入的数据的过程中需要做检查. 这个检查的逻辑很长, 需要单独的一拍(参见 sbuffer TODO). 这也是为什么我们要将读出数据和写入 sbuffer 拆成两拍的原因.
+sbuffer 在接受来自 store queue 写入的数据的过程中需要做检查. 这个检查的逻辑很长, 需要单独的一拍(参见 sbuffer TODO). 这也是为什么我们要将读出数据和写入 sbuffer 拆成两拍的原因.
 
 在 store data 被写入 sbuffer 之前, store queue 中的这一项一直会保持有效状态, 来保证 store to load 前递能正确拿到 store 结果.
 

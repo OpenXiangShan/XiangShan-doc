@@ -106,18 +106,3 @@ load 流水线会在 load stage 1 向保留站给出快速唤醒信号. 由于 M
 ### Trigger 的设置
 
 load 流水线中设置了 trigger 触发机制. 出于时序考虑, 南湖架构只支持使用地址作为触发条件. 
-
-### 硬件性能计数器
-
-计数器名称|描述
--|-
-load_s0_in_fire|经过 load 流水线 stage 0 的指令数
-load_s1_in_fire|经过 load 流水线 stage 1 的指令数
-load_s1_tlb_miss|TLB miss 的指令数
-load_s2_in_fire|经过 load 流水线 stage 2 的指令数
-load_s2_dcache_miss|DCache miss 的指令数
-load_s2_replay|经过这条流水线, 使用 feedbackSlow 从保留站重发的指令数
-load_s2_replay_tlb_miss|因 TLB miss 而从保留站重发的指令数
-load_s2_replay_cache|因 DCache MSHR 分配失败而从保留站重发的指令数
-
-因其他原因而从保留站重发的指令数可以使用已有的计数器计算得知.

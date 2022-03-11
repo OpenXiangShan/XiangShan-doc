@@ -58,7 +58,7 @@ store addr (sta) 流水线只设置了一个反馈端口. 在 store stage 1, sto
 除了是否要进行指令重发的信息, 重发反馈端口还包括以下信息：
 
 * 使用保留站 index（rsIdx）索引要重发的指令在保留站中的位置
-* 使用 sourceType 域区分不同的重发原因shi yong quan
+* 使用 sourceType 域区分不同的重发原因
 * 为 load 发现之前的 store 地址就绪但数据未就绪的情况, 提供了反馈这条 store sqIdx 的接口
 
 !!! note

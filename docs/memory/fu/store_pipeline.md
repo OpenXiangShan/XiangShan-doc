@@ -27,10 +27,12 @@ Stage 1
 * 物理地址送入 store queue
 
 Stage 2
+
 * 访存依赖检查
 * 完成全部异常检查和PMA查询, 根据结果更新 store queue
 
 Stage 3
+
 * 完成访存依赖检查 
 * 通知 ROB 可以提交指令
 
@@ -45,12 +47,8 @@ Stage 0
 
 ## Store 的执行细节补充
 
-上面的文档已经完整地展示了 sta/std 执行的一般流程. 这一部分将展开一些 store 流水线执行的细节.
+上面的文档已经完整地展示了 sta/std 执行的一般流程. 这一部分将补充一些 store 流水线执行的细节.
 
-### TLB miss 的处理
+**TLB miss 的处理.** 和 load 流水线一样, store addr 流水线也可能经历 TLB miss. 两者的处理方式基本一致, 参见 [load TLB miss 的处理]( ./load_pipeline.md#tlb-miss). store addr 仅使用一个 rsFeedback 端口向保留站反馈 store addr 计算操作是否需要从保留站重发.
 
-和 load 流水线一样, store addr 流水线也可能经历 TLB miss. 两者的处理方式基本一致, 参见 [load TLB miss 的处理]( ./load_pipeline.md#tlb-miss). store addr 仅使用一个 rsFeedback 端口向保留站反馈 store addr 计算操作是否需要从保留站重发.
-
-### PMA 和异常检查
-
-为时序考虑, MMIO 等检查结果在 data 更新到 store queue 一周期之后才全部完成. 此时 store 流水线会将查询出的最终结果写入到 store queue 中.
+**PMA 和异常检查.** 为时序考虑, MMIO 等检查结果在 data 更新到 store queue 一周期之后才全部完成. 此时 store 流水线会将查询出的最终结果写入到 store queue 中.

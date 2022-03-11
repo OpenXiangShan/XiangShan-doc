@@ -1,12 +1,10 @@
 # Load Pipeline
 
-本章描述香山处理器 DCache Load 流水线的实现。
+本章描述香山处理器 DCache Load 流水线的实现.
+
+DCache 的 load 流水线与 load unit 的 load 流水线各流水级一一对应, 同步流动. 两者在逻辑上可以被视为同一条流水线. DCache 的 load 流水线是**非阻塞**的. 一旦 dcache 流水线 stage 0 接收了一条 load 指令, 这条 load 指令就不会被阻塞. 不过在出现冲突的情况下, dcache 流水线 stage 0 可能会拒绝接收 load 指令.
 
 ## DCache Load 流水线的划分
-
-DCache 的 load 流水线与 load unit 的 load 流水线各流水级一一对应, 同步流动. 两者在逻辑上可以被视为同一条流水线. 
-
-**非阻塞性**. 一旦 dcache 流水线 stage 0 接收了一条 load 指令, 这条 load 指令就不会被阻塞. 不过在出现冲突的情况下, dcache 流水线 stage 0 可能会拒绝接收 load 指令.
 
 ### Stage 0
 

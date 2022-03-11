@@ -2,9 +2,10 @@
 
 香山处理器的 `Memblock` 包含核内的访存流水线及队列, 以及与访存流水线紧耦合的一级数据缓存. 我们使用 `核内访存子系统` 一词来指代 `Memblock`这一部分.
 
-TODO: 更新插图
+!!! todo
+    更新插图
 
-![整体流水线](docs/figs/memblock/ls-pipe.png)  
+![整体流水线](../figs/memblock/ls-pipe.png)  
 
 香山处理器(南湖架构)核内的访存子系统如上图所示. 其中包含两条 [load 流水线](./fu/load_pipline.md), 彼此分离的两条 [sta 流水线](./fu/store_pipeline.md#Sta-Pipeline)和两条 [std 流水线](./fu/store_pipeline.md#Std-Pipeline). [load queue](.lsq/load_queue.md) 和 [store queue](./lsq/lsq.md) 负责维护访存指令的顺序信息. load queue 会在 load 指令在一级缓存中缺失时负责监听后续的重填结果并执行写回操作. store queue 负责在指令提交之前暂存 store 的数据, 并为 store 向 load 的前递提供数据. 
 

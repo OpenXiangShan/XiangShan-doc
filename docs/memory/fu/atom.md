@@ -22,7 +22,7 @@
 
 ## dcache 对原子指令的支持
 
-目前, 香山(南湖架构)的所有原子指令都是在 dcache 处理的. dcache 使用主流水线(MainPipe)执行原子指令. MainPipe 若发现原子指令 miss, 则会向 MissQueue 发起请求. MissQueue 从 l2 cache 取得数据后, 再执行原子指令. 若原子指令执行时 MissQueue 满, 则不断尝试重发原子指令, 直到 MissQueue 接收原子指令的 miss 重填请求为止.
+目前, 香山(南湖架构)的所有原子指令都是在 dcache 处理的. dcache 使用主流水线(MainPipe)执行原子指令. MainPipe 若发现原子指令 miss, 则会向 MissQueue 发起请求. MissQueue 从 l2 cache 取得数据后, 再执行原子指令. 若原子指令执行时 MissQueue 满, 则不断尝试重发原子指令, 直到 MissQueue 接收原子指令的 miss 重填请求为止. dcache 内部使用一个一项的 `AtomicsReplayEntry` 来负责原子指令的调度.
 
 ### 对于 lr/sc 的特殊支持
 
@@ -46,6 +46,4 @@ dcache 会在 mainpipe 中进行 amo 指令所定义的运算操作. 参见 [dca
 
 ## 调试相关
 
-### Trigger
-
-原子指令的 trigger 支持使用 vaddr 触发.
+原子指令的 trigger 仅支持使用 vaddr 触发.

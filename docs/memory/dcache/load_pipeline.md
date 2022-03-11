@@ -14,7 +14,7 @@ DCache 的 load 流水线与 load unit 的 load 流水线各流水级一一对�
 * 使用虚拟地址查询 tag
 * 使用虚拟地址查询 tag
 
-### Stage 1bank_conflict_slow
+### Stage 1
 
 * 获得 tag 查询结果
 * 获得 meta 查询结果
@@ -32,13 +32,3 @@ DCache 的 load 流水线与 load unit 的 load 流水线各流水级一一对�
 * 获得 data 查询结果
 * 如果 miss, 尝试分配 MSHR (miss queue) 项
 * 检查 data error
-
-## 硬件性能计数器
-
-计数器名称|描述
--|-
-load_req|-
-load_replay|-
-load_replay_for_data_nack|-
-load_replay_for_no_mshr|-
-load_replay_for_conflict|-

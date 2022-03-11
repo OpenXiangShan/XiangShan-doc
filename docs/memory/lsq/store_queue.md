@@ -107,16 +107,3 @@ store queue 的 MMIO 访存机制与 load queue 的 MMIO 访存 (TODO) 基本一
 ## flush store queue
 
 store queue 本身不含 flush 逻辑, 但是 store queue 会对外输出空满信号. 在需要 flush store queue 时, sbuffer 会进入刷新状态, 向 dcache 写入其中的所有数据, 直到 store queue 和 sbuffer 都不含有效数据为止. 在这一过程中, store queue 会不断将其中已经提交 store 指令的数据写入到 sbuffer 中.
-
-## 硬件性能计数器
-
-计数器名称|描述
--|-
-mmioCycle|-
-mmioCnt|-
-mmio_wb_success|-
-mmio_wb_blocked|-
-stq_1_4_valid|-
-stq_2_4_valid|-
-stq_3_4_valid|-
-stq_4_4_valid|-

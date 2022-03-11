@@ -14,7 +14,7 @@ Committed Store Buffer 以 cacheline 为粒度合并 store 的写请求. 当容�
 ## sbuffer 中每项的内容
 
 * 状态位
-* 虚实地址:
+* 虚实地址
 * 数据
 * 数据有效掩码
 
@@ -34,12 +34,14 @@ w_sameblock_inflight|with sameblock inflight, 存在一个相同 cacheline 的 s
 
 第二拍执行的地址和状态检查会产生以下结果:
 
-* 地址无匹配, 写入
-* 地址有匹配, 该项没有发起过写 dcache 请求, 合并
-* 地址有匹配, 该项正在写 dcache 请求, 阻塞
-* sbuffer 无空项, 阻塞
+检查结果|后续操作
+-|-
+地址无匹配, sbuffer 中不存在这个 cacheline|分配新项并写入
+地址有匹配, 该项没有发起过写 dcache 请求|合并这次写入的数据到 sbuffer 已有的项中
+地址有匹配, 该项正在写 dcache 请求|阻塞写入请求
+sbuffer 无空项|阻塞写入请求
 
-如果成功执行了写入或合并, 会更新对应项的数据和 mask. 首次写入时还会写入地址和控制信息到 sbuffer 中.
+如果成功执行了写入或合并, 会更新对应项的数据和 mask. 首次写入时还会写入地址和控制信息到 sbuffer 中. 出于时序考虑， 在 sbuffer 无空项时, 即使可以进行相同 cacheline 的数据合并, 写入也会发生. 
 
 ## sbuffer 向 dcache 的写入机制
 

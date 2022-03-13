@@ -72,9 +72,23 @@ SourceB 接收来自 MSHR 的 Task，通过 B 通道发送 Probe 请求。Source
 
 ## SourceC
 
+SourceC 接收来自 MSHR 的 Task，负责向 DataStorage 发送读取请求，接收到数据后存入队列，出队后从 C 通道发送出去。
+
+设置一个队列的原因是，SourceC 的流水没有加阻塞机制，且 DataStorage 也没有阻塞和取消功能，这就要求一旦允许接收一个 Task 就一定要能够将它处理完毕进入 Queue。此处使用反压控制，保证即使在 C 通道一直堵着的情况下，Queue 里的空间能容下可能将要进入的所有项：包括流水线中 impending 的 SRAMLatency 项加上当前 Task 去读 dataStorage 得到的 beatSize 个项。
+
 
 
 ## SourceD
+
+SourceD 是通道控制模块中最复杂的一个，它主要有两个职责：读取数据通过 D 通道发回上级、向 DataStorage 发写请求以处理 Put 等请求。
+
+第 1 级根据 Task 的信息向 DataStorage 或者 RefillBuffer 发送读请求，并置 Busy 阻塞新 Task，当最后一个 Beat 的请求发完后才允许新 Task 进入
+
+第 2 级首先向 SinkA 的 PutBuffer 发送读请求，接收到数据后存入队列；如果 Task 不需要数据或者数据从 RefillBuffer 中 Bypass 过来，该级直接通过 D 通道发送响应
+
+第 3 级和第 2 级通过一个 Pipe 相连接，即 DataStorage 返回数据后才进入第 3 级。对于一般请求，该级将读取的数据通过 D 通道发送响应；对于 Put 请求，该级在处理首 Beat 时发送 AccessAck 响应。
+
+第 4 级向 DataStorage 发送写请求
 
 
 

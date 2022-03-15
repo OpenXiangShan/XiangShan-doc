@@ -9,6 +9,9 @@ markdown_extensions:
   - footnotes
   - abbr
   - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - def_list
 plugins:
     # - with-pdf:
     #     author: XiangShan Team
@@ -28,11 +31,12 @@ nav:
     - 处理器核介绍:
         - 前端:
             - 总体架构: frontend/frontend.md
-            - IFU: frontend/ifu.md
-            - ICache: frontend/icache.md
+            - 取指令单元: frontend/ifu.md
+            - 指令缓存: frontend/icache.md
             - 分支预测: frontend/bp.md
             - 取指目标队列: frontend/ftq.md
             - 译码: frontend/decode.md
+            - 各种缩写: frontend/abbreviations.md
         - 后端:
             - 总体架构: backend/overview.md
             - 重命名: backend/rename.md

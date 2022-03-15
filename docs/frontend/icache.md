@@ -1,43 +1,58 @@
 # 指令缓存（Instruction Cache）文档
+<!-- 这个图需要重新画一下 -->
 ![icache](../figs/frontend/ICache.png)
 
 这一章描述香山处理器指令缓存的实现。
 
+## 指令缓存配置
+| 参数名称               | 参数描述                          |
+| -----------           | ------------------------------------ |
+| `nSet`                | 指令缓存 Set 数，默认为 256  |
+| `nWays`               | 指令缓存每个 Set 的组相连路数，默认为 8 路 |
+| `nTLBEntries`         | ITLB 的 PTE 项数，默认为 32 项 |
+| `tagECC`              | Meta SRAM 的校验方式，南湖版本配置为奇偶校验 |
+| `dataECC`             | Data SRAM 的校验方式，南湖版本配置为奇偶校验 |
+| `replacer`            | 替换策略，默认为随机替换，南湖版本配置为 PLRU |
+| `hasPrefetch`         | 指令预取开关，默认为关闭 |
+| `nPrefetchEntries`    | 指令预取的 entry 数目，同时可支持的最大 cacheline 预取数，默认为4 |
+
+
 ## 控制逻辑
+<!-- 指令缓存的主控制逻辑模块 MainPipe 的内部逻辑示意图： -->
 
-<!-- 指令缓存的主控制逻辑模块MainPipe的内部逻辑示意图： -->
+指令缓存的主控制逻辑模块 MainPipe 由 3 级流水线构成：
 
-指令缓存的主控制逻辑模块MainPipe由3级流水线构成：
-- 在`s0` 阶段从FTQ发送过包含两个cacheline的取指令请求，其中包含了每个请求是否有效的信号（不跨行的指令packet止只会发送一个cacheline的读请求），同时MainPipe一方面会把请求地址提取为缓存组索引（set index）发送给指令Cache的[存储部分](#mem)，另一方面，这些请求会被发送给ITLB进行[指令地址翻译](#tlb)
-- 在`s1` 阶段，存储SRAM返回一个组（Cache Set）一共N个路(Cache Way)的cacheline元数据和数据。同时ITLB返回请求对应的物理地址。接下来主控制逻辑截取物理地址并和N个路的Cache tag进行匹配，生成缓存命中（Cache hit）和缓存缺失（Cache miss）两种结果。另外还会根据替换算法的状态信息选出需要替换的cacheline。
-- 在`s2`阶段，hit的请求直接返回数据给IFU。而当发生miss的时候需要暂停流水线，并将请求发送给缺失处理单元MissUnit。等到MissUnit充填完成并返回数据之后将数据返回给IFU。
-- 在`s2`阶段还会把ITLB翻译得到的物理地址发送给PMP模块进行访问权限的查询，如果权限错误会触发指令访问例外(Instruction Access Fault)
+- 在 `s0` 阶段从 FTQ 发送过包含两个 cacheline 的取指令请求，其中包含了每个请求是否有效的信号（不跨行的指令 packet 止只会发送一个 cacheline 的读请求），同时 MainPipe 一方面会把请求地址提取为缓存组索引（set index）发送给指令 Cache 的 [存储部分](#mem)，另一方面，这些请求会被发送给 ITLB 进行 [指令地址翻译](#tlb)
+- 在 `s1` 阶段，存储 SRAM 返回一个组（Cache Set）一共 N 个路 (Cache Way) 的 cacheline 元数据和数据。同时 ITLB 返回请求对应的物理地址。接下来主控制逻辑截取物理地址并和 N 个路的 Cache tag 进行匹配，生成缓存命中（Cache hit）和缓存缺失（Cache miss）两种结果。另外还会根据替换算法的状态信息选出需要替换的 cacheline。
+- 在 `s2` 阶段，hit 的请求直接返回数据给 IFU。而当发生 miss 的时候需要暂停流水线，并将请求发送给缺失处理单元 MissUnit。等到 MissUnit 充填完成并返回数据之后将数据返回给 IFU。
+- 在 `s2` 阶段还会把 ITLB 翻译得到的物理地址发送给 PMP 模块进行访问权限的查询，如果权限错误会触发指令访问例外 (Instruction Access Fault)
 
-<h2 id=itlb>指令地址翻译</h2>
+<h2 id=itlb> 指令地址翻译 </h2>
 
-由于指令缓存采用的是VIPT（Virtual Index Physical Tag）的缓存方式，因此需要在地址tag比较之前先将虚拟地址翻译为物理地址。控制流水线的`s0`阶段，两个cachline请求的虚拟地址会同时发送到ITLB的查询端口，同时这一个时钟周期内ITLB返回虚地址是否命中的信号。命中则会在下一拍返回对应的物理地址。不命中则控制逻辑会阻塞MainPipe流水线，等待直到ITLB重填结束返回物理地址。
+由于指令缓存采用的是 VIPT（Virtual Index Physical Tag）的缓存方式，因此需要在地址 tag 比较之前先将虚拟地址翻译为物理地址。控制流水线的 `s0` 阶段，两个 cachline 请求的虚拟地址会同时发送到 ITLB 的查询端口，同时这一个时钟周期内 ITLB 返回虚地址是否命中的信号。命中则会在下一拍返回对应的物理地址。不命中则控制逻辑会阻塞 MainPipe 流水线，等待直到 ITLB 重填结束返回物理地址。
 
-## 缓存miss处理
+## 缓存 miss 处理
 
-发生miss的请求会被移交给MissUnit向下游L2 Cache发送Tilelink `Aquire` 请求，等到MissUnit收到对应数据的 `Grant` 请求之后，如果需要替换cacheline，MissUnit则会向ReplacePipe发送Release请求，ReplacePipe会重新读一遍SRAM得到数据，然后发送给ReleaseUnit发起向L2 Cache的`Release` 请求。最后MissUnit重填写SRAM，等到重填结束后返回数据给MainPipe，MainPipe再把数据返回给IFU。
+发生 miss 的请求会被移交给 MissUnit 向下游 L2 Cache 发送 Tilelink `Aquire` 请求，等到 MissUnit 收到对应数据的 `Grant` 请求之后，如果需要替换 cacheline，MissUnit 则会向 ReplacePipe 发送 Release 请求，ReplacePipe 会重新读一遍 SRAM 得到数据，然后发送给 ReleaseUnit 发起向 L2 Cache 的 `Release` 请求。最后 MissUnit 重填写 SRAM，等到重填结束后返回数据给 MainPipe，MainPipe 再把数据返回给 IFU。
 
-miss的cacheline可能发生在两个请求中的任何一个，因此MissUnit里设置了两个处理miss的missEntry项来提高并发度。
+miss 的 cacheline 可能发生在两个请求中的任何一个，因此 MissUnit 里设置了两个处理 miss 的 missEntry 项来提高并发度。
 
 ## 例外的处理
-在ICache产生的例外主要包括两种：ITLB报告的指令缺页例外（Instruction Page Fault）和ITLB和PMP报告的访问例外（Access Fault）。MainPipe会把例外信息直接报告给IFU，而请求的数据被视为无效。
+在 ICache 产生的例外主要包括两种：ITLB 报告的指令缺页例外（Instruction Page Fault）和 ITLB 和 PMP 报告的访问例外（Access Fault）。MainPipe 会把例外信息直接报告给 IFU，而请求的数据被视为无效。
 
-<h2 id=imem>存储部分</h2>
+<h2 id=imem> 存储部分 </h2>
 
-指令Cache的存储逻辑主要分为了Meta SRAM（存储每个cacheline的tag以及一致性状态）和Data SRAM（存储每个cacheline的内容）。内部支持了奇偶校验码用以进行数据的校验，当校验发生错误的时候会给报总线错误并产生中断。Meta/Data SRAM内部都分了奇偶bank，虚地址空间中相邻的两个cacheline会被分别划分到不同的bank来实现两个cacheline的读取。
+指令 Cache 的存储逻辑主要分为了 Meta SRAM（存储每个 cacheline 的 tag 以及一致性状态）和 Data SRAM（存储每个 cacheline 的内容）。内部支持了奇偶校验码用以进行数据的校验，当校验发生错误的时候会给报总线错误并产生中断。Meta/Data SRAM 内部都分了奇偶 bank，虚地址空间中相邻的两个 cacheline 会被分别划分到不同的 bank 来实现一次两个 cacheline 的读取。
 
 
 ## 一致性支持
 
-香山南湖架构的指令Cache实现了Tilelink定义的一致性协议。主要是通过增加了一条额外的流水线ReplacePipe来处理Probe和Release请求。
+香山南湖架构的指令 Cache 实现了 Tilelink 定义的一致性协议。主要是通过增加了一条额外的流水线 ReplacePipe 来处理 Probe 和 Release 请求。
 
 
-指令缓存的ReplacePipe由4级流水线构成：
-- 在`r0` 阶段接收从ProbeUnit发送过来的Probe请求和从MissUnit发送过来的Release请求，同时也会发起对Meta/Data SRAM的读取。因为这里的请求包含了虚拟地址和实际的物理地址，所以不需要做地址翻译。
-- 在`r1` 阶段，ReplacePipe和MainPipe一样用物理地址对SRAM返回的一个Set的N路cacheline做地址匹配，产生hit和miss两种信号，这个信号仅仅对于Probe有效，因为Release的请求必须在Cache里。
-- 在`r2`阶段，hit的Probe请求将被invalid掉，同时会把这个请求发送给ReleaseUnit向L2发送`ProbrResponse`请求，这个cacheline的权限转变为toN。miss的请求不会做invalid，并且会发送给ReleaseUnit向L2报告权限转变为NToN（指令Cache里没有Probe要求的数据）。Release请求也会被发送到ReleaseUnit向L2发送`ReleaseData`。且只有Release请求被允许进入`r3`
-- 在`r3`阶段，ReplacePipe向MissUnit报告被替换出去的块已经往下Release了，通知MissUnit可以进行重填。
+指令缓存的 ReplacePipe 由 4 级流水线构成：
+
+- 在 `r0` 阶段接收从 ProbeUnit 发送过来的 Probe 请求和从 MissUnit 发送过来的 Release 请求，同时也会发起对 Meta/Data SRAM 的读取。因为这里的请求包含了虚拟地址和实际的物理地址，所以不需要做地址翻译。
+- 在 `r1` 阶段，ReplacePipe 和 MainPipe 一样用物理地址对 SRAM 返回的一个 Set 的 N 路 cacheline 做地址匹配，产生 hit 和 miss 两种信号，这个信号仅仅对于 Probe 有效，因为 Release 的请求一定在 Cache 里。
+- 在 `r2` 阶段，hit 的 Probe 请求将被 invalid 掉，同时会把这个请求发送给 ReleaseUnit 向 L2 发送 `ProbrResponse` 请求，这个 cacheline 的权限转变为 toN。miss 的请求不会做 invalid，并且会发送给 ReleaseUnit 向 L2 报告权限转变为 NToN（指令 Cache 里没有 Probe 要求的数据）。Release 请求也会被发送到 ReleaseUnit 向 L2 发送 `ReleaseData`。且只有 Release 请求被允许进入 `r3`
+- 在 `r3` 阶段，ReplacePipe 向 MissUnit 报告被替换出去的块已经往下 Release 了，通知 MissUnit 可以进行重填。

@@ -56,3 +56,15 @@ miss 的 cacheline 可能发生在两个请求中的任何一个，因此 MissUn
 - 在 `r1` 阶段，ReplacePipe 和 MainPipe 一样用物理地址对 SRAM 返回的一个 Set 的 N 路 cacheline 做地址匹配，产生 hit 和 miss 两种信号，这个信号仅仅对于 Probe 有效，因为 Release 的请求一定在 Cache 里。
 - 在 `r2` 阶段，hit 的 Probe 请求将被 invalid 掉，同时会把这个请求发送给 ReleaseUnit 向 L2 发送 `ProbrResponse` 请求，这个 cacheline 的权限转变为 toN。miss 的请求不会做 invalid，并且会发送给 ReleaseUnit 向 L2 报告权限转变为 NToN（指令 Cache 里没有 Probe 要求的数据）。Release 请求也会被发送到 ReleaseUnit 向 L2 发送 `ReleaseData`。且只有 Release 请求被允许进入 `r3`
 - 在 `r3` 阶段，ReplacePipe 向 MissUnit 报告被替换出去的块已经往下 Release 了，通知 MissUnit 可以进行重填。
+
+
+## 指令预取
+
+香山南湖架构实现了简单的`Fetch Directed Prefetching (FDP)`[^fdp],即让分支预测来指导指令预取，为此加入了指令预取器`IPrefetch`。具体的预取机制如下： 
+
+* 取指目标队列中加入了一个预取指针，指针的位置在预测指针和取指令指针中间，预取指针读取当前指令packet的目标地址（如果跳转则为跳转目标，不跳转为顺序的下一个packet的起始地址），发送给预取器。
+* 取器会完成地址翻译并访问指令缓存的Meta SRAM，如果发现该地址已经在指令缓存中，则当此预取请求被取消。如果不再则向`PrefetchEntry`申请分配一项，向`L2`缓存发送Tilelink `Hint`请求，把相应的缓存行预取到L2。
+* 为了保证不重复向L2发送预取请求，预取器里记录了已发送的预取请求物理地址，任何请求在申请`PrefetchEntry`之前都会去查这个记录，如果发现和已发送的预取请求相同就会把当前预取请求取消掉。
+
+## 引用
+[^fdp]: Reinman G, Calder B, Austin T. Fetch directed instruction prefetching[C]//MICRO-32. Proceedings of the 32nd Annual ACM/IEEE International Symposium on Microarchitecture. IEEE, 1999: 16-27.

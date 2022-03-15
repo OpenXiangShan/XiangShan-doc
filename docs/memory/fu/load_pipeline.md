@@ -56,13 +56,7 @@ load 指令执行流水线各级划分如下:
 
 在 load stage 3, **根据 dcache MSHR 分配的结果再次更新 load queue 的状态**. 如果 dcache MSHR 分配失败, 则请求保留站重发这条指令.
 
-若这条指令成功被分配 dcache MSHR, 后续其将在 load queue 中侦听 dcache refill 的结果. 一次 refill 会将数据传递到所有等待这一 cacheline 的 load queue 项. 这些项的数据状态被标识为有效, 随后可以被写回. 如果指令此前已经进行了 store 到 load 的前递, load queue 负责在 refill 时合并前递结果, 参见“Store 到 Load 的前递”一节. 下面的示意图展示了一次 dcache refill 前后 load queue 中各项的变化. TODO: 图的描述
-
-![before-refill](../../figs/memblock/before-refill.png)  
-
-![after-refill](../../figs/memblock/after-refill.png)  
-
-在 load queue 拿到 dcache refill 回来的数据后, 就可以开始**从 load queue 写回 miss 的 load 指令**. load queue 为这种指令的写回操作提供了两个端口. 在每个周期, load queue 会分别从奇偶两列中选出最老的已经完成了 refill 但还没写回的指令, 在下一个周期将其通过写回端口写回(出于时序考虑, 写回指令的选择和实际写回放在了前后两个周期来执行). load queue 会和 load 流水线中正常执行的 load 指令争用写回端口. 当 load 流水线中的指令试图写回时, 来自 load queue 的写回请求被阻塞.
+若这条指令成功被分配 dcache MSHR, 后续其将在 load queue 中侦听 dcache refill 的结果. 参见 [load queue: Load Refill](../lsq/load_queue.md#load-refill).
 
 ## Replay From RS
 

@@ -60,7 +60,7 @@ nav:
             - 数据缓存:
                 - 总体架构: memory/dcache/dcache.md
                 - Load Pipeline: memory/dcache/load_pipeline.md
-                - Main Pipeline: memory/dcache/main_pipeline.md
+                - Main Pipeline: memory/dcache/main_pipe.md
                 - Refill Pipeline: memory/dcache/refill_pipe.md
                 - Miss Queue: memory/dcache/miss_queue.md
                 - Probe Queue: memory/dcache/probe_queue.md

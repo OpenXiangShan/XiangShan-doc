@@ -83,7 +83,6 @@ nav:
         - 其他:
             - 参数配置: misc/config.md
             - 调试设计: misc/debug.md
-            - 编译工具链: misc/gcb_toolchain.md
     - 敏捷开发框架:
         - 使用说明:
             - 前端开发环境: tools/xsenv.md
@@ -95,3 +94,5 @@ nav:
             - ArchDB: tools/archdb.md
             - 常用脚本: tools/scripts.md
         - Troubleshooting: tools/troubleshoot.md
+    - 编译工具链:
+        - riscv-gun-toolchain: compiler/gnu_toolchain.md

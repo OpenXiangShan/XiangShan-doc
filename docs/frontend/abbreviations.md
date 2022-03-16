@@ -2,6 +2,7 @@
 *[NLP]: Next Line Predictor, 下一行预测器
 *[uBTB]: Micro Branch Target Buffer
 *[FTB]: Fetch Target Buffer
+*[BTB]: Branch Target Buffer
 *[TAGE-SC]: TAgged GEometric length predictor with Statistical Corrector
 *[ITTAGE]: Indirect Target TAgged GEometric length predictor
 *[TAGE]: TAgged GEometric length predictor

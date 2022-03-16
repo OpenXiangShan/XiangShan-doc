@@ -75,7 +75,7 @@ queue 处产生的 `enqPtr` 送到 dispatch 做为 `lqIdx` 需要面临很长的
 
 ## Load Refill
 
-若一条 load 指令成功被分配 dcache MSHR, 后续其将在 load queue 中侦听 dcache refill 的结果. 一次 refill 会将数据传递到所有等待这一 cacheline 的 load queue 项. 这些项的数据状态被标识为有效, 随后可以被写回. 如果指令此前已经进行了 store 到 load 的前递, load queue 负责在 refill 时合并前递结果, 参见[Store 到 Load 的前递](../mechanism.md#store-to-load-forward)一节. 下面的示意图展示了一次 dcache refill 前后 load queue 中各项的变化. 
+若一条 load 指令成功被分配 dcache MSHR, 后续其将在 load queue 中侦听 dcache refill 的结果. 一次 refill 会将数据传递到所有等待这一 cacheline 的 load queue 项. 这些项的数据状态被标识为有效, 随后可以被写回. 如果指令此前已经进行了 store 到 load 的前递, load queue 负责在 refill 时合并前递结果, 参见 [Store 到 Load 的前递](../mechanism.md#store-to-load-forward) 一节. 下面的示意图展示了一次 dcache refill 前后 load queue 中各项的变化. 
 
 !!! todo
     更新图的描述
@@ -107,9 +107,9 @@ rob 在指令提交后, 根据 load 指令提交的数量产生 `lcommit` 信号
 
 由于 load queue 与 ROB 间隔较远. load queue 实际使用 `lcommit` 更新内部状态是在 ROB 处进行指令 commit 的两拍之后. load queue 会将已经 commit 的指令 `allocated` flag 更新为 false 以表示其完成. 同时根据提交的 load 的数量(lcommit) 更新队列尾指针 `deqPtr`.
 
-## 指令重定向相关机制
+## redirect
 
-重定向到达 load queue 之后会在 2 拍内更新 load queue 的状态:
+这一小节介绍 load queue 中与指令重定向相关的机制. 重定向到达 load queue 之后会在 2 拍内更新 load queue 的状态:
 
 * Cycle1: 根据 robIdx 找出所有错误路径上的指令. 被刷掉的指令 allocated 被设置成 false.
 * Cycle2: 根据上一拍查找的结果, 统计有多少指令需要被取消, 更新 enqPtr
@@ -120,81 +120,63 @@ rob 在指令提交后, 根据 load 指令提交的数量产生 `lcommit` 信号
 
 <!-- ### 队列指针维护 -->
 
-
 ## store - load 违例检查相关机制
 
 在 store addr 操作向 store queue 中写入地址的同时 (store addr pipeline stage 1), 它也会在 load queue 中搜索物理地址相同但程序序在 store 之后的 load 指令. 如果这些 load 指令已经被执行并产生了错误的结果(即触发 store - load 违例), 则 load queue 会发出重定向请求: 处理器会从这条 load 指令开始, 从取指开始重新执行后续的指令.
 
-对于每条 store 指令, 它的 store - load 违例检查共计需要三个周期. 每个周期执行的操作如下:
+对于两条 store 流水线, 每条指令要检查三个位置的 load 指令是否违例(load 流水线 stage 1 / stage 2, load queue), 共计有 6 个可能的违例会被检查出. 违例检查逻辑需要在 6 个可能的违例中选出最老的一个, 产生重定向请求传出. 为此, 对于每条 store 指令, 它的 store - load 违例检查被划分到三个周期执行, 每个周期执行的操作如下:
 
-* Cycle 0: Store Writeback
-    * Generate match vector for store address with rangeMask(stPtr, enqPtr).
-    * Besides, load instructions in LoadUnit_S1 and S2 are also checked.
-* Cycle 1: Redirect Generation
-    * There're three possible types of violations, up to 6 possible redirect requests.
-    * Choose the oldest load (part 1). (4 + 2) -> (1 + 2)
-* Cycle 2: Redirect Fire
-    * Choose the oldest load (part 2). (3 -> 1)
-    * Prepare redirect request according to the detected violation.
-    * Fire redirect request (if valid)
+* Cycle 0: store addr 更新 store queue
+    * store 流水线将物理地址送入 load queue, 根据地址匹配生成匹配向量
+    * 根据 store 指令附带的 lqIdx 计算检查范围
+    * 检查 load 流水线 stage 1 / stage 2 中的指令是否用到这条 store 的结果 
+* Cycle 1: 重定向生成
+    * 完成 load queue 中的违例检查
+    * 如果此前 load 流水线 stage 1 / stage 2 中的指令发生了违例, 选出其中最老的一个
+* Cycle 2: 重定向生成
+    * 从所有的违例中选出最老的一个
+    * 生成重定向请求传出
 
 ```
- stage 0:        lq l1 wb     l1 wb lq
+ stage 0:        lq l1 l2     l1 l2 lq
                  |  |  |      |  |  |  (paddr match)
- stage 1:        lq l1 wb     l1 wb lq
+ stage 1:        lq l1 l2     l1 l2 lq
                  |  |  |      |  |  |
                  |  |------------|  |
                  |        |         |
- stage 2:        lq      l1wb       lq
+ stage 2:        lq      l1l2       lq
                  |        |         |
                  --------------------
                           |
                       rollback req
 ```
 
-### 违例恢复
-
-如果检查出存在违例, 且触发违例的指令尚未被其他来源的重定向请求取消, 则发出重定向请求, 并更新访存违例预测器. st-ld 违例发出的重定向请求与分支预测错误的重定向请求处理方式相似, 不需要等待指令到达 ROB 队尾才向前端发出重定向请求.
+**违例恢复.** 如果检查出存在违例, 且触发违例的指令尚未被其他来源的重定向请求取消, 则发出重定向请求, 并更新访存违例预测器. st-ld 违例发出的重定向请求**与分支预测错误的重定向请求处理方式相似**, 不需要等待指令到达 ROB 队尾才向前端发出重定向请求.
 
 ## load - load 违例检查相关机制
 
-When load arrives load_s1, it searches LoadQueue for younger load instructions with the same load physical address. If younger load has been released (or observed), the younger load needs to be re-execed.
+当 load 到达 load 流水线 stage 1 时, 会在 load queue 中查询 load queue 中具有相同物理地址的 load 指令. 如果后续的 load 指令返回了结果且已经被 release, 则重新执行后续的 load 指令, 以确保访问相同地址的 load 之间的顺序. 为了实现上述的检查, load queue 包含以下机制:
 
-为了实现上述的检查, load queue 包含以下机制fa l se:
-
-* release 更新 load queue 中的对应项
-* load 在执行时检查之后的 load
+* 在 dcache release 一个 cacheline 时, 更新 load queue 中对应项的 `released` flag, 标记这条 load 指令所在的 cacheline 已经被释放.
+* load 在执行时在 load queue 中检查之后的 load
 * 如果发现之后的 load 拿到了更老的结果 (即已经被 release), 从这条 load 开始重新执行
 
-### release 更新 load queue 中的对应项
+<!-- ### release 更新 load queue 中的对应项 -->
 
-dcache 会向 load queue 发送 release 信号来标识 dcache 已经失去了对某一 cacheline 的读权限. dcache release 信号产生标志着 dcache 会将这一拍之后对相同 cacheline 的 load 全部标记为 miss, 直到 dcache 重新获得这一行的权限为止. 参见 dcache mainpipe 部分. 
+dcache 会向 load queue 发送 release 信号来标识 dcache 已经失去了对某一 cacheline 的读权限. dcache release 信号产生标志着 dcache 会将这一拍之后对相同 cacheline 的 load 全部标记为 miss, 直到 dcache 重新获得这一行的权限为止. dcache release 信号会在 dcache mainpipe 更新 dcache 内 cacheline 的状态位的同时产生. 参见 [dcache mainpipe](../dcache/main_pipe.md) 部分. 
 
-> Future Work: 目前所有的 release 操作都会产生 dcache release 信号. 这里可以进行细化, TtoB 不需要产生 dcache release 信号
+为时序考虑, dcache release 信号传递到 load queue 的过程加了拍, load queue 中 `released` flag 的更新实际在 dcache 写 meta 更新 cacheline 权限的两拍之后. dcache 和 huancun (l2 cache) 的设计保证了在 dcache release 信号产生后(意味着 dcache 放弃对一个 cacheline 的读权限)的至少 3 个周期之内, dcache 不会重新获得对对应行的读权限. 在此基础上, load - load 违例检查发生的时机有以下几种情况:
 
-为时序考虑, dcache release 信号到达 load queue 加了拍. dcache 和 huancun (l2 cache) 的设计保证了在 dcache release 信号产生后(意味着 dcache 放弃对一个 cacheline 的读权限)的至少 3 个周期之内, dcache 不会重新获得对对应行的读权限. 在此基础上, load - load 违例检查发生的时机有以下几种情况:
+![ldvio](../../figs/memblock/ldvio.png)
 
-TODO: ld-ld 违例图(从 github 上拿下来)
+dcache release 信号在更新 load queue 中 `released` 状态位时, 会与正常 load 流水线中的 load-load 违例检查争用 load paddr cam 端口. release 信号更新 load queue 有更高的优先级. 如果争用不到资源, 流水线中的 load 指令将立刻被从保留站重发.
 
-### load 指令查询之后的 load 指令是否已经被 release
+<!-- Future Work: 目前所有的 release 操作都会产生 dcache release 信号. 这里可以进行细化, TtoB 不需要产生 dcache release 信号 -->
 
-在 load pipeline stage 1 开始查询
-
-使用虚地址查询
-
-会与 release 更新 load queue 中的对应项争用 load paddr cam 端口, release 更新 load queue 有更高的优先级. 如果争用不到资源, 则标记这条指令, 将其立刻从保留站重发.
-
-### 违例恢复
-
-For now, if re-exec it found to be needed in load_s1, we mark the older load as replayInst, the two loads will be replayed if the older load becomes the head of rob. When dcache releases a line, mark all writebacked entrys in load queue with the same line paddr as released.
+**违例恢复.** 触发 load-load 违例的 load 指令会被标记为需要从取指重新执行. 重定向请求会在这些指令到达 ROB 队尾时发出.
 
 ## MMIO (uncached 访存)
 
 在地址检查阶段发生 exception 的 mmio 指令会在 Load Stage 2 立即将异常信息写回到 ROB 并更新 load queue. 这样的 mmio 指令不会进行 uncached 访存操作.
 
 不带 exception 的 mmio 指令会在 Load Stage 2 更新 load queue, 将 load queue 中的这条指令标记为等待执行的 mmio 指令. 但其不会将 ROB 中的指令标识为已写回的状态. 当这条指令到达 ROB 的队尾后, ROB 会通知 load queue, 由 load queue 向下发出 uncached 访存请求. uncached 访存请求由一个状态机维护. 在 uncached 访存完成之后, mmio load 如同 miss 的 load 一样, 将数据从 load queue 写回.
-
-<!-- 
-## 异常处理和 trigger
-
-TODO -->

@@ -47,7 +47,7 @@ nav:
                 - 发射队列/保留站: backend/issue.md
             - 执行单元:
                 - 总体架构: backend/exu.md
-                - 定点部件: backend/exu_int.md
+                - 整数部件: backend/exu_int.md
                 - 浮点部件: backend/exu_fp.md
         - 访存子系统:
             - 总体架构: memory/overview.md

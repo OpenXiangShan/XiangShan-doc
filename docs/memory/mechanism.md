@@ -68,66 +68,41 @@ store addr (sta) 流水线只设置了一个反馈端口. 在 store stage 1, sto
 
 Store 到 Load 的前递 (Store To Load Forward, STLF) 是指在 store 指令的数据被写入到数据缓存之前, 后续访问相同地址 load 指令从核内的访存队列和缓冲区获得这条 store 指令数据的操作.
 
-store 到 load 的前递操作被分配到三级流水执行。在前递操作期间前递逻辑会并行检查 committed store buffer 和 store queue 中是否存在当前 load 需要的数据。如果存在，则将这些数据合并到这一次 load 的结果中。
+store 到 load 的前递操作被分配到三级流水执行. 在前递操作期间前递逻辑会并行检查 committed store buffer 和 store queue 中是否存在当前 load 需要的数据. 如果存在，则将这些数据合并到这一次 load 的结果中. 
 
 ### 虚地址前递
 
-为了时序考虑，使用虚地址进行前递，实地址检查来进行前递。
+为了时序考虑，南湖架构使用虚地址前递，实地址检查的机制. 这个机制通过将 TLB 查询从数据前递的数据通路上移除出去(但在控制通路上仍保留)的方式, 优化 store to load forward 的时序表现.
 
-基本思路
-需要恢复
+!!! todo
+    基本思路, 图
 
-TODO：图
+**虚地址前递的数据通路:** [load 流水线](../memory/fu/load_pipeline.md)的 stage 0 会根据指令的 sqIdx，生成数据前递所使用的 mask. 在 load 流水线的 stage 1，虚拟地址和 mask 被发送到 [store queue](../memory/lsq/store_queue.md#store-to-load-forward-query) 和 [committed store buffer](../memory/lsq/committed_store_buffer.md#store-to-load-forward-query) 进行前递查询. 在 load 流水线的 stage 2，store queue 和 committed store buffer 产生前递查询结果，这些结果会和 dcache 读出的结果合并. 
 
-虚地址前递的数据通路如下：load 流水线的 stage 0 会根据指令的 sqIdx，生成数据前递所使用的 mask。在 load 流水线的 stage 1，虚拟地址和 mask 被发送到 store queue 和 committed store buffer 进行前递查询。在 load 流水线的 stage 2，store queue 和 committed store buffer 产生前递查询结果，这些结果会和 dcache 读出的结果合并。
+**虚地址前递的控制通路:** 在 load 流水线的 stage 0, 指令的虚拟地址被送入 TLB 开始进行虚实地址转换. 在 load 流水线的 stage 1, TLB 反馈回指令的物理地址. 物理地址和 mask 被发送到 [store queue](../memory/lsq/store_queue.md#store-to-load-forward-query) 和 [committed store buffer](../memory/lsq/committed_store_buffer.md#store-to-load-forward-query) 进行前递查询(只做地址匹配). 在 load stage 2, 虚地址的匹配结果和实地址的匹配结果将被比较, 一旦两者不同, 则说明虚地址前递发生了错误. [检查发现错误后，触发回滚并刷新 committed store buffer](../fu/load_pipeline.md#forward-failure). 这样的操作会将引发错误的虚地址从 store queue 和 committed store buffer 中排除出去.
 
-虚地址前递的控制通路如下：
-
-检查发现错误后，触发回滚并刷新 committed store buffer。这样的操作会将引发错误的虚地址从 store queue 和 committed store buffer 中排除出去。
-
-> 作为对比，实地址前递的流程如下： load 流水线的 stage 0 会根据指令的 sqIdx，生成数据前递所使用的 mask。在 load 流水线的 stage 1，TLB 反馈回物理地址，此物理地址和 mask 被发送到 store queue 和 committed store buffer 进行前递查询。在 load 流水线的 stage 2，store queue 和 committed store buffer 产生前递查询结果，这些结果会和 dcache 读出的结果合并。控制和数据通路均遵循这一流程。
-
-### 实地址检查
+!!! info
+    作为对比，雁栖湖架构实地址前递的流程如下： load 流水线的 stage 0 会根据指令的 sqIdx，生成数据前递所使用的 mask. 在 load 流水线的 stage 1，TLB 反馈回物理地址，此物理地址和 mask 被发送到 store queue 和 committed store buffer 进行前递查询. 在 load 流水线的 stage 2，store queue 和 committed store buffer 产生前递查询结果，这些结果会和 dcache 读出的结果合并. 控制和数据通路均遵循这一流程. 
 
 ### 前递结果的保存
 
-如果 DCache miss, 保留 forward 结果。 Forward 的结果（mask 和 data）会被写入到 load queue 中。后续 dcache refill 结果时，load queue 会负责合并 refill 上来的数据和 forward 的结果，最终生成完整的 load 结果。
+如果 DCache miss, 保留 forward 结果.  Forward 的结果（mask 和 data）会被写入到 load queue 中. 后续 dcache refill 结果时，load queue 会负责合并 refill 上来的数据和 forward 的结果，最终生成完整的 load 结果. 
 
 ### 前递相关的性能优化
 
-dcache miss 但前递完全命中时的优化
-
-时序考虑：来不及将这种指令标成命中状态
-
-交给 load queue 去做处理
-
-load queue 会立刻发现这样的指令不需要等待 dcache refill 的结果。这样的指令可以被直接选取并写回。
+dcache miss 但前递完全命中时, 可以不等待 dcache 返回数据, 直接写回这条指令的结果. 但是, 出于时序考虑(来不及将这种指令标成命中状态). 南湖架构将这种情况交给 load queue 处理. 这样的指令在更新 load queue 时会直接设置 `datavalid` flag (表明 load 数据有效). 由此, load queue 会立刻发现这样的指令不需要等待 dcache refill 的结果. 这样的指令可以被直接选取并写回.
 
 ## Store Load Violation 
 
-store-load 违例检查和恢复
-
-### 违例检查流程
-
-在 store 指令到达 stage 1 时开始进行 load 违例检查. 如果在检查过程中发现了 load 违例, 则触发 load 违例的 store 不会在 ROB 中被标记为*可以提交*的状态. 同时, 回滚操作会立刻被触发, 无需等待触发 load 违例的 store 指令提交.
-
-### 违例检查失败恢复
+这一小节介绍 store-load 违例的检查和恢复. 在 store 指令到达 stage 1 时开始进行 load 违例检查. 如果在检查过程中发现了 load 违例, 则触发 load 违例的 store 不会在 ROB 中被标记为*可以提交*的状态. 同时, 回滚操作会立刻被触发, 无需等待触发 load 违例的 store 指令提交. load queue 一节介绍了[检查和重定向的详细流程](../memory/lsq/load_queue.md#store---load-%E8%BF%9D%E4%BE%8B%E6%A3%80%E6%9F%A5%E7%9B%B8%E5%85%B3%E6%9C%BA%E5%88%B6).
 
 ## Load Load Violation
 
-load-load 违例检查和恢复
-
-TODO
-
-### 违例检查流程
-
-### 违例检查失败恢复
-
-### 违例检查资源争用
+参见 [load-load 违例检查和恢复](../memory/lsq/load_queue.md#load---load-%E8%BF%9D%E4%BE%8B%E6%A3%80%E6%9F%A5%E7%9B%B8%E5%85%B3%E6%9C%BA%E5%88%B6)
 
 ## load 写回端口的争用
 
-南湖架构提供了两个 load 写回端口。这个端口负责将 load 的结果写回到保留站，寄存器堆，并通知 ROB 指令已经完成执行。load 流水线的 stage 2 和 load queue 都可以使用这个端口写回结果。两者会争抢这一端口的使用权。
+南湖架构提供了两个 load 写回端口. 这个端口负责将 load 的结果写回到保留站，寄存器堆，并通知 ROB 指令已经完成执行. load 流水线的 stage 2 和 load queue 都可以使用这个端口写回结果. 两者会争抢这一端口的使用权. 
 
-正常情况下，流水线中的 load 指令拥有更高的优先级。
+正常情况下，流水线中的 load 指令拥有更高的优先级. 
 

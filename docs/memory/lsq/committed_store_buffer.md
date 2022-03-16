@@ -76,12 +76,7 @@ sbuffer 向 dcache 的写入期间, sbuffer 中一项的状态变化流程如下
 
 ### flush sbuffer
 
-在主动清空 sbuffer 时, sbuffer 会一并将 store queue 中已经 commit 的指令全部写入 dcache. sbuffer 还会自行刷新以支持虚地址前递机制. 在 sbuffer 发现虚实地址前递的结果产生了冲突(参见[前递支持](./committed_store_buffer.md#store-to-load-forward-query))时, 会自动触发刷新操作.
-
-### 定期刷新机制
-
-sbuffer 会追踪其中每一项在 sbuffer 中的周期数, 支持将在 sbuffer 中超过一定周期数的项自动换出. 
-
+在主动清空 sbuffer 时, sbuffer 会一并将 store queue 中已经 commit 的指令全部写入 dcache. sbuffer 还会自行刷新以支持虚地址前递机制. 在 sbuffer 发现虚实地址前递的结果产生了冲突(参见[前递支持](./committed_store_buffer.md#store-to-load-forward-query))时, luo ji
 <!-- 触发自动换出的周期数暂时不支持手动配置. -->
 
 ## store to load forward query
@@ -90,13 +85,15 @@ sbuffer 会追踪其中每一项在 sbuffer 中的周期数, 支持将在 sbuffe
 
 ### 产生前递结果
 
-sbuffer 会在前递查询请求到达的下一个周期反馈前递结果, 与 store queue 一致. 
+sbuffer 会在前递查询请求到达的下一个周期反馈虚地址前递产生的数据, 与 store queue 一致. 
 
-### 虚地址前递支持
+### 前递正确性检查
 
 为了确保使用虚拟地址产生的前递结果是正确的结果, store buffer 会进行虚地址前递相关检查:
 
-* **前递时检查.** 前递时发现虚实地址的匹配结果不同, 则触发 sbuffer 强制刷新. 将所有项写入 dcache 来防止 sbuffer 继续产生错误的前递结果.
+<!-- * **前递时检查.**  -->
+
+一旦在前递时发现虚实地址的匹配结果不同, 则触发 sbuffer 强制刷新. 将所有项写入 dcache 来防止 sbuffer 继续产生错误的前递结果. 同时将前递失败的消息反馈给 load 流水线. 由 load 流水线进行[前递错误的处理](../fu/load_pipeline.md#forward-failure).
 
 <!-- * **写入时检查.** store buffer 的写入操作会尝试按实地址将对相同 cacheline 的写操作 merge 到 sbuffer 的一项中. 如果发现实地址相同但虚地址不同, 触发 sbuffer 强制刷新. sbuffer 中的对应项会被更新成新的虚地址.  -->
 

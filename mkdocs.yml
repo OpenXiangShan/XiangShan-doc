@@ -60,7 +60,11 @@ nav:
                 - Load Queue: memory/lsq/load_queue.md
                 - Store Queue: memory/lsq/store_queue.md
                 - Committed Store Buffer: memory/lsq/committed_store_buffer.md
-            - MMU: memory/mmu/mmu.md
+            - MMU:
+                - 总体架构: memory/mmu/mmu.md
+                - 一级 TLB: memory/mmu/tlb.md
+                - 二级 TLB: memory/mmu/l2tlb.md
+                - 物理地址保护: memory/mmu/pmp_pma.md
             - 数据缓存:
                 - 总体架构: memory/dcache/dcache.md
                 - Load Pipeline: memory/dcache/load_pipeline.md

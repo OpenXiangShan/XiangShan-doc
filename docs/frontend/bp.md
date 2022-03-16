@@ -1,6 +1,8 @@
 # 分支预测 (Branch Prediction)
-![bpu](../figs/frontend/bpu.svg)
-
+<figure markdown>
+  ![bpu](../figs/frontend/bpu.svg){ width="800" }
+  <figcaption>BPU 流水线示意图</figcaption>
+</figure>
 
 这一章描述香山处理器分支预测单元的整体架构，其预测流水线如上图所示。
 
@@ -23,6 +25,8 @@ BPU 的各个流水级都会连接 [FTQ](ftq.md)，一旦第一个预测流水�
 - ** 预测后存储全局历史的副本 **：在预测结束后，当次预测使用的全局历史会存储到 [FTQ](ftq.md) 中，在误预测恢复时读出并送回 BPU
 
 之所以说“接近”完全准确，是因为 BPU 会忽略那些从未跳转的条件分支指令，它们不会被记录在 FTB 中，也就不会包含在分支历史里。
+!!! note "一些实现细节"
+    fds
 
 ## 下一行预测器 (NLP)
 下一行预测器旨在用较小的存储开销提供一个无空泡的快速预测流。它的功能主要由 [uBTB](#ubtb) 提供。对于给定的起始地址 PC，uBTB对从 PC 开始的一个[预测块](#pred-block)做出整体预测。
@@ -45,7 +49,7 @@ FTB 是 APD 的核心。APD 的其他预测部件所作出的预测全部依赖�
     - *`start`* 是上一个预测块的 *`end`*
     - *`start`* 是来自 BPU 外部的重定向的目标地址；
 - **FTB项内最多记录两条分支指令，其中第一条一定是条件分支；**
-!!! note inline end
+!!! note inline end "注意"
     这种训练策略下，同一条分支指令可能存在于多个 FTB 项内。
 - ***end* 一定满足三种条件之一：**
     - *`end`* - *`start`* = 预测宽度
@@ -58,31 +62,40 @@ FTB 是 APD 的核心。APD 的其他预测部件所作出的预测全部依赖�
 
 ### TAGE-SC
 TAGE-SC 是南湖架构条件分支的主预测器，它的大致逻辑继承自上一代雁栖湖架构的 TAGE-SC-L。目前的实现中，TAGE 的延迟是 2 拍，SC 的延迟是 3 拍。
-!!! note inline end
-    南湖架构去掉了循环预测器，这是因为在目前的架构下 FTB 项的训练方式会导致一条条件分支指令同时存在于多个 FTB 项内，这会为准确记录某一条循环分支指令的循环次数带来困难。而在雁栖湖架构中，对每一条指令都会做出预测，一条分支指令在 BTB 中只会出现一次，因此没有上述的问题。
+!!! note inline end "为什么没有循环预测器？"
+    南湖架构去掉了循环预测器，这是因为在目前的架构下 FTB 项的定义方式会导致一条条件分支指令同时存在于多个 FTB 项内，这会为准确记录某一条循环分支指令的循环次数带来困难。而在雁栖湖架构中，对每一条指令都会做出预测，一条分支指令在 BTB 中只会出现一次，因此没有上述的问题。
+<figure markdown>
+  ![bpu](../figs/frontend/tage.png){ width="800" }
+  <figcaption>TAGE 基本逻辑示意图</figcaption>
+</figure>
+TAGE 利用历史长度呈几何级数增加的多个预测表，可以挖掘极长的分支历史信息。它的基本逻辑如上图所示。它由一个基预测表和多个历史表组成，基预测表用 PC 索引，而历史表用 PC 和一定长度的分支历史折叠后的结果异或索引，不同历史表使用的分支历史长度呈几何级数关系。在预测时，还会用 PC 和每个历史表对应的分支历史的另一种折叠结果异或计算 tag，与表中读出的 tag 进行匹配，如果匹配成功则该表命中。最终的结果取决于命中的历史长度最长的预测表的结果。在南湖架构中，每次预测最多同时预测 2 条条件分支指令。在访问 TAGE 的各个历史表时，用预测块的起始地址作为 PC，同时取出两个预测结果，它们所用的分支历史也是相同的。
+!!! note "两条分支使用相同历史预测的原因"
+    理论上，每一条分支都应该使用最新的分支历史，因为一般意义上，在分支历史序列中离当前分支较近的位会有更大的概率影响当前分支的结果。对于第二条分支来说，最新的分支历史需要包含第一条分支的结果。在这里，两条条件分支的预测可以采用相同的分支历史是因为，如果需要第二条分支的跳转结果，那么第一条分支一定不跳转，所以对第二条分支来说最新的分支历史位一定是 0，这一点是确定的，所以并没有引入特别多的信息。测试结果也表明，对两者使用不同分支历史预测的准确率收益几乎可以忽略，却引入了复杂的逻辑。
 
-TAGE-SC 是南湖架构条件分支的主预测器，它的大致逻辑继承自上一代雁栖湖架构的 TAGE-SC-L。目前的实现中，在第二个流水级由 TAGE 预测器给出预测，在第三个流水级由 SC 纠正潜在的误预测。
-TAGE-SC 是南湖架构条件分支的主预测器，它的大致逻辑继承自上一代雁栖湖架构的 TAGE-SC-L。目前的实现中，在第二个流水级由 TAGE 预测器给出预测，在第三个流水级由 SC 纠正潜在的误预测。
-TAGE-SC 是南湖架构条件分支的主预测器，它的大致逻辑继承自上一代雁栖湖架构的 TAGE-SC-L。目前的实现中，在第二个流水级由 TAGE 预测器给出预测，在第三个流水级由 SC 纠正潜在的误预测。
-TAGE-SC 是南湖架构条件分支的主预测器，它的大致逻辑继承自上一代雁栖湖架构的 TAGE-SC-L。目前的实现中，在第二个流水级由 TAGE 预测器给出预测，在第三个流水级由 SC 纠正潜在的误预测。
-TAGE-SC 是南湖架构条件分支的主预测器，它的大致逻辑继承自上一代雁栖湖架构的 TAGE-SC-L。目前的实现中，在第二个流水级由 TAGE 预测器给出预测，在第三个流水级由 SC 纠正潜在的误预测。
-TAGE-SC 是南湖架构条件分支的主预测器，它的大致逻辑继承自上一代雁栖湖架构的 TAGE-SC-L。目前的实现中，在第二个流水级由 TAGE 预测器给出预测，在第三个流水级由 SC 纠正潜在的误预测。
+TAGE 还有一个[备选预测](#alt_pred)逻辑，我们参考 L-TAGE[^ltage] 的设计实现了 `USE_ALT_ON_NA` 寄存器，动态决定是否在最长历史匹配结果信心不足时使用备选预测。在实现中处于时序考虑，始终用基预测表的结果作为备选预测，这带来的准确率损失很小。
+
+TAGE 表项中包含一个 `useful` 域，它的值不为 0 表示该项是一个有用的项，便不会被训练时的分配算法当作空项分配出去。在训练时，我们用一个饱和计数器动态监测分配的成功/失败次数，当分配失败的次数足够多，计数器达到饱和时，我们把所有的 `useful` 域清零。
+
+SC 是统计校正器，当它认为 TAGE 有较大的概率误预测时，它会反转最终的预测结果。它的实现基本参考了 O-GEHL 预测器[^o_gehl]的结构，本质上是 perceptron 预测逻辑[^perceptron]的变体。
+
+!!! note "折叠历史"
+    TAGE 类预测器的每一个历史表都有一个特定的历史长度，为了与 PC 异或后进行历史表的索引，很长的分支历史序列需要被分成很多段，然后全部异或起来。每一段的长度一般等于历史表深度的对数。由于异或的次数一般较多，为了避免预测路径上多级异或的时延，我们会直接存储折叠后的历史。由于不同长度历史折叠方式不同，所需折叠历史的份数等于 (历史长度,折叠后长度) 元组去重后的个数。在更新一位历史时只需要把折叠前的最老的那一位和最新的一位异或到相应的位置，再做一个移位操作即可。
+
 
 
 
 ### ITTAGE
-
-
-
-RISC-V 指令集中 `jalr` 指令支持以寄存器取值加一立即数的方式指定无条件跳转指令目标地址。不同于在指令中直接编码跳转偏移量的 `jal` 指令，`jalr` 的跳转地址需要借助寄存器访问间接获取，因而被称为间接跳转指令。跳转地址来自寄存器引入的地址多样性使得该指令的目标地址难以使用 [uBTB](#ubtb) 预测，需要使用其他预测机制。在香山处理器中，这一预测机制体现为 [FTB](#ftb)，[RAS](#ras) 与 [ITTAGE](#ittage) 预测器的协作。部分 `jalr` 指令具有固定的跳转地址，可以使用 [FTB](#ftb) 进行高正确率的预测，不需要高级预测器介入；函数调用和返回是 `jalr` 指令中较为常见的应用场景，具有显著的配对性，在南湖架构中使用 [RAS](#ras) 预测器进行预测；不符合以上特征的 `jalr` 指令交由 [ITTAGE](#ittage) 预测。
+RISC-V 指令集中 `jalr` 指令支持以寄存器取值加一立即数的方式指定无条件跳转指令目标地址。不同于在指令中直接编码跳转偏移量的 `jal` 指令，`jalr` 的跳转地址需要借助寄存器访问间接获取，因而被称为间接跳转指令。由于寄存器的值可变，于是相同 `jalr` 指令的跳转地址可能很多样，所以 FTB 记录固定地址的机制难于准确预测这种指令的目标地址。在香山处理器中，`jalr` 指令的预测机制体现为 FTB，RAS 与 ITTAGE 的协作。FTB 会记载 `jalr` 指令的最近一次跳转地址，部分 `jalr` 指令的跳转地址相对固定，仅靠 FTB 就足以达到很高的预测准确率；函数返回是 `jalr` 指令中较为常见的应用场景，它和函数调用指令有着显著的配对性，可以使用具有栈结构的 RAS 进行预测；不符合以上特征的 `jalr` 指令交由 ITTAGE 预测。
 
 ![ittage_struct](../figs/frontend/ITTAGE.png)
 
-[ITTAGE](#ittage)[^ittage_orig][^ittage_improve] 是一种准确率很高的间接分支预测器，它的基本结构如上图所示。它基于 [TAGE](#tage) 预测器基本原理，针对间接预测器所面临的地址预测问题而调整预测表项设计。具体地，如下图所示，[ITTAGE](#ittage) 将 [TAGE](#tage) 中用于预测跳转方向的计数器替换为所预测的跳转地址。在当前的 [FTB](#ftb) 设计中，每个 FTB 项仅存储至多一条间接跳转指令信息，[ITTAGE](#ittage) 预测器的预测宽度也相应设置为 1，即每周期的输出最多为一条间接跳转指令提供预测结果。工作时，[ITTAGE](#ittage) 使用与 [TAGE](#tage) 预测器相同的分支历史信息和 [FTB](#ftb) 项起始地址 start 生成 index 并在多个预测表中寻址，若多个表中出现命中，优先选择分支历史较长的预测表所给出的信息或根据[备选预测](#alt_pred)参数决定采用次长历史预测结果。[ITTAGE](#ittage) 更新也仿效 [TAGE](#tage) 预测器，当出现误预测时会在预测表中尝试添加新表项，但仅在其对应 useful bit 为 0 时才会实际完成替换，useful bit 会周期性清零以实现不活跃表项回收利用。
+ITTAGE[^tage][^ittage_improve] 是一种准确率很高的间接跳转预测器，它的基本结构如上图所示。ITTAGE 在 TAGE 的主要区别在于，每个表项在 TAGE 表项的基础上加入了所预测的跳转地址。
 
-![ittage_entry](../figs/frontend/ITTAGE_entry.png)
+<!-- ![ittage_entry](../figs/frontend/ITTAGE_entry.png){width="500"} -->
 
-[ITTAGE](#ittage) 预测器具体到每个流水阶段的核心动作如下：
+由于每个 FTB 项仅存储至多一条间接跳转指令信息，[ITTAGE](#ittage) 预测器每周期也最多预测一条间接跳转指令的目标地址。ITTAGE 和 TAGE 的内部逻辑基本相同，此处不再重复。
+
+<!-- [ITTAGE](#ittage) 预测器具体到每个流水阶段的核心动作如下：
 
 **Stage 0**：接收 [FTB](#ftb) 项起始地址 start 和经折叠的分支历史，生成对应的 index 传入利用 SRAM 实现的预测表作为地址寻址
 
@@ -96,7 +109,7 @@ RISC-V 指令集中 `jalr` 指令支持以寄存器取值加一立即数的方�
 
 **Update Stage 1**：利用暂存的更新信息生成 SRAM 预测表项更新信号
 
-**Update Stage 2**：预测表项完成更新
+**Update Stage 2**：预测表项完成更新 -->
 
 ### RAS
 RAS 是一个寄存器堆实现的栈存储结构，它对 `call` 指令的下一条指令的地址进行记录，在 [FTB](#ftb) 认为预测块会在 `call` 指令跳转时压栈，并在 [FTB](#ftb) 认为预测块在 `ret` 指令跳转时弹出。每一项包含一个地址和一个计数器，当重复压栈同一个地址时，栈指针不变，计数器加一，用于处理程序中递归调用的情况。每次预测后，栈顶项和栈指针都会存入 [FTQ](ftq.md) 的存储结构，用于误预测时恢复。
@@ -116,7 +129,7 @@ RAS 是一个寄存器堆实现的栈存储结构，它对 `call` 指令的下�
 
 <b id="global-history">全局分支历史</b> 指令流中所有条件分支指令的执行结果序列，每一条分支指令的执行结果作为一位（0/1）存在于全局分支历史中，一般以移位寄存器的方式实现
 
-<b id="alt_pred">备选预测</b> TAGE/ITTAGE 预测器一种优化，当对长历史预测结果信心不足时选择次长历史下的命中结果作为最终预测，可提升整体预测正确率
+<b id="alt_pred">备选预测</b> TAGE 类预测器一种优化，当对长历史预测结果信心不足时选择次长历史下的命中结果作为最终预测，可提升整体预测正确率
 
 ## 引用
 [^ftbcite]: Reinman G, Austin T, Calder B. A scalable front-end architecture for fast instruction delivery[J]. ACM SIGARCH Computer Architecture News, 1999, 27(2): 234-245.
@@ -125,7 +138,15 @@ RAS 是一个寄存器堆实现的栈存储结构，它对 `call` 指令的下�
 
 [^amd]: Software Optimization Guide for AMD Family 19h Processors (PUB), Chap. 2.8.1.5, [https://www.amd.com/system/files/TechDocs/56665.zip](https://www.amd.com/system/files/TechDocs/56665.zip)
 
-[^ittage_orig]: Seznec A, Michaud P. A case for (partially) TAgged GEometric history length branch prediction[J]. The Journal of Instruction-Level Parallelism, 2006, 8: 23.
+[^tage]: Seznec A, Michaud P. A case for (partially) TAgged GEometric history length branch prediction[J]. The Journal of Instruction-Level Parallelism, 2006, 8: 23.
+
+[^ltage]: Seznec A. A 256 kbits l-tage branch predictor[J]. Journal of Instruction-Level Parallelism (JILP) Special Issue: The Second Championship Branch Prediction Competition (CBP-2), 2007, 9: 1-6.
+
+[^tage_sc]: Seznec A. A new case for the tage branch predictor[C]//Proceedings of the 44th Annual IEEE/ACM International Symposium on Microarchitecture. 2011: 117-127.
+
+[^o_gehl]: Seznec A. The O-GEHL branch predictor[J]. The 1st JILP Championship Branch Prediction Competition (CBP-1), 2004.
+
+[^perceptron]: Jiménez D A, Lin C. Dynamic branch prediction with perceptrons[C]//Proceedings HPCA Seventh International Symposium on High-Performance Computer Architecture. IEEE, 2001: 197-206.
 
 [^ittage_improve]: Seznec A. A 64-Kbytes ITTAGE indirect branch predictor[C]//JWAC-2: Championship Branch Prediction. 2011.
 

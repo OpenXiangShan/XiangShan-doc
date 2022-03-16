@@ -6,6 +6,12 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - footnotes
+  - abbr
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - def_list
 plugins:
     # - with-pdf:
     #     author: XiangShan Team
@@ -25,11 +31,12 @@ nav:
     - 处理器核介绍:
         - 前端:
             - 总体架构: frontend/frontend.md
-            - IFU: frontend/ifu.md
-            - ICache: frontend/icache.md
+            - 取指令单元: frontend/ifu.md
+            - 指令缓存: frontend/icache.md
             - 分支预测: frontend/bp.md
             - 取指目标队列: frontend/ftq.md
             - 译码: frontend/decode.md
+            - 各种缩写: frontend/abbreviations.md
         - 后端:
             - 总体架构: backend/overview.md
             - 重命名: backend/rename.md
@@ -44,9 +51,11 @@ nav:
                 - 浮点部件: backend/exu_fp.md
         - 访存子系统:
             - 总体架构: memory/overview.md
+            - 乱序访存机制: memory/mechanism.md
             - 访存流水线:
                 - Load Pipeline: memory/fu/load_pipeline.md
                 - Store Pipeline: memory/fu/store_pipeline.md
+                - 原子指令: memory/fu/atom.md
             - LSQ:
                 - Load Queue: memory/lsq/load_queue.md
                 - Store Queue: memory/lsq/store_queue.md
@@ -55,9 +64,12 @@ nav:
             - 数据缓存:
                 - 总体架构: memory/dcache/dcache.md
                 - Load Pipeline: memory/dcache/load_pipeline.md
+                - Main Pipeline: memory/dcache/main_pipe.md
+                - Refill Pipeline: memory/dcache/refill_pipe.md
                 - Miss Queue: memory/dcache/miss_queue.md
                 - Probe Queue: memory/dcache/probe_queue.md
-                - Refill Pipeline: memory/dcache/refill_pipe.md
+                - Writeback Queue: memory/dcache/writeback_queue.md
+                - 自定义指令: memory/dcache/csr_cache_op.md
             - 访存预测器: memory/mdp/mdp.md
         - L2/L3 Cache:
             - 总体架构: huancun/overview.md
@@ -65,17 +77,21 @@ nav:
             - 数据存储: huancun/data.md
             - MSHR: huancun/mshr.md
             - 通道控制: huancun/channels.md
-            - L2预取: huancun/prefetch.md
+            - L2 预取: huancun/prefetch.md
             - Cache 别名问题: huancun/cache_alias.md
             - Miscs: huancun/misc.md
         - 其他:
             - 参数配置: misc/config.md
             - 调试设计: misc/debug.md
+            - 编译工具链: misc/gcb_toolchain.md
     - 敏捷开发框架:
-        - DiffTest: difftest.md
-        - LightSSS: lightsss.md
-
-markdown_extensions:
-  - footnotes
-  - abbr
-  - pymdownx.snippets
+        - 使用说明:
+            - 前端开发环境: tools/xsenv.md
+            - 调试前必读: tools/best_practice.md
+        - 工具介绍:
+            - DiffTest: tools/difftest.md
+            - LightSSS: tools/lightsss.md
+            - SimPoint: tools/simpoint.md
+            - ArchDB: tools/archdb.md
+            - 常用脚本: tools/scripts.md
+        - Troubleshooting: tools/troubleshoot.md

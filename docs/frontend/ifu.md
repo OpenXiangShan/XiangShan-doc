@@ -60,3 +60,4 @@ MMIO 请求每次只取一条指令，因此在这种模式下处理器的指令
 
 当一个指令 packet 在 `IF3` 阶段发现它的最后 2 Bytes 是一条 RVI 指令的前半部分时，我们把这条 RVI 指令算在这个 packet 里，同时我们取两个 cacheline 的机制保证后半部分是一定可以被取到的，因此我们只需要在发生这种情况的时候置一个标识位，当下一个 packet 来的时候把第一个个 2 Bytes 排除在指令的有效范围之外即可。
 
+--8<-- "docs/frontend/abbreviations.md"

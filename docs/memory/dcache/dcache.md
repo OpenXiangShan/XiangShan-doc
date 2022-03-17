@@ -11,8 +11,8 @@ DCache 内部模块包括:
 [Refill Pipeline](./refill_pipe.md) (Refill 流水线)|负责将 L2 重填的数据写回 dcache
 [Atomics Unit](../fu/atom.md#dcache-对原子指令的支持) (AtomicsReplayEntry)|调度原子请求
 [Miss Queue](./miss_queue.md) (MSHRs, 16 项)|向 L2 请求缺失的块, 每一项通过一个状态机控制该 miss 请求在 DCache 中的流动
-[Probe Queue](./probe_queue.md) (16 项)|接收 L2 Cache 的一致性请求
-[Writeback Queue](./writeback_queue.md) (16 项)|负责将替换块写回 L2 Cache, 或应答 Probe 请求
+[Probe Queue](./probe_queue.md) (8 项)|接收 L2 Cache 的一致性请求
+[Writeback Queue](./writeback_queue.md) (18 项)|负责将替换块写回 L2 Cache, 或应答 Probe 请求
 
 !!! todo
     图待更新

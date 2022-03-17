@@ -68,3 +68,5 @@ miss 的 cacheline 可能发生在两个请求中的任何一个，因此 MissUn
 
 ## 引用
 [^fdp]: Reinman G, Calder B, Austin T. Fetch directed instruction prefetching[C]//MICRO-32. Proceedings of the 32nd Annual ACM/IEEE International Symposium on Microarchitecture. IEEE, 1999: 16-27.
+
+--8<-- "docs/frontend/abbreviations.md"

@@ -12,3 +12,6 @@
 *[BPU]: Branch Prediction Unit
 *[FTQ]: Fetch Target Queue
 *[O-GEHL]: Optimized GEometric History Length (O-GEHL) branch Predictor
+*[IFU]: Instruction Fetch Unit
+*[PC]: Program Counter
+*[MMIO]: Memory-Mapped IO

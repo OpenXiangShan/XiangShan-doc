@@ -41,7 +41,7 @@ FTQ 是一个队列结构，但队列中每一项的内容是根据其自身特�
 1. 预测块从 BPU 发出，进入 FTQ，`bpuPtr` 指针加一，初始化对应 FTQ 项的各种状态，把各种预测信息写入存储结构；如果预测块来自 BPU 覆盖预测逻辑，则恢复 `bpuPtr` 和 `ifuPtr`
 2. FTQ 向 IFU 发出取指请求，`ifuPtr` 指针加一，等待预译码信息写回
 3. IFU 写回预译码信息，`ifuWbPtr` 指针加一，如果预译码检测出了预测错误，则给 BPU 发送相应的重定向请求，恢复 `bpuPtr` 和 `ifuPtr`
-4. 指令进入后端执行，如果后端检测出了误预测，则通知 FTQ，给 IFU 和 BPU 发送重定向请求，恢复 `bpuPtr` 和 `ifuPtr`
+4. 指令进入后端执行，如果后端检测出了误预测，则通知 FTQ，给 IFU 和 BPU 发送重定向请求，恢复 `bpuPtr`、`ifuPtr` 和 `ifuWbPtr`
 5. 指令在后端提交，通知 FTQ，等 FTQ 项中所有的有效指令都已提交，`commPtr` 指针加一，从存储结构中读出相应的信息，送给 BPU 进行训练
 
 预测块 `n` 内指令的生存周期会涉及到 FTQ 中的 `bpuPtr`、`ifuPtr`、`ifuWbPtr` 和 `commPtr` 四个指针，当 `bpuPtr` 开始指向 `n+1` 时，预测块内的指令进入生存周期，当 `commPtr` 指向 `n+1` 后，预测块内的指令完成生存周期。

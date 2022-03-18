@@ -27,8 +27,9 @@ nav:
     - 简介:
         # - 写前必读: index.md
         - 香山项目总体介绍: intro.md
-        - 香山总体架构: arch.md
+        - 香山项目导引: guide.md
     - 处理器核介绍:
+        - 总体架构: arch.md
         - 前端:
             - 总体架构: frontend/overview.md
             - 分支预测: frontend/bp.md

@@ -5,16 +5,27 @@
 处理器的流水线后端负责指令的重命名与乱序执行。香山处理器后端可以分为 CtrlBlock、IntBlock、FloatBlock、Memblock 4 个部分， CtrlBlock 负责指令的译码、重命名和分派， IntBlock、FloatBlock、MemBlock 分别负责整数、浮点、访存指令的乱序执行。
 
 在这些模块中，有很多可以配置的参数。在目前的代码中，上述 4 个 Block 分别默认采用如下配置：
+
 * CtrlBlock
+
 * 译码 / 重命名 / 分派宽度 = 6
+
   * 发射前读寄存器堆
+
 * IntBlock
+
   * 192 项物理寄存器
+
   * 4 * ALU + 2 * MUL/DIV + 1 * CSR/JMP
+
 * FloatBlock
+
   * 192 项物理寄存器
+
   * 4 * FMAC + 2 * FMISC
+
 * MemBlock
+
   * 2 * LOAD + 2 * STORE （其中 STORE 分为 data 和 address 独立进行运算）
 
 ## 代码实现

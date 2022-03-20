@@ -14,10 +14,9 @@ DCache 内部模块包括:
 [Probe Queue](./probe_queue.md) (8 项)|接收 L2 Cache 的一致性请求
 [Writeback Queue](./writeback_queue.md) (18 项)|负责将替换块写回 L2 Cache, 或应答 Probe 请求
 
-!!! todo
-    图待更新
+[Committed Store Buffer](../lsq/committed_store_buffer.md) 在向 DCache 发送写请求的同时也会作为写请求的重发缓冲区. DCache 以及 Committed Store Buffer 的整体结构示意图如下:
 
-![dcache](../../figs/memblock/dcache.jpg)
+![dcache](../../figs/memblock/dcache.png)
 
 ## 接口
 
@@ -30,7 +29,7 @@ DCache 内部模块包括:
 !!! todo
     图待更新
 
-![tilelink](../../figs/memblock/dcache-tilelink-interface.jpg)
+<!-- ![tilelink](../../figs/memblock/dcache-tilelink-interface.jpg) -->
 
 ## 请求处理流程
 
@@ -41,22 +40,31 @@ DCache 内部模块包括:
 * 在主流水线中将回填数据写入 DCache
 * 如果需要替换块, 在 Writeback Queue 中将替换块写回
 
-### Store / Atomics 请求处理流程
+### Store 请求处理流程
 
-!!! todo
-    待更新
+Store Replay Unit 接收来自 Store Buffer 的请求, 在主流水线中访问 DCache:
 
-由于 Store 和原子请求处理流程相似, 这里只介绍 Store 请求的处理:
-* Store Replay Unit 接收来自 Store Buffer 的请求, 在主流水线中访问 DCache
-* 如果 DCache 不命中, 回到 Store Replay Unit
-* 发送 Miss 请求给 Miss Queue, 由 Miss Queue 取回回填数据, 如果 Miss Queue 已满, 则回退一定时间后再发送 Miss 请求
-* 在主流水线中完成数据回填
-* 如果有替换块, 在 Writeback Queue 中写回
+* 如果 DCache 命中
+    * 在 Main Pipeline 中完成对 DCache 的写入
+* 如果 DCache 未命中且 Miss Queue 已满(或拒绝接受请求)
+    * 由 Store Buffer 在一段时间后重发此请求
+* 如果 DCache 未命中且 Miss Queue 成功接受请求
+    * 由 Miss Queue 继续执行后续操作
+    * 在完成后通知 Store Buffer, 并通过 Refill Pipe 更新 dcache
+* 如果有被替换的块, 在 Writeback Queue 中写回
+    * 特别地, 被替换的块只有在替换它的块到达 DCache 之后才被 Writeback Queue 向下写.
+
+
+### Atomics 请求处理流程
+
+参见[原子指令的处理流程](../fu/atom.md).
 
 ### Refill 请求处理流程
 
 !!! todo
     待更新
+
+<!-- ### Replace 触发及处理流程 -->
 
 ### Probe 请求处理流程
 

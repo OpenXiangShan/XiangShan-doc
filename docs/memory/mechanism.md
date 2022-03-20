@@ -10,7 +10,7 @@
 * Stage 1: 读 dcache data
 * Stage 2: 获得读结果，选择并写回
 
-在 stage 2 之后, 还会有一个额外的 stage 处理 stage 2 来不及完成的状态的更新. 关于各个阶段执行操作的细节, 参见 [load 流水线](./fu/load_pipline.md) 的详细介绍.
+在 stage 2 之后, 还会有一个额外的 stage 处理 stage 2 来不及完成的状态的更新. 关于各个阶段执行操作的细节, 参见 [load 流水线](./fu/load_pipeline.md) 的详细介绍.
 
 ## Sta and Std
 
@@ -23,11 +23,11 @@ store 指令的 address 计算部分在从保留站中发出后会经历 4 个 s
 
 store 指令的 data 计算部分在从保留站中发射后, 会直接从保留站中将数据搬运到 store queue, 参见 [std 流水线](./fu/store_pipeline.md#Std-Pipeline).
 
-各个阶段执行操作的细节, 参见 [load 流水线](./fu/load_pipline.md) 的详细介绍.
+各个阶段执行操作的细节, 参见 [load 流水线](./fu/load_pipeline.md) 的详细介绍.
 
 ## Load Miss 的处理
 
-参见 [Load Miss](./fu/load_pipline.md#Load-Miss).
+参见 [Load Miss](./fu/load_pipeline.md#Load-Miss).
 
 ## Replay From RS
 

@@ -62,16 +62,14 @@ queue 处产生的 `enqPtr` 送到 dispatch 做为 `lqIdx` 需要面临很长的
 
 此时会被更新的状态标志位包括: `datavalid`, `writebacked`, `miss`, `pending`, `released`
 
+[MMIO](#mmio-uncached-访存) 与正常指令对 load queue 的更新方式不同.
+
 ### Load Stage 3
 
 在这一阶段, 部分上个周期来不及完成的检查返回结果, load queue 会使用这些结果来更新其状态. 例如 `dcacheRequireReplay` 事件(dcache 请求从指令从保留站中重发)一旦触发, 会将 `miss` 和 `datavalid` flag 更新为 false. 这标志着这条指令会从保留站重发, 而不是在 load queue 中等待 refill 将其唤醒. 这一操作与 load 指令流水线中 stage 3 的保留站反馈操作同步发生.
 
 !!! info
     load 流水线中 [load miss](../fu/load_pipeline.md#load-miss) 的处理部分也涉及了 load queue 更新的相关信息
-
-### 特例: MMIO 指令
-
-
 
 ## Load Refill
 

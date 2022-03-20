@@ -49,9 +49,9 @@ store 指令的 data 计算部分在从保留站中发射后, 会直接从保留
 
 从保留站重发机制的作用是让这些指令在保留栈中稍作等待, 在一定的周期之后重新执行. 这一机制的实现如下: 一条指令从访存 RS 中发射之后仍然需要保留在 RS 中, 访存指令在离开流水线时向 RS 反馈是否需要从保留站重发. 需要从保留站重发的指令会在 RS 中继续等待在一定时间间隔之后重新发射.
 
-目前, load 流水线中有两个向保留站反馈是否需要重发指令的端口. 这两个端口分别位于 load stage 1 (feedbackFast) 和 load stage 3 (feedbackSlow) . 在 load stage 0 和 load stage 1 可以被检查出的需要重发的指令会通过 load stage 1 的 feedbackFast 端口将重发请求反馈到保留站. 在 load stage 2 才能被检查出的重发请求将在 load stage 3 的 feedbackSlow 端口反馈到保留站. 两个端口的设计是为了让保留站能更早地重发一些需要重发的指令.
+目前, load 流水线中有两个向保留站反馈是否需要重发指令的端口. 这两个端口分别位于 load stage 1 (`feedbackFast`) 和 load stage 3 (`feedbackSlow`) . 在 load stage 0 和 load stage 1 可以被检查出的需要重发的指令会通过 load stage 1 的 `feedbackFast` 端口将重发请求反馈到保留站. 在 load stage 2 才能被检查出的重发请求将在 load stage 3 的 `feedbackSlow` 端口反馈到保留站. 两个端口的设计是为了让保留站能更早地重发一些需要重发的指令.
     
-在 feedbackFast 端口产生重发请求后, 对应的指令不会在流水线里继续流动. 亦即, feedbackSlow 端口不会产生这条指令的反馈.
+在 `feedbackFast` 端口产生重发请求后, 对应的指令不会在流水线里继续流动. 亦即, `feedbackSlow` 端口不会产生这条指令的反馈.
 
 store addr (sta) 流水线只设置了一个反馈端口. 在 store stage 1, store 流水线就会向保留站报告是否需要重发这条指令.
 
@@ -74,8 +74,8 @@ store 到 load 的前递操作被分配到三级流水执行. 在前递操作期
 
 为了时序考虑，南湖架构使用虚地址前递，实地址检查的机制. 这个机制通过将 TLB 查询从数据前递的数据通路上移除出去(但在控制通路上仍保留)的方式, 优化 store to load forward 的时序表现.
 
-!!! todo
-    基本思路, 图
+<!-- !!! todo -->
+<!-- 基本思路, 图 -->
 
 **虚地址前递的数据通路:** [load 流水线](../memory/fu/load_pipeline.md)的 stage 0 会根据指令的 sqIdx，生成数据前递所使用的 mask. 在 load 流水线的 stage 1，虚拟地址和 mask 被发送到 [store queue](../memory/lsq/store_queue.md#store-to-load-forward-query) 和 [committed store buffer](../memory/lsq/committed_store_buffer.md#store-to-load-forward-query) 进行前递查询. 在 load 流水线的 stage 2，store queue 和 committed store buffer 产生前递查询结果，这些结果会和 dcache 读出的结果合并. 
 
@@ -94,7 +94,7 @@ dcache miss 但前递完全命中时, 可以不等待 dcache 返回数据, 直�
 
 ## Store Load Violation 
 
-这一小节介绍 store-load 违例的检查和恢复. 在 store 指令到达 stage 1 时开始进行 load 违例检查. 如果在检查过程中发现了 load 违例, 则触发 load 违例的 store 不会在 ROB 中被标记为*可以提交*的状态. 同时, 回滚操作会立刻被触发, 无需等待触发 load 违例的 store 指令提交. load queue 一节介绍了[检查和重定向的详细流程](../memory/lsq/load_queue.md#store---load-%E8%BF%9D%E4%BE%8B%E6%A3%80%E6%9F%A5%E7%9B%B8%E5%85%B3%E6%9C%BA%E5%88%B6).
+这一小节介绍 store-load 违例的检查和恢复. 在 store 指令到达 stage 1 时开始进行 load 违例检查. 如果在检查过程中发现了 load 违例, 则触发 load 违例的 store 不会在 ROB 中被标记为*可以提交*的状态. 同时, 回滚操作会立刻被触发, 无需等待触发 load 违例的 store 指令提交. load queue 一节介绍了 [检查和重定向的详细流程](../memory/lsq/load_queue.md#store---load-%E8%BF%9D%E4%BE%8B%E6%A3%80%E6%9F%A5%E7%9B%B8%E5%85%B3%E6%9C%BA%E5%88%B6).
 
 ## Load Load Violation
 

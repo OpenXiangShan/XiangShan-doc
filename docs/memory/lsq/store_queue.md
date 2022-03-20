@@ -18,12 +18,6 @@ Store Queue 每项包含以下的信息:
 * 数据
 * 数据有效 mask
 * 状态位
-    * allocated
-    * addrvalid
-    * datavalid
-    * committed
-    * (mmio) pending
-    * mmio
 
 状态位|说明
 -|-
@@ -34,21 +28,21 @@ committed|store 指令已经提交
 mmio|该 store 指令访问 mmio 地址空间
 pending|该 store 指令访问 mmio 地址空间, 执行被推迟. 正在等待指令成为 ROB 中最后一条指令
 
-## store queue 分配和 enqueue
+## Store Queue 分配和 Enqueue
 
 store 指令进入 store queue 实际分两步完成: enqPtr 的提前分配和 store queue 的实际写入. 此处 store 的处理流程与 load 类似, 参见 [load queue enqueue](./load_queue.md#load-queue-enqueue)一节.
 
-## issuePtr
+## 发射指针 issuePtr
 
 `issuePtr` 指示在此 sqIdx 之前的 store 指令数据和地址均已就绪. store queue 对外提供这个指针来辅助保留站调度那些依赖于前导 store 指令的 load 指令. issuePtr 是一个非精确的指针(尽量精确, 但不强求).
 
-## store 更新 store queue
+## Store 更新 Store Queue
 
-### store addr
+### Store Addr
 
 一条 store 指令会在 sta 流水线的 store stage 1 / stage 2 更新 store queue. 其中, store stage 1 更新地址和绝大多数状态位. 如果没有 TLB miss 等问题的话, 设置 `addrvalid` flag. stage 2 更新 `mmio` 和 `pending` 两个 flag. 其中, 在 stage 2 才更新 `mmio` 和 `pending` flag 的原因是 PMA 检查指令是否位于 MMIO 区域的时序紧张.
 
-### store data
+### Store Data
 
 在保留站发出的 store data 会被立即写入 store queue. 写入的同时会设置 `datavalid` flag.  
 
@@ -57,13 +51,13 @@ store 指令进入 store queue 实际分两步完成: enqPtr 的提前分配和 
 * (1) For an mmio instruction with exceptions, we need to mark it as addrvalid (in this way it will trigger an exception when it reaches ROB's head) instead of pending to avoid sending them to lower level.
 * (2) For an mmio instruction without exceptions, we mark it as pending. When the instruction reaches ROB's head, StoreQueue sends it to uncache channel. Upon receiving the response, StoreQueue writes back the instruction through arbiter with store units. It will later commit as normal. -->
 
-## store 提交相关机制
+## Store 提交相关机制
 
 rob 在指令提交后, 根据 store 指令提交的数量产生 `scommit` 信号, 通知 store queue 这些数量的 store 指令已经成功提交. 由于 store queue 与 ROB 间隔较远. store queue 实际使用 scommit 更新内部状态是在 ROB 处进行指令 commit 的两拍之后. 
 
 store queue 会将已经 commit 的指令 `committed` flag 更新为 true 以表示其已经提交, 可以被写入 sbuffer 中.
 
-## store 写入 sbuffer
+## Store 写入 Sbuffer
 
 已经被提交的 store 指令不会被取消, 并且会按顺序被从 store queue 中读出写入 sbuffer.
 
@@ -71,7 +65,7 @@ store queue 会将已经 commit 的指令 `committed` flag 更新为 true 以表
 
 在 store data 被写入 sbuffer 之前(意味着 sbuffer 可以提供 store to load 前递结果), store queue 中的这一项一直会保持有效状态, 来保证 store to load 前递能正确拿到 store 结果.
 
-## store to load forward query
+## Store to Load Forward
 
 在 load 指令进行 store to load forward query 时, sbuffer 会向 load 指令提供在这条指令之前, 但未写入 sbuffer 的 store 的 data. 在当前的[前递机制](../mechanism.md#store-to-load-forward)下, 来自 store queue 的前递采用虚地址前递, 实地址检查.
 
@@ -100,6 +94,6 @@ store queue 会将已经 commit 的指令 `committed` flag 更新为 true 以表
 
 store queue 的 MMIO 访存机制与 load queue 的 [MMIO 访存](../lsq/load_queue.md#mmio-uncached-%E8%AE%BF%E5%AD%98) 基本一致.
 
-## flush store queue
+## Flush Store Queue
 
 store queue 本身不含 flush 逻辑, 但是 store queue 会对外输出空满信号. 在需要 flush store queue 时, sbuffer 会进入刷新状态, 向 dcache 写入其中的所有数据, 直到 store queue 和 sbuffer 都不含有效数据为止. 在这一过程中, store queue 会不断将其中已经提交 store 指令的数据写入到 sbuffer 中.

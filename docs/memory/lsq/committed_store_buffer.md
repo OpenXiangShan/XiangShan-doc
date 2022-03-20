@@ -76,7 +76,7 @@ sbuffer 向 dcache 的写入期间, sbuffer 中一项的状态变化流程如下
 
 ### flush sbuffer
 
-在主动清空 sbuffer 时, sbuffer 会一并将 store queue 中已经 commit 的指令全部写入 dcache. sbuffer 还会自行刷新以支持虚地址前递机制. 在 sbuffer 发现虚实地址前递的结果产生了冲突(参见[前递支持](./committed_store_buffer.md#store-to-load-forward-query))时, luo ji
+在主动清空 sbuffer 时, sbuffer 会一并将 store queue 中已经 commit 的指令全部写入 dcache. sbuffer 还会自行刷新以支持虚地址前递机制. 在 sbuffer 发现虚实地址前递的结果产生了冲突(参见[前递支持](./committed_store_buffer.md#store-to-load-forward-query))时, sbuffer 也会进行自动刷新.
 <!-- 触发自动换出的周期数暂时不支持手动配置. -->
 
 ## store to load forward query

@@ -20,8 +20,6 @@ SinkA 把从 A 通道接收到的请求转发给 MSHR Alloc，如果不带数据
 
 当接收一个新请求时，A 通道会因为 MSHR Alloc 不 ready 或者 PutBuffer 为满（当有数据时）而阻塞；一旦接收一个带数据的请求后，不会阻塞其后续 Beat 的接收。
 
-【图片】
-
 
 
 ## SinkB
@@ -41,8 +39,6 @@ SinkC 接收上层释放权限或数据的请求，包括 Client 主动释放的
 * Drop：丢弃 Buffer 中的数据项
 
 当接收到 Task 时，SinkC 进入 Busy 状态，不接收后续任务直到该 Task 处理完成。如果该 Task 需要处理的若干数据 Beat 仍未收到时，会进行阻塞（由 beatValsThrough/beatValsSave 控制）。
-
-【图片】
 
 
 

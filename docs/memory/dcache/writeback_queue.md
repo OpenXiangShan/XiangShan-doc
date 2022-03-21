@@ -13,11 +13,12 @@ NanHu 架构的 DCache 中用到 18 项的写回队列, 负责通过 TL-C 的 C 
 状态|说明
 -|-
 `s_invalid`|该 Writeback Entry 为空项
-`s_sleep`|准备发送 Release 请求, 但暂时 sleep 并等待 refill 请求唤醒[^sleep]
+`s_sleep`|准备发送 Release 请求, 但暂时 sleep 并等待 refill 请求唤醒
 `s_release_req`|正在发送 Release 或者 ProbeAck 请求
 `s_release_resp`|等待 ReleaseAck 请求
 
-[^sleep] **关于 `s_sleep` 状态的说明**: 为了性能考虑, 我们不希望替换块被过早地无效掉, 以免在向下访问 L2 / L3 的时间里核内又访问了替换块, 导致乒乓效应, 产生新的不必要的 miss 请求. 因此, 替换请求先后进入 Main Pipe 和 Writeback Queue 并不是真的要把替换块无效掉, 而是先把替换块的数据读出来, 并暂时放在写回队列中 sleep. 在替换请求 sleep 期间, 其他请求还是可以正常访问 DCache 中的替换块, 只要把对替换块的写同步一份到写回队列中即可. 当回填块拿上来以后, 就可以唤醒写回队列里 sleep 的块了, 写回队列开始向下 Release 替换块, 同时 Miss Queue 请求 Refill Pipe 完成回填, 回填的同时替换块就会被覆盖掉了.
+!!! info
+    **关于 `s_sleep` 状态的说明**: 为了性能考虑, 我们不希望替换块被过早地无效掉, 以免在向下访问 L2 / L3 的时间里核内又访问了替换块, 导致乒乓效应, 产生新的不必要的 miss 请求. 因此, 替换请求先后进入 Main Pipe 和 Writeback Queue 并不是真的要把替换块无效掉, 而是先把替换块的数据读出来, 并暂时放在写回队列中 sleep. 在替换请求 sleep 期间, 其他请求还是可以正常访问 DCache 中的替换块, 只要把对替换块的写同步一份到写回队列中即可. 当回填块拿上来以后, 就可以唤醒写回队列里 sleep 的块了, 写回队列开始向下 Release 替换块, 同时 Miss Queue 请求 Refill Pipe 完成回填, 回填的同时替换块就会被覆盖掉了.
 
 不考虑请求合并的话, Writeback Entry 处理 ProbeAck 和处理 Release 的流程如下:
 

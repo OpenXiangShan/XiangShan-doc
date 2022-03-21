@@ -3,6 +3,7 @@
 本章介绍香山处理器南湖架构 store queue 的设计.
 
 南湖架构的 store queue 是一个 64 项循环队列. 其每周期至多: 
+
 * 从 dispatch 处接收 4 条指令
 * 从 store addr 流水线接收 2 条指令的地址和控制信息
 * 从 store data 流水线接收 2 条指令的数据
@@ -78,7 +79,7 @@ store queue 会将已经 commit 的指令 `committed` flag 更新为 true 以表
 
 用于前递的**数据**产生流程如下: 使用实地址查询, 产生实地址匹配命中向量. 随后, 使用命中向量从 store queue 中生成各个 byte 的前递结果. 前递数据将会在前递请求产生的下一拍被反馈到 load 流水线中.
 
-### addr valid data invalid
+### Addr Valid Data Invalid
 
 在前递逻辑尝试将 store 的数据传递到后续的 load 中时, 可能会出现 store 的地址就绪但是数据未就绪的情况. 前递逻辑会在检查到这种情况时通知向 load pipeline stage1 反馈结果, 由[load 流水线中的相关逻辑](../fu/load_pipeline.md#store-data-invalid)负责后续处理.
 

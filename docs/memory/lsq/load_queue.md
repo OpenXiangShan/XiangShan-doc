@@ -33,9 +33,9 @@ error|load 指令在执行过程中检测到错误
 
 ## Load Queue Enqueue
 
-load 指令进入 load queue 实际分两步完成: enqPtr 的提前分配和 load queue 的实际写入. 
+load 指令进入 load queue 实际分两步完成: `enqPtr` 的提前分配和 load queue 的实际写入. 
 
-提前分配的原因是 dispatch 模块距离 MemBlock 太远, 将 load queue 处产生的 `enqPtr` 送到 dispatch 做为 `lqIdx` 需要面临很长的延迟. 南湖架构在 dispatch 附近维护 enqPtr 的提前分配逻辑, 由提前分配逻辑负责提供指令的 `lqIdx`.
+提前分配的原因是 dispatch 模块距离 MemBlock 太远, 将 load queue 处产生的 `enqPtr` 送到 dispatch 做为 `lqIdx` 需要面临很长的延迟. 南湖架构在 dispatch 附近维护 `enqPtr` 的提前分配逻辑, 由提前分配逻辑负责提供指令的 `lqIdx`.
 
 <!-- ### enqPtr 的提前分配
 
@@ -48,7 +48,7 @@ load 指令进入 load queue 实际分两步完成: enqPtr 的提前分配和 lo
 
 ## Update Load Queue
 
-这一小节描述流水线中的 load 指令更新 load queue 这一过程. 在一条指令在 load 流水线的执行过程中, 可以在多个阶段更新 load queue 的状态.  
+在一条指令在 load 流水线的执行过程中, 可以在多个阶段更新 load queue 的状态.  
 
 ### Load Stage 2
 
@@ -102,7 +102,7 @@ load 指令的完成指 load 取得结果, 写回 rob 和 rf 的操作. 写回 R
 
 rob 在指令提交后, 根据 load 指令提交的数量产生 `lcommit` 信号, 通知 load queue 这些数量的 load 指令已经成功提交.
 
-由于 load queue 与 ROB 间隔较远. load queue 实际使用 `lcommit` 更新内部状态是在 ROB 处进行指令 commit 的两拍之后. load queue 会将已经 commit 的指令 `allocated` flag 更新为 false 以表示其完成. 同时根据提交的 load 的数量(lcommit) 更新队列尾指针 `deqPtr`.
+由于 load queue 与 ROB 间隔较远. load queue 实际使用 `lcommit` 更新内部状态是在 ROB 处进行指令 commit 的两拍之后. load queue 会将已经 commit 的指令 `allocated` flag 更新为 false 以表示其完成. 同时根据提交的 load 的数量(`lcommit`) 更新队列尾指针 `deqPtr`.
 
 ## redirect
 

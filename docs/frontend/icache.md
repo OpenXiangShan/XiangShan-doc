@@ -46,15 +46,15 @@ miss 的 cache line 可能发生在两个请求中的任何一个，因此 MissU
 
 ## 一致性支持
 
-香山南湖架构的指令 Cache 实现了 Tilelink 定义的一致性协议。主要是通过增加了一条额外的流水线 ReplacePipe 来处理 Probe 和 Release 请求。
+香山南湖架构的指令 Cache 实现了 Tilelink 定义的一致性协议。主要是通过增加了一条额外的流水线 ReplacePipe 来处理 Tilelink `Probe` 和 `Release` 请求。
 
 
 指令缓存的 ReplacePipe 由 4 级流水线构成：
 
-- 在 `r0` 阶段接收从 ProbeUnit 发送过来的 Probe 请求和从 MissUnit 发送过来的 Release 请求，同时也会发起对 Meta/Data SRAM 的读取。因为这里的请求包含了虚拟地址和实际的物理地址，所以不需要做地址翻译。
-- 在 `r1` 阶段，ReplacePipe 和 MainPipe 一样用物理地址对 SRAM 返回的一个 Set 的 N 路 cache line 做地址匹配，产生 hit 和 miss 两种信号，这个信号仅仅对于 Probe 有效，因为 Release 的请求一定在 Cache 里。
-- 在 `r2` 阶段，hit 的 Probe 请求将被 invalid 掉，同时会把这个请求发送给 ReleaseUnit 向 L2 发送 `ProbrResponse` 请求，这个 cache line 的权限转变为 toN。miss 的请求不会做 invalid，并且会发送给 ReleaseUnit 向 L2 报告权限转变为 NToN（指令 Cache 里没有 Probe 要求的数据）。Release 请求也会被发送到 ReleaseUnit 向 L2 发送 `ReleaseData`。且只有 Release 请求被允许进入 `r3`
-- 在 `r3` 阶段，ReplacePipe 向 MissUnit 报告被替换出去的块已经往下 Release 了，通知 MissUnit 可以进行重填。
+- 在 `r0` 阶段接收从 ProbeUnit 发送过来的 `Probe` 请求和从 MissUnit 发送过来的 `Release` 请求，同时也会发起对 Meta/Data SRAM 的读取。因为这里的请求包含了虚拟地址和实际的物理地址，所以不需要做地址翻译。
+- 在 `r1` 阶段，ReplacePipe 和 MainPipe 一样用物理地址对 SRAM 返回的一个 Set 的 N 路 cache line 做地址匹配，产生 hit 和 miss 两种信号，这个信号仅仅对于 `Probe` 有效，因为 `Release` 的请求一定在指令缓存里。
+- 在 `r2` 阶段，hit 的 `Probe` 请求将被 invalid 掉，同时会把这个请求发送给 ReleaseUnit 向 L2 发送 `ProbrResponse` 请求，这个 cache line 的权限转变为 toN。miss 的请求不会做 invalid，并且会发送给 ReleaseUnit 向 L2 报告权限转变为 NToN（指令缓存里没有 `Probe` 要求的数据）。`Release` 请求也会被发送到 ReleaseUnit 向 L2 发送 `ReleaseData`。且只有 `Release` 请求被允许进入 `r3`
+- 在 `r3` 阶段，ReplacePipe 向 MissUnit 报告被替换出去的块已经往下 `Release` 了，通知 MissUnit 可以进行重填。
 
 
 ## 指令预取

@@ -20,7 +20,7 @@
 * [**Difftest**](https://github.com/OpenXiangShan/XiangShan)：香山使用的处理器协同仿真框架
 * [**NEMU**](https://github.com/OpenXiangShan/NEMU/tree/master)：一个效率接近 QEMU 的高性能 ISA 解释器，这里有一个[介绍视频](https://www.bilibili.com/video/BV1Zb4y1k7RJ)
 * [**nexus-am**](https://github.com/OpenXiangShan/nexus-am)：Abstract Machine，提供程序的运行时环境，这里有一个[简单的介绍](https://nju-projectn.github.io/ics-pa-gitbook/ics2020/2.3.html)
-* [**DRAMsim3**](https://github.com/OpenXiangShan/DRAMsim3)：cycle-level 地模拟内存的行为，针对香山项目进行了配置
+* [**DRAMsim3**](https://github.com/OpenXiangShan/DRAMsim3)：Cycle-level 地模拟内存的行为，针对香山项目进行了配置
 * [**env-scripts**](https://github.com/OpenXiangShan/env-scripts)：一些脚本文件，包括性能分析、模块替换和时序分析等
 * [**xs-env**](https://github.com/OpenXiangShan/xs-env)：香山处理器前端开发环境部署脚本
 

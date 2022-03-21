@@ -94,7 +94,7 @@ nav:
         - 工具介绍:
             - DiffTest: tools/difftest.md
             - LightSSS: tools/lightsss.md
-            - SimPoint: tools/simpoint.md
+            # - SimPoint: tools/simpoint.md
             - ArchDB: tools/archdb.md
             # - 常用脚本: tools/scripts.md
         - Troubleshooting: tools/troubleshoot.md

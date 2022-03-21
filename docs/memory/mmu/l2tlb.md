@@ -12,7 +12,7 @@ L2 TLB 包含四个主要单元：
 4. Prefetcher：预取器
 
 从 一级 TLB 来的请求会先访问 Page Cache，如果命中，会直接返回给一级 TLB，如果缺失，会进入 Page Walker 或者 Miss Queue。
-在 Page Walker 中，会遍历页表。在 Miss Queue 中，要么再次访问 Page Cahce，要么访问内存中的页表，访问页表结束后，可以直接返回给一级 TLB。
+在 Page Walker 中，会遍历页表。在 Miss Queue 中，要么再次访问 Page Cache，要么访问内存中的页表，访问页表结束后，可以直接返回给一级 TLB。
 预取器会监控 Page Cache的查询结果，产生预取请求，预取的结果会存到 Page Cache 中，不会返回给一级 TLB。
 
 ## Page Cache

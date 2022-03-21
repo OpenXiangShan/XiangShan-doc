@@ -26,8 +26,8 @@ DCache 内部模块包括:
 * Probe 被动释放权限
 * Release 主动释放权限
 
-!!! todo
-    图待更新
+<!-- !!! todo
+    图待更新 -->
 
 <!-- ![tilelink](../../figs/memblock/dcache-tilelink-interface.jpg) -->
 
@@ -59,10 +59,10 @@ Store Replay Unit 接收来自 Store Buffer 的请求, 在主流水线中访问 
 
 参见[原子指令的处理流程](../fu/atom.md).
 
-### Refill 请求处理流程
+<!-- ### Refill 请求处理流程
 
 !!! todo
-    待更新
+    待更新 -->
 
 <!-- ### Replace 触发及处理流程 -->
 
@@ -72,7 +72,7 @@ Store Replay Unit 接收来自 Store Buffer 的请求, 在主流水线中访问 
 * 在主流水线中修改被 Probe 的块的权限
 * 返回应答, 同时写回脏数据
 
-## 资源争用
+<!-- ## 资源争用
 
 !!! todo
-    dcache 中的组件会争用 data array, tag array, MissQueue, Writeback Queue 等资源. 这一节将描述 dcache 如何调度这些资源.
+    dcache 中的组件会争用 data array, tag array, MissQueue, Writeback Queue 等资源. 这一节将描述 dcache 如何调度这些资源. -->

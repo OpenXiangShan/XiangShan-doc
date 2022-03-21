@@ -56,7 +56,7 @@ Main Pipeline 的争用存在以下优先级:
 
 <!-- ### set 冲突回避 -->
 
-<!-- *set 冲突* 是指: TODO -->
+<!-- *set 冲突* TODO -->
 
 
 <!-- ## MainPipe 中的错误处理 -->

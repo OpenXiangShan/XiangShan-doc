@@ -99,4 +99,4 @@ nav:
             # - 常用脚本: tools/scripts.md
         - Troubleshooting: tools/troubleshoot.md
     - 编译工具链:
-        - riscv-gun-toolchain: compiler/gnu_toolchain.md
+        - riscv-gnu-toolchain: compiler/gnu_toolchain.md

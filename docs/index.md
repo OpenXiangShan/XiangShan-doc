@@ -1,44 +1,8 @@
-# XiangShan-doc
-Documentation for XiangShan
+# 欢迎访问香山官方文档！
 
-这是香山的官方文档仓库。
+![香山Logo](figs/LOGO.png)
 
-目前文档已托管到 ReadTheDocs 平台，欢迎访问 https://xiangshan-doc.readthedocs.io
-
-
-
-## 联系我们 Contact us
-邮件列表：xiangshan-all@ict.ac.cn
-
-Mailing list: xiangshan-all@ict.ac.cn
-
-
-
-## 关注我们
-
-- **微信公众号：香山开源处理器**
-
-![wechat](articles/wechat.png)
-
-- **知乎：[香山开源处理器](https://www.zhihu.com/people/openxiangshan)**
-
-- **微博：[香山开源处理器](https://weibo.com/u/7706264932)**
-
-
-
-## Translations needed
-
-We need to translate most of the documentations to English and other languages. Contributions welcomed!
-
-
-
-## 实习生计划 Interns
-
-欢迎加入开源英才实习生计划（长期有效），具体内容请点击此[链接](articles/开源英才实习生计划.pdf)。
-
-
-
-## 香山是什么？
+## 香山是什么
 
 2019 年，中科院启动“处理器芯片与基础软件”战略性先导科技专项，**由[中国科学院计算技术研究所](http://www.ict.ac.cn/)牵头发起“香山”高性能开源 RISC-V 处理器项目**，研发出目前国际上性能最高的开源高性能RISC-V处理器核“香山”，在全球最大的开源项目托管平台 GitHub 上获得超过 2500 个星标（Star），形成超过 277 个分支（Fork），成为国际上最受关注的开源硬件项目之一，得到国内外企业的积极支持——16 家企业联合发起开源芯片创新联合体，围绕“香山”进一步联合开发，形成示范应用，加速 RISC-V 生态建设。
 
@@ -58,8 +22,9 @@ We need to translate most of the documentations to English and other languages. 
 
 
 
-
 ## 推荐关于香山的报道
+
+
 
 香山始终坚持实事求是的原则，始终保持建立开源平台、探索敏捷开发的初衷，不希望在宣传上出现任何可能导致误解的内容。
 

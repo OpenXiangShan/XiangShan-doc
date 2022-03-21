@@ -1,0 +1,102 @@
+# doc for pdf plug-in: https://pypi.org/project/mkdocs-with-pdf/
+site_name: XiangShan官方文档
+theme:
+    name: material
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - footnotes
+  - abbr
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - def_list
+plugins:
+    # - with-pdf:
+    #     author: XiangShan Team
+    #     copyright: XiangShan Team, 2022
+    #     cover: true
+    #     cover_title: XiangShan 微架构文档
+    #     cover_subtitle: 南湖架构
+    #     cover_logo: figs/LOGO.png
+    #     toc_level: 3
+    #     enabled_if_env: ENABLE_PDF_EXPORT
+    #     output_path: /tmp/doc/document.pdf
+nav:
+    - 简介:
+        # - 写前必读: index.md
+        - 香山项目总体介绍: index.md
+        - 香山项目导引: guide.md
+    - 处理器核介绍:
+        - 总体架构: arch.md
+        - 前端:
+            - 总体架构: frontend/overview.md
+            - 分支预测: frontend/bp.md
+            - 取指目标队列: frontend/ftq.md
+            - 取指令单元: frontend/ifu.md
+            - 指令缓存: frontend/icache.md
+            - 译码单元: frontend/decode.md
+        - 后端:
+            - 总体架构: backend/overview.md
+            - 重命名: backend/rename.md
+            - 派遣: backend/dispatch.md
+            - ROB: backend/rob.md
+            - 乱序调度器:
+                - 总体架构: backend/scheduler.md
+                - 发射队列/保留站: backend/issue.md
+            - 执行单元:
+                - 总体架构: backend/exu.md
+                - 整数部件: backend/exu_int.md
+                - 浮点部件: backend/exu_fp.md
+        - 访存子系统:
+            - 总体架构: memory/overview.md
+            - 乱序访存机制: memory/mechanism.md
+            - 访存流水线:
+                - Load Pipeline: memory/fu/load_pipeline.md
+                - Store Pipeline: memory/fu/store_pipeline.md
+                - 原子指令: memory/fu/atom.md
+            - LSQ:
+                - Load Queue: memory/lsq/load_queue.md
+                - Store Queue: memory/lsq/store_queue.md
+                - Committed Store Buffer: memory/lsq/committed_store_buffer.md
+            - MMU:
+                - 总体架构: memory/mmu/mmu.md
+                - 一级 TLB: memory/mmu/tlb.md
+                - 二级 TLB: memory/mmu/l2tlb.md
+                - 物理地址保护: memory/mmu/pmp_pma.md
+            - 数据缓存:
+                - 总体架构: memory/dcache/dcache.md
+                - Load Pipeline: memory/dcache/load_pipeline.md
+                - Main Pipeline: memory/dcache/main_pipe.md
+                - Refill Pipeline: memory/dcache/refill_pipe.md
+                - Miss Queue: memory/dcache/miss_queue.md
+                - Probe Queue: memory/dcache/probe_queue.md
+                - Writeback Queue: memory/dcache/writeback_queue.md
+                - 自定义指令: memory/dcache/csr_cache_op.md
+            - 访存预测器: memory/mdp/mdp.md
+        - L2/L3 Cache:
+            - 总体架构: huancun/overview.md
+            - 目录设计: huancun/directory.md
+            - 数据存储: huancun/data.md
+            - MSHR: huancun/mshr.md
+            - 通道控制: huancun/channels.md
+            - L2 预取: huancun/prefetch.md
+            - Cache 别名问题: huancun/cache_alias.md
+            - Miscs: huancun/misc.md
+        - 其他:
+            - 参数配置: misc/config.md
+            - 调试设计: misc/debug.md
+    - 敏捷开发框架:
+        - 使用说明:
+            - 前端开发环境: tools/xsenv.md
+            - 调试前必读: tools/best_practice.md
+        - 工具介绍:
+            - DiffTest: tools/difftest.md
+            - LightSSS: tools/lightsss.md
+            - SimPoint: tools/simpoint.md
+            - ArchDB: tools/archdb.md
+            # - 常用脚本: tools/scripts.md
+        - Troubleshooting: tools/troubleshoot.md
+    - 编译工具链:
+        - riscv-gun-toolchain: compiler/gnu_toolchain.md

@@ -35,13 +35,12 @@ error|load 指令在执行过程中检测到错误
 
 load 指令进入 load queue 实际分两步完成: enqPtr 的提前分配和 load queue 的实际写入. 
 
-提前分配的原因是 dispatch 模块距离 MemBlock 太远, 将 load
-queue 处产生的 `enqPtr` 送到 dispatch 做为 `lqIdx` 需要面临很长的延迟. 南湖架构在 dispatch 附近维护 enqPtr 的提前分配逻辑, 由提前分配逻辑负责提供指令的 `lqIdx`.
+提前分配的原因是 dispatch 模块距离 MemBlock 太远, 将 load queue 处产生的 `enqPtr` 送到 dispatch 做为 `lqIdx` 需要面临很长的延迟. 南湖架构在 dispatch 附近维护 enqPtr 的提前分配逻辑, 由提前分配逻辑负责提供指令的 `lqIdx`.
 
-### enqPtr 的提前分配
+<!-- ### enqPtr 的提前分配
 
 !!! todo
-    参见 dispatch 部分, `lqIdx` / `sqIdx` 的[提前分配](../../backend/dispatch.md). 
+    参见 dispatch 部分, `lqIdx` / `sqIdx` 的[提前分配](../../backend/dispatch.md).  -->
 
 ### Load Queue 实际写入
 
@@ -75,8 +74,8 @@ queue 处产生的 `enqPtr` 送到 dispatch 做为 `lqIdx` 需要面临很长的
 
 若一条 load 指令成功被分配 dcache MSHR, 后续其将在 load queue 中侦听 dcache refill 的结果. 一次 refill 会将数据传递到所有等待这一 cacheline 的 load queue 项. 这些项的数据状态被标识为有效, 随后可以被写回. 如果指令此前已经进行了 store 到 load 的前递, load queue 负责在 refill 时合并前递结果, 参见 [Store 到 Load 的前递](../mechanism.md#store-to-load-forward) 一节. 下面的示意图展示了一次 dcache refill 前后 load queue 中各项的变化. 
 
-!!! todo
-    更新图的描述
+<!-- !!! todo
+    更新图的描述 -->
 
 ![before-refill](../../figs/memblock/before-refill.png)  
 

@@ -38,7 +38,7 @@ RISC-V spec 定义了 constrained LR/SC loops (参见 Volume I: RISC-V Unprivile
 
 ### 对于 amo 指令的支持
 
-dcache 会在 mainpipe 中进行 amo 指令所定义的运算操作. 参见 [dcache mainpipe](../dcache/dcache.md) (TODO) 部分. 
+dcache 会在 mainpipe 中进行 amo 指令所定义的运算操作. 参见 [dcache mainpipe](../dcache/main_pipe.md#stage-2) 部分. 
 
 ## 原子指令的例外处理
 

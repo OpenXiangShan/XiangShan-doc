@@ -1,6 +1,6 @@
 # GCB 工具链使用说明
 
-香山处理器南湖架构支持RV64 GCB扩展，由于目前发行版工具链还不支持B扩展，本文说明如何为香山编译B扩展GNU工具链。
+香山处理器南湖架构支持 RV64 GCB 扩展，由于目前发行版工具链还不支持 B扩展，本文说明如何为香山编译 B扩展 GNU 工具链。
 
 ## 工具链版本说明
 
@@ -8,9 +8,11 @@
 * riscv-gcc 替换成软件所的版本 https://github.com/pz9115/riscv-gcc
   切换到riscv-gcc-experimental分支 e5ec1231dd03ec1e10807ab5677a600489fa017e
 * riscv-binutils 替换成软件所的版本 https://github.com/pz9115/riscv-binutils-gdb
-  切换到riscv-binutils-experimental分支 520f5066004f7db320b39d09e9dd6d1a79202733
+  切换到
+* riscv-binutils-experimental分支 520f5066004f7db320b39d09e9dd6d1a79202733
 
-(先clone riscv-gnu-toolchain，再按照上述要求替换其中的riscv-gcc, riscv-binutils)
+
+(Hint: 先clone riscv-gnu-toolchain，再按照上述要求替换其中的riscv-gcc, riscv-binutils)
 
 
 ## 工具链编译方法

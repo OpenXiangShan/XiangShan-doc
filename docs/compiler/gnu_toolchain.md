@@ -4,7 +4,7 @@
 
 ## 工具链版本说明
 
-* riscv-gun-toolchain 官方master分支
+* riscv-gnu-toolchain 官方master分支
 * riscv-gcc 替换成软件所的版本 https://github.com/pz9115/riscv-gcc
   切换到riscv-gcc-experimental分支 e5ec1231dd03ec1e10807ab5677a600489fa017e
 * riscv-binutils 替换成软件所的版本 https://github.com/pz9115/riscv-binutils-gdb

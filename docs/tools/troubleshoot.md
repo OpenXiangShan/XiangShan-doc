@@ -16,6 +16,6 @@ Compiling Troubleshooting Guide
 
 * Try Minimal XiangShan first. XiangShan's default config will take quite long time and huge memory space to build. We suggest you try Minimal XiangShan (`make emu CONFIG=MinimalConfig`) first to make sure the environment is set up correctly. (https://github.com/OpenXiangShan/XiangShan/issues/852)
 
-* Commands for generating behavior simulation verilog and synthesizable synthesizable are different. Run `make verilg` to generate synthesizable verilog. Run `make emu` for behavior simulation (https://github.com/OpenXiangShan/XiangShan/issues/933)
+* Commands for generating behavior simulation verilog and synthesizable synthesizable are different. Run `make verilog` to generate synthesizable verilog. Run `make emu` for behavior simulation (https://github.com/OpenXiangShan/XiangShan/issues/933)
 
 By the way, https://github.com/OpenXiangShan/xs-env provides scripts for installing XiangShan dependencies and a detailed document (Chinese only, En WIP) about how to set up XiangShan develop environment.

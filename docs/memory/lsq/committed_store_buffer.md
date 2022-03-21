@@ -74,12 +74,12 @@ sbuffer 向 dcache 的写入期间, sbuffer 中一项的状态变化流程如下
 
 换出项的选择使用 PLRU 算法, 在 store 写入到 sbuffer 中时, 或是 store 和 sbuffer 中某项 merge 时, PLRU 会被更新. 在一项的 `w_sameblock_inflight` flag 为高(意味着相同 cacheline 使用的另一个 sbuffer entry 正在被写入 dcache)时, 这一项不会被选为写入到 dcache 的对象.
 
-### flush sbuffer
+### Flush Sbuffer
 
 在主动清空 sbuffer 时, sbuffer 会一并将 store queue 中已经 commit 的指令全部写入 dcache. sbuffer 还会自行刷新以支持虚地址前递机制. 在 sbuffer 发现虚实地址前递的结果产生了冲突(参见[前递支持](./committed_store_buffer.md#store-to-load-forward-query))时, sbuffer 也会进行自动刷新.
 <!-- 触发自动换出的周期数暂时不支持手动配置. -->
 
-## store to load forward query
+## Store to Load Forward Query
 
 在 load 指令进行 store to load forward query 时, sbuffer 也会向 load 指令提供已提交但未写入 dcache 的 store 的 data. 在当前的[前递机制](../mechanism.md#store-to-load-forward)下, 来自 sbuffer 的前递机制采用虚地址前递, 实地址检查.
 

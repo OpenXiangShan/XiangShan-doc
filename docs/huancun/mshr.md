@@ -24,7 +24,9 @@ MSHR根据请求的类型和读目录的结果更新self directory的dirty位、
 
 1. 假如DCache拥有地址X的权限，而ICache没有，这时ICache向L2请求获取X的权限。这时L2需要判断L2是否有块X、DCache是否有块X、如果有的话权限够不够等，MSHR将根据这些信息决定是直接向ICache返回数据，还是向DCache要数据(Probe)再返回给ICache，还是需要向L3 Acquire这个块再转发给ICache，所以我们需要在self directory和client directory中分别维护权限位。
 
-2. 假如DCache拥有地址X的权限，而L2没有，这时DCache将X替换了出去，向下发送Release地址X的请求，L2收到请求后分配了一项MSHR，同时我们希望L2能够保存DCache Release下来的块X，如果需要替换的话L2还要根据替换策略向L3 Release替换块Y。在这个例子中，我们需要知道Y在L2中是否是脏数据，这涉及到向L3 Release Y时是否需要带数据，所以self directory中需要dirty位；在把Y替换出L2时，需要保证L1中已经没有Y的权限了，所以self directory中需要维护clientStates域，从而判断都有哪些上层节点拥有地址Y的权限，L2需要把ICache、DCache中有Y的权限的cache块都Probe下来，才可以向L3 Release Y。
+2. 假如DCache拥有地址X的权限，而L2没有，这时DCache将X替换了出去，向下发送Release地址X的请求，L2收到请求后分配了一项MSHR，同时我们希望L2能够保存DCache Release下来的块X，如果需要替换的话L2还要根据替换策略向L3 Release替换块Y。在这个例子中，我们需要知道Y在L2中是否是脏数据，这涉及到向L3 Release Y时是否需要带数据，所以self directory中需要dirty位；在把Y替换出L2时，需要知道Release应该带什么样的param，所以self directory中需要维护clientStates域，从而判断上层节点在地址Y上的权限。
+
+关于directory的更多细节可以阅读[目录设计](./directory.md)。
 
 
 <h2 id=request_control>请求控制</h2>

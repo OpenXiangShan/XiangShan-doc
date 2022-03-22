@@ -3,11 +3,14 @@ Documentation for XiangShan
 
 这是香山的官方文档仓库。
 
-目前文档已托管到 ReadTheDocs 平台，欢迎访问 https://xiangshan-doc.readthedocs.io
+* 香山微结构文档已托管到 ReadTheDocs 平台，欢迎访问 https://xiangshan-doc.readthedocs.io
+
+* slides 目录下存放了我们的技术汇报，包括 2021 RISC-V 中国峰会的报告等内容
 
 
 
 ## 联系我们 Contact us
+
 邮件列表：xiangshan-all@ict.ac.cn
 
 Mailing list: xiangshan-all@ict.ac.cn

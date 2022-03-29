@@ -1,5 +1,5 @@
 # doc for pdf plug-in: https://pypi.org/project/mkdocs-with-pdf/
-site_name: XiangShan官方文档
+site_name: XiangShan 官方文档
 theme:
     name: material
 markdown_extensions:
@@ -44,7 +44,7 @@ nav:
             - ROB: backend/rob.md
             - 乱序调度器:
                 - 总体架构: backend/scheduler.md
-                - 发射队列/保留站: backend/issue.md
+                - 发射队列 / 保留站: backend/issue.md
             - 执行单元:
                 - 总体架构: backend/exu.md
                 - 整数部件: backend/exu_int.md
@@ -97,6 +97,7 @@ nav:
             - SimPoint: tools/simpoint.md
             - ArchDB: tools/archdb.md
             - NEMU: tools/nemu.md
+            - 制作 Debian 镜像: tools/debian.md
             # - 常用脚本: tools/scripts.md
         - Troubleshooting: tools/troubleshoot.md
     - 编译工具链:

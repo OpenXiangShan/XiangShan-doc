@@ -1,12 +1,12 @@
-Checkpoint的生成和运行
+Checkpoint 的生成和运行
 =====================
 
 !!! note
-    Checkpoint 相关的功能目前依赖于一个独立的 NEMU 分支。主线上的 NEMU 并不支持 Checkpoint生成。
+    Checkpoint 相关的功能目前依赖于一个独立的 NEMU 分支。主线上的 NEMU 并不支持 Checkpoint 生成。
 
 ## 背景介绍
 
-如果您对 Checkpoint 不了解，推荐 zyy 大佬的视频：[Checkpoint + Sampling：10小时内估算出RISC-V CPU的SPEC分数](https://www.bilibili.com/video/BV1eb4y167cE)
+如果您对 Checkpoint 不了解，推荐 zyy 大佬的视频：[Checkpoint + Sampling：10 小时内估算出 RISC-V CPU 的 SPEC 分数](https://www.bilibili.com/video/BV1eb4y167cE)
 
 ## 使用 NEMU 生成 Checkpoint
 
@@ -21,6 +21,7 @@ Checkpoint的生成和运行
 
 1. NEMU 拥有一个 submodule `NEMU/resource/simpoint` ，使用 `git submodule update --init` 下载同步，并编译（`analysiscode` 目录下执行 `make simpoint` ），得到可执行文件 `NEMU/resource/simpoint/bin/simpoint`
 2. 在 `NEMU/resource/gcpt_restore` 目录下执行 `make` 命令编译
+3. 在 `NEMU` 目录下执行 `make ISA=riscv64 XIANGSHAN=1` 生成 NEMU 的可执行文件。
 
 ### 流程介绍
 
@@ -51,8 +52,9 @@ Checkpoint 相关参数介绍：
 riscv64-nemu-interpreter workload.bin -D /home/user/spec_cpt -w workloadName -C run_spec -b --simpoint-profile --interval 100000000
 
 # Cluster
-simpoint -loadFVFile simpoint_bbv.gz -saveSimpoints simpoints0 -saveSimpointWeights weights0 -inputVectorsGzipped -maxK 30 -numInitSeeds 2 -iters 1000 -seedkm 123456 -seedproj 654321
 # Assuming the dest dir is /home/user/spec_cpt/cluster
+# Run this command under /home/user/spec_cpt/cluster
+simpoint -loadFVFile simpoint_bbv.gz -saveSimpoints simpoints0 -saveSimpointWeights weights0 -inputVectorsGzipped -maxK 30 -numInitSeeds 2 -iters 1000 -seedkm 123456 -seedproj 654321
 
 # Checkpointing
 riscv64-nemu-interpreter workload.bin -D /home/user/spec_cpt -w workloadName -C take_cpt -b -S /home/user/spec_cpt/cluster --checkpoint-interval 100000000

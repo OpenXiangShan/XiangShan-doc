@@ -48,13 +48,16 @@ Checkpoint 相关参数介绍：
 命令示例：
 
 ```shell
+# Assuming the dest dir is /home/user/spec_cpt
+
 # Profiling
-riscv64-nemu-interpreter workload.bin -D /home/user/spec_cpt -w workloadName -C run_spec -b --simpoint-profile --interval 100000000
+riscv64-nemu-interpreter workload.bin -D /home/user/spec_cpt -w workloadName -C profiling -b --simpoint-profile --interval 100000000
 
 # Cluster
-# Assuming the dest dir is /home/user/spec_cpt/cluster
-# Run this command under /home/user/spec_cpt/cluster
-simpoint -loadFVFile simpoint_bbv.gz -saveSimpoints simpoints0 -saveSimpointWeights weights0 -inputVectorsGzipped -maxK 30 -numInitSeeds 2 -iters 1000 -seedkm 123456 -seedproj 654321
+mkdir -p /home/user/spec_cpt/cluster/workloadName
+# Run this command under /home/user/spec_cpt/cluster/workloadName
+# --!!-- make sure the simpoint_bbv.gz is for your target workload --!!--
+simpoint -loadFVFile ../../simpoint_bbv.gz -saveSimpoints simpoints0 -saveSimpointWeights weights0 -inputVectorsGzipped -maxK 30 -numInitSeeds 2 -iters 1000 -seedkm 123456 -seedproj 654321
 
 # Checkpointing
 riscv64-nemu-interpreter workload.bin -D /home/user/spec_cpt -w workloadName -C take_cpt -b -S /home/user/spec_cpt/cluster --checkpoint-interval 100000000

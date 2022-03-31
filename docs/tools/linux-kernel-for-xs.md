@@ -1,6 +1,6 @@
 # Linux Kernel for XiangShan in EMU
 
-#### 1. 首先介绍在仿真环境下如何构建一个可在香山或者 NEMU 上运行的最简 Linux Kernel
+#### 1. 在仿真环境下如何构建一个可在香山或者 NEMU 上运行的最简 Linux Kernel
 
 注意，过程中出现任何问题，请首先观察出错信息并结合 Makefile 文件，自行网上搜索可以解决一些简单问题，比如工具链和依赖包相关的问题。
 
@@ -28,20 +28,18 @@
     - 配置设备树，在 riscv-pk/dts 中让 platform.dtsi 软链接到对应的 noop.dtsi
     - 运行 `make -j`，该命令会自动编译 Linux Kernel，并作为 payload 链接到 BBL 中，最后打包成 build/bbl.bin 二进制镜像，随后就可以让香山跑这一镜像了（详见 Makefile）
 
-------
-
 - 其他
     - riscv-pk 的 Makefile 依赖有一点小问题，因此做了任何修改后，请在 riscv-pk 里面先 make clean
-    - 请预先准备好 riscv64 工具链，可能用到的 prefix 有 riscv64-linux-gnu-，riscv64-unknown-linux-gnu-，riscv64-unknown-elf-
+    - 请预先准备好 riscv64 工具链，可能用到的 prefix 有 `riscv64-linux-gnu-`，`riscv64-unknown-linux-gnu-`，`riscv64-unknown-elf-`
 
 
 
-#### 2. 在此基础上，介绍如何在 Linux 下跑 BusyBox 以及一些简单的应用程序
+#### 2. 在此基础上，如何在 Linux 下跑 BusyBox 以及一些简单的应用程序
 
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
     * 使用 fpga_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- defconfig fpga_defconfig`
-    * 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`，其中一个较为必要的修改是将 initramfs 的 source 从 ${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt 改为 ${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-autorun.txt
+    * 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`，其中一个较为必要的修改是将 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-autorun.txt`
 * 酌情修改 rootfs
     * 到 riscv-rootfs 目录下的 rootfsimg 目录
     * 酌情修改 initramfs-autorun.txt 和 inittab 中的内容，以在 Linux 启动过后跑你所想要的程序（默认情况下是 stream 和 redis）
@@ -51,7 +49,7 @@
 
 
 
-#### 3. 在此基础上，介绍如何在 NEMU 上跑 Debian 发行版
+#### 3. 在此基础上，如何在 NEMU 上跑 Debian 发行版
 
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
@@ -67,7 +65,7 @@
 
 
 
-#### 4. 在此基础上，介绍如何在香山上跑 Debian 发行版
+#### 4. 在此基础上，如何在香山上跑 Debian 发行版
 
 * 配置香山
     * 到香山目录

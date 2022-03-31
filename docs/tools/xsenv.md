@@ -89,7 +89,7 @@ make init
 ### 生成双核代码
 
 
-在 `/xs-env/XiangShan` 下运行 `make SIM_ARGS="--dual-core" verilog` ，该命令将会生成香山双核的 Verilog，输出的文件在 `XiangShan/build/XSTop.v`
+在 `/xs-env/XiangShan` 下运行 `make verilog NUM_CORES=2` ，该命令将会生成香山双核的 Verilog，输出的文件在 `XiangShan/build/XSTop.v`
 
 ## 仿真环境下验证香山
 
@@ -206,9 +206,4 @@ make -j
 当 workload 执行结束后，将会打印性能计数器结果。如果将性能计数器的内容重定向到文件中，就可以使用可视化工具参看结构化的性能计数器信息。
 > 提示: 在运行 `emu` 时, 可以添加 `--force-dump-result` 参数来强制输出性能计数器结果到标准输出流。
 
-我们提供了一个[可视化性能计数器的结果的工具](https://github.com/OpenXiangShan/perfUI)：
-
-```bash
-./perfviewer
-```
-> 注意！该工具具有 GUI 界面，如果想要使用请做好 X11 转发相关配置。
+我们提供了一个[可视化性能计数器的结果的工具](https://github.com/OpenXiangShan/perfUI)。注意！该工具具有 GUI 界面，如果想要使用请做好 X11 转发相关配置。

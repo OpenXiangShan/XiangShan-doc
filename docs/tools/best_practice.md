@@ -29,6 +29,3 @@ XiangShan 前端开发注意事项
 
 同上，注意配置`difftest/config/verilator.mk`中的`EMU_THREADS`来加快仿真速度。
 
-## 加速仿真的手段
-
-参考 [https://www.graalvm.org/docs/getting-started/](https://www.graalvm.org/docs/getting-started/) 配置 graalvm 可以加速 java 的运行, 从而提高 XiangShan 的编译效率。

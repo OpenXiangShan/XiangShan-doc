@@ -91,6 +91,7 @@ nav:
         - 使用说明:
             - 前端开发环境: tools/xsenv.md
             - 调试前必读: tools/best_practice.md
+            - 编译与仿真加速: tools/compile-and-sim.md
         - 工具介绍:
             - DiffTest: tools/difftest.md
             - LightSSS: tools/lightsss.md

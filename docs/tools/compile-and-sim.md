@@ -30,4 +30,5 @@ Verilator会将Chisel生成的Verilog源码转换为数百/千个C++源文件，
 ## 加快emu仿真运行速度
 
 1.通过`EMU_THREADS`指定emu仿真时要使用的线程数，例如`make emu EMU_THREADS=8`。
-2.使用`numactl`让将emu运行时使用的核限制在一个node内，例如`numactl -m 0 -C 0-7 ./build/emu ...`
+
+2.使用`numactl`将emu运行时使用的核限制在一个node内，例如`numactl -m 0 -C 0-7 ./build/emu ...`

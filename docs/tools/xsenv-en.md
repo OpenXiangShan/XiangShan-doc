@@ -11,21 +11,21 @@ Use the following script to deploy the Xiangshan development environment, **the 
 
 This script will setup XiangShan develop environment automatically. Note that `./setup-tools.sh` and `setup.sh` only need to be run **ONCE**. You may need to read and modify `setup-tools.sh` before you start.
 
-````sh
+```sh
 git clone https://github.com/OpenXiangShan/xs-env
 cd xs-env
 sudo -s ./setup-tools.sh # use apt to install dependencies, you may modify it to use different pkg manager
 source setup.sh # prepare tools, test develop env using a small project
-````
+```
 
 **After environment setup, every time you want to use the development environment, just use the following command to configure the environment variables**:
 
 <!-- After XiangShan Develop Environment setup, use the following script **every time** before using XiangShan Develop Environment. -->
 
-````sh
+```sh
 cd xs-env
 source ./env.sh # setup XiangShan environment variables
-````
+```
 
 ## Requirements for the server
 
@@ -46,13 +46,13 @@ Install git on the server, then use git to clone the following repositories:
 ```bash
 git clone https://github.com/OpenXiangShan/xs-env.git
 cd xs-env
-````
+```
 
 This repository contains a script to install the dependencies of the Xiangshan project. Check and modify that script (if needed), then run it.
 
 ```bash
 sudo -s ./setup-tools.sh
-````
+```
 
 > Tip: The execution of this script requires sudo privileges to install the packages that Xiangshan project depends on. Please read and understand the content of the script and execute it to avoid breaking the environment
 
@@ -68,7 +68,7 @@ Execute `setup.sh` script after installing the dependencies. This script will co
 
 ```shell
 source env.sh
-````
+```
 
 The above script sets three environment variables: `NOOP_HOME`(Core RTL Position), `NEMU_HOME`(ISA Simulator Position), `AM_HOME`(Abstract Machine, bare metal runtime). You can add these environment variables to `.bashrc` / `.zshrc`, or re-run the `env.sh` script to configure environment variables every time when you use Xiangshan (recommended).
 
@@ -131,13 +131,13 @@ Before running the workload on the NEMU emulator, we need to make sure the virtu
 ```bash
 make clean
 make riscv64-xs_defconfig
-````
+```
 
 Then, compile the NEMU emulator with the following command:
 
 ```bash
 make -j
-````
+```
 
 > Tip: these commands will generate NEMU executable file (instead of shared lib, which will be used later).
 
@@ -155,7 +155,7 @@ Verilator is used to generate Xiangshan core simulation program. Enter `XiangSha
 
 ```bash
 make emu CONFIG=MinimalConfig EMU_TRACE=1 -j32
-````
+```
 
 In this command, `CONFIG=MinimalConfig` specifies the configuration used by the Xiangshan core. `EMU_TRACE=1` will enable the waveform output during the simulation.
 
@@ -180,11 +180,11 @@ To run co-simulation, NEMU needs to be configured before co-simulation starts. N
 
 Run under `/xs-env/NEMU`:
 
-````
+```
 make clean
 make riscv64-xs-ref_defconfig
 make -j
-````
+```
 
 This command will compile the NEMU simulator into a dynamic link library, and will generate the file `riscv64-nemu-interpreter-so` in the `build` directory, which will be connected to Xiangshan co-simulation framework.
 
@@ -205,7 +205,7 @@ One can use `--dump-wave` parameter to enable waveform generation, and use `-b` 
 
 ```shell
 ./build/emu -i MY_WORKLOAD.bin --dump-wave -b 10000 -e 11000
-````
+```
 
 
 The default value of `-b` and `-e` is 0. Note that the waveform will only be recorded when the `-e` parameter is greater than `-b`; the waveform file will be generated in the `./build/` directory , the format is vcd. Waveform files can be viewed using open source tools such as gtkwave or commercial tools such as dve.

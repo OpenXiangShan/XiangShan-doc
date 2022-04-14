@@ -5,6 +5,8 @@ XiangShan 前端开发环境
 
 如果遇到问题，可以参考 [Troubleshooting](./troubleshoot.md) 以及 [https://github.com/OpenXiangShan/XiangShan/issues](https://github.com/OpenXiangShan/XiangShan/issues) 中的问题及解答。
 
+This chapter has [English version](./xsenv-en.md).
+
 ## TLDR
 
 使用以下脚本来布署香山开发环境，**部署脚本只需运行一次.**：

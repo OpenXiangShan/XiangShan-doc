@@ -8,7 +8,7 @@ cd $AM_HOME/apps
 mkdir hello
 cd hello
 vim Makefile
-````
+```
 
 
 
@@ -18,14 +18,14 @@ Enter the following in the Makefile, you can also refer to the Makefiles of othe
 NAME = hello
 SRCS = $(shell find -L ./src/ -name "*.c")
 include $(AM_HOME)/Makefile.app
-````
+```
 
 Create hello.c:
 
 ```shell
 mkdir src
 vim src/hello.c
-````
+```
 
 Write the following code to hello.c:
 
@@ -36,7 +36,7 @@ int main() {
   printf("Hello Xiangshan!\n");
   return 0;
 }
-````
+```
 
 > [1] KLIB is a runtime library provided by AM, which provides the implementation of the printf function. For more detailed introduction to KLIB, please read the source code later.
 
@@ -44,10 +44,10 @@ After preparing src/hello.c, use the following command to compile the program fo
 
 ```shell
 make ARCH=riscv64-xs
-````
+```
 
 ELF file, binary image, and disassemble of the program will be generated in the /build directory. The compiled image can be run with the following command:
 
 ```shell
 $NOOP_HOME/build/emu -i $AM_HOME/apps/hello/build/hello-riscv64-xs.bin
-````
+```

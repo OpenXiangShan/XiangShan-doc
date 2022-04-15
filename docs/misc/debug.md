@@ -35,6 +35,6 @@ echo "Ready for Remote Connections"
 ```
 
 ## 用 GDB 连接香山
-编译得到 emu 后，执行 `./build/emu --enable-jtag` ，同时在另一个终端里执行 `openocd -f config.cfg` ，其中 `config.cfg` 为 OpenOCD 配置文件，通时在第三个终端里执行 `riscv64-unknown-elf-gdb`。推荐使用 tmux 分屏进行操作。
+编译得到 emu 后，运行时加入 `--enable-jtag --no-diff` 两个flag ，同时在另一个终端里执行 `openocd -f config.cfg` ，其中 `config.cfg` 为 OpenOCD 配置文件，同时在第三个终端里执行 `riscv64-unknown-elf-gdb`。推荐使用 tmux 分屏进行操作。
 
 在 GDB 的命令行中执行 `target extended-remote localhost:3333` ，稍等即可连接到香山仿真程序。

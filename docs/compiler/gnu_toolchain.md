@@ -6,11 +6,11 @@
 
 ## 工具链版本说明
 
-* riscv-gnu-toolchain 官方 master 分支
-* riscv-gcc 替换成软件所的版本 https://github.com/pz9115/riscv-gcc
-  切换到 riscv-gcc-experimental 分支 e5ec1231dd03ec1e10807ab5677a600489fa017e
-* riscv-binutils 替换成软件所的版本 https://github.com/pz9115/riscv-binutils-gdb
-  切换到riscv-binutils-experimental 分支 520f5066004f7db320b39d09e9dd6d1a79202733
+* [riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain.git) 官方 master 分支(`df6ecbe4ddb2a1a261b44af822d22f1253d3f0e4`已验证)
+* riscv-gcc 替换成软件所的版本 [https://github.com/pz9115/riscv-gcc](https://github.com/pz9115/riscv-gcc)
+  切换到 riscv-gcc-experimental-bkp 分支(`fbfa8d9ad496a2d69a38be2c2c3c0dc0956ffb9e`已验证)
+* riscv-binutils 替换成软件所的版本 [https://github.com/pz9115/riscv-binutils-gdb](https://github.com/pz9115/riscv-binutils-gdb)
+  切换到riscv-binutils-experimental-bkp 分支 (`586f9af7f39d5185e8c133ab794167e46bd721de`已验证)
 
 
 (Hint: 先 clone riscv-gnu-toolchain，再按照上述要求替换其中的 riscv-gcc, riscv-binutils)

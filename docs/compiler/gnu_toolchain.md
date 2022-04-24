@@ -6,6 +6,8 @@
 
 ## 工具链版本说明
 
+
+### 方案1
 * [riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain.git) 官方 master 分支(`df6ecbe4ddb2a1a261b44af822d22f1253d3f0e4`已验证)
 * riscv-gcc 替换成软件所的版本 [https://github.com/pz9115/riscv-gcc](https://github.com/pz9115/riscv-gcc)
   切换到 riscv-gcc-experimental-bkp 分支(`fbfa8d9ad496a2d69a38be2c2c3c0dc0956ffb9e`已验证)
@@ -16,7 +18,22 @@
 (Hint: 先 clone riscv-gnu-toolchain，再按照上述要求替换其中的 riscv-gcc, riscv-binutils)
 
 
+### 方案2
+为了简化submodule分支切换操作，香山Fork了一份[riscv-gnu-toolchain](https://github.com/OpenXiangShan/riscv-gnu-toolchain)并更新了其中的submodule以支持
+bk扩展，**该仓库中的submodule已经切换完成，不需要再手工切换，可以直接编译**。
+
+```bash
+git clone git@github.com:OpenXiangShan/riscv-gnu-toolchain.git
+```
+
+
 ## 工具链编译方法
+
+### 安装交叉编译过程中依赖的软件
+
+请参考[riscv-gnu-toolchain官方文档](https://github.com/riscv-collab/riscv-gnu-toolchain#prerequisites)中的对应章节。
+
+### 编译工具链
 
 ```bash
 cd riscv-gnu-toolchain
@@ -24,9 +41,9 @@ mkdir build
 cd build
 ../configure --prefix=PATH_TO_INSTALL --with-arch=rv64gc_zba_zbb_zbc_zbs
 # newlib (riscv-unknown-elf-)
-make -j
+make -jN
 # linux (riscv-unknown-linux-gnu-)
-make linux -j
+make linux -jN
 ```
 
 * 编译完成后将 `RISCV` 环境变量设置为 `PATH_TO_INSTALL`

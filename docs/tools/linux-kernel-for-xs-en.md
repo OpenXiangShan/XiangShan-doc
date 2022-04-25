@@ -14,7 +14,6 @@
     - RISCV_ROOTFS_HOME: path to `riscv-rootfs`
 - build rootfs
     - Enter `riscv-rootfs` directory
-    - Run `make rootfsimg` to compile preconfigured workload (located in the apps directory)
     - In simulation environment, we let the Linux Kernel start on the ramfs, so first prepare the initramfs that you want to run, and you can put the workload you want to run in it. The default is riscv-rootfs/rootfsimg/initramfs-emu.txt, Can be modified as needed
 - Build the Linux Kernel Manually
     - Enter `riscv-linux` directory

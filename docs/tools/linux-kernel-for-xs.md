@@ -14,15 +14,11 @@
     - RISCV_ROOTFS_HOME：riscv-rootfs 的路径
 - 构建 rootfs
     - 到 riscv-rootfs 目录
-    - 运行 `make rootfsimg`，编译我们预先配置的 workload（位于 apps 目录下）
     - 在仿真环境下，我们让 Linux Kernel 在 ramfs 上启动，因此首先准备好想要运行的 initramfs，里面可以放想要跑的 workload，默认使用的是 riscv-rootfs/rootfsimg/initramfs-emu.txt，可以根据需要酌情进行修改
 - 构建 Linux Kernel
     - 到 riscv-linux 目录
-    - 使用 emu_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- defconfig emu_defconfig`
+    - 使用 emu_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- emu_defconfig`
     - 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`
-    - 编译，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- -j`
-    - 如果顺利，在目录下会产生 vmlinux 文件
-    - （后续开发过程中可以不用在这里编译，只要 config 好就行，因为在下述的 BBL makefile 里会做 Linux 的编译）
 - 构建 BBL 并链接 Kernel
     - 到 riscv-pk 目录
     - 配置设备树，在 riscv-pk/dts 中让 platform.dtsi 软链接到对应的 noop.dtsi
@@ -38,7 +34,7 @@
 
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
-    * 使用 fpga_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- defconfig fpga_defconfig`
+    * 使用 fpga_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- fpga_defconfig`
     * 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`，其中一个较为必要的修改是将 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-autorun.txt`
 * 酌情修改 rootfs
     * 到 riscv-rootfs 目录下的 rootfsimg 目录
@@ -53,7 +49,7 @@
 
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
-    * 使用 debian_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- defconfig debian_defconfig`
+    * 使用 debian_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- debian_defconfig`
 
 * 重新配置 BBL
     * 到 riscv-pk 目录

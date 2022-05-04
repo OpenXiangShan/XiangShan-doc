@@ -29,7 +29,7 @@ mkdocs 项目结构非常简单，在根目录下有一个 mkdocs.yml 文件用�
 
 !!! note
     比如这种花活。
-    
+
 # 导出为 pdf
 
 使用 Material for MkDocs 主题配合 mkdocs-with-pdf 插件，我们可以将整个文档自动导出为 pdf 文件。mkdocs.yml 中已经包含了一个预设的 pdf 导出配置。关于如何配置 pdf 导出环境及如何使用，请参考https://pypi.org/project/mkdocs-with-pdf/

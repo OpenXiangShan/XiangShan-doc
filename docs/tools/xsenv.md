@@ -11,7 +11,7 @@ This chapter has [English version](./xsenv-en.md).
 
 使用以下脚本来布署香山开发环境，**部署脚本只需运行一次.**：
 
-This script will setup XiangShan develop environment automatically. Note that `./setup-tools.sh` and `setup.sh` only need to be run **ONCE**. 
+This script will setup XiangShan develop environment automatically. Note that `./setup-tools.sh` and `setup.sh` only need to be run **ONCE**.
 
 ```sh
 git clone https://github.com/OpenXiangShan/xs-env
@@ -82,7 +82,7 @@ source env.sh
 ## 生成香山核的 Verilog 代码
 
 
-在 `/xs-env/XiangShan` 下执行 
+在 `/xs-env/XiangShan` 下执行
 ```shell
 make init
 ```
@@ -172,6 +172,8 @@ make emu CONFIG=MinimalConfig EMU_TRACE=1 -j32
 make emu -j32
 ```
 > 注意！生成 Verilog 所需的时间会稍久，推荐大家使用 Tmux 等工具在后台运行上述命令
+
+香山也支持使用 VCS 进行仿真验证，但缺少 LightSSS 等验证工具，参考：[VCS 的使用方法](./vcs.md)
 
 ### 在香山核仿真程序上仿真运行 workload
 与香山核协同仿真的 NEMU 模拟器配置与独立运行时略有不同。我们使用以下的命令编译仿真中使用的 NEMU：

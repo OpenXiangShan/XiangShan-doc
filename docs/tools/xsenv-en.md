@@ -233,7 +233,7 @@ Then run:
 
 By default, simv uses `XiangShan/ram.bin` as input.
 
-see [vcs](./vcs.md) for more details.
+see [vcs](./vcs-en.md) for more details.
 ### Viewing and analyzing performance counters
 
 When the workload execution ends, the performance counter results will be printed. If you redirect the content of performance counters to a file, you can use visualization tools to see structured performance counter information.

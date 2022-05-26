@@ -6,14 +6,27 @@ VCS 仿真测试框架介绍
 # 操作流程
 
 进入香山根目录，执行，进行编译：
+
+Enter root path `XiangShan`, run:
+
 ```sh
-make simv
+make simv RELEASE=1
 ```
-之后执行：
-```sh
-./simv
+
+`simv` 会被在 `difftest` 目录中生成。之后执行：
+
 ```
-simv 默认使用 `XiangShan/ram.bin` 作为输入。
+./difftest/simv [+workload=WorkloadName.bin] [+flash=Flash.bin] [+dump-wave] [+diff=Nemu-so] [+no-diff] [+max-cycles=MaxCycleNum]
+```
+
+simv 参数说明如下:
+
+* +workload=: By default simv uses `XiangShan/ram.bin` as input.
+* +flash=: By default, simv uses built-in flash, which will jump to 0x20_0000_0000.
+* +dump-wave: By default, simv will not dump waveform. Waveform file is simv.vpd.
+* +diff=: By default, simv will use $NEMU_HOME/build/riscv64-nemu-interpreter-so as golden model for diff-test. This will assign a golden model manually.
+* +no-diff: By default, simv will enable diff-test. This will disable diff-test.
+* +max-cycles=: By default, max-cycles is 0 for no limit.
 
 # 仿真框架解析
 

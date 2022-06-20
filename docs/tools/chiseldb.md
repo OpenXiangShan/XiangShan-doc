@@ -1,13 +1,13 @@
-# ArchDB简介
+# ChiselDB简介
 
 在处理器调试过程中，有一些结构化数据使用波形存储效率太低且不方便分析(例如memory trace)，
-因此我们开发了`ArchDB`来将这些结构化数据存储在数据库中，方便查询和分析使用。
+因此我们开发了`ChiselDB`来将这些结构化数据存储在数据库中，方便查询和分析使用。
 
 该工具利用`DPI-C`功能实现，在仿真代码中通过`DPI-C`调用C++函数，将我们希望保存的数据存进数据库中(`sqlite3`)。
 
-目前我们实现了对L1、L2、L3各个层级的memory trace记录，并可以根据需求进行扩展。
-
 ## TlieLink Memory Trace
+
+目前我们实现了对L1、L2、L3各个层级的memory trace记录，并可以根据需求进行扩展。
 
 ### 存储结构
 
@@ -34,9 +34,9 @@
 
 1.生成数据库
 
-运行emu时添加参数`--dump-tl`
+运行emu时添加参数`--dump-db`
 ``` bash
-./build/emu --dump-tl -e 10000 -i YOUR_IMAGE.bin
+./build/emu --dump-db -e 10000 -i YOUR_IMAGE.bin
 ```
 运行结束时，emu将会在`$NOOP_HOME/build`目录下以运行结束时间为文件名，
 db为后缀生成一个sqlite3数据库文件(例如: `$NOOP_HOME/build/2021-10-31@22:54:30.db`)。
@@ -90,3 +90,50 @@ sqlite3 $NOOP_HOME/build/2021-10-31@22:54:30.db "SELECT * FROM TL_LOG WHERE NAME
 1711 MEM_L3 A AcquireBlock Grow NtoB 0 0 80000280 0000000000000000 0000000000000000 0000000000000000 0000000000000000 user: 0 echo: 0
 ```
 
+## 自定义数据结构
+
+`ChiselDB`可以根据任何`Record`及其子类的硬件类型自动生成数据库中的一张表，表中字段对应`Record`类型的`elements`。
+
+### 创建表/获取已有表
+
+* 创建表可以通过`ChiselDB.createTable` API完成
+
+``` scala
+// API: def createTable[T <: Record](tableName: String, hw: T): Table[T]
+
+import huancun.utils.ChiselDB
+
+class MyBundle extends Bundle {
+  val fieldA = UInt(10.W)
+  val fieldB = UInt(20.W)
+}
+
+val table = ChiselDB.createTable("MyTableName", new MyBundle)
+```
+
+* `ChiselDB`不允许表重名，要在不同代码中获取一个已存在的表，可以使用`ChiselDB.getTable` API
+
+``` scala
+def getTable(tableName: String): Option[Table[_]]
+```
+
+### Dump数据
+
+Dump数据需要使用`table.log`方法，其功能是在使能信号有效时将硬件数据值写入数据库对应的表中,
+其中`site`参数指`table.log`调用地点，用来区分数据库中同一张表的不同写入来源。
+
+``` scala
+/* APIs
+def log(data: T, en: Bool, site: String = "", clock: Clock, reset: Reset)
+def log(data: Valid[T], site: String, clock: Clock, reset: Reset): Unit
+def log(data: DecoupledIO[T], site: String, clock: Clock, reset: Reset): Unit
+*/
+
+table.log(
+  data = my_data /* hardware of type T */,
+  en = my_cond,
+  site = "MyCallSite",
+  clock = clock,
+  reset = reset
+)
+```

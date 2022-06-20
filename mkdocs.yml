@@ -97,7 +97,7 @@ nav:
             - DiffTest: tools/difftest.md
             - LightSSS: tools/lightsss.md
             - SimPoint: tools/simpoint.md
-            - ArchDB: tools/archdb.md
+            - ChiselDB: tools/chiseldb.md
             - NEMU: tools/nemu.md
             - 制作 Debian 镜像: tools/debian.md
             # - 常用脚本: tools/scripts.md

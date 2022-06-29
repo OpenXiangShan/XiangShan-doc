@@ -12,16 +12,38 @@ Checkpoint 的生成和运行
 
 ### 环境准备
 
-1. [NEMU (cpt-bk 分支)](https://github.com/OpenXiangShan/NEMU/tree/cpt-bk)
-2. workload （非 可执行文件格式，需使用 objcopy 命令进行处理）
 
-关于 NEMU 如何使用，以及如何生成 workload，请参考 NEMU 和香山的相关文档。
+关于 NEMU 的基本使用方式，可以参考 [NEMU 的使用指南](nemu.md)
 
-其他准备：
+#### [NEMU (cpt-bk 分支)](https://github.com/OpenXiangShan/NEMU/tree/cpt-bk)
 
 1. NEMU 拥有一个 submodule `NEMU/resource/simpoint` ，使用 `git submodule update --init` 下载同步，并编译（`analysiscode` 目录下执行 `make simpoint` ），得到可执行文件 `NEMU/resource/simpoint/bin/simpoint`
 2. 在 `NEMU/resource/gcpt_restore` 目录下执行 `make` 命令编译
 3. 在 `NEMU` 目录下执行 `make ISA=riscv64 XIANGSHAN=1` 生成 NEMU 的可执行文件。
+
+备注：NEMU 的 `cpt-bk` 分支还没有添加对 `menuconfig` 的支持，可以使用上面的命令进行编译。
+
+
+#### workload 的生成
+
+关于 workload 的生成方式，可以参考 [Linux Kernel for XiangShan in EMU](linux-kernel-for-xs.md) 和 [使用 AM 生成自定义 workload](gen-workload-with-am.md)
+
+NEMU 生成 checkpoint 时，需要添加一段恢复程序 `gcpt.bin`，在 `(0x80000000, 0xa0000)`。因此在生成 workload 时，需要避开这一段空间，将起始地址设置在 `0x800a0000` 。如在 [riscv-pk/bbl/bbl.lds](https://github.com/OpenXiangShan/riscv-pk/blob/noop/bbl/bbl.lds#L15) 中，修改为 `. = MEM_START + 0xa0000` 。
+
+NEMU 默认不会进入 checkpoint 模式，需要使用 NEMU 自定义指令进行模式转换。
+
+RTFSC: [nemu_trap](https://github.com/OpenXiangShan/NEMU/blob/cpt-bk/src/isa/riscv64/exec/special.c#L25)
+
+具体如下：
+
+1. NEMU 使用 nemu_trap 指令（0x6b），进行 `结束运行`，`关闭时钟中断`，`进入 Simpoint Profiling 模式` ，具体行为由 `a0` 寄存器内容决定。
+2. a0：0x100 - 关闭时钟中断
+3. a0：0x101 - 进入 Simpoint Profiling 模式
+4. a0：其他  - NEMU 结束执行，返回 a0 内容。若 a0 内容为 0，NEMU 认为程序 GOOD_TRAP。
+
+因此在真正执行目标程序之前，需要完成两个操作 *关闭时钟中断* 和 *进入 Simpoint Profiling 模式*。
+
+NEMU 目前不支持在 M 态下进行 Profiling，因此 workload 需要运行在 S 态或 U 态下运行，比如 linux 上运行 SPEC2006。
 
 ### 流程介绍
 
@@ -63,15 +85,23 @@ simpoint -loadFVFile ../../simpoint_bbv.gz -saveSimpoints simpoints0 -saveSimpoi
 riscv64-nemu-interpreter workload.bin -D /home/user/spec_cpt -w workloadName -C take_cpt -b -S /home/user/spec_cpt/cluster --checkpoint-interval 100000000
 ```
 
-### 其他注意事项
+## 性能分析
 
-默认情况下，NEMU 不会进入 Checkpoint 模式，需要执行 NEMU 自定义指令进入 Checkpoint 模式。
+### Warm-Up
 
-RTFSC: [nemu_trap](https://github.com/OpenXiangShan/NEMU/blob/cpt-bk/src/isa/riscv64/exec/special.c#L25)
+处理器中的 Cache、MMU、分支预测器的冷启动会影响性能评估的准确性，因此需要进行 Warm-Up，对 Cache、MMU、分支预测器进行数据预热。具体实现方式为提前多执行一个 “区间” 的指令，例如：一个预期的 Checkpoint，时间节点为 N，区间长度为 M。真正生成的 Checkpoint 节点为 N-M，处理器执行时，需要执行（N-M，N+M），即 2M 条指令。收集性能数据时需要舍去 (N-M, N) 部分，只收集 （N，N+M）部分的性能数据。
 
-解析：
+### 数据汇总
+NEMU 执行 workload 的结尾，会打印出执行的指令数。
+一个 workload 的每个 Checkpoint 有各自的权重，以及统一的区间（以指令为单位）。处理器如香山，执行每一段 Checkpoint ，会有各自的周期数。通过所有 Checkpoint 的权重，区间和周期数，以及 workload 的总指令数，就能得到处理器执行 workload 的总周期数。结合处理器的时钟频率，可以得到实际执行时间。
 
-NEMU 使用 nemu_trap 指令（0x6b）表示程序执行结束 或 进行 Checkpoint 模式切换等行为，并根据 a0 寄存器进行判断。Profiling 时需要关闭时间中断，并打开 Simpoint Profiler；生成 Checkpoint 时，需要关闭时间中断。在执行 workload 之前（或者在 linux 环境下执行 workload 之前），需要执行相应的 nemu_trap 指令进行模式切换。
+## 注意事项
+
+在使用 NEMU 生成 Checkpoint 之前，推荐先正常执行一遍 workload，确认：
+
+1. workload 本身是正确的
+2. NEMU 可以正常执行 workload
+
 
 PS:
 如果您对 Checkpoint 生成流程有疑问，欢迎提 issue 进行讨论。

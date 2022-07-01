@@ -3,15 +3,13 @@ XiangShan 前端开发环境
 
 在这一章中，我们将介绍如何编译和仿真香山代码、如何生成可运行的 Workload，并介绍一些开发中用到的辅助工具。
 
-如果遇到问题，可以参考 [Troubleshooting](./troubleshoot.md) 以及 [https://github.com/OpenXiangShan/XiangShan/issues](https://github.com/OpenXiangShan/XiangShan/issues) 中的问题及解答。
+如果遇到问题，可以参考 [Troubleshooting](./troubleshoot-zh.md) 以及 [https://github.com/OpenXiangShan/XiangShan/issues](https://github.com/OpenXiangShan/XiangShan/issues) 中的问题及解答。
 
 This chapter has [English version](./xsenv-en.md).
 
 ## TLDR
 
 使用以下脚本来布署香山开发环境，**部署脚本只需运行一次.**：
-
-This script will setup XiangShan develop environment automatically. Note that `./setup-tools.sh` and `setup.sh` only need to be run **ONCE**.
 
 ```sh
 git clone https://github.com/OpenXiangShan/xs-env
@@ -21,8 +19,6 @@ source setup.sh # prepare tools, test develop env using a small project
 ```
 
 **环境部署成功后，每次要使用开发环境时，只需使用以下命令配置环境变量**：
-
-After XiangShan Develop Environment setup, use the following script **every time** before using XiangShan Develop Environment.
 
 ```sh
 cd xs-env
@@ -34,7 +30,7 @@ source ./env.sh # setup XiangShan environment variables
 请准备一台**性能较强**的服务器，以下为服务器的一些配置要求：
 
 - 操作系统：Ubuntu 20.04 LTS （其他版本未测试，不建议使用）
-CPU：不限，性能将决定编译与生成的速度
+- CPU：不限，性能将决定编译与生成的速度
 - 内存：**最低 32G，推荐 64G 及以上**
 - 磁盘空间：20G 及以上
 - 网络：请自行配置顺畅的网络环境
@@ -145,7 +141,7 @@ make riscv64-xs_defconfig
 make -j
 ```
 > 提示：新旧版本的 NEMU 使用略有区别。要从旧版本的 NEMU 迁移到新版本的 NEMU，可以参考以下文档：
-> [htps://github.com/OpenXiangShan/NEMU/wiki/%E6%96%B0NEMU%E4%B8%B4%E6%97%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97](https://github.com/OpenXiangShan/NEMU/wiki/%E6%96%B0NEMU%E4%B8%B4%E6%97%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)
+> [新版本 NEMU 使用指南](https://github.com/OpenXiangShan/NEMU/wiki/%E6%96%B0NEMU%E4%B8%B4%E6%97%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)
 
 接下来运行 `./build/riscv64-nemu-interpreter -b MY_WORKLOAD.bin` 其中将 `MY_WORKLOAD.bin` 替换为想要运行镜像的路径，例如上一节中生成的 coremark，即可让 NEMU 模拟器运行指定的程序了。例如：
 
@@ -160,7 +156,7 @@ make -j
 ```bash
 make emu CONFIG=MinimalConfig EMU_TRACE=1 -j32
 ```
-将会生成一个最小配置的香山的仿真程序，这一步时间会比较久，需要耐心等待。生成结束后，可以在 `./build/` 目录下看到一个名为 `emu` 的仿真程序。其中，`CONFIG=MinimalConfig`指定了香山核使用的配置（参见：[https://github.com/OpenXiangShan/XiangShan-doc/blob/main/documentation/0-%E5%8F%82%E6%95%B0%E7%B3%BB%E7%BB%9F.md](https://github.com/OpenXiangShan/XiangShan-doc/blob/main/documentation/0-%E5%8F%82%E6%95%B0%E7%B3%BB%E7%BB%9F.md)），`EMU_TRACE=1`会为仿真程序添加波形输出功能，允许在仿真过程中启用波形输出。
+将会生成一个最小配置的香山的仿真程序，这一步时间会比较久，需要耐心等待。生成结束后，可以在 `./build/` 目录下看到一个名为 `emu` 的仿真程序。其中，`CONFIG=MinimalConfig`指定了香山核使用的配置（参见：[香山参数系统说明](https://xiangshan-doc.readthedocs.io/zh_CN/latest/misc/config/)），`EMU_TRACE=1`会为仿真程序添加波形输出功能，允许在仿真过程中启用波形输出。
 
 
 > 更多参数请参考`Makefile`脚本代码。

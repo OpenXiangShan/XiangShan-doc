@@ -101,6 +101,6 @@ nav:
             - NEMU: tools/nemu.md
             - 制作 Debian 镜像: tools/debian.md
             # - 常用脚本: tools/scripts.md
-        - Troubleshooting: tools/troubleshoot.md
+        - Troubleshooting: tools/troubleshoot-zh.md
     - 编译工具链:
         - riscv-gnu-toolchain: compiler/gnu_toolchain.md

@@ -1,62 +1,58 @@
-# 如何制作 Debian 镜像
+# How to create a Debian image
 
-This chapter has [English version](./debian-en.md).
+`qemu-riscv64-static` is used to create a debian image. We recommend using debian 10 or ubuntu 19.04. (Maybe docker can help you)
 
-本文档搬运自[ riscv64 debian镜像制作](https://github.com/OpenXiangShan/NEMU/tree/master/resource/debian)。
-
-制作需要 `qemu-riscv64-static`，建议在 debian 10 或 ubuntu 19.04 的系统（可尝试使用 docker）中进行操作。
-
-* 创建空镜像和分区
+* Create an empty image and create partitions
 
 ```
-dd if=/dev/zero of=debian.img bs=1G count=16  # 此处镜像大小为16GB
-sudo cfdisk debian.img # 可创建两个分区，第一个分区12GB作为rootfs，第二个分区4GB作为swap
-sudo losetup --partscan --show --find debian.img # 将debian.img作为loop设备
-ls /dev/loop0* # 此时应该能看到/dev/loop0p1和/dev/loop0p2两个分区
+dd if=/dev/zero of=debian.img bs=1G count=16  # Here image size is 16G
+sudo cfdisk debian.img # Create two partitions, first 12GB is used as rootfs, left 4GB is used as swap
+sudo losetup --partscan --show --find debian.img # Start the loop device
+ls /dev/loop0* # You should see /dev/loop0p1 and /dev/loop0p2
 ```
 
-* 创建 ext4 和 swap 文件系统
+* Create ext4 and swap file systems
 
 ```
 sudo mkfs.ext4 /dev/loop0p1
 sudo mkswap /dev/loop0p2
 ```
 
-* 挂载 ext4 分区
+* Mount the ext4 partition
 
 ```
 sudo mount /dev/loop0p1 /mnt
 ```
 
-* 安装 debian base system，下面两条命令的操作来自[ debian 社区的安装指南](https://wiki.debian.org/RISC-V#debootstrap)
+* Install debian base system. Operations of the following two commands are from[ guidance of debian community](https://wiki.debian.org/RISC-V#debootstrap)
 
 ```
 sudo apt-get install debootstrap qemu-user-static binfmt-support debian-ports-archive-keyring
 sudo debootstrap --arch=riscv64 --keyring /usr/share/keyrings/debian-ports-archive-keyring.gpg --include=debian-ports-archive-keyring unstable /mnt http://deb.debian.org/debian-ports
 ```
 
-若要安装 x86 系统，则输入
+To install an x86 operating system, type
 
 ```
 sudo debootstrap --arch=i386 --keyring /usr/share/keyrings/debian-archive-keyring.gpg --include=debian-archive-keyring stable /mnt http://deb.debian.org/debian
 ```
 
-如果在运行上述 `debootstrap` 命令时提示 gpg key 错误，可以在[ Debian 官方镜像](https://packages.debian.org/bullseye/all/debian-ports-archive-keyring/download)上选择合适的镜像下载最新的安装包，并手动安装。更新完 debian-ports-archive-keyring 包后，可以重新尝试执行上面的 `debootstrap` 命令。以下命令在 2022 年 7 月 3 日是可用的：
+You can install the newest package manually from the listed mirrors of [debian official image website](https://packages.debian.org/bullseye/all/debian-ports-archive-keyring/download) if gpg key error is given when running the above `debootstrap` command. After updating the debian-ports-archive-keyring package, you can execute the above `debootstrap` command again. The following commands are available on July 3, 2022:
 
 ```
 wget http://ftp.cn.debian.org/debian/pool/main/d/debian-ports-archive-keyring/debian-ports-archive-keyring_2022.02.15\~deb11u1_all.deb .
 sudo dpkg -i debian-ports-archive-keyring_2022.02.15\~deb11u1_all.deb
 ```
 
-* 进入镜像
+* Access the image
 
 ```
 sudo chroot /mnt /bin/bash
 ```
 
-此时实际上是通过 `qemu-riscv64-static` 来执行镜像中的 riscv64 可执行文件。
+Riscv64 executable files in the image is executed by `qemu-riscv64-static` actually.
 
-* 安装所需工具（根据实际情况选择）
+* Install the packages needed for the system (You can choose on your actual situation)
 
 ```
 apt-get update
@@ -68,21 +64,21 @@ apt-get install haveged
 agt-get install sbt
 ```
 
-* 在 `/etc/fstab` 中添加 swap 分区
+* Add swap partition in `/etc/fstab`
 
 ```
 /dev/mmcblk0p2 none swap sw 0 0
 ```
 
-* 添加 `/root/` 目录的写和执行权限，使得 host 上的普通用户可以访问
+* Add write and execute permissions to `/root/` directory so that normal users on host can access it
 
 ```
 chmod +w,+x /root
 ```
 
-* 在 `/root/` 目录下提前写入所需的测试文件，如 `hello.c` 等。
+* Write required test files in `/root/` directory in advance, such as `hello.c`, etc
 
-* 在 `/root/.bashrc` 中添加如下内容，可以实现登录后自动运行命令（根据实际情况修改测试的命令）：
+* Add following contents to `/root/.bashrc` in order to run commands automatically after login (You can modify on your actual situation):
 
 ```
 TMP_DIR=/run/mytest
@@ -147,21 +143,21 @@ echo -e "\n============ End of preset commands =============\n"
 /root/nemutrap/good-trap
 ```
 
-* 若在不方便输入的环境（如 NEMU，verilator 仿真等）中测试，可采用如下两种方式的其中一种，避免登录时输入
+* You can choose one of the following methods to avoid input when login if you test in an inconvenient input environment. (Such as NEMU, verilator simulation, etc)
 
-    * 通过紧急模式登录
+    * Login through emergency mode
 
     ```
     cd /lib/systemd/system
-    # 通过紧急模式登录，不启动非必须的服务，节省将近一半的登录时间
+    # Login through emergency mode. It can save nearly half of the login time as unnecessary services are not started
     ln -sf emergency.target default.target
-    # 跳过登录提示符，直接运行bash
+    # Run bash directly and skip login prompt
     vim emergency.service
       -ExecStart=-/lib/systemd/systemd-sulogin-shell emergency
       +ExecStart=-/bin/bash
     ```
 
-    * 免密码登录，见[这里](https://superuser.com/questions/969923/automatic-root-login-in-debian-8-0-console-only)
+    * Login without password，see [here](https://superuser.com/questions/969923/automatic-root-login-in-debian-8-0-console-only)
 
     ```
     cd /lib/systemd/system
@@ -170,15 +166,14 @@ echo -e "\n============ End of preset commands =============\n"
       +ExecStart=-/sbin/agetty -a root --keep-baud 115200,57600,38400,9600 %I $TERM
     ```
 
-* 退出并卸载镜像
+* Exit and unmount the image
 
 ```
-exit  # 之前通过`chroot`方式进入
-sudo umount /mnt  # 记得卸载！在未卸载镜像的情况下通过可写方式再次打开`debian.img`(如作为qemu的文件系统)，镜像将会损坏！
-sudo losetup -d /dev/loop0  # 删除loop设备
+exit  # Entered with `chroot` command before
+sudo umount /mnt  # Do not forget to umount! Image will be damaged if you reopen `debian.img` through writeable access without umount. (Such as  implemented as file system of qemu)
+sudo losetup -d /dev/loop0  # Delete loop device
 ```
 
-* 修改 `nemu/src/device/sdcard.c` 中 `init_sdcard()` 中打开的镜像文件路径，即可使用制作的镜像。
-  在i9-9900k上测试，约90s后看到debian的登录提示符。
+* You can use the image after modifying the `img` in `init_sdcard()` of `nemu/src/device/sdcard.c`. We tested on i9-9900k and the debian login prompt appeared after about 90s.
 
-* 当以可写方式启动镜像是，NEMU 遇到错误或通过 Ctrl+C 直接退出 NEMU 时，可能会损坏镜像的崩溃一致性，此时可以通过 `fsck` 命令修复分区。
+* Opening image through writeable access means that, crash consistency may be damaged when NEMU encounters an error or being exited directly with Ctrl+C. You can repair the partition with `fsck` command at that time.

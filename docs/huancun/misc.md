@@ -15,14 +15,14 @@ Request Buffer 的设计类似于 CPU 中的保留站/发射队列，当新请�
 
 
 
-# Refill Buffer 设计
+# Refill Buffer 设计 <a name="refill_buffer"></a>
 
 为了减少 Cache Miss的延迟，huancun 使用 Refill Buffer 来缓冲从下层 Cache 或 Memory 中 Refill 的数据，
 这样 Refill 的数据不需要先写入 SRAM 就可以直接返回给上层 Cache。
 
 
 
-# MSHR Alloc (MSHR分配模块)
+# MSHR Alloc (MSHR分配模块) <a name="alloc"></a>
 
 根据 Tilelink 手册规范，为了避免系统中出现死锁，高优先级的请求要能够打断低优先级的请求先执行，
 因此 huancun 设计了 N 个(N >= 1)abc MSHR，1 个 b MSHR，1 个 c MSHR。

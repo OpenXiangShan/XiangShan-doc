@@ -50,8 +50,8 @@
     # ./riscv-pk/dts/noop.dtsi
 
 	L11: memory@100000000 {
-		device_type = "memory";
-		-reg = <0x0 0x80000000 0x0 0x2000000>;
+	    device_type = "memory";
+	    -reg = <0x0 0x80000000 0x0 0x2000000>;
         +reg = <0x0 0x80000000 0x0 0x8000000>;
 	};
     ```

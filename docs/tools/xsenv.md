@@ -96,6 +96,10 @@ make init
 
 在 `/xs-env/XiangShan` 下运行 `make verilog NUM_CORES=2` ，该命令将会生成香山双核的 Verilog，输出的文件在 `XiangShan/build/XSTop.v`
 
+
+> 提示：生成完整香山核的 Verilog 代码所需的时间会稍久，推荐大家使用 Tmux 等工具在后台运行上述命令。可以在命令行参数中添加 `CONFIG=MinimalConfig`，将会生成一个最小配置的香山的 Verilog 代码。（参见：[香山参数系统说明](https://xiangshan-doc.readthedocs.io/zh_CN/latest/misc/config/)）
+
+
 ## 仿真环境下验证香山
 
 ### 使用 AM 生成 workload
@@ -142,6 +146,7 @@ make -j
 ```
 > 提示：新旧版本的 NEMU 使用略有区别。要从旧版本的 NEMU 迁移到新版本的 NEMU，可以参考以下文档：
 > [新版本 NEMU 使用指南](https://github.com/OpenXiangShan/NEMU/wiki/%E6%96%B0NEMU%E4%B8%B4%E6%97%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)
+
 
 接下来运行 `./build/riscv64-nemu-interpreter -b MY_WORKLOAD.bin` 其中将 `MY_WORKLOAD.bin` 替换为想要运行镜像的路径，例如上一节中生成的 coremark，即可让 NEMU 模拟器运行指定的程序了。例如：
 

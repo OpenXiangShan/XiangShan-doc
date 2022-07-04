@@ -1,5 +1,7 @@
 # GCB 工具链使用说明
 
+This chapter has [English version](./gnu_toolchain-en.md).
+
 香山处理器南湖架构支持 RV64GCBK 扩展（具体指令集字符串为 `RV64IMAFDC_zba_zbb_zbc_zbs_zbkb_zbkc_zbkx_zknd_zkne_zknh_zksed_zksh_svinval` ）。
 
 由于目前发行版工具链还不支持 B 扩展，本文说明如何为香山编译 B 扩展 GNU 工具链。如果需要 K 扩展等更多的指令支持，可以修改本文中的配置选项。

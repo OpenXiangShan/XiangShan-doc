@@ -11,7 +11,7 @@ huancun 可根据请求的地址低位为索引分 Slice 以提升并发度。�
 
 [DataBanks ](./data.md)负责存储具体数据，可以通过参数配置 Bank 数量从而提升读写并行度。
 
-[RefillBuffer ](./refill_buffer.md)负责暂存 Refill 的数据，以直接 Bypass 到上层 Cache 而不需要经过 SRAM 写入。
+[RefillBuffer ](./misc.md#refill_buffer)负责暂存 Refill 的数据，以直接 Bypass 到上层 Cache 而不需要经过 SRAM 写入。
 
 Sink/Source\* 相关模块为 Tilelink [通道控制模块](./channels.md)，负责与标准 Tilelink 接口进行交互，一方面将外部请求转换为
 Cache 内部信号，另一方面接收 Cache 内部请求转换为 Tilelink 请求发出到接口。
@@ -27,7 +27,7 @@ Self Directory/Client Directory 分别为当前层级 Cache Data 所对应的目
 
 1. [通道控制模块](./channels.md)接受 Tilelink 请求，将其转换为 Cache 内部请求。
 
-2. [MSHR Alloc 模块](./alloc.md)为内部请求分配一个 [MSHR](./mshr.md)。
+2. [MSHR Alloc 模块](./misc.md#alloc)为内部请求分配一个 [MSHR](./mshr.md)。
 
 3. [MSHR](./mshr.md) 根据不同请求的需求发起不同的任务，任务类型包括 Data 读写、向上下层 Cache 发送新请求或返回响应、触发或更新预取器等。
 

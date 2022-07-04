@@ -28,23 +28,6 @@
     - 配置设备树，在 riscv-pk/dts 中让 platform.dtsi 软链接到对应的 noop.dtsi
     - 运行 `make -j`，该命令会自动编译 Linux Kernel，并作为 payload 链接到 BBL 中，最后打包成 build/bbl.bin 二进制镜像，随后就可以让香山跑这一镜像了（详见 Makefile）
 
-    > 如果在编译过程中报错：
-    ```shell
-    /nfs/home/share/riscv/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/bin/ld: util-linux/lib.a(rdate.o): in function `.L6':
-    rdate.c:(.text.rdate_main+0xd2): undefined reference to `stime'
-    /nfs/home/share/riscv/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/bin/ld: coreutils/lib.a(date.o): in function `.L12':
-    date.c:(.text.date_main+0x1a4): undefined reference to `stime'
-    collect2: error: ld returned 1 exit status
-    ```
-    > 请做如下修改：
-    ```shell
-    # ${RISCV_ROOTFS_HOME}/apps/busybox
-
-    -git clone --depth 1 -b 1_29_stable git://git.busybox.net/busybox $@
-    +git clone --depth 1 -b 1_32_stable git://git.busybox.net/busybox $@
-    ```
-    > 删除 `riscv-roofts/apps/busybox` 中的 `build` 和 `repo` 目录，在 `riscv-pk` 目录下 `make clean` 后再重新 `make -j`。
-
 - 其他
     - riscv-pk 的 Makefile 依赖有一点小问题，因此做了任何修改后，请在 riscv-pk 里面先 make clean
     - 请预先准备好 riscv64 工具链，可能用到的 prefix 有 `riscv64-linux-gnu-`，`riscv64-unknown-linux-gnu-`，`riscv64-unknown-elf-`
@@ -92,6 +75,7 @@
         +bootargs = "root=/dev/mmcblk0p1 rootfstype=ext4 ro rootwait earlycon";
     };
     ```
+    （参见 [https://github.com/OpenXiangShan/NEMU/tree/master/resource/sdcard](https://github.com/OpenXiangShan/NEMU/tree/master/resource/sdcard)）
     * `make clean` 后运行 `make -j` 生成 bbl.bin
 * 配置 NEMU
     * 到 NEMU 目录

@@ -1,5 +1,7 @@
 # How to create a Debian image
 
+This chapter is translated from [https://github.com/OpenXiangShan/NEMU/tree/master/resource/debian](https://github.com/OpenXiangShan/NEMU/tree/master/resource/debian).
+
 `qemu-riscv64-static` is used to create a debian image. We recommend using debian 10 or ubuntu 19.04. (Maybe docker can help you)
 
 * Create an empty image and create partitions

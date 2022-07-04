@@ -31,24 +31,6 @@
     - Configure the device tree, let `platform.dtsi` symlink to the `noop.dtsi` in `riscv-pk/dts`
     - Run `make -j`, this command will automatically compile the Linux Kernel, link it to BBL as a payload, and finally package it into a build/bbl.bin binary image. After that, Xiangshan is able to run this image.
 
-    > If errors are given when compiling:
-    ```shell
-    /nfs/home/share/riscv/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/bin/ld: util-linux/lib.a(rdate.o): in function `.L6':
-    rdate.c:(.text.rdate_main+0xd2): undefined reference to `stime'
-    /nfs/home/share/riscv/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/bin/ld: coreutils/lib.a(date.o): in function `.L12':
-    date.c:(.text.date_main+0x1a4): undefined reference to `stime'
-    collect2: error: ld returned 1 exit status
-    ```
-    > Please make the following modifications：
-    ```shell
-    # ${RISCV_ROOTFS_HOME}/apps/busybox
-
-    -git clone --depth 1 -b 1_29_stable git://git.busybox.net/busybox $@
-    +git clone --depth 1 -b 1_32_stable git://git.busybox.net/busybox $@
-    ```
-    > Please delete directory `build` and `reop` in `riscv-roofts/apps/busybox`. After that, you can enter directory `riscv-pk`, `make clean` and then `make -j` again.
-
-
 - Others
     - There is a small problem with the Makefile dependency of riscv-pk, so after any modification, please `make clean` first in riscv-pk
     - Please prepare the riscv64 tool chains in advance, you may use `riscv64-linux-gnu-`, `riscv64-unknown-linux-gnu-` and `riscv64-unknown-elf-`
@@ -94,6 +76,7 @@
         +bootargs = "root=/dev/mmcblk0p1 rootfstype=ext4 ro rootwait earlycon";
     };
     ```
+    (Please see [https://github.com/OpenXiangShan/NEMU/tree/master/resource/sdcard](https://github.com/OpenXiangShan/NEMU/tree/master/resource/sdcard))
     * After `make clean` run `make -j` to generate `bbl.bin`
 * Configure NEMU
     * Enter `NEMU` directory

@@ -30,7 +30,7 @@ source ./env.sh # setup XiangShan environment variables
 ## Requirements for the server
 
 - Operating system: Ubuntu 20.04 LTS (other versions have not been tested and are not recommended)
-CPU: no limit. Will influence the speed of Verilog generation & simulation
+- CPU: no limit. Will influence the speed of Verilog generation & simulation
 - Memory: **32G minimum, 64G and above recommended**
 - Disk space: 20G or above
 - Network: should be able to access Github
@@ -91,6 +91,8 @@ Run `make verilog` under `/xs-env/XiangShan`, this command will compile Xiangsha
 
 Run `make verilog NUM_CORES=2` under `/xs-env/XiangShan`, this command will generate the Verilog of Xiangshan (dual core), the output Verilog file is `XiangShan/build/XSTop.v`
 
+> Tip: Generate Verilog is slow. It is recommended to use tools such as Tmux to run these commands in background. You can add `CONFIG=MinimalConfig` to command-line arguments which will generate Verilog code of Xiangshan with minimal configuration.
+
 ## Verify Xiangshan in the simulation environment
 
 ### Generate workload using AM
@@ -140,6 +142,7 @@ make -j
 ```
 
 > Tip: these commands will generate NEMU executable file (instead of shared lib, which will be used later).
+
 
 Next, run `./build/riscv64-nemu-interpreter -b MY_WORKLOAD.bin` where `MY_WORKLOAD.bin` is replaced with the path to your workload, such as `coremark-riscv64-xs.bin` generated in the previous section.
 

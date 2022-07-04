@@ -12,6 +12,10 @@
     - NEMU_HOME：NEMU 的路径
     - NOOP_HOME：XiangShan 的路径
     - RISCV_ROOTFS_HOME：riscv-rootfs 的路径
+    - RISCV：riscv-gnu-toolchain 的安装路径
+
+    > riscv-gnu-toolchain 的安装请参考 [riscv-gnu-toolchain 官方文档](https://github.com/riscv-collab/riscv-gnu-toolchain)，如果需要为香山编译 B 扩展 GNU 工具链请参见 [GCB 工具链使用说明](../compiler/gnu_toolchain.md)。
+
 - 构建 rootfs
     - 到 riscv-rootfs 目录
     - 在仿真环境下，我们让 Linux Kernel 在 ramfs 上启动，因此首先准备好想要运行的 initramfs，里面可以放想要跑的 workload，默认使用的是 riscv-rootfs/rootfsimg/initramfs-emu.txt，可以根据需要酌情进行修改
@@ -41,6 +45,16 @@
     * 酌情修改 initramfs-autorun.txt 和 inittab 中的内容，以在 Linux 启动过后跑你所想要的程序（默认情况下是 stream 和 redis）
 * 重新配置 BBL
     * 到 riscv-pk 目录
+    * 修改 dts 中地址空间大小
+    ```shell
+    # ./riscv-pk/dts/noop.dtsi
+
+	L11: memory@100000000 {
+	    device_type = "memory";
+	    -reg = <0x0 0x80000000 0x0 0x2000000>;
+        +reg = <0x0 0x80000000 0x0 0x8000000>;
+	};
+    ```
     * `make clean` 后运行 `make -j` 生成 bbl.bin，让香山或者 NEMU 跑它
 
 
@@ -50,13 +64,22 @@
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
     * 使用 debian_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- debian_defconfig`
-
 * 重新配置 BBL
     * 到 riscv-pk 目录
+    * 修改 dts 中 bootargs 参数
+    ```shell
+    # ./riscv-pk/dts/noop.dtsi
+
+	chosen {
+        -bootargs = "root=/dev/mmcblk0 rootfstype=ext4 ro rootwait earlycon";
+        +bootargs = "root=/dev/mmcblk0p1 rootfstype=ext4 ro rootwait earlycon";
+    };
+    ```
+    （参见 [https://github.com/OpenXiangShan/NEMU/tree/master/resource/sdcard](https://github.com/OpenXiangShan/NEMU/tree/master/resource/sdcard)）
     * `make clean` 后运行 `make -j` 生成 bbl.bin
 * 配置 NEMU
     * 到 NEMU 目录
-    * 编辑 src/device/sdcard.c，在 init_sdcard() 函数中找到 sdimg 变量并将其赋值为 Debian 镜像的路径（Debian 镜像的生成请参考[https://github.com/OpenXiangShan/NEMU/tree/master/resource/debian](https://github.com/OpenXiangShan/NEMU/tree/master/resource/debian)）
+    * 编辑 src/device/sdcard.c，在 init_sdcard() 函数中找到 sdimg 变量并将其赋值为 Debian 镜像的路径（Debian 镜像的生成请参考[如何制作 Debian 镜像](./debian.md)）
     * 重新编译 NEMU，然后再运行 riscv-pk 项目下的 build/bbl.bin
 
 

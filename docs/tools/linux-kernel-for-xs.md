@@ -91,3 +91,35 @@
     * 编辑 ./difftest/config/config.h 文件，将 SDCARD_IMAGE 这个宏设定为 Debian 镜像的路径
     * 重新构建香山，然后再运行 riscv-pk 项目下的 build/bbl.bin
 
+
+#### 5. 在此基础上，如何编译双核Linux kernal
+* 重新配置 Linux Kernel
+    * 到 riscv-linux 目录
+    * `make clean`清除编译文件
+    * 根据需求使用 emu_defconfig 、fpga_defconfig 、或 debian_defconfig 进行配置，命令同上
+    * 通过 menuconfig 修改配置开启多核，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`，
+    进入Platform type目录，将 Symmetric Multi-Processing 置为 Yes ，保存修改并退出
+* 重新配置 BBL
+    * 到 riscv-pk 目录
+    * `git stash`将没有提交的内容缓存并移除
+    * `git checkout dualcore`切换到 dualcore 分支
+    * 修改 dts 中地址空间大小
+    ```shell
+    # ./riscv-pk/dts/noop.dtsi
+
+	L11: memory@100000000 {
+	    device_type = "memory";
+	    -reg = <0x0 0x80000000 0x0 0x2000000>;
+        +reg = <0x0 0x80000000 0x0 0x8000000>;
+	};
+    ```
+    * 如果运行 16G Debian , 还需要修改 dts 中 bootargs 参数
+    ```shell
+    # ./riscv-pk/dts/noop.dtsi
+
+	chosen {
+        -bootargs = "root=/dev/mmcblk0 rootfstype=ext4 ro rootwait earlycon";
+        +bootargs = "root=/dev/mmcblk0p1 rootfstype=ext4 ro rootwait earlycon";
+    };
+    ```
+    * `make clean` 后运行 `make -j` 生成 bbl.bin

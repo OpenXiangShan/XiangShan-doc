@@ -90,3 +90,35 @@
     * Enter `Xiangshan` directory
     * Edit the `./difftest/config/config.h` file, set the SDCARD_IMAGE macro to the path to the Debian image
     * Rebuild Xiangshan, then run build/bbl.bin under the riscv-pk project
+
+
+#### 5. Based on this, how to build dualcore Linux kernal
+* Reconfigure the Linux Kernel
+    * Enter riscv-linux directory
+    * `make clean`
+    * Use emu_defconfig, fpga_defconfig or debian_defconfig to configure, command is same as above
+    * Use menuconfig to configure SMP，the command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`, in Platform type submenu, set Symmetric Multi-Processing to Yes, save it and exit
+* Reconfigure BBL
+    * Enter riscv-pk directory
+    * `git stash`
+    * `git checkout dualcore`
+    * Modify the size of address space size in dts
+    ```shell
+    # ./riscv-pk/dts/noop.dtsi
+
+	L11: memory@100000000 {
+	    device_type = "memory";
+	    -reg = <0x0 0x80000000 0x0 0x2000000>;
+        +reg = <0x0 0x80000000 0x0 0x8000000>;
+	};
+    ```
+    * When running 16g Debian, modify the bootargs in dts
+    ```shell
+    # ./riscv-pk/dts/noop.dtsi
+
+	chosen {
+        -bootargs = "root=/dev/mmcblk0 rootfstype=ext4 ro rootwait earlycon";
+        +bootargs = "root=/dev/mmcblk0p1 rootfstype=ext4 ro rootwait earlycon";
+    };
+    ```
+    * After `make clean` run `make -j` to generate `bbl.bin`

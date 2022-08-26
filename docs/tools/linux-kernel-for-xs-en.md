@@ -21,15 +21,15 @@
     - In simulation environment, we let the Linux Kernel start on the ramfs, so first prepare the initramfs that you want to run, and you can put the workload you want to run in it. The default is riscv-rootfs/rootfsimg/initramfs-emu.txt, Can be modified as needed
 - Build the Linux Kernel Manually
     - Enter `riscv-linux` directory
-    - Use emu_defconfig to configure. The command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-defconfig emu_defconfig`
-    - (Optional) Modify config according to your own needs through menuconfig, the command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-menuconfig`
+    - Use emu_defconfig to configure. The command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- emu_defconfig`
+    - (Optional) Modify config according to your own needs through menuconfig, the command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`
     - Compile, the command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- -j`
     - If succeed, a vmlinux file will be generated in the directory
     - (You do not need to compile here in the subsequent development process, as long as the config is good, because Linux will be compiled in the following BBL makefile)
 - Build BBL and Kernel, then link Kernel
     - Enter `riscv-pk` directory
     - Configure the device tree, let `platform.dtsi` symlink to the `noop.dtsi` in `riscv-pk/dts`
-    - Run `make -j`, this command will automatically compile the Linux Kernel, link it to BBL as a payload, and finally package it into a build/bbl.bin binary image. After that, Xiangshan is able to run this image.
+    - Run `make -j`, this command will automatically compile the Linux Kernel, link it to BBL as a payload, and finally package it into a build/bbl.bin binary image. After that, Xiangshan is able to run this image (See Makefile).
 
 - Others
     - There is a small problem with the Makefile dependency of riscv-pk, so after any modification, please `make clean` first in riscv-pk
@@ -39,8 +39,8 @@
 
 * Reconfigure the Linux Kernel
     * Enter `riscv-linux` directory
-    * Use `fpga_defconfig` to configure, the command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-defconfig fpga_defconfig`
-    * Modify config according to your own needs through menuconfig, the command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-menuconfig`, change the source of initramfs from `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` to `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-autorun.txt`
+    * Use `fpga_defconfig` to configure, the command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- fpga_defconfig`
+    * Modify config according to your own needs through menuconfig, the command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`, change the source of initramfs from `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` to `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-autorun.txt`
 * Modify rootfs as appropriate
     * Go to the `rootfsimg` directory in `riscv-rootfs` directory
     * Modify the contents of initramfs-autorun.txt and inittab to run the programs you want after Linux has booted (stream and redis by default)
@@ -64,7 +64,7 @@
 
 * Reconfigure the Linux Kernel
     * to the riscv-linux directory
-    * Use debian_defconfig to configure, the command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-defconfig debian_defconfig`
+    * Use debian_defconfig to configure, the command is `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- debian_defconfig`
 * Reconfigure BBL
     * Enter `riscv-pk` directory
     * Modify the bootargs in dts

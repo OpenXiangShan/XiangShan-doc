@@ -48,7 +48,7 @@ make linux -jN
 ```
 
 * Set the environment variable `RISCV=PATH_TO_INSTALL` after compiling
-* Add RISCV/bin` to `PATH`
+* Add `RISCV/bin` to `PATH`
 
 ```bash
 export RISCV=PATH_TO_INSTALL

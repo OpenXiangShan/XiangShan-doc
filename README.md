@@ -1,5 +1,7 @@
 # XiangShan-doc
 Documentation for XiangShan
+English verion is in developing, here is the link: https://fung-ivan.gitbook.io/xiangshan/
+After the entire english docs translate complete, will be pull to the this repo
 
 这是香山的官方文档仓库。
 

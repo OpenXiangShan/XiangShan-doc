@@ -164,7 +164,7 @@ make emu CONFIG=MinimalConfig EMU_TRACE=1 -j32
 将会生成一个最小配置的香山的仿真程序，这一步时间会比较久，需要耐心等待。生成结束后，可以在 `./build/` 目录下看到一个名为 `emu` 的仿真程序。其中，`CONFIG=MinimalConfig`指定了香山核使用的配置（参见：[香山参数系统说明](https://xiangshan-doc.readthedocs.io/zh_CN/latest/misc/config/)），`EMU_TRACE=1`会为仿真程序添加波形输出功能，允许在仿真过程中启用波形输出。
 
 
-> 更多参数请参考`Makefile`脚本代码。
+> 更多参数请参考`Makefile`脚本代码。可以先阅读[加速仿真](./compile-and-sim.md##加快emu仿真运行速度)一节。
 
 
 

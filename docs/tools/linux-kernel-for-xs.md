@@ -2,9 +2,11 @@
 
 #### 1. 在仿真环境下如何构建一个可在香山或者 NEMU 上运行的最简 Linux Kernel
 
-注意，过程中出现任何问题，请首先观察出错信息并结合 Makefile 文件，自行网上搜索可以解决一些简单问题，比如工具链和依赖包相关的问题。
+!!! note
+    注意，过程中出现任何问题，请首先观察出错信息并结合 Makefile 文件，自行网上搜索可以解决一些简单问题，比如工具链和依赖包相关的问题。
 
-- 从香山项目中克隆下来 riscv-pk, riscv-linux, riscv-rootfs，分别是 Bootloader, Linux kernel 和 rootfs
+- 从香山项目中克隆下来 riscv-pk, riscv-linux, riscv-rootfs，分别是启动加载程序 Bootloader, Linux kernel 和根文件系统 rootfs。请将三个仓库**放到同一目录下**。
+
     - https://github.com/OpenXiangShan/riscv-pk noop 分支
     - https://github.com/OpenXiangShan/riscv-linux nanshan 分支
     - https://github.com/OpenXiangShan/riscv-rootfs master 分支
@@ -12,24 +14,25 @@
     - NEMU_HOME：NEMU 的路径
     - NOOP_HOME：XiangShan 的路径
     - RISCV_ROOTFS_HOME：riscv-rootfs 的路径
-    - RISCV：riscv-gnu-toolchain 的安装路径
+    - RISCV：riscv-gnu-toolchain 的安装路径（包含bin, include, lib等的顶层目录路径）
 
     > riscv-gnu-toolchain 的安装请参考 [riscv-gnu-toolchain 官方文档](https://github.com/riscv-collab/riscv-gnu-toolchain)，如果需要为香山编译 B 扩展 GNU 工具链请参见 [GCB 工具链使用说明](../compiler/gnu_toolchain.md)。
 
 - 构建 rootfs
     - 到 riscv-rootfs 目录
-    - 在仿真环境下，我们让 Linux Kernel 在 ramfs 上启动，因此首先准备好想要运行的 initramfs，里面可以放想要跑的 workload，默认使用的是 riscv-rootfs/rootfsimg/initramfs-emu.txt，可以根据需要酌情进行修改
+    - 在仿真环境下，我们让 Linux Kernel 在 ramfs 上启动，因此首先准备好想要运行的 initramfs 文件，里面可以放想要跑的 workload。默认使用的是 `riscv-rootfs/rootfsimg/initramfs-emu.txt`，在 Linux 启动后运行 hello。下一章会介绍如何运行自定义程序。
+    - 本步骤中不需要在该仓库进行操作
 - 构建 Linux Kernel
     - 到 riscv-linux 目录
-    - 使用 emu_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- emu_defconfig`
-    - 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`
+    - 使用默认的 emu_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- emu_defconfig`
+    - （可选）根据自己的需求通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`
 - 构建 BBL 并链接 Kernel
     - 到 riscv-pk 目录
     - 配置设备树，在 riscv-pk/dts 中让 platform.dtsi 软链接到对应的 noop.dtsi
-    - 运行 `make -j`，该命令会自动编译 Linux Kernel，并作为 payload 链接到 BBL 中，最后打包成 build/bbl.bin 二进制镜像，随后就可以让香山跑这一镜像了（详见 Makefile）
+    - 运行 `make -j`，该命令会自动去 rootfs 和 Linux Kernel 目录进行编译，并作为 payload 链接到 BBL 中，最后打包成 build/bbl.bin 二进制镜像，随后就可以让香山跑这一镜像了（详见 Makefile）
 
 - 其他
-    - riscv-pk 的 Makefile 依赖有一点小问题，因此做了任何修改后，请在 riscv-pk 里面先 make clean
+    - riscv-pk 的 Makefile 依赖有一点小问题，因此做了任何修改后，请在 riscv-pk 里面**先 `make clean`**
     - 请预先准备好 riscv64 工具链，可能用到的 prefix 有 `riscv64-linux-gnu-`，`riscv64-unknown-linux-gnu-`，`riscv64-unknown-elf-`
 
 
@@ -39,23 +42,26 @@
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
     * 使用 fpga_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- fpga_defconfig`
-    * 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`，其中一个较为必要的修改是将 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-autorun.txt`
+    * 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`，其中一个**较为必要的修改**是将 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-autorun.txt`
+    
 * 酌情修改 rootfs
     * 到 riscv-rootfs 目录下的 rootfsimg 目录
-    * 酌情修改 initramfs-autorun.txt 和 inittab 中的内容，以在 Linux 启动过后跑你所想要的程序（默认情况下是 stream 和 redis）
+    * initramfs 里指定了文件系统里的内容，而 inittab 在初始化时会被解析执行
+    * 可以参考二者文件内容，进行酌情修改或者自己编写新的 initramfs 和 inittab，以在 Linux 启动过后跑你所想要的程序（默认情况下是 stream 和 redis）
+    
 * 重新配置 BBL
     * 到 riscv-pk 目录
-    * 修改 dts 中地址空间大小
+    * 修改 dts 中地址空间大小，支持占用内存更大的程序运行
     ```shell
     # ./riscv-pk/dts/noop.dtsi
 
 	L11: memory@100000000 {
 	    device_type = "memory";
 	    -reg = <0x0 0x80000000 0x0 0x2000000>;
-        +reg = <0x0 0x80000000 0x0 0x8000000>;
+        +reg = <0x0 0x80000000 0x0 0x80000000>;
 	};
     ```
-    * `make clean` 后运行 `make -j` 生成 bbl.bin，让香山或者 NEMU 跑它
+    * `make clean` 后运行 `make -j` 生成 bbl.bin，供香山或者 NEMU 运行
 
 
 

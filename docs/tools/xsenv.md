@@ -161,7 +161,9 @@ make -j
 ```bash
 make emu CONFIG=MinimalConfig EMU_TRACE=1 -j32
 ```
-将会生成一个最小配置的香山的仿真程序，这一步时间会比较久，需要耐心等待。生成结束后，可以在 `./build/` 目录下看到一个名为 `emu` 的仿真程序。其中，`CONFIG=MinimalConfig`指定了香山核使用的配置（参见：[香山参数系统说明](https://xiangshan-doc.readthedocs.io/zh_CN/latest/misc/config/)），`EMU_TRACE=1`会为仿真程序添加波形输出功能，允许在仿真过程中启用波形输出。
+将会生成一个最小配置的香山的仿真程序，这一步时间会比较久，需要耐心等待。生成结束后，可以在 `./build/` 目录下看到一个名为 `emu` 的仿真程序。其中，`CONFIG=MinimalConfig` 指定了香山核使用的配置（参见：[香山参数系统说明](https://xiangshan-doc.readthedocs.io/zh_CN/latest/misc/config/)），`EMU_TRACE=1` 会为仿真程序添加波形输出功能，允许在仿真过程中启用波形输出。
+
+`EMU_TRACE=1` 默认生成的波形格式为 vcd，可以使用 gtkwave 等开源工具或 dve 等商业工具进行查看。另外，也可以通过 `EMU_TRACE=vcd` 以及 `EMU_TRACE=VCD` 命令生成 vcd 格式的波形，二者的作用和 `EMU_TRACE=1` 相同。由于 vcd 波形体积较大，需要占用大量硬盘空间；同时使用 gtkwave 等开源工具打开波形的速度较慢，我们提供 `EMU_TRACE=fst` 或 `EMU_TRACE=FST` 命令生成 fst 格式的波形。fst 格式的波形大小不到 vcd 格式波形大小的 10%，但缺点是该格式的波形为 gtkwave 专属，只能由 gtkwave 打开。
 
 
 > 更多参数请参考`Makefile`脚本代码。可以先阅读[加速仿真](./compile-and-sim.md##加快emu仿真运行速度)一节。
@@ -202,10 +204,10 @@ make -j
 ```
 
 
-其中 `-b` 和 `-e` 的默认值为 0，注意仅当 `-e` 参数大于 `-b` 时才会真正记录波形；波形文件将会生成在 `./build/` 目录下，格式为 vcd。波形文件可以后续使用 gtkwave 等开源工具或者 dve 等商业工具进行查看。
+其中 `-b` 和 `-e` 的默认值为 0，注意仅当 `-e` 参数大于 `-b` 时才会真正记录波形；波形文件将会生成在 `./build/` 目录下，根据 `EMU_TRACE` 的不同参数，格式为 vcd 或 fst。vcd 波形文件可以后续使用 gtkwave 等开源工具或者 dve 等商业工具进行查看，fst 波形文件目前只能由 gtkwave 打开。
 
 
-> 注意：在仿真中生成波形需要在生成仿真程序时使用`EMU_TRACE=1`的参数，详见*生成香山核的仿真程序*一节
+> 注意：在仿真中生成波形需要在生成仿真程序时使用 `EMU_TRACE` 相关的参数，详见*生成香山核的仿真程序*一节
 
 ### 日志功能简介
 如果编译 emu 时打开了打印日志的功能（前述流程默认关闭），那么在运行 emu 时，将会打印日志。为了避免在终端输出日志，占用终端 IO 带宽，导致终端卡死，请将终端输出重定向到文件中。使用如下命令：

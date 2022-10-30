@@ -85,19 +85,25 @@ make init
 该命令会将一些必要的 submodule 克隆下来。
 > 提示：请务必确保这一过程期间到 github 的网络连接顺畅。submodule 的克隆不完整将会导致后续的编译错误。参见：[https://github.com/OpenXiangShan/XiangShan/issues/837](https://github.com/OpenXiangShan/XiangShan/issues/837)
 
-### 生成单核代码
-
+### 生成可综合的单核代码
 
 在 `/xs-env/XiangShan` 下运行 `make verilog` ，该命令将会编译香山的 Chisel 代码，生成 Verilog，输出的文件在 `XiangShan/build/XSTop.v`
 
+> 提示： `make verilog`命令生成的Verilog文件用于生成FPGA的bitstream和流片，去除了Difftest等仿真用的调试模块。
+如果需要生成带有Difftest的用于仿真的Verilog文件，可以使用`make sim-verilog`命令。
 
-### 生成双核代码
+> 提示2：如果您没有可以容纳香山核的FPGA，可以跳过这里，直接使用香山提供的软件仿真环境进行仿真：
+[生成香山核的仿真程序](###生成香山核的仿真程序)。
+
+### 生成可综合的双核代码
 
 
 在 `/xs-env/XiangShan` 下运行 `make verilog NUM_CORES=2` ，该命令将会生成香山双核的 Verilog，输出的文件在 `XiangShan/build/XSTop.v`
 
 
 > 提示：生成完整香山核的 Verilog 代码所需的时间会稍久，推荐大家使用 Tmux 等工具在后台运行上述命令。可以在命令行参数中添加 `CONFIG=MinimalConfig`，将会生成一个最小配置的香山的 Verilog 代码。（参见：[香山参数系统说明](https://xiangshan-doc.readthedocs.io/zh_CN/latest/misc/config/)）
+
+> 提示2：这里生成的仍然是用于FPGA和流片的Verilog。
 
 
 ## 仿真环境下验证香山

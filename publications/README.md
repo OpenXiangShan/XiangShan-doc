@@ -10,4 +10,4 @@ This paper is awarded all three available badges for artifacts evaluation.
 ![Artifacts Evaluated — Functional](./images/artifacts_evaluated_functional_dl.jpg)
 ![Results Reproduced](./images/results_reproduced_dl.jpg)
 
-[Paper PDF](micro2022-xiangshan.pdf) | [Presentation Slides](micro2022-xiangshan-slides.pdf) | [Presentation Video](https://www.bilibili.com/video/BV1FB4y1j7Jy) | IEEE Xplore (TBD) | ACM DL (TBD) | BibTeX (TBD)
+[Paper PDF](micro2022-xiangshan.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/abstract/document/9923860) | [BibTeX](micro2022-xiangshan.bib) | [Presentation Slides](micro2022-xiangshan-slides.pdf) | [Presentation Video](https://www.bilibili.com/video/BV1FB4y1j7Jy)

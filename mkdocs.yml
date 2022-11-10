@@ -99,6 +99,7 @@ nav:
             - SimPoint: tools/simpoint.md
             - ChiselDB: tools/chiseldb.md
             - NEMU: tools/nemu.md
+            - 编译 Linux Kernel：tools/linux-kernel-for-xs.md
             - 制作 Debian 镜像: tools/debian.md
             # - 常用脚本: tools/scripts.md
         - Troubleshooting: tools/troubleshoot-zh.md

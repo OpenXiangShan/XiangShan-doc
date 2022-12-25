@@ -1,10 +1,12 @@
+# CPU Core Overview
+
 XiangShan-2 (NANHU) support single-core and dual-core configurations, where each core has its own private L1/L2 cache. L3 is shared by multiple cores.
 
 NANHU communicates with the uncore through 3 AXI interfaces, including the memory port, the DMA port and the peripheral port. It also has clock, reset, and JTAG interfaces. Please refer to the integration guide for more detailed information.
 
 NANHU targets 2GHz@14nm, and 2.4GHz~2.8GHz@7nm.
 
-# Typical Configurations
+## Typical Configurations
 Below is the typical NANHU core configurations:
 
 | Feature | NANHU (XiangShan-2) |
@@ -27,7 +29,7 @@ Below is the typical NANHU core configurations:
 | Virtualization | N |
 | Vector | N |
 
-# ISA Support
+## ISA Support
 
 | Instruction Set | Description |
 | ------- | ------------------- |
@@ -51,10 +53,10 @@ Below is the typical NANHU core configurations:
 | zksh | Cryptography Extensions - SM3 Hash Function Instructions |
 | svinval | Fine-Grained Address-Translation Cache Invalidation |
 
-# Priviledge Mode
+## Priviledge Mode
 
 NANHU supports three levels of privilege mode: machine (M), supervisor (S), and user (U).
 
-# Microarchitecture
+## Microarchitecture
 
 Please refer to Section CPU Core for more details.

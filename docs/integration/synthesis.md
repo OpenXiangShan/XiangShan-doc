@@ -1,10 +1,12 @@
+# Synthesis Guide
+
 This section describes the necessary information to synthesize the NANHU design.
 
-# Clock and Reset
+## Clock and Reset
 
 Please refer to the SoC Section for clock and reset configurations.
 
-# L3 Cache SRAM Timing
+## L3 Cache SRAM Timing
 The L3 cache in NANHU is by default configured to be accessed (read or write) once during every two cycles.
 
 * SRAM Writing

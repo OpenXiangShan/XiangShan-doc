@@ -4,16 +4,23 @@ It's worth noting these are the typical configurations and the user may specify 
 # Clock and Reset
 
 NANHU has two clock domains:
-* One clock domain for the cpu core (io_clock). All clock in CPU core is io_clock.
-* One clock domain for jtag (io_systemjtag_jtag_TCK).
 
-NANHU has the following reset signals . All Reset signals are Asynchronous Resets. These resets are internally synced by different instances of module bosc_ResetGenDFT.
-* io_reset is internally synced with the clock io_clock. Active high.
-* io_systemjtag_reset is internally synced with the clock io_systemjtag_jtag_TCK. Active high.
+* One clock domain for the cpu core (`io_clock`). All clock in CPU core is `io_clock`.
+
+* One clock domain for jtag (`io_systemjtag_jtag_TCK`).
+
+NANHU has the following reset signals.
+All Reset signals are Asynchronous Resets.
+
+* `io_reset` is internally synced with the clock `io_clock`. Active high.
+
+* `io_systemjtag_reset` is internally synced with the clock `io_systemjtag_jtag_TCK`. Active high.
 
 There are two types of synchronizers in the RTL. All instances are used to synchronize the reset.
-* AsyncResetSynchronizerPrimitiveShiftReg (synchronize reset from jtag_clock to io_clock, from low frequency to high frequency)
-* ResetGen/ResetGenDFT (used to synchronize for both jtag_clock and io_clock, depending on the instantiations)
+
+* `AsyncResetSynchronizerPrimitiveShiftReg` (synchronize reset from `jtag_clock` to `io_clock`, from low frequency to high frequency)
+
+* `ResetGen/ResetGenDFT` (used to synchronize for both `jtag_clock` and `io_clock`, depending on the instantiations)
 
 # AXI Interface
 

@@ -31,6 +31,8 @@ nav:
     - Integration Guide:
         - NANHU Core: integration/overview.md
         - SoC Integration: integration/soc.md
+        - DFT: integration/dft.md
+        - Synthesis: integration/synthesis.md
     - 处理器核介绍:
         - 总体架构: arch.md
         - 前端:

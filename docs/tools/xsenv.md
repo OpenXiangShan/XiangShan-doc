@@ -18,6 +18,12 @@ sudo -s ./setup-tools.sh # use apt to install dependencies, you may modify it to
 source setup.sh # prepare tools, test develop env using a small project
 ```
 
+由于香山 `master` 分支更新频繁，此仓库中的 submodule 默认追踪香山主线分支上的一个稳定提交，**并不是香山及其他工具的最新版本**。要更新各子仓库到最新版本，可以运行:
+
+```sh
+source update-submodule.sh
+```
+
 **环境部署成功后，每次要使用开发环境时，只需使用以下命令配置环境变量**：
 
 ```sh

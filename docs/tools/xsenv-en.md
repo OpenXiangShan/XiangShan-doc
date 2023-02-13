@@ -18,6 +18,12 @@ sudo -s ./setup-tools.sh # use apt to install dependencies, you may modify it to
 source setup.sh # prepare tools, test develop env using a small project
 ```
 
+Due to the frequent updates of the Xiangshan `master` branch, the submodule in this repo tracks a stable commit on the Xiangshan master branch by default, **not the latest version of Xiangshan and the other tools**. To update each submodule to the latest version, run:
+
+```sh
+source update-submodule.sh
+```
+
 **After environment setup, every time you want to use the development environment, just use the following command to configure the environment variables**:
 
 <!-- After XiangShan Develop Environment setup, use the following script **every time** before using XiangShan Develop Environment. -->

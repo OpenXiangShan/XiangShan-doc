@@ -104,6 +104,8 @@ nav:
             - LightSSS: tools/lightsss.md
             - SimPoint: tools/simpoint.md
             - ChiselDB: tools/chiseldb.md
+            - Constantin: tools/constantin.md
+            - OracleBP: tools/oraclebp.md
             - NEMU: tools/nemu.md
             - 编译 Linux Kernel：tools/linux-kernel-for-xs.md
             - 制作 Debian 镜像: tools/debian.md

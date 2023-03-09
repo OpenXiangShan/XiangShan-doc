@@ -6,6 +6,9 @@ Our paper introduces XiangShan and the practice of agile development methodology
 It covers some representative tools we have developed and used to accelerate the chip development process, including design, functional verification, debugging, performance validation, etc.
 This paper is awarded all three available badges for artifacts evaluation.
 
+This paper has been selected as an IEEE Micro Top Pick from the 2022 Computer Architecture Conferences.
+The updated article will be published at IEEE Micro's annual special issue in July/August 2023.
+
 ![Artifacts Available](./images/artifacts_available_dl.jpg)
 ![Artifacts Evaluated — Functional](./images/artifacts_evaluated_functional_dl.jpg)
 ![Results Reproduced](./images/results_reproduced_dl.jpg)

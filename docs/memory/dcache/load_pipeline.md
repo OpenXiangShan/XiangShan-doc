@@ -10,7 +10,7 @@ DCache 的 load 流水线与 load unit 的 load 流水线各流水级一一对�
 
 * 接收 load 流水线计算出的虚拟地址
 * 使用虚拟地址查询 tag
-* 使用虚拟地址查询 tag
+* 使用虚拟地址查询 meta
 
 ### Stage 1
 

@@ -6,10 +6,10 @@ Probe Queue 包含 16 项 Probe Entry, 负责接收来自 L2 Cache 的 Probe 请
 
 Probe Queue 接收到来自 L2 的 Probe 请求后的处理流程如下:
 
-* 分配一项空的 Miss Entry;
+* 分配一项空的 Probe Entry;
 * 向 Main Pipe 发送 probe 请求, 由于时序考虑该请求会被延迟一拍;
 * 等待 Main Pipe 返回应答;
-* 释放 Miss Entry.
+* 释放 Probe Entry.
 
 ## 补充
 

@@ -28,6 +28,16 @@ bk扩展，**该仓库中的submodule已经切换完成，不需要再手工切�
 git clone git@github.com:OpenXiangShan/riscv-gnu-toolchain.git
 ```
 
+### 方案3
+感谢中科院软件所，提供了一份RISCV-V工具链镜像[riscv-gnu-toolchain](https://help.mirrors.cernet.edu.cn/riscv-toolchains)并实时同步submodule的更新
+
+```bash
+## 单独克隆
+git clone https://mirror.iscas.ac.cn/riscv-toolchains/git/riscv-collab/riscv-gnu-toolchain.git
+## 同时克隆子模块
+curl https://mirror.iscas.ac.cn/riscv-toolchains/git/riscv-collab/riscv-gnu-toolchain.sh | bash
+```
+
 
 ## 工具链编译方法
 
@@ -48,6 +58,7 @@ make -jN
 make linux -jN
 ```
 
+* 如果发生make失败，可能是权限的问题，可以使用`sudo make`命令再次进行尝试
 * 编译完成后将 `RISCV` 环境变量设置为 `PATH_TO_INSTALL`
 * 再将 `RISCV/bin` 添加到 `PATH`
 

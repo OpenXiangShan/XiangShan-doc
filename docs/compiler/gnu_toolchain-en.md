@@ -27,6 +27,14 @@ To simplify the operation of switching branchs in submodule, Xiangshan forked a 
 git clone git@github.com:OpenXiangShan/riscv-gnu-toolchain.git
 ```
 
+## Option 3
+Thanks to the ISCAS for providing an riscv-toolchains mirror [riscv-gnu-toolchain](https://github.com/OpenXiangShan/riscv-gnu-toolchain) and had updated the submodules constantly
+```bash
+## single clone
+git clone https://mirror.iscas.ac.cn/riscv-toolchains/git/riscv-collab/riscv-gnu-toolchain.git
+## also clone submodules
+curl https://mirror.iscas.ac.cn/riscv-toolchains/git/riscv-collab/riscv-gnu-toolchain.sh | bash
+```
 
 ## Compiling method of tool chain
 
@@ -47,6 +55,7 @@ make -jN
 make linux -jN
 ```
 
+* If make fails, it may be a permissions issue, so try again with the `sudo make` command
 * Set the environment variable `RISCV=PATH_TO_INSTALL` after compiling
 * Add `RISCV/bin` to `PATH`
 

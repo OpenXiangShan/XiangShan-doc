@@ -1,5 +1,6 @@
 # XiangShan-doc
 Documentation for XiangShan
+English verion is in developing, here is the draft only: https://fung-ivan.gitbook.io/xiangshan/
 
 这是香山的官方文档仓库。
 

@@ -34,6 +34,9 @@ nav:
         - DFT: integration/dft.md
         - Synthesis: integration/synthesis.md
         - JTAG and Debug: integration/debug.md
+    - Tutorials:
+        - Publications: tutorials/publications.md
+        - ASPLOS'23: tutorials/asplos2023.md
     - 处理器核介绍:
         - 总体架构: arch.md
         - 前端:

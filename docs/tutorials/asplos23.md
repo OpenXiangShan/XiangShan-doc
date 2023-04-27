@@ -13,11 +13,11 @@ Target audience: Researchers on micro-architecture, high performance processor d
 
 | Time | Topic | Slides |
 | ---- | ----- | ------ |
-| 9:00-9:25 | Introduction of the XiangShan Project | [PDF](../../tutorial/20230325-ASPLOS23-1-Introduction-XiangShan.pdf) |
-| 9:25-9:35 | Tutorial Overview and Highlights | [PDF](../../tutorial/20230325-ASPLOS23-2-Tutorial-Overview.pdf) |
-| 9:35-10:20 | Microarchitecture Design and Implementation | [PDF](../../tutorial/20230325-ASPLOS23-3-Microarchitecture.pdf) |
+| 9:00-9:25 | Introduction of the XiangShan Project | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20230325-ASPLOS23-1-Introduction-XiangShan.pdf) |
+| 9:25-9:35 | Tutorial Overview and Highlights | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20230325-ASPLOS23-2-Tutorial-Overview.pdf) |
+| 9:35-10:20 | Microarchitecture Design and Implementation | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20230325-ASPLOS23-3-Microarchitecture.pdf) |
 | | Coffee Break | |
-| 10:40-12:00 | Hands-on Development | [PDF](../../tutorial/20230325-ASPLOS23-4-Dev-Tools.pdf) |
+| 10:40-12:00 | Hands-on Development | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/tutorial/20230325-ASPLOS23-4-Dev-Tools.pdf) |
 
 ## To be covered
 

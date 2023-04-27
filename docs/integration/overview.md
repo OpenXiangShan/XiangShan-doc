@@ -69,22 +69,22 @@ The following is a register table of the L3 cache controller.
 
 | Address | Width | Attr. | Description |
 | ------- | ----- | ----- | ----------- |
-| 0x3900_0100 | 8B | RW | Tag register of the interest cache block |
-| 0x3900_0108 | 8B | RW | Set register of the interest cache block |
-| 0x3900_0110 | 8B | RW | Way register of the interest cache block (deprecated) |
-| 0x3900_0118 - 0x3900_0150 | 64B in total | RW | Data register of the interest cache block (deprecated) |
-| 0x3900_0180 | 8B | RO | Flag register indicates ready for receiving next command<br>Value 1 indicates ready, 0 indicates not ready<br>
-| 0x3900_0200 | 8B | WO | Command register for cache operation<br>Supported commands are:<br>Command Number 16 (`CMD_CMO_INV`)<br>Command Number 17 (`CMD_CMO_CLEAN`)<br>Command Number 18 (`CMD_CMO_FLUSH`) |
+| 0x3900_0100 | 8B | RW | `Tag` register of the interest cache block |
+| 0x3900_0108 | 8B | RW | `Set` register of the interest cache block |
+| 0x3900_0110 | 8B | RW | `Way` register of the interest cache block (deprecated) |
+| 0x3900_0118 - 0x3900_0150 | 64B in total | RW | `Data` register of the interest cache block (deprecated) |
+| 0x3900_0180 | 8B | RO | `Flag` register indicates ready for receiving next command<br>Value 1 indicates ready, 0 indicates not ready<br>
+| 0x3900_0200 | 8B | WO | `Command` register for cache operation<br>Supported commands are:<br>Command Number 16 (`CMD_CMO_INV`)<br>Command Number 17 (`CMD_CMO_CLEAN`)<br>Command Number 18 (`CMD_CMO_FLUSH`) |
 
 A standard Cache operation follows the following process:
 
-1. Inquire the flag register, which indicates ready for receiving requests when valid
+1. Inquire the `Flag` register, which indicates ready for receiving requests when valid
 
-2. Set Tag register to the tag of the interest cache block
+2. Set `Tag` register to the tag of the interest cache block
 
-3. Set Set register to the set of the interest cache block
+3. Set `Set` register to the set of the interest cache block
 
-4. Write command number to command register
+4. Write command number to `Command` register
 
 Afterwards, the command is desired to be done.
 

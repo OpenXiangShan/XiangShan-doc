@@ -23,23 +23,23 @@ Target audience: Researchers on micro-architecture, high performance processor d
 
 - Introduction to XiangShan project
 
-  - In June 2020, we launched XiangShan project. We have developed two major generations of codenamed YQH and NH respectively. The latest version of XiangShan processor achieves the highest performance of open-source RISC-V processors to the best of our knowledge. This topic will also cover XiangShan tape-out status, performance evaluation, future roadmap, etc.
+In June 2020, we launched XiangShan project. We have developed two major generations of codenamed YQH and NH respectively. The latest version of XiangShan processor achieves the highest performance of open-source RISC-V processors to the best of our knowledge. This topic will also cover XiangShan tape-out status, performance evaluation, future roadmap, etc.
 
 - Introduction to micro-architecture and design concept of XiangShan processor
 
-  - We will talk about micro-architecture design of XiangShan processor. XiangShan is a superscalar out-of-order RISC-V processor with RV64GCBK ISA support. It features high-throughput frontend with advanced branch predictor, six-width aggressive out-of-order execution engine, high-bandwidth load/store unit and highly configurable cache system. Written in Chisel, a high-level hardware description language, XiangShan also achieves high readability and maintainability.
+We will talk about micro-architecture design of XiangShan processor. XiangShan is a superscalar out-of-order RISC-V processor with RV64GCBK ISA support. It features high-throughput frontend with advanced branch predictor, six-width aggressive out-of-order execution engine, high-bandwidth load/store unit and highly configurable cache system. Written in Chisel, a high-level hardware description language, XiangShan also achieves high readability and maintainability.
 
 
 - Demonstration of simulation flow and FPGA prototype of XiangShan processor
 
-  - We have established a comprehensive workflow to simulate XiangShan processor and do prototype on FPGA. In this part, we will perform a practical demonstration, including argument details and key points to pay attention to.
+We have established a comprehensive workflow to simulate XiangShan processor and do prototype on FPGA. In this part, we will perform a practical demonstration, including argument details and key points to pay attention to.
 
 
 - Introduction to infrastructure for XiangShan development
 
-  - We will introduce the development infrastructure of XiangShan processor, also known as Minjie platform. Minjie is open sourced as well. It includes a series of tools that can accelerate the process of hardware development, functional verification, and performance evaluation. We will first talk about the principles and instructions of Minjie toolsets, and then demonstrate how to employ these tools to help quickly develop XiangShan processor.
+We will introduce the development infrastructure of XiangShan processor, also known as Minjie platform. Minjie is open sourced as well. It includes a series of tools that can accelerate the process of hardware development, functional verification, and performance evaluation. We will first talk about the principles and instructions of Minjie toolsets, and then demonstrate how to employ these tools to help quickly develop XiangShan processor.
 
 
 - Typical cases sharing of modification and experimentation on XiangShan
 
-  - We will present some typical cases for XiangShan development. For example, how to add an instruction, how to add a peripheral device and how to re-configure cache structure. Based on XiangShan and Minjie platform, many architectural works can be reproduced and accelerate the interactions between academia and industry.
+We will present some typical cases for XiangShan development. For example, how to add an instruction, how to add a peripheral device and how to re-configure cache structure. Based on XiangShan and Minjie platform, many architectural works can be reproduced and accelerate the interactions between academia and industry.

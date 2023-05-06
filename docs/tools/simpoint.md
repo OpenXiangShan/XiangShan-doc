@@ -109,8 +109,9 @@ Checkpoint 相关参数介绍：
 # Profiling
 tracing branch:
 ./build/riscv64-nemu-interpreter $RISCV_PK_HOME/build/bbl.bin \
-	-D /home/user/spec_cpt -w workloadName -C profiling \
-	-b --simpoint-profile --cpt-interval 100000000
+    -D /home/user/spec_cpt -w workloadName -C profiling       \
+    -b --simpoint-profile --cpt-interval 100000000            \
+    -r ./resource/gcpt_restore/build/gcpt.bin
 
 cpt-bk branch:
 ./build/riscv64-nemu-interpreter $RISCV_PK_HOME/build/bbl.bin \

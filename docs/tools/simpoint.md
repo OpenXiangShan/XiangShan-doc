@@ -123,16 +123,17 @@ mkdir -p /home/user/spec_cpt/cluster/workloadName
 export CLUSTER=/home/user/spec_cpt/cluster/workloadName
 # --!!-- make sure the simpoint_bbv.gz is for your target workload --!!--
 # or disable -DFLAT_CPTPATH in Makefile:CFLAGS to generate bbv.gz under dir profile/workloadName
-./resource/simpoint/simpoint_repo/bin/simpoint \
-	-loadFVFile /home/user/spec_cpt/profiling/simpoint_bbv.gz \
-	-saveSimpoints $CLUSTER/simpoints0 -saveSimpointWeights $CLUSTER/weights0 \
-	-inputVectorsGzipped -maxK 30 -numInitSeeds 2 -iters 1000 -seedkm 123456 -seedproj 654321
+./resource/simpoint/simpoint_repo/bin/simpoint                                  \
+    -loadFVFile /home/user/spec_cpt/profiling/workloadName/simpoint_bbv.gz      \
+    -saveSimpoints $CLUSTER/simpoints0 -saveSimpointWeights $CLUSTER/weights0   \
+    -inputVectorsGzipped -maxK 30 -numInitSeeds 2 -iters 1000 -seedkm 123456 -seedproj 654321
 
 # Checkpointing
 tracing branch:
-./build/riscv64-nemu-interpreter $RISCV_PK_HOME/build/bbl.bin \
-	-D /home/user/spec_cpt -w workloadName -C take_cpt \
-	-b -S /home/user/spec_cpt/cluster --cpt-interval 100000000
+./build/riscv64-nemu-interpreter $RISCV_PK_HOME/build/bbl.bin  \
+    -D /home/user/spec_cpt -w workloadName -C take_cpt         \
+    -b -S /home/user/spec_cpt/cluster --cpt-interval 100000000 \
+    -r ./resource/gcpt_restore/build/gcpt.bin
 
 cpt-bk branch:
 ./build/riscv64-nemu-interpreter $RISCV_PK_HOME/build/bbl.bin \

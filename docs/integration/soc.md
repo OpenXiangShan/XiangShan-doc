@@ -68,7 +68,8 @@ Different transaction sizes and transactions per ID are supported. They are chan
 
 This DMA port allows the peripherals to access DDR under coherency with the CPU caches. They can send standard AXI aw/w/ar requests to this port to write/read the DDR. Memory coherency is supported in the DMA port by the L3 cache. No explicit action is needed to sync the data with CPU.
 
-Note that data in core store queue and committed store buffer is not under coherency with the CPU caches. That is to say, to read newly stored data from DMA port, a fence instruction must be used in software.
+Note: RISC-V defines a weak memory order. Load and store instructions are not required to be visible to other harts (CPU cores, DMA devices, etc) before an explicit memory barrier instruction like `fence`. For example, in NANHU, data in store queue and committed store buffer is not under coherency with the
+CPU caches. To read newly stored data through DMA AXI port, a fence instruction must be used in software to make the CPU stores visible to the coherent cache hierarchy. This is a RISC-V requirement, not a bug/issue of NANHU.
 
 ## Memory Map
 

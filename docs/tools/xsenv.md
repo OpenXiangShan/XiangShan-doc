@@ -45,6 +45,8 @@ source ./env.sh # setup XiangShan environment variables
 
 （如果有条件，登录时推荐使用桌面环境或者开启 X11 转发以试用一些带有 GUI 界面的工具）
 
+如您在国内环境执行下方操作遇到网络问题，可以使用我们在[Gitee](https://gitee.com/OpenXiangShan/XiangShan)和[GitLink](https://www.gitlink.org.cn/OpenXiangShan/XiangShan)上的镜像。
+
 在服务器上安装 git, 随后使用 git 克隆以下仓库到本地:
 
 ```bash
@@ -90,6 +92,8 @@ make init
 ```
 该命令会将一些必要的 submodule 克隆下来。
 > 提示：请务必确保这一过程期间到 github 的网络连接顺畅。submodule 的克隆不完整将会导致后续的编译错误。参见：[https://github.com/OpenXiangShan/XiangShan/issues/837](https://github.com/OpenXiangShan/XiangShan/issues/837)
+
+在国内网络环境下载scala相关依赖可能遇到问题，可将该[patch](https://github.com/OpenXiangShan/XiangShan-doc/blob/main/docs/tools/maven.patch)应用到XiangShan项目的`build.sc`文件。
 
 ### 生成可综合的单核代码
 

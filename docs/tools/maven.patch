@@ -1,0 +1,26 @@
+From 25048a3a2c25e23ee51db9f899141533d142179c Mon Sep 17 00:00:00 2001
+From: Chen Guokai <chenguokai17@mails.ucas.ac.cn>
+Date: Sat, 6 May 2023 10:36:59 +0800
+Subject: [PATCH] maven mirror site
+
+---
+ build.sc | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/build.sc b/build.sc
+index 7491faf01..4bfab6551 100644
+--- a/build.sc
++++ b/build.sc
+@@ -50,6 +50,10 @@ trait XSModule extends ScalaModule with PublishModule {
+ 
+   override def moduleDeps = Seq() ++ chiselOpt
+ 
++  def repositories = Seq(
++    coursier.MavenRepository("https://maven.aliyun.com/repository/central"),
++    coursier.MavenRepository("https://repo.scala-sbt.org/scalasbt/maven-releases")
++  )
+   def publishVersion = "0.0.1"
+ 
+   // TODO: fix this
+-- 
+2.34.1

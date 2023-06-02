@@ -29,7 +29,7 @@ git clone git@github.com:OpenXiangShan/riscv-gnu-toolchain.git
 ```
 
 ### 方案3
-感谢中科院软件所，提供了一份RISCV-V工具链镜像[riscv-gnu-toolchain](https://help.mirrors.cernet.edu.cn/riscv-toolchains)并实时同步submodule的更新
+感谢中科院软件所，提供了一份RISC-V工具链镜像[riscv-gnu-toolchain](https://help.mirrors.cernet.edu.cn/riscv-toolchains)并实时同步submodule的更新
 
 ```bash
 ## 单独克隆（不推荐）

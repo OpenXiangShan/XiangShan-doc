@@ -8,7 +8,7 @@ This instruction explains how to compile B extension GNU tool as GNU toolchain r
 ## Release notes of tool chain
 
 
-### Option 1
+### ~~Option 1 (Deprecated)~~
 * [riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain.git) official master branch (`df6ecbe4ddb2a1a261b44af822d22f1253d3f0e4` verified)
 * Replace riscv-gcc with the version of ISCAS [https://github.com/pz9115/riscv-gcc](https://github.com/pz9115/riscv-gcc)
   switch to branch riscv-gcc-experimental-bkp (`fbfa8d9ad496a2d69a38be2c2c3c0dc0956ffb9e` verified)
@@ -19,7 +19,7 @@ This instruction explains how to compile B extension GNU tool as GNU toolchain r
 (Hint: you can clone riscv-gnu-toolchain before replacing riscv-gcc and riscv-binutils as above)
 
 
-### Option 2
+### ~~Option 2 (Deprecated)~~
 To simplify the operation of switching branchs in submodule, Xiangshan forked a [riscv-gnu-toolchain](https://github.com/OpenXiangShan/riscv-gnu-toolchain) and had updated the submodules in order to support B extension and K extension.
 **Submodules in this repository has been switched and can be compiled directly without switching manually**.
 
@@ -27,14 +27,18 @@ To simplify the operation of switching branchs in submodule, Xiangshan forked a 
 git clone git@github.com:OpenXiangShan/riscv-gnu-toolchain.git
 ```
 
-## Option 3
-Thanks to the ISCAS for providing an riscv-toolchains mirror [riscv-gnu-toolchain](https://github.com/OpenXiangShan/riscv-gnu-toolchain) and had updated the submodules constantly
+## Option 3 (Recommended)
+
+For users in China, we highly recommend using the mirrors provided by [PLCT](https://plctlab.github.io/) at ISCAS. We express our special thanks to them for providing the mirrors for [riscv-gnu-toolchain](https://help.mirrors.cernet.edu.cn/riscv-toolchains) and had updated the submodules constantly.
+
 ```bash
-## single clone
+## to clone (not recommended)
 git clone https://mirror.iscas.ac.cn/riscv-toolchains/git/riscv-collab/riscv-gnu-toolchain.git
-## also clone submodules
+## to clone with submodules (recommended)
 curl https://mirror.iscas.ac.cn/riscv-toolchains/git/riscv-collab/riscv-gnu-toolchain.sh | bash
 ```
+
+For users outside China, we recommend using the official [riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain) repository.
 
 ## Compiling method of tool chain
 

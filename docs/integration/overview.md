@@ -95,3 +95,275 @@ There are three commands available.
 2. Command Number 17 (`CMD_CMO_CLEAN`): make cache block data in memory up-to-date. In other words, write back a block to memory if it is dirty in cache hierarchy. In current implementation, this command behaves just like `CMD_CMO_FLUSH`.
 
 3. Command Number 18 (`CMD_CMO_FLUSH`): flush the cache block to memory. In other words, write back a block to memory and invalidate the block.
+
+## Hardware Performance Monitor (HPM)
+
+Using distributed HPM (hardware performance monitor).
+There is an independent HPM in each block, and the HPM can also contain mirrored values of some other CSRs (the mirrored registers can only be modified by instructions).
+Each HPM contains multiple performance counter registers for counting internal events.
+For the number of performance counters, refer to the number of performance events to be counted simultaneously for different blocks.
+Each performance counter contains the following registers:
+
+![](../figs/integration/hpm_register.png)
+
+Each hpmevent is 64 bits. In order to count the events combined by multiple events, the event fields are now split according to the function. The split is as follows.
+
+![](../figs/integration/hpm_event.png)
+
+Mode represents that the corresponding performance counter is to be counted in a specific mode. Onehot encoding is adopted, and the encoding table is as follows.
+
+***Table.1 Performance counter register***
+
+| Privilege Mode | Mode Coding | Event Coding |
+| -------------- | ----------- | ------------ |
+| M              | Mode[4]     | Mode[63]     |
+| H              | Mode[3]     | Mode[62]     |
+| S              | Mode[2]     | Mode[61]     |
+| U              | Mode[1]     | Mode[60]     |
+| D              | Mode[0]     | Mode[59]     |
+
+
+Event indicates the performance event code to be counted, with a total of four event fields. Where event equals 0 means no event, event equals all 1, means cycle. The Event coding table needs to be supplemented later. When an illegal value is written, the write operation is ignored.
+Events are classified by block. Between two consecutive blocks, there can be overlapping parts. The overlap is used for performance counter statistics between blocks.
+The optype encoding table is as follows:
+
+***Table.2 Mode and Event Coding***
+
+| Optype    | Mode Coding |
+| --------- | ----------- |
+| `'b00000` | Or          |
+| `'b00001` | And         |
+| `'b00002` | Xor         |
+| `'b00003` | Add         |
+| `'b00004` | Sub         |
+
+***Table.3 Optype encoding table***
+
+| Name | Address | Width | Description |
+| ---- | ------- | ----- | ----------- |
+| Mhpmcounter31-3 | 0xB03-0xB1F | 64 | 64-bit accumulator. Counts based on selected events. The maximum data accumulated at one time is not fixed. |
+| Mhpmevent31-3 | 0x323-0x33F | 64 | Event selection, decides under what conditions to count. |
+| Mcountinhibit | 0x320 | 32 | Each bit controls whether the performance counter can be accumulated. 1: The accumulator does not change; 0: Accumulator counts up according to performance. |
+| Mcounteren | 0x306 | 32 | Controls whether the S state has permission to access the corresponding performance counter. 0: S-state program access to hpmcounter register will report an illegal instruction; 1: S-state programs can access hpmcounter. |
+| Scounteren | 0x106 | 32 | According to the value of Mcounteren, it is used to control whether the U state has permission to access the corresponding performance counter. Mcounteren[i] & Scounteren[i] == 0: An illegal instruction exception will be reported when a U-state program accesses the hpmcounter[i] register; Mcounteren[i] & Scounteren[i] == 1: U-state programs can access hpmcounter[i]. |
+| pmcounter31-3 | 0xC03-0xC1F | 64 | Mirror for Mhpmcounter31-3. |
+
+
+**For the implemented performance counters, please see the Chisel elaboration logs when generating the verilog.**
+
+**The table below presents an example of events.** Please note that hardware performance monitors are highly configurable, so the information provided may **NOT** perfectly align with real-world cases. If you require additional counters, we recommend directly modifying the Chisel code.
+
+Please refer to the source code for the detailed update conditions of these counters. We want to emphasize that we cannot guarantee the accuracy of the existing performance counters. It is important to understand that utilizing these counters is done at your own risk, and we advise taking necessary precautions.
+
+***Table.4 Example of the Performance Event Table***
+
+| BlockName | Event |
+| --------- | ----- |
+| Frontend | FrontendBubble |
+| IFU | frontendFlush |
+| IFU | to_ibuffer_package_num |
+| IFU | crossline |
+| IFU | lastInLine |
+| Ibuffer | ibuffer_flush |
+| Ibuffer | ibuffer_hungry |
+| IFU | to_ibuffer_cache_miss_num |
+| Icache | icache_miss_req |
+| icache | Icache_miss_penalty |
+| FTQ | bpu_to_ftq_stall |
+| FTQ | mispredictRedirect |
+| FTQ | replayRedirect |
+| FTQ | predecodeRedirect |
+| FTQ | to_ifu_bubble |
+| FTQ | to_ifu_stall |
+| FTQ | from_bpu_real_bubble |
+| FTQ | BpInstr |
+| FTQ | BpRight |
+| FTQ | BpWrong |
+| FTQ | BpBInstr |
+| FTQ | BpBRight |
+| FTQ | BpBWrong |
+| FTQ | BpJRight |
+| FTQ | BpJWrong |
+| FTQ | BpIRight |
+| FTQ | BpIWrong |
+| FTQ | BpCRight |
+| FTQ | BpCWrong |
+| FTQ | BpRRight |
+| FTQ | BpRWrong |
+| FTQ | ftb_false_hit |
+| FTQ | ftb_hit" |
+| TAGE | tage_table_hits |
+| TAGE | commit_use_altpred_b0 |
+| TAGE | commit_use_altpred_b1 |
+| SC | sc_update_on_mispred |
+| SC | sc_update_on_unconf |
+| BPU | s2_redirect |
+| uBTB | ftb_commit_hits |
+| uBTB | ftb_commit_misses |
+| uBTB | ubtb_commit_hits |
+| uBTB | ubtb_commit_misses |
+| IBUFFER | ibuffer_empty |
+| IBUFFER | ibuffer_12_valid |
+| IBUFFER | ibuffer_24_valid |
+| IBUFFER | ibuffer_36_valid |
+| IBUFFER | ibuffer_full |
+| FusionDecoder | fused_instr |
+| DecodeStage | waitInstr |
+| DecodeStage | stall_cycle |
+| DecodeStage | utilization |
+| DecodeStage | storeset_ssit_hit |
+| DecodeStage | ssit_update_lxsx |
+| DecodeStage | ssit_update_lysx |
+| DecodeStage | ssit_update_lxsy |
+| DecodeStage | ssit_update_lysy |
+| Rename | in |
+| Rename | waitInstr |
+| Rename | stall_cycle_dispatch |
+| Rename | stall_cycle_fp |
+| Rename | stall_cycle_int |
+| Rename | stall_cycle_walk |
+| BusyTable | busy_count |
+| StdFreeList | utilization |
+| StdFreeList | allocation_blocked |
+| StdFreeList | can_alloc_wrong |
+| Dispatch1 | storeset_load_wait |
+| Dispatch1 | storeset_store_wait |
+| Dispatch1 | in |
+| Dispatch1 | empty |
+| Dispatch1 | utilization |
+| Dispatch1 | waitInstr |
+| Dispatch1 | stall_cycle_lsq |
+| Dispatch1 | stall_cycle_roq |
+| Dispatch1 | stall_cycle_int_dq |
+| Dispatch1 | stall_cycle_fp_dq |
+| Dispatch1 | stall_cycle_ls_dq |
+| DispatchQueue_int | in |
+| DispatchQueue_int | out |
+| DispatchQueue_int | out_try |
+| DispatchQueue_int | fake_block |
+| DispatchQueue_int | queue_size_4 |
+| DispatchQueue_int | queue_size_8 |
+| DispatchQueue_int | queue_size_12 |
+| DispatchQueue_int | queue_size_16 |
+| DispatchQueue_int | queue_size_full |
+| DispatchQueue_fp | in |
+| DispatchQueue_fp | out |
+| DispatchQueue_fp | out_try |
+| DispatchQueue_fp | fake_block |
+| DispatchQueue_fp | queue_size_4 |
+| DispatchQueue_fp | queue_size_8 |
+| DispatchQueue_fp | queue_size_12 |
+| DispatchQueue_fp | queue_size_16 |
+| DispatchQueue_fp | queue_size_full |
+| DispatchQueue_lsu | in |
+| DispatchQueue_lsu | out |
+| DispatchQueue_lsu | out_try |
+| DispatchQueue_lsu | fake_block |
+| DispatchQueue_lsu | queue_size_4 |
+| DispatchQueue_lsu | queue_size_8 |
+| DispatchQueue_lsu | queue_size_12 |
+| DispatchQueue_lsu | queue_size_16 |
+| DispatchQueue_lsu | queue_size_full |
+| Dispatch2Ls | in |
+| Dispatch2Ls | out |
+| Dispatch2Ls | out_load0 |
+| Dispatch2Ls | out_load1 |
+| Dispatch2Ls | out_store0 |
+| Dispatch2Ls | out_store1 |
+| Dispatch2Ls | blocked |
+| roq | interrupt_num |
+| roq | exception_num |
+| roq | flush_pipe_num |
+| roq | replay_inst_num |
+| roq | clock_cycle |
+| roq | commitUop |
+| roq | commitInstr |
+| roq | commitInstrMove |
+| roq | commitInstrMoveElim |
+| roq | commitInstrFused |
+| roq | commitInstrLoad |
+| roq | commitInstrLoadWait |
+| roq | commitInstrStore |
+| roq | writeback |
+| roq | walkInstr |
+| roq | walkCycle |
+| roq | queue_1/4 |
+| roq | queue_1/2 |
+| roq | queue_3/4 |
+| roq | queue_full |
+| rs | alu0_rs_full |
+| rs | alu1_rs_full |
+| rs | alu2_rs_full |
+| rs | alu3_rs_full |
+| rs | load0_rs_full |
+| rs | load1_rs_full |
+| rs | store0_rs_full |
+| rs | store1_rs_full |
+| rs | mdu_rs_full |
+| rs | misc_rs_full |
+| rs | fmac0_rs_full |
+| rs | fmac1_rs_full |
+| rs | fmac2_rs_full |
+| rs | fmac3_rs_full |
+| rs | fmisc0_rs_full |
+| rs | fmac1_rs_full |
+| PageTableWalker | fsm_count |
+| TLB | first_access |
+| TLB | access |
+| TLB | first_miss |
+| TLB | miss |
+| TLBStorage | access |
+| TLBStorage | hit |
+| PageTableCache | access |
+| PageTableCache | l1_hit |
+| PageTableCache | l2_hit |
+| PageTableCache | l3_hit |
+| PageTableCache | sp_hit |
+| PageTableCache | pte_hit |
+| L2TLBMissQueue | mq_in_count |
+| L2TLBMissQueue | mem_count |
+| L2TLBMissQueue | mem_cycle |
+| MemBlock | load_rs_deq_count |
+| MemBlock | store_rs_deq_count |
+| StoreQueue | vaddr_match_failed |
+| StoreQueue | vaddr_match_really_failed |
+| StoreQueue | queue_1/4 |
+| StoreQueue | queue_1/2 |
+| StoreQueue | queue_3/4 |
+| StoreQueue | queue_full |
+| LoadQueue | rollback |
+| LoadQueue | queue_1/4 |
+| LoadQueue | queue_1/2 |
+| LoadQueue | queue_3/4 |
+| LoadQueue | queue_full |
+| LoadQueue | refill |
+| LoadQueue | utilization_miss |
+| LoadUnit | in |
+| LoadUnit | tlb_miss |
+| LoadUnit | in |
+| LoadUnit | dcache_miss |
+| LoadPipe | load_req |
+| LoadPipe | load_hit_way |
+| LoadPipe | load_replay_for_data_nack |
+| LoadPipe | load_replay_for_no_mshr |
+| LoadPipe | load_hit |
+| LoadPipe | load_miss |
+| NewSbuffer | do_uarch_drain |
+| NewSbuffer | sbuffer_req_valid |
+| NewSbuffer | sbuffer_req_fire |
+| NewSbuffer | sbuffer_merge |
+| NewSbuffer | dcache_req_valid |
+| NewSbuffer | dcache_req_fire |
+| NewSbuffer | StoreQueueSize |
+| WritebackQueue | wb_req |
+| WritebackQueue | wb_release |
+| WritebackQueue | wb_probe_resp |
+| MainPipe | pipe_req |
+| MainPipe | pipe_total_penalty |
+| dcache | MissQueue | miss_req |
+| dcache | MissQueue | miss_penalty |
+| dcache | MissQueue | load_miss_penalty_to_use |
+| dcache | MissQueue | pipeline_penalty |
+| dcache | MissQueue | queue_full |
+| dcache | Probe | probe_req |
+| dcache | Probe | probe_penalty |

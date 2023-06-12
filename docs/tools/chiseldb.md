@@ -96,8 +96,13 @@ sqlite3 $NOOP_HOME/build/2021-10-31@22:54:30.db "SELECT * FROM TL_LOG WHERE NAME
 
 ### 创建表/获取已有表
 
-* 创建表可以通过 `ChiselDB.createTable` API 完成。默认属于 basicDB，目前默认记录是关闭的，需要指定为非 basicDB 则会默认打开。或者在 `Parameters.scala` 的 `DebugOptions.EnableChiselDB` 中默认打开所有DB，但此时会存储大量的数据，谨慎使用。
+* 创建表可以通过 `ChiselDB.createTable` API 完成
 
+ChiselDB 不允许表重名。当一个模块被例化多次，其中会多次调用 `createTable`，第二次开始的 `createTable` 调用不会创建新表，而是会默认返回之前已经创建好的表，需要注意多次调用时的类型应是完全一致的。
+
+新添加的表默认属于 basicDB，且默认是关闭的，如指定为非 basicDB 则会默认打开。或者在 `Parameters.scala` 的 `DebugOptions.EnableChiselDB` 中默认打开所有DB，但此时会存储大量的数据，谨慎使用。
+
+此外，ChiselDB 会在表中默认添加以下字段，需要确保传入的类型 `T` 不包含这些元素命名：`ID`, `STAMP`, `SITE`
 ``` scala
 // API: def createTable[T <: Record](tableName: String, hw: T, basicDB: Boolean = false): Table[T]
 
@@ -117,7 +122,7 @@ val table = ChiselDB.createTable("MyTableName", new MyBundle, true) // Explicitl
 // EnableChiselDB: Boolean = false,
 ```
 
-* `ChiselDB` 不允许表重名，要在不同代码中（如双核或者多次例化同一个模块时）获取一个已存在的表，可以使用 `ChiselDB.getTable` API
+* `ChiselDB` 不允许表重名，要在不同代码中获取一个已存在的表，可以使用 `ChiselDB.getTable` API
 
 ``` scala
 // API: def getTable(tableName: String): Option[Table[_]]
@@ -125,12 +130,6 @@ val table = ChiselDB.createTable("MyTableName", new MyBundle, true) // Explicitl
 import utility.ChiselDB
 
 val table = ChiselDB.getTable("MyTableName").get.asInstanceOf[Table[MyBundle]]
-
-// For multicore to share the same table
-val table = if (p(XSCoreParamsKey).HartId == 0) {
-  ChiselDB.createTable("MyTableName", new MyBundle, true)
-} else ChiselDB.getTable("MyTableName").get.asInstanceOf[Table[MyBundle]]
-
 ```
 
 ### Dump数据

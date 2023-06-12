@@ -78,15 +78,15 @@ sqlite3 $NOOP_HOME/build/2021-10-31@22:54:30.db "SELECT * FROM TL_LOG WHERE NAME
 
 效果如下:
 ```
-1159 MEM_L3 A AcquireBlock Grow NtoB 0 0 80000000 0000000000000000 0000000000000000 0000000000000000 0000000000000000 user: 0 echo: 0 
-1331 MEM_L3 D GrantData Cap toT 0 0 80000000 340111732000006f 04a138231a010c63 342025f304b13c23 001595930805d263 user: 0 echo: 0 
-1332 MEM_L3 D GrantData Cap toT 0 0 80000000 02b5126300e00513 3045307308000513 3445207302000513 0581358305013503 user: 0 echo: 0 
-1362 MEM_L3 A AcquireBlock Grow NtoB 0 0 80000200 0000000000000000 0000000000000000 0000000000000000 0000000000000000 user: 0 echo: 0 
-1508 MEM_L3 D GrantData Cap toT 0 1 80000200 0000011300000093 0000021300000193 0000031300000293 0000041300000393 user: 0 echo: 0 
-1509 MEM_L3 D GrantData Cap toT 0 1 80000200 0000061300000493 0000071300000693 0000081300000793 0000091300000893 user: 0 echo: 0 
-1536 MEM_L3 A AcquireBlock Grow NtoB 0 0 80000240 0000000000000000 0000000000000000 0000000000000000 0000000000000000 user: 0 echo: 0 
-1682 MEM_L3 D GrantData Cap toT 0 0 80000240 00000a1300000993 00000b1300000a93 00000c1300000b93 00000d1300000c93 user: 0 echo: 0 
-1683 MEM_L3 D GrantData Cap toT 0 0 80000240 00000e1300000d93 00000f1300000e93 3400107300000f93 d8c2829300000297 user: 0 echo: 0 
+1159 MEM_L3 A AcquireBlock Grow NtoB 0 0 80000000 0000000000000000 0000000000000000 0000000000000000 0000000000000000 user: 0 echo: 0
+1331 MEM_L3 D GrantData Cap toT 0 0 80000000 340111732000006f 04a138231a010c63 342025f304b13c23 001595930805d263 user: 0 echo: 0
+1332 MEM_L3 D GrantData Cap toT 0 0 80000000 02b5126300e00513 3045307308000513 3445207302000513 0581358305013503 user: 0 echo: 0
+1362 MEM_L3 A AcquireBlock Grow NtoB 0 0 80000200 0000000000000000 0000000000000000 0000000000000000 0000000000000000 user: 0 echo: 0
+1508 MEM_L3 D GrantData Cap toT 0 1 80000200 0000011300000093 0000021300000193 0000031300000293 0000041300000393 user: 0 echo: 0
+1509 MEM_L3 D GrantData Cap toT 0 1 80000200 0000061300000493 0000071300000693 0000081300000793 0000091300000893 user: 0 echo: 0
+1536 MEM_L3 A AcquireBlock Grow NtoB 0 0 80000240 0000000000000000 0000000000000000 0000000000000000 0000000000000000 user: 0 echo: 0
+1682 MEM_L3 D GrantData Cap toT 0 0 80000240 00000a1300000993 00000b1300000a93 00000c1300000b93 00000d1300000c93 user: 0 echo: 0
+1683 MEM_L3 D GrantData Cap toT 0 0 80000240 00000e1300000d93 00000f1300000e93 3400107300000f93 d8c2829300000297 user: 0 echo: 0
 1711 MEM_L3 A AcquireBlock Grow NtoB 0 0 80000280 0000000000000000 0000000000000000 0000000000000000 0000000000000000 user: 0 echo: 0
 ```
 
@@ -96,25 +96,41 @@ sqlite3 $NOOP_HOME/build/2021-10-31@22:54:30.db "SELECT * FROM TL_LOG WHERE NAME
 
 ### 创建表/获取已有表
 
-* 创建表可以通过`ChiselDB.createTable` API完成
+* 创建表可以通过 `ChiselDB.createTable` API 完成。默认属于 basicDB，目前默认记录是关闭的，需要指定为非 basicDB 则会默认打开。或者在 `Parameters.scala` 的 `DebugOptions.EnableChiselDB` 中默认打开所有DB，但此时会存储大量的数据，谨慎使用。
 
 ``` scala
-// API: def createTable[T <: Record](tableName: String, hw: T): Table[T]
+// API: def createTable[T <: Record](tableName: String, hw: T, basicDB: Boolean = false): Table[T]
 
-import huancun.utils.ChiselDB
+import utility.ChiselDB
 
 class MyBundle extends Bundle {
   val fieldA = UInt(10.W)
   val fieldB = UInt(20.W)
 }
 
-val table = ChiselDB.createTable("MyTableName", new MyBundle)
+val table = ChiselDB.createTable("MyTableName", new MyBundle) // Disabled by default because of not being a basicDB
+val table = ChiselDB.createTable("MyTableName", new MyBundle, true) // Explicitly enabled because it's a basicDB
+
+// To enable all ChiselDB in the design, use the DebugOptions in Parameters.scala.
+// Change the following assignment to true to enable all databases (not recommended).
+//
+// EnableChiselDB: Boolean = false,
 ```
 
-* `ChiselDB`不允许表重名，要在不同代码中获取一个已存在的表，可以使用`ChiselDB.getTable` API
+* `ChiselDB` 不允许表重名，要在不同代码中（如双核或者多次例化同一个模块时）获取一个已存在的表，可以使用 `ChiselDB.getTable` API
 
 ``` scala
-def getTable(tableName: String): Option[Table[_]]
+// API: def getTable(tableName: String): Option[Table[_]]
+
+import utility.ChiselDB
+
+val table = ChiselDB.getTable("MyTableName").get.asInstanceOf[Table[MyBundle]]
+
+// For multicore to share the same table
+val table = if (p(XSCoreParamsKey).HartId == 0) {
+  ChiselDB.createTable("MyTableName", new MyBundle, true)
+} else ChiselDB.getTable("MyTableName").get.asInstanceOf[Table[MyBundle]]
+
 ```
 
 ### Dump数据

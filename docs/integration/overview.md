@@ -98,6 +98,8 @@ There are three commands available.
 
 ## Hardware Performance Monitor (HPM)
 
+### Architecture
+
 Using distributed HPM (hardware performance monitor).
 There is an independent HPM in each block, and the HPM can also contain mirrored values of some other CSRs (the mirrored registers can only be modified by instructions).
 Each HPM contains multiple performance counter registers for counting internal events.
@@ -149,7 +151,15 @@ The optype encoding table is as follows:
 | pmcounter31-3 | 0xC03-0xC1F | 64 | Mirror for Mhpmcounter31-3. |
 
 
-**For the implemented performance counters, please see the Chisel elaboration logs when generating the verilog.**
+### Linux Support
+
+We have provided an example implementation with [riscv-pk](https://github.com/OpenXiangShan/riscv-pk/commit/a337108f76c6c122d62139c33edc53569e380f2f) and [riscv-linux](https://github.com/OpenXiangShan/riscv-linux/commit/4dbf16e3bde5ee45022de88c3f25b8518aa8344d). If you have any issues regarding the SBI and Linux syscall implementations, please refer to the source code.
+
+We have also provided [an example of the user program](https://github.com/OpenXiangShan/XiangShan-doc/tree/main/docs/integration/examples-hpm) to configure and read the performance counters.
+
+### List of the Performance Counters
+
+**For the update-to-date implemented performance counters, please see the Chisel elaboration logs when generating the verilog.**
 
 **The table below presents an example of events.** Please note that hardware performance monitors are highly configurable, so the information provided may **NOT** perfectly align with real-world cases. If you require additional counters, we recommend directly modifying the Chisel code.
 

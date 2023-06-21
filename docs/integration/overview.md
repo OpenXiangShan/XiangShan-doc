@@ -156,6 +156,7 @@ The optype encoding table is as follows:
 We have provided an example implementation with [riscv-pk](https://github.com/OpenXiangShan/riscv-pk/commit/a337108f76c6c122d62139c33edc53569e380f2f) and [riscv-linux](https://github.com/OpenXiangShan/riscv-linux/commit/4dbf16e3bde5ee45022de88c3f25b8518aa8344d). If you have any issues regarding the SBI and Linux syscall implementations, please refer to the source code.
 
 We have also provided [an example of the user program](https://github.com/OpenXiangShan/XiangShan-doc/tree/main/docs/integration/examples-hpm) to configure and read the performance counters.
+`hpmdriver.h` includes macro definition, configuring, reading or clearing methods of performance counters, and wraps syscall; `set_hpm.c` and `read_hpm.c` are for configuring and reading HPM, respectively.
 
 ### List of the Performance Counters
 

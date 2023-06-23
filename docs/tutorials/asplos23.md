@@ -17,7 +17,7 @@ Target audience: Researchers on micro-architecture, high performance processor d
 | 9:25-9:35 | Tutorial Overview and Highlights | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20230325-ASPLOS23-2-Tutorial-Overview.pdf) |
 | 9:35-10:20 | Microarchitecture Design and Implementation | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20230325-ASPLOS23-3-Microarchitecture.pdf) |
 | | Coffee Break | |
-| 10:40-12:00 | Hands-on Development | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/tutorial/20230325-ASPLOS23-4-Dev-Tools.pdf) |
+| 10:40-12:00 | Hands-on Development | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20230325-ASPLOS23-4-Dev-Tools.pdf) |
 
 ## To be covered
 

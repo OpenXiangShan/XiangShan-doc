@@ -9,13 +9,13 @@ It covers some representative tools we have developed and used to accelerate the
 This paper is awarded all three available badges for artifacts evaluation.
 
 This paper has been selected as an IEEE Micro Top Pick from the 2022 Computer Architecture Conferences.
-The updated article will be published at IEEE Micro's annual special issue in July/August 2023.
+The updated article is published at *IEEE Micro*'s annual special issue in July/August 2023. DOI: [10.1109/MM.2023.3273562](https://doi.org/10.1109/MM.2023.3273562).
 
 ![Artifacts Available](./images/artifacts_available_dl.jpg)
 ![Artifacts Evaluated — Functional](./images/artifacts_evaluated_functional_dl.jpg)
 ![Results Reproduced](./images/results_reproduced_dl.jpg)
 
-[Paper PDF](micro2022-xiangshan.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/abstract/document/9923860) | [BibTeX](micro2022-xiangshan.bib) | [Presentation Slides](micro2022-xiangshan-slides.pdf) | [Presentation Video](https://www.bilibili.com/video/BV1FB4y1j7Jy)
+[Paper PDF](micro2022-xiangshan.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/abstract/document/9923860) | [BibTeX](micro2022-xiangshan.bib) | [Presentation Slides](micro2022-xiangshan-slides.pdf) | [Presentation Video](https://www.bilibili.com/video/BV1FB4y1j7Jy) | [IEEE Micro Top Pick](https://ieeexplore.ieee.org/document/10122479)
 
 ## XiangShan Open-Source High Performance RISC-V Processor Design and Implementation
 

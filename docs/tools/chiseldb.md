@@ -98,14 +98,17 @@ sqlite3 $NOOP_HOME/build/2021-10-31@22:54:30.db "SELECT * FROM TL_LOG WHERE NAME
 
 * 创建表可以通过 `ChiselDB.createTable` API 完成
 
+``` scala
+// API: def createTable[T <: Record](tableName: String, hw: T, basicDB: Boolean = false): Table[T]
+```
+
 ChiselDB 不允许表重名。当一个模块被例化多次，其中会多次调用 `createTable`，第二次开始的 `createTable` 调用不会创建新表，而是会默认返回之前已经创建好的表，需要注意多次调用时的类型应是完全一致的。
 
-新添加的表默认属于 basicDB，且默认是关闭的，如指定为非 basicDB 则会默认打开。或者在 `Parameters.scala` 的 `DebugOptions.EnableChiselDB` 中默认打开所有DB，但此时会存储大量的数据，谨慎使用。
+如果指定为 basicDB，则会始终将 DB 打开。否则的话是默认关闭的。
+可以在 `Parameters.scala` 的 `DebugOptions.EnableChiselDB` 中设置为默认打开所有 DB，但此时会存储大量的数据，谨慎使用。
 
 此外，ChiselDB 会在表中默认添加以下字段，需要确保传入的类型 `T` 不包含这些元素命名：`ID`, `STAMP`, `SITE`
 ``` scala
-// API: def createTable[T <: Record](tableName: String, hw: T, basicDB: Boolean = false): Table[T]
-
 import utility.ChiselDB
 
 class MyBundle extends Bundle {

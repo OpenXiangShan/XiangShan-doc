@@ -4,7 +4,9 @@
 
 ## Recent Updates
 
-**我们在APSLOS23会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at ASPLOS'23. Learn more on [the ASPLOS'23 Tutorial Page](https://xiangshan-doc.readthedocs.io/zh_CN/latest/tutorials/asplos23/).**
+**我们将继续在MICRO'23会议期间同地举办香山项目的上手教程. Look forward to seeing you at MICRO'23 at Tonronto, Canada. Learn more on [the MICRO'23 Tutorial Page](https://xiangshan-doc.readthedocs.io/zh_CN/latest/tutorials/micro23/).**
+
+我们在APSLOS'23会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at ASPLOS'23. Learn more on [the ASPLOS'23 Tutorial Page](https://xiangshan-doc.readthedocs.io/zh_CN/latest/tutorials/asplos23/).
 
 **For publications by the XiangShan team, check out [the Publications Page](https://xiangshan-doc.readthedocs.io/zh_CN/latest/tutorials/publications/).**
 

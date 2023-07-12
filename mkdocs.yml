@@ -37,6 +37,7 @@ nav:
     - Tutorials:
         - Publications: tutorials/publications.md
         - ASPLOS'23: tutorials/asplos23.md
+        - ASPLOS'23: tutorials/micro23.md
     - 处理器核介绍:
         - 总体架构: arch.md
         - 前端:

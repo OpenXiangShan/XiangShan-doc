@@ -34,6 +34,7 @@ nav:
         - DFT: integration/dft.md
         - Synthesis: integration/synthesis.md
         - JTAG and Debug: integration/debug.md
+        - FPGA Prototype: integration/fpga.md
     - Tutorials:
         - Publications: tutorials/publications.md
         - ASPLOS'23: tutorials/asplos23.md

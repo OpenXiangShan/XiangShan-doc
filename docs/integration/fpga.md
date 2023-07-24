@@ -26,11 +26,11 @@ make verilog NUM_CORES=2 # Dual-Core XiangShan
 
 修改 `array_16_ext.v`:
 
-![1689230586671.png](https://cdn.nlark.com/yuque/0/2023/png/29563190/1689230591893-a5a997f9-1fa0-44cf-b3fd-d688d1994840.png#averageHue=%23f9f8f8&clientId=u4070102a-7385-4&from=paste&height=397&id=u006f9c0d&originHeight=397&originWidth=914&originalType=binary&ratio=1&rotation=0&showTitle=false&size=108922&status=done&style=none&taskId=u7feec545-6f9c-44a9-98e0-213f61577ff&title=&width=914)
+![array_16_ext.png](../figs/fpga_images/array_16_ext.png)
 
 修改 `array_22_ext.v`:
 
-![1689230634444.png](https://cdn.nlark.com/yuque/0/2023/png/29563190/1689230638950-0475ae98-c904-4700-a64b-0a4cfd80d9d4.png#averageHue=%23f9f8f8&clientId=u4070102a-7385-4&from=paste&height=378&id=u6a6fac50&originHeight=378&originWidth=846&originalType=binary&ratio=1&rotation=0&showTitle=false&size=101970&status=done&style=none&taskId=u2ddebf88-bef2-4d3a-aa84-bd4ace7532b&title=&width=846)
+![array_22_ext.png](../figs/fpga_images/array_22_ext.png)
 
 
 ### 拷贝 Vivado 相关脚本，生成 Vivado 项目，编译二进制流
@@ -54,11 +54,10 @@ make bitstream CORE_DIR=$NOOP_HOME/build
 
 实例内存镜像txt：[data.txt](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/docs/integration/resources/data.zip) （下载zip文件，然后解压成txt）
 
--tclargs之后的第一个路径“/nfs/home/nanhu/”为存放Vivado所生成的bit及ltx文件的位置
+-tclargs之后的第一个路径<vivado_build_folder>为存放Vivado所生成的bit及ltx文件的位置
 
 ```sh
-source /nfs/home/tools/Xilinx/Vivado/2020.2/settings64.sh
-vivado -mode batch -source ./onboard-ai1-119.tcl -tclargs /nfs/home/nanhu/ /nfs/home/nanhu/data.txt
+vivado -mode batch -source ./onboard-ai1-119.tcl -tclargs <vivado_build_folder> ./data.txt
 ```
 
 连接串口，115200, N, 8, 1
@@ -69,7 +68,7 @@ vivado -mode batch -source ./onboard-ai1-119.tcl -tclargs /nfs/home/nanhu/ /nfs/
 
 系统完成加载后，能够看到如下的信息。可以 `cat /proc/cpuinfo` 得到当前的 CPU 信息：
 
-![1689325764412.png](https://cdn.nlark.com/yuque/0/2023/png/29563190/1689325782783-f5826674-d8dd-492d-ac74-b54038a0f696.png#averageHue=%23292e29&clientId=u841226fc-04b9-4&from=paste&height=703&id=ue19f796d&originHeight=703&originWidth=991&originalType=binary&ratio=1&rotation=0&showTitle=false&size=329814&status=done&style=none&taskId=u62ede6f2-cd4a-464e-8714-079f181cd48&title=&width=991)
+![cpuinfo.png](../figs/fpga_images/cpuinfo.png)
 
 ## FPGA 最小系统原理
 
@@ -77,9 +76,9 @@ vivado -mode batch -source ./onboard-ai1-119.tcl -tclargs /nfs/home/nanhu/ /nfs/
 
 香山CPU核心的对外接口，主要包括 MEM AXI、DMA AXI 及 CFG AXI 三部分。分别用于对接 DDR 控制器、DMA 数据通路及 IO 操作。
 
-![fpga_minimal.png](https://cdn.nlark.com/yuque/0/2023/png/29563190/1689573041290-7d19288c-ae31-4fc9-815f-95dec588f34c.png#averageHue=%23e3e6c6&clientId=u9b45d64d-6e3e-4&from=drop&height=747&id=jYhDG&originHeight=609&originWidth=301&originalType=binary&ratio=1&rotation=0&showTitle=false&size=31891&status=done&style=none&taskId=u8f473fc6-4896-4d54-b6cc-ef86e5e0a7a&title=&width=369)
+![fpga_minimal.png](../figs/fpga_images/fpga_minimal.png)
 
-![E26F3AB4-3C8D-40ff-BBA3-EBA3ED3D5B67.png](https://cdn.nlark.com/yuque/0/2023/png/29563190/1689572520611-d1b48ad7-223a-4c28-a758-10b5803c85c2.png#clientId=u9b45d64d-6e3e-4&from=paste&height=3065&id=UhfFv&originHeight=3065&originWidth=486&originalType=binary&ratio=1&rotation=0&showTitle=false&size=733726&status=done&style=none&taskId=u5fc02a57-3a18-419e-813c-e9cb78852bf&title=&width=486)
+![nanhu_interface.png](../figs/fpga_images/nanhu_interface.png)
 
 我们在搭建最小系统时，由于没有大数据吞吐的操作，因此主要使用了其中的 MEM AXI 及 CFG AXI 两个接口。
 
@@ -148,17 +147,17 @@ vivado -mode batch -source ./onboard-ai1-119.tcl -tclargs /nfs/home/nanhu/ /nfs/
 #endif //_XS_MEMMAP_H_
 ```
 
-![1689573341956.png](https://cdn.nlark.com/yuque/0/2023/png/29563190/1689573347483-72b99050-039c-430f-897c-59ae05af42b3.png#averageHue=%23e9caad&clientId=u9b45d64d-6e3e-4&from=paste&height=720&id=Lth0d&originHeight=720&originWidth=1334&originalType=binary&ratio=1&rotation=0&showTitle=false&size=180870&status=done&style=none&taskId=u99494aef-7f84-4cc9-a270-11a2d2257f1&title=&width=1334)
+![cfg_axi.png](../figs/fpga_images/cfg_axi.png)
 
 ### XiangShan MEM AXI 接口设计
 
 MEM AXI 的接口比较简单，主要是将 XiangShan 连接到 DDR 控制器上。在 FPGA 上会增加一个 JTAG to AXI 的 IP，来实现将 Linux 的镜像文件加载到 DDR 地址的操作。
 
-![1689573958284.png](https://cdn.nlark.com/yuque/0/2023/png/29563190/1689573964840-3d289996-ecc4-48f9-8dc6-7cf88811da0a.png#averageHue=%23fefdfd&clientId=u9b45d64d-6e3e-4&from=paste&height=1135&id=u32648272&originHeight=1135&originWidth=1854&originalType=binary&ratio=1&rotation=0&showTitle=false&size=310019&status=done&style=none&taskId=u1aa93f80-e6a9-402e-baad-ac7e2f97409&title=&width=1854)
+![ddr_block.png](../figs/fpga_images/ddr_block.png)
 
 ### 从下载脚本，看启动过程
 
-1. 获取 bit 文件路径
+(1) 获取 bit 文件路径
 
 ```tcl
 # param
@@ -175,7 +174,7 @@ puts "ltx_path:"
 puts $ltx_path
 ```
 
-2. 打开对应服务器的 hw_server，烧写 FPGA
+(2) 打开对应服务器的 hw_server，烧写 FPGA
 
 ```tcl
 open_hw_manager
@@ -193,11 +192,11 @@ program_hw_devices [get_hw_devices xcvu19p_0]
 
 第 4、5 行为对应 JTAG 下载电缆的属性参数。可以通过 Vivado，打开 hw_manager 进行确认。
 
-![1674010346812.png](https://cdn.nlark.com/yuque/0/2023/png/29563190/1674010358287-8de5abfe-f70a-40e4-85b0-ae3f3ff49931.png#averageHue=%23f6f4f4&clientId=ua5b725e0-1516-4&from=paste&height=859&id=uee786300&originHeight=1288&originWidth=1827&originalType=binary&ratio=1&rotation=0&showTitle=false&size=519177&status=done&style=none&taskId=uca59f756-00ec-4b67-b767-6feae3d5acb&title=&width=1218)
+![jtag_info.png](../figs/fpga_images/jtag_info.png)
 
 脚本中的内容需要和图中的 3、4 项一致。其中 `PARAM.FREQUENCY` 可以通过 4 的下拉菜单选取一个支持的速率填入。
 
-3. 复位系统及DDR
+(3) 复位系统及DDR
 
 ```tcl
 refresh_hw_device [lindex [get_hw_devices xcvu19p_0] 0]
@@ -232,7 +231,7 @@ after 500
 
 对 DDR 进行复位，DDR 状态清零，重新进行初始化。vio_sw4 先置 0，500ms 后再置 1。
 
-4. 下载 txt 镜像到 DDR
+(4) 下载 txt 镜像到 DDR
 
 ```tcl
 puts "workload path:"
@@ -264,7 +263,7 @@ puts "After Error"
 
 第 18~21 行，写 DDR 到最后会出错，捕捉错误，让脚本继续执行
 
-5. 复位 CPU
+(5) 复位 CPU
 
 ```tcl
 startgroup

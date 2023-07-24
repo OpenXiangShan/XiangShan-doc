@@ -6,11 +6,11 @@
 
 ### 编译香山南湖RTL
 
-1. 主分支（昆明湖架构）在持续开发中，南湖架构的流片版本设计在 nanhu 分支，其适配 FPGA 环境的分支在 [nanhu-clockdiv2](https://github.com/OpenXiangShan/XiangShan/tree/nanhu-clockdiv2)
+(1) 主分支（昆明湖架构）在持续开发中，南湖架构的流片版本设计在 nanhu 分支，其适配 FPGA 环境的分支在 [nanhu-clockdiv2](https://github.com/OpenXiangShan/XiangShan/tree/nanhu-clockdiv2)
 
 注意：因为 FPGA 代码和仿真代码不是同一套，如果使用同一个 XiangShan 仓库，需要 `rm -rf build` 删除已有输出文件
 
-2. 从GitHub上拉取仓库
+(2) 从GitHub上拉取仓库
 
 ```sh
 git clone https://github.com/OpenXiangShan/XiangShan
@@ -22,7 +22,7 @@ make clean
 make verilog NUM_CORES=2 # Dual-Core XiangShan
 ```
 
-3. 对生成好后的代码进行些修改，让 Vivado 在例化时调用 ultra ram 的资源
+(3) 对生成好后的代码进行些修改，让 Vivado 在例化时调用 ultra ram 的资源
 
 修改 `array_16_ext.v`:
 
@@ -188,7 +188,7 @@ set_property PROGRAM.FILE $bit_path [get_hw_devices xcvu19p_0]
 program_hw_devices [get_hw_devices xcvu19p_0]
 ```
 
-其中第 2 行，`localhost:3121` 表示需要在服务器本地运行。如果需要远程的 hw_server，需要在服务器上开启 hw_server 的服务。再将 localhost 可以更改为对应服务器的 IP 地址，就能够在研究院内网的任意一台计算机上执行该烧写的脚本。
+其中第 2 行，`localhost:3121` 表示需要在服务器本地运行。如果需要远程的 hw_server，需要在服务器上开启 hw_server 的服务。再将 localhost 可以更改为对应服务器的 IP 地址，就能够在内网的任意一台计算机上执行该烧写的脚本。
 
 第 4、5 行为对应 JTAG 下载电缆的属性参数。可以通过 Vivado，打开 hw_manager 进行确认。
 

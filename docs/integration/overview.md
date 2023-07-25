@@ -53,6 +53,23 @@ Below is the typical NANHU core configurations:
 | zksh | Cryptography Extensions - SM3 Hash Function Instructions |
 | svinval | Fine-Grained Address-Translation Cache Invalidation |
 
+## Instruction Latency
+
+Most arithmetic instructions are single-cycle (`Latency = 1`).
+Multi-cycle instructions are listed as follows.
+
+
+| Instruction(s) / Operations | Latency | Descriptions |
+| -------------- | ------- | ------------ |
+| `LD` | 4 (to ALU and LD), 5 (others) | Load operations (to use) |
+| `MUL` | 2 | Integer multiplier |
+| `DIV` | 4~20 | Integer divider (SRT16) |
+| `FMA` | 5 | Floating-point multiply-add instruction (cascade FMA) |
+| `FADD`, `FMUL` | 3 | Floating-point add/multiply operations |
+| `FDIV/SQRT` | 3~18 | Floating-point div/sqrt operations |
+| `CLZ(W)`, `CTZ(W)`, `CPOP(W)`, `XPERM(8/4)`, `CLMUL(H/R)` | 2 | Complex bit manipulation |
+| `AES64*`, `SHA256*`, `SHA512*`, `SM3*`, `SM4*` | 2 | Complex scalar crypto operations |
+
 ## Priviledge Mode
 
 NANHU supports three levels of privilege mode: machine (M), supervisor (S), and user (U).

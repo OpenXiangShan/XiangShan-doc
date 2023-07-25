@@ -54,7 +54,7 @@ make bitstream CORE_DIR=$NOOP_HOME/build
 
 实例内存镜像txt：[data.txt](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/docs/integration/resources/data.zip) （下载zip文件，然后解压成txt）
 
--tclargs之后的第一个路径<vivado_build_folder>为存放Vivado所生成的bit及ltx文件的位置
+`-tclargs` 之后的第一个路径 `<vivado_build_folder>` 为存放 Vivado 所生成的 bit 及 ltx 文件的位置
 
 ```sh
 vivado -mode batch -source ./onboard-ai1-119.tcl -tclargs <vivado_build_folder> ./data.txt

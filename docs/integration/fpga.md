@@ -96,8 +96,6 @@ vivado -mode batch -source ./onboard-ai1-119.tcl -tclargs <vivado_build_folder> 
 
 #define  QSPI_FLASH_BASE 0x10000000
 
-#define        GPU_BASE  0x30000000
-
 #define         DMA_BASE 0x30040000
 #define       SDMMC_BASE 0x30050000
 #define         USB_BASE 0x30060000

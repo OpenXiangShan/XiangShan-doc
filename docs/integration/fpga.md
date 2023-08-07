@@ -22,15 +22,11 @@ make clean
 make verilog NUM_CORES=2 # Dual-Core XiangShan
 ```
 
-(3) 对生成好后的代码进行些修改，让 Vivado 在例化时调用 ultra ram 的资源
+(3) 对生成好后的代码进行些修改，让 Vivado 在例化时调用 ultra ram 的资源。例如：将array_开头的文件中，声明位宽64bit的深度大于1024的ram，强制vivado使用ultra ram来例化，减少bram的使用
 
 修改 `array_16_ext.v`:
 
 ![array_16_ext.png](../figs/fpga_images/array_16_ext.png)
-
-修改 `array_22_ext.v`:
-
-![array_22_ext.png](../figs/fpga_images/array_22_ext.png)
 
 
 ### 拷贝 Vivado 相关脚本，生成 Vivado 项目，编译二进制流

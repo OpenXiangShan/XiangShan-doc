@@ -1,17 +1,13 @@
 # CPU Core Overview <br> CPU核心总览
 
-XiangShan-2 (NANHU) support single-core and dual-core configurations, where each core has its own private L1/L2 cache. L3 is shared by multiple cores.
-第二代香山（南湖）支持单核和双核配置，每个核心都有自己的私有L1/L2高速缓存。L3缓存由多个核心共享。
+XiangShan-2 (NANHU) support single-core and dual-core configurations, where each core has its own private L1/L2 cache. L3 is shared by multiple cores.<br>第二代香山（南湖）支持单核和双核配置，每个核心都有自己的私有L1/L2高速缓存。L3缓存由多个核心共享。
 
-NANHU communicates with the uncore through 3 AXI interfaces, including the memory port, the DMA port and the peripheral port. It also has clock, reset, and JTAG interfaces. Please refer to the integration guide for more detailed information.
-南湖通过3个AXI接口与非核心部分通信，包括内存端口、DMA端口和外设端口。它还具有时钟、复位和JTAG接口。更多详细信息请参阅集成指南。
+NANHU communicates with the uncore through 3 AXI interfaces, including the memory port, the DMA port and the peripheral port. It also has clock, reset, and JTAG interfaces. Please refer to the integration guide for more detailed information.<br>南湖通过3个AXI接口与非核心部分通信，包括内存端口、DMA端口和外设端口。它还具有时钟、复位和JTAG接口。更多详细信息请参阅集成指南。
 
-NANHU targets 2GHz@14nm, and 2.4GHz~2.8GHz@7nm.
-南湖的目标是在14nm工艺下频率达到2GHz，在7nm工艺下频率达到2.4GHz到2.8GHz。
+NANHU targets 2GHz@14nm, and 2.4GHz~2.8GHz@7nm.<br>南湖的目标是在14nm工艺下频率达到2GHz，在7nm工艺下频率达到2.4GHz到2.8GHz。
 
 ## Typical Configurations &nbsp; 典型配置
-Below is the typical NANHU core configurations:
-以下是南湖核心的典型配置：
+Below is the typical NANHU core configurations:<br>以下是南湖核心的典型配置：
 
 | Feature | NANHU (XiangShan-2) |
 | ------- | ------------------- |
@@ -59,9 +55,7 @@ Below is the typical NANHU core configurations:
 ## Instruction Latency &nbsp; 指令延迟
 
 Most arithmetic instructions are single-cycle (`Latency = 1`).
-Multi-cycle instructions are listed as follows.
-绝大部分算术指令都是单周期指令（`延迟为1`）。
-多周期指令在下表中列出：
+Multi-cycle instructions are listed as follows.<br>绝大部分算术指令都是单周期指令（`延迟为1`）。多周期指令在下表中列出：
 
 | Instruction(s) / Operations | Latency | Descriptions |
 | -------------- | ------- | ------------ |
@@ -76,21 +70,17 @@ Multi-cycle instructions are listed as follows.
 
 ## Priviledge Mode &nbsp; 特权等级
 
-NANHU supports three levels of privilege mode: machine (M), supervisor (S), and user (U).
-南湖支持三级特权模式：machine(M), supervisor(S), 和user(U)。
+NANHU supports three levels of privilege mode: machine (M), supervisor (S), and user (U).<br>南湖支持三级特权模式：machine(M), supervisor(S), 和user(U)。
 
 ## Microarchitecture &nbsp; 微架构
 
-Please refer to Section CPU Core for more details.
-更多细节请参阅CPU Core章节
+Please refer to Section CPU Core for more details.<br>更多细节请参阅CPU Core章节
 
 ## Cache Controller &nbsp; 高速缓存控制器
 
-There is a cache controller connected to L3 Cache, which used to perform Cache Maintenance Operation (CMO). Programmers ought to use MMIO based memory access to trigger operation required.
-南湖的缓存控制器与L3高速缓存相连，用于执行缓存维护操作（CMO）。编程人员应使用基于 MMIO 的内存访问来触发所需的操作。
+There is a cache controller connected to L3 Cache, which used to perform Cache Maintenance Operation (CMO). Programmers ought to use MMIO based memory access to trigger operation required.<br>南湖的缓存控制器与L3高速缓存相连，用于执行缓存维护操作（CMO）。编程人员应使用基于 MMIO 的内存访问来触发所需的操作。
 
-The following is a register table of the L3 cache controller.
-下面是 L3 缓存控制器的寄存器列表。
+The following is a register table of the L3 cache controller.<br>下面是 L3 缓存控制器的寄存器列表。
 
 | Address | Width | Attr. | Description |
 | ------- | ----- | ----- | ----------- |
@@ -101,8 +91,7 @@ The following is a register table of the L3 cache controller.
 | 0x3900_0180 | 8B | RO | `Flag` register indicates ready for receiving next command <br> 指示可以接收下一命令的`标志寄存器` <br> Value 1 indicates ready, 0 indicates not ready <br> 值为1表示就绪，值为0表示未就绪 |
 | 0x3900_0200 | 8B | WO | `Command` register for cache operation<br>用于缓存操作的`指令寄存器`<br>Supported commands are:<br>支持的指令有：<br>Command Number 16 (`CMD_CMO_INV`)<br>Command Number 17 (`CMD_CMO_CLEAN`)<br>Command Number 18 (`CMD_CMO_FLUSH`) <br> |
 
-A standard Cache operation follows the following process:
-标准的缓存操作过程如下：
+A standard Cache operation follows the following process:<br>标准的缓存操作过程如下：
 
 1. Inquire the `Flag` register, which indicates ready for receiving requests when valid <br> 查询`标志寄存器`，该寄存器有效时表示已准备好接收请求
 
@@ -112,11 +101,9 @@ A standard Cache operation follows the following process:
 
 4. Write command number to `Command` register <br> 将指令编号写入`指令寄存器`
 
-Afterwards, the command is desired to be done.
-此后，指令执行完毕
+Afterwards, the command is desired to be done.<br>此后，指令执行完毕
 
-There are three commands available.
-缓存控制器有三个可用的操作：
+There are three commands available.<br>缓存控制器有三个可用的操作：
 
 1. Command Number 16 (`CMD_CMO_INV`): Invalidate the cache block from cache hierarchy (Note that this operation may break cache coherence).<br>使缓存块从缓存层次结构中失效（注意，此操作可能会破坏缓存一致性）。
 
@@ -132,8 +119,7 @@ Using distributed HPM (hardware performance monitor).
 There is an independent HPM in each block, and the HPM can also contain mirrored values of some other CSRs (the mirrored registers can only be modified by instructions).
 Each HPM contains multiple performance counter registers for counting internal events.
 For the number of performance counters, refer to the number of performance events to be counted simultaneously for different blocks.
-Each performance counter contains the following registers:
-南湖使用分布式 HPM（硬件性能监视器）。
+Each performance counter contains the following registers:<br>南湖使用分布式 HPM（硬件性能监视器）。
 每个区块都有一个独立的HPM，HPM还可以包含一些其他CSR的镜像值（镜像寄存器只能通过指令修改）。
 每个 HPM包含多个性能计数寄存器，用于统计内部事件。
 性能计数器的数量请参考不同区块需要同时统计的性能事件数量。
@@ -160,8 +146,7 @@ Mode represents that the corresponding performance counter is to be counted in a
 
 Event indicates the performance event code to be counted, with a total of four event fields. Where event equals 0 means no event, event equals all 1, means cycle. The Event coding table needs to be supplemented later. When an illegal value is written, the write operation is ignored.
 Events are classified by block. Between two consecutive blocks, there can be overlapping parts. The overlap is used for performance counter statistics between blocks.
-The optype encoding table is as follows:
-Event表示被统计性能事件的编码，一共有四个event域。其中一个event为0表示无事件，为全1表示循环。事件编码表需要日后补充。当写入非法值时，写入操作将被忽略。
+The optype encoding table is as follows:<br>Event表示被统计性能事件的编码，一共有四个event域。其中一个event为0表示无事件，为全1表示循环。事件编码表需要日后补充。当写入非法值时，写入操作将被忽略。
 事件按块分类.两个连续的块之间可能存在重叠部分，该部分用于块间的性能计数器统计。
 操作类型编码表如下：
 
@@ -189,22 +174,18 @@ Event表示被统计性能事件的编码，一共有四个event域。其中一�
 
 ### Linux Support &nbsp; Linux支持
 
-We have provided an example implementation with [riscv-pk](https://github.com/OpenXiangShan/riscv-pk/commit/a337108f76c6c122d62139c33edc53569e380f2f) and [riscv-linux](https://github.com/OpenXiangShan/riscv-linux/commit/4dbf16e3bde5ee45022de88c3f25b8518aa8344d). If you have any issues regarding the SBI and Linux syscall implementations, please refer to the source code.
-我们提供了一个使用[riscv-pk](https://github.com/OpenXiangShan/riscv-pk/commit/a337108f76c6c122d62139c33edc53569e380f2f)和[riscv-linux](https://github.com/OpenXiangShan/riscv-linux/commit/4dbf16e3bde5ee45022de88c3f25b8518aa8344d)实现的示例。如果您对SBI和Linux系统调用的实现有任何疑问，请参阅源代码。
+We have provided an example implementation with [riscv-pk](https://github.com/OpenXiangShan/riscv-pk/commit/a337108f76c6c122d62139c33edc53569e380f2f) and [riscv-linux](https://github.com/OpenXiangShan/riscv-linux/commit/4dbf16e3bde5ee45022de88c3f25b8518aa8344d). If you have any issues regarding the SBI and Linux syscall implementations, please refer to the source code.<br>我们提供了一个使用[riscv-pk](https://github.com/OpenXiangShan/riscv-pk/commit/a337108f76c6c122d62139c33edc53569e380f2f)和[riscv-linux](https://github.com/OpenXiangShan/riscv-linux/commit/4dbf16e3bde5ee45022de88c3f25b8518aa8344d)实现的示例。如果您对SBI和Linux系统调用的实现有任何疑问，请参阅源代码。
 
 We have also provided [an example of the user program](https://github.com/OpenXiangShan/XiangShan-doc/tree/main/docs/integration/examples-hpm) to configure and read the performance counters.
-`hpmdriver.h` includes macro definition, configuring, reading or clearing methods of performance counters, and wraps syscall; `set_hpm.c` and `read_hpm.c` are for configuring and reading HPM, respectively.
-我们同样提供了一个配置和读取性能计数器的[用户程序示例](https://github.com/OpenXiangShan/XiangShan-doc/tree/main/docs/integration/examples-hpm)。`hpmdriver.h` 包括宏定义、配置、读取或清除性能计数器的方法以及封装系统调用；`set_hpm.c` 和 `read_hpm.c` 分别用于配置和读取 HPM。
+`hpmdriver.h` includes macro definition, configuring, reading or clearing methods of performance counters, and wraps syscall; `set_hpm.c` and `read_hpm.c` are for configuring and reading HPM, respectively.<br>我们同样提供了一个配置和读取性能计数器的[用户程序示例](https://github.com/OpenXiangShan/XiangShan-doc/tree/main/docs/integration/examples-hpm)。`hpmdriver.h` 包括宏定义、配置、读取或清除性能计数器的方法以及封装系统调用；`set_hpm.c` 和 `read_hpm.c` 分别用于配置和读取 HPM。
 
 ### List of the Performance Counters &nbsp; 性能计数器列表
 
 **For the update-to-date implemented performance counters, please see the Chisel elaboration logs when generating the verilog.**<br>**有关最新实现的性能计数器，请参阅生成verilog时Chisel的详细说明日志。**
 
-**The table below presents an example of events.** Please note that hardware performance monitors are highly configurable, so the information provided may **NOT** perfectly align with real-world cases. If you require additional counters, we recommend directly modifying the Chisel code.
-**下表列出了一个事件示例。** 请注意，硬件性能监视器是高度可配置的，因此提供的信息可能与实际情况**不完全一致**。如果需要额外的计数器，我们建议直接修改 Chisel 代码。
+**The table below presents an example of events.** Please note that hardware performance monitors are highly configurable, so the information provided may **NOT** perfectly align with real-world cases. If you require additional counters, we recommend directly modifying the Chisel code.<br>**下表列出了一个事件示例。** 请注意，硬件性能监视器是高度可配置的，因此提供的信息可能与实际情况**不完全一致**。如果需要额外的计数器，我们建议直接修改 Chisel 代码。
 
-Please refer to the source code for the detailed update conditions of these counters. We want to emphasize that we cannot guarantee the accuracy of the existing performance counters. It is important to understand that utilizing these counters is done at your own risk, and we advise taking necessary precautions.
-有关这些计数器的详细更新条件，请参阅源代码。我们想强调的是，我们无法保证现有性能计数器的准确性。请务必理解，使用这些计数器的风险由您自行承担，我们建议您采取必要的预防措施。
+Please refer to the source code for the detailed update conditions of these counters. We want to emphasize that we cannot guarantee the accuracy of the existing performance counters. It is important to understand that utilizing these counters is done at your own risk, and we advise taking necessary precautions.<br>有关这些计数器的详细更新条件，请参阅源代码。我们想强调的是，我们无法保证现有性能计数器的准确性。请务必理解，使用这些计数器的风险由您自行承担，我们建议您采取必要的预防措施。
 
 ***Table.4 Example of the Performance Event Table<br>表4.性能事件表示例***
 

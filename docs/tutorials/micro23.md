@@ -1,6 +1,8 @@
 # Tutorials at MICRO'23
 
-We are going to host half-day tutorials on XiangShan and MinJie during MICRO'23 at Toronto, Canada at the end of this October.
+We are going to host half-day tutorials on XiangShan and MinJie during MICRO'23 in Toronto, Canada, at the Westin Harbour Castle, on Saturday, October 28, 2023.
+
+We will upload all slides after the tutorials. However, for in-person attendees, it is required to register the MICRO'23 conference. For attendees who have not registered MICRO'23, please refer to the [Attend](https://microarch.org/micro56/attend/) page for more registration information.
 
 ## XiangShan: An Open Source High Performance RISC-V Processor and Infrastructure for Architecture Research
 
@@ -13,6 +15,8 @@ The major goal of the tutorial is to demonstrate how the XiangShan project can m
 Target audience includes researchers on architecture design, agile development, etc.
 
 ## Agenda
+
+Schedule: 2:00 PM EDT – 5:00 PM EDT
 
 TBD
 

@@ -2,7 +2,7 @@
 
 ## RISC-V World Conference 2021 (2021 RISC-V 中国峰会)
 
-所有的报告均是中文的。All talks are in Chinese.
+RVWC'21 was held in Shanghai. All talks are in Chinese. 所有的报告均是中文的。
 
 - 香山开源高性能RISC-V处理器 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20210622-RVWC-%E9%A6%99%E5%B1%B1%E5%BC%80%E6%BA%90%E9%AB%98%E6%80%A7%E8%83%BDRISC-V%E5%A4%84%E7%90%86%E5%99%A8.pdf), [Video](https://www.bilibili.com/video/BV19X4y1w7EB)
 
@@ -85,6 +85,12 @@ Dr. Bao gave a talk in English at the RISC-V Summit 2021.
 - TL-Test 香山处理器缓存一致性验证框架 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20220826-RVSC-TL_Test%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E9%AA%8C%E8%AF%81%E6%A1%86%E6%9E%B6.pdf)
 
 - 香山分支预测器内外快速性能评估工具 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20220826-RVSC-%E9%A6%99%E5%B1%B1%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E5%99%A8%E5%86%85%E5%A4%96%E5%BF%AB%E9%80%9F%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0%E5%B7%A5%E5%85%B7.pdf)
+
+## RISC-V Summit Europe 2023
+
+Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
+
+- RISC-V in China: Embracing the Era of Open-Source Chip [Video](https://www.youtube.com/watch?v=d0UVSAd6NC8)
 
 ## More Talks 更多的报告
 

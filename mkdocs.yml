@@ -40,6 +40,7 @@ nav:
         - Talks: tutorials/talks.md
         - ASPLOS'23: tutorials/asplos23.md
         - MICRO'23: tutorials/micro23.md
+        - 2023 RISC-V 中国峰会: tutorials/rvsc23.md
     - 处理器核介绍:
         - 总体架构: arch.md
         - 前端:

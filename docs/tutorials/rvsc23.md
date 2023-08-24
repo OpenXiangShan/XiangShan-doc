@@ -10,6 +10,6 @@
 
 在此次 Tutorial 中，我们将介绍香山的整体架构，现场展示日常开发过程中香山的编译、仿真流程，分享多种敏捷开发工具如何帮助我们加速硬件开发、功能验证和性能评估。
 
-* [演示文稿](#)
+* [演示文稿](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/tutorial/20230824-RVSC23-香山Tutorial.pdf)
 * [视频录像](#)
 

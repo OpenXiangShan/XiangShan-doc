@@ -92,6 +92,22 @@ Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
 
 - RISC-V in China: Embracing the Era of Open-Source Chip [Video](https://www.youtube.com/watch?v=d0UVSAd6NC8)
 
+## RISC-V Summit China 2023 (2023 RISC-V 中国峰会)
+
+所有的报告均是中文的。All talks are in Chinese.
+
+- 敏捷开发工具链助力香山高性能处理器核 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-敏捷开发工具链助力香山高性能处理器核.pdf)
+
+- 昆明湖架构CoupledL2缓存设计与实现 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖架构前端架构的设计演进.pdf)
+
+- 昆明湖架构CoupledL2缓存设计与实现 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖后端流水线的设计演进.pdf)
+
+- 昆明湖架构CoupledL2缓存设计与实现 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖架构访存单元的设计和演进.pdf)
+
+- 昆明湖架构CoupledL2缓存设计与实现 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-昆明湖架构CoupledL2缓存设计与实现.pdf)
+
+- 昆明湖架构CoupledL2缓存设计与实现 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖架构虚拟化扩展的设计和技术规划.pdf)
+
 ## More Talks 更多的报告
 
 See [https://github.com/OpenXiangShan/XiangShan-doc/tree/main/slides](https://github.com/OpenXiangShan/XiangShan-doc/tree/main/slides).

@@ -98,15 +98,19 @@ Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
 
 - 敏捷开发工具链助力香山高性能处理器核 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-敏捷开发工具链助力香山高性能处理器核.pdf)
 
-- 昆明湖架构CoupledL2缓存设计与实现 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖架构前端架构的设计演进.pdf)
+- 香山昆明湖架构前端架构的设计演进 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖架构前端架构的设计演进.pdf)
 
-- 昆明湖架构CoupledL2缓存设计与实现 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖后端流水线的设计演进.pdf)
+- 香山昆明湖后端流水线的设计演进 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖后端流水线的设计演进.pdf)
 
-- 昆明湖架构CoupledL2缓存设计与实现 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖架构访存单元的设计和演进.pdf)
+- 香山昆明湖架构访存单元的设计和演进 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖架构访存单元的设计和演进.pdf)
 
 - 昆明湖架构CoupledL2缓存设计与实现 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-昆明湖架构CoupledL2缓存设计与实现.pdf)
 
-- 昆明湖架构CoupledL2缓存设计与实现 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖架构虚拟化扩展的设计和技术规划.pdf)
+- 香山昆明湖架构虚拟化扩展的设计和技术规划 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖架构虚拟化扩展的设计和技术规划.pdf)
+
+- 香山昆明湖架构向量扩展的设计和实现 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山昆明湖架构向量扩展的设计和实现.pdf)
+
+- 香山微结构模拟器_XS_GEM5 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山微结构模拟器_XS_GEM5.pdf)
 
 ## More Talks 更多的报告
 

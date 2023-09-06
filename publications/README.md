@@ -21,4 +21,10 @@ The updated article is published at *IEEE Micro*'s annual special issue in July/
 
 Published at *Journal of Computer Research and Development*, 2023, 60(3): 476-493 (in Chinese). DOI: [10.7544/issn1000-1239.202221036](https://doi.org/10.7544/issn1000-1239.202221036).
 
-[Paper PDF](jcrad2023-xiangshan.pdf) | [J-CRAD Online](https://crad.ict.ac.cn/en/article/doi/10.7544/issn1000-1239.202221036) | [Presentation Video (in Chinese)](https://crad.ict.ac.cn/news/sydt/405.htm) | [Research Highlight (in Chinese) By Jianlin Gao](jcrad2023-xiangshan-highlight.pdf)
+[Paper PDF](jcrad2023-xiangshan.pdf) | [J-CRAD Online](https://crad.ict.ac.cn/en/article/doi/10.7544/issn1000-1239.202221036) | [Presentation Video (in Chinese)](https://crad.ict.ac.cn/news/sydt/405.htm) | [Research Highlight (in Chinese) by Jianlin Gao](jcrad2023-xiangshan-highlight.pdf)
+
+## Functional Verification for Agile Processor Development: A Case for Workflow Integration
+
+Published at *Journal of Computer Science and Technology*, 2023, 38(4): 737−753. DOI: [10.1007/s11390-023-3285-8](https://doi.org/10.1007/s11390-023-3285-8).
+
+[Preprint PDF](https://jcst.ict.ac.cn/fileup/1000-9000/PDF/JCST-2304-13285-0829accepted.pdf) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/jcst2023-workflow-integration-slides.pdf) | [Presentation Video (WeChat Only)](https://mp.weixin.qq.com/s/rKg_oCI0cTRXnP7BHFnEDA) | [Perspective by Babak Falsafi (Preprint)](https://jcst.ict.ac.cn/fileup/1000-9000/PDF/JCST-2023-4-1-perspective_accepted.pdf)

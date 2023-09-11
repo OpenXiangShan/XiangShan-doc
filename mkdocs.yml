@@ -35,6 +35,7 @@ nav:
         - Synthesis: integration/synthesis.md
         - JTAG and Debug: integration/debug.md
         - FPGA Prototype: integration/fpga.md
+        - Docker Instruction: integration/docker.md
     - Tutorials:
         - Publications: tutorials/publications.md
         - Talks: tutorials/talks.md

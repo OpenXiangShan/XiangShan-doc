@@ -3,7 +3,9 @@
 在需要部署的服务器上安装docker应用
 ## 服务器导入docker镜像
 云盘下载链接：(7z自解压文件)
+
 [阿里云盘分享](https://www.aliyundrive.com/s/1abKfjYKWJ6)
+
 Docker镜像MD5SUM：3ebafca4bfaa53c93abaf6ab3a3a8626
 进入服务器后执行以下命令，结果如下
 ```
@@ -70,4 +72,4 @@ make sw -j200  #完成后buid目录下有linux.bin
 <bin2fpgadata路径>/bin2fpgadata -i linux.bin
 ```
 ## 测试
-按照[基于南湖的FPGA开源最小系统构建](https://bosc.yuque.com/staff-xmw8rg/uzgwxz/gdedotu916gyc2h0?view=doc_embed&inner=D0sGN)中演示的操作，将生成好的txt文件放到最小系统中就能进行测试
+按照[基于南湖的FPGA开源最小系统构建](https://xiangshan-doc.readthedocs.io/zh_CN/latest/integration/fpga/#_1)中演示的操作，将生成好的txt文件放到最小系统中就能进行测试

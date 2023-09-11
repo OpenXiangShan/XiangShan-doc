@@ -7,6 +7,7 @@
 [阿里云盘分享](https://www.aliyundrive.com/s/1abKfjYKWJ6)
 
 Docker镜像MD5SUM：3ebafca4bfaa53c93abaf6ab3a3a8626
+
 进入服务器后执行以下命令，结果如下
 ```
 docker load --input <服务器镜像路径(蓝字部分)>
@@ -47,7 +48,9 @@ cd ../
 scp -r ns-bbl/ your_name@<服务器IP>:<宿主机上文件夹的绝对路径>
 ```
 ### 定制app 到rootfs.cpio （选做）
+
 准备，在docker中先交叉编译定制app，生成可执行文件
+
 ```
 例：将i2cdelect命令加入 rootfs.cpio
 cpio -imdv < rootfs.cpio  //解压原始rootfs.cpio
@@ -66,6 +69,7 @@ make sw -j200  #完成后buid目录下有linux.bin
 ![compile.jpeg](../figs/docker_images/compile.jpeg)
 ### 生成烧录FPGA的txt文件
 在linux环境下使用下面的工具，将linux.bin生成烧录FPGA的txt文件
+
 [bin2fpgadata.tar.gz](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/docs/integration/resources/bin2fpgadata.tar.gz)
 ```
 #生成data.txt

@@ -28,3 +28,12 @@ Published at *Journal of Computer Research and Development*, 2023, 60(3): 476-49
 Published as a Cover Article at *Journal of Computer Science and Technology*, 2023, 38(4): 737−754. DOI: [10.1007/s11390-023-3285-8](https://doi.org/10.1007/s11390-023-3285-8).
 
 [Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/jcst2023-workflow-integration.pdf) | [JCST Website](https://jcst.ict.ac.cn/en/article/doi/10.1007/s11390-023-3285-8) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/jcst2023-workflow-integration-slides.pdf) | [Presentation Video](https://jcst.ict.ac.cn/fileJCST/attachments/mp4/ebec6bbb-e71f-4fea-b523-d09faddb2ad5.mp4) | [Perspective by Babak Falsafi](https://jcst.ict.ac.cn/en/article/doi/10.1007/s11390-023-0005-3)
+
+## Research on XiangShan
+
+XiangShan has been used by researchers as the underlying platform for their evaluations.
+We appreciate their contributions to enhancing XiangShan and strengthening the community.
+
+- [Imprecise Store Exceptions](https://dl.acm.org/doi/abs/10.1145/3579371.3589087), ISCA'23
+
+- [TEESec: Pre-Silicon Vulnerability Discovery for Trusted Execution Environments](https://dl.acm.org/doi/abs/10.1145/3579371.3589070), ISCA'23

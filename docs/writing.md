@@ -4,16 +4,16 @@
 
 # 添加新内容的流程
 
-该文档与 XiangShan-doc 的 Github 工程绑定：https://github.com/OpenXiangShan/XiangShan-doc，注意要切换到 mkdocs 分支。每当该分支接收到 git push 更新后，网页会自动重构展示新内容。
+该文档与 Github 上的 [XiangShan-doc](https://github.com/OpenXiangShan/XiangShan-doc) 工程绑定。每当 `main` 分支接收到 git push 更新后，网页会自动重构展示新内容。
 
 因此，如果要添加新内容，请按照如下的步骤：
 
-* 克隆 XiangShan-doc 项目，切换到 mkdocs 分支
-* 在本地安装 mkdocs 环境（请参考https://www.mkdocs.org/user-guide/installation/）
-* 在本地安装 Material for MkDocs 主题 （请参考https://squidfunk.github.io/mkdocs-material/getting-started/）(TLDR: `pip install mkdocs-material`)
-* 在本地修改文档内容
-* 通过 mkdocs serve 命令在本地 build 文档，在浏览器中查看是否符合预期
-* git push 到远程
+- 克隆 [XiangShan-doc](https://github.com/OpenXiangShan/XiangShan-doc) 项目。
+- 在本地安装 mkdocs 环境（参阅 [MkDocs Installation](https://www.mkdocs.org/user-guide/installation/)）
+- 在本地安装 Material for MkDocs 主题 （参阅 [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/getting-started/)）(TLDR: `pip install -r docs/requirements.txt`)
+- 在本地修改文档内容
+- 通过 `mkdocs serve` 命令在本地预览文档，在浏览器中查看是否符合预期
+- `git push`` 到远端
 
 # 项目结构
 

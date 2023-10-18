@@ -1,6 +1,6 @@
 # CPU Core Overview <br> CPU核心总览
 
-XiangShan-2 (NANHU) support single-core and dual-core configurations, where each core has its own private L1/L2 cache. L3 is shared by multiple cores.<br>第二代香山（南湖）支持单核和双核配置，每个核心都有自己的私有L1/L2高速缓存。L3缓存由多个核心共享。
+XiangShan-2 (NANHU) supports single-core and dual-core configurations, where each core has its own private L1/L2 cache. L3 is shared by multiple cores.<br>第二代香山（南湖）支持单核和双核配置，每个核心都有自己的私有L1/L2高速缓存。L3缓存由多个核心共享。
 
 NANHU communicates with the uncore through 3 AXI interfaces, including the memory port, the DMA port and the peripheral port. It also has clock, reset, and JTAG interfaces. Please refer to the integration guide for more detailed information.<br>南湖通过3个AXI接口与非核心部分通信，包括内存端口、DMA端口和外设端口。它还具有时钟、复位和JTAG接口。更多详细信息请参阅集成指南。
 

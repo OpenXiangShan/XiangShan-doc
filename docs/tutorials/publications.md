@@ -33,7 +33,7 @@ Published as a Cover Article at *Journal of Computer Science and Technology*, 20
 
 Published at 2023 IEEE International Test Conference in Asia (ITC-Asia).
 
-[Paper PDF](itcasia2023-chiseldft.pdf) | [Presentation Slides](itcasia2023-chiseldft-slides.pdf)
+[Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/itcasia2023-chiseldft.pdf) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/itcasia2023-chiseldft-slides.pdf)
 
 ## Research on XiangShan
 

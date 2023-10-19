@@ -29,6 +29,12 @@ Published as a Cover Article at *Journal of Computer Science and Technology*, 20
 
 [Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/jcst2023-workflow-integration.pdf) | [JCST Website](https://jcst.ict.ac.cn/en/article/doi/10.1007/s11390-023-3285-8) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/jcst2023-workflow-integration-slides.pdf) | [Presentation Video](https://jcst.ict.ac.cn/fileJCST/attachments/mp4/ebec6bbb-e71f-4fea-b523-d09faddb2ad5.mp4) | [Perspective by Babak Falsafi](https://jcst.ict.ac.cn/en/article/doi/10.1007/s11390-023-0005-3)
 
+## Structured DFT Development Approach for Chisel-Based High Performance RISC-V Processors
+
+Published at 2023 IEEE International Test Conference in Asia (ITC-Asia).
+
+[Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/itcasia2023-chiseldft.pdf) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/itcasia2023-chiseldft-slides.pdf)
+
 ## Research on XiangShan
 
 XiangShan has been used by researchers as the underlying platform for their evaluations.

@@ -42,6 +42,7 @@ nav:
         - ASPLOS'23: tutorials/asplos23.md
         - RVSC'23: tutorials/rvsc23.md
         - MICRO'23: tutorials/micro23.md
+        - HPCA'24: tutorials/hpca24.md
     - 处理器核介绍:
         - 总体架构: arch.md
         - 前端:

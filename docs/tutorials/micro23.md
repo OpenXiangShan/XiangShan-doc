@@ -4,6 +4,26 @@ We are going to host half-day tutorials on XiangShan and MinJie during MICRO'23 
 
 We will upload all slides after the tutorials. However, for in-person attendees, it is required to register the MICRO'23 conference. For attendees who have not registered MICRO'23, please refer to the [Attend](https://microarch.org/micro56/attend/) page for more registration information.
 
+## Agenda
+
+**Time: 2:00 PM EDT – 5:00 PM EDT, Saturday, October 28**
+
+We are regretful that the XiangShan tutorial starts an hour later than the tentative schedule of MICRO'23 tutorials.
+Since most presenters and organizers do not receive their Canadian visa in-time,
+we have to reduce the tutorial length by one hour.
+
+**Venue: Pier-2, the Westin Harbour Castle**
+
+| Time | Topic | Slides |
+| ---- | ----- | ------ |
+| 2:00 PM - 2:25 PM | Introduction of the XiangShan Project | TBD |
+| 2:25 PM - 2:35 PM | Tutorial Overview and Highlights | TBD |
+| 2:35 PM - 3:00 PM | Microarchitecture Design and Implementation | TBD |
+| | Coffee Break | |
+| 3:30 PM - 5:00 PM | Hands-on Development & Discussions | TBD |
+
+
+
 ## XiangShan: An Open Source High Performance RISC-V Processor and Infrastructure for Architecture Research
 
 Over the past decade, agile and open-source hardware has gained increasing attentions in both academia and industry. In 2019, the SIGARCH Visioning Workshop “Agile and Open Hardware for Next-Generation Computing” in conjunction with ISCA invited eleven experts to present their visions on this direction. We believe that open-source hardware design, and more importantly, free and open development infrastructure, has the opportunity to bring more convenience to architecture research and stimulate innovations.
@@ -13,12 +33,6 @@ In this tutorial, we will present our efforts on the XiangShan project. XiangSha
 The major goal of the tutorial is to demonstrate how the XiangShan project can make architecture research more convenient and solid. XiangShan has been developing on an agile hardware development platform called MinJie. We believe MinJie has the potential to become one of the most important infrastructures for computer architecture researchers. In this tutorial, we will guide audience how to setup and make customization or do research on XiangShan agilely and obtain accurate and convincing evaluation results.
 
 Target audience includes researchers on architecture design, agile development, etc.
-
-## Agenda
-
-Schedule: 2:00 PM EDT – 5:00 PM EDT
-
-TBD
 
 ## To be covered
 

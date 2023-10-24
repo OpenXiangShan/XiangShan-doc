@@ -6,7 +6,9 @@ We will upload all slides after the tutorials. However, for in-person attendees,
 
 ## Agenda
 
-**Time: 2:00 PM EDT – 5:00 PM EDT, Saturday, October 28**
+**Time: 1:00 PM EDT – 4:00 PM EDT, Saturday, October 28**
+
+October 24 update: time changed to 1PM to 4PM (~2PM to 5PM~)
 
 We are regretful that the XiangShan tutorial starts an hour later than the tentative schedule of MICRO'23 tutorials.
 Since most presenters and organizers do not receive their Canadian visa in-time,
@@ -16,11 +18,12 @@ we have to reduce the tutorial length by one hour.
 
 | Time | Topic | Slides |
 | ---- | ----- | ------ |
-| 2:00 PM - 2:25 PM | Introduction of the XiangShan Project | TBD |
-| 2:25 PM - 2:35 PM | Tutorial Overview and Highlights | TBD |
-| 2:35 PM - 3:00 PM | Microarchitecture Design and Implementation | TBD |
+| 1:00 PM - 1:25 PM | Introduction of the XiangShan Project | TBD |
+| 1:25 PM - 1:35 PM | Tutorial Overview and Highlights | TBD |
+| 1:35 PM - 2:00 PM | Microarchitecture Design and Implementation | TBD |
+| 2:30 PM - 3:00 PM | Hands-on Development & Discussions | TBD |
 | | Coffee Break | |
-| 3:30 PM - 5:00 PM | Hands-on Development & Discussions | TBD |
+| 3:30 PM - 4:00 PM | Hands-on Development & Discussions (Cont.) | TBD |
 
 
 

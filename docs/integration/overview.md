@@ -66,8 +66,8 @@ Multi-cycle instructions are listed as follows.<br>绝大部分算术指令都�
 | `FMA` | 5 | Floating-point multiply-add instruction (cascade FMA) <br> 浮点乘法加法指令(cascade FMA)|
 | `FADD`, `FMUL` | 3 | Floating-point add/multiply operations <br> 浮点加法/乘法运算|
 | `FDIV/SQRT` | 3~18 | Floating-point div/sqrt operations <br> 浮点除法/平方根运算|
-| `CLZ(W)`, `CTZ(W)`, `CPOP(W)`, `XPERM(8/4)`, `CLMUL(H/R)` | 2 | Complex bit manipulation <br> 复杂位操作|
-| `AES64*`, `SHA256*`, `SHA512*`, `SM3*`, `SM4*` | 2 | Complex scalar crypto operations <br> 复杂标量加密操作|
+| `CLZ(W)`, `CTZ(W)`, `CPOP(W)`, `XPERM(8/4)`, `CLMUL(H/R)` | 3 | Complex bit manipulation <br> 复杂位操作|
+| `AES64*`, `SHA256*`, `SHA512*`, `SM3*`, `SM4*` | 3 | Complex scalar crypto operations <br> 复杂标量加密操作|
 
 ## Priviledge Mode &nbsp; 特权等级
 

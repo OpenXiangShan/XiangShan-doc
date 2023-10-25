@@ -61,7 +61,7 @@ Multi-cycle instructions are listed as follows.<br>绝大部分算术指令都�
 | Instruction(s) / Operations | Latency | Descriptions |
 | -------------- | ------- | ------------ |
 | `LD` | 4 (to ALU and LD), 5 (others) | Load operations (to use) <br> 加载操作（用于执行）|
-| `MUL` | 2 | Integer multiplier <br> 整数乘法|
+| `MUL` | 3 | Integer multiplier <br> 整数乘法|
 | `DIV` | 4~20 | Integer divider (SRT16) <br> 整数除法（SRT16）|
 | `FMA` | 5 | Floating-point multiply-add instruction (cascade FMA) <br> 浮点乘法加法指令(cascade FMA)|
 | `FADD`, `FMUL` | 3 | Floating-point add/multiply operations <br> 浮点加法/乘法运算|

@@ -14,7 +14,9 @@ We are regretful that the XiangShan tutorial starts an hour later than the tenta
 Since most presenters and organizers do not receive their Canadian visa in-time,
 we have to reduce the tutorial length by one hour.
 
-**Venue: Pier-2, the Westin Harbour Castle**
+**Venue: Pier-7, the Westin Harbour Castle**
+
+October 28 update: location changed to Pier-7 (~Pier-2~)
 
 | Time | Topic | Slides |
 | ---- | ----- | ------ |

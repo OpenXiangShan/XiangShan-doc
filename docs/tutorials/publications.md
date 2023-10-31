@@ -43,3 +43,8 @@ We appreciate their contributions to enhancing XiangShan and strengthening the c
 - [Imprecise Store Exceptions](https://dl.acm.org/doi/abs/10.1145/3579371.3589087), ISCA'23
 
 - [TEESec: Pre-Silicon Vulnerability Discovery for Trusted Execution Environments](https://dl.acm.org/doi/abs/10.1145/3579371.3589070), ISCA'23
+
+- Fast, Robust and Transferable Prediction for Hardware Logic Synthesis, MICRO'23
+
+- Khronos: Fusing Memory Access for Improved Hardware RTL Simulation, MICRO'23
+

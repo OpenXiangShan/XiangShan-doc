@@ -13,6 +13,10 @@ markdown_extensions:
   - md_in_html
   - def_list
 plugins:
+  - search:
+      lang:
+        - zh
+        - en
     # - with-pdf:
     #     author: XiangShan Team
     #     copyright: XiangShan Team, 2022

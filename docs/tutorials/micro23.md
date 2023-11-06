@@ -2,30 +2,22 @@
 
 We are going to host half-day tutorials on XiangShan and MinJie during MICRO'23 in Toronto, Canada, at the Westin Harbour Castle, on Saturday, October 28, 2023.
 
-We will upload all slides after the tutorials. However, for in-person attendees, it is required to register the MICRO'23 conference. For attendees who have not registered MICRO'23, please refer to the [Attend](https://microarch.org/micro56/attend/) page for more registration information.
+We have uploaded the tutorial slides. Thank all the attendees and see you next year at HPCA'24 in Edinburgh!
 
 ## Agenda
 
 **Time: 1:00 PM EDT – 4:00 PM EDT, Saturday, October 28**
 
-October 24 update: time changed to 1PM to 4PM (~2PM to 5PM~)
-
-We are regretful that the XiangShan tutorial starts an hour later than the tentative schedule of MICRO'23 tutorials.
-Since most presenters and organizers do not receive their Canadian visa in-time,
-we have to reduce the tutorial length by one hour.
-
 **Venue: Pier-7, the Westin Harbour Castle**
-
-October 28 update: location changed to Pier-7 (~Pier-2~)
 
 | Time | Topic | Slides |
 | ---- | ----- | ------ |
-| 1:00 PM - 1:25 PM | Introduction of the XiangShan Project | TBD |
-| 1:25 PM - 1:35 PM | Tutorial Overview and Highlights | TBD |
-| 1:35 PM - 2:00 PM | Microarchitecture Design and Implementation | TBD |
-| 2:30 PM - 3:00 PM | Hands-on Development & Discussions | TBD |
+| 1:00 PM - 1:25 PM | Introduction of the XiangShan Project | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20231028-MICRO23-1-Introduction-XiangShan.pdf) |
+| 1:25 PM - 1:35 PM | Tutorial Overview and Highlights | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20231028-MICRO23-2-Tutorial-Overview.pdf) |
+| 1:35 PM - 2:00 PM | Microarchitecture Design and Implementation | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20231028-MICRO23-3-Microarchitecture.pdf) |
+| 2:30 PM - 3:00 PM | Hands-on Development & Discussions | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20231028-MICRO23-4-Dev-Tools.pdf) |
 | | Coffee Break | |
-| 3:30 PM - 4:00 PM | Hands-on Development & Discussions (Cont.) | TBD |
+| 3:30 PM - 4:00 PM | Hands-on Development & Discussions (Cont.) | |
 
 
 

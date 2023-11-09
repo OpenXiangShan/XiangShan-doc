@@ -8,7 +8,12 @@
 
 (1) 主分支（昆明湖架构）在持续开发中，南湖架构的流片版本设计在 nanhu 分支，其适配 FPGA 环境的分支在 [nanhu-clockdiv2](https://github.com/OpenXiangShan/XiangShan/tree/nanhu-clockdiv2)
 
-注意：因为 FPGA 代码和仿真代码不是同一套，如果使用同一个 XiangShan 仓库，需要 `rm -rf build` 删除已有输出文件
+注意：
+
+* 因为 FPGA 代码和仿真代码不是同一套，如果使用同一个 XiangShan 仓库，需要 `rm -rf build` 删除已有输出文件
+* 双核南湖代码根据FPGA资源容量做了相应的裁剪，目前双核以[09d2a32142c64fca898e17c0b943e61ddc331958](https://github.com/OpenXiangShan/XiangShan/commit/09d2a32142c64fca898e17c0b943e61ddc331958)提交进行FPGA验证。
+
+
 
 (2) 从GitHub上拉取仓库
 
@@ -16,7 +21,7 @@
 git clone https://github.com/OpenXiangShan/XiangShan
 cd XiangShan
 export NOOP_HOME=$(pwd)
-git checkout nanhu-clockdiv2
+git checkout 09d2a32142c64fca898e17c0b943e61ddc331958
 make init
 make clean
 make verilog NUM_CORES=2 # Dual-Core XiangShan

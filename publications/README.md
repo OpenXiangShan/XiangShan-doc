@@ -31,6 +31,6 @@ Published as a Cover Article at *Journal of Computer Science and Technology*, 20
 
 ## Structured DFT Development Approach for Chisel-Based High Performance RISC-V Processors
 
-Published at 2023 IEEE International Test Conference in Asia (ITC-Asia).
+Published at *2023 IEEE International Test Conference in Asia (ITC-Asia)*. DOI: [10.1109/ITC-Asia58802.2023.10301174](https://doi.org/10.1109/ITC-Asia58802.2023.10301174).
 
-[Paper PDF](itcasia2023-chiseldft.pdf) | [Presentation Slides](itcasia2023-chiseldft-slides.pdf)
+[Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/itcasia2023-chiseldft.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/document/10301174) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/itcasia2023-chiseldft-slides.pdf)

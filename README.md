@@ -11,9 +11,9 @@ Documentation for XiangShan
 
 ## 联系我们 Contact us
 
-邮件列表：xiangshan-all@ict.ac.cn
+邮件列表：xiangshan-all AT ict DOT ac DOT cn
 
-Mailing list: xiangshan-all@ict.ac.cn
+Mailing list: xiangshan-all AT ict DOT ac DOT cn
 
 
 

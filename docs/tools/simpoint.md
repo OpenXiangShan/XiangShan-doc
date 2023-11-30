@@ -30,7 +30,7 @@ Simpoint Checkpoint 会根据程序特性找到具有代表性的检查点。如
 1. NEMU 拥有一个 submodule `NEMU/resource/simpoint` ，使用 `git submodule update --init` 下载同步，并编译（`analysiscode` 目录下执行 `make simpoint` ），得到可执行文件 `NEMU/resource/simpoint/bin/simpoint`
 2. 在 `NEMU/resource/gcpt_restore` 目录下执行 `make` 命令编译，得到`gcpt.bin`
 3. cpt-bk分支：在 `NEMU` 目录下执行 `make ISA=riscv64 XIANGSHAN=1` 生成 NEMU 的可执行文件。
-   tracing分支：在 `NEMU` 目录下执行 `make riscv64-xs-simpoint_defconfig; make memuconfig # --> Save; make -j` 生成 NEMU 的可执行文件。
+   tracing分支：在 `NEMU` 目录下执行 `make riscv64-xs-simpoint_defconfig; make menuconfig # --> Save; make -j` 生成 NEMU 的可执行文件。
 
 
 
@@ -161,7 +161,7 @@ Uniform Checkpoint 为均匀生成的检查点，每隔 N 条指令记录一个�
       $TARGET_CPT_GZ
     ```
   
-  - 如果在打印寄存器前报错`CONFIG_MEM_COMPRESS is disabled, turn it on in memuconfig!`
+  - 如果在打印寄存器前报错`CONFIG_MEM_COMPRESS is disabled, turn it on in menuconfig!`
   
     请在`make menuconfig`中选择`Memory Configuration -> Initialize the memory with a compressed gz file`，按 Y 键加入此功能，然后 Save 配置，重新 `make` 编译运行即可。
 

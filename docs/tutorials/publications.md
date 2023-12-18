@@ -40,10 +40,10 @@ Published at *2023 IEEE International Test Conference in Asia (ITC-Asia)*. DOI: 
 XiangShan has been used by researchers as the underlying platform for their evaluations.
 We appreciate their contributions to enhancing XiangShan and strengthening the community.
 
-- [Imprecise Store Exceptions](https://dl.acm.org/doi/abs/10.1145/3579371.3589087), ISCA'23
+- [Imprecise Store Exceptions](https://dl.acm.org/doi/abs/10.1145/3579371.3589087), EPFL, ISCA'23
 
-- [TEESec: Pre-Silicon Vulnerability Discovery for Trusted Execution Environments](https://dl.acm.org/doi/abs/10.1145/3579371.3589070), ISCA'23
+- [TEESec: Pre-Silicon Vulnerability Discovery for Trusted Execution Environments](https://dl.acm.org/doi/abs/10.1145/3579371.3589070), OSU & SUSTech, ISCA'23
 
-- Fast, Robust and Transferable Prediction for Hardware Logic Synthesis, MICRO'23
+- [Fast, Robust and Transferable Prediction for Hardware Logic Synthesis](https://dl.acm.org/doi/10.1145/3613424.3623794), Duke, MICRO'23
 
-- Khronos: Fusing Memory Access for Improved Hardware RTL Simulation, MICRO'23
+- [Khronos: Fusing Memory Access for Improved Hardware RTL Simulation](https://dl.acm.org/doi/10.1145/3613424.3614301), PKU, MICRO'23

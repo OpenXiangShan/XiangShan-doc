@@ -47,3 +47,7 @@ We appreciate their contributions to enhancing XiangShan and strengthening the c
 - [Fast, Robust and Transferable Prediction for Hardware Logic Synthesis](https://dl.acm.org/doi/10.1145/3613424.3623794), Duke, MICRO'23
 
 - [Khronos: Fusing Memory Access for Improved Hardware RTL Simulation](https://dl.acm.org/doi/10.1145/3613424.3614301), PKU, MICRO'23
+
+- [A Transfer Learning Framework for High-Accurate Cross-Workload Design Space Exploration of CPU](https://ieeexplore.ieee.org/document/10323840), ICT-CAS, ICCAD'23
+
+- [A Distributed ATPG System Combining Test Compaction Based on Pure MaxSAT](https://ieeexplore.ieee.org/abstract/document/10317948), ICT-CAS, ATS'23

@@ -1,6 +1,6 @@
 # Cache 别名问题
 
-由于在 NanHu 架构中，DCache 和 ICache 都是采用 128KB 的 8 路组相联结构，cache 索引和块偏移所占 bit 数已经超过了页偏移 (4K 页的页偏移为 12 bits)，由此引入了 cache 别名问题：当两个虚页映射到同一个物理页时，两个虚页的别名位 (alias bits) 很有可能是不一样的，如果不做额外处理的话，通过VIPT索引 (Virtual Index Physical Tag) 后这两个虚页会位于 cache 不同的 set，导致同一个物理页在 cache 中缓存了两份，造成一些一致性错误。
+由于在 NanHu 架构中，DCache 和 ICache 都是采用 128KB 的 8 路组相联结构，cache 索引和块偏移所占 bit 数已经超过了页偏移 (4K 页的页偏移为 12 bits)，由此引入了 cache 别名问题：当两个虚页映射到同一个物理页时，两个虚页的别名位 (alias bits) 很有可能是不一样的，如果不做额外处理的话，通过VIPT索引 (Virtual Index Physical Tag) 后这两个虚页会位于 cache 不同的 set，导致归属于同一物理页的物理块在 cache 中缓存了两份，造成一些一致性错误。
 
 ![](../figs/huancun_cache_alias-1.jpg)
 

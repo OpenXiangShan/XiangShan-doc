@@ -11,15 +11,18 @@
 ## 验证文档目录结构
 
 ├─Backend：  乱序执行后端，包括 CtrlBlock、ExuBlock、ReservationStation
+
 ├─Cache：  L2 缓存，**目前暂缺**
+
 ├─Frontend：  取指前端，包括 BPU、FTQ、IBuffer、ICache、IFU
+
 └─LSU：  访存单元，包括 DCache、Memblock、MMU、Prefetch
 
 
 
 ## 验证文档接口人
 
-	        模块	接口人
+		    模块	接口人
 	前端设计		
 		    BPU 陈国凯
 		    FTQ 高泽宇

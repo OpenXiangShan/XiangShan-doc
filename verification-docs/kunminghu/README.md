@@ -12,7 +12,7 @@
 
 ├─Backend：  乱序执行后端，包括 CtrlBlock、ExuBlock、ReservationStation
 
-├─Cache：  L2 缓存，**目前暂缺**
+├─Cache：  L2 缓存，包括 CoupledL2
 
 ├─Frontend：  取指前端，包括 BPU、FTQ、IBuffer、ICache、IFU
 
@@ -39,4 +39,6 @@
 		    MMU 冯浩原
 		    Prefetch 李昕
 	缓存设计
-		    TODO
+		    MainPipe、MSHRCtl、MSHR 蔡洛姗
+		    Prefetcher 马月骁
+		    其余模块 陈熙

@@ -130,3 +130,33 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
     };
     ```
     * `make clean` 后运行 `make -j` 生成 bbl.bin
+
+## FAQs
+
+#### `riscv64-unknown-linux-gnu-gcc: command not found`
+
+确保 riscv64-unknown-linux-gnu-gcc 在你的 PATH 中
+
+#### `unrecognized opcode: fence.i, extension zifencei required` 
+
+修改内核的 Makefile，在 `KBUILD_AFLAGS` 和 `KBUILD_CFLAGS` 后面加上 `_zicsr_zifencei`。
+
+```patch
+-KBUILD_AFLAGS += -march=$(KBUILD_MARCH)$(KBUILD-ARCH_A)fd$(KBUILD_ARCH_C)
++KBUILD AFLAGS-march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)fd$(KBUILD_ARCH_C)_zicsr_zifencei
+
+-KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)$(KBUILD-ARCH_C)
++KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH_A)$(KBUILD_ARCH_C)_zicsr_zifencei
+```
+
+#### `undefiend symbol MEM_START+0xa0000 referenced in expression` 
+
+在 `+` 前后加上空格：`. = MEM_START + 0xa0000`
+
+#### `repo/stream.c: No such file or directory`
+
+忽略该错误
+
+#### `riscv-rootfs/rootfsimg/build/busybox could not be opened for reading`
+
+尝试删除 `riscv-rootfs` 目录，重新从 Github 克隆，然后重新构建

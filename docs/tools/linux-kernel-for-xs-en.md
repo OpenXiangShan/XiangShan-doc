@@ -123,3 +123,32 @@
     };
     ```
     * After `make clean` run `make -j` to generate `bbl.bin`
+
+## FAQs
+
+#### `riscv64-unknown-linux-gnu-gcc: command not found`
+
+Make sure riscv64-unknown-linux-gnu-gcc is in your PATH
+
+#### `unrecognized opcode: fence.i, extension zifencei required` 
+
+Change the Makefile of kernel by appending `_zicsr_zifencei` to `KBUILD_AFLAGS` and `KBUILD_CFLAGS`.
+```patch
+-KBUILD_AFLAGS += -march=$(KBUILD_MARCH)$(KBUILD-ARCH_A)fd$(KBUILD_ARCH_C)
++KBUILD AFLAGS-march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)fd$(KBUILD_ARCH_C)_zicsr_zifencei
+
+-KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)$(KBUILD-ARCH_C)
++KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH_A)$(KBUILD_ARCH_C)_zicsr_zifencei
+```
+
+#### `undefiend symbol MEM_START+0xa0000 referenced in expression` 
+
+Add spaces around `+`: `. = MEM_START + 0xa0000`
+
+#### `repo/stream.c: No such file or directory`
+
+Ignore it
+
+#### `riscv-rootfs/rootfsimg/build/busybox could not be opened for reading`
+
+Try to remove `riscv-rootfs` directory, reclone it from Github, and rebuild

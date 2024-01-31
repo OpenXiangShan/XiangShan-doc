@@ -29,10 +29,10 @@ plugins:
     #     output_path: /tmp/doc/document.pdf
 nav:
     - 首页: index.md
-    - 关于香山:
+    - About XiangShan:
         # - 写前必读: index.md
         # - 香山项目总体介绍: index.md
-        - 香山项目导引: guide.md
+        - Introduction: guide.md
         - Publications: tutorials/publications.md
         - Talks: tutorials/talks.md
         - Tutorials:

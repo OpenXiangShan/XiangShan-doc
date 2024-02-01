@@ -45,6 +45,7 @@ nav:
         - SoC Integration: integration/soc.md
         - DFT: integration/dft.md
         - Synthesis: integration/synthesis.md
+        - Floorplan: integration/floorplan.md
         - JTAG and Debug: integration/debug.md
         - FPGA Prototype: integration/fpga.md
         - Docker Instruction: integration/docker.md

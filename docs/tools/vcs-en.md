@@ -16,14 +16,14 @@ make simv RELEASE=1
 `simv` file will be generated in difftest. Then, run:
 
 ```
-./difftest/simv [+workload=WorkloadName.bin] [+flash=Flash.bin] [+dump-wave] [+diff=Nemu-so] [+no-diff] [+max-cycles=MaxCycleNum]
+./difftest/simv [+workload=WorkloadName.bin] [+flash=Flash.bin] [+dump-wave=[vpd,fsdb]] [+diff=Nemu-so] [+no-diff] [+max-cycles=MaxCycleNum]
 ```
 
 Description of simv's parameters:
 
 * +workload=: By default simv uses `XiangShan/ram.bin` as input.
 * +flash=: By default, simv uses built-in flash, which will jump to 0x20_0000_0000.
-* +dump-wave: By default, simv will not dump waveform. Waveform file is simv.vpd.
+* +dump-wave=: By default, simv will not dump waveform. Can be either vpd or fsdb format.
 * +diff=: By default, simv will use $NEMU_HOME/build/riscv64-nemu-interpreter-so as golden model for diff-test. This will assign a golden model manually.
 * +no-diff: By default, simv will enable diff-test. This will disable diff-test.
 * +max-cycles=: By default, max-cycles is 0 for no limit.

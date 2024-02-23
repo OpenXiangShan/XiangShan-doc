@@ -25,7 +25,7 @@ Simpoint Checkpoint 会根据程序特性找到具有代表性的检查点。如
 
 1. 使用 `git submodule update --init` 下载同步NEMU的submodule
 2. 在 `$NEMU_HOME/resource/simpoint/simpoint_repo` 目录下执行 `make`，得到可执行文件 `NEMU/resource/simpoint/simpoint_repo/bin/simpoint`
-2. 在 `$NEMU_HOME` 目录下使用 `make riscv64-xs_defconfig` 配置NEMU，然后使用 `make menuconfig` 按需调整配置选项，最后使用 `make -j` 生成NEMU的可执行文件
+2. 在 `$NEMU_HOME` 目录下使用 `make riscv64-xs-cpt_defconfig` 配置NEMU，然后使用 `make menuconfig` 按需调整配置选项，最后使用 `make -j` 生成NEMU的可执行文件
 3. 在 `$NEMU_HOME/resource/gcpt_restore` 目录下执行 `make` 命令编译，得到`gcpt.bin`
 
 #### workload 的生成
@@ -92,6 +92,7 @@ Checkpoint 部分相关参数介绍，具体请RTFSC：
 6. `--cpt-interval`：采样的区间大小，以指令数为单位，用于 Profiling 环节
 7. `-S`：指定 Cluster 环节的结果，用于 Checkpointing 环节
 8. `--cpt-interval`：生成 Checkpoint，同时设置 Checkpoint 的区间，需和 profiling过程中的 `--cpt-interval` 参数保持一致，用于 Checkpointing 环节
+9. `--checkpoint-format`：支持选择 `gz` 或者 `zstd` 两种格式生成checkpoint，如果不指定该参数，默认使用 `gz` 格式。
 
 !!! note
     结合 `-D -C -w` 三个参数，最终会获得 `simpoint_checkpoint/profiling/bbl/` 这样的目录结构，此外必须指定`-D`, `-C`, `-w`参数，否则运行时会报错。

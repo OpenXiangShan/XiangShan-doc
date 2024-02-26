@@ -68,7 +68,6 @@ int main(){
 }
 ```
 
-
 ### 生成SimPoint checkpoint
 #### 流程介绍
 
@@ -82,22 +81,23 @@ int main(){
 
 RTFSC：[NEMU 的参数](https://github.com/OpenXiangShan/NEMU/blob/54894f558d61a5833260f1f158452d24ea6237c1/src/monitor/monitor.c#L232)
 
-Checkpoint 部分相关参数介绍，具体请RTFSC：
+NEMU Checkpoint 部分相关参数介绍，具体请RTFSC：
 
 1. `-b`：以 `batch` 模式运行（省略的话，会在启动 NEMU 后暂停等待输入命令）
 2. `-D`：生成 Checkpoint 的工作根目录，会自动创建指定目录，可以任取，例如`-D simpoint_checkpoint`
 3. `-C`：描述任务的名字（上节三步流程的 Profiling 和 Cluster 等），可以任取，例如`-C profiling`
 4. `-w`：workload 的名字，可以任取，例如`-w bbl`
 5. `--simpoint-profile`：进行 SimPoint Profiling，用于 Profiling 环节
-6. `--cpt-interval`：采样的区间大小，以指令数为单位，用于 Profiling 环节
+6. `--cpt-interval`：用于 Profiling 环节：采样的区间大小，以指令数为单位, 用于 Checkpoint 环节：设置 Checkpoint 的区间，需和 profiling 过程中的 `--cpt-interval` 参数保持一致。
 7. `-S`：指定 Cluster 环节的结果，用于 Checkpointing 环节
-8. `--cpt-interval`：生成 Checkpoint，同时设置 Checkpoint 的区间，需和 profiling过程中的 `--cpt-interval` 参数保持一致，用于 Checkpointing 环节
-9. `--checkpoint-format`：支持选择 `gz` 或者 `zstd` 两种格式生成checkpoint，如果不指定该参数，默认使用 `gz` 格式。
+8. `--checkpoint-format`：支持选择 `gz` 或者 `zstd` 两种格式生成checkpoint，如果不指定该参数，默认使用 `gz` 格式。
+
+SimPoint 的参数请RTFSC [SimPoint Repo](https://github.com/shinezyy/SimPoint.3.2-fix/tree/e51a936d7fddfa03c81692039f184ab6c437e99e)
 
 !!! note
     结合 `-D -C -w` 三个参数，最终会获得 `simpoint_checkpoint/profiling/bbl/` 这样的目录结构，此外必须指定`-D`, `-C`, `-w`参数，否则运行时会报错。
 
-命令示例：
+命令示例（均默认使用 gz 格式，如需使用 zstd 格式，请自行修改命令）：
 
 ```shell
 #!/bin/bash
@@ -135,6 +135,7 @@ export -f profiling
 profiling bbl
 
 # Cluster
+
 
 cluster(){
     set -x
@@ -316,6 +317,7 @@ manual_uniform_cpt(){
 需要注意的是，我们默认设置了W=I，当I=50*10**6，这是合理的。如果需要改变interval，W需要改源码额外调整。
 
 ### 数据汇总
+
 NEMU 执行 workload 的结尾，会打印出执行的指令数。
 一个 workload 的每个 Checkpoint 有各自的权重，以及统一的区间（以指令为单位）。处理器如香山，执行每一段 Checkpoint ，会有各自的周期数。
 通过所有 Checkpoint 的权重，区间和周期数，以及 workload 的总指令数，就能得到处理器执行 workload 的总周期数。结合处理器的时钟频率，可以得到估算的执行时间。

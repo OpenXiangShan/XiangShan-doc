@@ -37,7 +37,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
     - 请预先准备好 riscv64 工具链，可能用到的 prefix 有 `riscv64-linux-gnu-`，`riscv64-unknown-linux-gnu-`，`riscv64-unknown-elf-`
 
 
-#### 2. 在此基础上，如何在 Linux 下跑 Spec2006 以及其他程序作为 SimPoint profiling 和 checkpoint 的 workload
+#### 2. 在此基础上，如何在 Linux 下跑 SPEC2006 以及其他程序作为 SimPoint profiling 和 checkpoint 的 workload
 
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
@@ -47,7 +47,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 * 酌情修改 rootfs
     * 到 riscv-rootfs 目录下的 rootfsimg 目录
     * initramfs-spec.txt 里指定了文件系统里的内容，而 inittab 在初始化时会被解析执行，run.sh 中包含了将被执行的指令
-    * 可以参考二者文件内容，进行酌情修改或者自己编写新的 initramfs-spec.txt 和 inittab，以在 Linux 启动过后跑你所想要的程序
+    * rootfs 并不是开箱即用的，请参考上述文件内容，进行修改或者自己编写新的 initramfs-spec.txt 和 inittab，以实现在 Linux 启动过后跑你所想要的程序
 
 * 重新配置 BBL
     * 到 riscv-pk 目录
@@ -186,4 +186,4 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
 #### `riscv-rootfs/rootfsimg/build/busybox could not be opened for reading`
 
-尝试删除 `riscv-rootfs/apps/busybox/repo` 目录，然后重新构建
+删除 `riscv-rootfs/apps/busybox/repo` 目录，然后重新构建

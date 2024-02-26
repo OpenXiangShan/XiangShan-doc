@@ -3,11 +3,7 @@ Checkpoint 的生成和运行
 ## 使用 NEMU 生成 Simpoint Checkpoint
 
 !!! note
-    Checkpoint 相关的功能目前依赖于独立的 NEMU 分支，主线上的 NEMU 并不支持 Checkpoint 生成。
-    cpt-bk分支和tracing分支支持simpoint profiling和生成checkpoint。
-    其中cpt-bk分支是旧版的，可能缺乏最新的bug修复和feature，例如profiling速度会比tracing慢10倍以上。
-    对于cpt-bk分支的bug，我们不再进行修复。
-    此外，tracing分支的API和cpt-bk分支略有修改，主要修改了一些有歧义的参数名称，我们在文档中进行了更新。
+    Checkpoint 相关的功能目前使用 NEMU 的 master 分支。之前使用的 tracing 和 cpt-bk 分支虽然也支持simpoint profiling和checkpoint，但是我们不再进行维护、修复bug或提供任何支持。
 
 ### 背景介绍
 
@@ -17,34 +13,33 @@ Simpoint Checkpoint 会根据程序特性找到具有代表性的检查点。如
 - [Checkpoint + Sampling：10 小时内估算出 RISC-V CPU 的 SPEC 分数](https://www.bilibili.com/video/BV1eb4y167cE)
 - [关于SimPoint的一些笔记](https://zhuanlan.zhihu.com/p/380561873)
 
-需要注意的是SimPoint不是香山团队发明的，是UCSD发明的。
-我们只是提出了一套RISC-V的基础设施来使得checkpoint可以跨平台使用。
-因此关于SimPoint原理性的问题建议读论文，不建议发issue。
+需要注意的是 SimPoint 不是香山团队发明的，是 UCSD 发明的。
+我们只是提出了一套 RISC-V 的基础设施来使得 checkpoint 可以跨平台使用。
+因此关于 SimPoint 原理性的问题建议读论文，不建议发 issue。
 
 ### 环境准备
 
-关于 NEMU 的基本使用方式，可以参考 [NEMU 的使用指南](nemu.md)
+关于 NEMU 的基本使用方式，可以参考 [NEMU 的使用指南](https://github.com/OpenXiangShan/NEMU/tree/master/README.md)
 
-#### [NEMU (cpt-bk/tracing 分支)](https://github.com/OpenXiangShan/NEMU/tree/cpt-bk)
+#### [NEMU (master 分支)](https://github.com/OpenXiangShan/NEMU/tree/master)
 
-1. NEMU 拥有一个 submodule `NEMU/resource/simpoint` ，使用 `git submodule update --init` 下载同步，并编译（`analysiscode` 目录下执行 `make simpoint` ），得到可执行文件 `NEMU/resource/simpoint/bin/simpoint`
-2. 在 `NEMU/resource/gcpt_restore` 目录下执行 `make` 命令编译，得到`gcpt.bin`
-3. cpt-bk分支：在 `NEMU` 目录下执行 `make ISA=riscv64 XIANGSHAN=1` 生成 NEMU 的可执行文件。
-   tracing分支：在 `NEMU` 目录下执行 `make riscv64-xs-simpoint_defconfig; make menuconfig # --> Save; make -j` 生成 NEMU 的可执行文件。
-
-
+1. 使用 `git submodule update --init` 下载同步NEMU的submodule
+2. 在 `$NEMU_HOME/resource/simpoint/simpoint_repo` 目录下执行 `make`，得到可执行文件 `NEMU/resource/simpoint/simpoint_repo/bin/simpoint`
+2. 在 `$NEMU_HOME` 目录下使用 `make riscv64-xs-cpt_defconfig` 配置NEMU，然后使用 `make menuconfig` 按需调整配置选项，最后使用 `make -j` 生成NEMU的可执行文件
+3. 在 `$NEMU_HOME/resource/gcpt_restore` 目录下执行 `make` 命令编译，得到`gcpt.bin`
 
 #### workload 的生成
 
-因为checkpoint的原理，我们不支持在 M 态下生成checkpoint([Issue #54](https://github.com/OpenXiangShan/NEMU/issues/54))，
-因此 workload 需要运行在 S 态或 U 态下运行，比如 Linux 上运行 SPEC2006。构建的方法可以参考 [Linux Kernel for XiangShan in EMU](linux-kernel-for-xs.md) 。
+!!! note
+    因为 checkpoint 的原理，我们不建议在 M 态下生成 checkpoint ([Issue #54](https://github.com/OpenXiangShan/NEMU/issues/54))，如果您一定要在 M 态生成 checkpoint，我们不会提供任何支持。
+
+在 S 态或 U 态下运行 workload，比如 Linux 上运行 SPEC2006。构建的方法可以参考 [Linux Kernel for XiangShan in EMU](linux-kernel-for-xs.md) 。
 
 NEMU 生成 checkpoint 时，需要添加一段恢复程序 `gcpt.bin`，在 `(0x80000000, 0xa0000)`。因此在生成 workload 时，需要避开这一段空间，将起始地址设置在 `0x800a0000` 。如在 [riscv-pk/bbl/bbl.lds](https://github.com/OpenXiangShan/riscv-pk/blob/noop/bbl/bbl.lds#L15) 中，修改为 `. = MEM_START + 0xa0000` 。
 
 **NEMU 默认不会进入 checkpoint 模式**，需要使用 NEMU 自定义指令进行模式转换。
 
-RTFSC: [nemu_trap](https://github.com/OpenXiangShan/NEMU/blob/cpt-bk/src/isa/riscv64/exec/special.c#L25)
-
+RTFSC: [nemu_trap](https://github.com/OpenXiangShan/NEMU/blob/54894f558d61a5833260f1f158452d24ea6237c1/src/isa/riscv64/instr/special.h#L36)
 具体如下：
 
 1. NEMU 使用 nemu_trap 指令（0x6b），进行 `结束运行`，`关闭时钟中断`，`进入 Simpoint Profiling 模式` ，具体行为由 `a0` 寄存器内容决定。
@@ -73,9 +68,8 @@ int main(){
 }
 ```
 
-
-
-### 流程介绍
+### 生成SimPoint checkpoint
+#### 流程介绍
 
 生成 Simpoint Checkpoint 分三步：
 
@@ -83,92 +77,231 @@ int main(){
 2. Cluster 聚类，得到权重最高的多个程序片段（节点）
 3. Checkpointing 生成，再执行一轮 workload，根据聚类的结果生成对应的 Checkpoint
 
-### 执行命令
+#### 命令
 
-RTFSC：[NEMU 的参数](https://github.com/OpenXiangShan/NEMU/blob/cpt-bk/src/monitor/monitor.c#L178)
+RTFSC：[NEMU 的参数](https://github.com/OpenXiangShan/NEMU/blob/54894f558d61a5833260f1f158452d24ea6237c1/src/monitor/monitor.c#L232)
 
-Checkpoint 相关参数介绍：
+NEMU Checkpoint 部分相关参数介绍，具体请RTFSC：
 
 1. `-b`：以 `batch` 模式运行（省略的话，会在启动 NEMU 后暂停等待输入命令）
-2. `-D`：生成 Checkpoint 的工作根目录，会自动创建指定目录，可以任取
-3. `-C`：描述任务的名字（上节三步流程的 Profiling 和 Cluster 等），可以任取
-4. `-w`：workload 的名字，可以任取
-5. `--simpoint-profile`：进行 Profiling，用于 Profiling 环节
-6. `--interval` in cpt-bk or `--cpt-interval` in tracing：采样的区间大小，以指令数为单位，用于 Profiling 环节
+2. `-D`：生成 Checkpoint 的工作根目录，会自动创建指定目录，可以任取，例如`-D simpoint_checkpoint`
+3. `-C`：描述任务的名字（上节三步流程的 Profiling 和 Cluster 等），可以任取，例如`-C profiling`
+4. `-w`：workload 的名字，可以任取，例如`-w bbl`
+5. `--simpoint-profile`：进行 SimPoint Profiling，用于 Profiling 环节
+6. `--cpt-interval`：用于 Profiling 环节：采样的区间大小，以指令数为单位, 用于 Checkpoint 环节：设置 Checkpoint 的区间，需和 profiling 过程中的 `--cpt-interval` 参数保持一致。
 7. `-S`：指定 Cluster 环节的结果，用于 Checkpointing 环节
-8. `--checkpoint-interval` in cpt-bk (merged into `--cpt-interval` in tracing)：
-生成 Checkpoint，同时设置 Checkpoint 的区间，需和 “--interval” 参数保持一致，用于 Checkpointing 环节
+8. `--checkpoint-format`：支持选择 `gz` 或者 `zstd` 两种格式生成checkpoint，如果不指定该参数，默认使用 `gz` 格式。
 
-必须指定`-D`, `-C`, `-w`，否则运行时会报错
+SimPoint 的参数请RTFSC [SimPoint Repo](https://github.com/shinezyy/SimPoint.3.2-fix/tree/e51a936d7fddfa03c81692039f184ab6c437e99e)
 
-命令示例：
+!!! note
+    结合 `-D -C -w` 三个参数，最终会获得 `simpoint_checkpoint/profiling/bbl/` 这样的目录结构，此外必须指定`-D`, `-C`, `-w`参数，否则运行时会报错。
+
+命令示例（均默认使用 gz 格式，如需使用 zstd 格式，请自行修改命令）：
 
 ```shell
-# Assuming the dest dir is /home/user/spec_cpt
+#!/bin/bash
+
+# prepare env
+
+export NEMU_HOME=
+export NEMU=$NEMU_HOME/build/riscv64-nemu-interpreter
+export GCPT=$NEMU_HOME/resource/gcpt_restore/build/gcpt.bin
+export SIMPOINT=$NEMU_HOME/resource/simpoint/simpoint_repo/bin/simpoint
+
+export WORKLOAD_ROOT_PATH=
+export LOG_PATH=$NEMU_HOME/checkpoint_example_result/logs
+export RESULT=$NEMU_HOME/checkpoint_example_result
+export profiling_result_name=simpoint-profiling
+export PROFILING_RES=$RESULT/$profiling_result_name
+export interval=$((20*1000*1000))
 
 # Profiling
-tracing branch:
-./build/riscv64-nemu-interpreter $RISCV_PK_HOME/build/bbl.bin \
-    -D /home/user/spec_cpt -w workloadName -C profiling       \
-    -b --simpoint-profile --cpt-interval 100000000            \
-    -r ./resource/gcpt_restore/build/gcpt.bin
 
-cpt-bk branch:
-./build/riscv64-nemu-interpreter $RISCV_PK_HOME/build/bbl.bin \
-	-D /home/user/spec_cpt -w workloadName -C profiling \
-	-b --simpoint-profile --interval 100000000
+profiling(){
+    set -x
+    workload=$1
+    log=$LOG_PATH/profiling_logs
+    mkdir -p $log
+
+    $NEMU ${WORKLOAD_ROOT_PATH}/${workload}.bin \
+        -D $RESULT -w $workload -C $profiling_result_name    \
+        -b --simpoint-profile --cpt-interval ${interval}            \
+        -r $GCPT > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
+}
+
+export -f profiling
+
+profiling bbl
 
 # Cluster
-mkdir -p /home/user/spec_cpt/cluster/workloadName
-export CLUSTER=/home/user/spec_cpt/cluster/workloadName
-# --!!-- make sure the simpoint_bbv.gz is for your target workload --!!--
-# or disable -DFLAT_CPTPATH in Makefile:CFLAGS to generate bbv.gz under dir profile/workloadName
-./resource/simpoint/simpoint_repo/bin/simpoint                                  \
-    -loadFVFile /home/user/spec_cpt/profiling/workloadName/simpoint_bbv.gz      \
-    -saveSimpoints $CLUSTER/simpoints0 -saveSimpointWeights $CLUSTER/weights0   \
-    -inputVectorsGzipped -maxK 30 -numInitSeeds 2 -iters 1000 -seedkm 123456 -seedproj 654321
+
+
+cluster(){
+    set -x
+    workload=$1
+
+    export CLUSTER=$RESULT/cluster/${workload}
+    mkdir -p $CLUSTER
+
+    random1=`head -20 /dev/urandom | cksum | cut -c 1-6`
+    random2=`head -20 /dev/urandom | cksum | cut -c 1-6`
+
+    log=$LOG_PATH/cluster_logs/cluster
+    mkdir -p $log
+
+    $SIMPOINT \
+        -loadFVFile $PROFILING_RES/${workload}/simpoint_bbv.gz \
+        -saveSimpoints $CLUSTER/simpoints0 -saveSimpointWeights $CLUSTER/weights0 \
+        -inputVectorsGzipped -maxK 30 -numInitSeeds 2 -iters 1000 -seedkm ${random1} -seedproj ${random2} \
+        > $log/${workload}-out.txt 2> $log/${workload}-err.txt
+}
+
+export -f cluster
+
+cluster bbl
 
 # Checkpointing
-tracing branch:
-./build/riscv64-nemu-interpreter $RISCV_PK_HOME/build/bbl.bin  \
-    -D /home/user/spec_cpt -w workloadName -C take_cpt         \
-    -b -S /home/user/spec_cpt/cluster --cpt-interval 100000000 \
-    -r ./resource/gcpt_restore/build/gcpt.bin
 
-cpt-bk branch:
-./build/riscv64-nemu-interpreter $RISCV_PK_HOME/build/bbl.bin \
-	-D /home/user/spec_cpt -w workloadName -C take_cpt \
-	-b -S /home/user/spec_cpt/cluster --checkpoint-interval 100000000
+checkpoint(){
+    set -x
+    workload=$1
 
-`-S /path/to/simpoints/` provides the path of selected simulation points
+    export CLUSTER=$RESULT/cluster
+    log=$LOG_PATH/checkpoint_logs
+    mkdir -p $log
+    $NEMU ${WORKLOAD_ROOT_PATH}/${workload}.bin  \
+         -D $RESULT -w ${workload} -C spec-cpt   \
+         -b -S $CLUSTER --cpt-interval $interval \
+         -r $GCPT > $log/${workload}-out.txt 2>$log/${workload}-err.txt 
+}
+
+export -f checkpoint
+
+checkpoint bbl
 
 ```
 
 ## 使用 NEMU 生成 Uniform Checkpoint
 
-Uniform Checkpoint 为均匀生成的检查点，每隔 N 条指令记录一个。
+Uniform Checkpoint 为均匀生成的检查点，每隔 interval 条指令记录一个。
 
-[NEMU (Master 分支)]([OpenXiangShan/NEMU (github.com)](https://github.com/OpenXiangShan/NEMU)) 支持 Uniform Checkpoint 的生成。在仓库的 [README](https://github.com/OpenXiangShan/NEMU#prepare-workloads:~:text=2%2Diteration.bin-,Prepare%20workloads,-Link%20your%20bbl) 中介绍了使用方法。
+[NEMU (Master 分支)](https://github.com/OpenXiangShan/NEMU) 支持 Uniform Checkpoint 的生成。
 
+命令示例：
+
+```
+#!/bin/bash
+
+# prepare env
+
+export NEMU_HOME=
+export NEMU=$NEMU_HOME/build/riscv64-nemu-interpreter
+export GCPT=$NEMU_HOME/resource/gcpt_restore/build/gcpt.bin
+export SIMPOINT=$NEMU_HOME/resource/simpoint/simpoint_repo/bin/simpoint
+
+export WORKLOAD_ROOT_PATH=
+export LOG_PATH=$NEMU_HOME/checkpoint_example_result/logs
+export RESULT=$NEMU_HOME/checkpoint_example_result
+export profiling_result_name=simpoint-profiling
+export PROFILING_RES=$RESULT/$profiling_result_name
+export interval=$((20*1000*1000))
+
+uniform_cpt(){
+    set -x
+    workload=$1
+    log=$LOG_PATH/uniform
+    mkdir -p $log
+    name="uniform"
+
+    $NEMU ${WORKLOAD_ROOT_PATH}/${workload}.bin                   \
+        -D $RESULT -w $workload -C $name                          \
+        -b -u --cpt-interval ${interval} --dont-skip-boot         \
+        -r $GCPT > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
+}
+
+export -f uniform_cpt
+
+uniform_cpt bbl
+
+```
+
+## 使用 NEMU 生成 Manual Uniform Checkpoint 和 Manual Oneshot Checkpoint
+
+Manual oneshot checkpoint 在用户按下 ctrl-c 后马上生成一个 checkpoint，Manual uniform checkpoint 在用户按下 ctrl-c 后生成均匀的间隔为 interval 的 checkpoint。但是要注意的是，这两种方法不能在脚本中运行，并且生成 checkpoint 之后只能通过 kill 进程的方式来结束 NEMU 的运行。
+
+[NEMU (Master 分支)](https://github.com/OpenXiangShan/NEMU) 支持 Manual oneshot checkpoint 和 Manual uniform checkpoint 生成。
+
+```
+#!/bin/bash
+
+# prepare env
+
+export NEMU_HOME=
+export NEMU=$NEMU_HOME/build/riscv64-nemu-interpreter
+export GCPT=$NEMU_HOME/resource/gcpt_restore/build/gcpt.bin
+export SIMPOINT=$NEMU_HOME/resource/simpoint/simpoint_repo/bin/simpoint
+
+export WORKLOAD_ROOT_PATH=
+export LOG_PATH=$NEMU_HOME/checkpoint_example_result/logs
+export RESULT=$NEMU_HOME/checkpoint_example_result
+export profiling_result_name=simpoint-profiling
+export PROFILING_RES=$RESULT/$profiling_result_name
+export interval=$((20*1000*1000))
+
+# Manual oneshot checkpoint
+manual_oneshot_cpt(){
+    set -x
+    workload=$1
+    log=$LOG_PATH/manual_oneshot/${workload}
+    mkdir -p $log
+
+    name="manual_oneshot"
+
+    $NEMU ${WORKLOAD_ROOT_PATH}/${workload}-bbl-linux-spec.bin \
+        -D $RESULT -w $workload -C $name      \
+        -b --cpt-interval ${interval}            \
+        --manual-oneshot-cpt \
+        -r $GCPT > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
+
+}
+
+# Manual uniform checkpoint
+manual_uniform_cpt(){
+    set -x
+    workload=$1
+    log=$LOG_PATH/manual_uniform
+    mkdir -p $log
+    name="manual_uniform"
+
+    $NEMU ${WORKLOAD_ROOT_PATH}/${workload}-bbl-linux-spec.bin \
+        -D $RESULT -w $workload -C $name      \
+        -b --cpt-interval ${interval}            \
+        --manual-uniform-cpt \
+        -r $GCPT > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
+
+}
+
+```
 
 ## Checkpoint 的运行
 
 - NEMU 运行检查点：
 
     ```shell
-    ./build/riscv64-nemu-interpreter -b\
-      --restore \
-      $TARGET_CPT_GZ
+    ./build/riscv64-nemu-interpreter -b \
+      --restore $TARGET_CPT_GZ          \
+      -r ./resource/gcpt_resource/build/gcpt.bin
     ```
-  
+
   - 如果在打印寄存器前报错`CONFIG_MEM_COMPRESS is disabled, turn it on in menuconfig!`
-  
+
     请在`make menuconfig`中选择`Memory Configuration -> Initialize the memory with a compressed gz file`，按 Y 键加入此功能，然后 Save 配置，重新 `make` 编译运行即可。
 
 
 - 香山仿真运行检查点：
 
-  - Checkpoint 生成的 gz 文件可以当成正常的 workload 使用，可参考[香山仿真流程](./xsenv.md#生成香山核的仿真程序)
+  - Checkpoint 生成的 gz/zstd 文件可以通过 gcpt_restore 恢复到内存中运行，可参考[香山仿真流程](./xsenv.md#生成香山核的仿真程序)
 
     ```shell
     ./build/emu -i $TARGET_CPT_GZ
@@ -184,6 +317,7 @@ Uniform Checkpoint 为均匀生成的检查点，每隔 N 条指令记录一个�
 需要注意的是，我们默认设置了W=I，当I=50*10**6，这是合理的。如果需要改变interval，W需要改源码额外调整。
 
 ### 数据汇总
+
 NEMU 执行 workload 的结尾，会打印出执行的指令数。
 一个 workload 的每个 Checkpoint 有各自的权重，以及统一的区间（以指令为单位）。处理器如香山，执行每一段 Checkpoint ，会有各自的周期数。
 通过所有 Checkpoint 的权重，区间和周期数，以及 workload 的总指令数，就能得到处理器执行 workload 的总周期数。结合处理器的时钟频率，可以得到估算的执行时间。
@@ -195,4 +329,6 @@ NEMU 执行 workload 的结尾，会打印出执行的指令数。
 1. workload 本身是正确的
 2. NEMU 可以正常执行 workload
 
-PS：如果您对 Checkpoint 生成流程有疑问，欢迎在 [issue]([Issues · OpenXiangShan/NEMU (github.com)](https://github.com/OpenXiangShan/NEMU/issues)) 进行讨论。
+PS：如果您对 Checkpoint 生成流程有疑问，欢迎在 [Issues · OpenXiangShan/XiangShan-doc (github.com)](https://github.com/OpenXiangShan/XiangShan-doc/issues) 进行讨论。
+
+本文档所给出的示例脚本可能并不会随NEMU主线的更新而更新，因此如果出现任何问题，请查看 [NEMU中的example](https://github.com/OpenXiangShan/tree/master/scripts/checkpoint_example) ，如果 [NEMU中的example](https://github.com/OpenXiangShan/tree/master/scripts/checkpoint_example) 出现任何问题，欢迎在 [Issues · OpenXiangShan/NEMU (github.com)](https://github.com/OpenXiangShan/NEMU/issues) 进行讨论。

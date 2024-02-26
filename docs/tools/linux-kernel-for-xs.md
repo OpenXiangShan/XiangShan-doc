@@ -37,8 +37,35 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
     - 请预先准备好 riscv64 工具链，可能用到的 prefix 有 `riscv64-linux-gnu-`，`riscv64-unknown-linux-gnu-`，`riscv64-unknown-elf-`
 
 
+#### 2. 在此基础上，如何在 Linux 下跑 SPEC2006 以及其他程序作为 SimPoint profiling 和 checkpoint 的 workload
 
-#### 2. 在此基础上，如何在 Linux 下跑 BusyBox 以及一些简单的应用程序
+* 重新配置 Linux Kernel
+    * 到 riscv-linux 目录
+    * 使用 fpga_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- fpga_defconfig`
+    * 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`，其中一个**较为必要的修改**是将 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-spec.txt`
+
+* 酌情修改 rootfs
+    * 到 riscv-rootfs 目录下的 rootfsimg 目录
+    * initramfs-spec.txt 里指定了文件系统里的内容，而 inittab 在初始化时会被解析执行，run.sh 中包含了将被执行的指令
+    * rootfs 并不是开箱即用的，请参考上述文件内容，进行修改或者自己编写新的 initramfs-spec.txt 和 inittab，以实现在 Linux 启动过后跑你所想要的程序
+
+* 重新配置 BBL
+    * 到 riscv-pk 目录
+    * 修改 dts 中地址空间大小，支持占用内存更大的程序运行
+    ```shell
+    # ./riscv-pk/dts/noop.dtsi
+
+	L11: memory@100000000 {
+	    device_type = "memory";
+	    -reg = <0x0 0x80000000 0x0 0x2000000>;
+        +reg = <0x0 0x80000000 0x0 0x80000000>;
+	};
+    ```
+    * NEMU在生成 checkpoint 时，需要添加一段恢复程序。因此，在生成工作负载时需要避开这段空间。在 `bbl/bbl.lds` 中修改 `.` 的地址为 `. = MEM_START + 0xa0000`
+    * `make clean` 后运行 `make -j` 生成 bbl.bin，供 NEMU 进行 profiling 或 checkpoint
+
+
+#### 3. 在此基础上，如何在 Linux 下跑 BusyBox 以及一些简单的应用程序
 
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
@@ -66,7 +93,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
 
 
-#### 3. 在此基础上，如何在 NEMU 上跑 Debian 发行版
+#### 4. 在此基础上，如何在 NEMU 上跑 Debian 发行版
 
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
@@ -91,7 +118,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
 
 
-#### 4. 在此基础上，如何在香山上跑 Debian 发行版
+#### 5. 在此基础上，如何在香山上跑 Debian 发行版
 
 * 配置香山
     * 到香山目录
@@ -99,7 +126,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
     * 重新构建香山，然后再运行 riscv-pk 项目下的 build/bbl.bin
 
 
-#### 5. 在此基础上，如何编译双核Linux kernal
+#### 6. 在此基础上，如何编译双核Linux kernal
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
     * `make clean`清除编译文件
@@ -159,4 +186,4 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
 #### `riscv-rootfs/rootfsimg/build/busybox could not be opened for reading`
 
-尝试删除 `riscv-rootfs` 目录，重新从 Github 克隆，然后重新构建
+删除 `riscv-rootfs/apps/busybox/repo` 目录，然后重新构建

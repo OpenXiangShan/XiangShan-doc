@@ -8,12 +8,13 @@ We are going to host half-day tutorials on XiangShan and MinJie during HPCA'24 i
 
 **Time: Morning, Saturday, March 2**
 
-| Time | Topic                                       |
-| ---- | ------------------------------------------- |
-| TBD  | Introduction of the XiangShan Project       |
-| TBD  | Tutorial Overview and Highlights            |
-| TBD  | Microarchitecture Design and Implementation |
-| TBD  | Hands-on Development & Discussions          |
+| Time(AM) | Topic | Slides |
+| -------- | ----- | ------ |
+| 8:30 - 9:00    | Introduction of the XiangShan Project | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/blob/main/tutorial/20240302-HPCA24-1-Introduction-XiangShan.pdf) |
+| 9:05 - 10:00   | Microarchitecture Design and Implementation | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/blob/main/tutorial/20240302-HPCA24-2-Microarchitecture.pdf) |
+| 10:05 - 10:50  | Hands-on Development | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/blob/main/tutorial/20240302-HPCA24-3-Dev-Tools.pdf) |
+| | Coffee Break | |
+| 11:20 - 12:00  | Hands-on Development & Discussions(Cont.) | |
 
 
 

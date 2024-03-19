@@ -171,7 +171,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
 ```patch
 -KBUILD_AFLAGS += -march=$(KBUILD_MARCH)$(KBUILD-ARCH_A)fd$(KBUILD_ARCH_C)
-+KBUILD AFLAGS-march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)fd$(KBUILD_ARCH_C)_zicsr_zifencei
++KBUILD AFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)fd$(KBUILD_ARCH_C)_zicsr_zifencei
 
 -KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)$(KBUILD-ARCH_C)
 +KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH_A)$(KBUILD_ARCH_C)_zicsr_zifencei

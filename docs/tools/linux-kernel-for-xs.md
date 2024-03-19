@@ -19,6 +19,9 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
     > riscv-gnu-toolchain 的安装请参考 [riscv-gnu-toolchain 官方文档](https://github.com/riscv-collab/riscv-gnu-toolchain)，如果需要为香山编译 B 扩展 GNU 工具链请参见 [GCB 工具链使用说明](../compiler/gnu_toolchain.md)。
 
+!!! note
+    注意，下文所有使用的工具链是通过 [riscv-toolchains](https://github.com/riscv-collab/riscv-gnu-toolchain) 构建得到的，要构建在 Linux 上运行的程序使用的前缀是 `riscv64-unknown-linux-gnu-` ，某些 Linux 发行版使用包管理工具安装的工具链仅有 `riscv64-linux-gnu-` 前缀，此时仅需要将下文所有的 `riscv64-unknown-linux-gnu-` 替换为 `riscv64-linux-gnu-` 即可，它和 `riscv64-unknown-linux-gnu-` 是等价的，详细请看[Target Triplet](https://wiki.osdev.org/Target_Triplet)
+
 - 构建 rootfs
     - 到 riscv-rootfs 目录
     - 在仿真环境下，我们让 Linux Kernel 在 ramfs 上启动，因此首先准备好想要运行的 initramfs 文件，里面可以放想要跑的 workload。默认使用的是 `riscv-rootfs/rootfsimg/initramfs-emu.txt`，在 Linux 启动后运行 hello。下一章会介绍如何运行自定义程序。

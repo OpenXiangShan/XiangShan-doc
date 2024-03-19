@@ -177,6 +177,8 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 +KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH_A)$(KBUILD_ARCH_C)_zicsr_zifencei
 ```
 
+如果还存在这个问题，修改 `riscv-pk/Makefile` 在 `--with-arch=rv64imac` 后面加上 `_zicsr_zifencei`
+
 #### `undefiend symbol MEM_START+0xa0000 referenced in expression` 
 
 在 `+` 前后加上空格：`. = MEM_START + 0xa0000`

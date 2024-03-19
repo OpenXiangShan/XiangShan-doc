@@ -44,7 +44,8 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
     * 使用 fpga_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- fpga_defconfig`
     * 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- menuconfig`，其中一个**较为必要的修改**是将 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-spec.txt`
 
-* 酌情修改 rootfs
+* 修改 rootfs
+    * 运行 `git checkout checkpoint` 切换到 checkpoint 分支
     * 到 riscv-rootfs 目录下的 rootfsimg 目录
     * initramfs-spec.txt 里指定了文件系统里的内容，而 inittab 在初始化时会被解析执行，run.sh 中包含了将被执行的指令
     * rootfs 并不是开箱即用的，请参考上述文件内容，进行修改或者自己编写新的 initramfs-spec.txt 和 inittab，以实现在 Linux 启动过后跑你所想要的程序

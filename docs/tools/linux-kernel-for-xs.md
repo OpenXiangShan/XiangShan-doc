@@ -188,3 +188,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 #### `riscv-rootfs/rootfsimg/build/busybox could not be opened for reading`
 
 删除 `riscv-rootfs/apps/busybox/repo` 目录，然后重新构建
+
+#### `/usr/bin/ld: scripts/dtc/dtc-parser.tab.o:(.bss+0x10): multiple definition of 'yylloc'; scripts/dtc/dtc-lexer.lex.o:(.bss+0x0): first defined here`
+
+删除 `riscv-linux/scripts/dtc/dtc-lexer.l` 中的 `YYLTYPE yylloc`

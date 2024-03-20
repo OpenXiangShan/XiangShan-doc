@@ -19,14 +19,17 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
     > riscv-gnu-toolchain 的安装请参考 [riscv-gnu-toolchain 官方文档](https://github.com/riscv-collab/riscv-gnu-toolchain)，如果需要为香山编译 B 扩展 GNU 工具链请参见 [GCB 工具链使用说明](../compiler/gnu_toolchain.md)。
 
+!!! note
+    注意，下文所有使用的工具链是通过 [riscv-toolchains](https://github.com/riscv-collab/riscv-gnu-toolchain) 构建得到的，要构建在 Linux 上运行的程序使用的前缀是 `riscv64-unknown-linux-gnu-` ，某些 Linux 发行版使用包管理工具安装的工具链仅有 `riscv64-linux-gnu-` 前缀，此时仅需要将下文所有的 `riscv64-unknown-linux-gnu-` 替换为 `riscv64-linux-gnu-` 即可，它和 `riscv64-unknown-linux-gnu-` 是等价的，详细请看[Target Triplet](https://wiki.osdev.org/Target_Triplet)
+
 - 构建 rootfs
     - 到 riscv-rootfs 目录
     - 在仿真环境下，我们让 Linux Kernel 在 ramfs 上启动，因此首先准备好想要运行的 initramfs 文件，里面可以放想要跑的 workload。默认使用的是 `riscv-rootfs/rootfsimg/initramfs-emu.txt`，在 Linux 启动后运行 hello。下一章会介绍如何运行自定义程序。
     - 本步骤中不需要在该仓库进行操作
 - 构建 Linux Kernel
     - 到 riscv-linux 目录
-    - 使用默认的 emu_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- emu_defconfig`
-    - （可选）根据自己的需求通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`
+    - 使用默认的 emu_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- emu_defconfig`
+    - （可选）根据自己的需求通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- menuconfig`
 - 构建 BBL 并链接 Kernel
     - 到 riscv-pk 目录
     - 配置设备树，在 riscv-pk/dts 中让 platform.dtsi 软链接到对应的 noop.dtsi
@@ -34,17 +37,18 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
 - 其他
     - riscv-pk 的 Makefile 依赖有一点小问题，因此做了任何修改后，请在 riscv-pk 里面**先 `make clean`**
-    - 请预先准备好 riscv64 工具链，可能用到的 prefix 有 `riscv64-linux-gnu-`，`riscv64-unknown-linux-gnu-`，`riscv64-unknown-elf-`
+    - 请预先准备好 riscv64 工具链，可能用到的 prefix 有 `riscv64-unknown-linux-gnu-`，`riscv64-unknown-elf-`
 
 
 #### 2. 在此基础上，如何在 Linux 下跑 SPEC2006 以及其他程序作为 SimPoint profiling 和 checkpoint 的 workload
 
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
-    * 使用 fpga_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- fpga_defconfig`
-    * 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`，其中一个**较为必要的修改**是将 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-spec.txt`
+    * 使用 fpga_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- fpga_defconfig`
+    * 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- menuconfig`，其中一个**较为必要的修改**是将 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-spec.txt`
 
-* 酌情修改 rootfs
+* 修改 rootfs
+    * 运行 `git checkout checkpoint` 切换到 checkpoint 分支
     * 到 riscv-rootfs 目录下的 rootfsimg 目录
     * initramfs-spec.txt 里指定了文件系统里的内容，而 inittab 在初始化时会被解析执行，run.sh 中包含了将被执行的指令
     * rootfs 并不是开箱即用的，请参考上述文件内容，进行修改或者自己编写新的 initramfs-spec.txt 和 inittab，以实现在 Linux 启动过后跑你所想要的程序
@@ -69,8 +73,8 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
-    * 使用 fpga_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- fpga_defconfig`
-    * 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`，其中一个**较为必要的修改**是将 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-autorun.txt`
+    * 使用 fpga_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- fpga_defconfig`
+    * 根据自己的需求酌情通过 menuconfig 做修改，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- menuconfig`，其中一个**较为必要的修改**是将 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-autorun.txt`
     
 * 酌情修改 rootfs
     * 到 riscv-rootfs 目录下的 rootfsimg 目录
@@ -97,7 +101,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
 * 重新配置 Linux Kernel
     * 到 riscv-linux 目录
-    * 使用 debian_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- debian_defconfig`
+    * 使用 debian_defconfig 配置，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- debian_defconfig`
 * 重新配置 BBL
     * 到 riscv-pk 目录
     * 修改 dts 中 bootargs 参数
@@ -131,7 +135,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
     * 到 riscv-linux 目录
     * `make clean`清除编译文件
     * 根据需求使用 emu_defconfig 、fpga_defconfig 、或 debian_defconfig 进行配置，命令同上
-    * 通过 menuconfig 修改配置开启多核，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`，
+    * 通过 menuconfig 修改配置开启多核，命令为 `make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- menuconfig`，
     进入Platform type目录，将 Symmetric Multi-Processing 置为 Yes ，保存修改并退出
 * 重新配置 BBL
     * 到 riscv-pk 目录
@@ -170,11 +174,13 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
 ```patch
 -KBUILD_AFLAGS += -march=$(KBUILD_MARCH)$(KBUILD-ARCH_A)fd$(KBUILD_ARCH_C)
-+KBUILD AFLAGS-march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)fd$(KBUILD_ARCH_C)_zicsr_zifencei
++KBUILD AFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)fd$(KBUILD_ARCH_C)_zicsr_zifencei
 
 -KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)$(KBUILD-ARCH_C)
 +KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH_A)$(KBUILD_ARCH_C)_zicsr_zifencei
 ```
+
+如果还存在这个问题，修改 `riscv-pk/Makefile` 在 `--with-arch=rv64imac` 后面加上 `_zicsr_zifencei`
 
 #### `undefiend symbol MEM_START+0xa0000 referenced in expression` 
 
@@ -187,3 +193,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 #### `riscv-rootfs/rootfsimg/build/busybox could not be opened for reading`
 
 删除 `riscv-rootfs/apps/busybox/repo` 目录，然后重新构建
+
+#### `/usr/bin/ld: scripts/dtc/dtc-parser.tab.o:(.bss+0x10): multiple definition of 'yylloc'; scripts/dtc/dtc-lexer.lex.o:(.bss+0x0): first defined here`
+
+删除 `riscv-linux/scripts/dtc/dtc-lexer.l` 中的 `YYLTYPE yylloc`

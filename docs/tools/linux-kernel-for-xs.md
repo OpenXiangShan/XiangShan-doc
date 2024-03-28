@@ -68,6 +68,8 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
     * NEMU在生成 checkpoint 时，需要添加一段恢复程序。因此，在生成工作负载时需要避开这段空间。在 `bbl/bbl.lds` 中修改 `.` 的地址为 `. = MEM_START + 0xa0000`
     * `make clean` 后运行 `make -j` 生成 bbl.bin，供 NEMU 进行 profiling 或 checkpoint
 
+* 这个流程中生成的 bbl.bin 仅供 SimPoint profiling 和 Checkpoint 使用。因此生成 bbl.bin 之后，如果要运行、采样、或生成检查点请看[ Checkpoint 的生成和运行](https://xiangshan-doc.readthedocs.io/zh-cn/latest/tools/simpoint/)
+
 
 #### 3. 在此基础上，如何在 Linux 下跑 BusyBox 以及一些简单的应用程序
 

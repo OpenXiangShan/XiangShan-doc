@@ -36,10 +36,11 @@ nav:
         - Publications: tutorials/publications.md
         - Talks: tutorials/talks.md
         - Tutorials:
-            - ASPLOS'23: tutorials/asplos23.md
-            - RVSC'23: tutorials/rvsc23.md
-            - MICRO'23: tutorials/micro23.md
+            - ASPLOS'24: tutorials/asplos24.md
             - HPCA'24: tutorials/hpca24.md
+            - MICRO'23: tutorials/micro23.md
+            - RVSC'23: tutorials/rvsc23.md
+            - ASPLOS'23: tutorials/asplos23.md
     - Integration Guide:
         - NANHU Core: integration/overview.md
         - SoC Integration: integration/soc.md

@@ -8,9 +8,9 @@ We are going to host half-day tutorials on XiangShan and MinJie during ASPLOS'24
 
 | Time | Topic | Slides |
 | -------- | ----- | ------ |
-| 13:30 - 14:00 | Introduction of the XiangShan Project | To be done |
-| 14:05 - 15:00 | Microarchitecture Design and Implementation | To be done |
-| 15:05 - 17:00 | Hands-on Development | To be done |
+| 13:30 - 14:00 | Introduction of the XiangShan Project | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20240427-ASPLOS24-1-Introduction-XiangShan.pdf) |
+| 14:05 - 15:00 | Microarchitecture Design and Implementation | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20240427-ASPLOS24-2-Microarchitecture.pdf) |
+| 15:05 - 17:00 | Hands-on Development | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20240427-ASPLOS24-3-Dev-Tools.pdf) |
 
 
 

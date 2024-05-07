@@ -123,7 +123,8 @@ nav:
             - Constantin: tools/constantin.md
             - OracleBP: tools/oraclebp.md
             - NEMU: tools/nemu.md
-            - 编译 Linux Kernel: tools/linux-kernel-for-xs.md
+            - 编译使用 RISCV-pk 的 Linux Kernel: tools/linux-kernel-for-xs.md
+            - 编译使用 OpenSBI 的 Linux Kernel: tools/opensbi-kernel-for-xs.md
             - 制作 Debian 镜像: tools/debian.md
             # - 常用脚本: tools/scripts.md
         - Troubleshooting: tools/troubleshoot-zh.md

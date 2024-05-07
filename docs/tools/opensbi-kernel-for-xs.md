@@ -16,6 +16,8 @@
          git clone https://github.com/OpenXiangShan/NEMU -b gcpt_new_mem_layout
          git clone https://github.com/xyyy1420/workload_build_env.git
      ```
+!!! note
+    注意，本文档中使用的内核版本 6.6.30 不是必须的，用户可以自行选择内核版本以满足不同的需求，但是如果选择使用其他版本的内核，我们无法提供任何可用的配置文件，也无法提供任何有关配置方面的支持
 
 - 解压 Linux kernel 代码
     - 运行 `tar -xf linux-6.6.30.tar.xz`

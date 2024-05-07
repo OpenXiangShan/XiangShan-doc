@@ -9,13 +9,13 @@
     注意，过程中出现任何问题，请首先观察出错信息并结合 Makefile 文件，自行网上搜索可以解决一些简单问题，比如工具链和依赖包相关的问题。
 
 - 分别克隆或下载启动加载程序 OpenSBI、Linux kernel、根文件系统 rootfs、NEMU以及构建时所需的设备树和内核配置文件。并将四个仓库和一个压缩文件放到**同一目录下**
-     ```shell
-         git clone https://github.com/riscv-software-src/opensbi.git -b v1.4
-         wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.30.tar.xz
-         git clone https://github.com/OpenXiangShan/riscv-rootfs -b checkpoint
-         git clone https://github.com/OpenXiangShan/NEMU -b gcpt_new_mem_layout
-         git clone https://github.com/xyyy1420/workload_build_env.git
-     ```
+```shell
+git clone https://github.com/riscv-software-src/opensbi.git
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.30.tar.xz
+git clone https://github.com/OpenXiangShan/riscv-rootfs -b checkpoint
+git clone https://github.com/OpenXiangShan/NEMU -b gcpt_new_mem_layout
+git clone https://github.com/xyyy1420/workload_build_env.git
+```
 !!! note
     注意，本文档中使用的内核版本 6.6.30 不是必须的，用户可以自行选择内核版本以满足不同的需求，但是如果选择使用其他版本的内核，我们无法提供任何可用的配置文件，也无法提供任何有关配置方面的支持
 
@@ -55,7 +55,7 @@
 
 - 构建 OpenSBI 并链接内核
     - 到 $OPENSBI_HOME 目录
-    - 运行 ```make PLATFORM=generic FW_PAYLOAD_PATH=$RISCV_LINUX_HOME/arch/riscv/boot/Image FW_FDT_PATH=$WORKLOAD_BUILD_ENV_HOME/dts/build/xiangshan.dtb FW_TEXT_START=0x80100000 FW_PAYLOAD_OFFSET=0x100000```
+    - 运行 `make PLATFORM=generic FW_PAYLOAD_PATH=$RISCV_LINUX_HOME/arch/riscv/boot/Image FW_FDT_PATH=$WORKLOAD_BUILD_ENV_HOME/dts/build/xiangshan.dtb FW_PAYLOAD_OFFSET=0x100000`
 
 - 构建 GCPT 并链接 OpenSBI 作为 PAYLOAD
     - 到 $GCPT_HOME 目录

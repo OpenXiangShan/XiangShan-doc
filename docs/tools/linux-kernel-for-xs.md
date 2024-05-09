@@ -172,11 +172,11 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
 #### `unrecognized opcode: fence.i, extension zifencei required` 
 
-修改内核的 Makefile，在 `KBUILD_AFLAGS` 和 `KBUILD_CFLAGS` 后面加上 `_zicsr_zifencei`。
+修改 `riscv-linux/arch/riscv/Makefile`，在下方所示 `KBUILD_AFLAGS` 和 `KBUILD_CFLAGS` 后面加上 `_zicsr_zifencei`。
 
 ```patch
 -KBUILD_AFLAGS += -march=$(KBUILD_MARCH)$(KBUILD-ARCH_A)fd$(KBUILD_ARCH_C)
-+KBUILD AFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)fd$(KBUILD_ARCH_C)_zicsr_zifencei
++KBUILD_AFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)fd$(KBUILD_ARCH_C)_zicsr_zifencei
 
 -KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH-A)$(KBUILD-ARCH_C)
 +KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH_A)$(KBUILD_ARCH_C)_zicsr_zifencei

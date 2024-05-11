@@ -53,3 +53,5 @@ We appreciate their contributions to enhancing XiangShan and strengthening the c
 - [A Distributed ATPG System Combining Test Compaction Based on Pure MaxSAT](https://ieeexplore.ieee.org/abstract/document/10317948), ICT-CAS, ATS'23
 
 - [REMU: Enabling Cost-Effective Checkpointing and Deterministic Replay in FPGA-based Emulation](https://ieeexplore.ieee.org/document/10360968), ICT-CAS, ICCD'23
+
+- [Asynchronous Memory Access Unit: Exploiting Massive Parallelism for Far Memory Access](https://dl.acm.org/doi/abs/10.1145/3663479), ICT-CAS, TACO

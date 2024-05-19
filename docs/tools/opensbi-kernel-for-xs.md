@@ -68,15 +68,9 @@ export CROSS_COMPILE=$RISCV/bin/riscv64-unknown-linux-gnu-
     * 到 $OPENSBI_HOME 目录
     * 构建 OpenSBI
     ```bash
-    make PLATFORM=generic FW_PAYLOAD_PATH=$RISCV_LINUX_HOME/arch/riscv/boot/Image FW_FDT_PATH=$WORKLOAD_BUILD_ENV_HOME/dts/build/xiangshan.dtb FW_PAYLOAD_OFFSET=0x100000
+    make PLATFORM=generic FW_PAYLOAD_PATH=$RISCV_LINUX_HOME/arch/riscv/boot/Image FW_FDT_PATH=$WORKLOAD_BUILD_ENV_HOME/dts/build/xiangshan.dtb FW_PAYLOAD_OFFSET=0x200000
     ```
-
-* 构建 GCPT 并链接 OpenSBI 作为 PAYLOAD
-    * 到 $GCPT_HOME 目录
-    * 生成可用于直接运行或者用于 profiling 或生成 checkpoint 的二进制文件 build/gcpt.bin
-    ```bash
-    make GCPT_PAYLOAD_PATH=$OPENSBI_HOME/build/platform/generic/firmware/fw_payload.bin
-    ```
+    * 构建得到二进制文件 $OPENSBI_HOME/build/platform/generic/firmware/fw_payload.bin
 
 * 其他
     * 请预先准备好 riscv64 工具链，可能用到的 prefix 有 `riscv64-unknown-linux-gnu-`，`riscv64-unknown-elf-`

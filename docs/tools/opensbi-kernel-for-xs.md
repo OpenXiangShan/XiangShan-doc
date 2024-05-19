@@ -8,12 +8,11 @@
 !!! note
     注意，过程中出现任何问题，请首先观察出错信息并结合 Makefile 文件，自行网上搜索可以解决一些简单问题，比如工具链和依赖包相关的问题。
 
-- 分别克隆或下载启动加载程序 OpenSBI、Linux kernel、根文件系统 rootfs、NEMU以及构建时所需的设备树和内核配置文件。并将四个仓库和一个压缩文件放到**同一目录下**
+- 分别克隆或下载启动加载程序 OpenSBI、Linux kernel、根文件系统 rootfs以及构建时所需的设备树和内核配置文件。并将四个仓库和一个压缩文件放到**同一目录下**
 ```bash
 git clone https://github.com/riscv-software-src/opensbi.git
 wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.30.tar.xz
 git clone https://github.com/OpenXiangShan/riscv-rootfs -b checkpoint
-git clone https://github.com/OpenXiangShan/NEMU -b gcpt_new_mem_layout
 git clone https://github.com/xyyy1420/workload_build_env.git
 ```
 !!! note
@@ -25,8 +24,6 @@ tar -xf linux-6.6.30.tar.xz
 ```
 
 * 设置环境变量
-    * NEMU_HOME：NEMU 的路径
-    * GCPT_HOME：GCPT_RESTORE 的路径（$NEMU_HOME/resource/gcpt_restore）
     * RISCV_LINUX_HOME：Linux Kernel 的路径
     * RISCV_ROOTFS_HOME：riscv-rootfs 的路径
     * WORKLOAD_BUILD_ENV_HOME: workload build env 的路径

@@ -34,8 +34,9 @@ tar -xf linux-6.6.30.tar.xz
     * RISCV：riscv-gnu-toolchain 的安装路径（包含bin, include, lib等的顶层目录路径）
     > riscv-gnu-toolchain 的安装请参考 [riscv-gnu-toolchain 官方文档](https://github.com/riscv-collab/riscv-gnu-toolchain)，如果需要为香山编译 B 扩展 GNU 工具链请参见 [GCB 工具链使用说明](../compiler/gnu_toolchain.md)。
 
-* 设置交叉编译工具链
+* 设置交叉编译工具链和目标架构
 ```bash
+export ARCH=riscv
 export CROSS_COMPILE=$RISCV/bin/riscv64-unknown-linux-gnu-
 ```
 
@@ -54,11 +55,11 @@ export CROSS_COMPILE=$RISCV/bin/riscv64-unknown-linux-gnu-
     * 将 $WORKLOAD_BUILD_ENV_HOME/configs/xiangshan_defconfig 拷贝到 $RISCV_LINUX_HOME/arch/riscv/configs/xiangshan_defconfig
     * 使用 xiangshan_defconfig 配置内核
     ```bash
-    make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- xiangshan_defconfig
+    make xiangshan_defconfig
     ```
     * 根据自己的需求通过 menuconfig 做修改
     ```bash
-    make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- menuconfig
+    make menuconfig
     ```
     * 如果要运行 SPEC2006 或其他程序，一个**较为必要的修改**是将 initramfs 的 source 改为 $RISCV_ROOTFS_HOME/rootfsimg/initramfs-spec.txt，并修改该文件（该文件非开箱即用）
     * 使用 `make -j` 构建内核

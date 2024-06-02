@@ -24,7 +24,7 @@ Next, we will introduce how to install the aforementioned toolchains.
 
 On Ubuntu, you can install the `riscv64-linux-gnu-` toolchain by running:
 ```
-sudo apt-get install gcc-riscv64-linux-gnu g++-riscv64-linux-gnu gfortran-riscv64-linux-gnu binutils-riscv64-linux-gnu
+apt-get install gcc-riscv64-linux-gnu g++-riscv64-linux-gnu gfortran-riscv64-linux-gnu binutils-riscv64-linux-gnu
 ```
 
 After installation, you can check it with:
@@ -56,12 +56,12 @@ Each version of riscv-gnu-toolchain includes various packages. Please select two
 
 Extract the downloaded tar.gz files to `/opt`, and add `/opt/riscv/bin` to your `PATH`.
 ```
-sudo tar -xzf <downloaded_tar_gz_file> -C /opt
+tar -xzf <downloaded_tar_gz_file> -C /opt
 export PATH=/opt/riscv/bin:$PATH
 ```
 
 !!!! tip
-    If you cannot use sudo, you can also extract the tar.gz files to another writable directory and add the `riscv/bin` directory under the extracted path to your `PATH`.
+    If you do not have superuser permission, you can also extract the tar.gz files to another writable directory and add the `riscv/bin` directory under the extracted path to your `PATH`.
 
 After completion, you can check with the following commands:
 ```

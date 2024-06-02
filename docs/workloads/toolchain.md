@@ -26,7 +26,7 @@ This chapter has [English version](./toolchain.en.md).
 
 在 Ubuntu 上，您可以运行以下命令来安装 `riscv64-linux-gnu-` 工具链：
 ```
-sudo apt-get install gcc-riscv64-linux-gnu g++-riscv64-linux-gnu gfortran-riscv64-linux-gnu binutils-riscv64-linux-gnu
+apt-get install gcc-riscv64-linux-gnu g++-riscv64-linux-gnu gfortran-riscv64-linux-gnu binutils-riscv64-linux-gnu
 ```
 
 安装完成后，可以通过以下命令检查安装是否成功：
@@ -59,7 +59,7 @@ riscv-gnu-toolchain 的每个版本会包含许多不同的包，请根据您的
 
 将下载到的 2 个 tar.gz 文件解压到 `/opt`，并把 `/opt/riscv/bin` 添加到 `PATH` 中。
 ```
-sudo tar -xzf <downloaded_tar_gz_file> -C /opt
+tar -xzf <downloaded_tar_gz_file> -C /opt
 export PATH=/opt/riscv/bin:$PATH
 ```
 

@@ -82,7 +82,7 @@ If you wish to compile the toolchain from source, you can refer to the [official
 
 
 ## Generate extension instructions
-Nanhu structure of Xiangshan support RV64GCBK extension (`RV64IMAFDC_zba_zbb_zbc_zbs_zbkb_zbkc_zbkx_zknd_zkne_zknh_zksed_zksh_svinval`)
+Nanhu structure of Xiangshan support RV64GCBK extension (`RV64IMAFDC_zba_zbb_zbc_zbs_zk_svinval`)
 
 Add `-march=rv64gc_zba_zbb_zbc_zbs` to gcc compilation options
 

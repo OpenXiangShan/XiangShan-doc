@@ -85,7 +85,7 @@ riscv64-unknown-elf-gdb --version
 
 ## 生成 RV64GC 以外的其他扩展指令
 
-香山处理器南湖架构支持 RV64GCBK 扩展（具体指令集字符串为 `RV64IMAFDC_zba_zbb_zbc_zbs_zbkb_zbkc_zbkx_zknd_zkne_zknh_zksed_zksh_svinval` ）。
+香山处理器南湖架构支持 RV64GCBK 扩展（具体指令集字符串为 `RV64IMAFDC_zba_zbb_zbc_zbs_zk_svinval` ）。
 
 在 gcc 编译选项中加入 `-march=rv64gc_zba_zbb_zbc_zbs`
 

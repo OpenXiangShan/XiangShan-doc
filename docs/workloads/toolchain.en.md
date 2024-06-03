@@ -44,9 +44,11 @@ In addition, riscv-gnu-toolchain periodically releases nightly builds, which are
 ### Get the Nightly Builds
 
 You can get nightly builds of riscv-gnu-toolchain from the following sources:
+
 * The GitHub repository for riscv-gnu-toolchain: [Releases](https://github.com/riscv-collab/riscv-gnu-toolchain/releases)
 
 Each version of riscv-gnu-toolchain includes various packages. Please select two packages with the following keywords based on your Ubuntu version:
+
 * For `riscv64-unknown-linux-gnu-`:
     * Choose filenames containing `riscv64`, `glibc`, and `gcc`
     * For example, `riscv64-glibc-ubuntu-22.04-gcc-nightly-2024.04.12-nightly.tar.gz`
@@ -60,7 +62,7 @@ tar -xzf <downloaded_tar_gz_file> -C /opt
 export PATH=/opt/riscv/bin:$PATH
 ```
 
-!!!! tip
+!!! tip
     If you do not have superuser permission, you can also extract the tar.gz files to another writable directory and add the `riscv/bin` directory under the extracted path to your `PATH`.
 
 After completion, you can check with the following commands:

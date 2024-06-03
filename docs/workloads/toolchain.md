@@ -46,10 +46,12 @@ riscv64-linux-gnu-objdump --version
 ### 直接获取夜间版本
 
 您可以从这些地方获取 riscv-gnu-toolchain 的夜间版本：
+
 * riscv-gnu-toolchain 的 Github 仓库：[Releases](https://github.com/riscv-collab/riscv-gnu-toolchain/releases)
 * ISCAS 提供的镜像：[Releases](https://mirror.iscas.ac.cn/riscv-toolchains/release/riscv-collab/riscv-gnu-toolchain/)
 
 riscv-gnu-toolchain 的每个版本会包含许多不同的包，请根据您的 Ubuntu 版本选择包含以下关键词的 2 个包：
+
 * 对于 `riscv64-unknown-linux-gnu-`：
     * 选择文件名包含 `riscv64`、`glibc`、`gcc` 的
     * 例如 `riscv64-glibc-ubuntu-22.04-gcc-nightly-2024.04.12-nightly.tar.gz`
@@ -63,7 +65,7 @@ tar -xzf <downloaded_tar_gz_file> -C /opt
 export PATH=/opt/riscv/bin:$PATH
 ```
 
-!!!! tip
+!!! tip
     如果您没有管理员权限，您也可以把 tar.gz 文件解压到其他可写目录，并把解压路径下的 `riscv/bin` 目录添加到 `PATH` 中。
 
 完成后，可以通过以下命令检查安装是否成功：

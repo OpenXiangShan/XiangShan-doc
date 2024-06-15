@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # 欢迎访问香山官方文档！
 
 ![香山 Logo](figs/LOGO.png)

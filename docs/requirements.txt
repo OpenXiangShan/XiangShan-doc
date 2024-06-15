@@ -1,4 +1,5 @@
 mkdocs-material==9.4.7
 mkdocs-static-i18n
+mkdocs-rss-plugin
 mkdocs-git-revision-date-localized-plugin
 jieba==0.42.1

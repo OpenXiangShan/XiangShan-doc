@@ -20,6 +20,13 @@ plugins:
       lang:
         - zh
         - en
+  - blog:
+  - rss:
+      match_path: blog/posts/.* 
+      date_from_meta:
+        as_creation: date
+      categories:
+        - categories
     # - with-pdf:
     #     author: XiangShan Team
     #     copyright: XiangShan Team, 2022
@@ -132,3 +139,5 @@ nav:
         - Troubleshooting: tools/troubleshoot-zh.md
     - 工作负载 Workloads:
         - 编译工具链: workloads/toolchain.md
+    - 博客 Blog: 
+        - blog/index.md

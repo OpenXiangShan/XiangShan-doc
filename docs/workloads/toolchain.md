@@ -39,16 +39,15 @@ riscv64-linux-gnu-objdump --version
 
 ## 获取 riscv-gnu-toolchain 工具链
 
-[RISC-V Collaboration](https://github.com/riscv-collab) 提供了一套 RISC-V 交叉编译工具链 [riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain)。您可以根据此仓库的 README 自行构建交叉编译工具链。
+[RISC-V Collaboration](https://github.com/riscv-collab) 提供了一套 RISC-V 交叉编译工具链 [riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain)。
 
-此外，riscv-gnu-toolchain 会以夜间版本的形式不定期的发布预编译版本的工具链，我们更推荐直接使用它们。
+### 获取预编译好的夜间版本
 
-### 直接获取夜间版本
-
-您可以从这些地方获取 riscv-gnu-toolchain 的夜间版本：
+riscv-gnu-toolchain 会以夜间版本的形式不定期的发布预编译版本的工具链，我们推荐直接使用它们。
+您可以从这些地方获取 riscv-gnu-toolchain 的夜间版本（预编译版本，不需要自行从源码编译）：
 
 * riscv-gnu-toolchain 的 Github 仓库：[Releases](https://github.com/riscv-collab/riscv-gnu-toolchain/releases)
-* ISCAS 提供的镜像：[Releases](https://mirror.iscas.ac.cn/riscv-toolchains/release/riscv-collab/riscv-gnu-toolchain/)
+* 中科院软件所 ISCAS 提供的镜像（建议国内用户优先选用）：[Releases](https://mirror.iscas.ac.cn/riscv-toolchains/release/riscv-collab/riscv-gnu-toolchain/)
 
 riscv-gnu-toolchain 的每个版本会包含许多不同的包，请根据您的 Ubuntu 版本选择包含以下关键词的 2 个包：
 
@@ -83,13 +82,13 @@ riscv64-unknown-elf-gdb --version
 
 ### 从源代码编译
 
-如果您希望从源代码自行编译工具链，您可参考 [riscv-gnu-toolchain 的官方说明](https://github.com/riscv-collab/riscv-gnu-toolchain)。但请注意，我们无法帮助您解决工具链编译过程中遇到的问题。
+如果您希望从源代码自行编译工具链，您可参考 [riscv-gnu-toolchain 的官方说明](https://github.com/riscv-collab/riscv-gnu-toolchain) 自行编译构建交叉编译工具链。但请注意，我们无法帮助您解决工具链编译过程中遇到的问题。
 
 ## 生成 RV64GC 以外的其他扩展指令
 
-香山处理器南湖架构支持 RV64GCBK 扩展（具体指令集字符串为 `RV64IMAFDC_zba_zbb_zbc_zbs_zk_svinval` ）。
+针对 gcc 工具链，其源码编译和预编译版本的指令集默认均为 RV64GC，如您需要配置工具链的其他默认指令集，可以在 `configure` 时指定 `--with-arch=rv64gc_your_extensions`。
 
-在 gcc 编译选项中加入 `-march=rv64gc_zba_zbb_zbc_zbs`
+针对负载，在编译时可在 gcc 编译选项中加入 `-march=rv64gc_your_extensions`。香山处理器南湖架构支持 RV64GCBK 扩展（具体指令集字符串为 `rv64gc_zba_zbb_zbc_zbs_zk_svinval` ）。
 
 以编译 AM 中的应用为例:
 ```shell

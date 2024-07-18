@@ -9,9 +9,11 @@ hide:
 
 ## Recent Updates
 
-**我们将继续在ASPLOS'24会议期间同地举办香山项目的上手教程. Look forward to seeing you at ASPLOS'24 in San Diego, USA. Learn more on [the ASPLOS'24 Tutorial Page](tutorials/asplos24.md).**
+**我们将继续在MICRO'24会议期间同地举办香山项目的上手教程. Look forward to seeing you at MICRO'24 in Austin, USA. Learn more on [the MICRO'24 Tutorial Page](tutorials/micro24.md).**
 
-我们在HPCA'24会议期间同地举办香山项目的上手教程. We have hosted tutorials at HPCA'24 in Edinburgh, Scotland. Learn more on [the HPCA'24 Tutorial Page](tutorials/hpca24.md).
+我们在ASPLOS'24会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at ASPLOS'24 in San Diego, USA. Learn more on [the ASPLOS'24 Tutorial Page](tutorials/asplos24.md).
+
+我们在HPCA'24会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at HPCA'24 in Edinburgh, Scotland. Learn more on [the HPCA'24 Tutorial Page](tutorials/hpca24.md).
 
 我们在MICRO'23会议期间同地举办了一次香山项目的上手教程，并介绍了第三代（昆明湖）架构的最新进展. We have hosted tutorials at MICRO'23 with latest update on the third generation (Kunminghu) architecture. Learn more on [the MICRO'23 Tutorial Page](tutorials/micro23.md).
 

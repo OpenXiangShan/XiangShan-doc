@@ -46,6 +46,7 @@ nav:
         - Publications: tutorials/publications.md
         - Talks: tutorials/talks.md
         - Tutorials:
+            - MICRO'24: tutorials/micro24.md
             - ASPLOS'24: tutorials/asplos24.md
             - HPCA'24: tutorials/hpca24.md
             - MICRO'23: tutorials/micro23.md

@@ -9,6 +9,8 @@ hide:
 
 ## Recent Updates
 
+**香山社区将在第 4 届 RISC-V 中国峰会（RVSC 2024）期间举办同期活动，现正在征集香山贡献者演讲。XiangShan community will hold a co-event during RISC-V China Summit 2024. We are currently seeking contributors for speeches.** Learn more on [this blog](blog/posts/rvsc2024-call-for-presentation.md).
+
 **我们将继续在MICRO'24会议期间同地举办香山项目的上手教程. Look forward to seeing you at MICRO'24 in Austin, USA. Learn more on [the MICRO'24 Tutorial Page](tutorials/micro24.md).**
 
 我们在ASPLOS'24会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at ASPLOS'24 in San Diego, USA. Learn more on [the ASPLOS'24 Tutorial Page](tutorials/asplos24.md).

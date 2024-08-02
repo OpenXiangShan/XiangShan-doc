@@ -23,7 +23,8 @@ Simpoint Checkpoint 会根据程序特性找到具有代表性的检查点。如
 
 #### [NEMU (master 分支)](https://github.com/OpenXiangShan/NEMU/tree/master)
 
-1. 使用 `git submodule update --init` 下载同步NEMU的submodule
+1. 设置环境变量 `export NEMU_HOME=/path/to/NEMU`
+1. 在 `$NEMU_HOME` 目录下使用 `git submodule update --init` 下载同步 NEMU 的 submodule
 2. 在 `$NEMU_HOME/resource/simpoint/simpoint_repo` 目录下执行 `make`，得到可执行文件 `NEMU/resource/simpoint/simpoint_repo/bin/simpoint`
 2. 在 `$NEMU_HOME` 目录下使用 `make riscv64-xs-cpt_defconfig` 配置NEMU，然后使用 `make menuconfig` 按需调整配置选项，最后使用 `make -j` 生成NEMU的可执行文件
 3. 在 `$NEMU_HOME/resource/gcpt_restore` 目录下执行 `make` 命令编译，得到`gcpt.bin`
@@ -35,7 +36,7 @@ Simpoint Checkpoint 会根据程序特性找到具有代表性的检查点。如
 
 在 S 态或 U 态下运行 workload，比如 Linux 上运行 SPEC2006。构建的方法可以参考 [Linux Kernel for XiangShan in EMU](linux-kernel-for-xs.md) 。
 
-NEMU 生成 checkpoint 时，需要添加一段恢复程序 `gcpt.bin`，在 `(0x80000000, 0xa0000)`。因此在生成 workload 时，需要避开这一段空间，将起始地址设置在 `0x800a0000` 。如在 [riscv-pk/bbl/bbl.lds](https://github.com/OpenXiangShan/riscv-pk/blob/noop/bbl/bbl.lds#L15) 中，修改为 `. = MEM_START + 0xa0000` 。
+NEMU 生成 checkpoint 时，需要添加一段恢复程序 `gcpt.bin`，在 `(0x80000000, 0x100000)`。因此在生成 workload 时，需要避开这一段空间，将起始地址设置在 `0x80100000` 。如在 [riscv-pk/bbl/bbl.lds](https://github.com/OpenXiangShan/riscv-pk/blob/noop/bbl/bbl.lds#L15) 中，修改为 `. = MEM_START + 0x100000` 。
 
 **NEMU 默认不会进入 checkpoint 模式**，需要使用 NEMU 自定义指令进行模式转换。
 

@@ -13,7 +13,7 @@
 git clone https://github.com/riscv-software-src/opensbi.git
 wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.30.tar.xz
 git clone https://github.com/OpenXiangShan/riscv-rootfs -b checkpoint
-git clone https://github.com/xyyy1420/workload_build_env.git
+git https://github.com/OpenXiangShan/nemu_board.git
 ```
 !!! note
     注意，本文档中使用的内核版本 6.6.30 不是必须的，用户可以自行选择内核版本以满足不同的需求，但是如果选择使用其他版本的内核，我们无法提供任何可用的配置文件，也无法提供任何有关配置方面的支持
@@ -26,7 +26,7 @@ tar -xf linux-6.6.30.tar.xz
 * 设置环境变量
     * RISCV_LINUX_HOME：Linux Kernel 的路径
     * RISCV_ROOTFS_HOME：riscv-rootfs 的路径
-    * WORKLOAD_BUILD_ENV_HOME: workload build env 的路径
+    * WORKLOAD_BUILD_ENV_HOME: nemu_board 的路径
     * OPENSBI_HOME：OpenSBI 的路径
     * RISCV：riscv-gnu-toolchain 的安装路径（包含bin, include, lib等的顶层目录路径）
     > riscv-gnu-toolchain 的安装请参考 [riscv-gnu-toolchain 官方文档](https://github.com/riscv-collab/riscv-gnu-toolchain)，如果需要为香山编译 B 扩展 GNU 工具链请参见 [GCB 工具链使用说明](../compiler/gnu_toolchain.md)。

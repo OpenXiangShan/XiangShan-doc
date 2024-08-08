@@ -11,16 +11,16 @@
 - 分别克隆或下载启动加载程序 OpenSBI、Linux kernel、根文件系统 rootfs以及构建时所需的设备树和内核配置文件。并将四个仓库和一个压缩文件放到**同一目录下**
 ```bash
 git clone https://github.com/riscv-software-src/opensbi.git
-wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.30.tar.xz
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.10.3.tar.xz
 git clone https://github.com/OpenXiangShan/riscv-rootfs -b checkpoint
 git https://github.com/OpenXiangShan/nemu_board.git
 ```
 !!! note
-    注意，本文档中使用的内核版本 6.6.30 不是必须的，用户可以自行选择内核版本以满足不同的需求，但是如果选择使用其他版本的内核，我们无法提供任何可用的配置文件，也无法提供任何有关配置方面的支持
+    注意，本文档中使用的内核版本 6.10.3 不是必须的，用户可以自行选择内核版本以满足不同的需求
 
 - 解压 Linux kernel 代码
 ```bash
-tar -xf linux-6.6.30.tar.xz
+tar -xf linux-6.10.3.tar.xz
 ```
 
 * 设置环境变量

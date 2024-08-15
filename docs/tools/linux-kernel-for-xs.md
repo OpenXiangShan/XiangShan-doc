@@ -65,7 +65,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
         +reg = <0x0 0x80000000 0x2 0x00000000>;
 	};
     ```
-    * NEMU在生成 checkpoint 时，需要添加一段恢复程序。因此，在生成工作负载时需要避开这段空间。在 `bbl/bbl.lds` 中修改 `.` 的地址为 `. = MEM_START + 0x100000`
+    * NEMU 在生成 checkpoint 时，需要添加一段恢复程序。因此，在生成工作负载时需要避开这段空间。在 `bbl/bbl.lds` 中修改 `.` 的地址为 `. = MEM_START + 0x100000`
     * `make clean` 后运行 `make -j` 生成 bbl.bin，供 NEMU 进行 profiling 或 checkpoint
 
 * 使用 GCPT_RESTORE 链接 bbl.bin （可选，如果不链接需要在 profiling 和 checkpoint 时使用 -r 指定 gcpt.bin）
@@ -188,9 +188,9 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
 
 如果还存在这个问题，修改 `riscv-pk/Makefile` 在 `--with-arch=rv64imac` 后面加上 `_zicsr_zifencei`
 
-#### `undefiend symbol MEM_START+0xa0000 referenced in expression` 
+#### `undefiend symbol MEM_START+0x100000 referenced in expression` 
 
-在 `+` 前后加上空格：`. = MEM_START + 0xa0000`
+在 `+` 前后加上空格：`. = MEM_START + 0x100000`
 
 #### `repo/stream.c: No such file or directory`
 

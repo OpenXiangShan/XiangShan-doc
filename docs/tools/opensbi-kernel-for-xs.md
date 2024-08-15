@@ -58,7 +58,6 @@ export CROSS_COMPILE=$RISCV/bin/riscv64-unknown-linux-gnu-
     ```bash
     make menuconfig
     ```
-    * 如果要运行 SPEC2006 或其他程序，一个**较为必要的修改**是将 initramfs 的 source 改为 $RISCV_ROOTFS_HOME/rootfsimg/initramfs-spec.txt，并修改该文件（该文件非开箱即用）
     * 使用 `make -j` 构建内核
 
 * 构建 OpenSBI 并链接内核
@@ -71,6 +70,34 @@ export CROSS_COMPILE=$RISCV/bin/riscv64-unknown-linux-gnu-
 
 * 其他
     * 请预先准备好 riscv64 工具链，可能用到的 prefix 有 `riscv64-unknown-linux-gnu-`，`riscv64-unknown-elf-`
+
+#### 2. 在此基础上，如何在 Linux 下跑 SPEC2006 以及其他程序作为 SimPoint profiling 和 checkpoint 的 workload
+
+* 重新配置内核
+    * 到 $RISCV_ROOTFS_HOME 目录
+    * 修改 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-emu.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-spec.txt`
+
+* 修改 rootfsimg
+    * 按需修改 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-spec.txt` 文件（不修改无法使用）
+    * 构建内核 `make -j16`
+
+* 构建 OpenSBI
+    * 删除 $OPENSBI_HOME/build
+    * 检查 `${RISCV_LINUX_HOME}/arch/riscv/boot/Image` 大小是否超过 32MB
+    * 如果超过，计算 FW_PAYLOAD_FDT_ADDR =（该文件大小 + 2M + 0x80000000）以 1M 对齐，作为 OpenSBI 重定向设备树的地址并使用该命令构建 OpenSBI 
+    ```bash
+    make PLATFORM=generic FW_PAYLOAD_PATH=$RISCV_LINUX_HOME/arch/riscv/boot/Image FW_FDT_PATH=$WORKLOAD_BUILD_ENV_HOME/dts/build/xiangshan.dtb FW_PAYLOAD_OFFSET=0x100000 FW_PAYLOAD_FDT_ADDR=$(FW_PAYLOAD_FDT_ADDR) -j10
+    ```
+    * 如果没超过，则使用该命令构建OpenSBI 
+    ```bash
+    make PLATFORM=generic FW_PAYLOAD_PATH=$RISCV_LINUX_HOME/arch/riscv/boot/Image FW_FDT_PATH=$WORKLOAD_BUILD_ENV_HOME/dts/build/xiangshan.dtb FW_PAYLOAD_OFFSET=0x100000 -j10
+    ```
+
+* 使用 gcpt 链接 OpenSBI
+    * 克隆 gcpt 仓库 `git clone https://github.com/OpenXiangShan/LibCheckpointAlpha.git`
+    * 设置环境变量 `export GCPT_HOME=/path/to/LibCheckpointAlpha`
+    * 到 $GCPT_HOME 目录
+    * 链接 OpenSBI `make GCPT_PAYLOAD_PATH=$OPENSBI_HOME/build/platform/generic/firmware/fw_payload.bin` 得到 `$GCPT_HOME/build/gcpt.bin` 可以用于直接启动或者作为 SimPoint profiling 和 checkpoint 的 workload
 
 ## FAQs
 

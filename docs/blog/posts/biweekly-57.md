@@ -32,6 +32,6 @@ WIP：这里要补充一行概述
 * 香山技术讨论网站：https://github.com/OpenXiangShan/XiangShan/discussions
 * 香山文档：https://xiangshan-doc.readthedocs.io/
 
-编辑：李燕琴、满洋、刘泽昊、冯浩原、马月骁
+编辑：李燕琴、林志达、满洋、刘泽昊、冯浩原、马月骁
 
 审校：香山宣传工作组

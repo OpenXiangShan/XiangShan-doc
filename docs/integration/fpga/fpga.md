@@ -31,7 +31,7 @@ make verilog NUM_CORES=2 # Dual-Core XiangShan
 
 修改 `array_16_ext.v`:
 
-![array_16_ext.png](../figs/fpga_images/array_16_ext.png)
+![array_16_ext.png](../../figs/fpga_images/array_16_ext.png)
 
 
 ### 拷贝 Vivado 相关脚本，生成 Vivado 项目，编译二进制流
@@ -69,7 +69,7 @@ vivado -mode batch -source ./onboard-ai1-119.tcl -tclargs <vivado_build_folder> 
 
 系统完成加载后，能够看到如下的信息。可以 `cat /proc/cpuinfo` 得到当前的 CPU 信息：
 
-![cpuinfo.png](../figs/fpga_images/cpuinfo.png)
+![cpuinfo.png](../../figs/fpga_images/cpuinfo.png)
 
 ## FPGA 最小系统原理
 
@@ -77,9 +77,9 @@ vivado -mode batch -source ./onboard-ai1-119.tcl -tclargs <vivado_build_folder> 
 
 香山CPU核心的对外接口，主要包括 MEM AXI、DMA AXI 及 CFG AXI 三部分。分别用于对接 DDR 控制器、DMA 数据通路及 IO 操作。
 
-![fpga_minimal.png](../figs/fpga_images/fpga_minimal.png)
+![fpga_minimal.png](../../figs/fpga_images/fpga_minimal.png)
 
-![nanhu_interface.png](../figs/fpga_images/nanhu_interface.png)
+![nanhu_interface.png](../../figs/fpga_images/nanhu_interface.png)
 
 我们在搭建最小系统时，由于没有大数据吞吐的操作，因此主要使用了其中的 MEM AXI 及 CFG AXI 两个接口。
 
@@ -146,13 +146,13 @@ vivado -mode batch -source ./onboard-ai1-119.tcl -tclargs <vivado_build_folder> 
 #endif //_XS_MEMMAP_H_
 ```
 
-![cfg_axi.png](../figs/fpga_images/cfg_axi.png)
+![cfg_axi.png](../../figs/fpga_images/cfg_axi.png)
 
 ### XiangShan MEM AXI 接口设计
 
 MEM AXI 的接口比较简单，主要是将 XiangShan 连接到 DDR 控制器上。在 FPGA 上会增加一个 JTAG to AXI 的 IP，来实现将 Linux 的镜像文件加载到 DDR 地址的操作。
 
-![ddr_block.png](../figs/fpga_images/ddr_block.png)
+![ddr_block.png](../../figs/fpga_images/ddr_block.png)
 
 ### 从下载脚本，看启动过程
 
@@ -191,7 +191,7 @@ program_hw_devices [get_hw_devices xcvu19p_0]
 
 第 4、5 行为对应 JTAG 下载电缆的属性参数。可以通过 Vivado，打开 hw_manager 进行确认。
 
-![jtag_info.png](../figs/fpga_images/jtag_info.png)
+![jtag_info.png](../../figs/fpga_images/jtag_info.png)
 
 脚本中的内容需要和图中的 3、4 项一致。其中 `PARAM.FREQUENCY` 可以通过 4 的下拉菜单选取一个支持的速率填入。
 

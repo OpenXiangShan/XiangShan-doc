@@ -60,7 +60,8 @@ nav:
         - Synthesis: integration/synthesis.md
         - Floorplan: integration/floorplan.md
         - JTAG and Debug: integration/debug.md
-        - FPGA Prototype: integration/fpga.md
+        - FPGA Prototype: integration/fpga/fpga.md
+            - FPGA JTAG: integration/fpga/fpga_jtag.md
         - Docker Instruction: integration/docker.md
     - 微架构 Microarchitecture:
         - 总体架构: arch.md

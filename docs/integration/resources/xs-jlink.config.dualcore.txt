@@ -1,0 +1,74 @@
+#
+# SEGGER J-Link
+#
+# http://www.segger.com/jlink.html
+#
+
+adapter driver jlink
+# The serial number can be used to select a specific device in case more than
+# one is connected to the host.
+#
+# Example: Select J-Link with serial number 123456789
+#
+# adapter serial 123456789
+reset_config none
+#reset_config trst_and_srst
+
+transport select jtag
+adapter speed 100
+
+#scan_chain
+
+# adapter driver remote_bitbang
+# remote_bitbang host localhost
+# remote_bitbang port 23334
+set _DAP_TAPID 0x40016023
+
+set _CHIPNAME riscv
+#jtag newtap $_CHIPNAME cpu -irlen 5 -ircapture 0x1  -irmask 0x1f -expected-id  $_DAP_TAPID 
+jtag newtap $_CHIPNAME cpu -irlen 5 
+
+# User guide example, for reference only
+#set _TARGETNAME_1 $_CHIPNAME.cpu1
+#set _TARGETNAME_2 $_CHIPNAME.cpu2
+#target create $_TARGETNAME_1 riscv -chain-position -coreid 1
+#target create $_TARGETNAME_1 riscv -chain-position
+#target smp $_TARGETNAME.cpu2 $_TARGETNAME.cpu1
+#
+# From multi-core config of Intel, for reference only
+#target create $_TARGETNAME.0 riscv -chain-position $_CHIPNAME.cpu -rtos hwthread
+#target create $_TARGETNAME.1 riscv -chain-position $_CHIPNAME.cpu -coreid 1
+#target smp $_TARGETNAME.0 $_TARGETNAME.1
+
+
+set _TARGETNAME $_CHIPNAME.cpu
+#             debug target type
+#target create $_TARGETNAME riscv -chain-position $_TARGETNAME 
+target create $_TARGETNAME.0 riscv -chain-position $_CHIPNAME.cpu -coreid 0
+target create $_TARGETNAME.1 riscv -chain-position $_CHIPNAME.cpu -coreid 1
+#target smp $_TARGETNAME.0 $_TARGETNAME.1
+
+
+#riscv set_reset_timeout_sec 120
+#riscv set_command_timeout_sec 30
+#riscv set_mem_access sysbus
+riscv set_mem_access progbuf
+
+init
+
+#jlink hwstatus
+#jlink jtag 3 
+#jlink config
+
+reset
+halt
+#bp 0x2000000000 0x10
+#step
+#bp 0x2000000000 0xC0
+#step
+#resume
+#halt
+#resume
+#reset run
+#reset run
+echo "Ready for Remote Connections"

@@ -31,18 +31,22 @@ The RAS predictor now blocks the BPU pipeline to handle speculative queue overfl
     - Fixed bugs related to the V extension ([#3384](https://github.com/OpenXiangShan/XiangShan/pull/3384), [#3384](https://github.com/OpenXiangShan/XiangShan/pull/3384), [#3358](https://github.com/OpenXiangShan/XiangShan/pull/3358), [#3296](https://github.com/OpenXiangShan/XiangShan/pull/3296), [#3284](https://github.com/OpenXiangShan/XiangShan/pull/3284), [#3399](https://github.com/OpenXiangShan/XiangShan/pull/3399), [#3391](https://github.com/OpenXiangShan/XiangShan/pull/3391)).
     - Fixed bugs related to privilege-level functionality ([#3379](https://github.com/OpenXiangShan/XiangShan/pull/3379), [#3360](https://github.com/OpenXiangShan/XiangShan/pull/3360), [#3353](https://github.com/OpenXiangShan/XiangShan/pull/3353), [#3338](https://github.com/OpenXiangShan/XiangShan/pull/3338), [#3327](https://github.com/OpenXiangShan/XiangShan/pull/3327), [#3314](https://github.com/OpenXiangShan/XiangShan/pull/3314), [#3324](https://github.com/OpenXiangShan/XiangShan/pull/3324), [#3301](https://github.com/OpenXiangShan/XiangShan/pull/3301), [#3300](https://github.com/OpenXiangShan/XiangShan/pull/3300)).
     - Fixed bugs related to the H extension ([#3397](https://github.com/OpenXiangShan/XiangShan/pull/3397), [#3385](https://github.com/OpenXiangShan/XiangShan/pull/3385), [#3378](https://github.com/OpenXiangShan/XiangShan/pull/3378), [#3375](https://github.com/OpenXiangShan/XiangShan/pull/3375), [#3357](https://github.com/OpenXiangShan/XiangShan/pull/3357), [#3343](https://github.com/OpenXiangShan/XiangShan/pull/3343), [#3342](https://github.com/OpenXiangShan/XiangShan/pull/3342), [#3331](https://github.com/OpenXiangShan/XiangShan/pull/3331), [#3317](https://github.com/OpenXiangShan/XiangShan/pull/3317), [#3308](https://github.com/OpenXiangShan/XiangShan/pull/3308), [#3305](https://github.com/OpenXiangShan/XiangShan/pull/3305), [#3298](https://github.com/OpenXiangShan/XiangShan/pull/3298)).
+
 - **Timing Optimization**
     - Optimized the ready signal logic passed to the frontend Ibuf ([#3293](https://github.com/OpenXiangShan/XiangShan/pull/3293)).
     - Optimized the read pointer and output logic of the Ibuf bypass ([#3344](https://github.com/OpenXiangShan/XiangShan/pull/3344)).
-    - Removed some dead paths from loadCancel to the dispatch queue and BusyTable ([#3374](https://github.com/OpenXiangShan/XiangShan/pull/3374))([#3382](https://github.com/OpenXiangShan/XiangShan/pull/3382), [#3364](https://github.com/OpenXiangShan/XiangShan/pull/3364)).
+    - Removed some dead paths from loadCancel to the dispatch queue and BusyTable ([#3374](https://github.com/OpenXiangShan/XiangShan/pull/3374), [#3382](https://github.com/OpenXiangShan/XiangShan/pull/3382), [#3364](https://github.com/OpenXiangShan/XiangShan/pull/3364)).
+
 - **Reg Cache**
     - Completed the design of the Reg Cache, which has been merged into the master: the number of register read ports reduced from 15 to 10, with integer performance improving by 1.5% compared to the base ([#3290](https://github.com/OpenXiangShan/XiangShan/pull/3290)).
+
 - **Difftest**
     - Added FCSR/PC to Difftest, fixed vector and floating-point related CSR comparison mechanisms ([#3359](https://github.com/OpenXiangShan/XiangShan/pull/3359), [#3294](https://github.com/OpenXiangShan/XiangShan/pull/3294)).
+
 - **RVA23 Profile**
-    - Supported Zimop/Zcmop ([#3409](https://github.com/OpenXiangShan/XiangShan/pull/3409)).
+    - Supported may-be-operations/Compressed may-be-operations extension(Zimop/Zcmop) ([#3409](https://github.com/OpenXiangShan/XiangShan/pull/3409)).
     - Sstvala/Shvstvala passed smoke tests.
-    - RTL Implementation of Zfa/Zfhmin/Zvfhmin is completed and currently under testing.
+    - RTL Implementation of Additional floating-Point instructions/Vector/minimal half-precision floating point extension(Zfa/Zfhmin/Zvfhmin) is completed and currently under testing.
 
 ### MemBlock and cache
 

@@ -31,18 +31,23 @@ RAS 预测器推测栈溢出由不处理溢出改为阻塞 BPU 流水
     - 修复v拓展功能 bug ([#3384](https://github.com/OpenXiangShan/XiangShan/pull/3384), [#3384](https://github.com/OpenXiangShan/XiangShan/pull/3384), [#3358](https://github.com/OpenXiangShan/XiangShan/pull/3358), [#3296](https://github.com/OpenXiangShan/XiangShan/pull/3296), [#3284](https://github.com/OpenXiangShan/XiangShan/pull/3284), [#3399](https://github.com/OpenXiangShan/XiangShan/pull/3399), [#3391](https://github.com/OpenXiangShan/XiangShan/pull/3391))
     - 修复特权级功能 bug ([#3379](https://github.com/OpenXiangShan/XiangShan/pull/3379), [#3360](https://github.com/OpenXiangShan/XiangShan/pull/3360), [#3353](https://github.com/OpenXiangShan/XiangShan/pull/3353), [#3338](https://github.com/OpenXiangShan/XiangShan/pull/3338), [#3327](https://github.com/OpenXiangShan/XiangShan/pull/3327), [#3314](https://github.com/OpenXiangShan/XiangShan/pull/3314), [#3324](https://github.com/OpenXiangShan/XiangShan/pull/3324), [#3301](https://github.com/OpenXiangShan/XiangShan/pull/3301), [#3300](https://github.com/OpenXiangShan/XiangShan/pull/3300))
     - 修复H拓展功能 bug ([#3397](https://github.com/OpenXiangShan/XiangShan/pull/3397), [#3385](https://github.com/OpenXiangShan/XiangShan/pull/3385), [#3378](https://github.com/OpenXiangShan/XiangShan/pull/3378), [#3375](https://github.com/OpenXiangShan/XiangShan/pull/3375), [#3357](https://github.com/OpenXiangShan/XiangShan/pull/3357), [#3343](https://github.com/OpenXiangShan/XiangShan/pull/3343), [#3342](https://github.com/OpenXiangShan/XiangShan/pull/3342), [#3331](https://github.com/OpenXiangShan/XiangShan/pull/3331), [#3317](https://github.com/OpenXiangShan/XiangShan/pull/3317), [#3308](https://github.com/OpenXiangShan/XiangShan/pull/3308), [#3305](https://github.com/OpenXiangShan/XiangShan/pull/3305), [#3298](https://github.com/OpenXiangShan/XiangShan/pull/3298))
+
 - 时序优化
     - 优化传递到前端 Ibuf 的 ready 信号逻辑 ([#3293](https://github.com/OpenXiangShan/XiangShan/pull/3293))
     - 优化 Ibuf bypass 的读指针以及输出逻辑 ([#3344](https://github.com/OpenXiangShan/XiangShan/pull/3344))
-    - 移除 loadCancel 到发射队列和 BusyTable 中的部分伪路径 ([#3374](https://github.com/OpenXiangShan/XiangShan/pull/3374))([#3382](https://github.com/OpenXiangShan/XiangShan/pull/3382), [#3364](https://github.com/OpenXiangShan/XiangShan/pull/3364))
+    - 移除 loadCancel 到发射队列和 BusyTable 中的部分伪路径 ([#3374](https://github.com/OpenXiangShan/XiangShan/pull/3374), [#3382](https://github.com/OpenXiangShan/XiangShan/pull/3382), [#3364](https://github.com/OpenXiangShan/XiangShan/pull/3364))
+
 - 寄存器堆 cache
     - 完成寄存器堆 cache 设计，已合入主线:寄存器读端口从15减少到10，整数性能对比base提升1.5% ([#3290](https://github.com/OpenXiangShan/XiangShan/pull/3290))
+
 - Difftest 框架
     - FCSR/PC 加入 Difftest 对比框架, 修复向量和浮点相关CSR对比机制 ([#3359](https://github.com/OpenXiangShan/XiangShan/pull/3359), [#3294](https://github.com/OpenXiangShan/XiangShan/pull/3294))
+
 - RVA23 Profile
-    - 支持 Zimop/Zcmop ([3409](https://github.com/OpenXiangShan/XiangShan/pull/3409))
+    - 支持可能操作/压缩可能操作拓展(Zimop/Zcmop) ([#3409](https://github.com/OpenXiangShan/XiangShan/pull/3409))
     - Sstvala/Shvstvala 通过冒烟用例测试
-    - Zfa/Zfhmin/Zvfhmin 实现完成，正在测试
+    - 增强浮点拓展/向量FP16最小拓展/标量FP16最小拓展(Zfa/Zfhmin/Zvfhmin) 设计完成，正在测试
+    
 ### 访存与缓存
 
 - CHI 总线

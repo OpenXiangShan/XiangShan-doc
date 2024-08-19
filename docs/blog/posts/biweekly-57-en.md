@@ -20,6 +20,28 @@ WIP: Here's an overview line to add
 
 ### MemBlock and cache
 
+
+#### CHI Bus
+
+CHI-L3 (OpenLLC) completed the code design and was integrated into the Xiangshan system test. The CHI-L2+OpenLLC+DummyLLC (CHI2AXI) SoC was built, successfully running single-core CoreMark and Linux-hello.
+
+Support for CHI's CMO instructions was added to OpenLLC.
+
+The design plan for the CHI2AXI bridge was formulated, and RTL design began.
+
+#### Features
+Completed the RVA23 CMO code design and integrated it with the OpenLLC TL-Test framework that supports CMO requests, successfully running single CMO requests.
+
+#### Performance
+Added a TP metaBuffer on L2 TP meta to cache valid TP meta, alleviating negative competition between TP meta and L2 data; introduced a TP switch based on access frequency, turning off TP during high memory access.
+
+The L2 Tubins replacement algorithm was tested and showed a performance increase of 0.15% compared to the DRRIP replacement algorithm.
+
+The L3 Chrome replacement algorithm, after unit test framework trace stimulation testing and parameter tuning, showed a 27% hit rate increase on mcf but a decrease at some checkpoints; further exploration of EQ space compression was conducted.
+
+#### Tools
+The TL-Test framework iteration now can parse TL Logs into traces (TL Trace), serving as a test stimulus.
+
 ## RTL Evaluation
 
 We used SimPoint for program sampling and created checkpoint images based on our custom Checkpoint format, with a **SimPoint clustering coverage of 100%**. SPEC06 was compiled using gcc12 with O3 optimization enabled, the jemalloc memory library, and the `-ffp-contraction` option for SPEC06FP set to fast. The instruction set used was RV64GCB. We ran SPEC06 fragments on the XiangShan processor **version 9d9be651a from August 12** (**configured with 64KB L1 ICache, 64KB L1 DCache, 1MB L2, and 16MB L3, and a 3ld2st LSU**) in a simulation environment. DRAMsim3 was used to simulate DDR4-3200 memory latency with a CPU running at 3GHz. Below are the estimated SPECCPU 2006 scores:

@@ -39,32 +39,41 @@ RAS 预测器推测栈溢出由不处理溢出改为阻塞 BPU 流水
     - 完成寄存器堆 cache 设计，已合入主线:寄存器读端口从15减少到10，整数性能对比base提升1.5% ([#3290](https://github.com/OpenXiangShan/XiangShan/pull/3290))
 - Difftest 框架
     - FCSR/PC 加入 Difftest 对比框架, 修复向量和浮点相关CSR对比机制 ([#3359](https://github.com/OpenXiangShan/XiangShan/pull/3359), [#3294](https://github.com/OpenXiangShan/XiangShan/pull/3294))
-- RVA23
+- RVA23 Profile
     - 支持 Zimop/Zcmop ([3409](https://github.com/OpenXiangShan/XiangShan/pull/3409))
     - Sstvala/Shvstvala 通过冒烟用例测试
     - Zfa/Zfhmin/Zvfhmin 实现完成，正在测试
 ### 访存与缓存
 
-#### CHI 总线
+- CHI 总线
 
-CHI-L3（OpenLLC）完成代码设计，接入香山系统测试，构建 CHI-L2+OpenLLC+DummyLLC(CHI2AXI) SoC，跑通单核 CoreMark 以及 Linux-hello
+    - CHI-L3（OpenLLC）完成代码设计，接入香山系统测试，构建 CHI-L2+OpenLLC+DummyLLC(CHI2AXI) SoC，跑通单核 CoreMark 以及 Linux-hello
 
-在 OpenLLC 中添加对 CHI 的 CMO 指令的支持
+    - 在 OpenLLC 中添加对 CHI 的 CMO 指令的支持
 
-制定 CHI2AXI 转接桥的设计方案，开始进行 RTL 设计
+    - 制定 CHI2AXI 转接桥的设计方案，开始进行 RTL 设计
 
-#### 功能
-完成 RVA23 CMO 代码设计，接入支持 CMO 请求的 OpenLLC 的 TL-Test 框架进行测试，能正确运行单条 CMO 请求
+- RVA23 Profile
+    - 标量非对齐访存（Zicclsm + Zama16b）扩展：已通过开虚存的 riscv-test 测试，准备合入主线 ([#3320](https://github.com/OpenXiangShan/XiangShan/pull/3320))
+    - Cache 操作（Zicbom + Zicboz）扩展：正在 NEMU 和 DiffTest 上添加对 CBO 指令的支持
+    - 软件预取（Zicbop）扩展：完成软件数据预取部分 ([#3320](https://github.com/OpenXiangShan/XiangShan/pull/3320))
+    - 基于页的内存属性（Svpbmt）扩展：添加 Svpbmt 基本通路支持 ([#3404](https://github.com/OpenXiangShan/XiangShan/pull/3404))
+    - 48 位虚存管理（Sv48）扩展：已通过 Sv48 & Sv48x4 测试并完成时序评估，准备合入主线 ([#3406](https://github.com/OpenXiangShan/XiangShan/pull/3406))
+    - 完成 RVA23 CMO 代码设计，接入支持 CMO 请求的 OpenLLC 的 TL-Test 框架进行测试，能正确运行单条 CMO 请求
 
-#### 性能
-TP meta on L2 添加 TP metaBuffer，用于缓存有效的 TP meta，缓解 TP meta 与 L2 数据的负面竞争；添加基于访存频率的 TP 开关，在访存密集时关闭 TP
+- 性能
+    - TP meta on L2 添加 TP metaBuffer，用于缓存有效的 TP meta，缓解 TP meta 与 L2 数据的负面竞争；添加基于访存频率的 TP 开关，在访存密集时关闭 TP
 
-L2 Tubins 替换算法经测试，性能分数相较 DRRIP 替换算法有 0.15% 的提升
+    - L2 Tubins 替换算法经测试，性能分数相较 DRRIP 替换算法有 0.15% 的提升
 
-L3 Chrome 替换算法在通过单元测试框架 trace 激励的测试与参数调优后，在 mcf 上命中率提升 27%，但在部分 checkpoint 上命中率下降；对 EQ 空间压缩进行进一步探索
+    - L3 Chrome 替换算法在通过单元测试框架 trace 激励的测试与参数调优后，在 mcf 上命中率提升 27%，但在部分 checkpoint 上命中率下降；对 EQ 空间压缩进行进一步探索
 
-#### 工具
-TL-Test 框架迭代，可将 TL Log 解析成为 trace（TL Trace），作为测试激励
+- 工具
+    - TL-Test 框架迭代，可将 TL Log 解析成为 trace（TL Trace），作为测试激励
+    - 添加向量扩展相关的 CI 测试 ([#3268](https://github.com/OpenXiangShan/XiangShan/pull/3268))
+
+- 时序优化
+    - 修复一系列 MemBlock 的关键路径，主要包括标量 load / store 指令的发射和写回 ([#3208](https://github.com/OpenXiangShan/XiangShan/pull/3208))。目前 MemBlock 内部违例约 -60ps，Backend-MemBlock 端口违例约 -125ps。
 
 ## 评估
 

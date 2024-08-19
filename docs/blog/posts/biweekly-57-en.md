@@ -39,7 +39,7 @@ The RAS predictor now blocks the BPU pipeline to handle speculative queue overfl
     - Completed the design of the Reg Cache, which has been merged into the master: the number of register read ports reduced from 15 to 10, with integer performance improving by 1.5% compared to the base ([#3290](https://github.com/OpenXiangShan/XiangShan/pull/3290)).
 - **Difftest**
     - Added FCSR/PC to Difftest, fixed vector and floating-point related CSR comparison mechanisms ([#3359](https://github.com/OpenXiangShan/XiangShan/pull/3359), [#3294](https://github.com/OpenXiangShan/XiangShan/pull/3294)).
-- **RVA23**
+- **RVA23 Profile**
     - Supported Zimop/Zcmop ([#3409](https://github.com/OpenXiangShan/XiangShan/pull/3409)).
     - Sstvala/Shvstvala passed smoke tests.
     - RTL Implementation of Zfa/Zfhmin/Zvfhmin is completed and currently under testing.
@@ -47,26 +47,34 @@ The RAS predictor now blocks the BPU pipeline to handle speculative queue overfl
 ### MemBlock and cache
 
 
-#### CHI Bus
+- **CHI Bus**
 
-CHI-L3 (OpenLLC) completed the code design and was integrated into the Xiangshan system test. The CHI-L2+OpenLLC+DummyLLC (CHI2AXI) SoC was built, successfully running single-core CoreMark and Linux-hello.
+    - CHI-L3 (OpenLLC) completed the code design and was integrated into the Xiangshan system test. The CHI-L2+OpenLLC+DummyLLC (CHI2AXI) SoC was built, successfully running single-core CoreMark and Linux-hello.
 
-Support for CHI's CMO instructions was added to OpenLLC.
+    - Support for CHI's CMO instructions was added to OpenLLC.
 
-The design plan for the CHI2AXI bridge was formulated, and RTL design began.
+    - The design plan for the CHI2AXI bridge was formulated, and RTL design began.
 
-#### Features
-Completed the RVA23 CMO code design and integrated it with the OpenLLC TL-Test framework that supports CMO requests, successfully running single CMO requests.
+- **RVA23 Profile**
+    - Scalar unaligned memory access (Zicclsm + Zama16b) extensions: passed riscv-test with virtual memory, ready to be merged into master ([#3320](https://github.com/OpenXiangShan/XiangShan/pull/3320))
+    - Cache manipulation (Zicbom + Zicboz) extensions: support for CBO instructions is being added to NEMU and DiffTest.
+    - Software prefetching (Zicbop) extension: completes the software data prefetching part ([#3320](https://github.com/OpenXiangShan/XiangShan/pull/3320))
+    - Page-based Memory Attributes (Svpbmt) extension: adds Svpbmt basic path support ([#3404](https://github.com/OpenXiangShan/XiangShan/pull/3404))
+    - 48-bit virtual memory management (Sv48) extension: passed Sv48 & Sv48x4 tests and completed timing evaluation, ready to be merged into master ([#3406](https://github.com/OpenXiangShan/XiangShan/pull/3406))
+    - Completed the RVA23 CMO code design and integrated it with the OpenLLC TL-Test framework that supports CMO requests, successfully running single CMO requests.
 
-#### Performance
-Added a TP metaBuffer on L2 TP meta to cache valid TP meta, alleviating negative competition between TP meta and L2 data; introduced a TP switch based on access frequency, turning off TP during high memory access.
+- **Performance**
+    - Added a TP metaBuffer on L2 TP meta to cache valid TP meta, alleviating negative competition between TP meta and L2 data; introduced a TP switch based on access frequency, turning off TP during high memory access.
 
-The L2 Tubins replacement algorithm was tested and showed a performance increase of 0.15% compared to the DRRIP replacement algorithm.
+    - The L2 Tubins replacement algorithm was tested and showed a performance increase of 0.15% compared to the DRRIP replacement algorithm.
 
-The L3 Chrome replacement algorithm, after unit test framework trace stimulation testing and parameter tuning, showed a 27% hit rate increase on mcf but a decrease at some checkpoints; further exploration of EQ space compression was conducted.
+    - The L3 Chrome replacement algorithm, after unit test framework trace stimulation testing and parameter tuning, showed a 27% hit rate increase on mcf but a decrease at some checkpoints; further exploration of EQ space compression was conducted.
 
-#### Tools
-The TL-Test framework iteration now can parse TL Logs into traces (TL Trace), serving as a test stimulus.
+- **Tools**
+    - The TL-Test framework iteration now can parse TL Logs into traces (TL Trace), serving as a test stimulus.
+
+- **Timing Optimizations**
+    - Fixed a number of MemBlock critical paths, mainly including issue & writeback of scalar load / store instructions ([#3208](https://github.com/OpenXiangShan/XiangShan/pull/3208)). Currently MemBlock internal violations are around -60ps and Backend-MemBlock port violations are around -125ps.
 
 ## RTL Evaluation
 

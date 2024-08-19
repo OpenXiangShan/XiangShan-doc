@@ -1,0 +1,230 @@
+ ./configure --help
+`configure' configures openocd 0.11.0+dev to adapt to many kinds of systems.
+
+Usage: ./configure [OPTION]... [VAR=VALUE]...
+
+To assign environment variables (e.g., CC, CFLAGS...), specify them as
+VAR=VALUE.  See below for descriptions of some of the useful variables.
+
+Defaults for the options are specified in brackets.
+
+Configuration:
+  -h, --help              display this help and exit
+      --help=short        display options specific to this package
+      --help=recursive    display the short help of all the included packages
+  -V, --version           display version information and exit
+  -q, --quiet, --silent   do not print `checking ...' messages
+      --cache-file=FILE   cache test results in FILE [disabled]
+  -C, --config-cache      alias for `--cache-file=config.cache'
+  -n, --no-create         do not create output files
+      --srcdir=DIR        find the sources in DIR [configure dir or `..']
+
+Installation directories:
+  --prefix=PREFIX         install architecture-independent files in PREFIX
+                          [/usr/local]
+  --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
+                          [PREFIX]
+
+By default, `make install' will install all the files in
+`/usr/local/bin', `/usr/local/lib' etc.  You can specify
+an installation prefix other than `/usr/local' using `--prefix',
+for instance `--prefix=$HOME'.
+
+For better control, use the options below.
+
+Fine tuning of the installation directories:
+  --bindir=DIR            user executables [EPREFIX/bin]
+  --sbindir=DIR           system admin executables [EPREFIX/sbin]
+  --libexecdir=DIR        program executables [EPREFIX/libexec]
+  --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
+  --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
+  --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
+  --libdir=DIR            object code libraries [EPREFIX/lib]
+  --includedir=DIR        C header files [PREFIX/include]
+  --oldincludedir=DIR     C header files for non-gcc [/usr/include]
+  --datarootdir=DIR       read-only arch.-independent data root [PREFIX/share]
+  --datadir=DIR           read-only architecture-independent data [DATAROOTDIR]
+  --infodir=DIR           info documentation [DATAROOTDIR/info]
+  --localedir=DIR         locale-dependent data [DATAROOTDIR/locale]
+  --mandir=DIR            man documentation [DATAROOTDIR/man]
+  --docdir=DIR            documentation root [DATAROOTDIR/doc/openocd]
+  --htmldir=DIR           html documentation [DOCDIR]
+  --dvidir=DIR            dvi documentation [DOCDIR]
+  --pdfdir=DIR            pdf documentation [DOCDIR]
+  --psdir=DIR             ps documentation [DOCDIR]
+
+Program names:
+  --program-prefix=PREFIX            prepend PREFIX to installed program names
+  --program-suffix=SUFFIX            append SUFFIX to installed program names
+  --program-transform-name=PROGRAM   run sed PROGRAM on installed program names
+
+System types:
+  --build=BUILD     configure for building on BUILD [guessed]
+  --host=HOST       cross-compile to build programs to run on HOST [BUILD]
+
+Optional Features:
+  --disable-option-checking  ignore unrecognized --enable/--with options
+  --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
+  --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
+  --enable-silent-rules   less verbose build output (undo: "make V=1")
+  --disable-silent-rules  verbose build output (undo: "make V=0")
+  --enable-dependency-tracking
+                          do not reject slow dependency extractors
+  --disable-dependency-tracking
+                          speeds up one-time build
+  --enable-shared[=PKGS]  build shared libraries [default=no]
+  --enable-static[=PKGS]  build static libraries [default=yes]
+  --enable-fast-install[=PKGS]
+                          optimize for fast installation [default=yes]
+  --disable-libtool-lock  avoid locking (might break parallel builds)
+  --disable-assert        turn off assertions
+  --disable-doxygen-html  Disable building Doxygen manual as HTML.
+  --enable-doxygen-pdf    Enable building Doxygen manual as PDF.
+  --disable-gccwarnings   Disable compiler warnings
+  --disable-wextra        Disable extra compiler warnings
+  --disable-werror        Do not treat warnings as errors
+  --enable-verbose        Enable verbose JTAG I/O messages (for debugging).
+  --enable-verbose-usb-io Enable verbose USB I/O messages (for debugging)
+  --enable-verbose-usb-comms
+                          Enable verbose USB communication messages (for
+                          debugging)
+  --enable-malloc-logging Include free space in logging messages (requires
+                          malloc.h).
+  --enable-dummy          Enable building the dummy port driver
+  --enable-rshim          Enable building the rshim driver
+  --enable-ftdi           Enable building support for the MPSSE mode of FTDI
+                          based devices (default is auto)
+  --enable-ftdi-cjtag     Enable building support for the cJTAG (OScan1,
+                          JScan3) tunneled thru MPSSE (default is auto)
+  --enable-stlink         Enable building support for the ST-Link Programmer
+                          (default is auto)
+  --enable-ti-icdi        Enable building support for the TI ICDI JTAG
+                          Programmer (default is auto)
+  --enable-ulink          Enable building support for the Keil ULINK JTAG
+                          Programmer (default is auto)
+  --enable-usb-blaster-2  Enable building support for the Altera USB-Blaster
+                          II Compatible (default is auto)
+  --enable-ft232r         Enable building support for the Bitbang mode of
+                          FT232R based devices (default is auto)
+  --enable-vsllink        Enable building support for the Versaloon-Link JTAG
+                          Programmer (default is auto)
+  --enable-xds110         Enable building support for the TI XDS110 Debug
+                          Probe (default is auto)
+  --enable-cmsis-dap-v2   Enable building support for the CMSIS-DAP v2
+                          Compliant Debugger (default is auto)
+  --enable-osbdm          Enable building support for the OSBDM (JTAG only)
+                          Programmer (default is auto)
+  --enable-opendous       Enable building support for the eStick/opendous JTAG
+                          Programmer (default is auto)
+  --enable-armjtagew      Enable building support for the Olimex ARM-JTAG-EW
+                          Programmer (default is auto)
+  --enable-rlink          Enable building support for the Raisonance RLink
+                          JTAG Programmer (default is auto)
+  --enable-usbprog        Enable building support for the USBProg JTAG
+                          Programmer (default is auto)
+  --enable-cmsis-dap      Enable building support for the CMSIS-DAP Compliant
+                          Debugger (default is auto)
+  --enable-nulink         Enable building support for the Nu-Link Programmer
+                          (default is auto)
+  --enable-kitprog        Enable building support for the Cypress KitProg
+                          Programmer (default is auto)
+  --enable-usb-blaster    Enable building support for the Altera USB-Blaster
+                          Compatible (default is auto)
+  --enable-presto         Enable building support for the ASIX Presto Adapter
+                          (default is auto)
+  --enable-openjtag       Enable building support for the OpenJTAG Adapter
+                          (default is auto)
+  --enable-buspirate      Enable building support for the Bus Pirate (default
+                          is auto)
+  --enable-jlink          Enable building support for the SEGGER J-Link
+                          Programmer (default is auto)
+  --enable-aice           Enable building support for the Andes JTAG
+                          Programmer (deprecated) (default is no)
+  --enable-parport        Enable building the pc parallel port driver
+  --disable-parport-ppdev Disable use of ppdev (/dev/parportN) for parport
+                          (for x86 only)
+  --enable-parport-giveio Enable use of giveio for parport (for CygWin only)
+  --enable-jtag_vpi       Enable building support for JTAG VPI
+  --enable-vdebug         Enable building support for Cadence Virtual Debug
+                          Interface
+  --enable-jtag_dpi       Enable building support for JTAG DPI
+  --enable-amtjtagaccel   Enable building the Amontec JTAG-Accelerator driver
+  --enable-bcm2835gpio    Enable building support for bitbanging on BCM2835
+                          (as found in Raspberry Pi)
+  --enable-imx_gpio       Enable building support for bitbanging on NXP IMX
+                          processors
+  --enable-ep93xx         Enable building support for EP93xx based SBCs
+  --enable-at91rm9200     Enable building support for AT91RM9200 based SBCs
+  --enable-gw16012        Enable building support for the Gateworks GW16012
+                          JTAG Programmer
+  --enable-sysfsgpio      Enable building support for programming driven via
+                          sysfs gpios.
+  --enable-xlnx-pcie-xvc  Enable building support for Xilinx XVC/PCIe.
+  --disable-internal-jimtcl
+                          Disable building internal jimtcl
+  --enable-jimtcl-maintainer
+                          Enable maintainer mode when building internal jimtcl
+  --disable-internal-libjaylink
+                          Disable building internal libjaylink
+  --enable-remote-bitbang Enable building support for the Remote Bitbang jtag
+                          driver
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-pic[=PKGS]       try to use only PIC/non-PIC objects [default=use
+                          both]
+  --with-aix-soname=aix|svr4|both
+                          shared library versioning (aka "SONAME") variant to
+                          provide on AIX, [default=aix].
+  --with-gnu-ld           assume the C compiler uses GNU ld [default=no]
+  --with-sysroot[=DIR]    Search for dependent libraries within DIR (or the
+                          compiler's sysroot if not specified).
+  --with-capstone         Use Capstone disassembly library (default=auto)
+
+
+Some influential environment variables:
+  CC          C compiler command
+  CFLAGS      C compiler flags
+  LDFLAGS     linker flags, e.g. -L<lib dir> if you have libraries in a
+              nonstandard directory <lib dir>
+  LIBS        libraries to pass to the linker, e.g. -l<library>
+  CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
+              you have headers in a nonstandard directory <include dir>
+  PKG_CONFIG  path to pkg-config utility
+  PKG_CONFIG_PATH
+              directories to add to pkg-config's search path
+  PKG_CONFIG_LIBDIR
+              path overriding pkg-config's built-in search path
+  LT_SYS_LIBRARY_PATH
+              User-defined run-time library search path.
+  CPP         C preprocessor
+  LIBUSB1_CFLAGS
+              C compiler flags for LIBUSB1, overriding pkg-config
+  LIBUSB1_LIBS
+              linker flags for LIBUSB1, overriding pkg-config
+  CAPSTONE_CFLAGS
+              C compiler flags for CAPSTONE, overriding pkg-config
+  CAPSTONE_LIBS
+              linker flags for CAPSTONE, overriding pkg-config
+  HIDAPI_CFLAGS
+              C compiler flags for HIDAPI, overriding pkg-config
+  HIDAPI_LIBS linker flags for HIDAPI, overriding pkg-config
+  LIBFTDI_CFLAGS
+              C compiler flags for LIBFTDI, overriding pkg-config
+  LIBFTDI_LIBS
+              linker flags for LIBFTDI, overriding pkg-config
+  LIBGPIOD_CFLAGS
+              C compiler flags for LIBGPIOD, overriding pkg-config
+  LIBGPIOD_LIBS
+              linker flags for LIBGPIOD, overriding pkg-config
+  LIBJAYLINK_CFLAGS
+              C compiler flags for LIBJAYLINK, overriding pkg-config
+  LIBJAYLINK_LIBS
+              linker flags for LIBJAYLINK, overriding pkg-config
+
+Use these variables to override the choices made by `configure' or to help
+it to find libraries and programs with nonstandard names/locations.
+
+Report bugs to <OpenOCD Mailing List <openocd-devel@lists.sourceforge.net>>.

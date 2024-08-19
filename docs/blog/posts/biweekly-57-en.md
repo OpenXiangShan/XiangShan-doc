@@ -16,6 +16,14 @@ WIP: Here's an overview line to add
 
 ### Frontend
 
+Fixed the cross-page exception bug introduced during the code refactoring for IFU exception handling, and also fixed a legacy bug here from Nanhu micro-architechture.
+
+Support for RVA23: `prefetch.i` instruction from the Zicbop extension, and frontend support for the Svpbmt extension.
+
+Changed the ITTAGE predictor updating mechanism from checkpointing (stored in the FTQ) to reading again when updating.
+
+The RAS predictor now blocks the BPU pipeline to handle speculative queue overflow, instead of ignoring the overflow.
+
 ### Backend
 
 ### MemBlock and cache
@@ -77,7 +85,7 @@ In the late stage of XiangShan Kunminghu architecture development, XiangShan's p
 
 ## Related links
 
-* XiangShan technical discussion QQ group：879550595
+* XiangShan technical discussion QQ group: 879550595
 * XiangShan technical discussion website: https://github.com/OpenXiangShan/XiangShan/discussions
 * XiangShan Documentation: https://xiangshan-doc.readthedocs.io/
 

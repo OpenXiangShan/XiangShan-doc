@@ -22,28 +22,28 @@ WIP：这里要补充一行概述
 
 #### CHI 总线
 
-CHI-L3（OpenLLC）完成代码设计，接入香山系统测试，构建CHI-L2+OpenLLC+DummyLLC(CHI2AXI) SoC，跑通单核CoreMark以及Linux-hello
+CHI-L3（OpenLLC）完成代码设计，接入香山系统测试，构建 CHI-L2+OpenLLC+DummyLLC(CHI2AXI) SoC，跑通单核 CoreMark 以及 Linux-hello
 
-在OpenLLC中添加对CHI的CMO指令的支持
+在 OpenLLC 中添加对 CHI 的 CMO 指令的支持
 
-制定CHI2AXI转接桥的设计方案，开始进行RTL设计
+制定 CHI2AXI 转接桥的设计方案，开始进行 RTL 设计
 
 #### 功能
-完成RVA23 CMO代码设计，接入支持CMO请求的OpenLLC的TL-Test框架进行测试，能正确运行单条CMO请求
+完成 RVA23 CMO 代码设计，接入支持 CMO 请求的 OpenLLC 的 TL-Test 框架进行测试，能正确运行单条 CMO 请求
 
 #### 性能
-TP meta on L2添加TP metaBuffer，用于缓存有效的TP meta，缓解TP meta与L2数据的负面竞争；添加基于访存频率的TP开关，在访存密集时关闭TP
+TP meta on L2 添加 TP metaBuffer，用于缓存有效的 TP meta，缓解 TP meta 与 L2 数据的负面竞争；添加基于访存频率的 TP 开关，在访存密集时关闭 TP
 
-L2 Tubins替换算法经测试，性能分数相较DRRIP替换算法有0.15%的提升
+L2 Tubins 替换算法经测试，性能分数相较 DRRIP 替换算法有 0.15% 的提升
 
-L3 Chrome替换算法在通过单元测试框架trace激励的测试与参数调优后，在mcf上命中率提升27%，但在部分checkpoint上命中率下降；对EQ空间压缩进行进一步探索
+L3 Chrome 替换算法在通过单元测试框架 trace 激励的测试与参数调优后，在 mcf 上命中率提升 27%，但在部分 checkpoint 上命中率下降；对 EQ 空间压缩进行进一步探索
 
 #### 工具
-TL-Test框架迭代，可将TL Log解析成为trace（TL Trace），作为测试激励
+TL-Test 框架迭代，可将 TL Log 解析成为 trace（TL Trace），作为测试激励
 
 ## 评估
 
-我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC06 使用 gcc 12 进行编译，开启 O3 优化，采用jemalloc内存库，设置SPEC06FP的-ffp-contraction选项为fast，指令集为RV64GCB。我们使用 **8 月 12 日 9d9be651a 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld2st 流水线**），在仿真环境下运行了 SPEC06 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPECCPU 2006 的分数估计情况：
+我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC06 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPEC06FP 的-ffp-contraction 选项为 fast，指令集为 RV64GCB。我们使用 **8 月 12 日 9d9be651a 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld2st 流水线**），在仿真环境下运行了 SPEC06 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPECCPU 2006 的分数估计情况：
 
 | SPECint 2006      | @ 3GHz | SPECfp 2006       | @ 3GHz |
 | :---------------- | :----: | :---------------- | :----: |

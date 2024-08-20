@@ -1,5 +1,5 @@
 ---
-slug: biweekly-57
+slug: biweekly-57-en
 date: 2024-08-19
 categories:
   - Biweekly-en

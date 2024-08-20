@@ -16,13 +16,16 @@ WIP: Here's an overview line to add
 
 ### Frontend
 
-Fixed the cross-page exception bug introduced during the code refactoring for IFU exception handling, and also fixed a legacy bug here from Nanhu micro-architechture.
+- **Bug Fixes**
+    - The RAS predictor now blocks the BPU pipeline to handle speculative queue overflow, instead of ignoring the overflow ([#3389](https://github.com/OpenXiangShan/XiangShan/pull/3389))
+    - Fixed the cross-page exception bug introduced during the code refactoring for IFU exception handling, and also fixed a legacy bug here from Nanhu micro-architechture.
 
-Support for RVA23: `prefetch.i` instruction from the Zicbop extension, and frontend support for the Svpbmt extension.
+- **RVA23 Profile**
+    - `prefetch.i` instruction from the Zicbop extension ([#3396](https://github.com/OpenXiangShan/XiangShan/pull/3396))
+    - Svpbmt ([#3404](https://github.com/OpenXiangShan/XiangShan/pull/3404))
 
-Changed the ITTAGE predictor updating mechanism from checkpointing (stored in the FTQ) to reading again when updating.
-
-The RAS predictor now blocks the BPU pipeline to handle speculative queue overflow, instead of ignoring the overflow.
+- **Area & Power**
+    - Changed the ITTAGE predictor updating mechanism from checkpointing (stored in the FTQ) to reading again when updating ([#3367](https://github.com/OpenXiangShan/XiangShan/pull/3367))
 
 ### Backend
 

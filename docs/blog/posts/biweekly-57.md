@@ -16,13 +16,17 @@ WIP：这里要补充一行概述
 
 ### 前端
 
-修复重构 IFU 异常处理部分代码引入的 32b 指令跨页异常 Bug，同时修复了此处南湖遗留的 Bug
+- Bug 修复
+    - RAS 预测器推测栈溢出由不处理溢出改为阻塞 BPU 流水 ([#3389](https://github.com/OpenXiangShan/XiangShan/pull/3389))
+    - 修复重构 IFU 异常处理部分代码引入的 32b 指令跨页异常 Bug，同时修复了此处南湖遗留的 Bug。
 
-RVA23 支持新增：Zicbop `prefetch.i` 指令，Svpbmt 扩展的前端支持
+- RVA23 Profile
+    - Zicbop `prefetch.i` 指令 ([#3396](https://github.com/OpenXiangShan/XiangShan/pull/3396))
+    - Svpbmt ([#3404](https://github.com/OpenXiangShan/XiangShan/pull/3404))
 
-ITTAGE 预测器更新使用的信息从 Checkpoint 机制（保存在 FTQ 中）改为更新时读
+- 面积&功耗
+    - ITTAGE 预测器更新使用的信息从 Checkpoint 机制（保存在 FTQ 中）改为更新时读 ([#3367](https://github.com/OpenXiangShan/XiangShan/pull/3367))
 
-RAS 预测器推测栈溢出由不处理溢出改为阻塞 BPU 流水
 
 ### 后端流水线
 

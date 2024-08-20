@@ -9,7 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 57th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
-WIP: Here's an overview line to add
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed the cross-page exception bug introduced by the IFU refactoring, the backend completed the design of the register file cache, and the memory and cache section completed the CHI-L3 code design and integrated it into the Xiangshan system testing. This update also includes the latest performance improvements of the Kunminghu architecture.
 
 <!-- more -->
 ## Recent developments

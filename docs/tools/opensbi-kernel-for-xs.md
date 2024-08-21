@@ -74,8 +74,8 @@ export CROSS_COMPILE=$RISCV/bin/riscv64-unknown-linux-gnu-
 #### 2. 在此基础上，如何在 Linux 下跑 SPEC2006 以及其他程序作为 SimPoint profiling 和 checkpoint 的 workload
 
 * 重新配置内核
-    * 到 `$RISCV_ROOTFS_HOME` 目录
-    * 修改 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-emu.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-spec.txt`
+    * 到 `$RISCV_LINUX_HOME` 目录
+    * 使用 `make menuconfig` 将 initramfs 的 source 从 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-emu.txt` 改为 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-spec.txt`
 
 * 修改 rootfsimg
     * 按需修改 `${RISCV_ROOTFS_HOME}/rootfsimg/initramfs-spec.txt` 文件（不修改无法使用）

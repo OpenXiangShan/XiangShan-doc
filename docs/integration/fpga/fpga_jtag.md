@@ -38,62 +38,72 @@ set_property IOSTANDARD LVCMOS18 [get_ports JTAG_TRSTn]
 
 ### 2.1 下载OpenOCD 源码仓库
 
-[https://github.com/wxjstz/riscv-openocd.git](https://github.com/wxjstz/riscv-openocd.git)，
-~~p1分支 :commit：20ac4c213f5a3e6c257599a94644fb94f55104ad~~
+下载openocd源码
 
-切换到riscv 分支, 当前HEAD: a50b28055 (origin/riscv, origin/HEAD, riscv) Properly track selecting multiple harts at once. (#743)
+[https://github.com/openocd-org/openocd.git](https://github.com/openocd-org/openocd.git)
 
+```shell
+git clone https://github.com/openocd-org/openocd.git
 ```
-git clone https://github.com/wxjstz/riscv-openocd.git
-git checkout -b riscv origin/riscv
-```
+
 ### 2.2 搭建OpenOCD源码编译环境
 
-- 帮助信息: [openocd-config-help.txt](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/docs/integration/resources/openocd-config-help.txt)
-
-- 安装编译环境需要的依赖包
-
-   - make 
-
-   - libtool 
-
-   - libusb-1.0-0-dev
-
-   - pkg-config >= 0.23  (or compatible) 
-
-   - Additionally, for building from git: 
-
-   - autoconf >= 2.69 
-
-   - automake >= 1.14
-
-   - texinfo >= 5.0
-
-- 生成编译配置文件并执行
-
+```shell
+./configure --prefix=/home/[**your path**]/openocd/riscv-openocd/openocd-bin --enable-verbose --enable-verbose-usb-io --enable-verbose-usb-comms --enable-remote-bitbang --enable-ftdi --disable-werror --enable-jlink --enable-static
 ```
-./bootstrap
-./configure --prefix=<OpenOCD源码文件夹路径>/riscv-openocd/openocd-bin --enable-verbose --enable-verbose-usb-io --enable-verbose-usb-comms --enable-remote-bitbang --enable-ftdi --disable-werror # 必须要加上--disable-werror, 否则之后的源码编译会因为警告而失败
-```
-![openocd conf](../../figs/fpga_images/openocd_conf.png)
 
 ### 2.3 编译OpenOCD源码
 
+```shell
+make
+sudo make install
 ```
+
+编译结果位于./riscv-openocd/openocd-bin/bin/openocd
+
+### 2.4 其他
+
+配置过程中如果遇到configure: error: libjaylink-0.2 is required for the SEGGER J-Link Programmer
+
+表示缺少libjaylink依赖项，可以按照以下步骤安装依赖库
+
+1. 进入openocd代码中libjaylink库
+
+```shell
+cd src/jtag/drivers/libjaylink
+```
+
+2. libjaylink需要autotools和libtool才能编译，所以确保你安装了这些工具：
+
+```shell
+sudo apt install automake autoconf libtool pkg-config
+```
+
+3. 配置编译和安装
+
+```shell
+./autogen.sh
+./configure
+make
+sudo make install
+```
+
+>配置过程要保证USB未开启，否则无法找到jlink。如遇到缺libusb库导致的USB未开启，需要安装对应库
+
+![JTAG USB](../../figs/fpga_images/jtag_usb.png)
+
+4. libusb库安装
+
+进入[https://github.com/libusb/libusb/releases](https://github.com/libusb/libusb/releases)
+
+下载release包，比如[libusb-1.0.27.tar.bz2](https://github.com/libusb/libusb/releases/download/v1.0.27/libusb-1.0.27.tar.bz2)
+
+ 配置、编译和安装
+
+```shell
+./configure--build=x86_64-linux --disable-udev
 make
 make install
-```
-
-此时可以在<OpenOCD源码文件夹路径>/riscv-openocd/openocd-bin/中看到可执行文件openocd:
-
-```
-root@:~/src/riscv-openocd> ll openocd-bin/bin/
-total 19M
-drwxrwxr-x 2 root root 4.0K 1月  19 15:34 ./
-drwxrwxr-x 4 root root 4.0K 1月  17 12:46 ../
--rwxr-xr-x 1 root root  19M 1月  19 15:34 openocd*
-root@:~/src/riscv-openocd>
-
 ```
 
 ## 3、使用指导

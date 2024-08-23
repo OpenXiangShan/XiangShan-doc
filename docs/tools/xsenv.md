@@ -153,7 +153,8 @@ coremark-riscv64-xs.txt  应用程序的反汇编
 
 在使用 NEMU 模拟器运行 workload 时，我们需要将模拟器的虚拟外设与香山的外设地址空间对齐。进入 `/xs-env/NEMU` 目录，运行以下命令：
 ```bash
-make clean
+make clean-all
+
 make riscv64-xs_defconfig
 ```
 随后，使用以下命令编译 NEMU 模拟器：
@@ -200,7 +201,8 @@ make emu -j32
 
 在 `/xs-env/NEMU`下运行：
 ```
-make clean
+make clean-all
+
 make riscv64-xs-ref_defconfig
 make -j
 ```

@@ -137,7 +137,7 @@ NEMU is an instruction set emulator. We use NEMU as the implementation reference
 Before running the workload on the NEMU emulator, we need to make sure the virtual peripherals of NEMU uses the same address as Xiangshan. Go to the `/xs-env/NEMU` directory and run the following command:
 
 ```bash
-make clean
+make clean-all
 make riscv64-xs_defconfig
 ```
 
@@ -192,7 +192,7 @@ To run co-simulation, NEMU needs to be configured before co-simulation starts. N
 Run under `/xs-env/NEMU`:
 
 ```
-make clean
+make clean-all
 make riscv64-xs-ref_defconfig
 make -j
 ```

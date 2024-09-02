@@ -28,19 +28,21 @@ Recently: WIP
 ### Backend
 
 - **Bug Fixes**
-    - A ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - Continued progress on bug fixes, with a total of XX bugs fixed. Below are some of the PRs:
+    - Fixed bugs related to the H extension ([#3450](https://github.com/OpenXiangShan/XiangShan/pull/3450), [#3447](https://github.com/OpenXiangShan/XiangShan/pull/3447), [#3442](https://github.com/OpenXiangShan/XiangShan/pull/3442), [#3428](https://github.com/OpenXiangShan/XiangShan/pull/3428), [#3427](https://github.com/OpenXiangShan/XiangShan/pull/3427), [#3423](https://github.com/OpenXiangShan/XiangShan/pull/3423), [#3420](https://github.com/OpenXiangShan/XiangShan/pull/3420), [#3397](https://github.com/OpenXiangShan/XiangShan/pull/3397), [#3385](https://github.com/OpenXiangShan/XiangShan/pull/3385))
+    - Fixed bugs related to the Debug extension ([#3441](https://github.com/OpenXiangShan/XiangShan/pull/3441), [#3422](https://github.com/OpenXiangShan/XiangShan/pull/3422), [#3418](https://github.com/OpenXiangShan/XiangShan/pull/3418), [#3395](https://github.com/OpenXiangShan/XiangShan/pull/3395))
+    - Fixed bugs related to the V extension ([#3430](https://github.com/OpenXiangShan/XiangShan/pull/3430), [#3384](https://github.com/OpenXiangShan/XiangShan/pull/3384))
 
 - **Timing Optimization**
-    - B ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
-
-- **Reg Cache**
-    - C ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
-
-- **Difftest**
-    - D ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - Continued progress on timing optimization, with internal timing violations improved by -50ps, now -15ps away from the target.
+    - Removed some `loadCancel` signals in the DataPath ([#3457](https://github.com/OpenXiangShan/XiangShan/pull/3457)).
+    - Changed the writeback signal of `v0` and `vl` register files to direct register output ([#3387](https://github.com/OpenXiangShan/XiangShan/pull/3387)).
 
 - **RVA23 Profile**
-    - E ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - The Additional Floating-Point instructions extension (Zfa) is being merged into the master ([#3439](https://github.com/OpenXiangShan/XiangShan/pull/3439)).
+    - Support for Minimal Half-Precision Floating Point extension (Zfhmin) ([#3421](https://github.com/OpenXiangShan/XiangShan/pull/3421)).
+    - Support for Sstval/Shvstval (saving the corresponding instruction encoding in the tval CSR during illegal instruction exceptions) ([#3407](https://github.com/OpenXiangShan/XiangShan/pull/3407)).
+    - The Resumable Non-Maskable Interrupt (Smrnmi) extension is being merged into the mainline.
 
 ### MemBlock and cache
 

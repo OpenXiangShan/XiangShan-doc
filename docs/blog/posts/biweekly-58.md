@@ -23,19 +23,21 @@ categories:
 ### 后端流水线
 
 - Bug 修复
-    - A ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - 持续推进功能Bug修复，共修复30余例，以下是部分PR：
+    - 修复 H 拓展功能 Bug ([#3450](https://github.com/OpenXiangShan/XiangShan/pull/3450), [#3447](https://github.com/OpenXiangShan/XiangShan/pull/3447), [#3442](https://github.com/OpenXiangShan/XiangShan/pull/3442), [#3428](https://github.com/OpenXiangShan/XiangShan/pull/3428), [#3427](https://github.com/OpenXiangShan/XiangShan/pull/3427), [#3423](https://github.com/OpenXiangShan/XiangShan/pull/3423), [#3420](https://github.com/OpenXiangShan/XiangShan/pull/3420), [#3397](https://github.com/OpenXiangShan/XiangShan/pull/3397), [#3385](https://github.com/OpenXiangShan/XiangShan/pull/3385))
+    - 修复 Debug 拓展功能 Bug ([#3441](https://github.com/OpenXiangShan/XiangShan/pull/3441), [#3422](https://github.com/OpenXiangShan/XiangShan/pull/3422), [#3418](https://github.com/OpenXiangShan/XiangShan/pull/3418),[#3395](https://github.com/OpenXiangShan/XiangShan/pull/3395))
+    - 修复 V 拓展功能 Bug ([#3430](https://github.com/OpenXiangShan/XiangShan/pull/3430), [#3384](https://github.com/OpenXiangShan/XiangShan/pull/3384))
 
 - 时序优化
-    - B ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
-
-- 寄存器堆 Cache
-    - C ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
-
-- Difftest 框架
-    - D ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - 持续推进时序优化，内部时序违例 -50ps，距离目标 -15ps
+    - 移除 DataPath 中部分 loadCancel 信号 ([#3457](https://github.com/OpenXiangShan/XiangShan/pull/3457))
+    - v0,vl 寄存器堆写回信号改为寄存器直出 ([#3387](https://github.com/OpenXiangShan/XiangShan/pull/3387))
 
 - RVA23 Profile
-    - E ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - 浮点加载常数和特殊偏序比较拓展 (Zfa) 正在合入主线 ([#3439](https://github.com/OpenXiangShan/XiangShan/pull/3439))
+    - 支持FP16访存和数据类型转换 (Zfhmin) ([#3421](https://github.com/OpenXiangShan/XiangShan/pull/3421))
+    - 支持Sstval/Shvstval (非法指令异常时保存对应指令编码在tval CSR中) ([#3407](https://github.com/OpenXiangShan/XiangShan/pull/3407)) 
+    - 可恢复非屏蔽中断 (Smrnmi) 拓展正在合入主线
 
 ### 访存与缓存
 

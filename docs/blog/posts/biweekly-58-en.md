@@ -49,15 +49,18 @@ Recently: WIP
     - A ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 - **RVA23 Profile**
+    - CMO Implementation: Fixed several bugs and successfully passed simple XiangShan system instruction tests; passed CMO RISCV-tests. Merged CMO instruction extensions into master.（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
     - B ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 - **Performance**
+    - TP meta on L2 migration to new master, conduct performance evaluation
     - C ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 - **Tools**
     - D ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
-- **Timing Optimizations**
+- **Timing & Area Optimizations**
+    - On the L2 Cache, using SRAM to build a Queue and splitting the data SRAM. Timing evaluation is normal, and area has been optimized
     - E ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 ## RTL Evaluation

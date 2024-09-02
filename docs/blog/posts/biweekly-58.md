@@ -49,15 +49,18 @@ categories:
     - A ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 - RVA23 Profile
+    - CMO指令实现：修复若干bug，成功通过简单的XiangShan系统指令测试；通过CMO RISCV-tests。将CMO指令拓展合入主线（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
     - B ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 - 性能
+    - TP meta on L2迁移至新master，进行性能评估
     - C ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 - 工具
     - D ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
-- 时序优化
+- 时序 & 面积优化
+    - L2 Cache上使用SRAM搭建Queue，对data SRAM进行拆分。时序评估正常，面积有所优化
     - E ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 ## 评估

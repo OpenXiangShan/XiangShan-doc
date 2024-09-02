@@ -17,14 +17,8 @@ categories:
 ### 前端
 
 - Bug 修复
-    - A ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
-
-- RVA23 Profile
-    - B ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
-
-- 面积&功耗
-    - C ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
-
+    - 修复 prefetchPipe s1 级状态机中软件预取相关转移的设计缺陷 ([#3433](https://github.com/OpenXiangShan/XiangShan/pull/3433))
+    - 修复前端 Topdown 仿真计数器和硬件 pmu ([#3437](https://github.com/OpenXiangShan/XiangShan/pull/3437))
 
 ### 后端流水线
 

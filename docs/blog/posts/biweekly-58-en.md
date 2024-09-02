@@ -46,10 +46,10 @@ Recently: WIP
 
 
 - **CHI Bus**
-    - A ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - CHI to AXI4 Bridge: Completed the design and implementation of the transaction queue, implemented out-of-order strategies for five types of transactions, and currently finishing the implementation of the protocol layer interface
 
 - **RVA23 Profile**
-    - CMO Implementation: Fixed several bugs and successfully passed simple XiangShan system instruction tests; passed CMO RISCV-tests. Merged CMO instruction extensions into master.（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
+    - CMO Implementation: Fixed several bugs and successfully passed simple XiangShan system instruction tests; passed CMO RISCV-tests. Merged CMO instruction extensions Zicbom into master（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
     - B ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 - **Performance**
@@ -59,8 +59,8 @@ Recently: WIP
 - **Tools**
     - D ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
-- **Timing & Area Optimizations**
-    - On the L2 Cache, using SRAM to build a Queue and splitting the data SRAM. Timing evaluation is normal, and area has been optimized
+- **PPA Optimizations**
+    - On the L2 Cache, using SRAM to build a Queue and splitting the data SRAM. Timing evaluation is normal, and area has been optimized, but increase in power consumption is significant
     - E ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 ## RTL Evaluation

@@ -40,10 +40,10 @@ categories:
 ### 访存与缓存
 
 - CHI 总线
-    - A ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - CHI to AXI4 转接桥：完成事务队列的设计实现，实现五种事务的乱序策略，正在完成协议层接口的实现
 
 - RVA23 Profile
-    - CMO 指令实现：修复若干 bug，成功通过简单的 XiangShan 系统指令测试；通过 CMO RISCV-tests。将 CMO 指令拓展合入主线（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
+    - CMO 指令实现：修复若干 bug，成功通过简单的 XiangShan 系统指令测试；通过 CMO RISCV-tests。将 CMO 指令拓展 Zicbom 合入主线（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
     - B ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 - 性能
@@ -53,8 +53,8 @@ categories:
 - 工具
     - D ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
-- 时序 & 面积优化
-    - L2 Cache 上使用 SRAM 搭建 Queue，对 data SRAM 进行拆分。时序评估正常，面积有所优化
+- PPA 优化
+    - L2 Cache 上使用 SRAM 搭建 Queue，对 data SRAM 进行拆分。时序评估正常，面积有所优化，功耗增加过多
     - E ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 ## 评估

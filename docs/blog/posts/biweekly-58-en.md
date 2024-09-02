@@ -49,21 +49,25 @@ Recently: WIP
 
 - **CHI Bus**
     - Conducting functional design and code implementation for the CHI to AXI4 bridge
+    - Adds a switch for CHI asynchronous bridge and CLINT asynchronous bridge, which is parameterized by SoCParameters. ([#3459](https://github.com/OpenXiangShan/XiangShan/pull/3459))
 
 - **RVA23 Profile**
     - CMO Implementation: Fixed several bugs and successfully passed simple XiangShan system instruction tests. Merged CMO instruction extensions Zicbom into master（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
-    - B ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - Software prefetching (Zicbop) extension: optimises timing related to software instruction prefetching ([#3425](https://github.com/OpenXiangShan/XiangShan/pull/3425)).
+    - 48-bit virtual memory management (Sv48) extension: fixes bugs related to 48-bit physical addresses, now passes the 48-bit physical address self-test use case ([#3424](https://github.com/OpenXiangShan/XiangShan/pull/3424)).
 
 - **Performance**
     - TP meta on L2 migration to new master, conduct performance evaluation
-    - C ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - A series of performance bugs caused by frequent failures to seize the load issue queue have been discovered and are being analysed and fixed.
 
-- **Tools**
-    - D ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+- Bug fixes
+    - Fixed a bug where LoadReplayQueue could not be queued, resulting in loss of load instructions ([#3436](https://github.com/OpenXiangShan/XiangShan/pull/3436)).
+    - Add AXI4Error peripheral to enable SoC to recognise illegal address and return non-data error to CPU in simulation environment. And also fix the bug of mtval update error in store access fault ([#3458](https://github.com/OpenXiangShan/XiangShan/pull/3458))
+    - Fix bugs related to vector access with unaligned addresses, currently only scalar load & store instructions can handle unaligned requests in hardware, vector load & store instructions still need to report exceptions to be handled by software ([#3460](https://github.com/OpenXiangShan/XiangShan/pull/3460)), ([#3462](https://github.com/OpenXiangShan/XiangShan/pull/3462))
 
 - **PPA Optimizations**
     - On the L2 Cache, using SRAM to build a Queue and splitting the data SRAM. Timing evaluation is normal, and area has been optimized, but increase in power consumption is significant
-    - E ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - Continuing to fix the critical path in MemBlock, mainly by simplifying the DCache MSHR queuing logic, optimising the path for LDU s0, and breaking the ready cascade logic for long pipelines (vector address generation modules). Ready to merge into master ([#3467](https://github.com/OpenXiangShan/XiangShan/pull/3467))
 
 ## RTL Evaluation
 

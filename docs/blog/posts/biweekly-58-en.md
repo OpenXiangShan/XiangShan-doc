@@ -46,10 +46,10 @@ Recently: WIP
 
 
 - **CHI Bus**
-    - CHI to AXI4 Bridge: Completed the design and implementation of the transaction queue, implemented out-of-order strategies for five types of transactions, and currently finishing the implementation of the protocol layer interface
+    - Conducting functional design and code implementation for the CHI to AXI4 bridge
 
 - **RVA23 Profile**
-    - CMO Implementation: Fixed several bugs and successfully passed simple XiangShan system instruction tests; passed CMO RISCV-tests. Merged CMO instruction extensions Zicbom into master（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
+    - CMO Implementation: Fixed several bugs and successfully passed simple XiangShan system instruction tests. Merged CMO instruction extensions Zicbom into master（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
     - B ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
 
 - **Performance**

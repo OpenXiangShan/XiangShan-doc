@@ -65,7 +65,7 @@ categories:
 我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC06 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPEC06FP 的-ffp-contraction 选项为 fast，指令集为 RV64GCB。我们使用 **8 月 24 日 49162c9 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld2st 流水线**），在仿真环境下运行了 SPEC06 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPECCPU 2006 的分数估计情况：
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est.  | @ 3GHz |
-| :---------------: | :----: | :---------------- | :----: |
+| :---------------- | :----: | :---------------- | :----: |
 | 400.perlbench     | 33.66  | 410.bwaves        | 76.67  |
 | 401.bzip2         | 24.99  | 416.gamess        | 43.33  |
 | 403.gcc           | 47.90  | 433.milc          | 42.42  |

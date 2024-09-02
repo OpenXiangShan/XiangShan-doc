@@ -62,32 +62,30 @@ Recently: WIP
 
 ## RTL Evaluation
 
-WIP, to be updated
+We used SimPoint for program sampling and created checkpoint images based on our custom Checkpoint format, with a **SimPoint clustering coverage of 100%**. SPEC06 was compiled using gcc12 with O3 optimization enabled, the jemalloc memory library, and the `-ffp-contraction` option for SPEC06FP set to fast. The instruction set used was RV64GCB. We ran SPEC06 fragments on the XiangShan processor **version 49162c9 from August 24** (**configured with 64KB L1 ICache, 64KB L1 DCache, 1MB L2, and 16MB L3, and a 3ld2st LSU**) in a simulation environment. DRAMsim3 was used to simulate DDR4-3200 memory latency with a CPU running at 3GHz. Below are the estimated SPECCPU 2006 scores:
 
-We used SimPoint for program sampling and created checkpoint images based on our custom Checkpoint format, with a **SimPoint clustering coverage of 100%**. SPEC06 was compiled using gcc12 with O3 optimization enabled, the jemalloc memory library, and the `-ffp-contraction` option for SPEC06FP set to fast. The instruction set used was RV64GCB. We ran SPEC06 fragments on the XiangShan processor **version 9d9be651a from August 12** (**configured with 64KB L1 ICache, 64KB L1 DCache, 1MB L2, and 16MB L3, and a 3ld2st LSU**) in a simulation environment. DRAMsim3 was used to simulate DDR4-3200 memory latency with a CPU running at 3GHz. Below are the estimated SPECCPU 2006 scores:
-
-| SPECint 2006      | @ 3GHz | SPECfp 2006       | @ 3GHz |
-| :---------------- | :----: | :---------------- | :----: |
-| 400.perlbench     | 33.52  | 410.bwaves        | 76.87  |
-| 401.bzip2         | 24.96  | 416.gamess        | 43.36  |
-| 403.gcc           | 47.68  | 433.milc          | 42.66  |
-| 429.mcf           | 58.82  | 434.zeusmp        | 59.14  |
-| 445.gobmk         | 30.03  | 435.gromacs       | 37.84  |
-| 456.hmmer         | 40.26  | 436.cactusADM     | 47.84  |
-| 458.sjeng         | 29.72  | 437.leslie3d      | 45.73  |
-| 462.libquantum    | 126.91 | 444.namd          | 34.32  |
-| 464.h264ref       | 56.48  | 447.dealII        | 74.12  |
-| 471.omnetpp       | 41.12  | 450.soplex        | 54.53  |
-| 473.astar         | 28.96  | 453.povray        | 55.70  |
-| 483.xalancbmk     | 75.09  | 454.Calculix      | 18.14  |
-| **GEOMEAN**       | 44.09  | 459.GemsFDTD      | 36.91  |
+| SPECint 2006 est. | @ 3GHz | SPECfp 2006 est.  | @ 3GHz |
+| :---------------: | :----: | :---------------- | :----: |
+| 400.perlbench     | 33.66  | 410.bwaves        | 76.67  |
+| 401.bzip2         | 24.99  | 416.gamess        | 43.33  |
+| 403.gcc           | 47.90  | 433.milc          | 42.42  |
+| 429.mcf           | 58.75  | 434.zeusmp        | 59.01  |
+| 445.gobmk         | 30.17  | 435.gromacs       | 37.87  |
+| 456.hmmer         | 40.28  | 436.cactusADM     | 47.68  |
+| 458.sjeng         | 29.72  | 437.leslie3d      | 46.13  |
+| 462.libquantum    | 127.00 | 444.namd          | 34.34  |
+| 464.h264ref       | 56.62  | 447.dealII        | 73.80  |
+| 471.omnetpp       | 41.22  | 450.soplex        | 54.63  |
+| 473.astar         | 29.09  | 453.povray        | 55.70  |
+| 483.xalancbmk     | 75.13  | 454.Calculix      | 18.15  |
+| **GEOMEAN**       | 44.18  | 459.GemsFDTD      | 37.00  |
 |                   |        | 465.tonto         | 35.73  |
-|                   |        | 470.lbm           | 101.20 |
-|                   |        | 481.wrf           | 42.14  |
-|                   |        | 482.sphinx3       | 51.49  |
-|                   |        | **GEOMEAN**       | 47.16  |
+|                   |        | 470.lbm           | 101.16 |
+|                   |        | 481.wrf           | 42.20  |
+|                   |        | 482.sphinx3       | 51.45  |
+|                   |        | **GEOMEAN**       | 47.15  |
 
-**The scores above are evaluated based on program fragments, not a full SPEC CPU 2006 evaluation, and may differ from the actual performance of the real chip!**
+**The scores above are estimated based on SimPoint checkpoints, not a full SPEC CPU 2006 estimation, and may differ from the actual performance of the real chip!**
 
 ## Afterthought
 

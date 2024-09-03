@@ -37,7 +37,7 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
     - The Additional Floating-Point instructions extension (Zfa) is being merged into the master ([#3439](https://github.com/OpenXiangShan/XiangShan/pull/3439)).
     - Support for Minimal Half-Precision Floating Point extension (Zfhmin) ([#3421](https://github.com/OpenXiangShan/XiangShan/pull/3421)).
     - Support for Sstval/Shvstval (saving the corresponding instruction encoding in the tval CSR during illegal instruction exceptions) ([#3407](https://github.com/OpenXiangShan/XiangShan/pull/3407)).
-    - The Resumable Non-Maskable Interrupt (Smrnmi) extension is being merged into the mainline.
+    - The Resumable Non-Maskable Interrupt (Smrnmi) extension is being merged into the mainline. ([#3480](https://github.com/OpenXiangShan/XiangShan/pull/3480))
 
 ### MemBlock and cache
 

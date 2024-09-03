@@ -37,7 +37,7 @@ categories:
     - 浮点加载常数和特殊偏序比较拓展 (Zfa) 正在合入主线 ([#3439](https://github.com/OpenXiangShan/XiangShan/pull/3439))
     - 支持 FP16 访存和数据类型转换 (Zfhmin) ([#3421](https://github.com/OpenXiangShan/XiangShan/pull/3421))
     - 支持 Sstval/Shvstval (非法指令异常时保存对应指令编码在 tval CSR 中) ([#3407](https://github.com/OpenXiangShan/XiangShan/pull/3407)) 
-    - 可恢复非屏蔽中断 (Smrnmi) 拓展正在合入主线
+    - 可恢复非屏蔽中断 (Smrnmi) 拓展正在合入主线 ([#3480](https://github.com/OpenXiangShan/XiangShan/pull/3480))
 
 ### 访存与缓存
 

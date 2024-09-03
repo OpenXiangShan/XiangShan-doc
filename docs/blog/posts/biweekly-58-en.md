@@ -66,7 +66,7 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
 
 ## RTL Evaluation
 
-We used SimPoint for program sampling and created checkpoint images based on our custom Checkpoint format, with a **SimPoint clustering coverage of 100%**. SPEC06 was compiled using gcc12 with O3 optimization enabled, the jemalloc memory library, and the `-ffp-contraction` option for SPEC06FP set to fast. The instruction set used was RV64GCB. We ran SPEC06 fragments on the XiangShan processor **version 49162c9 from August 24** (**configured with 64KB L1 ICache, 64KB L1 DCache, 1MB L2, and 16MB L3, and a 3ld2st LSU**) in a simulation environment. DRAMsim3 was used to simulate DDR4-3200 memory latency with a CPU running at 3GHz. Below are the estimated SPECCPU 2006 scores:
+We used SimPoint for program sampling and created checkpoint images based on our custom Checkpoint format, with a **SimPoint clustering coverage of 100%**. SPEC06 was compiled using gcc12 with O3 optimization enabled, the jemalloc memory library, and the `-ffp-contraction` option for SPEC06FP set to fast. The instruction set used was RV64GCB. We ran SPEC06 checkpoints on the XiangShan processor **version 49162c9 from August 24** (**configured with 64KB L1 ICache, 64KB L1 DCache, 1MB L2, and 16MB L3, and a 3ld2st LSU**) in a simulation environment. DRAMsim3 was used to simulate DDR4-3200 memory latency with a CPU running at 3GHz. Below are the estimated SPEC CPU2006 scores:
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est.  | @ 3GHz |
 | :---------------- | :----: | :---------------- | :----: |
@@ -89,7 +89,7 @@ We used SimPoint for program sampling and created checkpoint images based on our
 |                   |        | 482.sphinx3       | 51.45  |
 |                   |        | **GEOMEAN**       | 47.15  |
 
-**The scores above are estimated based on SimPoint checkpoints, not a full SPEC CPU 2006 estimation, and may differ from the actual performance of the real chip!**
+**Scores are estimated with SimPoint checkpoints of SPEC CPU2006, which might deviate from real chip!**
 
 ## Afterthought
 

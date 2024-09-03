@@ -17,8 +17,8 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed a design flaw related to software prefetching transitions in the prefetchPipe s1 level state machine. ([#3433](https://github.com/OpenXiangShan/XiangShan/pull/3433))
-    - Fixed the frontend Topdown simulation counters and hardware PMU.  ([#3437](https://github.com/OpenXiangShan/XiangShan/pull/3437))
+    - Fixed a design flaw of transition logic related to software prefetching in the prefetchPipe s1 stage FSM. ([#3433](https://github.com/OpenXiangShan/XiangShan/pull/3433))
+    - Fixed the frontend Topdown simulation-time performance counters and hardware PMU.  ([#3437](https://github.com/OpenXiangShan/XiangShan/pull/3437))
 
 ### Backend
 

@@ -9,7 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 58th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
-Recently: WIP
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed a design flaw related to software prefetching transitions in the prefetchPipe s1 level state machine, the backend support for the Sstval/Shvstval extensions, and the memory and cache section implemented the 48-bit virtual memory management (Sv48) extension. This update also includes the latest performance improvements of the Kunminghu architecture.
 
 <!-- more -->
 ## Recent developments

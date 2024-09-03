@@ -18,12 +18,12 @@ categories:
 
 - Bug 修复
     - 修复 prefetchPipe s1 级状态机中软件预取相关转移的设计缺陷 ([#3433](https://github.com/OpenXiangShan/XiangShan/pull/3433))
-    - 修复前端 Topdown 仿真计数器和硬件 pmu ([#3437](https://github.com/OpenXiangShan/XiangShan/pull/3437))
+    - 修复前端 Topdown 仿真计数器和硬件 PMU ([#3437](https://github.com/OpenXiangShan/XiangShan/pull/3437))
 
 ### 后端流水线
 
 - Bug 修复
-    - 持续推进功能Bug修复，共修复30余例，以下是部分PR：
+    - 持续推进功能 Bug 修复，共修复 30 余例，以下是部分 PR：
     - 修复 H 拓展功能 Bug ([#3450](https://github.com/OpenXiangShan/XiangShan/pull/3450), [#3447](https://github.com/OpenXiangShan/XiangShan/pull/3447), [#3442](https://github.com/OpenXiangShan/XiangShan/pull/3442), [#3428](https://github.com/OpenXiangShan/XiangShan/pull/3428), [#3427](https://github.com/OpenXiangShan/XiangShan/pull/3427), [#3423](https://github.com/OpenXiangShan/XiangShan/pull/3423), [#3420](https://github.com/OpenXiangShan/XiangShan/pull/3420), [#3397](https://github.com/OpenXiangShan/XiangShan/pull/3397), [#3385](https://github.com/OpenXiangShan/XiangShan/pull/3385))
     - 修复 Debug 拓展功能 Bug ([#3441](https://github.com/OpenXiangShan/XiangShan/pull/3441), [#3422](https://github.com/OpenXiangShan/XiangShan/pull/3422), [#3418](https://github.com/OpenXiangShan/XiangShan/pull/3418),[#3395](https://github.com/OpenXiangShan/XiangShan/pull/3395))
     - 修复 V 拓展功能 Bug ([#3430](https://github.com/OpenXiangShan/XiangShan/pull/3430), [#3384](https://github.com/OpenXiangShan/XiangShan/pull/3384))
@@ -35,8 +35,8 @@ categories:
 
 - RVA23 Profile
     - 浮点加载常数和特殊偏序比较拓展 (Zfa) 正在合入主线 ([#3439](https://github.com/OpenXiangShan/XiangShan/pull/3439))
-    - 支持FP16访存和数据类型转换 (Zfhmin) ([#3421](https://github.com/OpenXiangShan/XiangShan/pull/3421))
-    - 支持Sstval/Shvstval (非法指令异常时保存对应指令编码在tval CSR中) ([#3407](https://github.com/OpenXiangShan/XiangShan/pull/3407)) 
+    - 支持 FP16 访存和数据类型转换 (Zfhmin) ([#3421](https://github.com/OpenXiangShan/XiangShan/pull/3421))
+    - 支持 Sstval/Shvstval (非法指令异常时保存对应指令编码在 tval CSR 中) ([#3407](https://github.com/OpenXiangShan/XiangShan/pull/3407)) 
     - 可恢复非屏蔽中断 (Smrnmi) 拓展正在合入主线
 
 ### 访存与缓存

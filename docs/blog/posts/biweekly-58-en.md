@@ -17,13 +17,8 @@ Recently: WIP
 ### Frontend
 
 - **Bug Fixes**
-    - A ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
-
-- **RVA23 Profile**
-    - B ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
-
-- **Area & Power**
-    - C ([#404](https://github.com/OpenXiangShan/XiangShan/pull/404))
+    - Fixed a design flaw related to software prefetching transitions in the prefetchPipe s1 level state machine. ([#3433](https://github.com/OpenXiangShan/XiangShan/pull/3433))
+    - Fixed the frontend Topdown simulation counters and hardware PMU.  ([#3437](https://github.com/OpenXiangShan/XiangShan/pull/3437))
 
 ### Backend
 

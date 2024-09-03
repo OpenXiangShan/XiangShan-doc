@@ -23,7 +23,7 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
 ### Backend
 
 - **Bug Fixes**
-    - Continued progress on bug fixes, with a total of XX bugs fixed. Below are some of the PRs:
+    - Continued progress on bug fixes, with a total of 30 bugs fixed. Below are some of the PRs:
     - Fixed bugs related to the H extension ([#3450](https://github.com/OpenXiangShan/XiangShan/pull/3450), [#3447](https://github.com/OpenXiangShan/XiangShan/pull/3447), [#3442](https://github.com/OpenXiangShan/XiangShan/pull/3442), [#3428](https://github.com/OpenXiangShan/XiangShan/pull/3428), [#3427](https://github.com/OpenXiangShan/XiangShan/pull/3427), [#3423](https://github.com/OpenXiangShan/XiangShan/pull/3423), [#3420](https://github.com/OpenXiangShan/XiangShan/pull/3420), [#3397](https://github.com/OpenXiangShan/XiangShan/pull/3397), [#3385](https://github.com/OpenXiangShan/XiangShan/pull/3385))
     - Fixed bugs related to the Debug extension ([#3441](https://github.com/OpenXiangShan/XiangShan/pull/3441), [#3422](https://github.com/OpenXiangShan/XiangShan/pull/3422), [#3418](https://github.com/OpenXiangShan/XiangShan/pull/3418), [#3395](https://github.com/OpenXiangShan/XiangShan/pull/3395))
     - Fixed bugs related to the V extension ([#3430](https://github.com/OpenXiangShan/XiangShan/pull/3430), [#3384](https://github.com/OpenXiangShan/XiangShan/pull/3384))

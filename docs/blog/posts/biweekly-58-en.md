@@ -23,10 +23,10 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
 ### Backend
 
 - **Bug Fixes**
-    - Continued progress on bug fixes, with a total of 30 bugs fixed. Below are some of the PRs:
-    - Fixed bugs related to the H extension ([#3450](https://github.com/OpenXiangShan/XiangShan/pull/3450), [#3447](https://github.com/OpenXiangShan/XiangShan/pull/3447), [#3442](https://github.com/OpenXiangShan/XiangShan/pull/3442), [#3428](https://github.com/OpenXiangShan/XiangShan/pull/3428), [#3427](https://github.com/OpenXiangShan/XiangShan/pull/3427), [#3423](https://github.com/OpenXiangShan/XiangShan/pull/3423), [#3420](https://github.com/OpenXiangShan/XiangShan/pull/3420), [#3397](https://github.com/OpenXiangShan/XiangShan/pull/3397), [#3385](https://github.com/OpenXiangShan/XiangShan/pull/3385))
-    - Fixed bugs related to the Debug extension ([#3441](https://github.com/OpenXiangShan/XiangShan/pull/3441), [#3422](https://github.com/OpenXiangShan/XiangShan/pull/3422), [#3418](https://github.com/OpenXiangShan/XiangShan/pull/3418), [#3395](https://github.com/OpenXiangShan/XiangShan/pull/3395))
-    - Fixed bugs related to the V extension ([#3430](https://github.com/OpenXiangShan/XiangShan/pull/3430), [#3384](https://github.com/OpenXiangShan/XiangShan/pull/3384))
+    - Continued progress on Bug fixes, with a total of 30 Bugs fixed. Below are some of the PRs:
+    - Fixed Bugs related to the H extension ([#3450](https://github.com/OpenXiangShan/XiangShan/pull/3450), [#3447](https://github.com/OpenXiangShan/XiangShan/pull/3447), [#3442](https://github.com/OpenXiangShan/XiangShan/pull/3442), [#3428](https://github.com/OpenXiangShan/XiangShan/pull/3428), [#3427](https://github.com/OpenXiangShan/XiangShan/pull/3427), [#3423](https://github.com/OpenXiangShan/XiangShan/pull/3423), [#3420](https://github.com/OpenXiangShan/XiangShan/pull/3420), [#3397](https://github.com/OpenXiangShan/XiangShan/pull/3397), [#3385](https://github.com/OpenXiangShan/XiangShan/pull/3385))
+    - Fixed Bugs related to the Debug extension ([#3441](https://github.com/OpenXiangShan/XiangShan/pull/3441), [#3422](https://github.com/OpenXiangShan/XiangShan/pull/3422), [#3418](https://github.com/OpenXiangShan/XiangShan/pull/3418), [#3395](https://github.com/OpenXiangShan/XiangShan/pull/3395))
+    - Fixed Bugs related to the V extension ([#3430](https://github.com/OpenXiangShan/XiangShan/pull/3430), [#3384](https://github.com/OpenXiangShan/XiangShan/pull/3384))
 
 - **Timing Optimization**
     - Continued progress on timing optimization, with internal timing violations improved by -50ps, now -15ps away from the target.
@@ -47,18 +47,18 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
     - Adds a switch for CHI asynchronous bridge and CLINT asynchronous bridge, which is parameterized by SoCParameters. ([#3459](https://github.com/OpenXiangShan/XiangShan/pull/3459))
 
 - **RVA23 Profile**
-    - CMO Implementation: Fixed several bugs and successfully passed simple XiangShan system instruction tests. Merged CMO instruction extensions Zicbom into master（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
+    - CMO Implementation: Fixed several Bugs and successfully passed simple XiangShan system instruction tests. Merged CMO instruction extensions Zicbom into master（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
     - Software prefetching (Zicbop) extension: optimises timing related to software instruction prefetching ([#3425](https://github.com/OpenXiangShan/XiangShan/pull/3425)).
-    - 48-bit virtual memory management (Sv48) extension: fixes bugs related to 48-bit physical addresses, now passes the 48-bit physical address self-test use case ([#3424](https://github.com/OpenXiangShan/XiangShan/pull/3424)).
+    - 48-bit virtual memory management (Sv48) extension: fixes Bugs related to 48-bit physical addresses, now passes the 48-bit physical address self-test use case ([#3424](https://github.com/OpenXiangShan/XiangShan/pull/3424)).
 
 - **Performance**
     - TP meta on L2 migration to new master, conduct performance evaluation
-    - A series of performance bugs caused by frequent failures to seize the load issue queue have been discovered and are being analysed and fixed.
+    - A series of performance Bugs caused by frequent failures to seize the load issue queue have been discovered and are being analysed and fixed.
 
 - Bug fixes
-    - Fixed a bug where LoadReplayQueue could not be queued, resulting in loss of load instructions ([#3436](https://github.com/OpenXiangShan/XiangShan/pull/3436)).
-    - Add AXI4Error peripheral to enable SoC to recognise illegal address and return non-data error to CPU in simulation environment. And also fix the bug of mtval update error in store access fault ([#3458](https://github.com/OpenXiangShan/XiangShan/pull/3458))
-    - Fix bugs related to vector access with unaligned addresses, currently only scalar load & store instructions can handle unaligned requests in hardware, vector load & store instructions still need to report exceptions to be handled by software ([#3460](https://github.com/OpenXiangShan/XiangShan/pull/3460)), ([#3462](https://github.com/OpenXiangShan/XiangShan/pull/3462))
+    - Fixed a Bug where LoadReplayQueue could not be queued, resulting in loss of load instructions ([#3436](https://github.com/OpenXiangShan/XiangShan/pull/3436)).
+    - Add AXI4Error peripheral to enable SoC to recognise illegal address and return non-data error to CPU in simulation environment. And also fix the Bug of mtval update error in store access fault ([#3458](https://github.com/OpenXiangShan/XiangShan/pull/3458))
+    - Fix Bugs related to vector access with unaligned addresses, currently only scalar load & store instructions can handle unaligned requests in hardware, vector load & store instructions still need to report exceptions to be handled by software ([#3460](https://github.com/OpenXiangShan/XiangShan/pull/3460)), ([#3462](https://github.com/OpenXiangShan/XiangShan/pull/3462))
 
 - **PPA Optimizations**
     - On the L2 Cache, using SRAM to build a Queue and splitting the data SRAM. Timing evaluation is normal, and area has been optimized, but increase in power consumption is significant

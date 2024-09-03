@@ -46,18 +46,18 @@ categories:
     - 为 CHI 与 CLINT 异步桥添加开关，可以在 SoCParameters 中设置参数 ([#3459](https://github.com/OpenXiangShan/XiangShan/pull/3459))
 
 - RVA23 Profile
-    - CMO 指令实现：修复若干 bug，成功通过简单的 XiangShan 系统指令测试；通过 CMO RISCV-tests。将 CMO 指令拓展 Zicbom 合入主线（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
+    - CMO 指令实现：修复若干 Bug，成功通过简单的 XiangShan 系统指令测试；通过 CMO RISCV-tests。将 CMO 指令拓展 Zicbom 合入主线（[#3426](https://github.com/OpenXiangShan/XiangShan/pull/3426)）
     - 软件预取（Zicbop）扩展：优化软件指令预取有关的时序 ([#3425](https://github.com/OpenXiangShan/XiangShan/pull/3425))
-    - 48 位虚存管理（Sv48）扩展：修复 48 位物理地址有关的 bug，目前已经通过 48 位物理地址自测用例 ([#3424](https://github.com/OpenXiangShan/XiangShan/pull/3424))
+    - 48 位虚存管理（Sv48）扩展：修复 48 位物理地址有关的 Bug，目前已经通过 48 位物理地址自测用例 ([#3424](https://github.com/OpenXiangShan/XiangShan/pull/3424))
 
 - 性能
     - TP meta on L2 迁移至新 master，进行性能评估
-    - 发现 load 发射队列频繁抢占失败带来的一系列性能 bug，正在分析和修复
+    - 发现 load 发射队列频繁抢占失败带来的一系列性能 Bug，正在分析和修复
 
-- bug 修复
-    - 修复 LoadReplayQueue 无法入队，导致 load 指令丢失的 bug ([#3436](https://github.com/OpenXiangShan/XiangShan/pull/3436))
-    - 添加 AXI4Error 外设，使得仿真环境下 SoC 能够识别非法地址并返回 non-data error 给 CPU；同时修复 store access fault 异常时 mtval 更新错误的 bug ([#3458](https://github.com/OpenXiangShan/XiangShan/pull/3458))
-    - 修复向量访存与非对齐访问相关的 bug，目前只有标量可以硬件处理非对齐，向量仍然需要报异常由软件处理 ([#3460](https://github.com/OpenXiangShan/XiangShan/pull/3460))、([#3462](https://github.com/OpenXiangShan/XiangShan/pull/3462))
+- Bug 修复
+    - 修复 LoadReplayQueue 无法入队，导致 load 指令丢失的 Bug ([#3436](https://github.com/OpenXiangShan/XiangShan/pull/3436))
+    - 添加 AXI4Error 外设，使得仿真环境下 SoC 能够识别非法地址并返回 non-data error 给 CPU；同时修复 store access fault 异常时 mtval 更新错误的 Bug ([#3458](https://github.com/OpenXiangShan/XiangShan/pull/3458))
+    - 修复向量访存与非对齐访问相关的 Bug，目前只有标量可以硬件处理非对齐，向量仍然需要报异常由软件处理 ([#3460](https://github.com/OpenXiangShan/XiangShan/pull/3460))、([#3462](https://github.com/OpenXiangShan/XiangShan/pull/3462))
 
 
 - PPA 优化

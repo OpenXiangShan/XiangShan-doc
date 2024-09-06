@@ -112,6 +112,22 @@ Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
 
 - 香山微结构模拟器_XS_GEM5 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20230824-RVSC-香山微结构模拟器_XS_GEM5.pdf)
 
+## RISC-V Summit China 2024 (2024 RISC-V 中国峰会)
+
+所有的报告均是中文的。All talks are in Chinese.
+
+- 香山服务器IP当前状态和路线图 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-香山服务器IP当前状态和路线图.pdf)
+
+- 香山开源处理器昆明湖架构的设计演进 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-香山开源处理器昆明湖架构的设计演进.pdf)
+
+- 香山处理器昆明湖架构向量扩展的设计与演进 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-香山处理器昆明湖架构向量扩展的设计与演进.pdf)
+
+- 面向服务器的香山处理器开源多核解决方案 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-面向服务器的香山处理器开源多核解决方案.pdf)
+
+- 万众一芯：基于开源众包芯片验证的探索与实践 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-万众一芯：基于开源众包芯片验证的探索与实践.pdf)
+
+- 香山缓存系统的形式化验证 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-香山缓存系统的形式化验证.pdf)
+
 ## More Talks 更多的报告
 
 See [https://github.com/OpenXiangShan/XiangShan-doc/tree/main/slides](https://github.com/OpenXiangShan/XiangShan-doc/tree/main/slides).

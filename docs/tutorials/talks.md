@@ -126,6 +126,8 @@ Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
 
 - 万众一芯：基于开源众包芯片验证的探索与实践 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-万众一芯：基于开源众包芯片验证的探索与实践.pdf)
 
+- 香山缓存系统的形式化验证 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-香山缓存系统的形式化验证.pdf)
+
 ## More Talks 更多的报告
 
 See [https://github.com/OpenXiangShan/XiangShan-doc/tree/main/slides](https://github.com/OpenXiangShan/XiangShan-doc/tree/main/slides).

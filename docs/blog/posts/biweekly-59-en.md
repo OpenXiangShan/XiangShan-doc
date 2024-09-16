@@ -35,19 +35,20 @@ Recently,
 
 
 - **CHI Bus**
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Completed CHI2AXI bridge design (OpenNCB), set up CoupledL2-OpenLLC-OpenNCB test framework
 
 - **RVA23 Profile**
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Completed the design of CMO extension requirements for CSR modifications and instruction exception conditions, and implemented the related CSR register and instruction exception checks on NEMU
 
 - **Performance**
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - TP meta on L2: Relevant code has been migrated to a newer master version. A significant drop in TP prefetch count has occurred, currently under repair
 
 - Bug fixes
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Fixed hardcoding issue in TP, implemented correct support for sv48([#3487](https://github.com/OpenXiangShan/XiangShan/commit/e1d5ffc2d93873b72146e78c8f6a904926de8590))
+    - Fixed a performance bug in L2 Cache where mergeA causes prefetch delays (pending performance evaluation)
 
 - **PPA Optimizations**
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Timing: Completed the splitting of the L2 Cache tagArray, optimizing the critical path timing within the L2 Cache module
 
 ## RTL Evaluation
 

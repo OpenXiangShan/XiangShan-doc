@@ -34,19 +34,23 @@ categories:
 ### 访存与缓存
 
 - CHI 总线
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 完成CHI2AXI转接桥设计（OpenNCB），搭建CoupledL2-OpenLLC-OpenNCB测试框架
 
 - RVA23 Profile
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 完成CMO扩展对CSR的修改要求与指令异常条件的整理，NEMU上实现相关的CSR寄存器与指令异常检查
 
 - 性能
+    - TP meta on L2：相关代码完成到较新master的迁移，出现TP预取数量大幅下降现象，修复中
     - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
 
 - Bug 修复
+    - TP修复hardcoding问题，实现对sv48的正确支持([#3487](https://github.com/OpenXiangShan/XiangShan/commit/e1d5ffc2d93873b72146e78c8f6a904926de8590))
+    - 修复L2 Cache中mergeA导致预取不及时的性能bug（待性能评估）
     - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
 
 
-- PPA 优化
+- 时序&面积优化
+    - 时序：完成对L2 Cache tagArray的拆分，L2 Cache模块内部关键路径时序优化至-40ps
     - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
 
 ## 评估

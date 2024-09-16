@@ -22,14 +22,22 @@ Recently,
 ### Backend
 
 - **Bug Fixes**
-    - Continued progress on Bug fixes, with a total of 30 Bugs fixed. Below are some of the PRs:
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Continuously advancing function bug fixes, with over 30 issues resolved. Here are some of the PRs:
+    - Fixed H-extension function bugs ([#3580](https://github.com/OpenXiangShan/XiangShan/pull/3580), [#3575](https://github.com/OpenXiangShan/XiangShan/pull/3575), [#3569](https://github.com/OpenXiangShan/XiangShan/pull/3569), [#3561](https://github.com/OpenXiangShan/XiangShan/pull/3561), [#3553](https://github.com/OpenXiangShan/XiangShan/pull/3553), [#3551](https://github.com/OpenXiangShan/XiangShan/pull/3551), [#3528](https://github.com/OpenXiangShan/XiangShan/pull/3528), [#3525](https://github.com/OpenXiangShan/XiangShan/pull/3525), [#3524](https://github.com/OpenXiangShan/XiangShan/pull/3524), [#3523](https://github.com/OpenXiangShan/XiangShan/pull/3523), [#3512](https://github.com/OpenXiangShan/XiangShan/pull/3512), [#3510](https://github.com/OpenXiangShan/XiangShan/pull/3510), [#3502](https://github.com/OpenXiangShan/XiangShan/pull/3502))
+    - Fixed privilege level function bugs ([#3558](https://github.com/OpenXiangShan/XiangShan/pull/3558), [#3557](https://github.com/OpenXiangShan/XiangShan/pull/3557), [#3534](https://github.com/OpenXiangShan/XiangShan/pull/3534), [#3515](https://github.com/OpenXiangShan/XiangShan/pull/3515), [#3496](https://github.com/OpenXiangShan/XiangShan/pull/3496), [#3486](https://github.com/OpenXiangShan/XiangShan/pull/3486), [#3469](https://github.com/OpenXiangShan/XiangShan/pull/3469), [#3434](https://github.com/OpenXiangShan/XiangShan/pull/3434), [#3547](https://github.com/OpenXiangShan/XiangShan/pull/3547))
+    - Fixed Debug extension function bugs ([#3538](https://github.com/OpenXiangShan/XiangShan/pull/3538), [#3536](https://github.com/OpenXiangShan/XiangShan/pull/3536), [#3472](https://github.com/OpenXiangShan/XiangShan/pull/3472))
+    - Fixed V-extension function bugs ([#3535](https://github.com/OpenXiangShan/XiangShan/pull/3535), [#3495](https://github.com/OpenXiangShan/XiangShan/pull/3495), [#3494](https://github.com/OpenXiangShan/XiangShan/pull/3494))
 
 - **Timing Optimization**
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Added OG2 to vector memory access ([#3482](https://github.com/OpenXiangShan/XiangShan/pull/3482))
+    - Optimized the logic for Rab state machine transitioning to idle ([#3517](https://github.com/OpenXiangShan/XiangShan/pull/3517))
+    - Added an adder to optimize the target calculation timing in the branch calculation module and removed redundant judgment logic ([#3520](https://github.com/OpenXiangShan/XiangShan/pull/3520))
+    - Reduced the enqueue number of the memory access issue queue from 2 to 1 to alleviate timing pressure ([#3471](https://github.com/OpenXiangShan/XiangShan/pull/3471))
 
 - **RVA23 Profile**
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Supported The Resumable Non-Maskable Interrupt (Smrnmi) extension ([#3480](https://github.com/OpenXiangShan/XiangShan/pull/3480))
+    - Added CMO instruction extensions (Zicbom, Zicboz) including privilege checks and related CSR support ([#3559](https://github.com/OpenXiangShan/XiangShan/pull/3559))
+    - Supported The Additional Floating-Point instructions extension (Zfa) ([#3439](https://github.com/OpenXiangShan/XiangShan/pull/3439))
 
 ### MemBlock and cache
 

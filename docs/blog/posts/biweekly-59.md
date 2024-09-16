@@ -23,13 +23,22 @@ categories:
 
 - Bug 修复
     - 持续推进功能 Bug 修复，共修复 30 余例，以下是部分 PR：
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 修复H拓展功能 Bug ([#3580](https://github.com/OpenXiangShan/XiangShan/pull/3580), [#3575](https://github.com/OpenXiangShan/XiangShan/pull/3575), [#3569](https://github.com/OpenXiangShan/XiangShan/pull/3569), [#3561](https://github.com/OpenXiangShan/XiangShan/pull/3561), [#3553](https://github.com/OpenXiangShan/XiangShan/pull/3553), [#3551](https://github.com/OpenXiangShan/XiangShan/pull/3551), [#3528](https://github.com/OpenXiangShan/XiangShan/pull/3528), [#3525](https://github.com/OpenXiangShan/XiangShan/pull/3525), [#3524](https://github.com/OpenXiangShan/XiangShan/pull/3524), [#3523](https://github.com/OpenXiangShan/XiangShan/pull/3523), [#3512](https://github.com/OpenXiangShan/XiangShan/pull/3512), [#3510](https://github.com/OpenXiangShan/XiangShan/pull/3510), [#3502](https://github.com/OpenXiangShan/XiangShan/pull/3502))
+    - 修复特权级功能 Bug ([#3558](https://github.com/OpenXiangShan/XiangShan/pull/3558), [#3557](https://github.com/OpenXiangShan/XiangShan/pull/3557), [#3534](https://github.com/OpenXiangShan/XiangShan/pull/3534), [#3515](https://github.com/OpenXiangShan/XiangShan/pull/3515), [#3496](https://github.com/OpenXiangShan/XiangShan/pull/3496), [#3486](https://github.com/OpenXiangShan/XiangShan/pull/3486), [#3469](https://github.com/OpenXiangShan/XiangShan/pull/3469), [#3434](https://github.com/OpenXiangShan/XiangShan/pull/3434),
+    [#3547](https://github.com/OpenXiangShan/XiangShan/pull/3547))
+    - 修复 Debug 拓展功能 Bug ([#3538](https://github.com/OpenXiangShan/XiangShan/pull/3538), [#3536](https://github.com/OpenXiangShan/XiangShan/pull/3536), [#3472](https://github.com/OpenXiangShan/XiangShan/pull/3472))
+    - 修复 V 拓展功能 Bug ([#3535](https://github.com/OpenXiangShan/XiangShan/pull/3535), [#3495](https://github.com/OpenXiangShan/XiangShan/pull/3495), [#3494](https://github.com/OpenXiangShan/XiangShan/pull/3494))
 
 - 时序优化
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 向量访存添加 OG2 ([#3482](https://github.com/OpenXiangShan/XiangShan/pull/3482))
+    - 优化 Rab 状态机转移至idle逻辑 ([#3517](https://github.com/OpenXiangShan/XiangShan/pull/3517))
+    - 增加加法器以优化分支计算模块计算 target 时序，删除冗余判断逻辑 ([#3520](https://github.com/OpenXiangShan/XiangShan/pull/3520))
+    - 将访存 issue queue 入队数从2降为1, 缓解时序压力 ([#3471](https://github.com/OpenXiangShan/XiangShan/pull/3471))
 
 - RVA23 Profile
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 支持可恢复非屏蔽中断 (Smrnmi) 拓展 ([#3480](https://github.com/OpenXiangShan/XiangShan/pull/3480))
+    - 添加 CMO 指令拓展（Zicbom,Zicboz）拓展权限检查及CSR相关支持 ([#3559](https://github.com/OpenXiangShan/XiangShan/pull/3559))
+    - 支持加载常数和特殊偏序比较拓展 (Zfa)([#3439](https://github.com/OpenXiangShan/XiangShan/pull/3439))
 
 ### 访存与缓存
 

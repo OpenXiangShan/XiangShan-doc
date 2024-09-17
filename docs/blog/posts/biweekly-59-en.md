@@ -17,7 +17,10 @@ Recently,
 ### Frontend
 
 - **Bug Fixes**
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Fixed a bug where the ICache ECC Code was not updated correctly ([#3492](https://github.com/OpenXiangShan/XiangShan/pull/3492))
+    - Fixed a deadlock bug caused by speculative stack in RAS ([#3514](https://github.com/OpenXiangShan/XiangShan/pull/3514))
+    - Fixed an issue with incorrect update conditions for ITTAGE useful bits ([#3564](https://github.com/OpenXiangShan/XiangShan/pull/3564))
+    - Fixed a bug where instructions in the Zcmop extension were being decoded as illegal instructions ([#3570](https://github.com/OpenXiangShan/XiangShan/pull/3570)) (OpenXiangShan/rocket-chip [#10](https://github.com/OpenXiangShan/rocket-chip/pull/10))
 
 ### Backend
 

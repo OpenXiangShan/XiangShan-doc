@@ -17,7 +17,10 @@ categories:
 ### 前端
 
 - Bug 修复
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 修复一个 ICache ECC Code 未正确更新的 Bug ([#3492](https://github.com/OpenXiangShan/XiangShan/pull/3492))
+    - 修复一个 RAS 推测栈导致的卡死 Bug ([#3514](https://github.com/OpenXiangShan/XiangShan/pull/3514))
+    - 修复一个 ITTAGE useful 更新条件错误的问题 ([#3564](https://github.com/OpenXiangShan/XiangShan/pull/3564))
+    - 修复一个 Zcmop 扩展中的指令被译码为非法指令的 Bug ([#3570](https://github.com/OpenXiangShan/XiangShan/pull/3570)) (OpenXiangShan/rocket-chip [#10](https://github.com/OpenXiangShan/rocket-chip/pull/10))
 
 ### 后端流水线
 

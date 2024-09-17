@@ -8,7 +8,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 59 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端修复了 RAS 推测栈导致的卡死 Bug，后端支持了可恢复非屏蔽中断 (Smrnmi) 拓展，访存和缓存部分完成 CHI2AXI 转接桥设计 (OpenNCB)。本期还更新了昆明湖架构近期性能。
 
 <!-- more -->
 
@@ -59,8 +59,8 @@ categories:
 
 - Bug 修复
     - TP 修复 hardcoding 问题，实现对 sv48 的正确支持 ([#3487](https://github.com/OpenXiangShan/XiangShan/commit/e1d5ffc2d93873b72146e78c8f6a904926de8590))
-    - 修复 L2 Cache 中 mergeA 导致预取不及时的性能 bug（待性能评估）
-    - 修复 PCredit 仲裁相关，导致 PCredit 丢失或重复分发的 bug ([#3513](https://github.com/OpenXiangShan/XiangShan/pull/3513)、[#3552](https://github.com/OpenXiangShan/XiangShan/pull/3552))
+    - 修复 L2 Cache 中 mergeA 导致预取不及时的性能 Bug（待性能评估）
+    - 修复 PCredit 仲裁相关，导致 PCredit 丢失或重复分发的 Bug ([#3513](https://github.com/OpenXiangShan/XiangShan/pull/3513)、[#3552](https://github.com/OpenXiangShan/XiangShan/pull/3552))
     - 修复 L2TLB 返回的异常处理生成和仲裁逻辑 ([#3453](https://github.com/OpenXiangShan/XiangShan/pull/3453)、[#3588](https://github.com/OpenXiangShan/XiangShan/pull/3588))
 
 

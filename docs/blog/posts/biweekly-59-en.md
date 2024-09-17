@@ -9,7 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 59th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
-Recently,
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed a deadlock bug caused by speculative stack in RAS, the backend supported the Resumable Non-Maskable Interrupt (Smrnmi) extension, and the memory and cache subsystem completed CHI2AXI bridge design (OpenNCB). This update also includes the latest performance improvements of the Kunminghu architecture.
 
 <!-- more -->
 ## Recent developments

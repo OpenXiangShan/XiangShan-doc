@@ -33,34 +33,37 @@ categories:
     - 向量访存添加 OG2 ([#3482](https://github.com/OpenXiangShan/XiangShan/pull/3482))
     - 优化 Rab 状态机转移至idle逻辑 ([#3517](https://github.com/OpenXiangShan/XiangShan/pull/3517))
     - 增加加法器以优化分支计算模块计算 target 时序，删除冗余判断逻辑 ([#3520](https://github.com/OpenXiangShan/XiangShan/pull/3520))
-    - 将访存 issue queue 入队数从2降为1, 缓解时序压力 ([#3471](https://github.com/OpenXiangShan/XiangShan/pull/3471))
+    - 将访存 issue queue 入队数从 2 降为 1, 缓解时序压力 ([#3471](https://github.com/OpenXiangShan/XiangShan/pull/3471))
 
 - RVA23 Profile
     - 支持可恢复非屏蔽中断 (Smrnmi) 拓展 ([#3480](https://github.com/OpenXiangShan/XiangShan/pull/3480))
-    - 添加 CMO 指令拓展（Zicbom,Zicboz）拓展权限检查及CSR相关支持 ([#3559](https://github.com/OpenXiangShan/XiangShan/pull/3559))
+    - 添加 CMO 指令拓展（Zicbom,Zicboz）拓展权限检查及 CSR 相关支持 ([#3559](https://github.com/OpenXiangShan/XiangShan/pull/3559))
     - 支持加载常数和特殊偏序比较拓展 (Zfa)([#3439](https://github.com/OpenXiangShan/XiangShan/pull/3439))
 
 ### 访存与缓存
 
 - CHI 总线
-    - 完成CHI2AXI转接桥设计（OpenNCB），搭建CoupledL2-OpenLLC-OpenNCB测试框架
+    - 完成 CHI2AXI 转接桥设计（OpenNCB），搭建 CoupledL2-OpenLLC-OpenNCB 测试框架
+    - 添加 non-data error 的处理流程，访问不存在外设时将返回 DECERR ([#3458](https://github.com/OpenXiangShan/XiangShan/pull/3458))
 
 - RVA23 Profile
-    - 完成CMO扩展对CSR的修改要求与指令异常条件的整理，NEMU上实现相关的CSR寄存器与指令异常检查
+    - 完成 CMO 扩展对 CSR 的修改要求与指令异常条件的整理，NEMU 上实现相关的 CSR 寄存器与指令异常检查
+    - 完成 svpbmt 扩展使能信号 PBMTE 的代码实现 ([#3521](https://github.com/OpenXiangShan/XiangShan/pull/3521))
 
 - 性能
-    - TP meta on L2：相关代码完成到较新master的迁移，出现TP预取数量大幅下降现象，修复中
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - TP meta on L2：相关代码完成到较新 master 的迁移，出现 TP 预取数量大幅下降现象，修复中
+    - CI 新增性能回归测试，会在每周五自动测试 SPEC06 的性能分数 ([#3533](https://github.com/OpenXiangShan/XiangShan/pull/3533))
 
 - Bug 修复
-    - TP修复hardcoding问题，实现对sv48的正确支持([#3487](https://github.com/OpenXiangShan/XiangShan/commit/e1d5ffc2d93873b72146e78c8f6a904926de8590))
-    - 修复L2 Cache中mergeA导致预取不及时的性能bug（待性能评估）
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - TP 修复 hardcoding 问题，实现对 sv48 的正确支持 ([#3487](https://github.com/OpenXiangShan/XiangShan/commit/e1d5ffc2d93873b72146e78c8f6a904926de8590))
+    - 修复 L2 Cache 中 mergeA 导致预取不及时的性能 bug（待性能评估）
+    - 修复 PCredit 仲裁相关，导致 PCredit 丢失或重复分发的 bug ([#3513](https://github.com/OpenXiangShan/XiangShan/pull/3513)、[#3552](https://github.com/OpenXiangShan/XiangShan/pull/3552))
+    - 修复 L2TLB 返回的异常处理生成和仲裁逻辑 ([#3453](https://github.com/OpenXiangShan/XiangShan/pull/3453)、[#3588](https://github.com/OpenXiangShan/XiangShan/pull/3588))
 
 
-- 时序&面积优化
-    - 时序：完成对L2 Cache tagArray的拆分，L2 Cache模块内部关键路径时序优化至-40ps
-    - template ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+- 时序 & 面积优化
+    - 时序：完成对 L2 Cache tagArray 的拆分，L2 Cache 模块内部关键路径时序优化至 -40ps
+    - 面积：整理、裁剪 MemBlock 中的冗余信号，主要包括 exceptionVec 和 fuType 等 ([#3560](https://github.com/OpenXiangShan/XiangShan/pull/3560))
 
 ## 评估
 

@@ -44,19 +44,25 @@ Recently,
 
 - **CHI Bus**
     - Completed CHI2AXI bridge design (OpenNCB), set up CoupledL2-OpenLLC-OpenNCB test framework
+    - - Add non-data error handling logic, return DECERR when accessing non-existing peripheral ([#3458](https://github.com/OpenXiangShan/XiangShan/pull/3458))
 
 - **RVA23 Profile**
     - Completed the design of CMO extension requirements for CSR modifications and instruction exception conditions, and implemented the related CSR register and instruction exception checks on NEMU
+    - Completed code implementation of svpbmt extension enable signal PBMTE ([#3521](https://github.com/OpenXiangShan/XiangShan/pull/3521))
 
 - **Performance**
     - TP meta on L2: Relevant code has been migrated to a newer master version. A significant drop in TP prefetch count has occurred, currently under repair
+    - Adds a new performance regression test in CI to automatically test SPEC06 performance scores every Friday ([#3533](https://github.com/OpenXiangShan/XiangShan/pull/3533)).
 
 - Bug fixes
     - Fixed hardcoding issue in TP, implemented correct support for sv48([#3487](https://github.com/OpenXiangShan/XiangShan/commit/e1d5ffc2d93873b72146e78c8f6a904926de8590))
     - Fixed a performance bug in L2 Cache where mergeA causes prefetch delays (pending performance evaluation)
+    - Fix PCredit arbitration related bugs that lead to PCredit lost or duplicate distribution ([#3513](https://github.com/OpenXiangShan/XiangShan/pull/3513), [#3552](https://github.com/OpenXiangShan/XiangShan/pull/3552))
+    - Fix exception handling generation and arbitration logic of L2TLB ([#3453](https://github.com/OpenXiangShan/XiangShan/pull/3453), [#3588](https://github.com/OpenXiangShan/XiangShan/pull/3588))
 
 - **PPA Optimizations**
     - Timing: Completed the splitting of the L2 Cache tagArray, optimizing the critical path timing within the L2 Cache module
+    - Area: fix redundant signals in MemBlock, mainly including exceptionVec and fuType, etc. ([#3560](https://github.com/OpenXiangShan/XiangShan/pull/3560))
 
 ## RTL Evaluation
 

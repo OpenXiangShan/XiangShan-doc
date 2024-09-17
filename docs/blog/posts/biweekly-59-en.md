@@ -57,7 +57,7 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
     - TP meta on L2: Relevant code has been migrated to a newer master version. A significant drop in TP prefetch count has occurred, currently under repair
     - Adds a new performance regression test in CI to automatically test SPEC06 performance scores every Friday ([#3533](https://github.com/OpenXiangShan/XiangShan/pull/3533)).
 
-- Bug fixes
+- **Bug fixes**
     - Fixed hardcoding issue in TP, implemented correct support for sv48([#3487](https://github.com/OpenXiangShan/XiangShan/commit/e1d5ffc2d93873b72146e78c8f6a904926de8590))
     - Fixed a performance bug in L2 Cache where mergeA causes prefetch delays (pending performance evaluation)
     - Fix PCredit arbitration related bugs that lead to PCredit lost or duplicate distribution ([#3513](https://github.com/OpenXiangShan/XiangShan/pull/3513), [#3552](https://github.com/OpenXiangShan/XiangShan/pull/3552))

@@ -22,11 +22,22 @@ categories:
 ### 后端流水线
 
 - Bug 修复
-    - 持续推进功能 Bug 修复，共修复 ？？ 余例，以下是部分 PR：
+    - 持续推进功能 Bug 修复，共修复 30 余例，以下是部分 PR：
+    - 修复 H 拓展功能 Bug: ([#3685](https://github.com/OpenXiangShan/XiangShan/pull/3685), [#3660](https://github.com/OpenXiangShan/XiangShan/pull/3660), [#3657](https://github.com/OpenXiangShan/XiangShan/pull/3657), [#3624](https://github.com/OpenXiangShan/XiangShan/pull/3624), [#3580](https://github.com/OpenXiangShan/XiangShan/pull/3580), [#3575](https://github.com/OpenXiangShan/XiangShan/pull/3575), [#3569](https://github.com/OpenXiangShan/XiangShan/pull/3569), [#3561](https://github.com/OpenXiangShan/XiangShan/pull/3561), [#3553](https://github.com/OpenXiangShan/XiangShan/pull/3553))
+    - 修复特权级功能 Bug: ([#3634](https://github.com/OpenXiangShan/XiangShan/pull/3634), [#3620](https://github.com/OpenXiangShan/XiangShan/pull/3620), [#3647](https://github.com/OpenXiangShan/XiangShan/pull/3647), [#3665](https://github.com/OpenXiangShan/XiangShan/pull/3665), [#3644](https://github.com/OpenXiangShan/XiangShan/pull/3644), [#3640](https://github.com/OpenXiangShan/XiangShan/pull/3640), [#3577](https://github.com/OpenXiangShan/XiangShan/pull/3577), [#3557](https://github.com/OpenXiangShan/XiangShan/pull/3557), [#3534](https://github.com/OpenXiangShan/XiangShan/pull/3534))
+    - 修复 V 拓展功能 Bug: ([#3664](https://github.com/OpenXiangShan/XiangShan/pull/3664), [#3658](https://github.com/OpenXiangShan/XiangShan/pull/3658), [#3643](https://github.com/OpenXiangShan/XiangShan/pull/3643), [#3607](https://github.com/OpenXiangShan/XiangShan/pull/3607))
+    - 修复 Debug 拓展功能Bug：([#3585](https://github.com/OpenXiangShan/XiangShan/pull/3585), [#3683](https://github.com/OpenXiangShan/XiangShan/pull/3683))
+    - 修复 AIA 拓展功能 Bug: ([#3612](https://github.com/OpenXiangShan/XiangShan/pull/3612), [#3547](https://github.com/OpenXiangShan/XiangShan/pull/3547))
+    - 修复核内异步复位和接 X 态的 bug：([#3669](https://github.com/OpenXiangShan/XiangShan/pull/3669), [#3668](https://github.com/OpenXiangShan/XiangShan/pull/3668), [#3667](https://github.com/OpenXiangShan/XiangShan/pull/3667))
 
-- 时序优化
+- 时序/功耗优化
+    - 持续推进时序功耗优化，目前后端模块内最大违例 -40ps, 跨模块端口违例 -70ps, 门控率 97.34%
+    - 优化 load/store queue allocNumber 逻辑，由加法器实现改为7选1逻辑 ([#3531](https://github.com/OpenXiangShan/XiangShan/pull/3531))
+    - 添加 IQ 和 rob 部分寄存器门控 ([#3602](https://github.com/OpenXiangShan/XiangShan/pull/3602), [#3583](https://github.com/OpenXiangShan/XiangShan/pull/3583))
 
 - RVA23 Profile
+    - H 拓展支持在 Guest-Page-Fault 时更新mtinst/htinst ([#3604](https://github.com/OpenXiangShan/XiangShan/pull/3604))
+    - 支持虚拟中断注入 ([#3496](https://github.com/OpenXiangShan/XiangShan/pull/3496))
 
 ### 访存与缓存
 

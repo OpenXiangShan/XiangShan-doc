@@ -22,11 +22,22 @@ Recently,
 ### Backend
 
 - **Bug Fixes**
-    - Continuously advancing function bug fixes, with over ?? issues resolved. Here are some of the PRs:
+    - Continued to advance bug fixes, with over 30 cases resolved in total. Here are some of the PRs:
+    - Fixed H extension bugs: ([#3685](https://github.com/OpenXiangShan/XiangShan/pull/3685), [#3660](https://github.com/OpenXiangShan/XiangShan/pull/3660), [#3657](https://github.com/OpenXiangShan/XiangShan/pull/3657), [#3624](https://github.com/OpenXiangShan/XiangShan/pull/3624), [#3580](https://github.com/OpenXiangShan/XiangShan/pull/3580), [#3575](https://github.com/OpenXiangShan/XiangShan/pull/3575), [#3569](https://github.com/OpenXiangShan/XiangShan/pull/3569), [#3561](https://github.com/OpenXiangShan/XiangShan/pull/3561), [#3553](https://github.com/OpenXiangShan/XiangShan/pull/3553))
+    - Fixed privilege level bugs: ([#3634](https://github.com/OpenXiangShan/XiangShan/pull/3634), [#3620](https://github.com/OpenXiangShan/XiangShan/pull/3620), [#3647](https://github.com/OpenXiangShan/XiangShan/pull/3647), [#3665](https://github.com/OpenXiangShan/XiangShan/pull/3665), [#3644](https://github.com/OpenXiangShan/XiangShan/pull/3644), [#3640](https://github.com/OpenXiangShan/XiangShan/pull/3640), [#3577](https://github.com/OpenXiangShan/XiangShan/pull/3577), [#3557](https://github.com/OpenXiangShan/XiangShan/pull/3557), [#3534](https://github.com/OpenXiangShan/XiangShan/pull/3534))
+    - Fixed V extension bugs: ([#3664](https://github.com/OpenXiangShan/XiangShan/pull/3664), [#3658](https://github.com/OpenXiangShan/XiangShan/pull/3658), [#3643](https://github.com/OpenXiangShan/XiangShan/pull/3643), [#3607](https://github.com/OpenXiangShan/XiangShan/pull/3607))
+    - Fixed Debug extension bugs: ([#3585](https://github.com/OpenXiangShan/XiangShan/pull/3585), [#3683](https://github.com/OpenXiangShan/XiangShan/pull/3683))
+    - Fixed AIA extension bugs: ([#3612](https://github.com/OpenXiangShan/XiangShan/pull/3612), [#3547](https://github.com/OpenXiangShan/XiangShan/pull/3547))
+    - Fixed core asynchronous reset and X-state handling bugs: ([#3669](https://github.com/OpenXiangShan/XiangShan/pull/3669), [#3668](https://github.com/OpenXiangShan/XiangShan/pull/3668), [#3667](https://github.com/OpenXiangShan/XiangShan/pull/3667))
 
-- **Timing Optimization**
+- **Timing/Power Optimization**
+    - Continued timing and power optimization efforts, with the maximum timing violation within backend modules at -40ps, cross-module port violations at -70ps, and a clock gating rate of 97.34%.
+    - Optimized load/store queue `allocNumber` logic, changing from an adder implementation to a 7-to-1 multiplexer logic ([#3531](https://github.com/OpenXiangShan/XiangShan/pull/3531))
+    - Added clock gating for parts of the IQ and ROB registers ([#3602](https://github.com/OpenXiangShan/XiangShan/pull/3602), [#3583](https://github.com/OpenXiangShan/XiangShan/pull/3583))
 
 - **RVA23 Profile**
+    - H extension support for updating `mtinst/htinst` during Guest-Page-Faults ([#3604](https://github.com/OpenXiangShan/XiangShan/pull/   3604))
+    - Support for virtual interrupt injection ([#3496](https://github.com/OpenXiangShan/XiangShan/pull/3496))
 
 ### MemBlock and cache
 

@@ -17,7 +17,12 @@ Recently,
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed a bug ([#bug](https://github.com/OpenXiangShan/XiangShan/pull/bug))
+    - Adaptation for dual-port SRAM where write address and read address are not allowed to be the same ([#3671](https://github.com/OpenXiangShan/XiangShan/pull/3671), [#3606](https://github.com/OpenXiangShan/XiangShan/pull/3606))
+    - Remove the reset vector delay registers to ensure asynchronous reset ([#3669](https://github.com/OpenXiangShan/XiangShan/pull/3669))
+    - Fix the handling of multiple hits in the FTB ([#3641](https://github.com/OpenXiangShan/XiangShan/pull/3641))
+    - Fix the handling of fallThroughErr in the BPU s3 stage ([#3636](https://github.com/OpenXiangShan/XiangShan/pull/3636))
+    - Fix the maintenance of global history in the BPU when the FTB misses ([#3635](https://github.com/OpenXiangShan/XiangShan/pull/3635))
+
 
 ### Backend
 

@@ -17,7 +17,12 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复一个 Bug ([#bug](https://github.com/OpenXiangShan/XiangShan/pull/bug))
+    - 适配 write addr 和 read addr 不允许相同的双端口 SRAM ([#3671](https://github.com/OpenXiangShan/XiangShan/pull/3671), [#3606](https://github.com/OpenXiangShan/XiangShan/pull/3606))
+    - 删除 reset_vector 打拍，保证为异步复位 ([#3669](https://github.com/OpenXiangShan/XiangShan/pull/3669))
+    - 修复 FTB 多路命中的处理 ([#3641](https://github.com/OpenXiangShan/XiangShan/pull/3641))
+    - 修复 BPU s3 级对 fallThroughErr 的处理 ([#3636](https://github.com/OpenXiangShan/XiangShan/pull/3636))
+    - 修复 BPU 在 FTB 未命中时的全局历史维护 ([#3635](https://github.com/OpenXiangShan/XiangShan/pull/3635))
+
 
 ### 后端流水线
 

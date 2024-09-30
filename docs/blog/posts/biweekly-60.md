@@ -31,14 +31,26 @@ categories:
 ### 访存与缓存
 
 - CHI 总线
-
+  - 完成 CHI2AXI 转接桥 OpenNCB 实现
+  - 成功进行 CHI-SoC 集成测试，相关代码正在合入主线；测试发现大幅性能下降问题（相较TL版本），正在定位原因
+  
 - RVA23 Profile
+  - 缓存操作指令扩展（Zicboz / Zicbom）修复若干 CSR 与非法指令检查问题，使其满足手册要求
+  - 编写并进行 CBO.INVAL 指令功能测试
 
 - 性能
+  - TP：完成 TP 迭代优化设计
 
 - Bug 修复
+  - 修复CoupledL2 DCT中 meta clients更新问题([#3648](https://github.com/OpenXiangShan/XiangShan/pull/3648))
 
 - 时序 & 面积优化
+  - RVA23 时序：修复由CMO扩展引入的MemBlock与L2间端口时序问题，相关代码正在合入主线
+  - L2 MCP2约束：检查所有相关信号并修复了若干违例情况([#3633](https://github.com/OpenXiangShan/XiangShan/pull/3633))
+
+- 工具
+  - 成功搭建TL-Test-new + CMN 测试框架 
+  - 添加 CHI 版本 HPM 性能计数器，重构、更新 HPM 代码([#3631](https://github.com/OpenXiangShan/XiangShan/pull/3631))
 
 
 ## 评估

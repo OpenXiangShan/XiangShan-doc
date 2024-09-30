@@ -32,14 +32,26 @@ Recently,
 
 
 - **CHI Bus**
+  - Complete the CHI2AXI bridge OpenNCB implementation
+  - The CHI-SoC integration test was successfully conducted, and the relevant code is being merged into the master branch. A significant performance degradation issue (compared to the TL version) was discovered during testing, and the cause is currently being investigated
 
 - **RVA23 Profile**
+  - Fixed several CSR and illegal instruction check issues for the cache management instruction extensions (Zicboz / Zicbom) to ensure compliance with the manual requirements
+  - Develop and perform functionality testing for the CBO.INVAL instruction
 
 - **Performance**
+  - TP: Completed iterative optimization design for TP
 
 - **Bug fixes**
+  - Fixed the issue of meta clients update in CoupledL2 DCT([#3648](https://github.com/OpenXiangShan/XiangShan/pull/3648))
 
 - **PPA Optimizations**
+  - RVA23 Timing: Fixed the timing issue between MemBlock and L2 introduced by the CMO extension, and the relevant code is being merged into the master branch
+  - L2 MCP2 Constraints: Checked all relevant signals and fixed several violation cases([#3633](https://github.com/OpenXiangShan/XiangShan/pull/3633))
+
+- **Tool**
+  - Successfully set up the TL-Test-new + CMN testing framework
+  - Added CHI version HPM performance counters, refactored, and updated the HPM code([#3631](https://github.com/OpenXiangShan/XiangShan/pull/3631))
 
 ## RTL Evaluation
 

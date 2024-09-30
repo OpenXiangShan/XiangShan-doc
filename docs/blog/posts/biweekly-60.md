@@ -33,7 +33,7 @@ categories:
     - 修复 V 拓展功能 Bug: ([#3664](https://github.com/OpenXiangShan/XiangShan/pull/3664), [#3658](https://github.com/OpenXiangShan/XiangShan/pull/3658), [#3643](https://github.com/OpenXiangShan/XiangShan/pull/3643), [#3607](https://github.com/OpenXiangShan/XiangShan/pull/3607))
     - 修复 Debug 拓展功能 Bug：([#3585](https://github.com/OpenXiangShan/XiangShan/pull/3585), [#3683](https://github.com/OpenXiangShan/XiangShan/pull/3683))
     - 修复 AIA 拓展功能 Bug: ([#3612](https://github.com/OpenXiangShan/XiangShan/pull/3612), [#3547](https://github.com/OpenXiangShan/XiangShan/pull/3547))
-    - 修复核内异步复位和接 X 态的 bug：([#3669](https://github.com/OpenXiangShan/XiangShan/pull/3669), [#3668](https://github.com/OpenXiangShan/XiangShan/pull/3668), [#3667](https://github.com/OpenXiangShan/XiangShan/pull/3667))
+    - 修复核内异步复位和接 X 态的 Bug：([#3669](https://github.com/OpenXiangShan/XiangShan/pull/3669), [#3668](https://github.com/OpenXiangShan/XiangShan/pull/3668), [#3667](https://github.com/OpenXiangShan/XiangShan/pull/3667))
 
 - 时序/功耗优化
     - 持续推进时序功耗优化，目前后端模块内最大违例 -40ps, 跨模块端口违例 -70ps, 门控率 97.34%
@@ -61,8 +61,8 @@ categories:
 
 - Bug 修复
   - 修复 CoupledL2 DCT 中 meta clients 更新问题 ([#3648](https://github.com/OpenXiangShan/XiangShan/pull/3648))
-  - 修复一系列 CoupledL2 中与仲裁和请求嵌套相关的 bug ([#3621](https://github.com/OpenXiangShan/XiangShan/pull/3621)), ([#3637](https://github.com/OpenXiangShan/XiangShan/pull/3637))
-  - 修复高位地址截断导致的异常判断错误问题、修复异常地址未被正确写入 *tval 寄存器的 bug ([#3629](https://github.com/OpenXiangShan/XiangShan/pull/3629)), ([#3639](https://github.com/OpenXiangShan/XiangShan/pull/3639)), ([#3674](https://github.com/OpenXiangShan/XiangShan/pull/3674))
+  - 修复一系列 CoupledL2 中与仲裁和请求嵌套相关的 Bug ([#3621](https://github.com/OpenXiangShan/XiangShan/pull/3621)), ([#3637](https://github.com/OpenXiangShan/XiangShan/pull/3637))
+  - 修复高位地址截断导致的异常判断错误问题、修复异常地址未被正确写入 *tval 寄存器的 Bug ([#3629](https://github.com/OpenXiangShan/XiangShan/pull/3629)), ([#3639](https://github.com/OpenXiangShan/XiangShan/pull/3639)), ([#3674](https://github.com/OpenXiangShan/XiangShan/pull/3674))
 
 - 时序 & 面积优化
   - MemBlock 时序：优化 Dcache TagArray 相关的关键路径

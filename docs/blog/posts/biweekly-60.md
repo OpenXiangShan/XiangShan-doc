@@ -32,25 +32,31 @@ categories:
 
 - CHI 总线
   - 完成 CHI2AXI 转接桥 OpenNCB 实现
-  - 成功进行 CHI-SoC 集成测试，相关代码正在合入主线；测试发现大幅性能下降问题（相较TL版本），正在定位原因
-  
+  - 成功进行 CHI-SoC 集成测试，相关代码正在合入主线；测试发现大幅性能下降问题（相较 T L版本），正在定位原因
+
 - RVA23 Profile
   - 缓存操作指令扩展（Zicboz / Zicbom）修复若干 CSR 与非法指令检查问题，使其满足手册要求
   - 编写并进行 CBO.INVAL 指令功能测试
+  - 添加向量 vstart、trigger 的支持，完善向量访存 first-only-first 指令的实现 ([#3690](https://github.com/OpenXiangShan/XiangShan/pull/3690))
 
 - 性能
   - TP：完成 TP 迭代优化设计
+  - Store：基于 memset pattern 做性能优化，主要包括提高 sbuffer 利用率以及实现基于 SPB 的预取器 ([#3632](https://github.com/OpenXiangShan/XiangShan/pull/3632))
 
 - Bug 修复
-  - 修复CoupledL2 DCT中 meta clients更新问题([#3648](https://github.com/OpenXiangShan/XiangShan/pull/3648))
+  - 修复 CoupledL2 DCT 中 meta clients 更新问题 ([#3648](https://github.com/OpenXiangShan/XiangShan/pull/3648))
+  - 修复一系列 CoupledL2 中与仲裁和请求嵌套相关的 bug ([#3621](https://github.com/OpenXiangShan/XiangShan/pull/3621)), ([#3637](https://github.com/OpenXiangShan/XiangShan/pull/3637))
+  - 修复高位地址截断导致的异常判断错误问题、修复异常地址未被正确写入 *tval 寄存器的 bug ([#3629](https://github.com/OpenXiangShan/XiangShan/pull/3629)), ([#3639](https://github.com/OpenXiangShan/XiangShan/pull/3639)), ([#3674](https://github.com/OpenXiangShan/XiangShan/pull/3674))
 
 - 时序 & 面积优化
-  - RVA23 时序：修复由CMO扩展引入的MemBlock与L2间端口时序问题，相关代码正在合入主线
-  - L2 MCP2约束：检查所有相关信号并修复了若干违例情况([#3633](https://github.com/OpenXiangShan/XiangShan/pull/3633))
+  - MemBlock 时序：优化 Dcache TagArray 相关的关键路径
+  - CHI-CoupledL2 时序：优化 PCredit 的管理和仲裁逻辑
+  - RVA23 时序：修复由 CMO 扩展引入的 MemBlock 与 L2 间端口时序问题，相关代码正在合入主线
+  - L2 MCP2 约束：检查所有相关信号并修复了若干违例情况 ([#3633](https://github.com/OpenXiangShan/XiangShan/pull/3633))
 
 - 工具
-  - 成功搭建TL-Test-new + CMN 测试框架 
-  - 添加 CHI 版本 HPM 性能计数器，重构、更新 HPM 代码([#3631](https://github.com/OpenXiangShan/XiangShan/pull/3631))
+  - 成功搭建 TL-Test-new + CMN 测试框架
+  - 添加 CHI 版本 HPM 性能计数器，重构、更新 HPM 代码 ([#3631](https://github.com/OpenXiangShan/XiangShan/pull/3631))
 
 
 ## 评估

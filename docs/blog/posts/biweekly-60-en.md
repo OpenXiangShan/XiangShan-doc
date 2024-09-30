@@ -1,13 +1,13 @@
 ---
-slug: biweekly-59-en
-date: 2024-09-16
+slug: biweekly-60-en
+date: 2024-09-30
 categories:
   - Biweekly-en
 ---
 
-# 【XiangShan Biweekly 59】20240916
+# 【XiangShan Biweekly 60】20240930
 
-Welcome to XiangShan biweekly column, this is the 59th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
+Welcome to XiangShan biweekly column, this is the 60th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
 Recently,
 
@@ -38,20 +38,26 @@ Recently,
 - **RVA23 Profile**
   - Fixed several CSR and illegal instruction check issues for the cache management instruction extensions (Zicboz / Zicbom) to ensure compliance with the manual requirements
   - Develop and perform functionality testing for the CBO.INVAL instruction
+  - Add support of vector vstart and trigger, and improve the implementation of first-only-first instructions. ([#3690](https://github.com/OpenXiangShan/XiangShan/pull/3690))
 
 - **Performance**
   - TP: Completed iterative optimization design for TP
+  - Store: Do performance optimisation based on memset pattern, mainly including improved sbuffer utilisation and implementing SPB-based prefetcher ([#3632](https://github.com/OpenXiangShan/XiangShan/pull/3632))
 
 - **Bug fixes**
-  - Fixed the issue of meta clients update in CoupledL2 DCT([#3648](https://github.com/OpenXiangShan/XiangShan/pull/3648))
+  - Fixed the issue of meta clients update in CoupledL2 DCT ([#3648](https://github.com/OpenXiangShan/XiangShan/pull/3648))
+  - Fix a serious of bugs related to arbitration and nested request in CoupledL2 ([#3621](https://github.com/OpenXiangShan/XiangShan/pull/3621)), ([#3637](https://github.com/OpenXiangShan/XiangShan/pull/3637))
+  - Fixed exception judgement error caused by high address truncation, and also fixed the bug that exception address was not correctly written to *tval register ([#3629](https://github.com/OpenXiangShan/XiangShan/pull/3629)), ([#3639](https://github.com/OpenXiangShan/XiangShan/pull/3639)), ([#3674](https://github.com/OpenXiangShan/XiangShan/pull/3674))
 
 - **PPA Optimizations**
+  - MemBlock Timing: Optimise dcache critical paths mainly related to tagarray
+  - CHI-CoupledL2 Timing: Optimise management and arbitration logic of PCredit
   - RVA23 Timing: Fixed the timing issue between MemBlock and L2 introduced by the CMO extension, and the relevant code is being merged into the master branch
-  - L2 MCP2 Constraints: Checked all relevant signals and fixed several violation cases([#3633](https://github.com/OpenXiangShan/XiangShan/pull/3633))
+  - L2 MCP2 Constraints: Checked all relevant signals and fixed several violation cases ([#3633](https://github.com/OpenXiangShan/XiangShan/pull/3633))
 
 - **Tool**
   - Successfully set up the TL-Test-new + CMN testing framework
-  - Added CHI version HPM performance counters, refactored, and updated the HPM code([#3631](https://github.com/OpenXiangShan/XiangShan/pull/3631))
+  - Added CHI version HPM performance counters, refactored, and updated the HPM code ([#3631](https://github.com/OpenXiangShan/XiangShan/pull/3631))
 
 ## RTL Evaluation
 

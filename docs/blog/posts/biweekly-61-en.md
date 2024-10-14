@@ -43,12 +43,16 @@ Welcome to XiangShan biweekly column, this is the 61th issue of our biweekly col
   - CHI Bridge: OpenNCB supports concurrency of more than 15 memory requests; under the OpenNCB + CMN600 framework, it supports up to 45 concurrent memory requests in a dual-core scenario
 
 - **RVA23 Profile**
-
-- **Performance**
+ - Continuing to improve support for vector vstart, trigger, and the implementation of vector load & store first-only-first instructions, as well as fixing a number of bugs. These have been merged into master ([#3690](https://github.com/OpenXiangShan/XiangShan/pull/3690))
 
 - **Bug fixes**
+  - Fix handling logic of guest page fault on prefetch requests, and situations when redirect after gpf ([#3697](https://github.com/OpenXiangShan/XiangShan/pull/3697)).
+  - Fix bug where non-aligned requests did not successfully write gpaddr to htval or mtval2 register ([#3699](https://github.com/OpenXiangShan/XiangShan/pull/3699))
+  - Fix bug with unaligned AMO instructions on NEMU
 
 - **PPA Optimizations**
+  - Optimise TLB physical placement and critical paths releated to TagArray in MemBlock, internal timing violation optimised to -47ps
+  - Adjusted CoupledL2 port constraints, L2 internal timing violations optimised to about -60ps
 
 - **Tool**
   - Performance Counters: Coupled L2 HPM integrated into XiangShan CSR, with optimized output format ([#3708](https://github.com/OpenXiangShan/XiangShan/pull/3708))

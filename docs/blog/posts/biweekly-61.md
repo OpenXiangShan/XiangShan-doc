@@ -45,12 +45,16 @@ categories:
   - CHI 转接桥：OpenNCB 支持大于 15 的内存请求并发；OpenNCB + CMN600 框架下在双核情况下支持最大 45 的内存请求并发度
 
 - RVA23 Profile
-
-- 性能
+  - 继续完善向量 vstart、trigger 的支持、向量访存 first-only-first 指令的实现，并修复一系列 bug。目前已经合入主线 ([#3690](https://github.com/OpenXiangShan/XiangShan/pull/3690))
 
 - Bug 修复
+  - 修复预取请求发生 guest page fault、以及发生 gpf 后出现重定向的处理逻辑 ([#3697](https://github.com/OpenXiangShan/XiangShan/pull/3697))
+  - 修复非对齐请求未成功将 gpaddr 写入 htval 或 mtval2 寄存器的 bug ([#3699](https://github.com/OpenXiangShan/XiangShan/pull/3699))
+  - 修复非对齐 AMO 指令在 NEMU 上的 bug
 
 - 时序 & 面积优化
+  - 优化 MemBlock 中 TLB 物理摆放位置以及 TagArray 相关的关键路径，内部时序违例优化至 -47ps
+  - 调整 CoupledL2 端口约束，L2 内部时序违例优化至约 -60ps
 
 - 工具
   - 性能计数器：Coupled L2 HPM 接入香山 CSR，并优化输出格式 ([#3708](https://github.com/OpenXiangShan/XiangShan/pull/3708))

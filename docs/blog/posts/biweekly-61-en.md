@@ -15,7 +15,8 @@ Welcome to XiangShan biweekly column, this is the 61th issue of our biweekly col
 ### Frontend
 
 - **Bug Fixes**
-    - ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Fixed a bug where the `gpaddr` was incorrectly dropped due to a cross-page instruction fetching ([#3719](https://github.com/OpenXiangShan/XiangShan/pull/3719))
+    - Fixed an issue where arithmetic instructions in the Zcb extension were incorrectly identified as illegal instructions ([#3721](https://github.com/OpenXiangShan/XiangShan/pull/3721) OpenXiangShan/rocket-chip [#14](https://github.com/OpenXiangShan/rocket-chip/pull/14))
 
 ### Backend
 

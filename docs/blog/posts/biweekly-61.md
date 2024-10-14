@@ -53,7 +53,7 @@ categories:
 
 - 工具
   - 性能计数器：Coupled L2 HPM 接入香山 CSR，并优化输出格式 ([#3708](https://github.com/OpenXiangShan/XiangShan/pull/3708))
-  - CHIron (CHI Log)： 完成二进制格式的设计实现，改善记录文件大小和解析速度
+  - CHIron (CHI Log)：完成二进制格式的设计实现，改善记录文件大小和解析速度
 
 
 ## 评估

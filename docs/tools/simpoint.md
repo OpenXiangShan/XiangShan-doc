@@ -94,11 +94,13 @@ NEMU Checkpoint 部分相关参数介绍，具体请RTFSC：
 6. `--cpt-interval`：用于 Profiling 环节：采样的区间大小，以指令数为单位, 用于 Checkpoint 环节：设置 Checkpoint 的区间，需和 profiling 过程中的 `--cpt-interval` 参数保持一致。
 7. `-S`：指定 Cluster 环节的结果，用于 Checkpointing 环节
 8. `--checkpoint-format`：支持选择 `gz` 或者 `zstd` 两种格式生成checkpoint，如果不指定该参数，默认使用 `gz` 格式。
+9. `-r`: 指定 GCPT 恢复程序的二进制文件 `gcpt.bin` 路径。指定路径后，NEMU 会将恢复程序与用户指定的 Workload 合并为一个统一的 Workload 运行。具体来说，恢复程序将被加载至 `0x80000000`， `(0x80000000, 0x100000)` 将用于存放恢复程序及 Checkpoint 环节保存的体系结构状态，用户指定的 Workload 则会被加载至 `0x80100000`。
 
 SimPoint 的参数请RTFSC [SimPoint Repo](https://github.com/shinezyy/SimPoint.3.2-fix/tree/e51a936d7fddfa03c81692039f184ab6c437e99e)
 
 !!! note
-    结合 `-D -C -w` 三个参数，最终会获得 `simpoint_checkpoint/profiling/bbl/` 这样的目录结构，此外必须指定`-D`, `-C`, `-w`参数，否则运行时会报错。
+    结合 `-D -C -w` 三个参数，最终会获得 `simpoint_checkpoint/profiling/bbl/` 这样的目录结构，此外必须指定`-D`, `-C`, `-w`参数，否则运行时会报错。<br>
+    如果未提前将恢复程序与 Workload 链接在一起（链接方法详见 [Linux Kernel with OpenSBI for XiangShan in EMU](opensbi-kernel-for-xs.md#2-linux-spec2006-simpoint-profiling-checkpoint-workload)），则必须指定 `-r` 参数。否则，保存的 Checkpoint 将不包含恢复程序，无法正常使用。
 
 命令示例（均默认使用 gz 格式，如需使用 zstd 格式，请自行修改命令）：
 
@@ -292,9 +294,7 @@ manual_uniform_cpt(){
 - NEMU 运行检查点：
 
     ```shell
-    ./build/riscv64-nemu-interpreter -b \
-      --restore $TARGET_CPT_GZ          \
-      -r ./resource/gcpt_resource/build/gcpt.bin
+    ./build/riscv64-nemu-interpreter -b --restore $TARGET_CPT_GZ
     ```
 
   - 如果在打印寄存器前报错`CONFIG_MEM_COMPRESS is disabled, turn it on in menuconfig!`
@@ -334,4 +334,4 @@ NEMU 执行 workload 的结尾，会打印出执行的指令数。
 
 PS：如果您对 Checkpoint 生成流程有疑问，欢迎在 [Issues · OpenXiangShan/XiangShan-doc (github.com)](https://github.com/OpenXiangShan/XiangShan-doc/issues) 进行讨论。
 
-本文档所给出的示例脚本可能并不会随NEMU主线的更新而更新，因此如果出现任何问题，请查看 [NEMU中的example](https://github.com/OpenXiangShan/tree/master/scripts/checkpoint_example) ，如果 [NEMU中的example](https://github.com/OpenXiangShan/tree/master/scripts/checkpoint_example) 出现任何问题，欢迎在 [Issues · OpenXiangShan/NEMU (github.com)](https://github.com/OpenXiangShan/NEMU/issues) 进行讨论。
+本文档所给出的示例脚本可能并不会随NEMU主线的更新而更新，因此如果出现任何问题，请查看 [NEMU中的example](https://github.com/OpenXiangShan/NEMU/tree/master/scripts/checkpoint_example) ，如果 [NEMU中的example](https://github.com/OpenXiangShan/NEMU/tree/master/scripts/checkpoint_example) 出现任何问题，欢迎在 [Issues · OpenXiangShan/NEMU (github.com)](https://github.com/OpenXiangShan/NEMU/issues) 进行讨论。

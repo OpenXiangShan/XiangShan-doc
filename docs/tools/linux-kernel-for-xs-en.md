@@ -141,9 +141,9 @@ Change the Makefile of kernel by appending `_zicsr_zifencei` to `KBUILD_AFLAGS` 
 +KBUILD_CFLAGS += -march=$(KBUILD_MARCH)$(KBUILD_ARCH_A)$(KBUILD_ARCH_C)_zicsr_zifencei
 ```
 
-#### `undefiend symbol MEM_START+0xa0000 referenced in expression` 
+#### `undefiend symbol MEM_START+0x100000 referenced in expression` 
 
-Add spaces around `+`: `. = MEM_START + 0xa0000`
+Add spaces around `+`: `. = MEM_START + 0x100000`
 
 #### `repo/stream.c: No such file or directory`
 

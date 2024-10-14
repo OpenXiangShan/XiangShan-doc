@@ -29,6 +29,8 @@ Welcome to XiangShan biweekly column, this is the 61th issue of our biweekly col
 
 
 - **CHI Bus**
+  - OpenLLC: Performance degradation occurred when CHI-L3 was connected to the SoC, and the issue was traced to the concurrency of the bridge
+  - CHI Bridge: OpenNCB supports concurrency of more than 15 memory requests; under the OpenNCB + CMN600 framework, it supports up to 45 concurrent memory requests in a dual-core scenario
 
 - **RVA23 Profile**
 
@@ -39,6 +41,8 @@ Welcome to XiangShan biweekly column, this is the 61th issue of our biweekly col
 - **PPA Optimizations**
 
 - **Tool**
+  - Performance Counters: Coupled L2 HPM integrated into XiangShan CSR, with optimized output format ([#3708](https://github.com/OpenXiangShan/XiangShan/pull/3708))
+  - CHIron (CHI Log): Completed the design and implementation of the binary format, improving record file size and parsing speed
 
 ## RTL Evaluation
 

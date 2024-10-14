@@ -31,6 +31,8 @@ categories:
 ### 访存与缓存
 
 - CHI 总线
+  - OpenLLC：CHI-L3 接入 SoC 出现性能下降，原因定位到与转接桥并发度有关
+  - CHI 转接桥：OpenNCB 支持大于 15 的内存请求并发；OpenNCB + CMN600 框架下在双核情况下支持最大 45 的内存请求并发度
 
 - RVA23 Profile
 
@@ -41,6 +43,9 @@ categories:
 - 时序 & 面积优化
 
 - 工具
+  - 性能计数器：Coupled L2 HPM 接入香山 CSR，并优化输出格式 ([#3708](https://github.com/OpenXiangShan/XiangShan/pull/3708))
+  - CHIron (CHI Log)： 完成二进制格式的设计实现，改善记录文件大小和解析速度
+
 
 ## 评估
 

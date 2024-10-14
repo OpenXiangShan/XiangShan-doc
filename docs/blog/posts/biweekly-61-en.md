@@ -9,6 +9,8 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 61th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed a bug in cross-page instruction fetching, the backend Debug extension supported hardware breakpoint debugging for the H extension, and the memory and cache subsystem implemented the vector fault-only-first load instructions. This update also includes the latest performance improvements of the Kunminghu architecture.
+
 <!-- more -->
 ## Recent developments
 
@@ -43,7 +45,7 @@ Welcome to XiangShan biweekly column, this is the 61th issue of our biweekly col
   - CHI Bridge: OpenNCB supports concurrency of more than 15 memory requests; under the OpenNCB + CMN600 framework, it supports up to 45 concurrent memory requests in a dual-core scenario
 
 - **RVA23 Profile**
- - Continuing to improve support for vector vstart, trigger, and the implementation of vector load & store first-only-first instructions, as well as fixing a number of bugs. These have been merged into master ([#3690](https://github.com/OpenXiangShan/XiangShan/pull/3690))
+ - Continuing to improve support for vector vstart, trigger, and the implementation of vector load & store fault-only-first instructions, as well as fixing a number of bugs. These have been merged into master ([#3690](https://github.com/OpenXiangShan/XiangShan/pull/3690))
 
 - **Bug fixes**
   - Fix handling logic of guest page fault on prefetch requests, and situations when redirect after gpf ([#3697](https://github.com/OpenXiangShan/XiangShan/pull/3697)).

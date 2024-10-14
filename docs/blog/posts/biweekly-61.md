@@ -8,7 +8,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 61 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端修复了一个取指块跨页的 Bug，后端 Debug 拓展支持了 H 拓展的硬件断点调试，访存和缓存部分继续完善向量访存 fault-only-first 指令的实现。本期还更新了昆明湖架构近期性能。
 
 <!-- more -->
 
@@ -45,12 +45,12 @@ categories:
   - CHI 转接桥：OpenNCB 支持大于 15 的内存请求并发；OpenNCB + CMN600 框架下在双核情况下支持最大 45 的内存请求并发度
 
 - RVA23 Profile
-  - 继续完善向量 vstart、trigger 的支持、向量访存 first-only-first 指令的实现，并修复一系列 bug。目前已经合入主线 ([#3690](https://github.com/OpenXiangShan/XiangShan/pull/3690))
+  - 继续完善向量 vstart、trigger 的支持、向量访存 fault-only-first 指令的实现，并修复一系列 Bug。目前已经合入主线 ([#3690](https://github.com/OpenXiangShan/XiangShan/pull/3690))
 
 - Bug 修复
   - 修复预取请求发生 guest page fault、以及发生 gpf 后出现重定向的处理逻辑 ([#3697](https://github.com/OpenXiangShan/XiangShan/pull/3697))
-  - 修复非对齐请求未成功将 gpaddr 写入 htval 或 mtval2 寄存器的 bug ([#3699](https://github.com/OpenXiangShan/XiangShan/pull/3699))
-  - 修复非对齐 AMO 指令在 NEMU 上的 bug
+  - 修复非对齐请求未成功将 gpaddr 写入 htval 或 mtval2 寄存器的 Bug ([#3699](https://github.com/OpenXiangShan/XiangShan/pull/3699))
+  - 修复非对齐 AMO 指令在 NEMU 上的 Bug
 
 - 时序 & 面积优化
   - 优化 MemBlock 中 TLB 物理摆放位置以及 TagArray 相关的关键路径，内部时序违例优化至 -47ps

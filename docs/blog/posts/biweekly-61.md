@@ -23,10 +23,19 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 持续推进功能 Bug 修复，当前版本致命和严重 bug 趋于收敛：
+    - 修复连续 redirect 情况下 vtype 恢复错误 ([#3705](https://github.com/OpenXiangShan/XiangShan/pull/3705))
+    - 修复 CSR 寄存器一系列读写以及权限检查相关错误 ([#3717](https://github.com/OpenXiangShan/XiangShan/pull/3717)，[#3701](https://github.com/OpenXiangShan/XiangShan/pull/3701), [#3700](https://github.com/OpenXiangShan/XiangShan/pull/3700), [#3703](https://github.com/OpenXiangShan/XiangShan/pull/3703))
+    - 修复 rtl 未正确指导 NEMU 中 mip.LCOFIP 更新的错误 ([#3710](https://github.com/OpenXiangShan/XiangShan/pull/3710)，[#572](https://github.com/OpenXiangShan/XiangShan/pull/572))
+    - 修复向量访存异常处理相关错误 ([#3722](https://github.com/OpenXiangShan/XiangShan/pull/3722), [#3720](https://github.com/OpenXiangShan/XiangShan/pull/3720), [#3714](https://github.com/OpenXiangShan/XiangShan/pull/3714), [#3704](https://github.com/OpenXiangShan/XiangShan/pull/3704), [#3702](https://github.com/OpenXiangShan/XiangShan/pull/3702), [#3695](https://github.com/OpenXiangShan/XiangShan/pull/3695))
+    - 修复 mstatus.FS 关闭时，vfslide1up/down 未报非法指令异常的错误 ([#3696](https://github.com/OpenXiangShan/XiangShan/pull/3696))
 
 - 时序/功耗优化
+    - 计划重构 LoadDependency 设计：通过重构 ldcancel 依赖链 cancel 逻辑，优化 issue queue 内时序，争取增加 issue queue 容量
 
 - RVA23 Profile
+    - Debug 拓展支持 mcontrol6，废弃 mcontrol, 以支持 H 拓展的硬件断点调试 ([#3693](https://github.com/OpenXiangShan/XiangShan/pull/3693))
+    - Smrnmi 拓展：提供两种 NMI 中断，并提供中断线接口 ([#3691](https://github.com/OpenXiangShan/XiangShan/pull/3691))
 
 ### 访存与缓存
 

@@ -20,10 +20,19 @@ Welcome to XiangShan biweekly column, this is the 61th issue of our biweekly col
 ### Backend
 
 - **Bug Fixes**
+    - Continued advancing bug fixes, with critical and severe bugs converging in the current version:
+    - Fixed the vtype recovery error in consecutive redirects ([#3705](https://github.com/OpenXiangShan/XiangShan/pull/3705))
+    - Fixed a series of read/write and permission check errors in CSR registers ([#3717](https://github.com/OpenXiangShan/XiangShan/pull/3717), [#3701](https://github.com/OpenXiangShan/XiangShan/pull/3701), [#3700](https://github.com/OpenXiangShan/XiangShan/pull/3700), [#3703](https://github.com/OpenXiangShan/XiangShan/pull/3703))
+    - Fixed the error where RTL did not correctly guide the update of `mip.LCOFIP` in NEMU ([#3710](https://github.com/OpenXiangShan/XiangShan/pull/3710), [#572](https://github.com/OpenXiangShan/XiangShan/pull/572))
+    - Fixed vector memory access exception handling errors ([#3722](https://github.com/OpenXiangShan/XiangShan/pull/3722), [#3720](https://github.com/OpenXiangShan/XiangShan/pull/3720), [#3714](https://github.com/OpenXiangShan/XiangShan/pull/3714), [#3704](https://github.com/OpenXiangShan/XiangShan/pull/3704), [#3702](https://github.com/OpenXiangShan/XiangShan/pull/3702), [#3695](https://github.com/OpenXiangShan/XiangShan/pull/3695))
+    - Fixed the issue where `vfslide1up/down` did not trigger an illegal instruction exception when `mstatus.FS` was off ([#3696](https://github.com/OpenXiangShan/XiangShan/pull/3696))
 
 - **Timing/Power Optimization**
+    - Plan to restructure the LoadDependency design: by reworking the `ldcancel` dependency chain cancel logic, optimize the timing within the issue queue, and aim to increase issue queue capacity.
 
 - **RVA23 Profile**
+    - Debug extension supports `mcontrol6`, deprecating `mcontrol` to enable hardware breakpoint debugging for the H extension ([#3693](https://github.com/OpenXiangShan/XiangShan/pull/3693))
+    - Smrnmi extension: provides two types of NMI interrupts and offers interrupt line interfaces ([#3691](https://github.com/OpenXiangShan/XiangShan/pull/3691))
 
 ### MemBlock and cache
 

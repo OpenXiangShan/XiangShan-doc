@@ -14,7 +14,7 @@
     - RISCV_ROOTFS_HOME: path to `riscv-rootfs`
     - RISCV：Installation path of riscv-gnu-toolchain ( the top directory including bin, inlcude, lib etc.)
 
-    > You can see [riscv-gnu-toolchain official documents](https://github.com/riscv-collab/riscv-gnu-toolchain) to install riscv-gnu-toolchain. You can also see [GCB tool chain instructions](../compiler/gnu_toolchain-en.md) if you need to compile B extension GNU tool chain for Xiangshan.
+    > You can see [riscv-gnu-toolchain official documents](https://github.com/riscv-collab/riscv-gnu-toolchain) to install riscv-gnu-toolchain. You can also see [GCB tool chain instructions](./toolchain.md) if you need to compile B extension GNU tool chain for Xiangshan.
 
 - build rootfs
     - Enter `riscv-rootfs` directory
@@ -81,7 +81,7 @@
     * After `make clean` run `make -j` to generate `bbl.bin`
 * Configure NEMU
     * Enter `NEMU` directory
-    * Edit `src/device/sdcard.c`, find the sdimg variable in the init_sdcard() function and assign it to the path of the Debian mirror (for the generation of the Debian mirror, please refer to [How to create a Debian image](./debian-en.md))
+    * Edit `src/device/sdcard.c`, find the sdimg variable in the init_sdcard() function and assign it to the path of the Debian mirror (for the generation of the Debian mirror, please refer to [How to create a Debian image](../workloads/debian-en.md))
     * Recompile NEMU, and then run build/bbl.bin under the riscv-pk project
 
 

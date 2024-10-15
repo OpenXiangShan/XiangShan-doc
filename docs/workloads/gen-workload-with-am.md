@@ -1,5 +1,6 @@
 # 使用 AM 生成自定义 workload
 
+This chapter has [English version](./gen-workload-with-am-en.md)
 
 
 我们以在AM环境下编译并运行 hello world 为例:

@@ -137,13 +137,14 @@ nav:
             - Constantin: tools/constantin.md
             - OracleBP: tools/oraclebp.md
             - NEMU: tools/nemu.md
-            - 编译使用 RISCV-pk 的 Linux Kernel: tools/linux-kernel-for-xs.md
-            - 编译使用 OpenSBI 的 Linux Kernel: tools/opensbi-kernel-for-xs.md
-            - 制作 Debian 镜像: tools/debian.md
             # - 常用脚本: tools/scripts.md
         - Troubleshooting: tools/troubleshoot-zh.md
     - 工作负载 Workloads:
         - 概述 overview: workloads/overview.md
         - 编译工具链 toolchains: workloads/toolchain.md
+        - 基于 AM 构建自定义裸机工作负载: workloads/gen-workload-with-am.md
+        - 编译使用 RISCV-pk 的 Linux Kernel: workloads/linux-kernel-for-xs.md
+        - 编译使用 OpenSBI 的 Linux Kernel: workloads/opensbi-kernel-for-xs.md
+        - 制作 Debian 镜像: workloads/debian.md
     - 博客 Blog: 
         - blog/index.md

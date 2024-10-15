@@ -17,7 +17,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
     - RISCV_ROOTFS_HOME：riscv-rootfs 的路径
     - RISCV：riscv-gnu-toolchain 的安装路径（包含bin, include, lib等的顶层目录路径）
 
-    > riscv-gnu-toolchain 的安装请参考 [riscv-gnu-toolchain 官方文档](https://github.com/riscv-collab/riscv-gnu-toolchain)，如果需要为香山编译 B 扩展 GNU 工具链请参见 [GCB 工具链使用说明](../compiler/gnu_toolchain.md)。
+    > riscv-gnu-toolchain 的安装请参考 [riscv-gnu-toolchain 官方文档](https://github.com/riscv-collab/riscv-gnu-toolchain)，如果需要为香山编译 B 扩展 GNU 工具链请参见 [GCB 工具链使用说明](./toolchain.md)。
 
 !!! note
     注意，下文所有使用的工具链是通过 [riscv-toolchains](https://github.com/riscv-collab/riscv-gnu-toolchain) 构建得到的，要构建在 Linux 上运行的程序使用的前缀是 `riscv64-unknown-linux-gnu-` ，某些 Linux 发行版使用包管理工具安装的工具链仅有 `riscv64-linux-gnu-` 前缀，此时仅需要将下文所有的 `riscv64-unknown-linux-gnu-` 替换为 `riscv64-linux-gnu-` 即可，它和 `riscv64-unknown-linux-gnu-` 是等价的，详细请看[Target Triplet](https://wiki.osdev.org/Target_Triplet)
@@ -123,7 +123,7 @@ This chapter has [English version](./linux-kernel-for-xs-en.md)
     * `make clean` 后运行 `make -j` 生成 bbl.bin
 * 配置 NEMU
     * 到 NEMU 目录
-    * 编辑 src/device/sdcard.c，在 init_sdcard() 函数中找到 sdimg 变量并将其赋值为 Debian 镜像的路径（Debian 镜像的生成请参考[如何制作 Debian 镜像](./debian.md)）
+    * 编辑 src/device/sdcard.c，在 init_sdcard() 函数中找到 sdimg 变量并将其赋值为 Debian 镜像的路径（Debian 镜像的生成请参考[如何制作 Debian 镜像](../workloads/debian.md)）
     * 重新编译 NEMU，然后再运行 riscv-pk 项目下的 build/bbl.bin
 
 

@@ -29,7 +29,7 @@ tar -xf linux-6.10.3.tar.xz
     * `WORKLOAD_BUILD_ENV_HOME`: nemu board 的路径
     * `OPENSBI_HOME`：OpenSBI 的路径
     * `RISCV`：riscv-gnu-toolchain 的安装路径（包含bin, include, lib等的顶层目录路径）
-    > riscv-gnu-toolchain 的安装请参考 [riscv-gnu-toolchain 官方文档](https://github.com/riscv-collab/riscv-gnu-toolchain)，如果需要为香山编译 B 扩展 GNU 工具链请参见 [GCB 工具链使用说明](../compiler/gnu_toolchain.md)。
+    > riscv-gnu-toolchain 的安装请参考 [riscv-gnu-toolchain 官方文档](https://github.com/riscv-collab/riscv-gnu-toolchain)，如果需要为香山编译 B 扩展 GNU 工具链请参见 [GCB 工具链使用说明](./toolchain.md)。
 
 * 设置交叉编译工具链和目标架构
 ```bash

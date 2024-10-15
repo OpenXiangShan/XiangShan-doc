@@ -143,6 +143,7 @@ nav:
             # - 常用脚本: tools/scripts.md
         - Troubleshooting: tools/troubleshoot-zh.md
     - 工作负载 Workloads:
-        - 编译工具链: workloads/toolchain.md
+        - 概述 overview: workloads/overview.md
+        - 编译工具链 toolchains: workloads/toolchain.md
     - 博客 Blog: 
         - blog/index.md

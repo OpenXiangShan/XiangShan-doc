@@ -1,5 +1,8 @@
 # Build Linux Kernel for XiangShan
 
+!!! warning
+    riscv-pk / bbl is no longer recommended to use. Please consider [using OpenSBI to build Linux workloads](linux-kernel-for-xs.md).
+
 ## 1. How to build a minimal Linux Kernel that can run on Xiangshan or NEMU in a simulation environment
 
 > Note: Please prepare the riscv64 toolchain in advance, the possible prefixes are `riscv64-linux-gnu-`, `riscv64-unknown-linux-gnu-`, `riscv64-unknown-elf-`. You may refer to https://github.com/riscv-collab/riscv-gnu-toolchain to setup toolchain needed by Linux.

@@ -1,5 +1,9 @@
 # Linux Kernel for XiangShan in EMU
+
 This chapter has [English version](./linux-kernel-for-xs-en.md)
+
+!!! warning
+    我们已不推荐使用 riscv-pk / bbl。请考虑 [基于 OpenSBI 构建 Linux 工作负载](linux-kernel-for-xs.md).
 
 #### 1. 在仿真环境下如何构建一个可在香山或者 NEMU 上运行的最简 Linux Kernel
 

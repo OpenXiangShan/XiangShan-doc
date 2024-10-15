@@ -34,9 +34,9 @@ Simpoint Checkpoint 会根据程序特性找到具有代表性的检查点。如
 !!! note
     因为 checkpoint 的原理，我们不建议在 M 态下生成 checkpoint ([Issue #54](https://github.com/OpenXiangShan/NEMU/issues/54))，如果您一定要在 M 态生成 checkpoint，我们不会提供任何支持。
 
-在 S 态或 U 态下运行 workload，比如 Linux 上运行 SPEC2006。构建的方法可以参考 [Linux Kernel with RISCV-pk for XiangShan in EMU](linux-kernel-for-xs.md) 或 [Linux Kernel with OpenSBI for XiangShan in EMU](opensbi-kernel-for-xs.md)
+在 S 态或 U 态下运行 workload，比如 Linux 上运行 SPEC2006。构建的方法可以参考 [Linux Kernel with RISCV-pk for XiangShan in EMU](../workloads/linux-kernel-for-xs.md) 或 [Linux Kernel with OpenSBI for XiangShan in EMU](../workloads/opensbi-kernel-for-xs.md)
 
-如果参考了[Linux Kernel with OpenSBI for XiangShan in EMU](opensbi-kernel-for-xs.md)文档，请将 NEMU 切换至 gcpt_new_mem_layout 分支
+如果参考了[Linux Kernel with OpenSBI for XiangShan in EMU](../workloads/opensbi-kernel-for-xs.md)文档，请将 NEMU 切换至 gcpt_new_mem_layout 分支
 
 NEMU 生成 checkpoint 时，需要添加一段恢复程序 `gcpt.bin`，在 `(0x80000000, 0x100000)`。因此在生成 workload 时，需要避开这一段空间，将起始地址设置在 `0x80100000` 。如在 [riscv-pk/bbl/bbl.lds](https://github.com/OpenXiangShan/riscv-pk/blob/noop/bbl/bbl.lds#L15) 中，修改为 `. = MEM_START + 0x100000` 。
 
@@ -100,7 +100,7 @@ SimPoint 的参数请RTFSC [SimPoint Repo](https://github.com/shinezyy/SimPoint.
 
 !!! note
     结合 `-D -C -w` 三个参数，最终会获得 `simpoint_checkpoint/profiling/bbl/` 这样的目录结构，此外必须指定`-D`, `-C`, `-w`参数，否则运行时会报错。<br>
-    如果未提前将恢复程序与 Workload 链接在一起（链接方法详见 [Linux Kernel with OpenSBI for XiangShan in EMU](opensbi-kernel-for-xs.md#2-linux-spec2006-simpoint-profiling-checkpoint-workload)），则必须指定 `-r` 参数。否则，保存的 Checkpoint 将不包含恢复程序，无法正常使用。
+    如果未提前将恢复程序与 Workload 链接在一起（链接方法详见 [Linux Kernel with OpenSBI for XiangShan in EMU](../workloads/opensbi-kernel-for-xs.md#2-linux-spec2006-simpoint-profiling-checkpoint-workload)），则必须指定 `-r` 参数。否则，保存的 Checkpoint 将不包含恢复程序，无法正常使用。
 
 命令示例（均默认使用 gz 格式，如需使用 zstd 格式，请自行修改命令）：
 

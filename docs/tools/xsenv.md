@@ -134,11 +134,11 @@ coremark-riscv64-xs.txt  应用程序的反汇编
 
 #### 使用 AM 生成自定义 workload
 
-[使用 AM 生成自定义 workload](./gen-workload-with-am.md)
+[使用 AM 生成自定义 workload](../workloads/gen-workload-with-am.md)
 
 #### 生成 Linux Kernel 作为 workload
 
-[Linux Kernel 的构建](./linux-kernel-for-xs.md)
+[Linux Kernel 的构建](../workloads/linux-kernel-for-xs.md)
 
 我们提供的环境中没有默认包含编译 Linux Kernel 相关的仓库，需要用户自行下载。
 

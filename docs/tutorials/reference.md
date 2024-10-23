@@ -2,5 +2,5 @@
 
 ## Branch prediction
 
-- Seznec A, Michaud P. A case for (partially) tagged geometric history length branch prediction[J/OL]. The Journal of Instruction-Level Parallelism, 2006, 8: 23. https://inria.hal.science/hal-03408381/.
+- Seznec, André, and Pierre Michaud. "A case for (partially) tagged geometric history length branch prediction." The Journal of Instruction-Level Parallelism 8 (2006): 23.
 

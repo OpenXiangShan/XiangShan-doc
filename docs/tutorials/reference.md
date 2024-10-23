@@ -1,8 +1,31 @@
 # Reference
 
+## Instruction Fetching
+
+- Reinman, Glenn, et al. A Scalable Front-End Architecture for Fast Instruction Delivery. p. 12.
+- Ramirez, A., et al. “Fetching Instruction Streams.” 35th Annual IEEE/ACM International Symposium on Microarchitecture, 2002. (MICRO-35). Proceedings., IEEE Comput. Soc, 2002, pp. 371–82. DOI.org (Crossref), https://doi.org/10.1109/MICRO.2002.1176264.
+
+
+## Instruction Prefetch
+
+- Ishii, Yasuo, et al. “Re-Establishing Fetch-Directed Instruction Prefetching: An Industry Perspective.” 2021 IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS), 2021, pp. 172–82. IEEE Xplore, https://doi.org/10.1109/ISPASS51385.2021.00034.
+- Ishii, Yasuo, et al. “Rebasing Instruction Prefetching: An Industry Perspective.” IEEE Computer Architecture Letters, vol. 19, no. 2, July 2020, pp. 147–50. IEEE Xplore, https://doi.org/10.1109/LCA.2020.3035068.
+
+
 ## Branch prediction
 
+- Michaud, Pierre. A PPM-like, Tag-Based Branch Predictor. p. 10.
 - Seznec, André, and Pierre Michaud. "A case for (partially) tagged geometric history length branch prediction." The Journal of Instruction-Level Parallelism 8 (2006): 23.
+- Seznec, Andre. A 64-Kbytes ITTAGE Indirect Branch Predictor.
+- Seznec, Andre. A 256 Kbits L-TAGE Branch Predictor. p. 6.
+- Seznec, Andre. TAGE-SC-L Branch Predictors. p. 8.
+- Seznec, André. TAGE-SC-L Branch Predictors Again. p. 5.
+- Skadron, K., et al. “Improving Prediction for Procedure Returns with Return-Address-Stack Repair Mechanisms.” Proceedings. 31st Annual ACM/IEEE International Symposium on Microarchitecture, IEEE Comput. Soc, 1998, pp. 259–71. DOI.org (Crossref), https://doi.org/10.1109/MICRO.1998.742787.
+
+## TLB
+
+- Pham, Binh, et al. “CoLT: Coalesced Large-Reach TLBs.” 2012 45th Annual IEEE/ACM International Symposium on Microarchitecture, 2012, pp. 258–69. IEEE Xplore, https://doi.org/10.1109/MICRO.2012.32.
+
 
 ## Data Prefetch
 - Michaud, Pierre. "A Best-Offset Prefetcher." 2nd Data Prefetching Championship, Jun 2015, Portland, United States. hal-01165600

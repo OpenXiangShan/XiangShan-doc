@@ -26,6 +26,14 @@
 
 - Pham, Binh, et al. “CoLT: Coalesced Large-Reach TLBs.” 2012 45th Annual IEEE/ACM International Symposium on Microarchitecture, 2012, pp. 258–69. IEEE Xplore, https://doi.org/10.1109/MICRO.2012.32.
 
+## Non-blocking Cache
+
+- Kroft, David. "Lockup-free instruction fetch/prefetch cache organization." 25 years of the international symposia on Computer architecture (selected papers). 1998.
+
+## Multi Port Data Cache
+
+- Sohi, Gurindar S., and Manoj Franklin. "High-bandwidth data memory systems for superscalar processors." Proceedings of the fourth international conference on Architectural support for programming languages and operating systems. 1991.
+
 ## Cache Directory Structure
 
 - Zhao, Li, et al. "NCID: a non-inclusive cache, inclusive directory architecture for flexible and efficient cache hierarchies." Proceedings of the 7th ACM international conference on Computing frontiers. 2010.

@@ -26,10 +26,20 @@
 
 - Pham, Binh, et al. “CoLT: Coalesced Large-Reach TLBs.” 2012 45th Annual IEEE/ACM International Symposium on Microarchitecture, 2012, pp. 258–69. IEEE Xplore, https://doi.org/10.1109/MICRO.2012.32.
 
+## Cache Directory Structure
+
+- Zhao, Li, et al. "NCID: a non-inclusive cache, inclusive directory architecture for flexible and efficient cache hierarchies." Proceedings of the 7th ACM international conference on Computing frontiers. 2010.
+
+## Data Replacement
+
+- Jaleel, Aamer, et al. "High performance cache replacement using re-reference interval prediction (RRIP)." ACM SIGARCH computer architecture news 38.3 (2010): 60-71.
 
 ## Data Prefetch
+
 - Michaud, Pierre. "A Best-Offset Prefetcher." 2nd Data Prefetching Championship, Jun 2015, Portland, United States. hal-01165600
 - Michaud, Pierre. "Best-Offset Hardware Prefetching." 2016 IEEE International Symposium on High Performance Computer Architecture (HPCA), 2016, pp. 469–80, https://doi.org/10.1109/HPCA.2016.7446087.
 - Baer, Jean-Loup, and Tien-Fu Chen. "An effective on-chip preloading scheme to reduce data access penalty." Proceedings of the 1991 ACM/IEEE conference on Supercomputing. 1991.
 - Srinath, Santhosh, et al. "Feedback directed prefetching: Improving the performance and bandwidth-efficiency of hardware prefetchers." 2007 IEEE 13th International Symposium on High Performance Computer Architecture. IEEE, 2007.
 - Somogyi, Stephen, et al. "Spatial memory streaming." ACM SIGARCH Computer Architecture News 34.2 (2006): 252-263.
+- Wu, Hao, et al. "Temporal prefetching without the off-chip metadata." Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture. 2019.
+- Ainsworth, Sam, and Lev Mukhanov. "Triangel: A High-Performance, Accurate, Timely On-Chip Temporal Prefetcher." arXiv preprint arXiv:2406.10627 (2024).

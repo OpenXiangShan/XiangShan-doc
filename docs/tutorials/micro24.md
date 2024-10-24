@@ -8,9 +8,9 @@ We are going to host half-day tutorials on XiangShan and MinJie during MICRO'24 
 
 | Time | Topic | Slides |
 | -------- | ----- | ------ |
-| To be determined | Introduction of the XiangShan Project | To be done |
-| To be determined | Microarchitecture Design and Implementation | To be done |
-| To be determined | Hands-on Development | To be done |
+| 13:00 - 13:30 | Introduction of the XiangShan Project | To be done |
+| 13:35 - 15:00 | Microarchitecture Design and Implementation | To be done |
+| 15:30 - 17:00 | Hands-on Development | To be done |
 
 
 

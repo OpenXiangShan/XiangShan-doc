@@ -1,5 +1,10 @@
 # doc for pdf plug-in: https://pypi.org/project/mkdocs-with-pdf/
 site_name: XiangShan 官方文档
+
+# Repository
+repo_name: OpenXiangShan/XiangShan
+repo_url: https://github.com/OpenXiangShan/XiangShan
+
 theme:
   name: material
   language: zh

@@ -18,10 +18,16 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - ECC 到 Bus Error Unit 路径上的 Mux1H 修复 ([#3784](https://github.com/OpenXiangShan/XiangShan/pull/3784))
+
+- 时序
+    - FTQ -> FDIP 预取的时序优化 ([#3499](https://github.com/OpenXiangShan/XiangShan/pull/3499))
+    - 将 io.flush 从预取的关键路径上移除 ([#3542](https://github.com/OpenXiangShan/XiangShan/pull/3542))
+    - s2_finish 到预取的时序优化 ([#3545](https://github.com/OpenXiangShan/XiangShan/pull/3545))
 
 - Code Style
-    - 打开了 scalafmt 自动格式化 ([#3370](https://github.com/OpenXiangShan/XiangShan/pull/3370))
+    - 打开了 scalafmt 自动格式化，并在 CI 加入自动检查 ([#3370](https://github.com/OpenXiangShan/XiangShan/pull/3370))
+    - 移除了未使用的 import，手动格式化一些 scalafmt 处理得不好得折行 ([#3791](https://github.com/OpenXiangShan/XiangShan/pull/3791))
 
 ### 后端流水线
 

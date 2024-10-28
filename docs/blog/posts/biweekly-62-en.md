@@ -17,7 +17,16 @@ Recently,
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Fixed Mux1H on the data path of ECC to Bus Error Unit ([#3784](https://github.com/OpenXiangShan/XiangShan/pull/3784))
+
+- **Timing**
+    - Optimization of timing from FTQ to FDIP prefetch ([#3499](https://github.com/OpenXiangShan/XiangShan/pull/3499))
+    - Removed io.flush from the prefetch critical path ([#3542](https://github.com/OpenXiangShan/XiangShan/pull/3542))
+    - Optimized timing from s2_finish to prefetch ([#3545](https://github.com/OpenXiangShan/XiangShan/pull/3545))
+
+- **Code Style**
+    - Enabled scalafmt auto-formatting and added automatic checks in CI ([#3370](https://github.com/OpenXiangShan/XiangShan/pull/3370))
+    - Removed unused imports and manually formatted some lines not handled well by scalafmt ([#3791](https://github.com/OpenXiangShan/XiangShan/pull/3791))
 
 ### Backend
 

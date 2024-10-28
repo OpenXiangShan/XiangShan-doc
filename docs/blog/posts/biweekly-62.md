@@ -32,10 +32,24 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复 H 拓展 gpa 获取不一致的问题以及修复 Misalign 访存相关 TLB 的问题 ([#3681](https://github.com/OpenXiangShan/XiangShan/pull/3681), [#3679](https://github.com/OpenXiangShan/XiangShan/pull/3679))
+    - 修复向量访存异常在写回时，如果有更老的异常时，isEnqExcp 应置零的问题 ([#3778](https://github.com/OpenXiangShan/XiangShan/pull/3778))
+    - 修复 ebreak 指令触发 breakpoint 异常时，以及压缩指令发生非法指令异常时，xtval 更新错误的问题 ([#3769](https://github.com/OpenXiangShan/XiangShan/pull/3769), [#3762](https://github.com/OpenXiangShan/XiangShan/pull/3762)，[#599](https://github.com/OpenXiangShan/XiangShan/pull/599))
+    - 修复向量访存 trigger 相关问题 ([#3772](https://github.com/OpenXiangShan/XiangShan/pull/3772), [#3745](https://github.com/OpenXiangShan/XiangShan/pull/3745))
+    - 修复 CSR 异常分开存储导致的错误拉高问题 ([#3771](https://github.com/OpenXiangShan/XiangShan/pull/3771))
+    - 修复 xcause 的中断选择策略与 xtopi 不一致的问题（[#3753](https://github.com/OpenXiangShan/XiangShan/pull/3753)）
+    - 修复 NEMU 在部分指令设置 xstatus.FS 为 Dirty 时的行为与 RTL 不一致的问题 ([#606](https://github.com/OpenXiangShan/XiangShan/pull/606), [#605](https://github.com/OpenXiangShan/XiangShan/pull/605), [#598](https://github.com/OpenXiangShan/XiangShan/pull/598), [#595](https://github.com/OpenXiangShan/XiangShan/pull/595), [#591](https://github.com/OpenXiangShan/XiangShan/pull/591), [#588](https://github.com/OpenXiangShan/XiangShan/pull/588))
+    - 修复 Misalign 访存相关 TLB 的问题 ([#3731](https://github.com/OpenXiangShan/XiangShan/pull/3731))
 
 - 时序/功耗优化
+    - 优化向量译码，使用 RVV 自身编码构建 OP_TYPE
+    - 优化唤醒，取消以及访存依赖时序 ([#3737](https://github.com/OpenXiangShan/XiangShan/pull/3737))
+    - 评估后端面积优化点以及潜在收益
 
 - RVA23 Profile
+    - 计数溢出和基于特权级的过滤拓展 (Sscofpmf): 添加 RTL 指导 NEMU overflow 更新，RTL 支持基于特权级的过滤，NEMU 完成 mhpmevent 实现 ([#3771](https://github.com/OpenXiangShan/XiangShan/pull/3771), [#574](https://github.com/OpenXiangShan/XiangShan/pull/574))
+    - VS/S/M 模式双重中断拓展 (Ss/mdbltrp) 正在合入主线 （[#3789](https://github.com/OpenXiangShan/XiangShan/pull/3789)）
+    - NEMU 实现 A 拓展的 trigger 支持 ([#592](https://github.com/OpenXiangShan/XiangShan/pull/592))
 
 ### 访存与缓存
 

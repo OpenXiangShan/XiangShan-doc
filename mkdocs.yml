@@ -35,6 +35,10 @@ plugins:
   - git-revision-date-localized:
       enable_creation_date: true
       type: date
+  - git-committers:
+      enabled: !ENV [CI, false]
+      repository: OpenXiangShan/XiangShan-doc
+      branch: main
     # - with-pdf:
     #     author: XiangShan Team
     #     copyright: XiangShan Team, 2022

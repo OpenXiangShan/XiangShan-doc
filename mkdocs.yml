@@ -32,6 +32,9 @@ plugins:
         as_creation: date
       categories:
         - categories
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: date
     # - with-pdf:
     #     author: XiangShan Team
     #     copyright: XiangShan Team, 2022

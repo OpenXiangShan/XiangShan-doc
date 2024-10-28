@@ -31,6 +31,7 @@ categories:
 ### 访存与缓存
 
 - CHI 总线
+  - CHI-L3: OpenLLC + OpenNCB 合入主线（配置：KunminghuV2Config）([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672))
 
 - RVA23 Profile
 
@@ -39,6 +40,10 @@ categories:
 - 时序 & 面积优化
 
 - 工具
+  - CHIron：实现以二进制形式存储 CHI Log 信息，相较于文本格式存储，解析速度快 6 倍，文件空间占用减少 83%
+  - TL-test-new：添加 OpenLLC 的 CI 流程，支持 MMIO 测试
+  - L2 HPM （性能计数器）：根据物理设计调整连线 ([#3747](https://github.com/OpenXiangShan/XiangShan/pull/3747))
+
 
 
 ## 评估

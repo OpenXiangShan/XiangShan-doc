@@ -30,6 +30,7 @@ Recently,
 ### MemBlock and cache
 
 - **CHI Bus**
+  - CHI-L3: Merge OpenLLC + OpenNCB into the main branch (Configuration: KunminghuV2Config) ([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672))
 
 - **RVA23 Profile**
 
@@ -38,6 +39,9 @@ Recently,
 - **PPA Optimizations**
 
 - **Tool**
+  - CHIron: Implemented storage of CHI Log information in binary format, achieving a 6x faster parsing speed and reducing file space usage by 83% compared to text format
+  - TL-test-new: Added CI process for OpenLLC, supporting MMIO testing
+  - L2 HPM (Performance Counter): Adjusted connections based on physical design requirements ([#3747](https://github.com/OpenXiangShan/XiangShan/pull/3747))
 
 ## RTL Evaluation
 

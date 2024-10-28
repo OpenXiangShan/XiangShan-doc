@@ -33,11 +33,16 @@ categories:
 - CHI 总线
   - CHI-L3: OpenLLC + OpenNCB 合入主线（配置：KunminghuV2Config）([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672))
 
-- RVA23 Profile
-
 - Bug 修复
+  - 修复连续的两条 MMIO 访存，均发生 non-data error 异常时导致的卡死问题 ([#3728](https://github.com/OpenXiangShan/XiangShan/pull/3728))
+  - 修复对非对齐的 HLV（hypervisor load）指令进行拆分后，丢失虚拟化相关信息的 bug ([#3759](https://github.com/OpenXiangShan/XiangShan/pull/3759))
+  - 修复未执行完毕一条非对齐指令前，storequeue 误提交该指令的 bug ([#3758](https://github.com/OpenXiangShan/XiangShan/pull/3758))
+  - 修复向量异常相关的 bug，保证向量访存指令在乱序执行后，能够保留按顺序最早的一项异常 ([#3733](https://github.com/OpenXiangShan/XiangShan/pull/3733))
+  - 修复由向量访存单元错误地无法接收 uop 发射，导致的卡死问题 ([#3741](https://github.com/OpenXiangShan/XiangShan/pull/3741))
 
-- 时序 & 面积优化
+- PPA 优化
+  - MemBlock 内部和端口时序持续优化，目前内部违例优化至 -45ps，近期优化包括：去除 Dcache s2tag 到 dataArray 之间的关键路径、优化 MemBlock 向 L2 Cache 发送 CMO 请求的时序、优化 LoadUnit 写回端口的选择逻辑，以及非对齐访存的异常写回逻辑等 ([#3748](https://github.com/OpenXiangShan/XiangShan/pull/3748))
+  - 对 DCache SRAM 添加 clock gating，memory 的内部功耗降低 51%
 
 - 工具
   - CHIron：实现以二进制形式存储 CHI Log 信息，相较于文本格式存储，解析速度快 6 倍，文件空间占用减少 83%

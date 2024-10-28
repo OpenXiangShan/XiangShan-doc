@@ -9,7 +9,8 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 62 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端修复了 ECC 到 Bus Error Unit 路径上的 Mux1H，后端 VS/S/M 模式双重中断拓展 (Ss/mdbltrp) 正在合入主线，访存和缓存部分修复了向量异常相关的 Bug。本期还更新了昆明湖架构近期性能。
+
 
 <!-- more -->
 
@@ -58,9 +59,9 @@ categories:
 
 - Bug 修复
     - 修复连续的两条 MMIO 访存，均发生 non-data error 异常时导致的卡死问题 ([#3728](https://github.com/OpenXiangShan/XiangShan/pull/3728))
-    - 修复对非对齐的 HLV（hypervisor load）指令进行拆分后，丢失虚拟化相关信息的 bug ([#3759](https://github.com/OpenXiangShan/XiangShan/pull/3759))
-    - 修复未执行完毕一条非对齐指令前，storequeue 误提交该指令的 bug ([#3758](https://github.com/OpenXiangShan/XiangShan/pull/3758))
-    - 修复向量异常相关的 bug，保证向量访存指令在乱序执行后，能够保留按顺序最早的一项异常 ([#3733](https://github.com/OpenXiangShan/XiangShan/pull/3733))
+    - 修复对非对齐的 HLV（hypervisor load）指令进行拆分后，丢失虚拟化相关信息的 Bug ([#3759](https://github.com/OpenXiangShan/XiangShan/pull/3759))
+    - 修复未执行完毕一条非对齐指令前，storequeue 误提交该指令的 Bug ([#3758](https://github.com/OpenXiangShan/XiangShan/pull/3758))
+    - 修复向量异常相关的 Bug，保证向量访存指令在乱序执行后，能够保留按顺序最早的一项异常 ([#3733](https://github.com/OpenXiangShan/XiangShan/pull/3733))
     - 修复由向量访存单元错误地无法接收 uop 发射，导致的卡死问题 ([#3741](https://github.com/OpenXiangShan/XiangShan/pull/3741))
 
 - PPA 优化

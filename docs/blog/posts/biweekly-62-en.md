@@ -58,9 +58,9 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
 - **Bug fixes**
   - Fix a bug that caused stuck when two consecutive MMIO stores both triggered a non-data error exception ([#3728](https://github.com/OpenXiangShan/XiangShan/pull/3728))
   - Fix a bug that lost virtualisation information after splitting a non-aligned HLV (hypervisor load) instruction ([#3759](https://github.com/OpenXiangShan/XiangShan/pull/3759))
-  - Fix a bug where storequeue incorrectly commits an unaligned instruction before it has finished executing ([#3758](https://github.com/OpenXiangShan/XiangShan/pull/3758))
+  - Fix a bug where StoreQueue incorrectly commits an unaligned instruction before it has finished executing ([#3758](https://github.com/OpenXiangShan/XiangShan/pull/3758))
   - Fix handling logic of vector exceptions. We should ensure that vector load/store instructions retain the earliest in-order exception after out-of-order execution ([#3733](https://github.com/OpenXiangShan/XiangShan/pull/3733))
-  - Fix stuck problem caused by vector load/store unit incorrectly failing to receive new uop issues ([#3741](https://github.com/OpenXiangShan/XiangShan/pull/3741))
+  - Fix stuck problem caused by vector load/store unit failing to receive new uop issues ([#3741](https://github.com/OpenXiangShan/XiangShan/pull/3741))
 
 - **PPA Optimizations**
   - MemBlock internal and port timings continue to be optimised, with internal violations optimised to -45ps. Recent optimisations include removing the critical path in dcache from s2tag to dataArray, optimising timing of MemBlock's CMO requests to L2 cache, optimising loadunit write-back port selection logic and the exception writeback logic for unaligned access memory, etc. ([#3748](https://github.com/OpenXiangShan/XiangShan/pull/3748))

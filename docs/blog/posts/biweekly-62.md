@@ -60,9 +60,9 @@ categories:
 - Bug 修复
     - 修复连续的两条 MMIO 访存，均发生 non-data error 异常时导致的卡死问题 ([#3728](https://github.com/OpenXiangShan/XiangShan/pull/3728))
     - 修复对非对齐的 HLV（hypervisor load）指令进行拆分后，丢失虚拟化相关信息的 Bug ([#3759](https://github.com/OpenXiangShan/XiangShan/pull/3759))
-    - 修复未执行完毕一条非对齐指令前，storequeue 误提交该指令的 Bug ([#3758](https://github.com/OpenXiangShan/XiangShan/pull/3758))
+    - 修复未执行完毕一条非对齐指令前，StoreQueue 误提交该指令的 Bug ([#3758](https://github.com/OpenXiangShan/XiangShan/pull/3758))
     - 修复向量异常相关的 Bug，保证向量访存指令在乱序执行后，能够保留按顺序最早的一项异常 ([#3733](https://github.com/OpenXiangShan/XiangShan/pull/3733))
-    - 修复由向量访存单元错误地无法接收 uop 发射，导致的卡死问题 ([#3741](https://github.com/OpenXiangShan/XiangShan/pull/3741))
+    - 修复由向量访存单元无法接收 uop 发射导致的卡死问题 ([#3741](https://github.com/OpenXiangShan/XiangShan/pull/3741))
 
 - PPA 优化
     - MemBlock 内部和端口时序持续优化，目前内部违例优化至 -45ps，近期优化包括：去除 Dcache s2tag 到 dataArray 之间的关键路径、优化 MemBlock 向 L2 Cache 发送 CMO 请求的时序、优化 LoadUnit 写回端口的选择逻辑，以及非对齐访存的异常写回逻辑等 ([#3748](https://github.com/OpenXiangShan/XiangShan/pull/3748))

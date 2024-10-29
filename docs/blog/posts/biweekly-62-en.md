@@ -52,23 +52,23 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
 ### MemBlock and cache
 
 - **CHI Bus**
-  - CHI-L3: Merge OpenLLC + OpenNCB into the main branch (Configuration: KunminghuV2Config) ([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672))
+    - CHI-L3: Merge OpenLLC + OpenNCB into the main branch (Configuration: KunminghuV2Config) ([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672))
 
 - **Bug fixes**
-  - Fix a bug that caused stuck when two consecutive MMIO stores both triggered a non-data error exception ([#3728](https://github.com/OpenXiangShan/XiangShan/pull/3728))
-  - Fix a bug that lost virtualisation information after splitting a non-aligned HLV (hypervisor load) instruction ([#3759](https://github.com/OpenXiangShan/XiangShan/pull/3759))
-  - Fix a bug where StoreQueue incorrectly commits an unaligned instruction before it has finished executing ([#3758](https://github.com/OpenXiangShan/XiangShan/pull/3758))
-  - Fix handling logic of vector exceptions. We should ensure that vector load/store instructions retain the earliest in-order exception after out-of-order execution ([#3733](https://github.com/OpenXiangShan/XiangShan/pull/3733))
-  - Fix stuck problem caused by vector load/store unit failing to receive new uop issues ([#3741](https://github.com/OpenXiangShan/XiangShan/pull/3741))
+    - Fix a bug that caused stuck when two consecutive MMIO stores both triggered a non-data error exception ([#3728](https://github.com/OpenXiangShan/XiangShan/pull/3728))
+    - Fix a bug that lost virtualisation information after splitting a non-aligned HLV (hypervisor load) instruction ([#3759](https://github.com/OpenXiangShan/XiangShan/pull/3759))
+    - Fix a bug where StoreQueue incorrectly commits an unaligned instruction before it has finished executing ([#3758](https://github.com/OpenXiangShan/XiangShan/pull/3758))
+    - Fix handling logic of vector exceptions. We should ensure that vector load/store instructions retain the earliest in-order exception after out-of-order execution ([#3733](https://github.com/OpenXiangShan/XiangShan/pull/3733))
+    - Fix stuck problem caused by vector load/store unit failing to receive new uop issues ([#3741](https://github.com/OpenXiangShan/XiangShan/pull/3741))
 
 - **PPA Optimizations**
-  - MemBlock internal and port timings continue to be optimised, with internal violations optimised to -45ps. Recent optimisations include removing the critical path in dcache from s2tag to dataArray, optimising timing of MemBlock's CMO requests to L2 cache, optimising loadunit write-back port selection logic and the exception writeback logic for unaligned access memory, etc. ([#3748](https://github.com/OpenXiangShan/XiangShan/pull/3748))
-  - Adding clock gating to DCache SRAM which reduced internal memory power by 51%.
+    - MemBlock internal and port timings continue to be optimised, with internal violations optimised to -45ps. Recent optimisations include removing the critical path in dcache from s2tag to dataArray, optimising timing of MemBlock's CMO requests to L2 cache, optimising loadunit write-back port selection logic and the exception writeback logic for unaligned access memory, etc. ([#3748](https://github.com/OpenXiangShan/XiangShan/pull/3748))
+    - Adding clock gating to DCache SRAM which reduced internal memory power by 51%.
 
 - **Tool**
-  - CHIron: Implemented storage of CHI Log information in binary format, achieving a 6x faster parsing speed and reducing file space usage by 83% compared to text format
-  - TL-test-new: Added CI process for OpenLLC, supporting MMIO testing
-  - L2 HPM (Performance Counter): Adjusted connections based on physical design requirements ([#3747](https://github.com/OpenXiangShan/XiangShan/pull/3747))
+    - CHIron: Implemented storage of CHI Log information in binary format, achieving a 6x faster parsing speed and reducing file space usage by 83% compared to text format
+    - TL-test-new: Added CI process for OpenLLC, supporting MMIO testing
+    - L2 HPM (Performance Counter): Adjusted connections based on physical design requirements ([#3747](https://github.com/OpenXiangShan/XiangShan/pull/3747))
 
 ## RTL Evaluation
 

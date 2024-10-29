@@ -2,29 +2,40 @@
 
 ## Instruction Fetching
 
-- Reinman, Glenn, et al. A Scalable Front-End Architecture for Fast Instruction Delivery. p. 12.
-- Ramirez, A., et al. “Fetching Instruction Streams.” 35th Annual IEEE/ACM International Symposium on Microarchitecture, 2002. (MICRO-35). Proceedings., IEEE Comput. Soc, 2002, pp. 371–82. DOI.org (Crossref), https://doi.org/10.1109/MICRO.2002.1176264.
-
+- Reinman, Glenn, Todd Austin, and Brad Calder. "A scalable front-end architecture for fast instruction delivery." ACM SIGARCH Computer Architecture News 27.2 (1999): 234-245.
+- Ramirez, Alex, et al. "Fetching instruction streams." 35th Annual IEEE/ACM International Symposium on Microarchitecture, 2002.(MICRO-35). Proceedings.. IEEE, 2002.
 
 ## Instruction Prefetch
 
-- Ishii, Yasuo, et al. “Re-Establishing Fetch-Directed Instruction Prefetching: An Industry Perspective.” 2021 IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS), 2021, pp. 172–82. IEEE Xplore, https://doi.org/10.1109/ISPASS51385.2021.00034.
-- Ishii, Yasuo, et al. “Rebasing Instruction Prefetching: An Industry Perspective.” IEEE Computer Architecture Letters, vol. 19, no. 2, July 2020, pp. 147–50. IEEE Xplore, https://doi.org/10.1109/LCA.2020.3035068.
-
+- Ishii, Yasuo, et al. "Re-establishing fetch-directed instruction prefetching: An industry perspective." 2021 IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS). IEEE, 2021.
+- Ishii, Yasuo, et al. "Rebasing instruction prefetching: An industry perspective." IEEE Computer Architecture Letters 19.2 (2020): 147-150.
 
 ## Branch prediction
 
-- Michaud, Pierre. A PPM-like, Tag-Based Branch Predictor. p. 10.
+- Michaud, Pierre. "A PPM-like, tag-based branch predictor." The Journal of Instruction-Level Parallelism 7 (2005): 10.
 - Seznec, André, and Pierre Michaud. "A case for (partially) tagged geometric history length branch prediction." The Journal of Instruction-Level Parallelism 8 (2006): 23.
-- Seznec, Andre. A 64-Kbytes ITTAGE Indirect Branch Predictor.
-- Seznec, Andre. A 256 Kbits L-TAGE Branch Predictor. p. 6.
-- Seznec, Andre. TAGE-SC-L Branch Predictors. p. 8.
-- Seznec, André. TAGE-SC-L Branch Predictors Again. p. 5.
-- Skadron, K., et al. “Improving Prediction for Procedure Returns with Return-Address-Stack Repair Mechanisms.” Proceedings. 31st Annual ACM/IEEE International Symposium on Microarchitecture, IEEE Comput. Soc, 1998, pp. 259–71. DOI.org (Crossref), https://doi.org/10.1109/MICRO.1998.742787.
+- Seznec, André. "A 64-Kbytes ITTAGE indirect branch predictor." JWAC-2: Championship Branch Prediction. 2011.
+- Seznec, André. "A 256 kbits l-tage branch predictor." Journal of Instruction-Level Parallelism (JILP) Special Issue: The Second Championship Branch Prediction Competition (CBP-2) 9 (2007): 1-6.
+- Seznec, André. "Tage-sc-l branch predictors." JILP-Championship Branch Prediction. 2014.
+- Seznec, André. "Tage-sc-l branch predictors again." 5th JILP Workshop on Computer Architecture Competitions (JWAC-5): Championship Branch Prediction (CBP-5). 2016.
+- Skadron, Kevin, et al. "Improving prediction for procedure returns with return-address-stack repair mechanisms." Proceedings. 31st Annual ACM/IEEE International Symposium on Microarchitecture. IEEE, 1998.
+
+## Scheduling
+
+- Tomasulo, Robert M. "An efficient algorithm for exploiting multiple arithmetic units." IBM Journal of research and Development 11.1 (1967): 25-33.
+- Smith, James E., and Andrew R. Pleszkun. "Implementation of precise interrupts in pipelined processors." ACM SIGARCH Computer Architecture News 13.3 (1985): 36-44.
+- Latorre, Fernando, et al. "Crob: implementing a large instruction window through compression." Transactions on high-performance embedded architectures and compilers III. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011. 115-134.
+- Chrysos, George Z., and Joel S. Emer. "Memory dependence prediction using store sets." ACM SIGARCH Computer Architecture News 26.3 (1998): 142-153.
+
+## Execution
+
+- Wallace, Christopher S. "A suggestion for a fast multiplier." IEEE Transactions on electronic Computers 1 (1964): 14-17.
+- Booth, Andrew D. "A signed binary multiplication technique." The Quarterly Journal of Mechanics and Applied Mathematics 4.2 (1951): 236-240.
+- Antelo, Elisardo, et al. "Digit-recurrence dividers with reduced logical depth." IEEE Transactions on Computers 54.7 (2005): 837-851.
 
 ## TLB
 
-- Pham, Binh, et al. “CoLT: Coalesced Large-Reach TLBs.” 2012 45th Annual IEEE/ACM International Symposium on Microarchitecture, 2012, pp. 258–69. IEEE Xplore, https://doi.org/10.1109/MICRO.2012.32.
+- Pham, Binh, et al. "Colt: Coalesced large-reach tlbs." 2012 45th Annual IEEE/ACM International Symposium on Microarchitecture. IEEE, 2012.
 
 ## Non-blocking Cache
 

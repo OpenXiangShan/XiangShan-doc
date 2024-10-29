@@ -33,7 +33,7 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
 - **Bug Fixes**
     - Fixed issues with inconsistent GPA retrieval for the H extension and Misalign memory access-related TLB issues ([#3681](https://github.com/OpenXiangShan/XiangShan/pull/3681), [#3679](https://github.com/OpenXiangShan/XiangShan/pull/3679))
     - Fixed `isEnqExcp` setting to zero for vector memory access exceptions when there is an older exception during write-back ([#3778](https://github.com/OpenXiangShan/XiangShan/pull/3778))
-    - Fixed incorrect `xtval` updates for `ebreak` instruction-triggered breakpoint exceptions and compressed instruction illegal exceptions ([#3769](https://github.com/OpenXiangShan/XiangShan/pull/3769), [#3762](https://github.com/OpenXiangShan/XiangShan/pull/3762), [#599](https://github.com/OpenXiangShan/XiangShan/pull/599))
+    - Fixed incorrect `xtval` updates for `ebreak` instruction-triggered breakpoint exceptions and compressed instruction illegal exceptions ([#3769](https://github.com/OpenXiangShan/XiangShan/pull/3769), [#3762](https://github.com/OpenXiangShan/XiangShan/pull/3762)), with corresponding updates in NEMU ([#599](https://github.com/OpenXiangShan/XiangShan/pull/599))
     - Fixed trigger-related issues for vector memory access ([#3772](https://github.com/OpenXiangShan/XiangShan/pull/3772), [#3745](https://github.com/OpenXiangShan/XiangShan/pull/3745))
     - Fixed errors due to separated storage for CSR exceptions ([#3771](https://github.com/OpenXiangShan/XiangShan/pull/3771))
     - Fixed inconsistency between xcause interrupt selection strategy and `xtopi` ([#3753](https://github.com/OpenXiangShan/XiangShan/pull/3753))
@@ -41,12 +41,11 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
     - Fixed Misalign memory access-related TLB issues ([#3731](https://github.com/OpenXiangShan/XiangShan/pull/3731))
 
 - **Timing/Power Optimization**
-    - Optimized vector decoding by constructing `OP_TYPE` using RVV’s native encoding.
     - Improved timing for wakeup, cancel, and memory access dependencies ([#3737](https://github.com/OpenXiangShan/XiangShan/pull/3737))
     - Evaluated backend area optimization points and potential benefits.
 
 - **RVA23 Profile**
-    - **Counter Overflow and Mode-Based Filtering Extension (Sscofpmf):** Added RTL guidance for NEMU overflow updates, enabled privilege-based filtering in RTL, and completed `mhpmevent` implementation in NEMU ([#3771](https://github.com/OpenXiangShan/XiangShan/pull/3771), [#574](https://github.com/OpenXiangShan/XiangShan/pull/574))
+    - **Counter Overflow and Mode-Based Filtering Extension (Sscofpmf):** Added RTL guidance for NEMU overflow updates, enabled privilege-based filtering in RTL ([#3771](https://github.com/OpenXiangShan/XiangShan/pull/3771)), and completed `mhpmevent` implementation along with corresponding updates in NEMU ([#574](https://github.com/OpenXiangShan/XiangShan/pull/574))
     - **VS/S/M Mode Double Trap Extension (Ss/mdbltrp):** Merging into master ([#3789](https://github.com/OpenXiangShan/XiangShan/pull/3789))
     - Implemented trigger support for A extension in NEMU ([#592](https://github.com/OpenXiangShan/XiangShan/pull/592))
 

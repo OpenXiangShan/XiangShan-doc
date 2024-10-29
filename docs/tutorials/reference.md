@@ -7,6 +7,7 @@
 
 ## Instruction Prefetch
 
+- Reinman, Glenn, Brad Calder, and Todd Austin. "Fetch directed instruction prefetching." MICRO-32. Proceedings of the 32nd Annual ACM/IEEE International Symposium on Microarchitecture. IEEE, 1999.
 - Ishii, Yasuo, et al. "Re-establishing fetch-directed instruction prefetching: An industry perspective." 2021 IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS). IEEE, 2021.
 - Ishii, Yasuo, et al. "Rebasing instruction prefetching: An industry perspective." IEEE Computer Architecture Letters 19.2 (2020): 147-150.
 

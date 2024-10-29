@@ -25,13 +25,17 @@
 - Tomasulo, Robert M. "An efficient algorithm for exploiting multiple arithmetic units." IBM Journal of research and Development 11.1 (1967): 25-33.
 - Smith, James E., and Andrew R. Pleszkun. "Implementation of precise interrupts in pipelined processors." ACM SIGARCH Computer Architecture News 13.3 (1985): 36-44.
 - Latorre, Fernando, et al. "Crob: implementing a large instruction window through compression." Transactions on high-performance embedded architectures and compilers III. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011. 115-134.
-- Chrysos, George Z., and Joel S. Emer. "Memory dependence prediction using store sets." ACM SIGARCH Computer Architecture News 26.3 (1998): 142-153.
 
 ## Execution
 
 - Wallace, Christopher S. "A suggestion for a fast multiplier." IEEE Transactions on electronic Computers 1 (1964): 14-17.
 - Booth, Andrew D. "A signed binary multiplication technique." The Quarterly Journal of Mechanics and Applied Mathematics 4.2 (1951): 236-240.
 - Antelo, Elisardo, et al. "Digit-recurrence dividers with reduced logical depth." IEEE Transactions on Computers 54.7 (2005): 837-851.
+
+## MDP
+
+- Kessler, Richard E. "The alpha 21264 microprocessor." IEEE micro 19.2 (1999): 24-36.
+- Chrysos, George Z., and Joel S. Emer. "Memory dependence prediction using store sets." ACM SIGARCH Computer Architecture News 26.3 (1998): 142-153.
 
 ## TLB
 

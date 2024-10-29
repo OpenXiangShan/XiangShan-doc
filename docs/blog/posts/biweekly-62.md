@@ -49,7 +49,7 @@ categories:
 
 - RVA23 Profile
     - 计数溢出和基于特权级的过滤拓展 (Sscofpmf): 添加 RTL 指导 NEMU overflow 更新，RTL 支持基于特权级的过滤，NEMU 完成 mhpmevent 实现 ([#3771](https://github.com/OpenXiangShan/XiangShan/pull/3771), [#574](https://github.com/OpenXiangShan/XiangShan/pull/574))
-    - VS/S/M 模式双重中断拓展 (Ss/mdbltrp) 正在合入主线 （[#3789](https://github.com/OpenXiangShan/XiangShan/pull/3789)）
+    - VS/S/M 模式双重陷入拓展 (Ss/mdbltrp) 正在合入主线 （[#3789](https://github.com/OpenXiangShan/XiangShan/pull/3789)）
     - NEMU 实现 A 拓展的 trigger 支持 ([#592](https://github.com/OpenXiangShan/XiangShan/pull/592))
 
 ### 访存与缓存

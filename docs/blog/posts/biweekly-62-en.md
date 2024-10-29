@@ -46,8 +46,8 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
     - Evaluated backend area optimization points and potential benefits.
 
 - **RVA23 Profile**
-    - **Counter Overflow and Privilege-Based Filtering Extension (Sscofpmf):** Added RTL guidance for NEMU overflow updates, enabled privilege-based filtering in RTL, and completed `mhpmevent` implementation in NEMU ([#3771](https://github.com/OpenXiangShan/XiangShan/pull/3771), [#574](https://github.com/OpenXiangShan/XiangShan/pull/574))
-    - **VS/S/M Mode Double Interrupt Extension (Ss/mdbltrp):** Merging into master ([#3789](https://github.com/OpenXiangShan/XiangShan/pull/3789))
+    - **Counter Overflow and Mode-Based Filtering Extension (Sscofpmf):** Added RTL guidance for NEMU overflow updates, enabled privilege-based filtering in RTL, and completed `mhpmevent` implementation in NEMU ([#3771](https://github.com/OpenXiangShan/XiangShan/pull/3771), [#574](https://github.com/OpenXiangShan/XiangShan/pull/574))
+    - **VS/S/M Mode Double Trap Extension (Ss/mdbltrp):** Merging into master ([#3789](https://github.com/OpenXiangShan/XiangShan/pull/3789))
     - Implemented trigger support for A extension in NEMU ([#592](https://github.com/OpenXiangShan/XiangShan/pull/592))
 
 ### MemBlock and cache

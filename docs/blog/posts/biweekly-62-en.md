@@ -9,7 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 62th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
-Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed Mux1H on the data path of ECC to Bus Error Unit, the backend is merging VS/S/M Mode Double Interrupt Extension (Ss/mdbltrp) into master, and the memory and cache subsystem fixed handling logic of vector exceptions. This update also includes the latest performance improvements of the Kunminghu architecture.
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed Mux1H on the data path of ECC to Bus Error Unit, the backend is merging VS/S/M Mode Double Trap Extension (Ss/mdbltrp) into master, and the memory and cache subsystem fixed handling logic of vector exceptions. This update also includes the latest performance improvements of the Kunminghu architecture.
 
 <!-- more -->
 ## Recent developments

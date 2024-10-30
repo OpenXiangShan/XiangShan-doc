@@ -2,7 +2,7 @@
 
 这一章描述香山处理器访存违例预测预测器的整体架构。
 
-香山处理器在 decode 附近根据 PC 预测访存依赖. 目前的代码支持两种预测方式: 
+香山处理器在 decode 附近根据 PC 预测访存依赖. 目前的代码支持两种预测方式:
 
 * Load Wait Table[^21264]
 * Store Sets[^storesets] 的变种
@@ -14,7 +14,7 @@
 ### 依赖预测
 
 * 整体思路基于 Store Sets, 实现了 Store Sets 中的两个表: SSIT 和 LFST
-* 南湖架构只预测 store addr 未就绪引起的违例 
+* 南湖架构只预测 store addr 未就绪引起的违例
 * 一个 Store Set 会同时追踪**多个** inflight 的 store, 只有这里所有的 store 都执行完成后, 依赖于这个 Store Set 的 load 才会被预测为没有依赖
 * SSIT 的查询在 rename 进行. LFST 的查询在 dispatch 进行
 
@@ -34,8 +34,8 @@
 
 ## 引用
 
-[^21264]: Kessler R E . The Alpha 21264 Microprocessor[J]. IEEE Micro, 1999, 19(2):24-36.
+[^21264]: Kessler, Richard E. "The alpha 21264 microprocessor." IEEE micro 19.2 (1999): 24-36.
 
-[^storesets]: Chrysos G Z ,  Emer J S . Memory Dependence Prediction using Store Sets[J]. ACM SIGARCH Computer Architecture News, 2002, 26(3):142-153.
+[^storesets]: Chrysos, George Z., and Joel S. Emer. "Memory dependence prediction using store sets." ACM SIGARCH Computer Architecture News 26.3 (1998): 142-153.
 
 

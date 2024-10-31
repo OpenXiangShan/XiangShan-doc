@@ -52,11 +52,11 @@
 
 ## Cache Directory Structure
 
-- Zhao, Li, et al. "NCID: a non-inclusive cache, inclusive directory architecture for flexible and efficient cache hierarchies." Proceedings of the 7th ACM international conference on Computing frontiers. 2010.
+- Zhao, Li, et al. "[NCID: a non-inclusive cache, inclusive directory architecture for flexible and efficient cache hierarchies.](https://github.com/OpenXiangShan/CoupledL2/tree/master/src/main/scala/coupledL2)" Proceedings of the 7th ACM international conference on Computing frontiers. 2010.
 
 ## Data Replacement
 
-- Jaleel, Aamer, et al. "High performance cache replacement using re-reference interval prediction (RRIP)." ACM SIGARCH computer architecture news 38.3 (2010): 60-71.
+- Jaleel, Aamer, et al. "[High performance cache replacement using re-reference interval prediction (RRIP).](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/utils/Replacer.scala)" ACM SIGARCH computer architecture news 38.3 (2010): 60-71.
 
 ## Data Prefetch
 
@@ -65,5 +65,5 @@
 - Baer, Jean-Loup, and Tien-Fu Chen. "An effective on-chip preloading scheme to reduce data access penalty." Proceedings of the 1991 ACM/IEEE conference on Supercomputing. 1991.
 - Srinath, Santhosh, et al. "Feedback directed prefetching: Improving the performance and bandwidth-efficiency of hardware prefetchers." 2007 IEEE 13th International Symposium on High Performance Computer Architecture. IEEE, 2007.
 - Somogyi, Stephen, et al. "Spatial memory streaming." ACM SIGARCH Computer Architecture News 34.2 (2006): 252-263.
-- Wu, Hao, et al. "Temporal prefetching without the off-chip metadata." Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture. 2019.
-- Ainsworth, Sam, and Lev Mukhanov. "Triangel: A High-Performance, Accurate, Timely On-Chip Temporal Prefetcher." arXiv preprint arXiv:2406.10627 (2024).
+- Wu, Hao, et al. "[Temporal prefetching without the off-chip metadata.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala)" Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture. 2019.
+- Ainsworth, Sam, and Lev Mukhanov. "[Triangel: A High-Performance, Accurate, Timely On-Chip Temporal Prefetcher.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala)" arXiv preprint arXiv:2406.10627 (2024).

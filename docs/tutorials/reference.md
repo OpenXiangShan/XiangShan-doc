@@ -60,10 +60,10 @@
 
 ## Data Prefetch
 
-- Michaud, Pierre. "A Best-Offset Prefetcher." 2nd Data Prefetching Championship, Jun 2015, Portland, United States. hal-01165600
-- Michaud, Pierre. "Best-Offset Hardware Prefetching." 2016 IEEE International Symposium on High Performance Computer Architecture (HPCA), 2016, pp. 469–80, https://doi.org/10.1109/HPCA.2016.7446087.
-- Baer, Jean-Loup, and Tien-Fu Chen. "An effective on-chip preloading scheme to reduce data access penalty." Proceedings of the 1991 ACM/IEEE conference on Supercomputing. 1991.
-- Srinath, Santhosh, et al. "Feedback directed prefetching: Improving the performance and bandwidth-efficiency of hardware prefetchers." 2007 IEEE 13th International Symposium on High Performance Computer Architecture. IEEE, 2007.
-- Somogyi, Stephen, et al. "Spatial memory streaming." ACM SIGARCH Computer Architecture News 34.2 (2006): 252-263.
+- Michaud, Pierre. "[A Best-Offset Prefetcher.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/BestOffsetPrefetch.scala)" 2nd Data Prefetching Championship, Jun 2015, Portland, United States. hal-01165600
+- Michaud, Pierre. "[Best-Offset Hardware Prefetching.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/BestOffsetPrefetch.scala)" 2016 IEEE International Symposium on High Performance Computer Architecture (HPCA), 2016, pp. 469–80, https://doi.org/10.1109/HPCA.2016.7446087.
+- Baer, Jean-Loup, and Tien-Fu Chen. "[An effective on-chip preloading scheme to reduce data access penalty.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/L1StridePrefetcher.scala)" Proceedings of the 1991 ACM/IEEE conference on Supercomputing. 1991.
+- Srinath, Santhosh, et al. "[Feedback directed prefetching: Improving the performance and bandwidth-efficiency of hardware prefetchers.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/FDP.scala)" 2007 IEEE 13th International Symposium on High Performance Computer Architecture. IEEE, 2007.
+- Somogyi, Stephen, et al. "[Spatial memory streaming.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/SMSPrefetcher.scala)" ACM SIGARCH Computer Architecture News 34.2 (2006): 252-263.
 - Wu, Hao, et al. "[Temporal prefetching without the off-chip metadata.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala)" Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture. 2019.
 - Ainsworth, Sam, and Lev Mukhanov. "[Triangel: A High-Performance, Accurate, Timely On-Chip Temporal Prefetcher.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala)" arXiv preprint arXiv:2406.10627 (2024).

@@ -23,15 +23,15 @@
 
 ## Scheduling
 
-- Tomasulo, Robert M. "An efficient algorithm for exploiting multiple arithmetic units." IBM Journal of research and Development 11.1 (1967): 25-33.
-- Smith, James E., and Andrew R. Pleszkun. "Implementation of precise interrupts in pipelined processors." ACM SIGARCH Computer Architecture News 13.3 (1985): 36-44.
-- Latorre, Fernando, et al. "Crob: implementing a large instruction window through compression." Transactions on high-performance embedded architectures and compilers III. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011. 115-134.
+- Tomasulo, Robert M. "[An efficient algorithm for exploiting multiple arithmetic units.](https://github.com/OpenXiangShan/XiangShan/tree/master/src/main/scala/xiangshan/backend)" IBM Journal of research and Development 11.1 (1967): 25-33.
+- Smith, James E., and Andrew R. Pleszkun. "[Implementation of precise interrupts in pipelined processors.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/rob/Rob.scala)" ACM SIGARCH Computer Architecture News 13.3 (1985): 36-44.
+- Latorre, Fernando, et al. "[Crob: implementing a large instruction window through compression.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/rename/CompressUnit.scala)" Transactions on high-performance embedded architectures and compilers III. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011. 115-134.
 
 ## Execution
 
-- Wallace, Christopher S. "A suggestion for a fast multiplier." IEEE Transactions on electronic Computers 1 (1964): 14-17.
-- Booth, Andrew D. "A signed binary multiplication technique." The Quarterly Journal of Mechanics and Applied Mathematics 4.2 (1951): 236-240.
-- Antelo, Elisardo, et al. "Digit-recurrence dividers with reduced logical depth." IEEE Transactions on Computers 54.7 (2005): 837-851.
+- Wallace, Christopher S. "[A suggestion for a fast multiplier.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/Multiplier.scala)" IEEE Transactions on electronic Computers 1 (1964): 14-17.
+- Booth, Andrew D. "[A signed binary multiplication technique.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/Multiplier.scala)" The Quarterly Journal of Mechanics and Applied Mathematics 4.2 (1951): 236-240.
+- Antelo, Elisardo, et al. "[Digit-recurrence dividers with reduced logical depth.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/SRT16Divider.scala)" IEEE Transactions on Computers 54.7 (2005): 837-851.
 
 ## MDP
 

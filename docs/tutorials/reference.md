@@ -35,8 +35,8 @@
 
 ## MDP
 
-- Kessler, Richard E. "The alpha 21264 microprocessor." IEEE micro 19.2 (1999): 24-36.
-- Chrysos, George Z., and Joel S. Emer. "Memory dependence prediction using store sets." ACM SIGARCH Computer Architecture News 26.3 (1998): 142-153.
+- Kessler, Richard E. "[The alpha 21264 microprocessor.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/mdp/WaitTable.scala)" IEEE micro 19.2 (1999): 24-36.
+- Chrysos, George Z., and Joel S. Emer. "[Memory dependence prediction using store sets.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/mdp/StoreSet.scala)" ACM SIGARCH Computer Architecture News 26.3 (1998): 142-153.
 
 ## TLB
 

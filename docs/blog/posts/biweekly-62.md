@@ -28,7 +28,7 @@ categories:
 
 - Code Style
     - 打开了 scalafmt 自动格式化，并在 CI 加入自动检查 ([#3370](https://github.com/OpenXiangShan/XiangShan/pull/3370))
-    - 移除了未使用的 import，手动格式化一些 scalafmt 处理得不好得折行 ([#3791](https://github.com/OpenXiangShan/XiangShan/pull/3791))
+    - 移除了未使用的 import，手动格式化一些 scalafmt 处理得不好的折行 ([#3791](https://github.com/OpenXiangShan/XiangShan/pull/3791))
 
 ### 后端流水线
 
@@ -47,8 +47,8 @@ categories:
     - 评估后端面积优化点以及潜在收益
 
 - RVA23 Profile
-    - 计数溢出和基于特权级的过滤拓展 (Sscofpmf): 添加 RTL 指导 NEMU overflow 更新，RTL 支持基于特权级的过滤([#3771](https://github.com/OpenXiangShan/XiangShan/pull/3771))，NEMU 完成 mhpmevent 实现以及相应修改 ([#574](https://github.com/OpenXiangShan/XiangShan/pull/574))
-    - VS/S/M 模式双重陷入拓展 (Ss/mdbltrp) 正在合入主线 （[#3789](https://github.com/OpenXiangShan/XiangShan/pull/3789)）
+    - 计数溢出和基于特权级的过滤拓展 (Sscofpmf): 添加 RTL 指导 NEMU overflow 更新，RTL 支持基于特权级的过滤 ([#3771](https://github.com/OpenXiangShan/XiangShan/pull/3771))，NEMU 完成 mhpmevent 实现以及相应修改 ([#574](https://github.com/OpenXiangShan/XiangShan/pull/574))
+    - VS/S/M 模式双重陷入拓展 (Ss/mdbltrp) 正在合入主线（[#3789](https://github.com/OpenXiangShan/XiangShan/pull/3789)）
     - NEMU 实现 A 拓展的 trigger 支持 ([#592](https://github.com/OpenXiangShan/XiangShan/pull/592))
 
 ### 访存与缓存

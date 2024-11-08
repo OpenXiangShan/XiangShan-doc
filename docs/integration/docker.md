@@ -96,7 +96,7 @@ git clone git@github.com:OpenXiangShan/riscv-pk.git -b nanhu-v3
 git clone git@github.com:OpenXiangShan/riscv-rootfs.git -b nanhu-nfs
 mkdir build
 cd ../
-scp -r ns-bbl/ your_name@172.19.20.26:/nfs/home/your_name
+scp -r ns-bbl/ your_name@<服务器IP>:<宿主机上文件夹的绝对路径>
 ```
 
  

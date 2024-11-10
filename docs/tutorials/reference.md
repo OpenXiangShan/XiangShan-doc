@@ -2,24 +2,25 @@
 
 ## Instruction Fetching
 
-- Reinman, Glenn, Todd Austin, and Brad Calder. "A scalable front-end architecture for fast instruction delivery." ACM SIGARCH Computer Architecture News 27.2 (1999): 234-245.
-- Ramirez, Alex, et al. "Fetching instruction streams." 35th Annual IEEE/ACM International Symposium on Microarchitecture, 2002.(MICRO-35). Proceedings.. IEEE, 2002.
+- Reinman, Glenn, Todd Austin, and Brad Calder. "[A scalable front-end architecture for fast instruction delivery.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/NewFtq.scala)" ACM SIGARCH Computer Architecture News 27.2 (1999): 234-245.
+- Ramirez, Alex, et al. "[Fetching instruction streams.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend)" 35th Annual IEEE/ACM International Symposium on Microarchitecture, 2002.(MICRO-35). Proceedings.. IEEE, 2002.
 
 ## Instruction Prefetch
 
-- Reinman, Glenn, Brad Calder, and Todd Austin. "Fetch directed instruction prefetching." MICRO-32. Proceedings of the 32nd Annual ACM/IEEE International Symposium on Microarchitecture. IEEE, 1999.
-- Ishii, Yasuo, et al. "Re-establishing fetch-directed instruction prefetching: An industry perspective." 2021 IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS). IEEE, 2021.
-- Ishii, Yasuo, et al. "Rebasing instruction prefetching: An industry perspective." IEEE Computer Architecture Letters 19.2 (2020): 147-150.
+- Reinman, Glenn, Brad Calder, and Todd Austin. "[Fetch directed instruction prefetching.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/icache)" MICRO-32. Proceedings of the 32nd Annual ACM/IEEE International Symposium on Microarchitecture. IEEE, 1999.
+- Ishii, Yasuo, et al. "[Re-establishing fetch-directed instruction prefetching: An industry perspective.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend)" 2021 IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS). IEEE, 2021.
+- Ishii, Yasuo, et al. "[Rebasing instruction prefetching: An industry perspective.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend)" IEEE Computer Architecture Letters 19.2 (2020): 147-150.
 
 ## Branch prediction
 
-- Michaud, Pierre. "A PPM-like, tag-based branch predictor." The Journal of Instruction-Level Parallelism 7 (2005): 10.
+- Michaud, Pierre. "[A PPM-like, tag-based branch predictor.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/Tage.scala)" The Journal of Instruction-Level Parallelism 7 (2005): 10.
 - Seznec, André, and Pierre Michaud. "A case for (partially) tagged geometric history length branch prediction." The Journal of Instruction-Level Parallelism 8 (2006): 23.
-- Seznec, André. "A 64-Kbytes ITTAGE indirect branch predictor." JWAC-2: Championship Branch Prediction. 2011.
-- Seznec, André. "A 256 kbits l-tage branch predictor." Journal of Instruction-Level Parallelism (JILP) Special Issue: The Second Championship Branch Prediction Competition (CBP-2) 9 (2007): 1-6.
-- Seznec, André. "Tage-sc-l branch predictors." JILP-Championship Branch Prediction. 2014.
-- Seznec, André. "Tage-sc-l branch predictors again." 5th JILP Workshop on Computer Architecture Competitions (JWAC-5): Championship Branch Prediction (CBP-5). 2016.
-- Skadron, Kevin, et al. "Improving prediction for procedure returns with return-address-stack repair mechanisms." Proceedings. 31st Annual ACM/IEEE International Symposium on Microarchitecture. IEEE, 1998.
+- Seznec, André. "[A 64-Kbytes ITTAGE indirect branch predictor.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/ITTAGE.scala)" JWAC-2: Championship Branch Prediction. 2011.
+- Seznec, André. "[A 256 kbits l-tage branch predictor.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/Tage.scala)" Journal of Instruction-Level Parallelism (JILP) Special Issue: The Second Championship Branch Prediction Competition (CBP-2) 9 (2007): 1-6.
+- Seznec, André. "[Tage-sc-l branch predictors.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/SC.scala)" JILP-Championship Branch Prediction. 2014.
+- Seznec, André. "[Tage-sc-l branch predictors again.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/SC.scala)" 5th JILP Workshop on Computer Architecture Competitions (JWAC-5): Championship Branch Prediction (CBP-5). 2016.
+- Skadron, Kevin, et al. "[Improving prediction for procedure returns with return-address-stack repair mechanisms.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/newRAS.scala)" Proceedings. 31st Annual ACM/IEEE International Symposium on Microarchitecture. IEEE, 1998.
+- Tan, H.Z., and J. Wang. "[A Return Address Predictor Based on Persistent Stack.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/newRAS.scala)" Journal of Computer Research and Development 60.6 (2023): 1337-1345.
 
 ## Scheduling
 

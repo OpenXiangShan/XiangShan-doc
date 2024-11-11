@@ -20,17 +20,17 @@
 
 [2] Pierre Michaud. "[A PPM-like, tag-based branch predictor.](https://inria.hal.science/hal-03406188){target="_blank"}" The Journal of Instruction-Level Parallelism 7 (2005): 10. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/Tage.scala){target="_blank"}
 
-[3] Seznec, André, and Pierre Michaud. "[A case for (partially) tagged geometric history length branch prediction.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/Tage.scala){target="_blank"}" The Journal of Instruction-Level Parallelism 8 (2006): 23. [[RTL Codes]](){target="_blank"}
+[3] André Seznec and Pierre Michaud. "[A case for (partially) tagged geometric history length branch prediction.](https://inria.hal.science/hal-03408381){target="_blank"}" The Journal of Instruction-Level Parallelism 8 (2006): 23. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/Tage.scala){target="_blank"}
 
-[4] Seznec, André. "[A 256 kbits l-tage branch predictor.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/Tage.scala){target="_blank"}" Journal of Instruction-Level Parallelism (JILP) Special Issue: The Second Championship Branch Prediction Competition (CBP-2) 9 (2007): 1-6. [[RTL Codes]](){target="_blank"}
+[4] André Seznec. "[A 256 kbits l-tage branch predictor.](http://www.irisa.fr/caps/people/seznec/L-TAGE.pdf){target="_blank"}" Journal of Instruction-Level Parallelism (JILP) Special Issue: The Second Championship Branch Prediction Competition (CBP-2) 9 (2007): 1-6. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/Tage.scala){target="_blank"}
 
-[5] Seznec, André. "[A 64-Kbytes ITTAGE indirect branch predictor.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/ITTAGE.scala){target="_blank"}" JWAC-2: Championship Branch Prediction. 2011. [[RTL Codes]](){target="_blank"}
+[5] André Seznec. "[A 64-Kbytes ITTAGE indirect branch predictor.](https://inria.hal.science/hal-00639041){target="_blank"}" JWAC-2: Championship Branch Prediction. 2011. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/ITTAGE.scala){target="_blank"}
 
-[6] Seznec, André. "[Tage-sc-l branch predictors.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/SC.scala){target="_blank"}" JILP-Championship Branch Prediction. 2014. [[RTL Codes]](){target="_blank"}
+[6] André Seznec. "[Tage-sc-l branch predictors.](https://inria.hal.science/hal-01086920){target="_blank"}" JILP-Championship Branch Prediction. 2014. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/SC.scala){target="_blank"}
 
-[7] Seznec, André. "[Tage-sc-l branch predictors again.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/SC.scala){target="_blank"}" 5th JILP Workshop on Computer Architecture Competitions (JWAC-5): Championship Branch Prediction (CBP-5). 2016. [[RTL Codes]](){target="_blank"}
+[7] André Seznec. "[Tage-sc-l branch predictors again.](https://inria.hal.science/hal-01354253){target="_blank"}" 5th JILP Workshop on Computer Architecture Competitions (JWAC-5): Championship Branch Prediction (CBP-5). 2016. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/SC.scala){target="_blank"}
 
-[8] Tan, H.Z., and J. Wang. "[A Return Address Predictor Based on Persistent Stack.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/newRAS.scala){target="_blank"}" Journal of Computer Research and Development 60.6 (2023): 1337-1345. [[RTL Codes]](){target="_blank"}
+[8] Tan, H.Z., and J. Wang. "[A Return Address Predictor Based on Persistent Stack.](https://crad.ict.ac.cn/en/article/doi/10.7544/issn1000-1239.202111274){target="_blank"}" Journal of Computer Research and Development 60.6 (2023): 1337-1345. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/newRAS.scala){target="_blank"}
 
 ## Scheduling
 

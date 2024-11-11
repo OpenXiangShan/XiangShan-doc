@@ -89,4 +89,4 @@
 
 [6] Hao Wu, Nathella Krishnendra, Pusdesris Joseph, Sunwoo Dam, Jain Akanksha and Lin Calvin. "[Temporal prefetching without the off-chip metadata.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala){target="_blank"}" Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture. 2019. [[RTL Codes]](){target="_blank"}
 
-[7] Ainsworth Sam and Lev Mukhanov. "[Triangel: A High-Performance, Accurate, Timely On-Chip Temporal Prefetcher.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala){target="_blank"}" arXiv preprint arXiv:2406.10627 (2024). [[RTL Codes]](){target="_blank"}
+[7] Ainsworth Sam and Lev Mukhanov. "[Triangel: A High-Performance, Accurate, Timely On-Chip Temporal Prefetcher.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala){target="_blank"}" 2024 ACM/IEEE 51st Annual International Symposium on Computer Architecture (ISCA), 2024. [[RTL Codes]](){target="_blank"}

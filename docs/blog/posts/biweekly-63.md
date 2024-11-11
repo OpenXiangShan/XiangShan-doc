@@ -47,28 +47,28 @@ categories:
 
 ## 评估
 
-我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC CPU2006 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPECfp 2006 的-ffp-contraction 选项为 fast，指令集为 RV64GCB。我们使用 **10 月 26 日 b3c3582 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld2st 流水线**），在仿真环境下运行了 SPEC CPU2006 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPEC CPU2006 的分数估计情况：
+我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC CPU2006 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPECfp 2006 的-ffp-contraction 选项为 fast，指令集为 RV64GCB。我们使用 **11 月 08 日 fbdb359 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld2st 流水线**），在仿真环境下运行了 SPEC CPU2006 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPEC CPU2006 的分数估计情况：
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est.  | @ 3GHz |
 | :---------------- | :----: | :---------------- | :----: |
-| 400.perlbench     | 37.85  | 410.bwaves        | 75.02  |
-| 401.bzip2         | 25.53  | 416.gamess        | 43.49  |
-| 403.gcc           | 46.49  | 433.milc          | 43.61  |
-| 429.mcf           | 57.50  | 434.zeusmp        | 56.80  |
-| 445.gobmk         | 30.18  | 435.gromacs       | 37.38  |
-| 456.hmmer         | 40.83  | 436.cactusADM     | 48.77  |
-| 458.sjeng         | 30.18  | 437.leslie3d      | 43.82  |
-| 462.libquantum    | 125.07 | 444.namd          | 34.69  |
-| 464.h264ref       | 57.81  | 447.dealII        | 74.53  |
-| 471.omnetpp       | 40.01  | 450.soplex        | 54.54  |
-| 473.astar         | 29.00  | 453.povray        | 55.93  |
-| 483.xalancbmk     | 74.74  | 454.Calculix      | 18.32  |
-| **GEOMEAN**       | 44.49  | 459.GemsFDTD      | 37.82  |
+| 400.perlbench     | 38.17  | 410.bwaves        | 76.73  |
+| 401.bzip2         | 25.55  | 416.gamess        | 43.51  |
+| 403.gcc           | 47.25  | 433.milc          | 44.07  |
+| 429.mcf           | 58.61  | 434.zeusmp        | 56.96  |
+| 445.gobmk         | 30.29  | 435.gromacs       | 37.46  |
+| 456.hmmer         | 40.83  | 436.cactusADM     | 49.48  |
+| 458.sjeng         | 30.27  | 437.leslie3d      | 44.93  |
+| 462.libquantum    | 124.52 | 444.namd          | 34.73  |
+| 464.h264ref       | 57.82  | 447.dealII        | 75.09  |
+| 471.omnetpp       | 39.74  | 450.soplex        | 54.54  |
+| 473.astar         | 29.00  | 453.povray        | 56.03  |
+| 483.xalancbmk     | 74.59  | 454.Calculix      | 18.35  |
+| **GEOMEAN**       | 44.64  | 459.GemsFDTD      | 37.94  |
 |                   |        | 465.tonto         | 38.21  |
-|                   |        | 470.lbm           | 102.05 |
-|                   |        | 481.wrf           | 42.68  |
-|                   |        | 482.sphinx3       | 52.71  |
-|                   |        | **GEOMEAN**       | 47.42  |
+|                   |        | 470.lbm           | 102.06 |
+|                   |        | 481.wrf           | 43.45  |
+|                   |        | 482.sphinx3       | 53.21  |
+|                   |        | **GEOMEAN**       | 47.75  |
 
 **上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差！**
 

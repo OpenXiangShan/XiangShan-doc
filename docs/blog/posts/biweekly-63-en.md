@@ -34,12 +34,15 @@ Recently,
 ### MemBlock and cache
 
 - **CHI Bus**
+    - By increasing the concurrency of the CHI bridge to align with the TL version, the performance of the SPEC CPU 2006 libquantum benchmark improves; however, performance for other benchmarks still shows significant regression
 
 - **Bug fixes**
+    - Fix the bug in CMO.clean/flush operations when there is an L1 miss and an L2 hit ([#3814](https://github.com/OpenXiangShan/XiangShan/pull/3814))
 
 - **PPA Optimizations**
 
 - **Tool**
+    - TL-Test verification framework: Add a test environment for CMO in tl-test-new, enabling the execution of CMO transactions on tl-test-new ([#3804](https://github.com/OpenXiangShan/XiangShan/pull/3804))
 
 ## RTL Evaluation
 

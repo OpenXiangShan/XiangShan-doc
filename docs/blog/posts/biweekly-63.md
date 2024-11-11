@@ -36,12 +36,19 @@ categories:
 ### 访存与缓存
 
 - CHI 总线
+    - 通过提高 CHI 转接桥并发度与 TL 版本对齐 SPEC CPU 2006 libquantum 测试点性能，但是其他测试点仍然性能严重倒退问题
+
 
 - Bug 修复
+    - 修复 CMO.clean / flush 操作在 L1 miss 在 L2 hit 时的 bug ([#3814](https://github.com/OpenXiangShan/XiangShan/pull/3814))
+
+
 
 - PPA 优化
 
 - 工具
+    - TL-Test 验证框架：在 tl-test-new 中添加 CMO 的测试环境，目前可以在 tl-test-new 上运行 CMO transaction ([#3804](https://github.com/OpenXiangShan/XiangShan/pull/3804))
+
 
 
 

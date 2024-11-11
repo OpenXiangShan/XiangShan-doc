@@ -84,7 +84,7 @@ This list outlines the techniques used in the XiangShan RTL codes.
 
 [3] Srinath Santhosh, Mutlu Onur, Kim Hyesoon, and Patt N. Yale. "[Feedback directed prefetching: Improving the performance and bandwidth-efficiency of hardware prefetchers.](https://doi.org/10.1109/HPCA.2007.346185){target="_blank"}" 2007 IEEE 13th International Symposium on High Performance Computer Architecture. IEEE, 2007. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/FDP.scala){target="_blank"}
 
-[4] Pierre Michaud. "[A Best-Offset Prefetcher.](https://inria.hal.science/hal-01165600/){target="_blank"}" 2nd Data Prefetching Championship, Jun 2015, Portland, United States. hal-01165600 [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/BestOffsetPrefetch.scala){target="_blank"}
+[4] Pierre Michaud. "[A Best-Offset Prefetcher.](https://inria.hal.science/hal-01165600/){target="_blank"}" 2nd Data Prefetching Championship. 2015. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/BestOffsetPrefetch.scala){target="_blank"}
 
 [5] Pierre Michaud. "[Best-Offset Hardware Prefetching.](https://doi.org/10.1109/HPCA.2016.7446087){target="_blank"}" 2016 IEEE International Symposium on High Performance Computer Architecture (HPCA). IEEE, 2016. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/BestOffsetPrefetch.scala){target="_blank"}
 

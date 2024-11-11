@@ -30,10 +30,25 @@ Recently,
 ### Backend
 
 - **Bug Fixes**
+    - Fixed issues related to Debug mode:
+        - Fixed an issue where an extra instruction was committed after a redirect when stepping ([#3828](https://github.com/OpenXiangShan/XiangShan/pull/3828))
+        - Fixed the issue where the debug interrupt could not respond when `nmie` was 0 ([#3826](https://github.com/OpenXiangShan/XiangShan/pull/3826))
+        - Fixed incorrect `mtval` updates when an atomic access triggered a breakpoint exception in trigger mode ([#3803](https://github.com/OpenXiangShan/XiangShan/pull/3803))
+    - Fixed incomplete assignment in the `mip` register ([#3827](https://github.com/OpenXiangShan/XiangShan/pull/3827))
+    - Fixed the issue where the XStrap instruction did not correctly halt simulation ([#3848](https://github.com/OpenXiangShan/XiangShan/pull/3848)), with corresponding updates in NEMU ([#639](https://github.com/OpenXiangShan/NEMU/pull/639))
+    - Fixed an issue where the correct privilege level was not entered after virtual interrupt injection ([#3812](https://github.com/OpenXiangShan/XiangShan/pull/3812))
+    - NEMU fixed issues such as incorrect decoding, failing to trigger illegal instruction exceptions ([#646](https://github.com/OpenXiangShan/NEMU/pull/646), [#628](https://github.com/OpenXiangShan/NEMU/pull/628), [#645](https://github.com/OpenXiangShan/NEMU/pull/645))
 
-- **Timing/Power Optimization**
+- **Timing/Area Optimization**
+    - Eliminated the `old vd` operand when reading the `vl` state ([#3847](https://github.com/OpenXiangShan/XiangShan/pull/3847))
+    - Removed redundant parameter variables in ROB entries ([#3833](https://github.com/OpenXiangShan/XiangShan/pull/3833))
 
 - **RVA23 Profile**
+    - **VS/S/M Mode Double Trap Extension (Ss/mdbltrp):** Merged into master ([#3789](https://github.com/OpenXiangShan/XiangShan/pull/3789))
+    - Added support for critical-error checks and entering the critical-error state ([#3793](https://github.com/OpenXiangShan/XiangShan/pull/3793), [#3835](https://github.com/OpenXiangShan/XiangShan/pull/3835))
+    - Initial support for Pause Hint Extension (Zihintpause) ([#3823](https://github.com/OpenXiangShan/XiangShan/pull/3823))
+    - **Scalar/Vector Half-Precision Floating-Point Extension:** Merged into master ([#3840](https://github.com/OpenXiangShan/XiangShan/pull/3840))
+    - NEMU supports icount/itrigger checks when acting as REF ([#614](https://github.com/OpenXiangShan/NEMU/pull/614))
 
 ### MemBlock and cache
 

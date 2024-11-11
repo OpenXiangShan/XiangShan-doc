@@ -31,10 +31,25 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复 Debug 模式相关问题：
+        - 修复重定向后，step 指令提交时多提交一条指令的问题 ([#3828](https://github.com/OpenXiangShan/XiangShan/pull/3828))
+        - 修复 nmie 为 0 时，debug 中断无法响应的问题 ([#3826](https://github.com/OpenXiangShan/XiangShan/pull/3826))
+        - 修复 原子访存在 trigger 触发 break point 异常时 mtval 更新错误 ([#3803](https://github.com/OpenXiangShan/XiangShan/pull/3803))
+    - 修复 mip 寄存器赋值不完全的问题 ([#3827](https://github.com/OpenXiangShan/XiangShan/pull/3827))
+    - 修复 XStrap 指令没有正确停止仿真的问题 ([#3848](https://github.com/OpenXiangShan/XiangShan/pull/3848))，NEMU 也完成了对应修改 ([#639](https://github.com/OpenXiangShan/NEMU/pull/639))
+    - 修复虚拟中断注入后，未能陷入正确特权级的问题 ([#3812](https://github.com/OpenXiangShan/XiangShan/pull/3812))
+    - NEMU 修复部分译码错误，未触发非法指令异常等问题 ([#646](https://github.com/OpenXiangShan/NEMU/pull/646), [#628](https://github.com/OpenXiangShan/NEMU/pull/628), [#645](https://github.com/OpenXiangShan/NEMU/pull/645))
 
-- 时序/功耗优化
+- 时序/面积优化
+    - 读取 vl 状态时，消除 old vd 操作数 ([#3847](https://github.com/OpenXiangShan/XiangShan/pull/3847))
+    - 删除 rob 表项中冗余参数变量 ([#3833](https://github.com/OpenXiangShan/XiangShan/pull/3833))
 
 - RVA23 Profile
+    - VS/S/M 模式双重陷入拓展 (Ss/mdbltrp) 已合入主线（[#3789](https://github.com/OpenXiangShan/XiangShan/pull/3789)）
+    - 支持 critical-error 检查以及进入 critical-error state ([#3793](https://github.com/OpenXiangShan/XiangShan/pull/3793), [#3835](https://github.com/OpenXiangShan/XiangShan/pull/3835))
+    - 初步支持暂停提示拓展 (Zihintpause) ([#3823](https://github.com/OpenXiangShan/XiangShan/pull/3823))
+    - 支持标量/向量半精度浮点拓展 (Zfh/Zvfh) ([#3840](https://github.com/OpenXiangShan/XiangShan/pull/3840))
+    - NEMU 支持作为 REF 时对 icount/itrigger 检查 ([#614](https://github.com/OpenXiangShan/NEMU/pull/614))
 
 ### 访存与缓存
 

@@ -14,7 +14,7 @@
 ## Branch prediction
 
 - Michaud, Pierre. "[A PPM-like, tag-based branch predictor.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/Tage.scala)" The Journal of Instruction-Level Parallelism 7 (2005): 10.
-- Seznec, André, and Pierre Michaud. "A case for (partially) tagged geometric history length branch prediction." The Journal of Instruction-Level Parallelism 8 (2006): 23.
+- Seznec, André, and Pierre Michaud. "[A case for (partially) tagged geometric history length branch prediction.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/Tage.scala)" The Journal of Instruction-Level Parallelism 8 (2006): 23.
 - Seznec, André. "[A 64-Kbytes ITTAGE indirect branch predictor.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/ITTAGE.scala)" JWAC-2: Championship Branch Prediction. 2011.
 - Seznec, André. "[A 256 kbits l-tage branch predictor.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/Tage.scala)" Journal of Instruction-Level Parallelism (JILP) Special Issue: The Second Championship Branch Prediction Competition (CBP-2) 9 (2007): 1-6.
 - Seznec, André. "[Tage-sc-l branch predictors.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/SC.scala)" JILP-Championship Branch Prediction. 2014.

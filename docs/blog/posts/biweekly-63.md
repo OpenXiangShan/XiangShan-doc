@@ -36,19 +36,21 @@ categories:
 ### 访存与缓存
 
 - CHI 总线
-    - 通过提高 CHI 转接桥并发度与 TL 版本对齐 SPEC CPU 2006 libquantum 测试点性能，但是其他测试点仍然性能严重倒退问题
-
+    - 通过提高 CHI 转接桥并发度与 TL 版本对齐 SPEC CPU 2006 libquantum 测试点性能，但是其他测试点仍然存在性能严重倒退问题
+    - 完成 OpenLLC（基于 CHI 总线的 L3 Cache）、以及 OpenNCB（CHI-AXI 转接桥）与香山的集成，并合入主线 ([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672))。OpenLLC 的 github 仓库为 ([OpenLLC](https://github.com/OpenXiangShan/OpenLLC))
 
 - Bug 修复
-    - 修复 CMO.clean / flush 操作在 L1 miss 在 L2 hit 时的 bug ([#3814](https://github.com/OpenXiangShan/XiangShan/pull/3814))
-
-
+    - 修复 CMO.clean / flush 操作在 L1 miss、L2 hit 时的 bug ([#3814](https://github.com/OpenXiangShan/XiangShan/pull/3814))
+    - 修复非对齐访存指令访问 mmio 空间时，mcause 设置错误的 bug ([NEMU #650](https://github.com/OpenXiangShan/NEMU/pull/650))
+    - 修复非对齐访存指令发生 guest page fault 时，写入 *tval 的 gpaddr 有误的 bug ([#3809](https://github.com/OpenXiangShan/XiangShan/pull/3809))、([#3822](https://github.com/OpenXiangShan/XiangShan/pull/3822))
+    - 修复取指发生 guest page fault 时，因地址位宽问题导致写入 *tval 的 gpaddr 被截断的 bug ([#3795](https://github.com/OpenXiangShan/XiangShan/pull/3795))
 
 - PPA 优化
+    - 调研 MemBlock 的一系列面积优化点，主要包括队列项数裁剪、冗余逻辑删除、功能单元合并等
 
 - 工具
     - TL-Test 验证框架：在 tl-test-new 中添加 CMO 的测试环境，目前可以在 tl-test-new 上运行 CMO transaction ([#3804](https://github.com/OpenXiangShan/XiangShan/pull/3804))
-
+    - 在 DiffTest store event 中添加 PC 和 RobIdx 等信息辅助调试 ([difftest #499](https://github.com/OpenXiangShan/difftest/pull/499))
 
 
 

@@ -35,14 +35,21 @@ Recently,
 
 - **CHI Bus**
     - By increasing the concurrency of the CHI bridge to align with the TL version, the performance of the SPEC CPU 2006 libquantum benchmark improves; however, performance for other benchmarks still shows significant regression
+    - Completed integration of OpenLLC (CHI-based L3 Cache), and OpenNCB (CHI-to-AXI bridge) with XiangShan, already merged into master ([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672)). OpenLLC's github repository is ([OpenLLC](https://github.com/OpenXiangShan/OpenLLC))
 
 - **Bug fixes**
     - Fix the bug in CMO.clean/flush operations when there is an L1 miss and an L2 hit ([#3814](https://github.com/OpenXiangShan/XiangShan/pull/3814))
+    - Fix a bug that mcause is set wrongly when non-aligned load / store instructions access mmio space ([NEMU #650](https://github.com/OpenXiangShan/NEMU/pull/650))
+    - Fix a bug that gpaddr written to *tval is wrong when guest page fault occurs in unaligned load / store instructions ([#3809](https://github.com/OpenXiangShan/XiangShan/pull/3809)), ([#3822](https://github.com/OpenXiangShan/XiangShan/pull/3822))
+    - Fix a bug that gpaddr written to *tval is truncated when guest page fault occurs in instruction fetch ([#3795](https://github.com/OpenXiangShan/XiangShan/pull/3795))
+
 
 - **PPA Optimizations**
+    - Discuss a series of area optimisation points in MemBlock, including queue entries reduction, redundant logic removal, functional unit merging, and so on.
 
 - **Tool**
     - TL-Test verification framework: Add a test environment for CMO in tl-test-new, enabling the execution of CMO transactions on tl-test-new ([#3804](https://github.com/OpenXiangShan/XiangShan/pull/3804))
+    - Add PC and RobIdx information to DiffTest store event to aid in debugging ([difftest #499](https://github.com/OpenXiangShan/difftest/pull/499))
 
 ## RTL Evaluation
 

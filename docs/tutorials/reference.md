@@ -60,11 +60,11 @@
 
 ## Non-blocking Cache
 
-[1] Kroft, David. "[Lockup-free instruction fetch/prefetch cache organization.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/dcache/mainpipe/MissQueue.scala){target="_blank"}" 25 years of the international symposia on Computer architecture (selected papers). 1998. [[RTL Codes]](){target="_blank"}
+[1] David Kroft. "[Lockup-free instruction fetch/prefetch cache organization.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/dcache/mainpipe/MissQueue.scala){target="_blank"}" 25 years of the international symposia on Computer architecture (selected papers). 1998. [[RTL Codes]](){target="_blank"}
 
 ## Multi Port Data Cache
 
-[1] Sohi, Gurindar S., and Manoj Franklin. "[High-bandwidth data memory systems for superscalar processors.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/dcache/data/BankedDataArray.scala){target="_blank"}" Proceedings of the fourth international conference on Architectural support for programming languages and operating systems. 1991. [[RTL Codes]](){target="_blank"}
+[1] Gurindar S. Sohi and Manoj Franklin "[High-bandwidth data memory systems for superscalar processors.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/dcache/data/BankedDataArray.scala){target="_blank"}" Proceedings of the fourth international conference on Architectural support for programming languages and operating systems. 1991. [[RTL Codes]](){target="_blank"}
 
 ## Cache Directory Structure
 

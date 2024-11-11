@@ -50,7 +50,7 @@
 
 ## MDP
 
-[1] George Z. Chrysos and Joel S. Emer. "[Memory dependence prediction using store sets.](https://doi.org/10.1145/279361.279378){target="_blank"}" ACM SIGARCH Computer Architecture News 26.3 (1998): 142-153. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/mdp/StoreSet.scala){target="_blank"}
+[1] George Z. Chrysos and Joel S. Emer. "[Memory dependence prediction using store sets.](https://doi.org/10.1109/ISCA.1998.694770){target="_blank"}" 25th Annual International Symposium on Computer Architecture. 1998. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/mdp/StoreSet.scala){target="_blank"}
 
 [2] Richard Kessler. "[The alpha 21264 microprocessor.](https://doi.org/10.1109/40.755465){target="_blank"}" IEEE micro 19.2 (1999): 24-36. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/mdp/WaitTable.scala){target="_blank"}
 
@@ -60,33 +60,32 @@
 
 ## Non-blocking Cache
 
-[1] David Kroft. "[Lockup-free instruction fetch/prefetch cache organization.](https://dl.acm.org/doi/10.5555/800052.801868){target="_blank"}" Proceedings of the 8th annual symposium on Computer Architecture
-. 1981. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/dcache/mainpipe/MissQueue.scala){target="_blank"}
+[1] David Kroft. "[Lockup-free instruction fetch/prefetch cache organization.](https://dl.acm.org/doi/10.5555/800052.801868){target="_blank"}" Proceedings of the 8th annual symposium on Computer Architecture. 1981. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/dcache/mainpipe/MissQueue.scala){target="_blank"}
 
 ## Multi Port Data Cache
 
-[1] Gurindar S. Sohi and Manoj Franklin "[High-bandwidth data memory systems for superscalar processors.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/dcache/data/BankedDataArray.scala){target="_blank"}" Proceedings of the fourth international conference on Architectural support for programming languages and operating systems. 1991. [[RTL Codes]](){target="_blank"}
+[1] Gurindar S. Sohi and Manoj Franklin "[High-bandwidth data memory systems for superscalar processors.](https://doi.org/10.1145/106973.106980){target="_blank"}" Proceedings of the fourth international conference on Architectural support for programming languages and operating systems. 1991. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/dcache/data/BankedDataArray.scala){target="_blank"}
 
 ## Cache Directory Structure
 
-[1] Zhao Li, Iyer Ravi, Makineni Srihari, Newell Don and Cheng Liqun. "[NCID: a non-inclusive cache, inclusive directory architecture for flexible and efficient cache hierarchies.](https://github.com/OpenXiangShan/CoupledL2/tree/master/src/main/scala/coupledL2){target="_blank"}" Proceedings of the 7th ACM international conference on Computing frontiers. 2010. [[RTL Codes]](){target="_blank"}
+[1] Zhao Li, Iyer Ravi, Makineni Srihari, Newell Don and Cheng Liqun. "[NCID: a non-inclusive cache, inclusive directory architecture for flexible and efficient cache hierarchies.](https://doi.org/10.1145/1787275.1787314){target="_blank"}" Proceedings of the 7th ACM international conference on Computing frontiers. 2010. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/tree/master/src/main/scala/coupledL2){target="_blank"}
 
 ## Data Replacement
 
-[1] Jaleel Aamer, Theobald B. Kevin, Steely C. Simon and Emer Joel. "[High performance cache replacement using re-reference interval prediction (RRIP).](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/utils/Replacer.scala){target="_blank"}" ACM SIGARCH computer architecture news 38.3 (2010): 60-71. [[RTL Codes]](){target="_blank"}
+[1] Jaleel Aamer, Theobald B. Kevin, Steely C. Simon and Emer Joel. "[High performance cache replacement using re-reference interval prediction (RRIP).](https://doi.org/10.1145/1816038.1815971){target="_blank"}" ACM SIGARCH computer architecture news 38.3 (2010): 60-71. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/utils/Replacer.scala){target="_blank"}
 
 ## Data Prefetch
 
-[1] Jean-Loup Baer, Tien-Fu Chen "[An effective on-chip preloading scheme to reduce data access penalty.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/L1StridePrefetcher.scala){target="_blank"}" Proceedings of the 1991 ACM/IEEE conference on Supercomputing. 1991. [[RTL Codes]](){target="_blank"}
+[1] Jean-Loup Baer, Tien-Fu Chen "[An effective on-chip preloading scheme to reduce data access penalty.](https://doi.org/10.1145/125826.125932){target="_blank"}" Proceedings of the 1991 ACM/IEEE conference on Supercomputing. 1991. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/L1StridePrefetcher.scala){target="_blank"}
 
-[2] Somogyi Stephen, Wenisch F. Thomas, Ailamaki Anastassia, Falsafi Babak and Moshovos Andreas "[Spatial memory streaming.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/SMSPrefetcher.scala){target="_blank"}" ACM SIGARCH Computer Architecture News 34.2 (2006): 252-263. [[RTL Codes]](){target="_blank"}
+[2] Somogyi Stephen, Wenisch F. Thomas, Ailamaki Anastassia, Falsafi Babak and Moshovos Andreas "[Spatial memory streaming.](https://doi.org/10.1109/ISCA.2006.38){target="_blank"}" 33rd International Symposium on Computer Architecture. 2006. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/SMSPrefetcher.scala){target="_blank"}
 
-[3] Srinath Santhosh, Mutlu Onur, Kim Hyesoon and Patt N. Yale. "[Feedback directed prefetching: Improving the performance and bandwidth-efficiency of hardware prefetchers.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/FDP.scala){target="_blank"}" 2007 IEEE 13th International Symposium on High Performance Computer Architecture. [[RTL Codes]](){target="_blank"}IEEE, 2007.
+[3] Srinath Santhosh, Mutlu Onur, Kim Hyesoon and Patt N. Yale. "[Feedback directed prefetching: Improving the performance and bandwidth-efficiency of hardware prefetchers.](https://doi.org/10.1109/HPCA.2007.346185){target="_blank"}" 2007 IEEE 13th International Symposium on High Performance Computer Architecture. IEEE, 2007. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/FDP.scala){target="_blank"}
 
-[4] Pierre Michaud. "[A Best-Offset Prefetcher.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/BestOffsetPrefetch.scala){target="_blank"}" 2nd Data Prefetching Championship, Jun 2015, Portland, United States. hal-01165600 [[RTL Codes]](){target="_blank"}
+[4] Pierre Michaud. "[A Best-Offset Prefetcher.](https://inria.hal.science/hal-01165600/){target="_blank"}" 2nd Data Prefetching Championship, Jun 2015, Portland, United States. hal-01165600 [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/BestOffsetPrefetch.scala){target="_blank"}
 
-[5] Pierre Michaud. "[Best-Offset Hardware Prefetching.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/BestOffsetPrefetch.scala){target="_blank"}" 2016 IEEE International Symposium on High Performance Computer Architecture (HPCA), 2016, pp. 469–80, https://doi.org/10.1109/HPCA.2016.7446087. [[RTL Codes]](){target="_blank"}
+[5] Pierre Michaud. "[Best-Offset Hardware Prefetching.](https://doi.org/10.1109/HPCA.2016.7446087){target="_blank"}" 2016 IEEE International Symposium on High Performance Computer Architecture (HPCA). IEEE, 2016. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/BestOffsetPrefetch.scala){target="_blank"}
 
-[6] Hao Wu, Nathella Krishnendra, Pusdesris Joseph, Sunwoo Dam, Jain Akanksha and Lin Calvin. "[Temporal prefetching without the off-chip metadata.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala){target="_blank"}" Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture. 2019. [[RTL Codes]](){target="_blank"}
+[6] Hao Wu, Nathella Krishnendra, Pusdesris Joseph, Sunwoo Dam, Jain Akanksha and Lin Calvin. "[Temporal prefetching without the off-chip metadata.](https://doi.org/10.1145/3352460.3358300){target="_blank"}" Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture. 2019. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala){target="_blank"}
 
-[7] Ainsworth Sam and Lev Mukhanov. "[Triangel: A High-Performance, Accurate, Timely On-Chip Temporal Prefetcher.](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala){target="_blank"}" 2024 ACM/IEEE 51st Annual International Symposium on Computer Architecture (ISCA), 2024. [[RTL Codes]](){target="_blank"}
+[7] Ainsworth Sam and Lev Mukhanov. "[Triangel: A High-Performance, Accurate, Timely On-Chip Temporal Prefetcher.](https://doi.org/10.1109/ISCA59077.2024.00090){target="_blank"}" 2024 ACM/IEEE 51st Annual International Symposium on Computer Architecture. 2024. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala){target="_blank"}

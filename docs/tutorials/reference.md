@@ -30,7 +30,7 @@
 
 [7] André Seznec. "[Tage-sc-l branch predictors again.](https://inria.hal.science/hal-01354253){target="_blank"}" 5th JILP Workshop on Computer Architecture Competitions (JWAC-5): Championship Branch Prediction (CBP-5). 2016. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/SC.scala){target="_blank"}
 
-[8] Tan, H.Z., and J. Wang. "[A Return Address Predictor Based on Persistent Stack.](https://crad.ict.ac.cn/en/article/doi/10.7544/issn1000-1239.202111274){target="_blank"}" Journal of Computer Research and Development 60.6 (2023): 1337-1345. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/newRAS.scala){target="_blank"}
+[8] Tan Hongze and Wang Jian. "[A Return Address Predictor Based on Persistent Stack.](https://crad.ict.ac.cn/en/article/doi/10.7544/issn1000-1239.202111274){target="_blank"}" Journal of Computer Research and Development 60.6 (2023): 1337-1345. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/newRAS.scala){target="_blank"}
 
 ## Scheduling
 

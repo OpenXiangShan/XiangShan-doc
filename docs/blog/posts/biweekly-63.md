@@ -9,7 +9,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 63 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端添加 FTB pred_data 寄存器的复位，后端 VS/S/M 模式双重陷入拓展 (Ss/mdbltrp) 合入主线，访存和缓存部分修复 CMO.clean / flush 操作在 L1 miss、L2 hit 时的 Bug。本期还更新了昆明湖架构近期性能。
 
 
 <!-- more -->
@@ -34,7 +34,7 @@ categories:
     - 修复 Debug 模式相关问题：
         - 修复重定向后，step 指令提交时多提交一条指令的问题 ([#3828](https://github.com/OpenXiangShan/XiangShan/pull/3828))
         - 修复 nmie 为 0 时，debug 中断无法响应的问题 ([#3826](https://github.com/OpenXiangShan/XiangShan/pull/3826))
-        - 修复 原子访存在 trigger 触发 break point 异常时 mtval 更新错误 ([#3803](https://github.com/OpenXiangShan/XiangShan/pull/3803))
+        - 修复原子访存在 trigger 触发 break point 异常时 mtval 更新错误 ([#3803](https://github.com/OpenXiangShan/XiangShan/pull/3803))
     - 修复 mip 寄存器赋值不完全的问题 ([#3827](https://github.com/OpenXiangShan/XiangShan/pull/3827))
     - 修复 XStrap 指令没有正确停止仿真的问题 ([#3848](https://github.com/OpenXiangShan/XiangShan/pull/3848))，NEMU 也完成了对应修改 ([#639](https://github.com/OpenXiangShan/NEMU/pull/639))
     - 修复虚拟中断注入后，未能陷入正确特权级的问题 ([#3812](https://github.com/OpenXiangShan/XiangShan/pull/3812))
@@ -54,14 +54,14 @@ categories:
 ### 访存与缓存
 
 - CHI 总线
-    - 通过提高 CHI 转接桥并发度与 TL 版本对齐 SPEC CPU 2006 libquantum 测试点性能，但是其他测试点仍然存在性能严重倒退问题
-    - 完成 OpenLLC（基于 CHI 总线的 L3 Cache）、以及 OpenNCB（CHI-AXI 转接桥）与香山的集成，并合入主线 ([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672))。OpenLLC 的 github 仓库为 ([OpenLLC](https://github.com/OpenXiangShan/OpenLLC))
+    - 通过提高 CHI 转接桥并发度与 TL 版本对齐 SPEC CPU2006 libquantum 测试点性能，但是其他测试点仍然存在性能严重倒退问题
+    - 完成 OpenLLC（基于 CHI 总线的 L3 Cache）、以及 OpenNCB（CHI-AXI 转接桥）与香山的集成，并合入主线 ([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672))
 
 - Bug 修复
-    - 修复 CMO.clean / flush 操作在 L1 miss、L2 hit 时的 bug ([#3814](https://github.com/OpenXiangShan/XiangShan/pull/3814))
-    - 修复非对齐访存指令访问 mmio 空间时，mcause 设置错误的 bug ([NEMU #650](https://github.com/OpenXiangShan/NEMU/pull/650))
-    - 修复非对齐访存指令发生 guest page fault 时，写入 *tval 的 gpaddr 有误的 bug ([#3809](https://github.com/OpenXiangShan/XiangShan/pull/3809))、([#3822](https://github.com/OpenXiangShan/XiangShan/pull/3822))
-    - 修复取指发生 guest page fault 时，因地址位宽问题导致写入 *tval 的 gpaddr 被截断的 bug ([#3795](https://github.com/OpenXiangShan/XiangShan/pull/3795))
+    - 修复 CMO.clean / flush 操作在 L1 miss、L2 hit 时的 Bug ([#3814](https://github.com/OpenXiangShan/XiangShan/pull/3814))
+    - 修复非对齐访存指令访问 mmio 空间时，mcause 设置错误的 Bug ([NEMU #650](https://github.com/OpenXiangShan/NEMU/pull/650))
+    - 修复非对齐访存指令发生 guest page fault 时，写入 *tval 的 gpaddr 有误的 Bug ([#3809](https://github.com/OpenXiangShan/XiangShan/pull/3809))、([#3822](https://github.com/OpenXiangShan/XiangShan/pull/3822))
+    - 修复取指发生 guest page fault 时，因地址位宽问题导致写入 *tval 的 gpaddr 被截断的 Bug ([#3795](https://github.com/OpenXiangShan/XiangShan/pull/3795))
 
 - PPA 优化
     - 调研 MemBlock 的一系列面积优化点，主要包括队列项数裁剪、冗余逻辑删除、功能单元合并等
@@ -110,6 +110,7 @@ categories:
 * 香山技术讨论 QQ 群：879550595
 * 香山技术讨论网站：https://github.com/OpenXiangShan/XiangShan/discussions
 * 香山文档：https://xiangshan-doc.readthedocs.io/
+* OpenLLC 的 github 仓库地址为: https://github.com/OpenXiangShan/OpenLLC
 
 编辑：李燕琴、林志达、满洋、刘泽昊、冯浩原、马月骁
 

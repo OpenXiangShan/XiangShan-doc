@@ -9,7 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 63th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
-Recently,
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend added reset for FTB pred_data register, the backend merged VS/S/M Mode Double Trap Extension (Ss/mdbltrp) into master, and the memory and cache subsystem fixed the bug in CMO.clean/flush operations when there is an L1 miss and an L2 hit. This update also includes the latest performance improvements of the Kunminghu architecture.
 
 <!-- more -->
 ## Recent developments
@@ -53,15 +53,14 @@ Recently,
 ### MemBlock and cache
 
 - **CHI Bus**
-    - By increasing the concurrency of the CHI bridge to align with the TL version, the performance of the SPEC CPU 2006 libquantum benchmark improves; however, performance for other benchmarks still shows significant regression
-    - Completed integration of OpenLLC (CHI-based L3 Cache), and OpenNCB (CHI-to-AXI bridge) with XiangShan, already merged into master ([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672)). OpenLLC's github repository is ([OpenLLC](https://github.com/OpenXiangShan/OpenLLC))
+    - By increasing the concurrency of the CHI bridge to align with the TL version, the performance of the SPEC CPU2006 libquantum benchmark improves; however, performance for other benchmarks still shows significant regression
+    - Completed integration of OpenLLC (CHI-based L3 Cache), and OpenNCB (CHI-to-AXI bridge) with XiangShan, already merged into master ([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672))
 
 - **Bug fixes**
     - Fix the bug in CMO.clean/flush operations when there is an L1 miss and an L2 hit ([#3814](https://github.com/OpenXiangShan/XiangShan/pull/3814))
     - Fix a bug that mcause is set wrongly when non-aligned load / store instructions access mmio space ([NEMU #650](https://github.com/OpenXiangShan/NEMU/pull/650))
     - Fix a bug that gpaddr written to *tval is wrong when guest page fault occurs in unaligned load / store instructions ([#3809](https://github.com/OpenXiangShan/XiangShan/pull/3809)), ([#3822](https://github.com/OpenXiangShan/XiangShan/pull/3822))
     - Fix a bug that gpaddr written to *tval is truncated when guest page fault occurs in instruction fetch ([#3795](https://github.com/OpenXiangShan/XiangShan/pull/3795))
-
 
 - **PPA Optimizations**
     - Discuss a series of area optimisation points in MemBlock, including queue entries reduction, redundant logic removal, functional unit merging, and so on.
@@ -108,6 +107,7 @@ In the late stage of XiangShan Kunminghu architecture development, XiangShan's p
 * XiangShan technical discussion QQ group: 879550595
 * XiangShan technical discussion website: https://github.com/OpenXiangShan/XiangShan/discussions
 * XiangShan Documentation: https://xiangshan-doc.readthedocs.io/
+* OpenLLC: https://github.com/OpenXiangShan/OpenLLC
 
 Editors: Li Yanqin, Lin Zhida, Man Yang, Liu Zehao, Feng Haoyuan, Ma Yuexiao
 

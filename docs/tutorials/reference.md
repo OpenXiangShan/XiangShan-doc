@@ -50,17 +50,18 @@
 
 ## MDP
 
-[1] Chrysos, George Z., and Joel S. Emer. "[Memory dependence prediction using store sets.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/mdp/StoreSet.scala){target="_blank"}" ACM SIGARCH Computer Architecture News 26.3 (1998): 142-153. [[RTL Codes]](){target="_blank"}
+[1] George Z. Chrysos and Joel S. Emer. "[Memory dependence prediction using store sets.](https://doi.org/10.1145/279361.279378){target="_blank"}" ACM SIGARCH Computer Architecture News 26.3 (1998): 142-153. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/mdp/StoreSet.scala){target="_blank"}
 
-[2] Kessler, Richard E. "[The alpha 21264 microprocessor.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/mdp/WaitTable.scala){target="_blank"}" IEEE micro 19.2 (1999): 24-36. [[RTL Codes]](){target="_blank"}
+[2] Richard Kessler. "[The alpha 21264 microprocessor.](https://doi.org/10.1109/40.755465){target="_blank"}" IEEE micro 19.2 (1999): 24-36. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/mdp/WaitTable.scala){target="_blank"}
 
 ## TLB
 
-[1] Pham, Binh, et al. "Colt: Coalesced large-reach tlbs." 2012 45th Annual IEEE/ACM International Symposium on Microarchitecture. IEEE, 2012. [[RTL Codes]](){target="_blank"}
+[1] Binh Pham, Vaidyanathan Viswanathan, Jaleel Aamer and Bhattacharjee Abhishek. "[Colt: Coalesced large-reach tlbs.](https://doi.org/10.1109/MICRO.2012.32){target="_blank"}" 2012 45th Annual IEEE/ACM International Symposium on Microarchitecture. IEEE, 2012. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/mmu/TLB.scala){target="_blank"}
 
 ## Non-blocking Cache
 
-[1] David Kroft. "[Lockup-free instruction fetch/prefetch cache organization.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/dcache/mainpipe/MissQueue.scala){target="_blank"}" 25 years of the international symposia on Computer architecture (selected papers). 1998. [[RTL Codes]](){target="_blank"}
+[1] David Kroft. "[Lockup-free instruction fetch/prefetch cache organization.](https://dl.acm.org/doi/10.5555/800052.801868){target="_blank"}" Proceedings of the 8th annual symposium on Computer Architecture
+. 1981. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/dcache/mainpipe/MissQueue.scala){target="_blank"}
 
 ## Multi Port Data Cache
 

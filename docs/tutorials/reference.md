@@ -42,11 +42,11 @@
 
 ## Execution
 
-[1] Booth, Andrew D. "[A signed binary multiplication technique.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/Multiplier.scala){target="_blank"}" The Quarterly Journal of Mechanics and Applied Mathematics 4.2 (1951): 236-240. [[RTL Codes]](){target="_blank"}
+[1] Andrew D. Booth. "[A signed binary multiplication technique.](https://doi.org/10.1093/qjmam/4.2.236){target="_blank"}" The Quarterly Journal of Mechanics and Applied Mathematics 4.2 (1951): 236-240. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/Multiplier.scala){target="_blank"}
 
-[2] Wallace, Christopher S. "[A suggestion for a fast multiplier.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/Multiplier.scala){target="_blank"}" IEEE Transactions on electronic Computers 1 (1964): 14-17. [[RTL Codes]](){target="_blank"}
+[2] C. S. Wallace. "[A suggestion for a fast multiplier.](https://doi.org/10.1109/PGEC.1964.263830){target="_blank"}" IEEE Transactions on electronic Computers 1 (1964): 14-17. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/Multiplier.scala){target="_blank"}
 
-[3] Antelo, Elisardo, et al. "[Digit-recurrence dividers with reduced logical depth.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/SRT16Divider.scala){target="_blank"}" IEEE Transactions on Computers 54.7 (2005): 837-851. [[RTL Codes]](){target="_blank"}
+[3] Elisardo Antelo, Tomas Lang, Paolo Montuschi and Alberto Nannarelli. "[Digit-recurrence dividers with reduced logical depth.](https://doi.org/10.1109/TC.2005.115){target="_blank"}" IEEE Transactions on Computers 54.7 (2005): 837-851. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/SRT16Divider.scala){target="_blank"}
 
 ## MDP
 

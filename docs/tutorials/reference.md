@@ -1,4 +1,6 @@
-# Reference
+# Acknowledgments
+
+This list outlines the techniques used in the Xiangshan RTL codes.
 
 ## Instruction Fetching
 

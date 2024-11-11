@@ -17,11 +17,15 @@ Recently,
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Added reset for FTB pred_data register ([#3628](https://github.com/OpenXiangShan/XiangShan/pull/3628)).
+    - Prevent prefetch when backend redirects with exceptions ([#3787](https://github.com/OpenXiangShan/XiangShan/pull/3787)).
 
-- **Timing**
+- **Performance**
+    - Indirect jumps that never change target do not use the ITTAGE indirect predictor ([#3718](https://github.com/OpenXiangShan/XiangShan/pull/3718)).
 
-- **Code Style**
+- **Power**
+    - No updates when FTB is disabled ([#3543](https://github.com/OpenXiangShan/XiangShan/pull/3543)).
+
 
 ### Backend
 

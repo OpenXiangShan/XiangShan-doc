@@ -19,11 +19,14 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 添加 FTB pred_data 寄存器的复位 ([#3628](https://github.com/OpenXiangShan/XiangShan/pull/3628))
+    - 后端的重定向带有异常时不进行预取 ([#3787](https://github.com/OpenXiangShan/XiangShan/pull/3787))
 
-- 时序
+- 性能
+    - 从未改变过 target 的间接跳转不进入 ITTAGE 间接跳转预测器 ([#3718](https://github.com/OpenXiangShan/XiangShan/pull/3718))
 
-- Code Style
+- 功耗
+    - FTB 关闭时不进行更新 ([#3543](https://github.com/OpenXiangShan/XiangShan/pull/3543))
 
 ### 后端流水线
 

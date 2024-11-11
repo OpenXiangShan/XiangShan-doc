@@ -34,11 +34,11 @@
 
 ## Scheduling
 
-[1] Tomasulo, Robert M. "[An efficient algorithm for exploiting multiple arithmetic units.](https://github.com/OpenXiangShan/XiangShan/tree/master/src/main/scala/xiangshan/backend){target="_blank"}" IBM Journal of research and Development 11.1 (1967): 25-33. [[RTL Codes]](){target="_blank"}
+[1] R. M. Tomasulo. "[An efficient algorithm for exploiting multiple arithmetic units.](https://doi.org/10.1147/rd.111.0025){target="_blank"}" IBM Journal of research and Development 11.1 (1967): 25-33. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/tree/master/src/main/scala/xiangshan/backend){target="_blank"}
 
-[2] Smith, James E., and Andrew R. Pleszkun. "[Implementation of precise interrupts in pipelined processors.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/rob/Rob.scala){target="_blank"}" ACM SIGARCH Computer Architecture News 13.3 (1985): 36-44. [[RTL Codes]](){target="_blank"}
+[2] James E. Smith, and Andrew R. Pleszkun. "[Implementation of precise interrupts in pipelined processors.](https://doi.org/10.1145/327070.327125){target="_blank"}" ACM SIGARCH Computer Architecture News 13.3 (1985): 36-44. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/rob/Rob.scala){target="_blank"}
 
-[3] Latorre, Fernando, et al. "[Crob: implementing a large instruction window through compression.](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/rename/CompressUnit.scala){target="_blank"}" Transactions on high-performance embedded architectures and compilers III. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011. 115-134. [[RTL Codes]](){target="_blank"}
+[3] Fernando Latorre, Grigorios Magklis, Jose González, Pedro Chaparro, and Antonio González. "[Crob: implementing a large instruction window through compression.](https://doi.org/10.1007/978-3-642-19448-1_7){target="_blank"}" Transactions on high-performance embedded architectures and compilers III. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011. 115-134. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/rename/CompressUnit.scala){target="_blank"}
 
 ## Execution
 

@@ -4,7 +4,7 @@ This list outlines the techniques used in the XiangShan RTL codes.
 
 ## Instruction Fetching
 
-[1] Glenn Reinman, Todd Austin, and Brad Calder. "[A scalable front-end architecture for fast instruction delivery.](https://doi.org/10.1145/307338.300999){target="_blank"}" ACM SIGARCH Computer Architecture News 27.2 (1999): 234-245. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/NewFtq.scala){target="_blank"}
+[1] Glenn Reinman, Todd Austin, and Brad Calder. "[A scalable front-end architecture for fast instruction delivery.](https://doi.org/10.1109/ISCA.1999.765954){target="_blank"}" Proceedings of the 26th International Symposium on Computer Architecture. IEEE, 1999. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/NewFtq.scala){target="_blank"}
 
 [2] Alex Ramirez, Oliverio J. Santana, Josep L. Larriba-Pey, and Mateo Valero. "[Fetching instruction streams.](https://doi.org/10.1109/MICRO.2002.1176264){target="_blank"}" 35th Annual IEEE/ACM International Symposium on Microarchitecture, 2002.(MICRO-35). Proceedings. IEEE, 2002. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend){target="_blank"}
 
@@ -18,7 +18,7 @@ This list outlines the techniques used in the XiangShan RTL codes.
 
 ## Branch prediction
 
-[1] Kevin Skadron, P. S. Ahuja, Margaret Martonosi, and D. W. Clark. "[Improving prediction for procedure returns with return-address-stack repair mechanisms.](https://doi.org/10.1109/MICRO.1998.742787){target="_blank"}" Proceedings. 31st Annual ACM/IEEE International Symposium on Microarchitecture. IEEE, 1998. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/newRAS.scala){target="_blank"}
+[1] Kevin Skadron, Pritpal S. Ahuja, Margaret Martonosi, and Douglas W. Clark. "[Improving prediction for procedure returns with return-address-stack repair mechanisms.](https://doi.org/10.1109/MICRO.1998.742787){target="_blank"}" Proceedings. 31st Annual ACM/IEEE International Symposium on Microarchitecture. IEEE, 1998. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/newRAS.scala){target="_blank"}
 
 [2] Pierre Michaud. "[A PPM-like, tag-based branch predictor.](https://inria.hal.science/hal-03406188){target="_blank"}" The Journal of Instruction-Level Parallelism 7 (2005): 10. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/frontend/Tage.scala){target="_blank"}
 
@@ -36,9 +36,9 @@ This list outlines the techniques used in the XiangShan RTL codes.
 
 ## Scheduling
 
-[1] R. M. Tomasulo. "[An efficient algorithm for exploiting multiple arithmetic units.](https://doi.org/10.1147/rd.111.0025){target="_blank"}" IBM Journal of research and Development 11.1 (1967): 25-33. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/tree/master/src/main/scala/xiangshan/backend){target="_blank"}
+[1] Robert. M. Tomasulo. "[An efficient algorithm for exploiting multiple arithmetic units.](https://doi.org/10.1147/rd.111.0025){target="_blank"}" IBM Journal of research and Development 11.1 (1967): 25-33. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/tree/master/src/main/scala/xiangshan/backend){target="_blank"}
 
-[2] James E. Smith, and Andrew R. Pleszkun. "[Implementation of precise interrupts in pipelined processors.](https://doi.org/10.1145/327070.327125){target="_blank"}" ACM SIGARCH Computer Architecture News 13.3 (1985): 36-44. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/rob/Rob.scala){target="_blank"}
+[2] James E. Smith, and Andrew R. Pleszkun. "[Implementation of precise interrupts in pipelined processors.](https://dl.acm.org/doi/10.5555/327010.327125){target="_blank"}" Proceedings of the 12th annual international symposium on Computer architecture. 1985. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/rob/Rob.scala){target="_blank"}
 
 [3] Fernando Latorre, Grigorios Magklis, Jose González, Pedro Chaparro, and Antonio González. "[Crob: implementing a large instruction window through compression.](https://doi.org/10.1007/978-3-642-19448-1_7){target="_blank"}" Transactions on high-performance embedded architectures and compilers III. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011. 115-134. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/rename/CompressUnit.scala){target="_blank"}
 
@@ -46,7 +46,7 @@ This list outlines the techniques used in the XiangShan RTL codes.
 
 [1] Andrew D. Booth. "[A signed binary multiplication technique.](https://doi.org/10.1093/qjmam/4.2.236){target="_blank"}" The Quarterly Journal of Mechanics and Applied Mathematics 4.2 (1951): 236-240. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/Multiplier.scala){target="_blank"}
 
-[2] C. S. Wallace. "[A suggestion for a fast multiplier.](https://doi.org/10.1109/PGEC.1964.263830){target="_blank"}" IEEE Transactions on electronic Computers 1 (1964): 14-17. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/Multiplier.scala){target="_blank"}
+[2] Christopher. S. Wallace. "[A suggestion for a fast multiplier.](https://doi.org/10.1109/PGEC.1964.263830){target="_blank"}" IEEE Transactions on electronic Computers 1 (1964): 14-17. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/Multiplier.scala){target="_blank"}
 
 [3] Elisardo Antelo, Tomas Lang, Paolo Montuschi, and Alberto Nannarelli. "[Digit-recurrence dividers with reduced logical depth.](https://doi.org/10.1109/TC.2005.115){target="_blank"}" IEEE Transactions on Computers 54.7 (2005): 837-851. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/backend/fu/SRT16Divider.scala){target="_blank"}
 
@@ -58,7 +58,7 @@ This list outlines the techniques used in the XiangShan RTL codes.
 
 ## TLB
 
-[1] Binh Pham, Vaidyanathan Viswanathan, Jaleel Aamer, and Bhattacharjee Abhishek. "[Colt: Coalesced large-reach tlbs.](https://doi.org/10.1109/MICRO.2012.32){target="_blank"}" 2012 45th Annual IEEE/ACM International Symposium on Microarchitecture. IEEE, 2012. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/mmu/TLB.scala){target="_blank"}
+[1] Binh Pham, Viswanathan Vaidyanathan, Aamer Jaleel, and Abhishek Bhattacharjee. "[Colt: Coalesced large-reach tlbs.](https://doi.org/10.1109/MICRO.2012.32){target="_blank"}" 2012 45th Annual IEEE/ACM International Symposium on Microarchitecture. IEEE, 2012. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/mmu/TLB.scala){target="_blank"}
 
 ## Non-blocking Cache
 
@@ -70,7 +70,7 @@ This list outlines the techniques used in the XiangShan RTL codes.
 
 ## Data Replacement
 
-[1] Jaleel Aamer, Theobald B. Kevin, Steely C. Simon, and Emer Joel. "[High performance cache replacement using re-reference interval prediction (RRIP).](https://doi.org/10.1145/1816038.1815971){target="_blank"}" ACM SIGARCH computer architecture news 38.3 (2010): 60-71. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/utils/Replacer.scala){target="_blank"}
+[1] Aamer Jaleel, Kevin B. Theobald, Simon C. Steely, and Joel Emer. "[High performance cache replacement using re-reference interval prediction (RRIP).](https://doi.org/10.1145/1815961.1815971){target="_blank"}" Proceedings of the 37th annual international symposium on Computer architecture. 2010. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/utils/Replacer.scala){target="_blank"}
 
 ## Data Prefetch
 
@@ -78,12 +78,12 @@ This list outlines the techniques used in the XiangShan RTL codes.
 
 [2] Somogyi Stephen, Wenisch F. Thomas, Ailamaki Anastassia, Falsafi Babak, and Moshovos Andreas. "[Spatial memory streaming.](https://doi.org/10.1109/ISCA.2006.38){target="_blank"}" 33rd International Symposium on Computer Architecture. 2006. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/SMSPrefetcher.scala){target="_blank"}
 
-[3] Srinath Santhosh, Mutlu Onur, Kim Hyesoon, and Patt N. Yale. "[Feedback directed prefetching: Improving the performance and bandwidth-efficiency of hardware prefetchers.](https://doi.org/10.1109/HPCA.2007.346185){target="_blank"}" 2007 IEEE 13th International Symposium on High Performance Computer Architecture. IEEE, 2007. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/FDP.scala){target="_blank"}
+[3] Santhosh Srinath, Onur Mutlu, Hyesoon Kim, and Yale N. Patt "[Feedback directed prefetching: Improving the performance and bandwidth-efficiency of hardware prefetchers.](https://doi.org/10.1109/HPCA.2007.346185){target="_blank"}" 2007 IEEE 13th International Symposium on High Performance Computer Architecture. IEEE, 2007. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/mem/prefetch/FDP.scala){target="_blank"}
 
 [4] Pierre Michaud. "[A Best-Offset Prefetcher.](https://inria.hal.science/hal-01165600/){target="_blank"}" 2nd Data Prefetching Championship. 2015. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/BestOffsetPrefetch.scala){target="_blank"}
 
 [5] Pierre Michaud. "[Best-Offset Hardware Prefetching.](https://doi.org/10.1109/HPCA.2016.7446087){target="_blank"}" 2016 IEEE International Symposium on High Performance Computer Architecture (HPCA). IEEE, 2016. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/BestOffsetPrefetch.scala){target="_blank"}
 
-[6] Hao Wu, Nathella Krishnendra, Pusdesris Joseph, Sunwoo Dam, Jain Akanksha, and Lin Calvin. "[Temporal prefetching without the off-chip metadata.](https://doi.org/10.1145/3352460.3358300){target="_blank"}" Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture. 2019. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala){target="_blank"}
+[6] Hao Wu, Krishnendra Nathella, Joseph Pusdesris, Dam Sunwoo, Akanksha Jain, and Calvin Lin. "[Temporal prefetching without the off-chip metadata.](https://doi.org/10.1145/3352460.3358300){target="_blank"}" Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture. 2019. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala){target="_blank"}
 
 [7] Ainsworth Sam, and Lev Mukhanov. "[Triangel: A High-Performance, Accurate, Timely On-Chip Temporal Prefetcher.](https://doi.org/10.1109/ISCA59077.2024.00090){target="_blank"}" 2024 ACM/IEEE 51st Annual International Symposium on Computer Architecture. 2024. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/prefetch/TemporalPrefetch.scala){target="_blank"}

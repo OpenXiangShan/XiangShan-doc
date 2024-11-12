@@ -57,7 +57,7 @@ nav:
         - Introduction: guide.md
         - Publications: tutorials/publications.md
         - Talks: tutorials/talks.md
-        - Acknowledgments: tutorials/acknowledgments.md
+        - Acknowledgments: acknowledgments.md
         - Tutorials:
             - MICRO'24: tutorials/micro24.md
             - RVSC'24: tutorials/rvsc24.md

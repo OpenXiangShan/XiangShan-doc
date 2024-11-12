@@ -68,10 +68,6 @@ This list outlines the techniques used in the XiangShan RTL codes.
 
 [1] Gurindar S. Sohi, and Manoj Franklin. "[High-bandwidth data memory systems for superscalar processors.](https://doi.org/10.1145/106973.106980){target="_blank"}" Proceedings of the fourth international conference on Architectural support for programming languages and operating systems. 1991. [[RTL Codes]](https://github.com/OpenXiangShan/XiangShan/blob/master/src/main/scala/xiangshan/cache/dcache/data/BankedDataArray.scala){target="_blank"}
 
-## Cache Directory Structure
-
-[1] Zhao Li, Iyer Ravi, Makineni Srihari, Newell Don, and Cheng Liqun. "[NCID: a non-inclusive cache, inclusive directory architecture for flexible and efficient cache hierarchies.](https://doi.org/10.1145/1787275.1787314){target="_blank"}" Proceedings of the 7th ACM international conference on Computing frontiers. 2010. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/tree/master/src/main/scala/coupledL2){target="_blank"}
-
 ## Data Replacement
 
 [1] Jaleel Aamer, Theobald B. Kevin, Steely C. Simon, and Emer Joel. "[High performance cache replacement using re-reference interval prediction (RRIP).](https://doi.org/10.1145/1816038.1815971){target="_blank"}" ACM SIGARCH computer architecture news 38.3 (2010): 60-71. [[RTL Codes]](https://github.com/OpenXiangShan/CoupledL2/blob/master/src/main/scala/coupledL2/utils/Replacer.scala){target="_blank"}

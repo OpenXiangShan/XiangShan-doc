@@ -55,7 +55,6 @@ categories:
 
 - CHI 总线
     - 通过提高 CHI 转接桥并发度与 TL 版本对齐 SPEC CPU2006 libquantum 测试点性能，但是其他测试点仍然存在性能严重倒退问题
-    - 完成 OpenLLC（基于 CHI 总线的 L3 Cache）、以及 OpenNCB（CHI-AXI 转接桥）与香山的集成，并合入主线 ([#3672](https://github.com/OpenXiangShan/XiangShan/pull/3672))
 
 - Bug 修复
     - 修复 CMO.clean / flush 操作在 L1 miss、L2 hit 时的 Bug ([#3814](https://github.com/OpenXiangShan/XiangShan/pull/3814))

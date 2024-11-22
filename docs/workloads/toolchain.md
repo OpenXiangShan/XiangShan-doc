@@ -8,7 +8,7 @@ This chapter has [English version](./toolchain.en.md).
     * 适用于 riscv64 架构、面向 linux-gnu 平台（使用 glibc 标准库）的工具链。
     * 可通过包管理工具（如 Ubuntu 的 apt）安装。受限于发行版软件源限制，其编译器版本可能较老。
 * `riscv64-unknown-linux-gnu-`：
-    * 适用于 riscv64 架构、面向 linux-gnu 平台（使用 glibc 标准库）的工具链，可以与 `riscv64-unknown-linux-gnu-` 相互替换。
+    * 适用于 riscv64 架构、面向 linux-gnu 平台（使用 glibc 标准库）的工具链，可以与 `riscv64-linux-gnu-` 相互替换。
     * 可从 [riscv-collab/riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain) 构建。
 * `riscv64-unknown-elf-`：
     * 适用于 riscv64 架构、面向嵌入式/裸机平台（使用 newlib 标准库）的工具链。

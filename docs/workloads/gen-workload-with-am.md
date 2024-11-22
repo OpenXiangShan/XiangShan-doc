@@ -3,6 +3,11 @@
 This chapter has [English version](./gen-workload-with-am-en.md)
 
 
+
+[AM](https://github.com/OpenXiangShan/nexus-am) 是一个裸机运行时环境，用户可以使用 AM 来编译在香山裸机上运行的程序。
+
+
+
 我们以在AM环境下编译并运行 hello world 为例:
 
 ```shell

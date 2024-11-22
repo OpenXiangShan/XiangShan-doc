@@ -97,7 +97,7 @@ make init
 
 ### 生成可综合的单核代码
 
-在 `/xs-env/XiangShan` 下运行 `make verilog` ，该命令将会编译香山的 Chisel 代码，生成 Verilog，输出的文件在 `XiangShan/build/XSTop.v`
+在 `/xs-env/XiangShan` 下运行 `make verilog` ，该命令将会编译香山的 Chisel 代码，生成 Verilog，输出的文件在 `XiangShan/build/rtl/XSTop.sv`
 
 > 提示： `make verilog`命令生成的Verilog文件用于生成FPGA的bitstream和流片，去除了Difftest等仿真用的调试模块。
 如果需要生成带有Difftest的用于仿真的Verilog文件，可以使用`make sim-verilog`命令。
@@ -108,7 +108,7 @@ make init
 ### 生成可综合的双核代码
 
 
-在 `/xs-env/XiangShan` 下运行 `make verilog NUM_CORES=2` ，该命令将会生成香山双核的 Verilog，输出的文件在 `XiangShan/build/XSTop.v`
+在 `/xs-env/XiangShan` 下运行 `make verilog NUM_CORES=2` ，该命令将会生成香山双核的 Verilog，输出的文件在 `XiangShan/build/rtl/XSTop.sv`
 
 
 > 提示：生成完整香山核的 Verilog 代码所需的时间会稍久，推荐大家使用 Tmux 等工具在后台运行上述命令。可以在命令行参数中添加 `CONFIG=MinimalConfig`，将会生成一个最小配置的香山的 Verilog 代码。（参见：[香山参数系统说明](https://xiangshan-doc.readthedocs.io/zh_CN/latest/misc/config/)）

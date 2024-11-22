@@ -91,11 +91,11 @@ This command will clone some necessary submodules.
 
 ### Generate single core Verilog code
 
-Run `make verilog` under `/xs-env/XiangShan`, this command will compile Xiangshan's Chisel code and generate Verilog, the output Verilog file is `XiangShan/build/XSTop.v`. It takes about 40 minutes.
+Run `make verilog` under `/xs-env/XiangShan`, this command will compile Xiangshan's Chisel code and generate Verilog, the output Verilog file is `XiangShan/build/rtl/XSTop.sv`. It takes about 40 minutes.
 
 ### Generate dual core Verilog code
 
-Run `make verilog NUM_CORES=2` under `/xs-env/XiangShan`, this command will generate the Verilog of Xiangshan (dual core), the output Verilog file is `XiangShan/build/XSTop.v`
+Run `make verilog NUM_CORES=2` under `/xs-env/XiangShan`, this command will generate the Verilog of Xiangshan (dual core), the output Verilog file is `XiangShan/build/rtl/XSTop.sv`
 
 > Tip: Generate Verilog is slow. It is recommended to use tools such as Tmux to run these commands in background. You can add `CONFIG=MinimalConfig` to command-line arguments which will generate Verilog code of Xiangshan with minimal configuration.
 

@@ -103,7 +103,7 @@ Run `make verilog NUM_CORES=2` under `/xs-env/XiangShan`, this command will gene
 
 ### Generate workload using AM
 
-AM is a bare metal runtime environment. Users can use AM to compile programs running on Xiangshan bare metal.
+[AM](https://github.com/OpenXiangShan/nexus-am) is a bare metal runtime environment. Users can use AM to compile programs running on Xiangshan bare metal.
 
 An example of compiling a program using AM:
 

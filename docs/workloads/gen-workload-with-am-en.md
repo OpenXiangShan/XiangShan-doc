@@ -1,5 +1,10 @@
 # Use AM to generate custom workload
 
+
+[AM](https://github.com/OpenXiangShan/nexus-am) is a bare metal runtime environment. Users can use AM to compile programs running on Xiangshan bare metal.
+
+
+
 Take compiling and running hello world in the AM environment for an example:
 
 ```shell

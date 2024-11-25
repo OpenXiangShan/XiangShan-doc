@@ -19,11 +19,18 @@ categories:
 ### 前端
 
 - Bug 修复
-    - bug ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - BPU s2_fire 赋值修复 ([#3850](https://github.com/OpenXiangShan/XiangShan/pull/3850))
+    - 修复 xstatus.FS 关闭时 C 扩展 fp 指令报异常时 xtval 的值不正确的问题 ([#3859](https://github.com/OpenXiangShan/XiangShan/pull/3859))
+    - 不允许顺序取指跨越 MMIO/非MMIO边界 ([#3873](https://github.com/OpenXiangShan/XiangShan/pull/3873))
+    - 修复 H 扩展取指 Guest Page Fault 时 gpaddr 不正确的问题 ([#3795](https://github.com/OpenXiangShan/XiangShan/pull/3795))
+    - 修复支持 Zcb 后剩余 16b 空间指令异常时 xtval 的值不正确的问题 ([#3886](https://github.com/OpenXiangShan/XiangShan/pull/3886))
 
-- 性能
+- 功能
+    - L1 ICache 校验出错时从 L2 重新取指 ([#3899](https://github.com/OpenXiangShan/XiangShan/pull/3899))
 
 - 功耗
+    - BPU 动态时钟门控率优化 ([#3579](https://github.com/OpenXiangShan/XiangShan/pull/3579), [#3670](https://github.com/OpenXiangShan/XiangShan/pull/3670))
+    - 增加 SRAM 时钟门控，前端功耗降低 10% ([#3889](https://github.com/OpenXiangShan/XiangShan/pull/3889))
 
 ### 后端流水线
 
@@ -105,7 +112,7 @@ categories:
 * 香山技术讨论 QQ 群：879550595
 * 香山技术讨论网站：https://github.com/OpenXiangShan/XiangShan/discussions
 * 香山文档：https://xiangshan-doc.readthedocs.io/
-* OpenLLC 的 github 仓库地址为: https://github.com/OpenXiangShan/OpenLLC
+* OpenLLC 的 github 仓库地址为：https://github.com/OpenXiangShan/OpenLLC
 
 编辑：李燕琴、林志达、满洋、刘泽昊、冯浩原、马月骁
 

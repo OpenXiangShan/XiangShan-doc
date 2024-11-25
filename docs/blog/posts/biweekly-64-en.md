@@ -33,11 +33,16 @@ Recently,
 
 ### MemBlock and cache
 
-- **CHI Bus**
-
 - **Bug fixes**
 
 - **PPA Optimizations**
+  - Timing: Optimized the critical path of ECC check in MemBlock, improving timing violation from -54ps to -40ps ([#3908](https://github.com/OpenXiangShan/XiangShan/pull/3908)).  
+  - Area: 
+    - Maintained the DCache capacity while changing from 8-way to 4-way ([#3849](https://github.com/OpenXiangShan/XiangShan/pull/3849))
+    - Merged `tagArray` and `eccArray` in the Directory ([#3902](https://github.com/OpenXiangShan/XiangShan/pull/3902))
+    - Removed redundant signals/logic in MemBlock to optimize area ([#3560](https://github.com/OpenXiangShan/XiangShan/pull/3560)).  
+  - Power: Added power gating to DCache SRAM, reducing total MemBlock power consumption by 23.38% ([#3824](https://github.com/OpenXiangShan/XiangShan/pull/3824)).  
+
 
 - **Tool**
 

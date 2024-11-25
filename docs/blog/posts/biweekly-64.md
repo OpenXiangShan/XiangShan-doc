@@ -35,11 +35,15 @@ categories:
 
 ### 访存与缓存
 
-- CHI 总线
-
 - Bug 修复
 
 - PPA 优化
+    - 时序：MemBlock 优化 ECC 校验相关的关键路径，优化时序违例 -54ps -> -40ps ([#3908](https://github.com/OpenXiangShan/XiangShan/pull/3908))
+    - 面积：
+      - DCache 容量不变的同时由 8-way 改为 4-way ([#3849](https://github.com/OpenXiangShan/XiangShan/pull/3849))
+      - Directory 中合并 tagArray 与 eccArray ([#3902](https://github.com/OpenXiangShan/XiangShan/pull/3902))
+      - 删除 Memblock 中冗余的信号/逻辑以优化面积 ([#3560](https://github.com/OpenXiangShan/XiangShan/pull/3560))
+    - 功耗：为 DCache SRAM 添加门控，MemBlock 总功耗降低 23.38% ([#3824](https://github.com/OpenXiangShan/XiangShan/pull/3824))
 
 - 工具
 

@@ -28,10 +28,28 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复 Debug 模式相关问题：
+        - 修复 dret 返回到机器模式时，未清除虚拟特权级标志位 ([#3898](https://github.com/OpenXiangShan/XiangShan/pull/3898))
+        - 修复 vstval 在访存 trigger 触发 breakpoint 异常时没有正确更新 ([#3875](https://github.com/OpenXiangShan/XiangShan/pull/3875))
+    - 修复 fround/fcvtmod.w.d 指令实现问题 ([#3816](https://github.com/OpenXiangShan/XiangShan/pull/3816))
+    - 修复 vnclip 立即数是无符号数问题 ([#3894](https://github.com/OpenXiangShan/XiangShan/pull/3894))
+    - 修复 vlbusytable 向量浮点与整数混淆的问题 ([#3909](https://github.com/OpenXiangShan/XiangShan/pull/3909))
+    - 修复 critical-error 信号传递过早导致 difftest 比对失败 ([#3885](https://github.com/OpenXiangShan/XiangShan/pull/3885))
+    - 修复 flh/fsh 在 fs 关闭的时候应当报非法指令异常的问题 ([#3841](https://github.com/OpenXiangShan/XiangShan/pull/3841))
+    - 修复 ase64ks1i 保留位未报非法指令异常的问题 ([#3845](https://github.com/OpenXiangShan/XiangShan/pull/3845))
+    - 修复大量 NEMU 模拟器与 RTL 未对齐的问题 ([#669](https://github.com/OpenXiangShan/NEMU/pull/669), [#667](https://github.com/OpenXiangShan/NEMU/pull/667), [#666](https://github.com/OpenXiangShan/NEMU/pull/666), [#665](https://github.com/OpenXiangShan/NEMU/pull/665), [#664](https://github.com/OpenXiangShan/NEMU/pull/664))
 
 - 时序/面积优化
+    - 完成去除 dispatch queue 的新版分派算法，正在评估性能
+    - 评估裁剪浮点乘加流水线条数后的性能
 
 - RVA23 Profile
+    - 调试模式完成 dcsr 剩余字段 stopcount, stoptime, nmip, certig, extcause 设计
+    - 支持 critical error 进入 debug 模式 ([#3786](https://github.com/OpenXiangShan/XiangShan/pull/3786))
+    - 完善 spike 对 smrnmi/dbltrp 拓展的支持 ([#3870](https://github.com/OpenXiangShan/XiangShan/pull/3870))
+
+- 工具
+    - 在 verilog 代码中插入编译所用 RTL 版本的 commitID 信息 ([#3818](https://github.com/OpenXiangShan/XiangShan/pull/3818))
 
 ### 访存与缓存
 

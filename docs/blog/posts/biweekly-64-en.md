@@ -26,10 +26,28 @@ Recently,
 ### Backend
 
 - **Bug Fixes**
+    - Fixed issues related to Debug mode:
+        - Fixed an issue where `dret` did not clear virtual privilege flags when return to machine mode ([#3898](https://github.com/OpenXiangShan/XiangShan/pull/3898)).
+        - Fixed incorrect updates of `vstval` when memory access triggers a breakpoint exception ([#3875](https://github.com/OpenXiangShan/XiangShan/pull/3875)).
+    - Fixed implementation issues with `fround` and `fcvtmod.w.d` instructions ([#3816](https://github.com/OpenXiangShan/XiangShan/pull/3816)).
+    - Fixed the issue where `vnclip` immediate values were treated as signed instead of unsigned ([#3894](https://github.com/OpenXiangShan/XiangShan/pull/3894)).
+    - Fixed vector and integer confusion in `vlbusytable` ([#3909](https://github.com/OpenXiangShan/XiangShan/pull/3909)).
+    - Fixed the issue where the `critical-error` signal passed too early, causing difftest mismatches ([#3885](https://github.com/OpenXiangShan/XiangShan/pull/3885)).
+    - Fixed the issue where `flh/fsh` instructions did not raise illegal instruction exceptions when `fs` was off ([#3841](https://github.com/OpenXiangShan/XiangShan/pull/3841)).
+    - Fixed the issue where `aes64ks1i` reserved bits did not raise illegal instruction exceptions ([#3845](https://github.com/OpenXiangShan/XiangShan/pull/3845)).
+    - Fixed numerous mismatches between NEMU simulator and RTL ([#669](https://github.com/OpenXiangShan/NEMU/pull/669), [#667](https://github.com/OpenXiangShan/NEMU/pull/667), [#666](https://github.com/OpenXiangShan/NEMU/pull/666), [#665](https://github.com/OpenXiangShan/NEMU/pull/665), [#664](https://github.com/OpenXiangShan/NEMU/pull/664)).
 
 - **Timing/Area Optimization**
+    - Completed a new dispatch algorithm without a dispatch queue; performance evaluation is ongoing.
+    - Evaluated performance after reducing the number of floating-point multiply-add pipelines.
 
 - **RVA23 Profile**
+    - Completed remaining fields in `dcsr` for Debug Module, including `stopcount`, `stoptime`, `nmip`, `certig`, and `extcause` design.
+    - Added support for entering Debug mode upon `critical-error` ([#3786](https://github.com/OpenXiangShan/XiangShan/pull/3786)).
+    - Improved support for `smrnmi`/`dbltrp` extensions in Spike ([#3870](https://github.com/OpenXiangShan/XiangShan/pull/3870)).
+
+- **Tools**
+    - Injected commit ID information of the RTL version used during compilation into Verilog code ([#3818](https://github.com/OpenXiangShan/XiangShan/pull/3818)).
 
 ### MemBlock and cache
 

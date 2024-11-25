@@ -17,11 +17,18 @@ Recently,
 ### Frontend
 
 - **Bug Fixes**
-    - bug ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1)).
+    - Fixed BPU `s2_fire` assignment ([#3850](https://github.com/OpenXiangShan/XiangShan/pull/3850))
+    - Fixed incorrect `xtval` value when `xstatus.FS` is disabled and C extension FP instructions raise exceptions ([#3859](https://github.com/OpenXiangShan/XiangShan/pull/3859))
+    - Disallowed sequential instruction fetching across MMIO/non-MMIO boundaries ([#3873](https://github.com/OpenXiangShan/XiangShan/pull/3873))
+    - Fixed incorrect `gpaddr` when H extension instruction fetch causes a Guest Page Fault ([#3795](https://github.com/OpenXiangShan/XiangShan/pull/3795))
+    - Fixed incorrect `xtval` value for remaining 16b space instructions exceptions after implementing Zcb ([#3886](https://github.com/OpenXiangShan/XiangShan/pull/3886))
 
-- **Performance**
+- **Features**
+    - Re-fetch instructions from L2 when L1 ICache detects an ECC error ([#3899](https://github.com/OpenXiangShan/XiangShan/pull/3899))
 
 - **Power**
+    - Optimized BPU dynamic clock gating efficiency ([#3579](https://github.com/OpenXiangShan/XiangShan/pull/3579), [#3670](https://github.com/OpenXiangShan/XiangShan/pull/3670))
+    - Added SRAM clock gating, reducing front-end power consumption by 10% ([#3889](https://github.com/OpenXiangShan/XiangShan/pull/3889))
 
 ### Backend
 

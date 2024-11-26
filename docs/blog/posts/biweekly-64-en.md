@@ -60,7 +60,7 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
 
 - **RVA23 Profile**
     - Implemented first version of RTL code to support uncache outstanding, working on refining self-test cases and testing them （[#3900](https://github.com/OpenXiangShan/XiangShan/pull/3900)）
-    - Added hardware fault injection instructions for verifying Dcache ECC in RTL and NEMU（[#3923](https://github.com/OpenXiangShan/XiangShan/pull/3923)）, testing in local [AM](https://github.com/OpenXiangShan/nexus-am) environment.
+    - Added hardware fault injection instructions for verifying DCache ECC in RTL and NEMU（[#3923](https://github.com/OpenXiangShan/XiangShan/pull/3923)）, testing in local [AM](https://github.com/OpenXiangShan/nexus-am) environment.
     - Completed support for pointer masking (Ssnpm + Smnpm + Smmpm) extensions in RTL and NEMU, code being optimised for merge into master（[XiangShan #3921](https://github.com/OpenXiangShan/XiangShan/pull/3921), [NEMU #677](https://github.com/OpenXiangShan/NEMU/pull/677)）
 
 - **Bug fixes**

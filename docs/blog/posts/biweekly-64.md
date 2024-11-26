@@ -62,7 +62,7 @@ categories:
 
 - RVA23 Profile
     - 实现完成支持 uncache outstanding 的初版 RTL 代码，正在完善自测用例并进行测试（[#3900](https://github.com/OpenXiangShan/XiangShan/pull/3900)）
-    - 在 RTL 和 NEMU 中为验证 Dcache ECC 添加硬件故障注入指令（[#3923](https://github.com/OpenXiangShan/XiangShan/pull/3923)），正在本地 [AM](https://github.com/OpenXiangShan/nexus-am) 环境中进行测试
+    - 在 RTL 和 NEMU 中为验证 DCache ECC 添加硬件故障注入指令（[#3923](https://github.com/OpenXiangShan/XiangShan/pull/3923)），正在本地 [AM](https://github.com/OpenXiangShan/nexus-am) 环境中进行测试
     - 完成 RTL 和 NEMU 对 pointer masking（Ssnpm + Smnpm + Smmpm）扩展的支持，正在整理代码准备合入主线（[XiangShan #3921](https://github.com/OpenXiangShan/XiangShan/pull/3921), [NEMU #677](https://github.com/OpenXiangShan/NEMU/pull/677)）
 
 - Bug 修复
@@ -76,7 +76,7 @@ categories:
       - 优化 L1 TLB 中寄存器多份复制导致的面积冗余，优化后 L1 TLB 面积降低约 24% ([#3903](https://github.com/OpenXiangShan/XiangShan/pull/3903))
       - DCache 容量不变的同时由 8-way 改为 4-way ([#3849](https://github.com/OpenXiangShan/XiangShan/pull/3849))
       - Directory 中合并 tagArray 与 eccArray ([#3902](https://github.com/OpenXiangShan/XiangShan/pull/3902))
-      - 删除 Memblock 中冗余的信号/逻辑以优化面积 ([#3560](https://github.com/OpenXiangShan/XiangShan/pull/3560))
+      - 删除 MemBlock 中冗余的信号/逻辑以优化面积 ([#3560](https://github.com/OpenXiangShan/XiangShan/pull/3560))
     - 功耗：为 DCache SRAM 添加门控，MemBlock 总功耗降低 23.38% ([#3824](https://github.com/OpenXiangShan/XiangShan/pull/3824))
 
 

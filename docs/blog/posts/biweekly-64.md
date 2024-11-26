@@ -60,18 +60,24 @@ categories:
 
 ### 访存与缓存
 
+- RVA23 Profile
+    - 实现完成支持 uncache outstanding 的初版 RTL 代码，正在完善自测用例并进行测试（[#3900](https://github.com/OpenXiangShan/XiangShan/pull/3900)）
+    - 在 RTL 和 NEMU 中为验证 Dcache ECC 添加硬件故障注入指令（[#3923](https://github.com/OpenXiangShan/XiangShan/pull/3923)），正在本地 [AM](https://github.com/OpenXiangShan/nexus-am) 环境中进行测试
+    - 完成 RTL 和 NEMU 对 pointer masking（Ssnpm + Smnpm + Smmpm）扩展的支持，正在整理代码准备合入主线（[XiangShan #3921](https://github.com/OpenXiangShan/XiangShan/pull/3921), [NEMU #677](https://github.com/OpenXiangShan/NEMU/pull/677)）
+
 - Bug 修复
+    - 修复 NEMU 在虚拟化 G-stage 翻译中 GVPNi 生成逻辑错误，导致根页表的物理地址计算错误的 bug（[NEMU #673](https://github.com/OpenXiangShan/NEMU/pull/673)）
+    - 修复前端取指出现 guest page fault 时，gpaddr 生成逻辑错误的 bug（[#3871](https://github.com/OpenXiangShan/XiangShan/pull/3871)）
+    - 修复 load 指令首次进入 LoadQueueReplay 且需 redirect 时，enqMask 的生成逻辑（[#3884](https://github.com/OpenXiangShan/XiangShan/pull/3884)）
 
 - PPA 优化
     - 时序：MemBlock 优化 ECC 校验相关的关键路径，优化时序违例 -54ps -> -40ps ([#3908](https://github.com/OpenXiangShan/XiangShan/pull/3908))
     - 面积：
+      - 优化 L1 TLB 中寄存器多份复制导致的面积冗余，优化后 L1 TLB 面积降低约 24% ([#3903](https://github.com/OpenXiangShan/XiangShan/pull/3903))
       - DCache 容量不变的同时由 8-way 改为 4-way ([#3849](https://github.com/OpenXiangShan/XiangShan/pull/3849))
       - Directory 中合并 tagArray 与 eccArray ([#3902](https://github.com/OpenXiangShan/XiangShan/pull/3902))
       - 删除 Memblock 中冗余的信号/逻辑以优化面积 ([#3560](https://github.com/OpenXiangShan/XiangShan/pull/3560))
     - 功耗：为 DCache SRAM 添加门控，MemBlock 总功耗降低 23.38% ([#3824](https://github.com/OpenXiangShan/XiangShan/pull/3824))
-
-- 工具
-
 
 
 ## 评估

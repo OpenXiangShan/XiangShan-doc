@@ -58,18 +58,25 @@ Recently,
 
 ### MemBlock and cache
 
+- **RVA23 Profile**
+    - Implemented first version of RTL code to support uncache outstanding, working on refining self-test cases and testing them （[#3900](https://github.com/OpenXiangShan/XiangShan/pull/3900)）
+    - Added hardware fault injection instructions for verifying Dcache ECC in RTL and NEMU（[#3923](https://github.com/OpenXiangShan/XiangShan/pull/3923)）, testing in local [AM](https://github.com/OpenXiangShan/nexus-am) environment.
+    - Completed support for pointer masking (Ssnpm + Smnpm + Smmpm) extensions in RTL and NEMU, code being optimised for merge into master（[XiangShan #3921](https://github.com/OpenXiangShan/XiangShan/pull/3921), [NEMU #677](https://github.com/OpenXiangShan/NEMU/pull/677)）
+
 - **Bug fixes**
+    - Fix a bug that NEMU generates a logical error for GVPNi in G-stage translation for hypervisor extension, causing the physical address of root page table to be miscalculated（[NEMU #673](https://github.com/OpenXiangShan/NEMU/pull/673)）
+    - Fix a bug in gpaddr generation logic when guest page fault occurs in instruction fetch（[#3871](https://github.com/OpenXiangShan/XiangShan/pull/3871)）
+    - Fix enqMask generation logic when a load instruction enqueues LoadQueueReplay for the first time and needs to be redirected （[#3884](https://github.com/OpenXiangShan/XiangShan/pull/3884)）
 
 - **PPA Optimizations**
-  - Timing: Optimized the critical path of ECC check in MemBlock, improving timing violation from -54ps to -40ps ([#3908](https://github.com/OpenXiangShan/XiangShan/pull/3908)).  
-  - Area: 
+  - Timing: Optimized the critical path of ECC check in MemBlock, improving timing violation from -54ps to -40ps ([#3908](https://github.com/OpenXiangShan/XiangShan/pull/3908))
+  - Area:
+    - Optimise area redundancy caused by multiple copies of registers in L1 TLB, reducing L1 TLB area by ~24% after optimisation([#3903](https://github.com/OpenXiangShan/XiangShan/pull/3903))
     - Maintained the DCache capacity while changing from 8-way to 4-way ([#3849](https://github.com/OpenXiangShan/XiangShan/pull/3849))
     - Merged `tagArray` and `eccArray` in the Directory ([#3902](https://github.com/OpenXiangShan/XiangShan/pull/3902))
-    - Removed redundant signals/logic in MemBlock to optimize area ([#3560](https://github.com/OpenXiangShan/XiangShan/pull/3560)).  
-  - Power: Added power gating to DCache SRAM, reducing total MemBlock power consumption by 23.38% ([#3824](https://github.com/OpenXiangShan/XiangShan/pull/3824)).  
+    - Removed redundant signals/logic in MemBlock to optimize area ([#3560](https://github.com/OpenXiangShan/XiangShan/pull/3560))
+  - Power: Added power gating to DCache SRAM, reducing total MemBlock power consumption by 23.38% ([#3824](https://github.com/OpenXiangShan/XiangShan/pull/3824))
 
-
-- **Tool**
 
 ## RTL Evaluation
 

@@ -9,7 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 64th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
-Recently,
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed BPU `s2_fire` assignment, the backend completed remaining fields design in `dcsr` for Debug Module, and the memory and cache subsystem fixed `gpaddr` generation logic when `guest page fault` occurs in instruction fetch. This update also includes the latest performance improvements of the Kunminghu architecture.
 
 <!-- more -->
 ## Recent developments
@@ -116,7 +116,6 @@ In the late stage of XiangShan Kunminghu architecture development, XiangShan's p
 * XiangShan technical discussion QQ group: 879550595
 * XiangShan technical discussion website: https://github.com/OpenXiangShan/XiangShan/discussions
 * XiangShan Documentation: https://xiangshan-doc.readthedocs.io/
-* OpenLLC: https://github.com/OpenXiangShan/OpenLLC
 
 Editors: Li Yanqin, Lin Zhida, Man Yang, Liu Zehao, Feng Haoyuan, Ma Yuexiao
 

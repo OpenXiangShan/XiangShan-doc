@@ -9,7 +9,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 64 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端修复 BPU s2_fire 的赋值，后端调试模式完成 dcsr 剩余字段设计，访存和缓存部分修复前端取指出现 guest page fault 时，gpaddr 生成逻辑错误的 Bug。本期还更新了昆明湖架构近期性能。
 
 
 <!-- more -->
@@ -66,8 +66,8 @@ categories:
     - 完成 RTL 和 NEMU 对 pointer masking（Ssnpm + Smnpm + Smmpm）扩展的支持，正在整理代码准备合入主线（[XiangShan #3921](https://github.com/OpenXiangShan/XiangShan/pull/3921), [NEMU #677](https://github.com/OpenXiangShan/NEMU/pull/677)）
 
 - Bug 修复
-    - 修复 NEMU 在虚拟化 G-stage 翻译中 GVPNi 生成逻辑错误，导致根页表的物理地址计算错误的 bug（[NEMU #673](https://github.com/OpenXiangShan/NEMU/pull/673)）
-    - 修复前端取指出现 guest page fault 时，gpaddr 生成逻辑错误的 bug（[#3871](https://github.com/OpenXiangShan/XiangShan/pull/3871)）
+    - 修复 NEMU 在虚拟化 G-stage 翻译中 GVPNi 生成逻辑错误，导致根页表的物理地址计算错误的 Bug（[NEMU #673](https://github.com/OpenXiangShan/NEMU/pull/673)）
+    - 修复前端取指出现 guest page fault 时，gpaddr 生成逻辑错误的 Bug（[#3871](https://github.com/OpenXiangShan/XiangShan/pull/3871)）
     - 修复 load 指令首次进入 LoadQueueReplay 且需 redirect 时，enqMask 的生成逻辑（[#3884](https://github.com/OpenXiangShan/XiangShan/pull/3884)）
 
 - PPA 优化
@@ -82,7 +82,7 @@ categories:
 
 ## 评估
 
-我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC CPU2006 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPECfp 2006 的-ffp-contraction 选项为 fast，指令集为 RV64GCB。我们使用 **11 月 22 日 f12520c 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld2st 流水线**），在仿真环境下运行了 SPEC CPU2006 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPEC CPU2006 的分数估计情况：
+我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC CPU2006 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPECfp 2006 的 -ffp-contraction 选项为 fast，指令集为 RV64GCB。我们使用 **11 月 22 日 f12520c 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld2st 流水线**），在仿真环境下运行了 SPEC CPU2006 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPEC CPU2006 的分数估计情况：
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est.  | @ 3GHz |
 | :---------------- | :----: | :---------------- | :----: |
@@ -118,7 +118,6 @@ categories:
 * 香山技术讨论 QQ 群：879550595
 * 香山技术讨论网站：https://github.com/OpenXiangShan/XiangShan/discussions
 * 香山文档：https://xiangshan-doc.readthedocs.io/
-* OpenLLC 的 github 仓库地址为：https://github.com/OpenXiangShan/OpenLLC
 
 编辑：李燕琴、林志达、满洋、刘泽昊、冯浩原、马月骁
 

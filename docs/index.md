@@ -9,7 +9,9 @@ hide:
 
 ## Recent Updates
 
-**我们将继续在MICRO'24会议期间同地举办香山项目的上手教程. Look forward to seeing you at MICRO'24 in Austin, USA. Learn more on [the MICRO'24 Tutorial Page](tutorials/micro24.md).**
+**Upcoming: 我们将继续在MICRO'24会议期间同地举办香山项目的上手教程. Look forward to seeing you at MICRO'24 in Austin, USA. Learn more on [the MICRO'24 Tutorial Page](tutorials/micro24.md).**
+
+我们将继续在HPCA'25会议期间同地举办香山项目的上手教程. Look forward to seeing you at HPCA'25 in Las Vegas, USA. Learn more on [the HPCA'25 Tutorial Page](tutorials/hpca25.md).
 
 香山社区在第 4 届 RISC-V 中国峰会（RVSC 2024）期间举办了同期活动，在本次同期活动中同时举办了香山项目的上手教程. XiangShan community have held a co-event at RISC-V China Summit 2024 in Hangzhou, China, during which we also hosted XiangShan tutorials. Learn more on [the RVSC'24 Tutorial Page](tutorials/rvsc24.md).
 

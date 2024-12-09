@@ -17,11 +17,11 @@ Recently,
 ### Frontend
 
 - **Bug Fixes**
-    - test ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Fixed the issue where all instructions were marked as fault when crossing MMIO/non-MMIO boundaries ([#3963](https://github.com/OpenXiangShan/XiangShan/pull/3963))
+    - Fixed incorrect flushing of iTLB in certain situations ([#3996](https://github.com/OpenXiangShan/XiangShan/pull/3996))
 
-- **Features**
-
-- **Power**
+- **Area**
+    - Split and reduced higher bits of ITTAGE target addresses ([#3935](https://github.com/OpenXiangShan/XiangShan/pull/3935))
 
 ### Backend
 
@@ -44,7 +44,7 @@ Recently,
 ### MemBlock and cache
 
 - **RVA23 Profile**
-  - CMO：Add custom CMO operations to the TileLink bus and complete the processing path for CMO operations between L1 DCache and L2（[#3968](https://github.com/OpenXiangShan/XiangShan/pull/3968)）
+  - CMO: Add custom CMO operations to the TileLink bus and complete the processing path for CMO operations between L1 DCache and L2（[#3968](https://github.com/OpenXiangShan/XiangShan/pull/3968)）
   - RAS: 
     - The implementation of ECC fault injection instructions in L1 DCache has been completed and validated through self-test cases, with ECC enabled by default（[#3925](https://github.com/OpenXiangShan/XiangShan/pull/3925)）
     - The implementation of L2 Cache ECC (error detection) has been completed. L2 Cache and OpenLLC (CHI version) now support Poison and DataCheck（[#3808](https://github.com/OpenXiangShan/XiangShan/pull/3808)）

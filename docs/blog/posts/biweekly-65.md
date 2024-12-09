@@ -19,11 +19,11 @@ categories:
 ### 前端
 
 - Bug 修复
-    - test ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 修复 MMIO/非MMIO 边界跨越时全部报异常的问题 ([#3963](https://github.com/OpenXiangShan/XiangShan/pull/3963))
+    - 修复 iTLB 在特殊情况下冲刷不正确的问题 ([#3996](https://github.com/OpenXiangShan/XiangShan/pull/3996))
 
-- 功能
-
-- 功耗
+- 面积
+    - ITTAGE target 地址高位拆分和缩减 ([#3935](https://github.com/OpenXiangShan/XiangShan/pull/3935))
 
 ### 后端流水线
 
@@ -32,7 +32,7 @@ categories:
     - 修复 menvcfg.DTE 控制 xstatus.SDT 读写行为错误：([#3981](https://github.com/OpenXiangShan/XiangShan/pull/3981), [#3955](https://github.com/OpenXiangShan/XiangShan/pull/3955))
     - 修复 vstart 为 0 情况下，错误消除 old vd：([#3948](https://github.com/OpenXiangShan/XiangShan/pull/3948))
     - 修复 CSR 同步访问 IMSIC 的问题：([#3989](https://github.com/OpenXiangShan/XiangShan/pull/3989))
-    - 修复 custom PMA CSR寄存器读写问题：([#3966](https://github.com/OpenXiangShan/XiangShan/pull/3966))
+    - 修复 custom PMA CSR 寄存器读写问题：([#3966](https://github.com/OpenXiangShan/XiangShan/pull/3966))
     - 修复在中断时错误置位向量异常信息的问题：([#3990](https://github.com/OpenXiangShan/XiangShan/pull/3990))
     - 修复在某些向量指令不应当置位 vs.dirty 的问题：([#3965](https://github.com/OpenXiangShan/XiangShan/pull/3965))
 
@@ -50,7 +50,7 @@ categories:
   - CMO：在 TileLink 总线中添加自定义的 CMO 操作，并完成 CMO 在 L1 DCache 与 L2 之间的处理通路（[#3968](https://github.com/OpenXiangShan/XiangShan/pull/3968)）
   - RAS: 
     - L1 DCache 完成 ECC 故障注入指令的实现并通过自测用例，默认开启 ECC（[#3925](https://github.com/OpenXiangShan/XiangShan/pull/3925)）
-    - L2 Cache ECC (检错)实现完成，L2 Cache 以及 OpenLLC（CHI 版本）实现支持 Poison 和 DataCheck（[#3808](https://github.com/OpenXiangShan/XiangShan/pull/3808)）
+    - L2 Cache ECC (检错) 实现完成，L2 Cache 以及 OpenLLC（CHI 版本）实现支持 Poison 和 DataCheck（[#3808](https://github.com/OpenXiangShan/XiangShan/pull/3808)）
   
 
 - Bug 修复
@@ -59,7 +59,7 @@ categories:
   - 时序：优化 DCache 命中路选择逻辑，优化 CMO 有关的时序路径（[#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988)）
   - 面积：
     - 删除 LoadQueueReplay / StoreQueue 中冗余的组合逻辑（[#3976](https://github.com/OpenXiangShan/XiangShan/pull/3976)）
-    - MMU 面积裁剪：PTW Cache 将 L2 TLB 项数由2k裁剪至1k（[#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003)）
+    - MMU 面积裁剪：PTW Cache 将 L2 TLB 项数由 2k 裁剪至 1k（[#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003)）
 
 
 ## 评估

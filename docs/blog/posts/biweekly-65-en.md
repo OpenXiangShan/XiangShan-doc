@@ -44,19 +44,23 @@ Recently,
 ### MemBlock and cache
 
 - **RVA23 Profile**
-  - CMO: Add custom CMO operations to the TileLink bus and complete the processing path for CMO operations between L1 DCache and L2（[#3968](https://github.com/OpenXiangShan/XiangShan/pull/3968)）
-  - RAS: 
-    - The implementation of ECC fault injection instructions in L1 DCache has been completed and validated through self-test cases, with ECC enabled by default（[#3925](https://github.com/OpenXiangShan/XiangShan/pull/3925)）
-    - The implementation of L2 Cache ECC (error detection) has been completed. L2 Cache and OpenLLC (CHI version) now support Poison and DataCheck（[#3808](https://github.com/OpenXiangShan/XiangShan/pull/3808)）
-  
+  - CMO: Add custom CMO operations to the TileLink bus and complete the processing path for CMO operations between L1 DCache and L2 ([#3968](https://github.com/OpenXiangShan/XiangShan/pull/3968))
+  - RAS:
+    - The implementation of ECC fault injection instructions in L1 DCache has been completed and validated through self-test cases, with ECC enabled by default ([#3925](https://github.com/OpenXiangShan/XiangShan/pull/3925))
+    - The implementation of L2 Cache ECC (error detection) has been completed. L2 Cache and OpenLLC (CHI version) now support Poison and DataCheck ([#3808](https://github.com/OpenXiangShan/XiangShan/pull/3808))
+  - Svpbmt: Code implementation of Svpbmt and outstanding uncache load / stores completed, and already merged into master ([#3900](https://github.com/OpenXiangShan/XiangShan/pull/3900))
+  - Zicclsm: Refactored misaligned hardware path and completed the support for vector misalign requests. Already finished the code and is prepared to be merged into master ([#3994](https://github.com/OpenXiangShan/XiangShan/pull/3994))
 
 - **Bug fixes**
+  - Fix the bug that a TLB corresponding item is replaced during guest page fault processing ([#3964](https://github.com/OpenXiangShan/XiangShan/pull/3964), [#3985](https://github.com/OpenXiangShan/XiangShan/pull/3985))
+  - Fix the bug that a vset instruction cannot handle interrupts during flushPipe, setting vset instructions not to respond to interrupts ([#3991](https://github.com/OpenXiangShan/XiangShan/pull/3991))
+  - Fix error when NEMU handles cross-page address translation ([NEMU #710](https://github.com/OpenXiangShan/NEMU/pull/710))
 
 - **PPA Optimizations**
-  - Timing: Optimize the hit path selection logic of DCache and improve the timing paths related to CMO operations（[#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988)）
+  - Timing: Optimize the hit path selection logic of DCache and improve the timing paths related to CMO operations ([#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988))
   - Area：
-    - Remove redundant combinational logic from LoadQueueReplay/StoreQueue（[#3976](https://github.com/OpenXiangShan/XiangShan/pull/3976)）
-    - MMU area reduction: Trim the number of entries in the MMU page cache from 2k to 1k, and performance has slightly decreased（[#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003)）
+    - Remove redundant combinational logic from LoadQueueReplay/StoreQueue ([#3976](https://github.com/OpenXiangShan/XiangShan/pull/3976))
+    - MMU area reduction: Trim the number of entries in the MMU page cache from 2k to 1k, and performance has slightly decreased ([#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003))
   - Power: Complete the RTL code for single-core power-off and currently testing the single-core power-off process
 
 ## RTL Evaluation

@@ -47,19 +47,23 @@ categories:
 ### 访存与缓存
 
 - RVA23 Profile
-  - CMO：在 TileLink 总线中添加自定义的 CMO 操作，并完成 CMO 在 L1 DCache 与 L2 之间的处理通路（[#3968](https://github.com/OpenXiangShan/XiangShan/pull/3968)）
-  - RAS: 
-    - L1 DCache 完成 ECC 故障注入指令的实现并通过自测用例，默认开启 ECC（[#3925](https://github.com/OpenXiangShan/XiangShan/pull/3925)）
-    - L2 Cache ECC (检错) 实现完成，L2 Cache 以及 OpenLLC（CHI 版本）实现支持 Poison 和 DataCheck（[#3808](https://github.com/OpenXiangShan/XiangShan/pull/3808)）
-  
+  - CMO：在 TileLink 总线中添加自定义的 CMO 操作，并完成 CMO 在 L1 DCache 与 L2 之间的处理通路 ([#3968](https://github.com/OpenXiangShan/XiangShan/pull/3968))
+  - RAS：
+    - L1 DCache 完成 ECC 故障注入指令的实现并通过自测用例，默认开启 ECC ([#3925](https://github.com/OpenXiangShan/XiangShan/pull/3925))
+    - L2 Cache ECC (检错) 实现完成，L2 Cache 以及 OpenLLC（CHI 版本）实现支持 Poison 和 DataCheck ([#3808](https://github.com/OpenXiangShan/XiangShan/pull/3808))
+  - Svpbmt：完成 Svpbmt 和 outstanding uncache 访问的代码实现，整理代码并已合入主线 ([#3900](https://github.com/OpenXiangShan/XiangShan/pull/3900))
+  - Zicclsm：重构非对齐访存通路、完成向量非对齐访存的实现，正在整理代码准备合入主线 ([#3994](https://github.com/OpenXiangShan/XiangShan/pull/3994))
 
 - Bug 修复
+  - 修复 guest page fault 处理过程中，TLB 相应项被替换导致的卡死 bug ([#3964](https://github.com/OpenXiangShan/XiangShan/pull/3964), [#3985](https://github.com/OpenXiangShan/XiangShan/pull/3985))
+  - 修复 vset 指令在 flushPipe 时无法处理中断的 bug，将 vset 指令设置为不响应中断 ([#3991](https://github.com/OpenXiangShan/XiangShan/pull/3991))
+  - 修复 NEMU 处理跨页地址翻译时产生的 bug ([NEMU #710](https://github.com/OpenXiangShan/NEMU/pull/710))
 
 - PPA 优化
   - 时序：优化 DCache 命中路选择逻辑，优化 CMO 有关的时序路径（[#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988)）
   - 面积：
     - 删除 LoadQueueReplay / StoreQueue 中冗余的组合逻辑（[#3976](https://github.com/OpenXiangShan/XiangShan/pull/3976)）
-    - MMU 面积裁剪：将 MMU page cache 项数由 2k 裁剪至 1k，性能有小幅下降（[#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003)）
+    - MMU 面积裁剪：将 MMU page cache 项数由 2k 裁剪至 1k，性能降低幅度较小（[#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003)）
     - 功耗：完成单核关断 RTL 代码，正在测试单核关断流程
 
 

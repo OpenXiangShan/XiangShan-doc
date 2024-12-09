@@ -28,12 +28,21 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复标量/向量半精度浮点拓展 (Zfh/Zvfh) 功能单元计算错误：([#3939](https://github.com/OpenXiangShan/XiangShan/pull/3939), [#3932](https://github.com/OpenXiangShan/XiangShan/pull/3932))
+    - 修复 menvcfg.DTE 控制 xstatus.SDT 读写行为错误：([#3981](https://github.com/OpenXiangShan/XiangShan/pull/3981), [#3955](https://github.com/OpenXiangShan/XiangShan/pull/3955))
+    - 修复 vstart 为 0 情况下，错误消除 old vd：([#3948](https://github.com/OpenXiangShan/XiangShan/pull/3948))
+    - 修复 CSR 同步访问 IMSIC 的问题：([#3989](https://github.com/OpenXiangShan/XiangShan/pull/3989))
+    - 修复 custom PMA CSR寄存器读写问题：([#3966](https://github.com/OpenXiangShan/XiangShan/pull/3966))
+    - 修复在中断时错误置位向量异常信息的问题：([#3990](https://github.com/OpenXiangShan/XiangShan/pull/3990))
+    - 修复在某些向量指令不应当置位 vs.dirty 的问题：([#3965](https://github.com/OpenXiangShan/XiangShan/pull/3965))
 
 - 时序/面积优化
+    - 将向量异常检测模块从 6 个简单译码器中移到 1 个复杂译码器 ([#3961](https://github.com/OpenXiangShan/XiangShan/pull/3961))
+    - 优化 AIA 中断优先级选择逻辑，修复 CSR 时序 ([#3946](https://github.com/OpenXiangShan/XiangShan/pull/3946))
+
 
 - RVA23 Profile
-
-- 工具
+    - 在参数列表以及设备树信息中添加香山目前支持的指令集及拓展信息 ([#3986](https://github.com/OpenXiangShan/XiangShan/pull/3986), [#3953](https://github.com/OpenXiangShan/XiangShan/pull/3953))
 
 ### 访存与缓存
 

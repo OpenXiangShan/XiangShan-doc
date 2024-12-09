@@ -26,12 +26,20 @@ Recently,
 ### Backend
 
 - **Bug Fixes**
+    - Fixed calculation errors in scalar/vector half-precision floating-point extensions (Zfh/Zvfh) functional units ([#3939](https://github.com/OpenXiangShan/XiangShan/pull/3939), [#3932](https://github.com/OpenXiangShan/XiangShan/pull/3932)).
+    - Fixed incorrect behavior of `menvcfg.DTE` controlling `xstatus.SDT` read/write ([#3981](https://github.com/OpenXiangShan/XiangShan/pull/3981), [#3955](https://github.com/OpenXiangShan/XiangShan/pull/3955)).
+    - Fixed an issue where `old vd` was incorrectly eliminated when `vstart` was 0 ([#3948](https://github.com/OpenXiangShan/XiangShan/pull/3948)).
+    - Fixed synchronization issues between CSR and IMSIC access ([#3989](https://github.com/OpenXiangShan/XiangShan/pull/3989)).
+    - Fixed read/write issues with custom PMA CSR registers ([#3966](https://github.com/OpenXiangShan/XiangShan/pull/3966)).
+    - Fixed incorrect vector exception information being set during interrupts ([#3990](https://github.com/OpenXiangShan/XiangShan/pull/3990)).
+    - Fixed an issue where some vector instructions incorrectly set `vs.dirty` ([#3965](https://github.com/OpenXiangShan/XiangShan/pull/3965)).
 
 - **Timing/Area Optimization**
+    - Moved the vector exception detection module from 6 simple decoders into a single complex decoder ([#3961](https://github.com/OpenXiangShan/XiangShan/pull/3961)).
+    - Optimized AIA interrupt priority selection logic and fixed CSR timing ([#3946](https://github.com/OpenXiangShan/XiangShan/pull/3946)).
 
 - **RVA23 Profile**
-
-- **Tools**
+    - Added supported instruction base and extension information to the parameter list and device tree ([#3986](https://github.com/OpenXiangShan/XiangShan/pull/3986), [#3953](https://github.com/OpenXiangShan/XiangShan/pull/3953)).
 
 ### MemBlock and cache
 

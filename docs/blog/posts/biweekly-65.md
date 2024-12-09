@@ -59,7 +59,8 @@ categories:
   - 时序：优化 DCache 命中路选择逻辑，优化 CMO 有关的时序路径（[#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988)）
   - 面积：
     - 删除 LoadQueueReplay / StoreQueue 中冗余的组合逻辑（[#3976](https://github.com/OpenXiangShan/XiangShan/pull/3976)）
-    - MMU 面积裁剪：PTW Cache 将 L2 TLB 项数由 2k 裁剪至 1k（[#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003)）
+    - MMU 面积裁剪：将 MMU page cache 项数由 2k 裁剪至 1k，性能有小幅下降（[#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003)）
+    - 功耗：完成单核关断 RTL 代码，正在测试单核关断流程
 
 
 ## 评估

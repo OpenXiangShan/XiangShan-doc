@@ -56,7 +56,8 @@ Recently,
   - Timing: Optimize the hit path selection logic of DCache and improve the timing paths related to CMO operations（[#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988)）
   - Area：
     - Remove redundant combinational logic from LoadQueueReplay/StoreQueue（[#3976](https://github.com/OpenXiangShan/XiangShan/pull/3976)）
-    - MMU area reduction: Trim the number of entries in the PTW Cache's L2 TLB from 2k to 1k（[#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003)）
+    - MMU area reduction: Trim the number of entries in the MMU page cache from 2k to 1k, and performance has slightly decreased（[#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003)）
+  - Power: Complete the RTL code for single-core power-off and currently testing the single-core power-off process
 
 ## RTL Evaluation
 

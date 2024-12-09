@@ -44,10 +44,19 @@ Recently,
 ### MemBlock and cache
 
 - **RVA23 Profile**
+  - CMO：Add custom CMO operations to the TileLink bus and complete the processing path for CMO operations between L1 DCache and L2（[#3968](https://github.com/OpenXiangShan/XiangShan/pull/3968)）
+  - RAS: 
+    - The implementation of ECC fault injection instructions in L1 DCache has been completed and validated through self-test cases, with ECC enabled by default（[#3925](https://github.com/OpenXiangShan/XiangShan/pull/3925)）
+    - The implementation of L2 Cache ECC (error detection) has been completed. L2 Cache and OpenLLC (CHI version) now support Poison and DataCheck（[#3808](https://github.com/OpenXiangShan/XiangShan/pull/3808)）
+  
 
 - **Bug fixes**
 
 - **PPA Optimizations**
+  - Timing: Optimize the hit path selection logic of DCache and improve the timing paths related to CMO operations（[#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988)）
+  - Area：
+    - Remove redundant combinational logic from LoadQueueReplay/StoreQueue（[#3976](https://github.com/OpenXiangShan/XiangShan/pull/3976)）
+    - MMU area reduction: Trim the number of entries in the PTW Cache's L2 TLB from 2k to 1k（[#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003)）
 
 ## RTL Evaluation
 

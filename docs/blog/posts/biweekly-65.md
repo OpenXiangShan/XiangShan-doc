@@ -47,10 +47,19 @@ categories:
 ### 访存与缓存
 
 - RVA23 Profile
+  - CMO：在 TileLink 总线中添加自定义的 CMO 操作，并完成 CMO 在 L1 DCache 与 L2 之间的处理通路（[#3968](https://github.com/OpenXiangShan/XiangShan/pull/3968)）
+  - RAS: 
+    - L1 DCache 完成 ECC 故障注入指令的实现并通过自测用例，默认开启 ECC（[#3925](https://github.com/OpenXiangShan/XiangShan/pull/3925)）
+    - L2 Cache ECC (检错)实现完成，L2 Cache 以及 OpenLLC（CHI 版本）实现支持 Poison 和 DataCheck（[#3808](https://github.com/OpenXiangShan/XiangShan/pull/3808)）
+  
 
 - Bug 修复
 
 - PPA 优化
+  - 时序：优化 DCache 命中路选择逻辑，优化 CMO 有关的时序路径（[#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988)）
+  - 面积：
+    - 删除 LoadQueueReplay / StoreQueue 中冗余的组合逻辑（[#3976](https://github.com/OpenXiangShan/XiangShan/pull/3976)）
+    - MMU 面积裁剪：PTW Cache 将 L2 TLB 项数由2k裁剪至1k（[#4003](https://github.com/OpenXiangShan/XiangShan/pull/4003)）
 
 
 ## 评估

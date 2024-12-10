@@ -33,12 +33,15 @@ Recently,
     - Fixed read/write issues with custom PMA CSR registers ([#3966](https://github.com/OpenXiangShan/XiangShan/pull/3966)).
     - Fixed incorrect vector exception information being set during interrupts ([#3990](https://github.com/OpenXiangShan/XiangShan/pull/3990)).
     - Fixed an issue where some vector instructions incorrectly set `vs.dirty` ([#3965](https://github.com/OpenXiangShan/XiangShan/pull/3965)).
+    - Fixed a bug in the interrupt delegation mode of NEMU：([#708](https://github.com/OpenXiangShan/NEMU/pull/708))
+    - Removed the restriction in XiangShan where accessing S-mode custom CSRs in VS mode results in an illegal instruction. The access to custom content will now be controlled by the Smstateen extension：([#3978](https://github.com/OpenXiangShan/XiangShan/pull/3978))，NEMU has also completed the corresponding modification and fixed the CSR permission checks when the Smstateen extension is enabled：（[#692](https://github.com/OpenXiangShan/NEMU/pull/692)）
 
 - **Timing/Area Optimization**
     - Moved the vector exception detection module from 6 simple decoders into a single complex decoder ([#3961](https://github.com/OpenXiangShan/XiangShan/pull/3961)).
     - Optimized AIA interrupt priority selection logic and fixed CSR timing ([#3946](https://github.com/OpenXiangShan/XiangShan/pull/3946)).
 
 - **RVA23 Profile**
+    - NEMU supports the Atomic Compare-and-Swap (Zacas) extension（[#709](https://github.com/OpenXiangShan/NEMU/pull/709)）, the Zacas extension is being merged into the XiangShan mainline([#3958](https://github.com/OpenXiangShan/XiangShan/pull/3958))
     - Added supported instruction base and extension information to the parameter list and device tree ([#3986](https://github.com/OpenXiangShan/XiangShan/pull/3986), [#3953](https://github.com/OpenXiangShan/XiangShan/pull/3953)).
 
 ### MemBlock and cache

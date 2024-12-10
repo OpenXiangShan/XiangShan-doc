@@ -35,6 +35,8 @@ categories:
     - 修复 custom PMA CSR 寄存器读写问题：([#3966](https://github.com/OpenXiangShan/XiangShan/pull/3966))
     - 修复在中断时错误置位向量异常信息的问题：([#3990](https://github.com/OpenXiangShan/XiangShan/pull/3990))
     - 修复在某些向量指令不应当置位 vs.dirty 的问题：([#3965](https://github.com/OpenXiangShan/XiangShan/pull/3965))
+    - 修复 NEMU 中断代理模式的错误：([#708](https://github.com/OpenXiangShan/NEMU/pull/708))
+    - 移除 XiangShan 在 VS 模式访问 S 模式自定义 CSR 报非法指令的的限制，对自定义内容的访问由 Smstateen 扩展进行控制：([#3978](https://github.com/OpenXiangShan/XiangShan/pull/3978))，NEMU 也完成了对应修改，并且修复在 Smstateen 扩展开启时的 CSR 权限检查：（[#692](https://github.com/OpenXiangShan/NEMU/pull/692)）
 
 - 时序/面积优化
     - 将向量异常检测模块从 6 个简单译码器中移到 1 个复杂译码器 ([#3961](https://github.com/OpenXiangShan/XiangShan/pull/3961))
@@ -42,6 +44,8 @@ categories:
 
 
 - RVA23 Profile
+    - NEMU 支持原子比较与交换指令（Zacas）扩展（[#709](https://github.com/OpenXiangShan/NEMU/pull/709)），XiangShan 正在合入主线([#3958](https://github.com/OpenXiangShan/XiangShan/pull/3958))
+
     - 在参数列表以及设备树信息中添加香山目前支持的指令集及拓展信息 ([#3986](https://github.com/OpenXiangShan/XiangShan/pull/3986), [#3953](https://github.com/OpenXiangShan/XiangShan/pull/3953))
 
 ### 访存与缓存

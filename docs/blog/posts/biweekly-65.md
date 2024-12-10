@@ -9,7 +9,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 65 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端修复 MMIO / 非 MMIO 边界跨越时全部报异常的问题，后端修复标量/向量半精度浮点拓展 (Zfh/Zvfh) 功能单元计算错误，访存和缓存部分修复 guest page fault 处理过程中，TLB 相应项被替换导致的卡死 Bug。本期还更新了昆明湖架构近期性能。
 
 
 <!-- more -->
@@ -19,7 +19,7 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 MMIO/非MMIO 边界跨越时全部报异常的问题 ([#3963](https://github.com/OpenXiangShan/XiangShan/pull/3963))
+    - 修复 MMIO / 非 MMIO 边界跨越时全部报异常的问题 ([#3963](https://github.com/OpenXiangShan/XiangShan/pull/3963))
     - 修复 iTLB 在特殊情况下冲刷不正确的问题 ([#3996](https://github.com/OpenXiangShan/XiangShan/pull/3996))
 
 - 面积
@@ -34,7 +34,7 @@ categories:
     - 修复 CSR 同步访问 IMSIC 的问题：([#3989](https://github.com/OpenXiangShan/XiangShan/pull/3989))
     - 修复 custom PMA CSR 寄存器读写问题：([#3966](https://github.com/OpenXiangShan/XiangShan/pull/3966))
     - 修复在中断时错误置位向量异常信息的问题：([#3990](https://github.com/OpenXiangShan/XiangShan/pull/3990))
-    - 修复在某些向量指令不应当置位 vs.dirty 的问题：([#3965](https://github.com/OpenXiangShan/XiangShan/pull/3965))
+    - 修复某些向量指令不应当置位 vs.dirty 的问题：([#3965](https://github.com/OpenXiangShan/XiangShan/pull/3965))
     - 修复 NEMU 中断代理模式的错误：([#708](https://github.com/OpenXiangShan/NEMU/pull/708))
     - 移除 XiangShan 在 VS 模式访问 S 模式自定义 CSR 报非法指令的的限制，对自定义内容的访问由 Smstateen 扩展进行控制：([#3978](https://github.com/OpenXiangShan/XiangShan/pull/3978))，NEMU 也完成了对应修改，并且修复在 Smstateen 扩展开启时的 CSR 权限检查：（[#692](https://github.com/OpenXiangShan/NEMU/pull/692)）
 
@@ -59,9 +59,9 @@ categories:
   - Zicclsm：重构非对齐访存通路、完成向量非对齐访存的实现，正在整理代码准备合入主线 ([#3994](https://github.com/OpenXiangShan/XiangShan/pull/3994))
 
 - Bug 修复
-  - 修复 guest page fault 处理过程中，TLB 相应项被替换导致的卡死 bug ([#3964](https://github.com/OpenXiangShan/XiangShan/pull/3964), [#3985](https://github.com/OpenXiangShan/XiangShan/pull/3985))
-  - 修复 vset 指令在 flushPipe 时无法处理中断的 bug，将 vset 指令设置为不响应中断 ([#3991](https://github.com/OpenXiangShan/XiangShan/pull/3991))
-  - 修复 NEMU 处理跨页地址翻译时产生的 bug ([NEMU #710](https://github.com/OpenXiangShan/NEMU/pull/710))
+  - 修复 guest page fault 处理过程中，TLB 相应项被替换导致的卡死 Bug ([#3964](https://github.com/OpenXiangShan/XiangShan/pull/3964), [#3985](https://github.com/OpenXiangShan/XiangShan/pull/3985))
+  - 修复 vset 指令在 flushPipe 时无法处理中断的 Bug，将 vset 指令设置为不响应中断 ([#3991](https://github.com/OpenXiangShan/XiangShan/pull/3991))
+  - 修复 NEMU 处理跨页地址翻译时产生的 Bug ([NEMU #710](https://github.com/OpenXiangShan/NEMU/pull/710))
 
 - PPA 优化
   - 时序：优化 DCache 命中路选择逻辑，优化 CMO 有关的时序路径（[#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988)）

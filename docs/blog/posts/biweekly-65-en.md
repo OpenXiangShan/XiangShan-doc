@@ -9,7 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 65th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
-Recently,
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed incorrect flushing of iTLB in certain situations, the backend fixed calculation errors in scalar/vector half-precision floating-point extensions (Zfh/Zvfh) functional units, and the memory and cache subsystem fixed the bug that a TLB corresponding item is replaced during guest page fault processing. This update also includes the latest performance improvements of the Kunminghu architecture.
 
 <!-- more -->
 ## Recent developments

@@ -26,10 +26,29 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复部分向量指令无法设置 vs dirty 的问题 ([#4024](https://github.com/OpenXiangShan/XiangShan/pull/4024))
+    - 修复在 LMUL 小于 1 时， vlmax 设置出错的问题 ([#4028](https://github.com/OpenXiangShan/XiangShan/pull/4028))
+    - 修复 rocket-chip 未处理对向量掩码指令保留 vm 为 0 的问题 ([#3918](https://github.com/OpenXiangShan/XiangShan/pull/3918))
+    - 修复在 rob 满时快照选取以及 walk 时刷新出错的问题 ([#4049](https://github.com/OpenXiangShan/XiangShan/pull/4049))
+    - 修复在 menvcfg.DTE 关闭时，写 sdt 对 sie 错误清空的问题 ([#4064](https://github.com/OpenXiangShan/XiangShan/pull/4064))
+    - 修复在 VS 模式处理的部分中断，计算陷入 PC 出错的问题 ([#4054](https://github.com/OpenXiangShan/XiangShan/pull/4054))
+    - 修复 NEMU FS/VS dirty 同步逻辑 ([#720](https://github.com/OpenXiangShan/NEMU/pull/720))
+    - 修复 NEMU LCOFI 中断相关系列问题 ([#733](https://github.com/OpenXiangShan/NEMU/pull/733), [#729](https://github.com/OpenXiangShan/NEMU/pull/729))
 
-- 时序/面积优化
+- 面积优化
+    - 目前后端整体面积已减小 25% 。
+    - 将 IQ 中 exuOH 编码为 UInt 类型减少存储空间 ([#4033](https://github.com/OpenXiangShan/XiangShan/pull/4033))
+    - 修复 VFMA/FMA 面积过大问题 ([#4069](https://github.com/OpenXiangShan/XiangShan/pull/4069))
+    - 功能单元新增可选参数：控制复制源操作数 ([#4063](https://github.com/OpenXiangShan/XiangShan/pull/4063))
+    - 合入先前完成的新版 dispatch 逻辑、新版 TargeMem、将四条标量浮点缩减为三条等 ppa 优化点 ([#4049](https://github.com/OpenXiangShan/XiangShan/pull/4049))
+
+- 时序优化
+    - 修改 rob 选择逻辑，准确从出队组中选择 ([#4067](https://github.com/OpenXiangShan/XiangShan/pull/4067))
+    - 向量复杂译码器按照顺序每周期出 6 条 uop ([#4025](https://github.com/OpenXiangShan/XiangShan/pull/4025))
+    - 增加 newestTarget 旁路，从每个读口均存一份改为只存一份 ([#4049](https://github.com/OpenXiangShan/XiangShan/pull/4049))
 
 - RVA23 Profile
+    - Trace 拓展已合入香山主线 ([#3843](https://github.com/OpenXiangShan/XiangShan/pull/3843))
 
 ### 访存与缓存
 

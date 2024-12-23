@@ -22,10 +22,29 @@ Welcome to XiangShan biweekly column, this is the 66th issue of our biweekly col
 ### Backend
 
 - **Bug Fixes**
+    - Fixed an issue where some vector instructions failed to set `vs dirty` ([#4024](https://github.com/OpenXiangShan/XiangShan/pull/4024)).
+    - Fixed incorrect `vlmax` configuration when `LMUL` is less than 1 ([#4028](https://github.com/OpenXiangShan/XiangShan/pull/4028)).
+    - Fixed an issue in `rocket-chip` where vector mask instructions did not preserve `vm = 0` ([#3918](https://github.com/OpenXiangShan/XiangShan/pull/3918)).
+    - Fixed snapshot selection and walk refresh errors when `rob` is full ([#4049](https://github.com/OpenXiangShan/XiangShan/pull/4049)).
+    - Fixed an issue where writing `sdt` incorrectly cleared `sie` when `menvcfg.DTE` was disabled ([#4064](https://github.com/OpenXiangShan/XiangShan/pull/4064)).
+    - Fixed errors in calculating the trap PC for certain interrupts processed in VS mode ([#4054](https://github.com/OpenXiangShan/XiangShan/pull/4054)).
+    - Fixed FS/VS dirty synchronization logic in NEMU ([#720](https://github.com/OpenXiangShan/NEMU/pull/720)).
+    - Fixed a series of issues related to LCOFI interrupts in NEMU ([#733](https://github.com/OpenXiangShan/NEMU/pull/733), [#729](https://github.com/OpenXiangShan/NEMU/pull/729)).
 
-- **Timing/Area Optimization**
+- **Area Optimization**
+    - Backend area has been reduced by 25%.
+    - Encoded `exuOH` in IQ as `UInt` type to reduce storage space ([#4033](https://github.com/OpenXiangShan/XiangShan/pull/4033)).
+    - Fixed the large area issue in VFMA/FMA ([#4069](https://github.com/OpenXiangShan/XiangShan/pull/4069)).
+    - Added an optional parameter to functional units for controlling the copying of source operands ([#4063](https://github.com/OpenXiangShan/XiangShan/pull/4063)).
+    - Incorporated previously completed PPA optimization points, including new dispatch logic, new TargeMem, and reducing four scalar floating-point units to three ([#4049](https://github.com/OpenXiangShan/XiangShan/pull/4049)).
+
+- **Timing Optimization**
+    - Modified `rob` selection logic to accurately select from dequeue groups ([#4067](https://github.com/OpenXiangShan/XiangShan/pull/4067)).
+    - Updated the complex vector decoder to output 6 `uop` per cycle in order ([#4025](https://github.com/OpenXiangShan/XiangShan/pull/4025)).
+    - Added `newestTarget` bypass to store one copy instead of one for each read port ([#4049](https://github.com/OpenXiangShan/XiangShan/pull/4049)).
 
 - **RVA23 Profile**
+    - Trace extension has been merged into the XiangShan master ([#3843](https://github.com/OpenXiangShan/XiangShan/pull/3843)).
 
 ### MemBlock and cache
 

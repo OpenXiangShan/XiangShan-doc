@@ -27,7 +27,7 @@ categories:
 
 - Bug 修复
     - 修复部分向量指令无法设置 vs dirty 的问题 ([#4024](https://github.com/OpenXiangShan/XiangShan/pull/4024))
-    - 修复在 LMUL 小于 1 时， vlmax 设置出错的问题 ([#4028](https://github.com/OpenXiangShan/XiangShan/pull/4028))
+    - 修复在 LMUL 小于 1 时，vlmax 设置出错的问题 ([#4028](https://github.com/OpenXiangShan/XiangShan/pull/4028))
     - 修复 rocket-chip 未处理对向量掩码指令保留 vm 为 0 的问题 ([#3918](https://github.com/OpenXiangShan/XiangShan/pull/3918))
     - 修复在 rob 满时快照选取以及 walk 时刷新出错的问题 ([#4049](https://github.com/OpenXiangShan/XiangShan/pull/4049))
     - 修复在 menvcfg.DTE 关闭时，写 sdt 对 sie 错误清空的问题 ([#4064](https://github.com/OpenXiangShan/XiangShan/pull/4064))

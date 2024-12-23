@@ -48,11 +48,18 @@ Welcome to XiangShan biweekly column, this is the 66th issue of our biweekly col
 
 ### MemBlock and cache
 
+- **CHI Bus**
+  - Improve the concurrency of the CHI-AXI bridge ([#4008](https://github.com/OpenXiangShan/XiangShan/pull/4008))
+
 - **RVA23 Profile**
+  - CMO: Add a test environment for `cbo.inval` instruction on `tl-test-new`, with dual-core testing ([tl-test-new #45](https://github.com/OpenXiangShan/tl-test-new/pull/45))
 
 - **Bug fixes**
 
 - **PPA Optimizations**
+  - **Timing**: Optimize critical path in StoreQueue ([#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988))
+  - **Area**: Remove redundant registers in VirtualLoadQueue ([#4061](https://github.com/OpenXiangShan/XiangShan/pull/4061)); Remove redundant CacheOpDecoder in DCache ([#4050](https://github.com/OpenXiangShan/XiangShan/pull/4050))
+  - **Power Consumption**: Trim LSQ and optimize MemBlock power consumption ([#4059](https://github.com/OpenXiangShan/XiangShan/pull/4059)); Single-core shutdown for smoke testing
 
 ## RTL Evaluation
 

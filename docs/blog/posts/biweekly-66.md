@@ -52,11 +52,18 @@ categories:
 
 ### 访存与缓存
 
+- CHI 总线
+  - 提升 CHI-AXI 转接桥并发度 ([#4008](https://github.com/OpenXiangShan/XiangShan/pull/4008))
+
 - RVA23 Profile
+  - CMO：在 tl-test-new 上添加 cbo.inval 指令的测试环境，通过双核测试 ([tl-test-new #45](https://github.com/OpenXiangShan/tl-test-new/pull/45))
 
 - Bug 修复
 
 - PPA 优化
+  - 时序：优化 StoreQueue 中关键路径 ([#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988))
+  - 面积：删除 VirtualLoadQueue 中冗余的寄存器 ([#4061](https://github.com/OpenXiangShan/XiangShan/pull/4061))；删除 DCache 中冗余的 CacheOpDecoder ([#4050](https://github.com/OpenXiangShan/XiangShan/pull/4050))
+  - 功耗：裁剪 LSQ，优化 MemBlock 功耗 ([#4059](https://github.com/OpenXiangShan/XiangShan/pull/4059))；单核关断进行冒烟测试
 
 
 ## 评估

@@ -19,9 +19,13 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 修复指令预取遇到 Guest Pagefault 后没有正确冲刷的问题 ([#3996](https://github.com/OpenXiangShan/XiangShan/pull/3996))
+    - 根据 SRAM 库约束，加入双端口 SRAM 同地址读写的规避措施 ([#4002](https://github.com/OpenXiangShan/XiangShan/pull/4002))
+    - 修复 RAS 预测器在单核下电 - 上电复位情况下更新不正确的问题 ([#4048](https://github.com/OpenXiangShan/XiangShan/pull/4048))
 
-- 面积
+- 功能
+    - Svpbmt NC 空间允许推测取指 ([#3944](https://github.com/OpenXiangShan/XiangShan/pull/3944))
+    - 修复一些参数化问题 ([#3950](https://github.com/OpenXiangShan/XiangShan/pull/3950))
 
 ### 后端流水线
 

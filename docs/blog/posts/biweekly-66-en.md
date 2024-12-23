@@ -15,9 +15,14 @@ Welcome to XiangShan biweekly column, this is the 66th issue of our biweekly col
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+  - Fixed the issue where instruction prefetching did not correctly flush after encountering a Guest Pagefault ([#3996](https://github.com/OpenXiangShan/XiangShan/pull/3996))
+  - Added a workaround for same-address read/write in dual-port SRAM according to SRAM library constraints ([#4002](https://github.com/OpenXiangShan/XiangShan/pull/4002))
+  - Fixed an issue with incorrect RAS predictor updates under power down and up reset ([#4048](https://github.com/OpenXiangShan/XiangShan/pull/4048))
 
-- **Area**
+- **Features**
+  - Allow speculative instruction fetching in Svpbmt NC space ([#3944](https://github.com/OpenXiangShan/XiangShan/pull/3944))
+  - Fixed some parameterization issues ([#3950](https://github.com/OpenXiangShan/XiangShan/pull/3950))
+
 
 ### Backend
 

@@ -58,8 +58,11 @@ Welcome to XiangShan biweekly column, this is the 66th issue of our biweekly col
 
 - **RVA23 Profile**
   - CMO: Add a test environment for `cbo.inval` instruction on `tl-test-new`, with dual-core testing ([tl-test-new #45](https://github.com/OpenXiangShan/tl-test-new/pull/45))
+  - Svpbmt: support pbmt in CHI scene ([#4071](https://github.com/OpenXiangShan/XiangShan/pull/4071)). Including: L1 deliver the NC and PMA signals of uncacheReq to L2, L2 supports Svpbmt on CHI MemAttr ([CoupledL2 #273](https://github.com/OpenXiangShan/CoupledL2/pull/273)), OpenLLC supports non-cache requests forwarding directly downstream without entering the slice ([OpenLLC #28](https://github.com/OpenXiangShan/OpenLLC/pull/28))
+  - Zacas: add support for Zacas extension and has already merged into master ([#3958](https://github.com/OpenXiangShan/XiangShan/pull/3958))
 
 - **Bug fixes**
+  - Fix several bugs releated to misaligned load / store requests ([#4053](https://github.com/OpenXiangShan/XiangShan/pull/4053)), ([#4057](https://github.com/OpenXiangShan/XiangShan/pull/4057)), ([#4077](https://github.com/OpenXiangShan/XiangShan/pull/4077))
 
 - **PPA Optimizations**
   - **Timing**: Optimize critical path in StoreQueue ([#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988))

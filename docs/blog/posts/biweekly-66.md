@@ -61,8 +61,11 @@ categories:
 
 - RVA23 Profile
   - CMO：在 tl-test-new 上添加 cbo.inval 指令的测试环境，通过双核测试 ([tl-test-new #45](https://github.com/OpenXiangShan/tl-test-new/pull/45))
+  - Svpbmt：完成 CHI 场景对 pbmt 的支持 ([#4071](https://github.com/OpenXiangShan/XiangShan/pull/4071))，包括 L1 需要向 L2 发送 uncacheReq 的 NC 和 PMA 信号、L2 在 CHI MemAttr 上支持 Svpbmt ([CoupledL2 #273](https://github.com/OpenXiangShan/CoupledL2/pull/273))、OpenLLC 支持非缓存请求直接向下游转发，无需进入 slice ([OpenLLC #28](https://github.com/OpenXiangShan/OpenLLC/pull/28))
+  - Zacas：已实现完毕并合入主线 ([#3958](https://github.com/OpenXiangShan/XiangShan/pull/3958))
 
 - Bug 修复
+  - 修复非对齐访存相干的若干 bug ([#4053](https://github.com/OpenXiangShan/XiangShan/pull/4053))、([#4057](https://github.com/OpenXiangShan/XiangShan/pull/4057))、([#4077](https://github.com/OpenXiangShan/XiangShan/pull/4077))
 
 - PPA 优化
   - 时序：优化 StoreQueue 中关键路径 ([#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988))

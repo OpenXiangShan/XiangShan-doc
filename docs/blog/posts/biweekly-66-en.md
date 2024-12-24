@@ -9,6 +9,8 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 66th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed an issue with incorrect RAS predictor updates under power down and up reset, the backend fixed errors in calculating the trap PC for certain interrupts processed in VS mode, and the memory and cache subsystem fixed several bugs releated to misaligned load / store requests. This update also includes the latest performance improvements of the Kunminghu architecture.
+
 <!-- more -->
 ## Recent developments
 

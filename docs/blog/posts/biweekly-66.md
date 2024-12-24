@@ -9,7 +9,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 66 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端修复 RAS 预测器在单核下电 - 上电复位情况下更新不正确的问题，后端修复在 VS 模式处理的部分中断，计算陷入 PC 出错的问题，访存和缓存部分修复非对齐访存相关的若干 Bug。本期还更新了昆明湖架构近期性能。
 
 
 <!-- more -->
@@ -65,7 +65,7 @@ categories:
   - Zacas：已实现完毕并合入主线 ([#3958](https://github.com/OpenXiangShan/XiangShan/pull/3958))
 
 - Bug 修复
-  - 修复非对齐访存相干的若干 bug ([#4053](https://github.com/OpenXiangShan/XiangShan/pull/4053))、([#4057](https://github.com/OpenXiangShan/XiangShan/pull/4057))、([#4077](https://github.com/OpenXiangShan/XiangShan/pull/4077))
+  - 修复非对齐访存相干的若干 Bug ([#4053](https://github.com/OpenXiangShan/XiangShan/pull/4053))、([#4057](https://github.com/OpenXiangShan/XiangShan/pull/4057))、([#4077](https://github.com/OpenXiangShan/XiangShan/pull/4077))
 
 - PPA 优化
   - 时序：优化 StoreQueue 中关键路径 ([#3988](https://github.com/OpenXiangShan/XiangShan/pull/3988))

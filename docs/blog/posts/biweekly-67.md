@@ -26,10 +26,22 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复 CSR 指令未能报出地址翻译异常的问题 ([#4118](https://github.com/OpenXiangShan/XiangShan/pull/4118))
+    - 修复 hideleg 寄存器中 LCOFI 的读写依赖问题 ([#4070](https://github.com/OpenXiangShan/XiangShan/pull/4070))，NEMU 也进行相应修复 ([NEMU #733](https://github.com/OpenXiangShan/NEMU/pull/733))
+    - 修复 CSR 改为部分可流水后未能正确相应冲刷流水信号的问题 ([#4079](https://github.com/OpenXiangShan/XiangShan/pull/4079))
+    - 修复在用户模式 time 寄存器更新出错 ([#4132](https://github.com/OpenXiangShan/XiangShan/pull/4132))
+    - 修复 lui/fld 指令融合在目的寄存器是零寄存器时行为出错 ([#4131](https://github.com/OpenXiangShan/XiangShan/pull/4131))
+    - 修复 Hint 类指令错误融合的问题 ([#4108](https://github.com/OpenXiangShan/XiangShan/pull/4108))
+    - NEMU 修复 SGEI 中断优先级异常问题 ([#733](https://github.com/OpenXiangShan/NEMU/pull/733))
 
 - 时序/面积优化
+    - 将浮点/向量 Regfile 改为分4块 ([#4088](https://github.com/OpenXiangShan/XiangShan/pull/4088))
+    - 修复 rob 中出队刷新流水线以及向量异常时序问题 ([#4075](https://github.com/OpenXiangShan/XiangShan/pull/4075))
+    - 将判断向量复杂译码判断信号改为由指令编码直出 ([#4066](https://github.com/OpenXiangShan/XiangShan/pull/4066))
+    - 将 CSR 输出到前端/访存的读写地址/数据打拍 ([#4119](https://github.com/OpenXiangShan/XiangShan/pull/4119))
 
-- RVA23 Profile
+- 工具 
+    - 添加 Top-Down 后端相关硬件性能计数事件（[#4122](https://github.com/OpenXiangShan/XiangShan/pull/4122)）
 
 ### 访存与缓存
 

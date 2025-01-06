@@ -22,10 +22,22 @@ Welcome to XiangShan biweekly column, this is the 67th issue of our biweekly col
 ### Backend
 
 - **Bug Fixes**
+    - Fixed an issue where CSR instructions failed to raise address translation exceptions ([#4118](https://github.com/OpenXiangShan/XiangShan/pull/4118)).
+    - Fixed read/write dependency issues for the `LCOFI` bit in the `hideleg` register ([#4070](https://github.com/OpenXiangShan/XiangShan/pull/4070)), with corresponding fixes in NEMU ([NEMU #733](https://github.com/OpenXiangShan/NEMU/pull/733)).
+    - Fixed an issue where CSR did not correctly respond to flush signals after being partially pipelined ([#4079](https://github.com/OpenXiangShan/XiangShan/pull/4079)).
+    - Fixed an error in updating the `time` register in user mode ([#4132](https://github.com/OpenXiangShan/XiangShan/pull/4132)).
+    - Fixed incorrect behavior when fusing `lui` and `fld` instructions with the zero register as the destination ([#4131](https://github.com/OpenXiangShan/XiangShan/pull/4131)).
+    - Fixed incorrect fusion of Hint-type instructions ([#4108](https://github.com/OpenXiangShan/XiangShan/pull/4108)).
+    - NEMU fixed an issue with the incorrect priority of SGEI interrupts ([#733](https://github.com/OpenXiangShan/NEMU/pull/733)).
 
 - **Timing/Area Optimization**
+    - Split the floating-point/vector register file into 4 blocks ([#4088](https://github.com/OpenXiangShan/XiangShan/pull/4088)).
+    - Fixed timing issues with dequeue refresh pipelines and vector exceptions in ROB ([#4075](https://github.com/OpenXiangShan/XiangShan/pull/4075)).
+    - Changed the vector complex decoder signal to be directly output by instruction encoding ([#4066](https://github.com/OpenXiangShan/XiangShan/pull/4066)).
+    - Added registers for read/write addresses and data output from CSR to frontend/memory ([#4119](https://github.com/OpenXiangShan/XiangShan/pull/4119)).
 
-- **RVA23 Profile**
+- **Tool**
+    - Added Top-Down backend-related hardware performance counting events ([#4122](https://github.com/OpenXiangShan/XiangShan/pull/4122)).
 
 ### MemBlock and cache
 

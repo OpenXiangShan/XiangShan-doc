@@ -36,8 +36,18 @@ categories:
 - RVA23 Profile
 
 - Bug 修复
+  - 修复一系列 SnpOnce*/SnpStash* 相关的嵌套 bug ([CoupledL2 #306](https://github.com/OpenXiangShan/CoupledL2/pull/306))、([CoupledL2 #308](https://github.com/OpenXiangShan/CoupledL2/pull/308))、([CoupledL2 #309](https://github.com/OpenXiangShan/CoupledL2/pull/309))
+  - 修复 MCP2 打开的情况下，替换算法 retry 信号没有维持 2 拍的 bug ([CoupledL2 #303](https://github.com/OpenXiangShan/CoupledL2/pull/303))
+
+- 预取
+  - BOP 添加物理内存范围检查 ([#4115](https://github.com/OpenXiangShan/XiangShan/pull/4115))
 
 - PPA 优化
+  - 删除 MainPipe 中重复信号 ([#4117](https://github.com/OpenXiangShan/XiangShan/pull/4117))
+  - 减少 LoadQueueReplay 项数，面积减小 2.85%，功耗降低 1.59% ([#4082](https://github.com/OpenXiangShan/XiangShan/pull/4082))
+
+- 工具
+  - OpenLLC 支持 Top-Down ([#4113](https://github.com/OpenXiangShan/XiangShan/pull/4113))
 
 
 ## 评估

@@ -32,8 +32,18 @@ Welcome to XiangShan biweekly column, this is the 67th issue of our biweekly col
 - **RVA23 Profile**
 
 - **Bug fixes**
+  - Fixed a series of nested bugs related to `SnpOnce*`/`SnpStash*` ([CoupledL2 #306](https://github.com/OpenXiangShan/CoupledL2/pull/306)), ([CoupledL2 #308](https://github.com/OpenXiangShan/CoupledL2/pull/308)), ([CoupledL2 #309](https://github.com/OpenXiangShan/CoupledL2/pull/309))  
+  - Fixed a bug where the replacement algorithm retry signal did not last for two cycles when MCP2 was enabled ([CoupledL2 #303](https://github.com/OpenXiangShan/CoupledL2/pull/303))  
+
+- **Prefetch**
+  - Added physical memory range checks to BOP ([#4115](https://github.com/OpenXiangShan/XiangShan/pull/4115))  
 
 - **PPA Optimizations**
+  - Removed duplicate signals in `MainPipe` ([#4117](https://github.com/OpenXiangShan/XiangShan/pull/4117))  
+  - Reduced the number of `LoadQueueReplay` entries, resulting in a 2.85% area reduction and a 1.59% power reduction ([#4082](https://github.com/OpenXiangShan/XiangShan/pull/4082))  
+
+- **Tool**
+  - OpenLLC now supports Top-Down analysis ([#4113](https://github.com/OpenXiangShan/XiangShan/pull/4113))
 
 ## RTL Evaluation
 

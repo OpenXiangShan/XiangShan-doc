@@ -45,25 +45,25 @@ Welcome to XiangShan biweekly column, this is the 67th issue of our biweekly col
 ### MemBlock and cache
 
 - **RVA23 Profile**
-  - Completed the implementation of Svnapot extension (supports address translation for naturally aligned power-of-2 page sizes) and already merged into master ([#4107](https://github.com/OpenXiangShan/XiangShan/pull/4107))
+    - Completed the implementation of Svnapot extension (supports address translation for naturally aligned power-of-2 page sizes) and already merged into master ([#4107](https://github.com/OpenXiangShan/XiangShan/pull/4107))
 
 - **Bug fixes**
-  - Fixed a bug that prevents UncacheBuffer enqueue when it has empty entries ([#4096](https://github.com/OpenXiangShan/XiangShan/pull/4096))
-  - Fixed a bug that incorrectly reported a guest page fault due to a mismatch between memory response data and exception check ([#4090](https://github.com/OpenXiangShan/XiangShan/pull/4090))
-  - Fixed several vector-related bugs, mainly about miaslign, exception handling and some corner cases ([#4084](https://github.com/OpenXiangShan/XiangShan/pull/4084)), ([#4085](https://github.com/OpenXiangShan/XiangShan/pull/4085)), ([#4086](https://github.com/OpenXiangShan/XiangShan/pull/4086)), ([#4101](https://github.com/OpenXiangShan/XiangShan/pull/4101)), ([#4103](https://github.com/OpenXiangShan/XiangShan/pull/4103))
-  - Fixed a deadlock problem in LoadUnit caused by fast replay ([#4102](https://github.com/OpenXiangShan/XiangShan/pull/4102))
-  - Fixed a series of nested bugs related to `SnpOnce*`/`SnpStash*` ([CoupledL2 #306](https://github.com/OpenXiangShan/CoupledL2/pull/306)), ([CoupledL2 #308](https://github.com/OpenXiangShan/CoupledL2/pull/308)), ([CoupledL2 #309](https://github.com/OpenXiangShan/CoupledL2/pull/309))
-  - Fixed a bug where the replacement algorithm retry signal did not last for two cycles when MCP2 was enabled ([CoupledL2 #303](https://github.com/OpenXiangShan/CoupledL2/pull/303))
+    - Fixed a bug that prevents UncacheBuffer enqueue when it has empty entries ([#4096](https://github.com/OpenXiangShan/XiangShan/pull/4096))
+    - Fixed a bug that incorrectly reported a guest page fault due to a mismatch between memory response data and exception check ([#4090](https://github.com/OpenXiangShan/XiangShan/pull/4090))
+    - Fixed several vector-related bugs, mainly about miaslign, exception handling and some corner cases ([#4084](https://github.com/OpenXiangShan/XiangShan/pull/4084)), ([#4085](https://github.com/OpenXiangShan/XiangShan/pull/4085)), ([#4086](https://github.com/OpenXiangShan/XiangShan/pull/4086)), ([#4101](https://github.com/OpenXiangShan/XiangShan/pull/4101)), ([#4103](https://github.com/OpenXiangShan/XiangShan/pull/4103))
+    - Fixed a deadlock problem in LoadUnit caused by fast replay ([#4102](https://github.com/OpenXiangShan/XiangShan/pull/4102))
+    - Fixed a series of nested bugs related to `SnpOnce*`/`SnpStash*` ([CoupledL2 #306](https://github.com/OpenXiangShan/CoupledL2/pull/306)), ([CoupledL2 #308](https://github.com/OpenXiangShan/CoupledL2/pull/308)), ([CoupledL2 #309](https://github.com/OpenXiangShan/CoupledL2/pull/309))
+    - Fixed a bug where the replacement algorithm retry signal did not last for two cycles when MCP2 was enabled ([CoupledL2 #303](https://github.com/OpenXiangShan/CoupledL2/pull/303))
 
 - **Prefetch**
-  - Fixed a connection error of PMP / PMA check when VBOP prefetches enquiry the TLB ([CoupledL2 #312](https://github.com/OpenXiangShan/CoupledL2/pull/312))
+    - Fixed a connection error of PMP / PMA check when VBOP prefetches enquiry the TLB ([CoupledL2 #312](https://github.com/OpenXiangShan/CoupledL2/pull/312))
 
 - **PPA Optimizations**
-  - Removed duplicate signals in `MainPipe` ([#4117](https://github.com/OpenXiangShan/XiangShan/pull/4117))
-  - Reduced the number of `LoadQueueReplay` entries, resulting in a 2.85% area reduction and a 1.59% power reduction ([#4082](https://github.com/OpenXiangShan/XiangShan/pull/4082))
+    - Removed duplicate signals in `MainPipe` ([#4117](https://github.com/OpenXiangShan/XiangShan/pull/4117))
+    - Reduced the number of `LoadQueueReplay` entries, resulting in a 2.85% area reduction and a 1.59% power reduction ([#4082](https://github.com/OpenXiangShan/XiangShan/pull/4082))
 
 - **Tool**
-  - OpenLLC now supports Top-Down analysis ([#4113](https://github.com/OpenXiangShan/XiangShan/pull/4113))
+    - OpenLLC now supports Top-Down analysis ([#4113](https://github.com/OpenXiangShan/XiangShan/pull/4113))
 
 ## RTL Evaluation
 

@@ -40,26 +40,31 @@ categories:
     - 将判断向量复杂译码判断信号改为由指令编码直出 ([#4066](https://github.com/OpenXiangShan/XiangShan/pull/4066))
     - 将 CSR 输出到前端/访存的读写地址/数据打拍 ([#4119](https://github.com/OpenXiangShan/XiangShan/pull/4119))
 
-- 工具 
+- 工具
     - 添加 Top-Down 后端相关硬件性能计数事件（[#4122](https://github.com/OpenXiangShan/XiangShan/pull/4122)）
 
 ### 访存与缓存
 
 - RVA23 Profile
+  - 完成 Svnapot（支持 2 的幂次大小页的地址翻译）扩展的实现并合入主线 ([#4107](https://github.com/OpenXiangShan/XiangShan/pull/4107))
 
 - Bug 修复
+  - 修复 UncacheBuffer 有空项时仍无法入队导致卡死的 bug ([#4096](https://github.com/OpenXiangShan/XiangShan/pull/4096))
+  - 修复内存返回数据与异常检查错拍导致误报 guest page fault 的 bug ([#4090](https://github.com/OpenXiangShan/XiangShan/pull/4090))
+  - 修复若干向量有关的 bug，主要包括非对齐、异常处理和部分边界条件等 ([#4084](https://github.com/OpenXiangShan/XiangShan/pull/4084))、([#4085](https://github.com/OpenXiangShan/XiangShan/pull/4085))、([#4086](https://github.com/OpenXiangShan/XiangShan/pull/4086))、([#4101](https://github.com/OpenXiangShan/XiangShan/pull/4101))、([#4103](https://github.com/OpenXiangShan/XiangShan/pull/4103))
+  - 修复 LoadUnit 中，因 fast replay 导致的死锁问题 ([#4102](https://github.com/OpenXiangShan/XiangShan/pull/4102))
   - 修复一系列 SnpOnce*/SnpStash* 相关的嵌套 bug ([CoupledL2 #306](https://github.com/OpenXiangShan/CoupledL2/pull/306))、([CoupledL2 #308](https://github.com/OpenXiangShan/CoupledL2/pull/308))、([CoupledL2 #309](https://github.com/OpenXiangShan/CoupledL2/pull/309))
   - 修复 MCP2 打开的情况下，替换算法 retry 信号没有维持 2 拍的 bug ([CoupledL2 #303](https://github.com/OpenXiangShan/CoupledL2/pull/303))
 
 - 预取
-  - BOP 添加物理内存范围检查 ([#4115](https://github.com/OpenXiangShan/XiangShan/pull/4115))
+  - 修复 VBOP 预取访问 TLB 时 PMP / PMA 检查的连线错误 ([CoupledL2 #312](https://github.com/OpenXiangShan/CoupledL2/pull/312))
 
 - PPA 优化
   - 删除 MainPipe 中重复信号 ([#4117](https://github.com/OpenXiangShan/XiangShan/pull/4117))
   - 减少 LoadQueueReplay 项数，面积减小 2.85%，功耗降低 1.59% ([#4082](https://github.com/OpenXiangShan/XiangShan/pull/4082))
 
 - 工具
-  - OpenLLC 支持 Top-Down ([#4113](https://github.com/OpenXiangShan/XiangShan/pull/4113))
+  - OpenLLC 支持 Top-Down 性能分析 ([#4113](https://github.com/OpenXiangShan/XiangShan/pull/4113))
 
 
 ## 评估

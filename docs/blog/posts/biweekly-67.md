@@ -19,9 +19,11 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 修复一个 MMIO 取指 + 16b 指令下等待 commit 条件的问题 ([#4072](https://github.com/OpenXiangShan/XiangShan/pull/4072))
+    - 修复一个 ICache MSHR 冲刷后 corrupt bit 未冲刷的问题 ([#4112](https://github.com/OpenXiangShan/XiangShan/pull/4112))
 
-- 面积
+- 功能
+    - ICache ECC 故障注入（RAS） ([#4044](https://github.com/OpenXiangShan/XiangShan/pull/4044))
 
 ### 后端流水线
 
@@ -35,7 +37,7 @@ categories:
     - NEMU 修复 SGEI 中断优先级异常问题 ([#733](https://github.com/OpenXiangShan/NEMU/pull/733))
 
 - 时序/面积优化
-    - 将浮点/向量 Regfile 改为分4块 ([#4088](https://github.com/OpenXiangShan/XiangShan/pull/4088))
+    - 将浮点/向量 Regfile 改为分 4 块 ([#4088](https://github.com/OpenXiangShan/XiangShan/pull/4088))
     - 修复 rob 中出队刷新流水线以及向量异常时序问题 ([#4075](https://github.com/OpenXiangShan/XiangShan/pull/4075))
     - 将判断向量复杂译码判断信号改为由指令编码直出 ([#4066](https://github.com/OpenXiangShan/XiangShan/pull/4066))
     - 将 CSR 输出到前端/访存的读写地址/数据打拍 ([#4119](https://github.com/OpenXiangShan/XiangShan/pull/4119))

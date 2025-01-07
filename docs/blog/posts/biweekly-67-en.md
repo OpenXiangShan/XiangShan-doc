@@ -15,9 +15,12 @@ Welcome to XiangShan biweekly column, this is the 67th issue of our biweekly col
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Fixed an issue with waiting for commit conditions under MMIO instruction fetch and 16-bit instructions ([#4072](https://github.com/OpenXiangShan/XiangShan/pull/4072))
+    - Fixed an issue where the corrupt bit was not flushed after ICache MSHR flush ([#4112](https://github.com/OpenXiangShan/XiangShan/pull/4112))
 
-- **Area**
+- **Features**
+    - ICache ECC fault injection (RAS) ([#4044](https://github.com/OpenXiangShan/XiangShan/pull/4044))
+
 
 ### Backend
 

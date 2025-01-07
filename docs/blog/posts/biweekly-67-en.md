@@ -9,6 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 67th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed an issue where the corrupt bit was not flushed after ICache MSHR flush, the backend fixed incorrect behavior when fusing `lui` and `fld` instructions with the zero register as the destination, and the memory and cache subsystem completed the implementation of Svnapot extension (supports address translation for naturally aligned power-of-2 page sizes) and already merged into master. This update also includes the latest performance improvements of the Kunminghu architecture.
 <!-- more -->
 ## Recent developments
 

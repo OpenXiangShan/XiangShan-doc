@@ -9,7 +9,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 67 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端修复 ICache MSHR 冲刷后 corrupt bit 未冲刷的问题，后端修复 lui/fld 指令融合在目的寄存器是零寄存器时行为出错的问题，访存和缓存完成 Svnapot（支持 2 的幂次大小页的地址翻译）扩展的实现并合入主线。本期还更新了昆明湖架构近期性能。
 
 
 <!-- more -->
@@ -30,9 +30,9 @@ categories:
 - Bug 修复
     - 修复 CSR 指令未能报出地址翻译异常的问题 ([#4118](https://github.com/OpenXiangShan/XiangShan/pull/4118))
     - 修复 hideleg 寄存器中 LCOFI 的读写依赖问题 ([#4070](https://github.com/OpenXiangShan/XiangShan/pull/4070))，NEMU 也进行相应修复 ([NEMU #733](https://github.com/OpenXiangShan/NEMU/pull/733))
-    - 修复 CSR 改为部分可流水后未能正确相应冲刷流水信号的问题 ([#4079](https://github.com/OpenXiangShan/XiangShan/pull/4079))
+    - 修复 CSR 改为部分可流水后未能正确响应冲刷流水信号的问题 ([#4079](https://github.com/OpenXiangShan/XiangShan/pull/4079))
     - 修复在用户模式 time 寄存器更新出错 ([#4132](https://github.com/OpenXiangShan/XiangShan/pull/4132))
-    - 修复 lui/fld 指令融合在目的寄存器是零寄存器时行为出错 ([#4131](https://github.com/OpenXiangShan/XiangShan/pull/4131))
+    - 修复 lui/fld 指令融合在目的寄存器是零寄存器时行为出错的问题 ([#4131](https://github.com/OpenXiangShan/XiangShan/pull/4131))
     - 修复 Hint 类指令错误融合的问题 ([#4108](https://github.com/OpenXiangShan/XiangShan/pull/4108))
     - NEMU 修复 SGEI 中断优先级异常问题 ([#733](https://github.com/OpenXiangShan/NEMU/pull/733))
 
@@ -51,12 +51,12 @@ categories:
     - 完成 Svnapot（支持 2 的幂次大小页的地址翻译）扩展的实现并合入主线 ([#4107](https://github.com/OpenXiangShan/XiangShan/pull/4107))
 
 - Bug 修复
-    - 修复 UncacheBuffer 有空项时仍无法入队导致卡死的 bug ([#4096](https://github.com/OpenXiangShan/XiangShan/pull/4096))
-    - 修复内存返回数据与异常检查错拍导致误报 guest page fault 的 bug ([#4090](https://github.com/OpenXiangShan/XiangShan/pull/4090))
-    - 修复若干向量有关的 bug，主要包括非对齐、异常处理和部分边界条件等 ([#4084](https://github.com/OpenXiangShan/XiangShan/pull/4084))、([#4085](https://github.com/OpenXiangShan/XiangShan/pull/4085))、([#4086](https://github.com/OpenXiangShan/XiangShan/pull/4086))、([#4101](https://github.com/OpenXiangShan/XiangShan/pull/4101))、([#4103](https://github.com/OpenXiangShan/XiangShan/pull/4103))
+    - 修复 UncacheBuffer 有空项时仍无法入队导致卡死的 Bug ([#4096](https://github.com/OpenXiangShan/XiangShan/pull/4096))
+    - 修复内存返回数据与异常检查错拍导致误报 guest page fault 的 Bug ([#4090](https://github.com/OpenXiangShan/XiangShan/pull/4090))
+    - 修复若干向量有关的 Bug，主要包括非对齐、异常处理和部分边界条件等 ([#4084](https://github.com/OpenXiangShan/XiangShan/pull/4084))、([#4085](https://github.com/OpenXiangShan/XiangShan/pull/4085))、([#4086](https://github.com/OpenXiangShan/XiangShan/pull/4086))、([#4101](https://github.com/OpenXiangShan/XiangShan/pull/4101))、([#4103](https://github.com/OpenXiangShan/XiangShan/pull/4103))
     - 修复 LoadUnit 中，因 fast replay 导致的死锁问题 ([#4102](https://github.com/OpenXiangShan/XiangShan/pull/4102))
-    - 修复一系列 SnpOnce*/SnpStash* 相关的嵌套 bug ([CoupledL2 #306](https://github.com/OpenXiangShan/CoupledL2/pull/306))、([CoupledL2 #308](https://github.com/OpenXiangShan/CoupledL2/pull/308))、([CoupledL2 #309](https://github.com/OpenXiangShan/CoupledL2/pull/309))
-    - 修复 MCP2 打开的情况下，替换算法 retry 信号没有维持 2 拍的 bug ([CoupledL2 #303](https://github.com/OpenXiangShan/CoupledL2/pull/303))
+    - 修复一系列 SnpOnce*/SnpStash* 相关的嵌套 Bug ([CoupledL2 #306](https://github.com/OpenXiangShan/CoupledL2/pull/306))、([CoupledL2 #308](https://github.com/OpenXiangShan/CoupledL2/pull/308))、([CoupledL2 #309](https://github.com/OpenXiangShan/CoupledL2/pull/309))
+    - 修复 MCP2 打开的情况下，替换算法 retry 信号没有维持 2 拍的 Bug ([CoupledL2 #303](https://github.com/OpenXiangShan/CoupledL2/pull/303))
 
 - 预取
     - 修复 VBOP 预取访问 TLB 时 PMP / PMA 检查的连线错误 ([CoupledL2 #312](https://github.com/OpenXiangShan/CoupledL2/pull/312))

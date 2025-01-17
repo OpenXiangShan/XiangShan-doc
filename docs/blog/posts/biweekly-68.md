@@ -26,10 +26,22 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复 xTIP (时钟中断等待位) 更新失败，导致错误产生中断的问题 ([#4157](https://github.com/OpenXiangShan/XiangShan/pull/4157))
+    - 修复边界条件下，rob 发生重定向时没有成功刷新 rob 表项的问题 ([#4153](https://github.com/OpenXiangShan/XiangShan/pull/4153))
+    - 添加对 htimedelta csr 初始化，以防止软件读取采用未初始化信息造成错误 ([#4145](https://github.com/OpenXiangShan/XiangShan/pull/4145))
+    - 修复 mnret 部分输出信号未连线的问题 ([#4194](https://github.com/OpenXiangShan/XiangShan/pull/4194))
+    - 添加 AIA 拓展遗漏的权限检查 ([#4166](https://github.com/OpenXiangShan/XiangShan/pull/4166))
+    - 整理对 CSR 的访问异常，分类为多个模块共同完成 ([#4146](https://github.com/OpenXiangShan/XiangShan/pull/4146))
+    - 修复修复重定向时快照选择在极端情况出错的问题 ([#4197](https://github.com/OpenXiangShan/XiangShan/pull/4197))
+    - 修复 unorder reduction 指令掩码错误问题 ([#4197](https://github.com/OpenXiangShan/XiangShan/pull/4197))
+    - 修复 reduction 指令 f16 数据选择错误问题 ([#4181](https://github.com/OpenXiangShan/XiangShan/pull/4181))
 
-- 时序/面积优化
+- Debug Module
+    - 新增 hartReset 功能，在多核调试下，允许重启指定核 ([#4134](https://github.com/OpenXiangShan/XiangShan/pull/4134))
 
-- RVA23 Profile
+- 工具
+    - 支持硬件可综合的三级分类 Top-Down 计数器 ([#4122](https://github.com/OpenXiangShan/XiangShan/pull/4122))
+    - 添加 mcorepwd/mflushpwd 两个自定义 CSR 寄存器以控制功耗 ([#4164](https://github.com/OpenXiangShan/XiangShan/pull/4164))
 
 ### 访存与缓存
 

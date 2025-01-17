@@ -22,10 +22,22 @@ Welcome to XiangShan biweekly column, this is the 68th issue of our biweekly col
 ### Backend
 
 - **Bug Fixes**
+    - Fixed an issue where `xTIP` (clock interrupt pending bit) failed to update, causing erroneous interrupts ([#4157](https://github.com/OpenXiangShan/XiangShan/pull/4157)).
+    - Fixed a boundary condition where `rob` failed to flush entries during a redirect ([#4153](https://github.com/OpenXiangShan/XiangShan/pull/4153)).
+    - Added initialization for the `htimedelta` CSR to prevent errors from software reading uninitialized values ([#4145](https://github.com/OpenXiangShan/XiangShan/pull/4145)).
+    - Fixed missing output connections for `mnret` signals ([#4194](https://github.com/OpenXiangShan/XiangShan/pull/4194)).
+    - Added missing permission checks for the AIA extension ([#4166](https://github.com/OpenXiangShan/XiangShan/pull/4166)).
+    - Refactored CSR access exceptions, dividing responsibilities among multiple modules ([#4146](https://github.com/OpenXiangShan/XiangShan/pull/4146)).
+    - Fixed an issue where snapshot selection failed under extreme conditions during redirection ([#4197](https://github.com/OpenXiangShan/XiangShan/pull/4197)).
+    - Fixed incorrect masking in unordered reduction instructions ([#4197](https://github.com/OpenXiangShan/XiangShan/pull/4197)).
+    - Fixed incorrect data selection for `f16` in reduction instructions ([#4181](https://github.com/OpenXiangShan/XiangShan/pull/4181)).
 
-- **Timing/Area Optimization**
+- **Debug Module**
+    - Added `hartReset` functionality, allowing selected cores to be restarted during multi-core debugging ([#4134](https://github.com/OpenXiangShan/XiangShan/pull/4134)).
 
-- **RVA23 Profile**
+- **Tools**
+    - Added synthesizable three-level classification Top-Down counters ([#4122](https://github.com/OpenXiangShan/XiangShan/pull/4122)).
+    - Introduced two custom CSR registers, `mcorepwd` and `mflushpwd`, to control power ([#4164](https://github.com/OpenXiangShan/XiangShan/pull/4164)).
 
 ### MemBlock and cache
 

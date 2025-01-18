@@ -43,9 +43,30 @@ Welcome to XiangShan biweekly column, this is the 68th issue of our biweekly col
 
 - **RVA23 Profile**
 
+- **CHI Bus**
+    - Added support for the new Snoop transaction SnpQuery in Issue E.b ([CoupledL2 #323](https://github.com/OpenXiangShan/CoupledL2/pull/323))
+    - Added code isolation for different CHI versions ([CoupledL2 #333](https://github.com/OpenXiangShan/CoupledL2/pull/333)), ([CoupledL2 #315](https://github.com/OpenXiangShan/CoupledL2/pull/315))
+    - Added support for DataCheck and Poison for UC situations, and corrected their initialization options ([CoupledL2 #329](https://github.com/OpenXiangShan/CoupledL2/pull/329)), ([CoupledL2 #335](https://github.com/OpenXiangShan/CoupledL2/pull/335)), ([CoupledL2 #337](https://github.com/OpenXiangShan/CoupledL2/pull/337))
+
+- **Prefetch**
+    - Added CSR register control for L2 Cache prefetch ([CoupledL2 #324](https://github.com/OpenXiangShan/CoupledL2/pull/324))
+
+
 - **Bug fixes**
+    - Fixed issue where SnpStash did not probe L1 under specific conditions ([CoupledL2 #326](https://github.com/OpenXiangShan/CoupledL2/pull/326))
+    - Fixed a series of WriteEvictOrEvict related bugs ([CoupledL2 #311](https://github.com/OpenXiangShan/CoupledL2/pull/311)), ([CoupledL2 #316](https://github.com/OpenXiangShan/CoupledL2/pull/316)), ([CoupledL2 #327](https://github.com/OpenXiangShan/CoupledL2/pull/327))
+    - Fixed a series of CMO related bugs ([CoupledL2 #317](https://github.com/OpenXiangShan/CoupledL2/pull/317)), ([CoupledL2 #325](https://github.com/OpenXiangShan/CoupledL2/pull/325))
+    - Fixed CCID incorrect assignment issue ([CoupledL2 #330](https://github.com/OpenXiangShan/CoupledL2/pull/330))
+
 
 - **PPA Optimizations**
+    - Timing
+        - Changed some key signals in the Load Unit to be directly output from registers ([#4144](https://github.com/OpenXiangShan/XiangShan/pull/4144))
+        - Optimized the data write-back generation logic in the Load Unit ([#4167](https://github.com/OpenXiangShan/XiangShan/pull/4167))
+        - Optimized the critical path of the SRAM exit to register gating signals in the L2 Cache ([CoupledL2 #321](https://github.com/OpenXiangShan/CoupledL2/pull/321))
+    
+    - Area
+        - Reduced the number of LQReplay entries, and when the LQReplay occupancy reaches a certain threshold, the IQ will dispatch the oldest load ([#4183](https://github.com/OpenXiangShan/XiangShan/pull/4183))
 
 ## RTL Evaluation
 

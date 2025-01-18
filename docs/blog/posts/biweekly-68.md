@@ -47,10 +47,29 @@ categories:
 
 - RVA23 Profile
 
+- CHI 总线
+    - 添加对 Issue E.b 中新增 Snoop 事务 SnpQuery 的支持 ([CoupledL2 #323](https://github.com/OpenXiangShan/CoupledL2/pull/323))
+    - 添加对不同 CHI 版本的代码隔离 ([CoupledL2 #333](https://github.com/OpenXiangShan/CoupledL2/pull/333))、([CoupledL2 #315](https://github.com/OpenXiangShan/CoupledL2/pull/315))
+    - 添加 DataCheck 与 Poison 对于 UC 情况的支持，并修正其初始化选项 ([CoupledL2 #329](https://github.com/OpenXiangShan/CoupledL2/pull/329))、([CoupledL2 #335](https://github.com/OpenXiangShan/CoupledL2/pull/335))、([CoupledL2 #337](https://github.com/OpenXiangShan/CoupledL2/pull/337))
+
+- 预取
+    - 添加 L2 Cache 预取的 CSR 寄存器控制 ([CoupledL2 #324](https://github.com/OpenXiangShan/CoupledL2/pull/324))
+
+
 - Bug 修复
+    - 修复 SnpStash 在特定情况下未 probe L1 的错误问题 ([CoupledL2 #326](https://github.com/OpenXiangShan/CoupledL2/pull/326))
+    - 修复一系列 WriteEvictOrEvict 相关错误 ([CoupledL2 #311](https://github.com/OpenXiangShan/CoupledL2/pull/311))、([CoupledL2 #316](https://github.com/OpenXiangShan/CoupledL2/pull/316))、([CoupledL2 #327](https://github.com/OpenXiangShan/CoupledL2/pull/327))
+    - 修复一系列 CMO 相关错误 ([CoupledL2 #317](https://github.com/OpenXiangShan/CoupledL2/pull/317))、([CoupledL2 #325](https://github.com/OpenXiangShan/CoupledL2/pull/325))
+    - 修复 CCID 错误赋值问题 ([CoupledL2 #330](https://github.com/OpenXiangShan/CoupledL2/pull/330))
 
 - PPA 优化
-
+    - 时序
+        - Load Unit 中部分关键信号改为由寄存器直出 ([#4144](https://github.com/OpenXiangShan/XiangShan/pull/4144))
+        - 优化 Load Unit 写回数据生成逻辑 ([#4167](https://github.com/OpenXiangShan/XiangShan/pull/4167))
+        - 优化 L2 Cache 中 SRAM 出口到寄存器门控信号的关键路径 ([CoupledL2 #321](https://github.com/OpenXiangShan/CoupledL2/pull/321))
+    
+    - 面积
+        - 缩减 LQReplay 项数，在 LQReplay 占用率达到一定阈值时让 IQ 发射最老的 load ([#4183](https://github.com/OpenXiangShan/XiangShan/pull/4183))
 
 ## 评估
 

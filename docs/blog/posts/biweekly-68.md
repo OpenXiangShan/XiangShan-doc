@@ -18,10 +18,8 @@ categories:
 
 ### 前端
 
-- Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- 面积
+- 功耗
+    - 添加双端口 SRAM 两个 clock 分别门控的选项，默认不分别门控 ([#4125](https://github.com/OpenXiangShan/XiangShan/pull/4125))
 
 ### 后端流水线
 

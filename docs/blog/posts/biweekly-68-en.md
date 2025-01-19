@@ -14,10 +14,8 @@ Welcome to XiangShan biweekly column, this is the 68th issue of our biweekly col
 
 ### Frontend
 
-- **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- **Area**
+- **Power**
+    - Added the option to separately gate the two clocks of the dual-port SRAM, with the default setting being not to gate them separately ([#4125](https://github.com/OpenXiangShan/XiangShan/pull/4125))
 
 ### Backend
 

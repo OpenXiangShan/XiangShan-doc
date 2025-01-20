@@ -71,36 +71,34 @@ categories:
 
 ## 评估
 
-我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC CPU2006 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPECfp 2006 的 -ffp-contraction 选项为 fast，指令集为 RV64GCB。我们使用 **12 月 06 日 a60d667 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld2st 流水线**），在仿真环境下运行了 SPEC CPU2006 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPEC CPU2006 的分数估计情况：
+我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 80%**。SPEC CPU2006 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPECfp 2006 的 -ffp-contraction 选项为 fast，指令集为 RV64GCB。我们使用 **01 月 17 日 9cd76b2 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld2st 流水线，总线协议为 TileLink**），在仿真环境下运行了 SPEC CPU2006 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPEC CPU2006 的分数估计情况：
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est.  | @ 3GHz |
 | :---------------- | :----: | :---------------- | :----: |
-| 400.perlbench     | 38.10  | 410.bwaves        | 67.07  |
-| 401.bzip2         | 25.53  | 416.gamess        | 42.95  |
-| 403.gcc           | 47.17  | 433.milc          | 45.29  |
-| 429.mcf           | 58.86  | 434.zeusmp        | 56.75  |
-| 445.gobmk         | 30.30  | 435.gromacs       | 37.44  |
-| 456.hmmer         | 40.79  | 436.cactusADM     | 49.30  |
-| 458.sjeng         | 30.22  | 437.leslie3d      | 45.29  |
-| 462.libquantum    | 124.56 | 444.namd          | 34.65  |
-| 464.h264ref       | 57.72  | 447.dealII        | 74.37  |
-| 471.omnetpp       | 40.11  | 450.soplex        | 54.63  |
-| 473.astar         | 29.14  | 453.povray        | 54.95  |
-| 483.xalancbmk     | 73.25  | 454.Calculix      | 18.33  |
-| **GEOMEAN**       | 44.61  | 459.GemsFDTD      | 40.22  |
-|                   |        | 465.tonto         | 37.99  |
-|                   |        | 470.lbm           | 102.47 |
-|                   |        | 481.wrf           | 43.22  |
-|                   |        | 482.sphinx3       | 53.26  |
-|                   |        | **GEOMEAN**       | 47.48  |
+| 400.perlbench     | 35.15  | 410.bwaves        | 65.59  |
+| 401.bzip2         | 26.51  | 416.gamess        | 40.64  |
+| 403.gcc           | 47.06  | 433.milc          | 46.76  |
+| 429.mcf           | 60.09  | 434.zeusmp        | 51.84  |
+| 445.gobmk         | 30.40  | 435.gromacs       | 32.88  |
+| 456.hmmer         | 41.51  | 436.cactusADM     | 46.27  |
+| 458.sjeng         | 30.88  | 437.leslie3d      | 47.09  |
+| 462.libquantum    | 122.82 | 444.namd          | 29.23  |
+| 464.h264ref       | 57.24  | 447.dealII        | 70.14  |
+| 471.omnetpp       | 38.93  | 450.soplex        | 52.85  |
+| 473.astar         | 31.07  | 453.povray        | 53.44  |
+| 483.xalancbmk     | 72.45  | 454.Calculix      | 16.42  |
+| **GEOMEAN**       | 44.68  | 459.GemsFDTD      | 35.52  |
+|                   |        | 465.tonto         | 36.44  |
+|                   |        | 470.lbm           | 91.43  |
+|                   |        | 481.wrf           | 39.76  |
+|                   |        | 482.sphinx3       | 48.53  |
+|                   |        | **GEOMEAN**       | 44.38  |
 
 **上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差！**
 
 ## 后记
 
 香山开源处理器正在火热地开发中，新的功能与新的优化在持续添加中，我们将通过香山双周报专栏定期地同步我们的开源进展。感谢您的关注，欢迎在后台留言与我们交流！
-
-在香山昆明湖架构研发后期，性能会每月公布一次，敬请期待！
 
 ## 相关链接
 

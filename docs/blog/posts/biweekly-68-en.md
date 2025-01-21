@@ -9,6 +9,8 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 68th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the backend fixed a boundary condition where `rob` failed to flush entries during a redirect, and the memory and cache subsystem fixed the bug of MMU stuck when MissQueue is full under high pressure.
+
 <!-- more -->
 ## Recent developments
 
@@ -35,7 +37,7 @@ Welcome to XiangShan biweekly column, this is the 68th issue of our biweekly col
 
 - **Tools**
     - Added synthesizable three-level classification Top-Down counters ([#4122](https://github.com/OpenXiangShan/XiangShan/pull/4122)).
-    - Introduced two custom CSR registers, `mcorepwd` and `mflushpwd`, to control power ([#4164](https://github.com/OpenXiangShan/XiangShan/pull/4164)).
+    - Introduced two custom CSR registers, `mcorepwr` and `mflushpwr`, to control power ([#4164](https://github.com/OpenXiangShan/XiangShan/pull/4164)).
 
 ### MemBlock and cache
 

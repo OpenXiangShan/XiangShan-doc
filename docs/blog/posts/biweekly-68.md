@@ -9,8 +9,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 68 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
-
+近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，后端修复边界条件下，rob 发生重定向时没有成功刷新 rob 表项的问题，访存和缓存修复重压场景下 MissQueue 满导致 MMU 卡死的 Bug。
 
 <!-- more -->
 
@@ -30,7 +29,7 @@ categories:
     - 修复 mnret 部分输出信号未连线的问题 ([#4194](https://github.com/OpenXiangShan/XiangShan/pull/4194))
     - 添加 AIA 拓展遗漏的权限检查 ([#4166](https://github.com/OpenXiangShan/XiangShan/pull/4166))
     - 整理对 CSR 的访问异常，分类为多个模块共同完成 ([#4146](https://github.com/OpenXiangShan/XiangShan/pull/4146))
-    - 修复修复重定向时快照选择在极端情况出错的问题 ([#4197](https://github.com/OpenXiangShan/XiangShan/pull/4197))
+    - 修复重定向时快照选择在极端情况出错的问题 ([#4197](https://github.com/OpenXiangShan/XiangShan/pull/4197))
     - 修复 unorder reduction 指令掩码错误问题 ([#4197](https://github.com/OpenXiangShan/XiangShan/pull/4197))
     - 修复 reduction 指令 f16 数据选择错误问题 ([#4181](https://github.com/OpenXiangShan/XiangShan/pull/4181))
 
@@ -39,7 +38,7 @@ categories:
 
 - 工具
     - 支持硬件可综合的三级分类 Top-Down 计数器 ([#4122](https://github.com/OpenXiangShan/XiangShan/pull/4122))
-    - 添加 mcorepwd/mflushpwd 两个自定义 CSR 寄存器以控制功耗 ([#4164](https://github.com/OpenXiangShan/XiangShan/pull/4164))
+    - 添加 mcorepwr/mflushpwr 两个自定义 CSR 寄存器以控制功耗 ([#4164](https://github.com/OpenXiangShan/XiangShan/pull/4164))
 
 ### 访存与缓存
 
@@ -56,9 +55,9 @@ categories:
 
 
 - Bug 修复
-    - 修复 PageCache 和 itlbRepeater 中 X 态传播的两处 bug ([#4174](https://github.com/OpenXiangShan/XiangShan/pull/4174))、([#4195](https://github.com/OpenXiangShan/XiangShan/pull/4195))
-    - 修复重压场景下 MissQueue 满导致 MMU 卡死的 bug ([#4191](https://github.com/OpenXiangShan/XiangShan/pull/4191))、([#4202](https://github.com/OpenXiangShan/XiangShan/pull/4202))
-    - 修复 StoreQueue 中，向量 store 没有被 flush 的 bug ([#4139](https://github.com/OpenXiangShan/XiangShan/pull/4139))
+    - 修复 PageCache 和 itlbRepeater 中 X 态传播的两处 Bug ([#4174](https://github.com/OpenXiangShan/XiangShan/pull/4174))、([#4195](https://github.com/OpenXiangShan/XiangShan/pull/4195))
+    - 修复重压场景下 MissQueue 满导致 MMU 卡死的 Bug ([#4191](https://github.com/OpenXiangShan/XiangShan/pull/4191))、([#4202](https://github.com/OpenXiangShan/XiangShan/pull/4202))
+    - 修复 StoreQueue 中，向量 store 没有被 flush 的 Bug ([#4139](https://github.com/OpenXiangShan/XiangShan/pull/4139))
     - 修复 SnpStash 在特定情况下未 probe L1 的错误问题 ([CoupledL2 #326](https://github.com/OpenXiangShan/CoupledL2/pull/326))
     - 修复一系列 WriteEvictOrEvict 相关错误 ([CoupledL2 #311](https://github.com/OpenXiangShan/CoupledL2/pull/311))、([CoupledL2 #316](https://github.com/OpenXiangShan/CoupledL2/pull/316))、([CoupledL2 #327](https://github.com/OpenXiangShan/CoupledL2/pull/327))
     - 修复一系列 CMO 相关错误 ([CoupledL2 #317](https://github.com/OpenXiangShan/CoupledL2/pull/317))、([CoupledL2 #325](https://github.com/OpenXiangShan/CoupledL2/pull/325))

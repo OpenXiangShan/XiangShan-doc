@@ -26,10 +26,13 @@ categories:
 ### 后端流水线
 
 - Bug 修复
-
-- 时序/面积优化
+    - 修复部分指令信息在硬件性能计数器丢失的问题 ([#4257](https://github.com/OpenXiangShan/XiangShan/pull/4257))
+    - 修复 scountovf 寄存器读取时未受 counteren 控制的问题 ([#4267](https://github.com/OpenXiangShan/XiangShan/pull/4267))
+    - 修复写 mcontrol6 寄存器的 dmode 字段时未考虑 chain 的影响 ([#4256](https://github.com/OpenXiangShan/XiangShan/pull/4256))
+    - 修复向量无序规约求和中 fflags 标志位生成出错的问题 ([#4244](https://github.com/OpenXiangShan/XiangShan/pull/4244))
 
 - RVA23 Profile
+    - 支持低功耗轮询拓展 (zawrs) ([#4211](https://github.com/OpenXiangShan/XiangShan/pull/4211))
 
 ### 访存与缓存
 

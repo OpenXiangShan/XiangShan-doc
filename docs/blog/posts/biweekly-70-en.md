@@ -21,11 +21,14 @@ Welcome to XiangShan biweekly column, this is the 70th issue of our biweekly col
 
 ### Backend
 
-- **Bug Fixes**
+- **Bug Fixes**  
+    - Fixed an issue where some instruction information was lost in hardware performance counters ([#4257](https://github.com/OpenXiangShan/XiangShan/pull/4257)).  
+    - Fixed an issue where the `scountovf` register was not controlled by `counteren` during reads ([#4267](https://github.com/OpenXiangShan/XiangShan/pull/4267)).  
+    - Fixed an issue where writing to the `mcontrol6` register’s `dmode` field did not account for trigger chaining ([#4256](https://github.com/OpenXiangShan/XiangShan/pull/4256)).  
+    - Fixed incorrect `fflags` generation in unordered vector reduction sum operations ([#4244](https://github.com/OpenXiangShan/XiangShan/pull/4244)).  
 
-- **Timing/Area Optimization**
-
-- **RVA23 Profile**
+- **RVA23 Profile**  
+    - Added support for the Wait-on-reservation-set instructions extension (Zawrs) ([#4211](https://github.com/OpenXiangShan/XiangShan/pull/4211)).
 
 ### MemBlock and cache
 

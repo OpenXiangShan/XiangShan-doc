@@ -38,9 +38,21 @@ categories:
 
 - RVA23 Profile
 
+- CHI 总线
+    - 在 CoupledL2 以及 OpenLLC + OpenNCB 的 SoC 中已经支持 Issue C ([CoupledL2 #333](https://github.com/OpenXiangShan/CoupledL2/pull/333))、([OpenLLC #47](https://github.com/OpenXiangShan/OpenLLC/pull/47))、([OpenNCB #3](https://github.com/OpenXiangShan/OpenNCB/pull/3))
+
 - Bug 修复
+    - 修复 WriteEvictOrEvict 回复状态不符合手册标准的 bug ([CoupledL2 #352](https://github.com/OpenXiangShan/CoupledL2/pull/352))
+    - 修复 SnqQuery 嵌套 Evict 时，SnqQuery 回复状态不符合一致性要求的 bug ([CoupledL2 #353](https://github.com/OpenXiangShan/CoupledL2/pull/353))
+    - 修复一系列 DataCheck、Poison 相关 bug ([CoupledL2 #335](https://github.com/OpenXiangShan/CoupledL2/pull/335))、([CoupledL2 #337](https://github.com/OpenXiangShan/CoupledL2/pull/337))、([CoupledL2 #339](https://github.com/OpenXiangShan/CoupledL2/pull/339))
+
 
 - PPA 优化
+    - 时序
+        - 调整 loadqueue RAR 和 store misalign buffer 的入队逻辑 ([#4207](https://github.com/OpenXiangShan/XiangShan/pull/4207))
+        - 调整 Dcache missqueue 的取消逻辑以及 mainpipe tag / meta 的读使能逻辑 ([#4208](https://github.com/OpenXiangShan/XiangShan/pull/4208))
+
+
 
 
 ## 评估

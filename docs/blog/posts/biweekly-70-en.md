@@ -34,9 +34,20 @@ Welcome to XiangShan biweekly column, this is the 70th issue of our biweekly col
 
 - **RVA23 Profile**
 
+- **CHI Bus**
+    - Issue C is now supported in CoupledL2 and SoC with OpenLLC + OpenNCB ([CoupledL2 #333](https://github.com/OpenXiangShan/CoupledL2/pull/333)), ([OpenLLC #47](https://github.com/OpenXiangShan/OpenLLC/pull/47)), ([OpenNCB #3](https://github.com/OpenXiangShan/OpenNCB/pull/3)).
+
 - **Bug fixes**
+    - Fixed a bug where the WriteEvictOrEvict response state did not comply with the manual standard ([CoupledL2 #352](https://github.com/OpenXiangShan/CoupledL2/pull/352)).
+    - Fixed a bug where the SnqQuery response state did not meet consistency requirements when SnqQuery was nested within Evict ([CoupledL2 #353](https://github.com/OpenXiangShan/CoupledL2/pull/353)).
+    - Fixed a series of bugs related to DataCheck and Poison ([CoupledL2 #335](https://github.com/OpenXiangShan/CoupledL2/pull/335)), ([CoupledL2 #337](https://github.com/OpenXiangShan/CoupledL2/pull/337)), ([CoupledL2 #339](https://github.com/OpenXiangShan/CoupledL2/pull/339)).
+
 
 - **PPA Optimizations**
+    - Timing  
+        - Adjusted the enqueue logic of load queue RAR and store misalign buffer ([#4207](https://github.com/OpenXiangShan/XiangShan/pull/4207)).
+        - Adjusted the cancel logic of Dcache missqueue and the read enable logic of mainpipe tag/meta ([#4208](https://github.com/OpenXiangShan/XiangShan/pull/4208)).
+
 
 ## RTL Evaluation
 

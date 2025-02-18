@@ -9,7 +9,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 70 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端修复重定向时 RAS 判断 Call/Ret 的条件问题，后端修复向量无序规约求和中 fflags 标志位生成出错的问题，访存和缓存修复与 cbo 指令相关的冲刷、异常处理和违例检查等一系列 Bug。本期还更新了昆明湖架构近期性能。
 
 
 <!-- more -->
@@ -46,15 +46,15 @@ categories:
     - 完成单核关断的相应修改并提交 PR，正在继续整理代码 ([#4236](https://github.com/OpenXiangShan/XiangShan/pull/4236))、([CoupledL2 #348](https://github.com/OpenXiangShan/CoupledL2/pull/348))
 
 - Bug 修复
-    - 修复 Uncache 合并和 load replay 相关的两处 bug ([#4268](https://github.com/OpenXiangShan/XiangShan/pull/4268))、([#4275](https://github.com/OpenXiangShan/XiangShan/pull/4275))
+    - 修复 Uncache 合并和 load replay 相关的两处 Bug ([#4268](https://github.com/OpenXiangShan/XiangShan/pull/4268))、([#4275](https://github.com/OpenXiangShan/XiangShan/pull/4275))
     - 修复虚拟化 onlyStage1 或 onlyStage2 场景下的 corner case，以及 MMU 的 X 态传播问题 ([#4252](https://github.com/OpenXiangShan/XiangShan/pull/4252))、([#4253](https://github.com/OpenXiangShan/XiangShan/pull/4253))、([#4266](https://github.com/OpenXiangShan/XiangShan/pull/4266))
-    - 修复与 cbo 指令相关的冲刷、异常处理和违例检查等一系列 bug ([#4262](https://github.com/OpenXiangShan/XiangShan/pull/4262))
-    - 修复 cas 请求发生 miss 后，未向 MSHR 传递 amo_cmp 的 bug ([#4272](https://github.com/OpenXiangShan/XiangShan/pull/4272))
-    - 修复非对齐访存的异常处理、违例检查和错误唤醒相关的四处 bug ([#4227](https://github.com/OpenXiangShan/XiangShan/pull/4227))、([#4228](https://github.com/OpenXiangShan/XiangShan/pull/4228))、([#4239](https://github.com/OpenXiangShan/XiangShan/pull/4239))、([#4263](https://github.com/OpenXiangShan/XiangShan/pull/4263))
-    - 修复 PMA 配置缺失和预取指令权限检查的两处 bug ([#4226](https://github.com/OpenXiangShan/XiangShan/pull/4226))、([#4235](https://github.com/OpenXiangShan/XiangShan/pull/4235))
-    - 修复 WriteEvictOrEvict 回复状态不符合手册标准的 bug ([CoupledL2 #352](https://github.com/OpenXiangShan/CoupledL2/pull/352))
-    - 修复 SnqQuery 嵌套 Evict 时，SnqQuery 回复状态不符合一致性要求的 bug ([CoupledL2 #353](https://github.com/OpenXiangShan/CoupledL2/pull/353))
-    - 修复一系列 DataCheck、Poison 相关 bug ([CoupledL2 #335](https://github.com/OpenXiangShan/CoupledL2/pull/335))、([CoupledL2 #337](https://github.com/OpenXiangShan/CoupledL2/pull/337))、([CoupledL2 #339](https://github.com/OpenXiangShan/CoupledL2/pull/339))
+    - 修复与 cbo 指令相关的冲刷、异常处理和违例检查等一系列 Bug ([#4262](https://github.com/OpenXiangShan/XiangShan/pull/4262))
+    - 修复 cas 请求发生 miss 后，未向 MSHR 传递 amo_cmp 的 Bug ([#4272](https://github.com/OpenXiangShan/XiangShan/pull/4272))
+    - 修复非对齐访存的异常处理、违例检查和错误唤醒相关的四处 Bug ([#4227](https://github.com/OpenXiangShan/XiangShan/pull/4227))、([#4228](https://github.com/OpenXiangShan/XiangShan/pull/4228))、([#4239](https://github.com/OpenXiangShan/XiangShan/pull/4239))、([#4263](https://github.com/OpenXiangShan/XiangShan/pull/4263))
+    - 修复 PMA 配置缺失和预取指令权限检查的两处 Bug ([#4226](https://github.com/OpenXiangShan/XiangShan/pull/4226))、([#4235](https://github.com/OpenXiangShan/XiangShan/pull/4235))
+    - 修复 WriteEvictOrEvict 回复状态不符合手册标准的 Bug ([CoupledL2 #352](https://github.com/OpenXiangShan/CoupledL2/pull/352))
+    - 修复 SnqQuery 嵌套 Evict 时，SnqQuery 回复状态不符合一致性要求的 Bug ([CoupledL2 #353](https://github.com/OpenXiangShan/CoupledL2/pull/353))
+    - 修复一系列 DataCheck、Poison 相关 Bug ([CoupledL2 #335](https://github.com/OpenXiangShan/CoupledL2/pull/335))、([CoupledL2 #337](https://github.com/OpenXiangShan/CoupledL2/pull/337))、([CoupledL2 #339](https://github.com/OpenXiangShan/CoupledL2/pull/339))
 
 
 ## 评估
@@ -87,8 +87,6 @@ categories:
 ## 后记
 
 香山开源处理器正在火热地开发中，新的功能与新的优化在持续添加中，我们将通过香山双周报专栏定期地同步我们的开源进展。感谢您的关注，欢迎在后台留言与我们交流！
-
-在香山昆明湖架构研发后期，性能会每月公布一次，敬请期待！
 
 ## 相关链接
 

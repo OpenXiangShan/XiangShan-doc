@@ -9,6 +9,8 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 70th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed the Call/Ret condition judgment in RAS during redirection, the backend fixed incorrect `fflags` generation in unordered vector reduction sum operations, and the memory and cache subsystem fixed multiple bugs related to cbo instructions, including flushing, exception handling, and violation checks. This update also includes the latest performance improvements of the Kunminghu architecture.
+
 <!-- more -->
 ## Recent developments
 
@@ -36,8 +38,6 @@ Welcome to XiangShan biweekly column, this is the 70th issue of our biweekly col
     - Added support for the Wait-on-reservation-set instructions extension (Zawrs) ([#4211](https://github.com/OpenXiangShan/XiangShan/pull/4211)).
 
 ### MemBlock and cache
-
-- **RVA23 Profile**
 
 - **CHI Bus**
     - Issue C is now supported in CoupledL2 and SoC with OpenLLC + OpenNCB ([CoupledL2 #333](https://github.com/OpenXiangShan/CoupledL2/pull/333)), ([OpenLLC #47](https://github.com/OpenXiangShan/OpenLLC/pull/47)), ([OpenNCB #3](https://github.com/OpenXiangShan/OpenNCB/pull/3)).
@@ -85,8 +85,6 @@ We used SimPoint for program sampling and created checkpoint images based on our
 ## Afterthought
 
 XiangShan Open Source Processor is under agile development, new features and new optimisations are continuously added, we will regularly synchronise our open source progress through the XiangShan biweekly column. Thank you for your attention, and welcome to communicate with us in the background!
-
-In the late stage of XiangShan Kunminghu architecture development, XiangShan's performance will be announced once a month. Please look forward to it.
 
 ## Related links
 

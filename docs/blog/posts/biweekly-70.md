@@ -1,4 +1,4 @@
-****---
+---
 slug: biweekly-70
 date: 2025-02-17
 categories:
@@ -19,9 +19,14 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 修复重定向时 RAS 判断 Call/Ret 的条件问题 ([#4232](https://github.com/OpenXiangShan/XiangShan/pull/4232))
+    - 预译码增加对 JALR target 的独立检查 ([#4234](https://github.com/OpenXiangShan/XiangShan/pull/4234))
+    - 预译码增加对 JALR 位置的检查 ([#4269](https://github.com/OpenXiangShan/XiangShan/pull/4269))
 
-- 面积
+- 时序
+    - ICache miss 通路上 MSHR 选择提前 ([#4173](https://github.com/OpenXiangShan/XiangShan/pull/4173))
+    - ITTAGE region table 读取提前 ([#4216](https://github.com/OpenXiangShan/XiangShan/pull/4216))
+    - 去除一些时序不好的 Clock Gating ([#4223](https://github.com/OpenXiangShan/XiangShan/pull/4223))
 
 ### 后端流水线
 

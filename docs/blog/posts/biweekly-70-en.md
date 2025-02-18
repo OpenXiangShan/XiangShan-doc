@@ -15,9 +15,14 @@ Welcome to XiangShan biweekly column, this is the 70th issue of our biweekly col
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Fixed the Call/Ret condition judgment in RAS during redirection ([#4232](https://github.com/OpenXiangShan/XiangShan/pull/4232))
+    - Added independent check for JALR target in pre-decode ([#4234](https://github.com/OpenXiangShan/XiangShan/pull/4234))
+    - Added JALR position check in pre-decode ([#4269](https://github.com/OpenXiangShan/XiangShan/pull/4269))
 
-- **Area**
+- **Timing**
+    - Advanced MSHR selection on ICache miss path for 1 cycle ([#4173](https://github.com/OpenXiangShan/XiangShan/pull/4173))
+    - Advanced ITTAGE region table read for 1 cycle ([#4216](https://github.com/OpenXiangShan/XiangShan/pull/4216))
+    - Removed some Clock Gating with poor timing ([#4223](https://github.com/OpenXiangShan/XiangShan/pull/4223))
 
 ### Backend
 

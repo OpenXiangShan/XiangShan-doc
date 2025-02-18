@@ -41,7 +41,6 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
 
 - **CHI Bus**
     - Issue C is now supported in CoupledL2 and SoC with OpenLLC + OpenNCB ([CoupledL2 #333](https://github.com/OpenXiangShan/CoupledL2/pull/333)), ([OpenLLC #47](https://github.com/OpenXiangShan/OpenLLC/pull/47)), ([OpenNCB #3](https://github.com/OpenXiangShan/OpenNCB/pull/3)).
-    - Completed modifications for low power policy control and submitted a PR, currently refining the code ([#4236](https://github.com/OpenXiangShan/XiangShan/pull/4236)), ([CoupledL2 #348](https://github.com/OpenXiangShan/CoupledL2/pull/348)).
 
 - **Bug fixes**
     - Fixed two bugs related to uncache merge and uncache load replay ([#4268](https://github.com/OpenXiangShan/XiangShan/pull/4268)), ([#4275](https://github.com/OpenXiangShan/XiangShan/pull/4275)).

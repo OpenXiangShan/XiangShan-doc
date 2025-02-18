@@ -43,7 +43,6 @@ categories:
 
 - CHI 总线
     - 在 CoupledL2 以及 OpenLLC + OpenNCB 的 SoC 中已经支持 Issue C ([CoupledL2 #333](https://github.com/OpenXiangShan/CoupledL2/pull/333))、([OpenLLC #47](https://github.com/OpenXiangShan/OpenLLC/pull/47))、([OpenNCB #3](https://github.com/OpenXiangShan/OpenNCB/pull/3))
-    - 完成单核关断的相应修改并提交 PR，正在继续整理代码 ([#4236](https://github.com/OpenXiangShan/XiangShan/pull/4236))、([CoupledL2 #348](https://github.com/OpenXiangShan/CoupledL2/pull/348))
 
 - Bug 修复
     - 修复 Uncache 合并和 load replay 相关的两处 Bug ([#4268](https://github.com/OpenXiangShan/XiangShan/pull/4268))、([#4275](https://github.com/OpenXiangShan/XiangShan/pull/4275))

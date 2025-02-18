@@ -21,13 +21,13 @@ Welcome to XiangShan biweekly column, this is the 70th issue of our biweekly col
 
 ### Backend
 
-- **Bug Fixes**  
-    - Fixed an issue where some instruction information was lost in hardware performance counters ([#4257](https://github.com/OpenXiangShan/XiangShan/pull/4257)).  
-    - Fixed an issue where the `scountovf` register was not controlled by `counteren` during reads ([#4267](https://github.com/OpenXiangShan/XiangShan/pull/4267)).  
-    - Fixed an issue where writing to the `mcontrol6` register’s `dmode` field did not account for trigger chaining ([#4256](https://github.com/OpenXiangShan/XiangShan/pull/4256)).  
-    - Fixed incorrect `fflags` generation in unordered vector reduction sum operations ([#4244](https://github.com/OpenXiangShan/XiangShan/pull/4244)).  
+- **Bug Fixes**
+    - Fixed an issue where some instruction information was lost in hardware performance counters ([#4257](https://github.com/OpenXiangShan/XiangShan/pull/4257)).
+    - Fixed an issue where the `scountovf` register was not controlled by `counteren` during reads ([#4267](https://github.com/OpenXiangShan/XiangShan/pull/4267)).
+    - Fixed an issue where writing to the `mcontrol6` register’s `dmode` field did not account for trigger chaining ([#4256](https://github.com/OpenXiangShan/XiangShan/pull/4256)).
+    - Fixed incorrect `fflags` generation in unordered vector reduction sum operations ([#4244](https://github.com/OpenXiangShan/XiangShan/pull/4244)).
 
-- **RVA23 Profile**  
+- **RVA23 Profile**
     - Added support for the Wait-on-reservation-set instructions extension (Zawrs) ([#4211](https://github.com/OpenXiangShan/XiangShan/pull/4211)).
 
 ### MemBlock and cache
@@ -36,17 +36,18 @@ Welcome to XiangShan biweekly column, this is the 70th issue of our biweekly col
 
 - **CHI Bus**
     - Issue C is now supported in CoupledL2 and SoC with OpenLLC + OpenNCB ([CoupledL2 #333](https://github.com/OpenXiangShan/CoupledL2/pull/333)), ([OpenLLC #47](https://github.com/OpenXiangShan/OpenLLC/pull/47)), ([OpenNCB #3](https://github.com/OpenXiangShan/OpenNCB/pull/3)).
+    - Completed modifications for low power policy control and submitted a PR, currently refining the code ([#4236](https://github.com/OpenXiangShan/XiangShan/pull/4236)), ([CoupledL2 #348](https://github.com/OpenXiangShan/CoupledL2/pull/348)).
 
 - **Bug fixes**
+    - Fixed two bugs related to uncache merge and uncache load replay ([#4268](https://github.com/OpenXiangShan/XiangShan/pull/4268)), ([#4275](https://github.com/OpenXiangShan/XiangShan/pull/4275)).
+    - Resolved corner cases in virtualization scenarios with onlyStage1 or onlyStage2, and addressed X-state propagation issues in MMU ([#4252](https://github.com/OpenXiangShan/XiangShan/pull/4252)), ([#4253](https://github.com/OpenXiangShan/XiangShan/pull/4253)), ([#4266](https://github.com/OpenXiangShan/XiangShan/pull/4266)).
+    - Fixed multiple bugs related to cbo instructions, including flushing, exception handling, and violation checks ([#4262](https://github.com/OpenXiangShan/XiangShan/pull/4262)).
+    - Patched a bug where amo_cmp was not passed to MSHR after a CAS request missed ([#4272](https://github.com/OpenXiangShan/XiangShan/pull/4272)).
+    - Resolved four bugs in unaligned memory access, including exception handling, violation checks, and false wakeups ([#4227](https://github.com/OpenXiangShan/XiangShan/pull/4227)), ([#4228](https://github.com/OpenXiangShan/XiangShan/pull/4228)), ([#4239](https://github.com/OpenXiangShan/XiangShan/pull/4239)), ([#4263](https://github.com/OpenXiangShan/XiangShan/pull/4263)).
+    - Fixed two bugs of PMA: missing PMA configuration and prefetch instruction permission checks ([#4226](https://github.com/OpenXiangShan/XiangShan/pull/4226)), ([#4235](https://github.com/OpenXiangShan/XiangShan/pull/4235)).
     - Fixed a bug where the WriteEvictOrEvict response state did not comply with the manual standard ([CoupledL2 #352](https://github.com/OpenXiangShan/CoupledL2/pull/352)).
     - Fixed a bug where the SnqQuery response state did not meet consistency requirements when SnqQuery was nested within Evict ([CoupledL2 #353](https://github.com/OpenXiangShan/CoupledL2/pull/353)).
     - Fixed a series of bugs related to DataCheck and Poison ([CoupledL2 #335](https://github.com/OpenXiangShan/CoupledL2/pull/335)), ([CoupledL2 #337](https://github.com/OpenXiangShan/CoupledL2/pull/337)), ([CoupledL2 #339](https://github.com/OpenXiangShan/CoupledL2/pull/339)).
-
-
-- **PPA Optimizations**
-    - Timing  
-        - Adjusted the enqueue logic of load queue RAR and store misalign buffer ([#4207](https://github.com/OpenXiangShan/XiangShan/pull/4207)).
-        - Adjusted the cancel logic of Dcache missqueue and the read enable logic of mainpipe tag/meta ([#4208](https://github.com/OpenXiangShan/XiangShan/pull/4208)).
 
 
 ## RTL Evaluation

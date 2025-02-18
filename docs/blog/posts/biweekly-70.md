@@ -36,23 +36,20 @@ categories:
 
 ### 访存与缓存
 
-- RVA23 Profile
-
 - CHI 总线
     - 在 CoupledL2 以及 OpenLLC + OpenNCB 的 SoC 中已经支持 Issue C ([CoupledL2 #333](https://github.com/OpenXiangShan/CoupledL2/pull/333))、([OpenLLC #47](https://github.com/OpenXiangShan/OpenLLC/pull/47))、([OpenNCB #3](https://github.com/OpenXiangShan/OpenNCB/pull/3))
+    - 完成单核关断的相应修改并提交 PR，正在继续整理代码 ([#4236](https://github.com/OpenXiangShan/XiangShan/pull/4236))、([CoupledL2 #348](https://github.com/OpenXiangShan/CoupledL2/pull/348))
 
 - Bug 修复
+    - 修复 Uncache 合并和 load replay 相关的两处 bug ([#4268](https://github.com/OpenXiangShan/XiangShan/pull/4268))、([#4275](https://github.com/OpenXiangShan/XiangShan/pull/4275))
+    - 修复虚拟化 onlyStage1 或 onlyStage2 场景下的 corner case，以及 MMU 的 X 态传播问题 ([#4252](https://github.com/OpenXiangShan/XiangShan/pull/4252))、([#4253](https://github.com/OpenXiangShan/XiangShan/pull/4253))、([#4266](https://github.com/OpenXiangShan/XiangShan/pull/4266))
+    - 修复与 cbo 指令相关的冲刷、异常处理和违例检查等一系列 bug ([#4262](https://github.com/OpenXiangShan/XiangShan/pull/4262))
+    - 修复 cas 请求发生 miss 后，未向 MSHR 传递 amo_cmp 的 bug ([#4272](https://github.com/OpenXiangShan/XiangShan/pull/4272))
+    - 修复非对齐访存的异常处理、违例检查和错误唤醒相关的四处 bug ([#4227](https://github.com/OpenXiangShan/XiangShan/pull/4227))、([#4228](https://github.com/OpenXiangShan/XiangShan/pull/4228))、([#4239](https://github.com/OpenXiangShan/XiangShan/pull/4239))、([#4263](https://github.com/OpenXiangShan/XiangShan/pull/4263))
+    - 修复 PMA 配置缺失和预取指令权限检查的两处 bug ([#4226](https://github.com/OpenXiangShan/XiangShan/pull/4226))、([#4235](https://github.com/OpenXiangShan/XiangShan/pull/4235))
     - 修复 WriteEvictOrEvict 回复状态不符合手册标准的 bug ([CoupledL2 #352](https://github.com/OpenXiangShan/CoupledL2/pull/352))
     - 修复 SnqQuery 嵌套 Evict 时，SnqQuery 回复状态不符合一致性要求的 bug ([CoupledL2 #353](https://github.com/OpenXiangShan/CoupledL2/pull/353))
     - 修复一系列 DataCheck、Poison 相关 bug ([CoupledL2 #335](https://github.com/OpenXiangShan/CoupledL2/pull/335))、([CoupledL2 #337](https://github.com/OpenXiangShan/CoupledL2/pull/337))、([CoupledL2 #339](https://github.com/OpenXiangShan/CoupledL2/pull/339))
-
-
-- PPA 优化
-    - 时序
-        - 调整 loadqueue RAR 和 store misalign buffer 的入队逻辑 ([#4207](https://github.com/OpenXiangShan/XiangShan/pull/4207))
-        - 调整 Dcache missqueue 的取消逻辑以及 mainpipe tag / meta 的读使能逻辑 ([#4208](https://github.com/OpenXiangShan/XiangShan/pull/4208))
-
-
 
 
 ## 评估

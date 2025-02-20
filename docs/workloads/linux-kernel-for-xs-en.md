@@ -1,7 +1,7 @@
 # Build Linux Kernel for XiangShan
 
 !!! warning
-    riscv-pk / bbl is no longer recommended to use. Please consider [using OpenSBI to build Linux workloads](linux-kernel-for-xs.md).
+    riscv-pk / bbl is no longer recommended to use. Please consider [using OpenSBI to build Linux workloads](opensbi-kernel-for-xs.md).
 
 ## 1. How to build a minimal Linux Kernel that can run on Xiangshan or NEMU in a simulation environment
 

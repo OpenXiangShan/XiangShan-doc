@@ -49,6 +49,10 @@ git clone https://github.com/openocd-org/openocd.git
 ### 2.2 搭建OpenOCD源码编译环境
 
 ```shell
+cd openocd
+
+./bootstrap
+
 ./configure --prefix=/home/[**your path**]/openocd/riscv-openocd/openocd-bin --enable-verbose --enable-verbose-usb-io --enable-verbose-usb-comms --enable-remote-bitbang --enable-ftdi --disable-werror --enable-jlink --enable-static
 ```
 
@@ -101,7 +105,7 @@ sudo make install
  配置、编译和安装
 
 ```shell
-./configure--build=x86_64-linux --disable-udev
+./configure --build=x86_64-linux --disable-udev
 make
 make install
 ```
@@ -130,6 +134,8 @@ configure: error: libusb-1.x is required for the MPSSE mode of FTDI based device
 南湖双核版:  [xs-jlink.config.dualcore.txt](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/docs/integration/resources/xs-jlink.config.dualcore.txt)
 
 ```
+export LD_LIBRARY_PATH=/usr/local/lib/
+
 ./openocd-bin/bin/openocd -f ./xs-jlink.config.dualcore.txt
 ```
 

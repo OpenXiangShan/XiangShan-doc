@@ -1,8 +1,56 @@
 # FPGA Prototype
 
-基于南湖的 FPGA 开源最小系统构建指引
+基于香山的 FPGA 开源最小系统构建指引
 
-## 基本步骤 Steps
+## 基本步骤 Steps （南湖）
+
+### 编译香山南湖RTL
+
+(1) 主分支（昆明湖架构）在持续开发中，南湖架构的流片版本设计在 nanhu 分支，其适配 FPGA 环境的分支在 [nanhu-clockdiv2](https://github.com/OpenXiangShan/XiangShan/tree/nanhu-clockdiv2)
+
+**注意：**
+
+> 因为 FPGA 代码和仿真代码不是同一套，如果使用同一个 XiangShan 仓库，需要 `rm -rf build` 删除已有输出文件
+
+> 双核南湖代码根据FPGA资源容量做了相应的裁剪，目前双核以[09d2a32142c64fca898e17c0b943e61ddc331958](https://github.com/OpenXiangShan/XiangShan/commit/09d2a32142c64fca898e17c0b943e61ddc331958)提交进行FPGA验证。
+
+
+
+(2) 从GitHub上拉取仓库
+
+```sh
+git clone https://github.com/OpenXiangShan/XiangShan
+cd XiangShan
+export NOOP_HOME=$(pwd)
+git checkout 09d2a32142c64fca898e17c0b943e61ddc331958
+make init
+make clean
+make verilog NUM_CORES=2 # Dual-Core XiangShan Nanhu
+```
+
+(3) 对生成好后的代码进行些修改，让 Vivado 在例化时调用 ultra ram 的资源。例如：将array_开头的文件中，声明位宽64bit的深度大于1024的ram，强制vivado使用ultra ram来例化，减少bram的使用
+
+修改 `array_16_ext.v`:
+
+![array_16_ext.png](../../figs/fpga_images/array_16_ext.png)
+
+
+### 拷贝 Vivado 相关脚本，生成 Vivado 项目，编译二进制流
+
+```sh
+# prepare the scripts
+git clone https://github.com/OpenXiangShan/env-scripts.git
+cd xs_nanhu_fpga
+make update_core_flist CORE_DIR=$NOOP_HOME/build
+make nanhu CORE_DIR=$NOOP_HOME/build
+
+# generate the FPGA bitstream
+make bitstream CORE_DIR=$NOOP_HOME/build
+```
+
+> 注意：生成时间较长，根据机器性能不同，需要花费 8~12h 的时间完成 bit 的生成
+
+## 基本步骤 Steps （昆明湖）
 
 ### 编译香山昆明湖RTL
 
@@ -52,7 +100,9 @@ make bitstream CORE_DIR=$NOOP_HOME/build
 
 脚本：[onboard-ai1-119.tcl](https://raw.githubusercontent.com/OpenXiangShan/env-scripts/main/fpga/onboard-ai1-119.tcl)
 
-实例内存镜像txt：[data.txt](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/docs/integration/resources/data_kmh.zip) （下载zip文件，然后解压成txt）
+实例**南湖**内存镜像txt：[data.txt](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/docs/integration/resources/data.zip) （下载zip文件，然后解压成txt）
+
+实例**昆明湖**内存镜像txt：[data.txt](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/docs/integration/resources/data_kmh.zip) （下载zip文件，然后解压成txt）
 
 `-tclargs` 之后的第一个路径 `<vivado_build_folder>` 为存放 Vivado 所生成的 bit 及 ltx 文件的位置
 
@@ -62,7 +112,19 @@ vivado -mode batch -source ./onboard-ai1-119.tcl -tclargs <vivado_build_folder> 
 
 连接串口，115200, N, 8, 1
 
+输入用户名、密码（如需要）
+
+<font color=red>*用户名：root*</font>
+
+<font color=red>*密码：bosc*</font>
+
 系统完成加载后，能够看到如下的信息。可以 `cat /proc/cpuinfo` 得到当前的 CPU 信息：
+
+* **南湖打印**
+
+![cpuinfo_nanhu](../../figs/fpga_images/cpuinfo.png)
+
+* **昆明湖打印**
 
 ![cpuinfo_kmh](../../figs/fpga_images/cpuinfo_kmh.png)
 

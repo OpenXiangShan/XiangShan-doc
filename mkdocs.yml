@@ -78,6 +78,7 @@ nav:
         - FPGA Prototype: 
             - Overview: integration/fpga/fpga.md
             - FPGA JTAG: integration/fpga/fpga_jtag.md
+            - FPGA IO: integration/fpga/fpga_io.md
         - Docker Instruction: integration/docker.md
     - 微架构 Microarchitecture:
         - 总体架构: arch.md

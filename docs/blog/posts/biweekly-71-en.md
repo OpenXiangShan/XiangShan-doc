@@ -35,6 +35,16 @@ Welcome to XiangShan biweekly column, this is the 71th issue of our biweekly col
 ### MemBlock and cache
 
 - **RVA23 Profile**
+    - RAS
+        - Set ECC error check to trigger the NMI_31 interrupt ([#4335](https://github.com/OpenXiangShan/XiangShan/pull/4335))
+        - Fix bug where ECC fault injection instruction caused multiple DCache hits ([#4340](https://github.com/OpenXiangShan/XiangShan/pull/4340))
+        - Fix bug where an invalid DCache MSHR forwarded corrupt signal to LDU ([#4292](https://github.com/OpenXiangShan/XiangShan/pull/4292))
+        - Add a series of missing error handling in the L2 Cache ([CoupledL2 #355](https://github.com/OpenXiangShan/CoupledL2/pull/355), [CoupledL2 #357](https://github.com/OpenXiangShan/CoupledL2/pull/357), [CoupledL2 #368](https://github.com/OpenXiangShan/CoupledL2/pull/368))
+
+- CHI Bus
+    - Add handling for blocking CMO transactions by Snoop ([CoupledL2 #370](https://github.com/OpenXiangShan/CoupledL2/pull/370))
+    - Fix a series of nested issues related to Snoop ([CoupledL2 #351](https://github.com/OpenXiangShan/CoupledL2/pull/351), [CoupledL2 #358](https://github.com/OpenXiangShan/CoupledL2/pull/358), [CoupledL2 #369](https://github.com/OpenXiangShan/CoupledL2/pull/369))
+    - Add basic support for CHI Issue C version ([#4298](https://github.com/OpenXiangShan/XiangShan/pull/4298))
 
 - **Bug fixes**
 

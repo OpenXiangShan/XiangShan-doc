@@ -26,10 +26,15 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复相邻中断/异常触发时，xtval 以及 epc 更新错误的问题 ([#4307](https://github.com/OpenXiangShan/XiangShan/pull/4307))
+    - 修复 mhpmevent 寄存器备份信息更新不一致的问题 ([#4321](https://github.com/OpenXiangShan/XiangShan/pull/4321))
+    - 修复对 debugmodule 的 mmio 访问，错误排除 debugmodule 地址空间的问题 ([#4324](https://github.com/OpenXiangShan/XiangShan/pull/4324))
+    - 删除新版 dispatch 冗余模块，以及相关硬件性能计数器的冗余接口 ([#4288](https://github.com/OpenXiangShan/XiangShan/pull/4288))
+    - 修复 Spike 模拟器中， 未根据 hgatp.mode 做写 vsatp 限制的问题 ([Spike #86](https://github.com/OpenXiangShan/riscv-isa-sim/pull/86))
 
-- 时序/面积优化
-
-- RVA23 Profile
+- 性能优化
+    - 在新版 dispatch 模块，支持通过 vlbusytable 进行 oldvd 消除 ([#4198](https://github.com/OpenXiangShan/XiangShan/pull/4198))
+    - 支持更多 CSRR 读指令乱序执行 ([#4128](https://github.com/OpenXiangShan/XiangShan/pull/4128))
 
 ### 访存与缓存
 

@@ -34,10 +34,16 @@ Welcome to XiangShan biweekly column, this is the 71th issue of our biweekly col
 
 ### MemBlock and cache
 
+- **Bug Fixes**  
+    - Fix legacy issues related to exception detection and writeback wakeup on misaligned accesses ([#4333](https://github.com/OpenXiangShan/XiangShan/pull/4333))
+    - Fix bug where uncache requests did not raise an exception when the address was misaligned ([#4304](https://github.com/OpenXiangShan/XiangShan/pull/4304))
+    - Fix bug where incorrect uncache flush handling caused a deadlock ([#4300](https://github.com/OpenXiangShan/XiangShan/pull/4300))
+    - Fix bug where the LR instruction prematurely released blocking on subsequent LR instructions ([#4337](https://github.com/OpenXiangShan/XiangShan/pull/4337))
+
 - **RVA23 Profile**
     - RAS
         - Set ECC error check to trigger the NMI_31 interrupt ([#4335](https://github.com/OpenXiangShan/XiangShan/pull/4335))
-        - Fix bug where ECC fault injection instruction caused multiple DCache hits ([#4340](https://github.com/OpenXiangShan/XiangShan/pull/4340))
+        - Fix bug where ECC fault injection instruction caused multiple DCache hits ([#4285](https://github.com/OpenXiangShan/XiangShan/pull/4285))
         - Fix bug where an invalid DCache MSHR forwarded corrupt signal to LDU ([#4292](https://github.com/OpenXiangShan/XiangShan/pull/4292))
         - Add a series of missing error handling in the L2 Cache ([CoupledL2 #355](https://github.com/OpenXiangShan/CoupledL2/pull/355), [CoupledL2 #357](https://github.com/OpenXiangShan/CoupledL2/pull/357), [CoupledL2 #368](https://github.com/OpenXiangShan/CoupledL2/pull/368))
 

@@ -56,12 +56,6 @@ categories:
     - 修复一系列与 Snoop 相关的嵌套问题 ([CoupledL2 #351](https://github.com/OpenXiangShan/CoupledL2/pull/351)， [CoupledL2 #358](https://github.com/OpenXiangShan/CoupledL2/pull/358)， [CoupledL2 #369](https://github.com/OpenXiangShan/CoupledL2/pull/369))
     - 添加对 CHI Issue C 版本的基本支持 ([#4298](https://github.com/OpenXiangShan/XiangShan/pull/4298))
 
-    
-
-- Bug 修复
-
-- PPA 优化
-
 
 ## 评估
 

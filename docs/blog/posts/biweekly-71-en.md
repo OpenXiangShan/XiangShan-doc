@@ -52,9 +52,6 @@ Welcome to XiangShan biweekly column, this is the 71th issue of our biweekly col
     - Fix a series of nested issues related to Snoop ([CoupledL2 #351](https://github.com/OpenXiangShan/CoupledL2/pull/351), [CoupledL2 #358](https://github.com/OpenXiangShan/CoupledL2/pull/358), [CoupledL2 #369](https://github.com/OpenXiangShan/CoupledL2/pull/369))
     - Add basic support for CHI Issue C version ([#4298](https://github.com/OpenXiangShan/XiangShan/pull/4298))
 
-- **Bug fixes**
-
-- **PPA Optimizations**
 
 ## RTL Evaluation
 

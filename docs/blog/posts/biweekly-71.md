@@ -39,6 +39,18 @@ categories:
 ### 访存与缓存
 
 - RVA23 Profile
+    - RAS
+        - 设置 ECC 校验报错触发 NMI_31 中断 ([#4335](https://github.com/OpenXiangShan/XiangShan/pull/4335))
+        - 修复 ECC 故障注入指令导致 DCache 出现多重命中的 bug ([#4340](https://github.com/OpenXiangShan/XiangShan/pull/4340))
+        - 修复无效的 DCache MSHR 向 LDU 转发 corrupt 的 bug ([#4292](https://github.com/OpenXiangShan/XiangShan/pull/4292))
+        - 补充一系列 L2 Cache 中被遗漏的错误处理 ([CoupledL2 #355](https://github.com/OpenXiangShan/CoupledL2/pull/355)， [CoupledL2 #357](https://github.com/OpenXiangShan/CoupledL2/pull/357)， [CoupledL2 #368](https://github.com/OpenXiangShan/CoupledL2/pull/368))
+
+- CHI 总线
+    - 补充 CMO 事务对 Snoop 的阻塞情况 ([CoupledL2 #370](https://github.com/OpenXiangShan/CoupledL2/pull/370))
+    - 修复一系列与 Snoop 相关的嵌套问题 ([CoupledL2 #351](https://github.com/OpenXiangShan/CoupledL2/pull/351)， [CoupledL2 #358](https://github.com/OpenXiangShan/CoupledL2/pull/358)， [CoupledL2 #369](https://github.com/OpenXiangShan/CoupledL2/pull/369))
+    - 添加对 CHI Issue C 版本的基本支持 ([#4298](https://github.com/OpenXiangShan/XiangShan/pull/4298))
+
+    
 
 - Bug 修复
 

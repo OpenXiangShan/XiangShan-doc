@@ -38,15 +38,15 @@ categories:
 
 - Bug 修复
     - 修复非对齐访存在违例检测和写回唤醒上有关的遗留问题 ([#4333](https://github.com/OpenXiangShan/XiangShan/pull/4333))
-    - 修复 uncache 请求在地址不对齐的情况下未报异常的 bug ([#4304](https://github.com/OpenXiangShan/XiangShan/pull/4304))
-    - 修复 uncache 冲刷处理有误导致卡死的 bug ([#4300](https://github.com/OpenXiangShan/XiangShan/pull/4300))
-    - 修复 LR 指令提前释放对后续 LR 的阻塞的 bug ([#4337](https://github.com/OpenXiangShan/XiangShan/pull/4337))
+    - 修复 uncache 请求在地址不对齐的情况下未报异常的 Bug ([#4304](https://github.com/OpenXiangShan/XiangShan/pull/4304))
+    - 修复 uncache 冲刷处理有误导致卡死的 Bug ([#4300](https://github.com/OpenXiangShan/XiangShan/pull/4300))
+    - 修复 LR 指令提前释放对后续 LR 的阻塞的 Bug ([#4337](https://github.com/OpenXiangShan/XiangShan/pull/4337))
 
 - RVA23 Profile
     - RAS
         - 设置 ECC 校验报错触发 NMI_31 中断 ([#4335](https://github.com/OpenXiangShan/XiangShan/pull/4335))
-        - 修复 ECC 故障注入指令导致 DCache 出现多重命中的 bug ([#4285](https://github.com/OpenXiangShan/XiangShan/pull/4285))
-        - 修复无效的 DCache MSHR 向 LDU 转发 corrupt 的 bug ([#4292](https://github.com/OpenXiangShan/XiangShan/pull/4292))
+        - 修复 ECC 故障注入指令导致 DCache 出现多重命中的 Bug ([#4285](https://github.com/OpenXiangShan/XiangShan/pull/4285))
+        - 修复无效的 DCache MSHR 向 LDU 转发 corrupt 的 Bug ([#4292](https://github.com/OpenXiangShan/XiangShan/pull/4292))
         - 补充一系列 L2 Cache 中被遗漏的错误处理 ([CoupledL2 #355](https://github.com/OpenXiangShan/CoupledL2/pull/355)， [CoupledL2 #357](https://github.com/OpenXiangShan/CoupledL2/pull/357)， [CoupledL2 #368](https://github.com/OpenXiangShan/CoupledL2/pull/368))
 
 - CHI 总线

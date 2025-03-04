@@ -15,26 +15,24 @@ Welcome to XiangShan biweekly column, this is the 71th issue of our biweekly col
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- **Area**
+    - Modified RAS overflow behavior to avoid potential deadlocks ([#4317](https://github.com/OpenXiangShan/XiangShan/pull/4317))
 
 ### Backend
 
-- **Bug Fixes**  
-    - Fixed an issue where `xtval` and `epc` were incorrectly updated when adjacent interrupts/exceptions were triggered ([#4307](https://github.com/OpenXiangShan/XiangShan/pull/4307)).  
-    - Fixed an inconsistency in updating backup information for the `mhpmevent` register ([#4321](https://github.com/OpenXiangShan/XiangShan/pull/4321)).  
-    - Fixed an issue where MMIO accesses to the `debugmodule` incorrectly excluded the `debugmodule` address space ([#4324](https://github.com/OpenXiangShan/XiangShan/pull/4324)).  
-    - Removed redundant modules from the new dispatch design and eliminated unused hardware performance counter interfaces ([#4288](https://github.com/OpenXiangShan/XiangShan/pull/4288)).  
-    - Fixed an issue in the Spike simulator where `vsatp` writes were not restricted based on `hgatp.mode` ([Spike #86](https://github.com/OpenXiangShan/riscv-isa-sim/pull/86)).  
+- **Bug Fixes**
+    - Fixed an issue where `xtval` and `epc` were incorrectly updated when adjacent interrupts/exceptions were triggered ([#4307](https://github.com/OpenXiangShan/XiangShan/pull/4307)).
+    - Fixed an inconsistency in updating backup information for the `mhpmevent` register ([#4321](https://github.com/OpenXiangShan/XiangShan/pull/4321)).
+    - Fixed an issue where MMIO accesses to the `debugmodule` incorrectly excluded the `debugmodule` address space ([#4324](https://github.com/OpenXiangShan/XiangShan/pull/4324)).
+    - Removed redundant modules from the new dispatch design and eliminated unused hardware performance counter interfaces ([#4288](https://github.com/OpenXiangShan/XiangShan/pull/4288)).
+    - Fixed an issue in the Spike simulator where `vsatp` writes were not restricted based on `hgatp.mode` ([Spike #86](https://github.com/OpenXiangShan/riscv-isa-sim/pull/86)).
 
-- **Performance Optimizations**  
-    - Added support for `vlbusytable` to eliminate `oldvd` in the new dispatch module ([#4198](https://github.com/OpenXiangShan/XiangShan/pull/4198)).  
+- **Performance Optimizations**
+    - Added support for `vlbusytable` to eliminate `oldvd` in the new dispatch module ([#4198](https://github.com/OpenXiangShan/XiangShan/pull/4198)).
     - Enabled out-of-order execution for more `CSRR` read instructions ([#4128](https://github.com/OpenXiangShan/XiangShan/pull/4128)).
 
 ### MemBlock and cache
 
-- **Bug Fixes**  
+- **Bug Fixes**
     - Fix legacy issues related to exception detection and writeback wakeup on misaligned accesses ([#4333](https://github.com/OpenXiangShan/XiangShan/pull/4333))
     - Fix bug where uncache requests did not raise an exception when the address was misaligned ([#4304](https://github.com/OpenXiangShan/XiangShan/pull/4304))
     - Fix bug where incorrect uncache flush handling caused a deadlock ([#4300](https://github.com/OpenXiangShan/XiangShan/pull/4300))

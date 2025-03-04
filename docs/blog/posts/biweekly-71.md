@@ -19,9 +19,7 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- 面积
+    - 调整 RAS 溢出的处理逻辑，避免潜在的卡死风险 ([#4317](https://github.com/OpenXiangShan/XiangShan/pull/4317))
 
 ### 后端流水线
 
@@ -30,7 +28,7 @@ categories:
     - 修复 mhpmevent 寄存器备份信息更新不一致的问题 ([#4321](https://github.com/OpenXiangShan/XiangShan/pull/4321))
     - 修复对 debugmodule 的 mmio 访问，错误排除 debugmodule 地址空间的问题 ([#4324](https://github.com/OpenXiangShan/XiangShan/pull/4324))
     - 删除新版 dispatch 冗余模块，以及相关硬件性能计数器的冗余接口 ([#4288](https://github.com/OpenXiangShan/XiangShan/pull/4288))
-    - 修复 Spike 模拟器中， 未根据 hgatp.mode 做写 vsatp 限制的问题 ([Spike #86](https://github.com/OpenXiangShan/riscv-isa-sim/pull/86))
+    - 修复 Spike 模拟器中，未根据 hgatp.mode 做写 vsatp 限制的问题 ([Spike #86](https://github.com/OpenXiangShan/riscv-isa-sim/pull/86))
 
 - 性能优化
     - 在新版 dispatch 模块，支持通过 vlbusytable 进行 oldvd 消除 ([#4198](https://github.com/OpenXiangShan/XiangShan/pull/4198))
@@ -43,7 +41,7 @@ categories:
     - 修复 uncache 请求在地址不对齐的情况下未报异常的 bug ([#4304](https://github.com/OpenXiangShan/XiangShan/pull/4304))
     - 修复 uncache 冲刷处理有误导致卡死的 bug ([#4300](https://github.com/OpenXiangShan/XiangShan/pull/4300))
     - 修复 LR 指令提前释放对后续 LR 的阻塞的 bug ([#4337](https://github.com/OpenXiangShan/XiangShan/pull/4337))
-    
+
 - RVA23 Profile
     - RAS
         - 设置 ECC 校验报错触发 NMI_31 中断 ([#4335](https://github.com/OpenXiangShan/XiangShan/pull/4335))

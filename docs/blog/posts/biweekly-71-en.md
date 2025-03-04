@@ -7,7 +7,7 @@ categories:
 
 # 【XiangShan Biweekly 71】20250303
 
-Welcome to XiangShan biweekly column, this is the 71th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
+Welcome to XiangShan biweekly column, this is the 71st issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
 Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend modified RAS overflow behavior to avoid potential deadlocks, the backend enabled out-of-order execution for more `CSRR` read instructions, and the memory and cache subsystem fixed legacy issues related to exception detection and writeback wakeup on misaligned accesses.
 

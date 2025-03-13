@@ -34,11 +34,11 @@ Simpoint Checkpoint 会根据程序特性找到具有代表性的检查点。如
 !!! note
     因为 checkpoint 的原理，我们不建议在 M 态下生成 checkpoint ([Issue #54](https://github.com/OpenXiangShan/NEMU/issues/54))，如果您一定要在 M 态生成 checkpoint，我们不会提供任何支持。
 
-在 S 态或 U 态下运行 workload，比如 Linux 上运行 SPEC2006。构建的方法可以参考 [Linux Kernel with RISCV-pk for XiangShan in EMU](../workloads/linux-kernel-for-xs.md) 或 [Linux Kernel with OpenSBI for XiangShan in EMU](../workloads/opensbi-kernel-for-xs.md)
+在 S 态或 U 态下运行 workload，比如 Linux 上运行 SPEC2006。构建的方法可以参考 [Linux Kernel with OpenSBI for XiangShan in EMU](../workloads/opensbi-kernel-for-xs.md)
 
-如果参考了[Linux Kernel with OpenSBI for XiangShan in EMU](../workloads/opensbi-kernel-for-xs.md)文档，请将 NEMU 切换至 gcpt_new_mem_layout 分支
-
-NEMU 生成 checkpoint 时，需要添加一段恢复程序 `gcpt.bin`，在 `(0x80000000, 0x100000)`。因此在生成 workload 时，需要避开这一段空间，将起始地址设置在 `0x80100000` 。如在 [riscv-pk/bbl/bbl.lds](https://github.com/OpenXiangShan/riscv-pk/blob/noop/bbl/bbl.lds#L15) 中，修改为 `. = MEM_START + 0x100000` 。
+当前版本的 NEMU 支持两种保存 Checkpoint 的方式：
+1. 保存到内存中：在这种方式中 NEMU 在生成 Checkpoint 时，通常需要添加一段恢复程序 `gcpt.bin` ，在 `(0x80100000, 100000)`。因此在生成 workload 时，需要避开这一段空间，将起始地址设置在 `0x80100000` 。如果你使用的是 OpenSBI，那么不必考虑设置 OpenSBI 的起始地址，仅需考虑 OpenSBI 的负载的起始地址，你需要在 OpenSBI 构建时设置 FW_PAYLOAD_OFFSET=0x100000 或任意加上 0x80100000 后能够按照 2M 对齐的地址（例如 0x80100000 + 0x10000 或 0x80100000 + 0x300000）。
+2. 保存到 FLASH 中：在这种情况下不需要对负载额外添加恢复程序，但是需要参考 [NEMU Flash checkpoint CI](https://github.com/OpenXiangShan/NEMU/blob/cfa9bc87b4d726f53eb5ce6f2021da6e865e0dc5/.github/workflows/ci.yml#L72) 对配置和运行选项进行调整，此外该功能尚未适配 XS-GEM5 和香山 RTL 仿真，请按需使用。
 
 **NEMU 默认不会进入 checkpoint 模式**，需要使用 NEMU 自定义指令进行模式转换。
 
@@ -94,13 +94,13 @@ NEMU Checkpoint 部分相关参数介绍，具体请RTFSC：
 6. `--cpt-interval`：用于 Profiling 环节：采样的区间大小，以指令数为单位, 用于 Checkpoint 环节：设置 Checkpoint 的区间，需和 profiling 过程中的 `--cpt-interval` 参数保持一致。
 7. `-S`：指定 Cluster 环节的结果，用于 Checkpointing 环节
 8. `--checkpoint-format`：支持选择 `gz` 或者 `zstd` 两种格式生成checkpoint，如果不指定该参数，默认使用 `gz` 格式。
-9. `-r`: 指定 GCPT 恢复程序的二进制文件 `gcpt.bin` 路径。指定路径后，NEMU 会将恢复程序与用户指定的 Workload 合并为一个统一的 Workload 运行。具体来说，恢复程序将被加载至 `0x80000000`， `(0x80000000, 0x100000)` 将用于存放恢复程序及 Checkpoint 环节保存的体系结构状态，用户指定的 Workload 则会被加载至 `0x80100000`。
+9. `-r` 或 `--cpt-restorer` : 指定 GCPT 恢复程序的二进制文件 `gcpt.bin` 路径。指定路径后，恢复程序将被加载至 `0x80000000` 或 FLASH 的起始地址，自起始地址开始的 1M 空间用于存放恢复程序及 Checkpoint 环节保存的体系结构状态，而该参数会覆盖这段空间中的恢复程序部分，并且无论用户指定的 Workload 或 FLASH 镜像是否预留有这部分空间。
 
-SimPoint 的参数请RTFSC [SimPoint Repo](https://github.com/shinezyy/SimPoint.3.2-fix/tree/e51a936d7fddfa03c81692039f184ab6c437e99e)
+SimPoint 的参数请 RTFSC [SimPoint Repo](https://github.com/shinezyy/SimPoint.3.2-fix/tree/e51a936d7fddfa03c81692039f184ab6c437e99e)
 
 !!! note
     结合 `-D -C -w` 三个参数，最终会获得 `simpoint_checkpoint/profiling/bbl/` 这样的目录结构，此外必须指定`-D`, `-C`, `-w`参数，否则运行时会报错。<br>
-    如果未提前将恢复程序与 Workload 链接在一起（链接方法详见 [Linux Kernel with OpenSBI for XiangShan in EMU](../workloads/opensbi-kernel-for-xs.md#2-linux-spec2006-simpoint-profiling-checkpoint-workload)），则必须指定 `-r` 参数。否则，保存的 Checkpoint 将不包含恢复程序，无法正常使用。
+    如果未提前将恢复程序与 Workload 链接在一起（链接方法详见 [Linux Kernel with OpenSBI for XiangShan in EMU](../workloads/opensbi-kernel-for-xs.md#2-linux-spec2006-simpoint-profiling-checkpoint-workload)），并且也没有选择将 Checkpoint 保存在 FLASH 中，则必须指定 `-r` 参数。否则，保存的 Checkpoint 将不包含恢复程序，无法正常使用。
 
 命令示例（均默认使用 gz 格式，如需使用 zstd 格式，请自行修改命令）：
 
@@ -131,8 +131,7 @@ profiling(){
 
     $NEMU ${WORKLOAD_ROOT_PATH}/${workload}.bin \
         -D $RESULT -w $workload -C $profiling_result_name    \
-        -b --simpoint-profile --cpt-interval ${interval}            \
-        -r $GCPT > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
+        -b --simpoint-profile --cpt-interval ${interval} > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
 }
 
 export -f profiling
@@ -140,7 +139,6 @@ export -f profiling
 profiling bbl
 
 # Cluster
-
 
 cluster(){
     set -x
@@ -175,10 +173,10 @@ checkpoint(){
     export CLUSTER=$RESULT/cluster
     log=$LOG_PATH/checkpoint_logs
     mkdir -p $log
-    $NEMU ${WORKLOAD_ROOT_PATH}/${workload}.bin  \
-         -D $RESULT -w ${workload} -C spec-cpt   \
+    $NEMU ${WORKLOAD_ROOT_PATH}/${workload}.bin \
+         -D $RESULT -w ${workload} -C spec-cpt  \
          -b -S $CLUSTER --cpt-interval $interval \
-         -r $GCPT > $log/${workload}-out.txt 2>$log/${workload}-err.txt 
+         --checkpoint-format zstd > $log/${workload}-out.txt 2>$log/${workload}-err.txt
 }
 
 export -f checkpoint
@@ -219,10 +217,10 @@ uniform_cpt(){
     mkdir -p $log
     name="uniform"
 
-    $NEMU ${WORKLOAD_ROOT_PATH}/${workload}.bin                   \
-        -D $RESULT -w $workload -C $name                          \
-        -b -u --cpt-interval ${interval} --dont-skip-boot         \
-        -r $GCPT > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
+    $NEMU ${WORKLOAD_ROOT_PATH}/${workload}.bin \
+        -D $RESULT -w $workload -C $name      \
+        -b -u --cpt-interval ${interval}   --dont-skip-boot         \
+        --checkpoint-format zstd > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
 }
 
 export -f uniform_cpt
@@ -267,7 +265,7 @@ manual_oneshot_cpt(){
         -D $RESULT -w $workload -C $name      \
         -b --cpt-interval ${interval}            \
         --manual-oneshot-cpt \
-        -r $GCPT > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
+        --checkpoint-format zstd > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
 
 }
 
@@ -283,7 +281,7 @@ manual_uniform_cpt(){
         -D $RESULT -w $workload -C $name      \
         -b --cpt-interval ${interval}            \
         --manual-uniform-cpt \
-        -r $GCPT > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
+        --checkpoint-format zstd > $log/${workload}-out.txt 2>${log}/${workload}-err.txt
 
 }
 
@@ -294,7 +292,7 @@ manual_uniform_cpt(){
 - NEMU 运行检查点：
 
     ```shell
-    ./build/riscv64-nemu-interpreter -b --restore $TARGET_CPT_GZ
+    ./build/riscv64-nemu-interpreter -b $TARGET_CPT_GZ
     ```
 
   - 如果在打印寄存器前报错`CONFIG_MEM_COMPRESS is disabled, turn it on in menuconfig!`

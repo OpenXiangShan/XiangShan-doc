@@ -37,7 +37,18 @@ Simpoint Checkpoint 会根据程序特性找到具有代表性的检查点。如
 在 S 态或 U 态下运行 workload，比如 Linux 上运行 SPEC2006。构建的方法可以参考 [Linux Kernel with OpenSBI for XiangShan in EMU](../workloads/opensbi-kernel-for-xs.md)
 
 当前版本的 NEMU 支持两种保存 Checkpoint 的方式：
-1. 保存到内存中：在这种方式中 NEMU 在生成 Checkpoint 时，通常需要添加一段恢复程序 `gcpt.bin` ，在 `(0x80100000, 100000)`。因此在生成 workload 时，需要避开这一段空间，将起始地址设置在 `0x80100000` 。如果你使用的是 OpenSBI，那么不必考虑设置 OpenSBI 的起始地址，仅需考虑 OpenSBI 的负载的起始地址，你需要在 OpenSBI 构建时设置 FW_PAYLOAD_OFFSET=0x100000 或任意加上 0x80100000 后能够按照 2M 对齐的地址（例如 0x80100000 + 0x10000 或 0x80100000 + 0x300000）。
+1. 保存到内存中：在这种方式中 NEMU 在生成 Checkpoint 时，通常需要添加一段恢复程序 `gcpt.bin` ，在 `(0x80100000, 100000)`。因此在生成 workload 时，需要避开这一段空间，将起始地址设置在 `0x80100000` 。如果你使用的是 OpenSBI，那么不必考虑设置 OpenSBI 的起始地址，仅需考虑 OpenSBI 的负载（例如 Linux Kernel 就是一种 OpenSBI 的负载）的起始地址，你需要在 OpenSBI 构建时设置 `FW_PAYLOAD_OFFSET=0x100000` 或任意加上 0x80100000 后能够按照 2M 对齐的地址（例如 0x80100000 + 0x10000 或 0x80100000 + 0x300000）。此外，为了避免 Linux Kernel 意外的使用了我们给 `gcpt.bin` 预留的空间，我们需要给 OpenSBI 使用的设备树中使用的 `memory` 指定一段预留空间，这段空间的大小取决于你给 `gcpt.bin` 预留的空间的大小，也就是上述 `FW_PAYLOAD_OFFSET` 设置的值。
+```
+reserved-memory {
+    #address-cells = <2>;
+    #size-cells = <2>;
+    ranges;
+    reserved0: buffer@0{
+        no-map;
+        reg = <0x0 0x80000000 0x0 0x100000>;
+    };
+};
+```
 2. 保存到 FLASH 中：在这种情况下不需要对负载额外添加恢复程序，但是需要参考 [NEMU Flash checkpoint CI](https://github.com/OpenXiangShan/NEMU/blob/cfa9bc87b4d726f53eb5ce6f2021da6e865e0dc5/.github/workflows/ci.yml#L72) 对配置和运行选项进行调整，此外该功能尚未适配 XS-GEM5 和香山 RTL 仿真，请按需使用。
 
 **NEMU 默认不会进入 checkpoint 模式**，需要使用 NEMU 自定义指令进行模式转换。

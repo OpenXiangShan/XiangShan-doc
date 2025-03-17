@@ -36,6 +36,7 @@ Welcome to XiangShan biweekly column, this is the 72nd issue of our biweekly col
 
 ### MemBlock and cache
 
+<<<<<<< HEAD
 - **Bug fixes**
     - Fix a series of issues related to misaligned load / store violation detection and writeback wakeup logic ([#4333](https://github.com/OpenXiangShan/XiangShan/pull/4333)), ([#4359](https://github.com/OpenXiangShan/XiangShan/pull/4359)), ([#4369](https://github.com/OpenXiangShan/XiangShan/pull/4369)), ([#4426](https://github.com/OpenXiangShan/XiangShan/pull/4426))
     - Fix the bug in multi-core scenarios where difftest does not support checking the results of vector load instructions ([#4361](https://github.com/OpenXiangShan/XiangShan/pull/4361))
@@ -43,6 +44,19 @@ Welcome to XiangShan biweekly column, this is the 72nd issue of our biweekly col
     - Fix the handling logic when the Dcache encounters ECC or data errors ([#4345](https://github.com/OpenXiangShan/XiangShan/pull/4345)), ([#4394](https://github.com/OpenXiangShan/XiangShan/pull/4394))
     - Fix the bug of exception address errors caused by mixing multiple virtual and physical address translation modes ([#4349](https://github.com/OpenXiangShan/XiangShan/pull/4349))
     - Fix a series of issues in the MMU related to TLB compression, address truncation, and exception handling ([#4396](https://github.com/OpenXiangShan/XiangShan/pull/4396)), ([#4404](https://github.com/OpenXiangShan/XiangShan/pull/4404)), ([#4406](https://github.com/OpenXiangShan/XiangShan/pull/4406)), ([#4407](https://github.com/OpenXiangShan/XiangShan/pull/4407))
+=======
+- **RVA23 Profile**
+  - Added L2 Cache refresh operation ([CoupledL2 #348](https://github.com/OpenXiangShan/CoupledL2/pull/348))
+
+- **Bug fixes**
+  - Fixed the problem with L1 DCache error address selection ([#4394](https://github.com/OpenXiangShan/XiangShan/pull/4394))
+  - Fixed the issue of incorrect assignment of the enable signal in L1 DCache error handling ([#4345](https://github.com/OpenXiangShan/XiangShan/pull/4345))
+  - Fixed the bugs caused by L1 DCache prefetch requests entering the RAR queue ([#4367](https://github.com/OpenXiangShan/XiangShan/pull/4367))
+  - Fixed the bug related to CMO transactions in L2 Cache ([CoupledL2 #382](https://github.com/OpenXiangShan/CoupledL2/pull/382)), ([CoupledL2 #378](https://github.com/OpenXiangShan/CoupledL2/pull/378))
+  - Fixed the logic issues related to directory hit/miss in L2 Cache during nested transactions; for ProbeAck/ProbeAckData transactions, updated the state in the MSHR ([CoupledL2 #374](https://github.com/OpenXiangShan/CoupledL2/pull/382)), ([CoupledL2 #377](https://github.com/OpenXiangShan/CoupledL2/pull/378))
+
+- **PPA Optimizations**
+>>>>>>> e9bc457 (docs(biweek-72): add RAS and coupledL2)
 
 ## RTL Evaluation
 

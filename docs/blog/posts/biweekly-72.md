@@ -41,6 +41,9 @@ categories:
 
 ### 访存与缓存
 
+- RVA23 Profile
+  - 添加了 L2 Cache 刷新操作 ([CoupledL2 #348](https://github.com/OpenXiangShan/CoupledL2/pull/348))
+
 - Bug 修复
     - 修复非对齐访存在违例检测和写回唤醒上有关的一系列问题 ([#4333](https://github.com/OpenXiangShan/XiangShan/pull/4333))、([#4359](https://github.com/OpenXiangShan/XiangShan/pull/4359))、([#4369](https://github.com/OpenXiangShan/XiangShan/pull/4369))、([#4426](https://github.com/OpenXiangShan/XiangShan/pull/4426))
     - 修复多核场景下，difftest 不支持向量 load 指令结果检查的 bug ([#4361](https://github.com/OpenXiangShan/XiangShan/pull/4361))
@@ -48,6 +51,10 @@ categories:
     - 修复 Dcache 发生 ECC 或 data error 时的处理逻辑 ([#4345](https://github.com/OpenXiangShan/XiangShan/pull/4345))、([#4394](https://github.com/OpenXiangShan/XiangShan/pull/4394))
     - 修复多种虚实地址转换模式混杂导致的例外地址错误的 bug ([#4349](https://github.com/OpenXiangShan/XiangShan/pull/4349))
     - 修复 MMU 中，与 TLB 压缩、地址截断、异常处理相关的一系列问题 ([#4396](https://github.com/OpenXiangShan/XiangShan/pull/4396))、([#4404](https://github.com/OpenXiangShan/XiangShan/pull/4404))、([#4406](https://github.com/OpenXiangShan/XiangShan/pull/4406))、([#4407](https://github.com/OpenXiangShan/XiangShan/pull/4407))
+    - 修复 L2 Cache 中与 CMO 事务相关 bug ([CoupledL2 #382](https://github.com/OpenXiangShan/CoupledL2/pull/382))、([CoupledL2 #378](https://github.com/OpenXiangShan/CoupledL2/pull/378))
+    - 修复 L2 Cache 出现嵌套事务时，目录命中/缺失相关逻辑；对于 ProbeAck/ProbeAckData 事务，更新 MSHR 中状态 ([CoupledL2 #374](https://github.com/OpenXiangShan/CoupledL2/pull/382))、([CoupledL2 #377](https://github.com/OpenXiangShan/CoupledL2/pull/378))
+  
+  
 
 ## 评估
 

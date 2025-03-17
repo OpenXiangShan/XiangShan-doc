@@ -20,10 +20,19 @@ Welcome to XiangShan biweekly column, this is the 72nd issue of our biweekly col
 ### Backend
 
 - **Bug Fixes**
+    - Fixed an issue where the CSR difftest framework incorrectly compared values during reset ([#4419](https://github.com/OpenXiangShan/XiangShan/pull/4419)).  
+    - Fixed an issue where CSR read instructions did not process `xireg` in order ([#4393](https://github.com/OpenXiangShan/XiangShan/pull/4393)).  
+    - Fixed an issue in `JumpUnit` where high-address truncation errors did not correctly trigger a redirect signal ([#4392](https://github.com/OpenXiangShan/XiangShan/pull/4392)).  
+    - Synchronized the release of the JTAG reset signal in specific scenarios ([#4414](https://github.com/OpenXiangShan/XiangShan/pull/4414)).  
+    - Fixed an issue in `Trigger` where `pc` and `tdat2` mismatched under specific comparison modes ([#4346](https://github.com/OpenXiangShan/XiangShan/pull/4346)).  
+    - Fixed an issue where `AMOCAS` instructions caused stalls due to incorrect renaming ([#4382](https://github.com/OpenXiangShan/XiangShan/pull/4382)).  
+    - Fixed an issue where CSR read instructions did not process `VTYPE` in order ([#4354](https://github.com/OpenXiangShan/XiangShan/pull/4354)).  
 
 - **Timing/Area Optimization**
+    - Removed redundant logic that used read-only CSR registers as write data inputs ([#4412](https://github.com/OpenXiangShan/XiangShan/pull/4412)).  
 
 - **RVA23 Profile**
+    - Integrated and merged the new ChiselAIA (Advanced Interrupt Architecture) into the master ([#4378](https://github.com/OpenXiangShan/XiangShan/pull/4378)).
 
 ### MemBlock and cache
 

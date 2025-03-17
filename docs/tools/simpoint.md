@@ -102,7 +102,7 @@ SimPoint 的参数请 RTFSC [SimPoint Repo](https://github.com/shinezyy/SimPoint
     结合 `-D -C -w` 三个参数，最终会获得 `simpoint_checkpoint/profiling/bbl/` 这样的目录结构，此外必须指定`-D`, `-C`, `-w`参数，否则运行时会报错。<br>
     如果未提前将恢复程序与 Workload 链接在一起（链接方法详见 [Linux Kernel with OpenSBI for XiangShan in EMU](../workloads/opensbi-kernel-for-xs.md#2-linux-spec2006-simpoint-profiling-checkpoint-workload)），并且也没有选择将 Checkpoint 保存在 FLASH 中，则必须指定 `-r` 参数。否则，保存的 Checkpoint 将不包含恢复程序，无法正常使用。
 
-命令示例（均默认使用 gz 格式，如需使用 zstd 格式，请自行修改命令）：
+命令示例（均默认使用 zstd 格式，如需使用 gz 格式，请自行修改命令）：
 
 ```shell
 #!/bin/bash
@@ -122,7 +122,7 @@ export PROFILING_RES=$RESULT/$profiling_result_name
 export interval=$((20*1000*1000))
 
 # Profiling
-
+# using config: riscv64-xs-cpt_defconfig
 profiling(){
     set -x
     workload=$1
@@ -165,7 +165,7 @@ export -f cluster
 cluster bbl
 
 # Checkpointing
-
+# using config: riscv64-xs-cpt_defconfig
 checkpoint(){
     set -x
     workload=$1
@@ -182,6 +182,26 @@ checkpoint(){
 export -f checkpoint
 
 checkpoint bbl
+
+# Checkpoint store in flash
+# using config: riscv64-xs-cpt-with-flash_defconfig
+checkpoint_in_flash(){
+    set -x
+    workload=$1
+
+    export CLUSTER=$RESULT/cluster
+    log=$LOG_PATH/checkpoint_flash_logs
+    mkdir -p $log
+    $NEMU ${WORKLOAD_ROOT_PATH}/${workload}.bin \
+        -D $RESULT -w ${workload} -C spec-cpt \
+        -b -S $CLUSTER --cpt-interval $interval \
+        --store-cpt-in-flash \
+        --checkpoint-format zstd > $log/{workload}-flash-out.txt 2>$log/${workload}-flash-err.txt
+}
+
+export -f checkpoint_in_flash
+
+checkpoint_in_flash bbl
 
 ```
 
@@ -287,12 +307,55 @@ manual_uniform_cpt(){
 
 ```
 
-## Checkpoint 的运行
+## Checkpoint 的恢复
 
-- NEMU 运行检查点：
+- NEMU 恢复检查点：
 
     ```shell
-    ./build/riscv64-nemu-interpreter -b $TARGET_CPT_GZ
+    # prepare env
+
+    export NEMU_HOME=
+    export NEMU=$NEMU_HOME/build/riscv64-nemu-interpreter
+    export GCPT=$NEMU_HOME/resource/gcpt_restore/build/gcpt.bin
+    export SIMPOINT=$NEMU_HOME/resource/simpoint/simpoint_repo/bin/simpoint
+
+    export WORKLOAD_ROOT_PATH=
+    export SPIKE_SO=$NEMU_HOME/ready-to-run/riscv64-spike-so
+    export LOG_PATH=$NEMU_HOME/checkpoint_example_result/logs
+    export RESULT=$NEMU_HOME/checkpoint_example_result
+    export profiling_result_name=simpoint-profiling
+    export PROFILING_RES=$RESULT/$profiling_result_name
+    export interval=$((20*1000*1000))
+
+    # Checkpoint restore
+    # using config: riscv64-xs-diff-spike_defconfig
+    restore(){
+        set -x
+        cpt=$2
+        $NEMU ${WORKLOAD_ROOT_PATH}/${workload}.bin \
+            --diff ${SPIKE_SO} \
+            --cpt-restorer $NEMU_HOME/resource/gcpt_restore/build/gcpt.bin \
+            $cpt
+    }
+
+    export -f restore
+    restore `find ${RESULT}/spec-cpt/bbl -name "*.zstd" -print -quit`
+
+    # Checkpoint restore from flash
+    # using config: riscv64-xs-diff-spike-withflash_defconfig
+    restore_into_flash(){
+        set -x
+        flash_cpt=$1
+        mem_cpt=$2
+        $NEMU ${WORKLOAD_ROOT_PATH}/${workload}.bin \
+            --diff ${SPIKE_SO} \
+            --flash-image $flash_cpt \
+            --cpt-restorer $NEMU_HOME/resource/gcpt_restore/build/gcpt.bin \
+            $mem_cpt
+    }
+
+    export -f restore_into_flash
+    restore_into_flash `find ${RESULT}/spec-cpt/bbl -name "*_memory_.zstd" -print -quit` `find ${RESULT}/spec-cpt/bbl -name "*_flash_.zstd" -print -quit`
     ```
 
   - 如果在打印寄存器前报错`CONFIG_MEM_COMPRESS is disabled, turn it on in menuconfig!`
@@ -300,7 +363,7 @@ manual_uniform_cpt(){
     请在`make menuconfig`中选择`Memory Configuration -> Initialize the memory with a compressed gz file`，按 Y 键加入此功能，然后 Save 配置，重新 `make` 编译运行即可。
 
 
-- 香山仿真运行检查点：
+- 香山仿真恢复检查点：
 
   - Checkpoint 生成的 gz/zstd 文件可以通过 gcpt_restore 恢复到内存中运行，可参考[香山仿真流程](./xsenv.md#生成香山核的仿真程序)
 

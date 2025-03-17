@@ -19,9 +19,7 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- 面积
+    - IFU 修复 uncache 区域总线返回 corrupt 的处理 ([#4301](https://github.com/OpenXiangShan/XiangShan/pull/4301))
 
 ### 后端流水线
 

@@ -15,9 +15,7 @@ Welcome to XiangShan biweekly column, this is the 72nd issue of our biweekly col
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- **Area**
+    - IFU fixed bus return corrupt on uncached region handling ([#4301](https://github.com/OpenXiangShan/XiangShan/pull/4301))
 
 ### Backend
 

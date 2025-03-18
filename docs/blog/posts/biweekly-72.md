@@ -25,19 +25,14 @@ categories:
 
 - Bug 修复
     - 修复复位时 CSR difftest 框架错误比对的问题 ([#4419](https://github.com/OpenXiangShan/XiangShan/pull/4419))
-    - 修复 CSR 读指令访问 xireg 时未按序处理的问题 ([#4393](https://github.com/OpenXiangShan/XiangShan/pull/4393))
+    - 修复 CSR 读指令访问 xireg 和 Vtype 时未按序处理的问题 ([#4393](https://github.com/OpenXiangShan/XiangShan/pull/4393))、([#4354](https://github.com/OpenXiangShan/XiangShan/pull/4354))
     - 修复 JumpUnit 中高位地址截断异常产生时未正常发出重定向信号的问题 ([#4392](https://github.com/OpenXiangShan/XiangShan/pull/4392))
     - 特定场景下同步释放 JTAG 的 reset 信号 ([#4414](https://github.com/OpenXiangShan/XiangShan/pull/4414))
-    - 修复 Trigger 中，在特定匹配模式下 pc 与 tdat2 匹配出错的问题 ([#4346](https://github.com/OpenXiangShan/XiangShan/pull/4346))
+    - 修复 Trigger 中，在特定匹配模式下 pc 与 tdata2 匹配出错的问题 ([#4346](https://github.com/OpenXiangShan/XiangShan/pull/4346))
     - 修复 AMOCAS 指令重命名出错导致卡死的问题 ([#4382](https://github.com/OpenXiangShan/XiangShan/pull/4382))
-    - 修复 CSR 读指令访问 Vtype 时未按序处理的问题 ([#4354](https://github.com/OpenXiangShan/XiangShan/pull/4354))
-
 
 - 时序/面积优化
     - 去除只读 CSR 寄存器输出作为写数据输入驱动的冗余逻辑 ([#4412](https://github.com/OpenXiangShan/XiangShan/pull/4412))
-
-- RVA23 Profile
-    - 集成新版 ChiselAIA(高级中断架构) 并合入主线 ([#4378](https://github.com/OpenXiangShan/XiangShan/pull/4378))
 
 ### 访存与缓存
 

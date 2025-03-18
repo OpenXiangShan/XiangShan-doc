@@ -38,7 +38,7 @@ Simpoint Checkpoint 会根据程序特性找到具有代表性的检查点。如
 
 如果参考了[Linux Kernel with OpenSBI for XiangShan in EMU](../workloads/opensbi-kernel-for-xs.md)文档，请将 NEMU 切换至 gcpt_new_mem_layout 分支
 
-NEMU 生成 checkpoint 时，需要添加一段恢复程序 `gcpt.bin`，在 `(0x80000000, 0x100000)`。因此在生成 workload 时，需要避开这一段空间，将起始地址设置在 `0x80100000` 。如在 [riscv-pk/bbl/bbl.lds](https://github.com/OpenXiangShan/riscv-pk/blob/noop/bbl/bbl.lds#L15) 中，修改为 `. = MEM_START + 0x100000` 。
+NEMU 生成 checkpoint 时，需要添加一段恢复程序 `gcpt.bin`，在 `(0x80000000, 0x80100000)`。因此在生成 workload 时，需要避开这一段空间，将起始地址设置在 `0x80100000` 。如在 [riscv-pk/bbl/bbl.lds](https://github.com/OpenXiangShan/riscv-pk/blob/noop/bbl/bbl.lds#L15) 中，修改为 `. = MEM_START + 0x100000` 。
 
 **NEMU 默认不会进入 checkpoint 模式**，需要使用 NEMU 自定义指令进行模式转换。
 
@@ -94,7 +94,7 @@ NEMU Checkpoint 部分相关参数介绍，具体请RTFSC：
 6. `--cpt-interval`：用于 Profiling 环节：采样的区间大小，以指令数为单位, 用于 Checkpoint 环节：设置 Checkpoint 的区间，需和 profiling 过程中的 `--cpt-interval` 参数保持一致。
 7. `-S`：指定 Cluster 环节的结果，用于 Checkpointing 环节
 8. `--checkpoint-format`：支持选择 `gz` 或者 `zstd` 两种格式生成checkpoint，如果不指定该参数，默认使用 `gz` 格式。
-9. `-r`: 指定 GCPT 恢复程序的二进制文件 `gcpt.bin` 路径。指定路径后，NEMU 会将恢复程序与用户指定的 Workload 合并为一个统一的 Workload 运行。具体来说，恢复程序将被加载至 `0x80000000`， `(0x80000000, 0x100000)` 将用于存放恢复程序及 Checkpoint 环节保存的体系结构状态，用户指定的 Workload 则会被加载至 `0x80100000`。
+9. `-r`: 指定 GCPT 恢复程序的二进制文件 `gcpt.bin` 路径。指定路径后，NEMU 会将恢复程序与用户指定的 Workload 合并为一个统一的 Workload 运行。具体来说，恢复程序将被加载至 `0x80000000`， `(0x80000000, 0x80100000)` 将用于存放恢复程序及 Checkpoint 环节保存的体系结构状态，用户指定的 Workload 则会被加载至 `0x80100000`。
 
 SimPoint 的参数请RTFSC [SimPoint Repo](https://github.com/shinezyy/SimPoint.3.2-fix/tree/e51a936d7fddfa03c81692039f184ab6c437e99e)
 
@@ -316,7 +316,7 @@ manual_uniform_cpt(){
 
 处理器中的 Cache、MMU、分支预测器的冷启动会影响性能评估的准确性，因此需要进行 Warm-Up，对 Cache、MMU、分支预测器进行数据预热。
 具体实现方式为提前多执行 W (Warmup length) 条指令，例如：一个预期的 Checkpoint，时间节点为 N，采样区间长度(cpt-interval的参数)为I，预热长度为 W。真正生成的 Checkpoint 节点为 N-W，处理器执行时，需要执行 (N-W，N+I) ，
-即 W+I 条指令。收集性能数据时需要舍去 (N-M, N) 部分，只收集 （N，N+I）部分的性能数据。
+即 W+I 条指令。收集性能数据时需要舍去 (N-W, N) 部分，只收集 （N，N+I）部分的性能数据。
 需要注意的是，我们默认设置了W=I，当I=50*10**6，这是合理的。如果需要改变interval，W需要改源码额外调整。
 
 ### 数据汇总

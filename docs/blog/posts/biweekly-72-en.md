@@ -11,6 +11,8 @@ Welcome to XiangShan biweekly column, this is the 72nd issue of our biweekly col
 
 Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed bus return corrupt on uncached region handling in IFU, the backend fixed an issue where `AMOCAS` instructions caused stalls due to incorrect renaming, and the memory and cache subsystem fixed a series of issues related to misaligned load / store violation detection and writeback wakeup logic. This update also includes the latest performance improvements of the Kunminghu architecture.
 
+Additionally, we have also made public the repository for the **XiangShan Open Source Processor User Guide**: [https://github.com/OpenXiangShan/XiangShan-User-Guide](https://github.com/OpenXiangShan/XiangShan-User-Guide) and its corresponding webpage: [https://docs.xiangshan.cc/projects/user-guide/](https://docs.xiangshan.cc/projects/user-guide/), as well as the repository for the **XiangShan Open Source Processor Design Document**: [https://github.com/OpenXiangShan/XiangShan-Design-Doc](https://github.com/OpenXiangShan/XiangShan-Design-Doc) and its corresponding webpage: [https://docs.xiangshan.cc/projects/design/](https://docs.xiangshan.cc/projects/design/). We welcome everyone to read and ask questions.
+
 <!-- more -->
 ## Recent developments
 
@@ -86,5 +88,7 @@ In the late stage of XiangShan Kunminghu architecture development, XiangShan's p
 * XiangShan technical discussion QQ group: 879550595
 * XiangShan technical discussion website: https://github.com/OpenXiangShan/XiangShan/discussions
 * XiangShan Documentation: https://xiangshan-doc.readthedocs.io/
+* XiangShan User Guide: https://docs.xiangshan.cc/projects/user-guide/
+* XiangShan Design Doc: https://docs.xiangshan.cc/projects/design/
 
 Editors: Li Yanqin, Lin Zhida, Man Yang, Liu Zehao, Feng Haoyuan, Ma Yuexiao

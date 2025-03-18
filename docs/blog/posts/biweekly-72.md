@@ -11,6 +11,7 @@ categories:
 
 近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端 IFU 修复 uncache 区域总线返回 corrupt 的处理，后端修复 AMOCAS 指令重命名出错导致卡死的问题，访存和缓存修复非对齐访存在违例检测和写回唤醒上有关的一系列问题。本期还更新了昆明湖架构近期性能。
 
+此外，我们还公开了 《香山开源处理器用户手册》 的仓库： https://github.com/OpenXiangShan/XiangShan-User-Guide 和对应网页： https://docs.xiangshan.cc/projects/user-guide/ ，以及 《香山开源处理器设计文档》 的仓库： https://github.com/OpenXiangShan/XiangShan-Design-Doc 和对应网页： https://docs.xiangshan.cc/projects/design/ ，欢迎大家阅读和提问。
 
 <!-- more -->
 
@@ -89,6 +90,8 @@ categories:
 * 香山技术讨论 QQ 群：879550595
 * 香山技术讨论网站：https://github.com/OpenXiangShan/XiangShan/discussions
 * 香山文档：https://xiangshan-doc.readthedocs.io/
+* 香山用户手册：https://docs.xiangshan.cc/projects/user-guide/
+* 香山设计文档：https://docs.xiangshan.cc/projects/design/
 
 编辑：李燕琴、林志达、满洋、刘泽昊、冯浩原、马月骁
 

@@ -41,12 +41,13 @@ categories:
 
 ### 访存与缓存
 
-- RVA23 Profile
-
 - Bug 修复
-
-- PPA 优化
-
+    - 修复非对齐访存在违例检测和写回唤醒上有关的一系列问题 ([#4333](https://github.com/OpenXiangShan/XiangShan/pull/4333))、([#4359](https://github.com/OpenXiangShan/XiangShan/pull/4359))、([#4369](https://github.com/OpenXiangShan/XiangShan/pull/4369))、([#4426](https://github.com/OpenXiangShan/XiangShan/pull/4426))
+    - 修复多核场景下，difftest 不支持向量 load 指令结果检查的 bug ([#4361](https://github.com/OpenXiangShan/XiangShan/pull/4361))
+    - 修复预取请求错误进入 load RAR queue 导致的功能和性能 bug ([#4367](https://github.com/OpenXiangShan/XiangShan/pull/4367))
+    - 修复 Dcache 发生 ECC 或 data error 时的处理逻辑 ([#4345](https://github.com/OpenXiangShan/XiangShan/pull/4345))、([#4394](https://github.com/OpenXiangShan/XiangShan/pull/4394))
+    - 修复多种虚实地址转换模式混杂导致的例外地址错误的 bug ([#4349](https://github.com/OpenXiangShan/XiangShan/pull/4349))
+    - 修复 MMU 中，与 TLB 压缩、地址截断、异常处理相关的一系列问题 ([#4396](https://github.com/OpenXiangShan/XiangShan/pull/4396))、([#4404](https://github.com/OpenXiangShan/XiangShan/pull/4404))、([#4406](https://github.com/OpenXiangShan/XiangShan/pull/4406))、([#4407](https://github.com/OpenXiangShan/XiangShan/pull/4407))
 
 ## 评估
 

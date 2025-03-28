@@ -36,6 +36,7 @@ Additionally, we have also made public the repository for the **XiangShan Open S
 - **Bug fixes**
   - Fix several consistency issues in CoupledL2 that violated the CHI protocol ([CoupledL2 #390](https://github.com/OpenXiangShan/CoupledL2/pull/390)), ([CoupledL2 #392](https://github.com/OpenXiangShan/CoupledL2/pull/392)), ([CoupledL2 #395](https://github.com/OpenXiangShan/CoupledL2/pull/395))
   - Add check for the WFI (Wait For Interrupt) state before the L2 Cache exits the coherency ([CoupledL2 #385](https://github.com/OpenXiangShan/CoupledL2/pull/385))
+  - Fix several issues related to the handling of the RespErr field in the CHI protocol ([CoupledL2 #384](https://github.com/OpenXiangShan/CoupledL2/pull/384))、([CoupledL2 #394](https://github.com/OpenXiangShan/CoupledL2/pull/394))
 
 - Timing/Area Optimizations
   - Adjust L2 Cache SRAM (tag) specifications ([CoupledL2 #388](https://github.com/OpenXiangShan/CoupledL2/pull/388)); add SRAM control interface ([CoupledL2 #389](https://github.com/OpenXiangShan/CoupledL2/pull/389))

@@ -59,6 +59,7 @@ nav:
         - Talks: tutorials/talks.md
         - Acknowledgments: acknowledgments.md
         - Tutorials:
+            - ISCA'25: tutorials/isca25.md
             - ASPLOS'25: tutorials/asplos25.md
             - HPCA'25: tutorials/hpca25.md
             - MICRO'24: tutorials/micro24.md

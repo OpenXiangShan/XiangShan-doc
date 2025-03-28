@@ -9,9 +9,11 @@ hide:
 
 ## Recent Updates
 
-**Upcoming: 我们将继续在HPCA'25会议期间同地举办香山项目的上手教程. Look forward to seeing you at HPCA'25 in Las Vegas, USA. Learn more on [the HPCA'25 Tutorial Page](tutorials/hpca25.md).**
+**Upcoming: 我们将继续在ASPLOS'25会议期间同地举办香山项目的上手教程. Look forward to seeing you at ASPLOS'25 in Rotterdam, The Netherlands. Learn more on [the ASPLOS'25 Tutorial Page](tutorials/asplos25.md).**
 
-我们将继续在ASPLOS'25会议期间同地举办香山项目的上手教程. Look forward to seeing you at ASPLOS'25 in Rotterdam, The Netherlands. Learn more on [the ASPLOS'25 Tutorial Page](tutorials/asplos25.md).
+我们将继续在ISCA'25会议期间同地举办香山项目的上手教程. Look forward to seeing you at ISCA'25 in Tokyo, Japan. Learn more on [the ISCA'25 Tutorial Page](tutorials/isca25.md).
+
+我们在HPCA'25会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at HPCA'25 in Las Vegas, USA. Learn more on [the HPCA'25 Tutorial Page](tutorials/hpca25.md).
 
 我们在MICRO'24会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at MICRO'24 in Austin, USA. Learn more on [the MICRO'24 Tutorial Page](tutorials/micro24.md).
 

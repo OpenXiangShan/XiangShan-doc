@@ -7,7 +7,7 @@ categories:
 
 # 【XiangShan Biweekly 73】20250331
 
-Welcome to XiangShan biweekly column, this is the 72nd issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
+Welcome to XiangShan biweekly column, this is the 73nd issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
 Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. 
 

@@ -1,11 +1,11 @@
 ---
-slug: biweekly-72-en
-date: 2025-03-17
+slug: biweekly-73-en
+date: 2025-03-31
 categories:
   - Biweekly-en
 ---
 
-# 【XiangShan Biweekly 72】20250317
+# 【XiangShan Biweekly 73】20250331
 
 Welcome to XiangShan biweekly column, this is the 72nd issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 

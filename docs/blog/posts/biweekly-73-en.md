@@ -7,7 +7,7 @@ categories:
 
 # 【XiangShan Biweekly 73】20250331
 
-Welcome to XiangShan biweekly column, this is the 73nd issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
+Welcome to XiangShan biweekly column, this is the 73rd issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
 Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. 
 
@@ -24,9 +24,11 @@ Additionally, we have also made public the repository for the **XiangShan Open S
 ### Backend
 
 - **Bug Fixes**
-
-
-- **Timing/Area Optimization**
+  - Fixed an issue where instruction fusion was not blocked when a trigger fired and an exception occurred ([#4439](https://github.com/OpenXiangShan/XiangShan/pull/4439)).  
+  - Further fixed stalls caused by the `amocas.q` instruction ([#4435](https://github.com/OpenXiangShan/XiangShan/pull/4435)).  
+  - Fixed the FusionDecoder incorrectly outputting valid fusion information when disabled ([#4456](https://github.com/OpenXiangShan/XiangShan/pull/4456)).  
+  - Fixed an issue where non-register interrupt pending status was not properly synchronized in the difftest framework after reset ([#4449](https://github.com/OpenXiangShan/XiangShan/pull/4449)).  
+  - Fixed various issues related to the ChiselAIA integration ([#4449](https://github.com/OpenXiangShan/XiangShan/pull/4449)).
 
 
 ### MemBlock and cache

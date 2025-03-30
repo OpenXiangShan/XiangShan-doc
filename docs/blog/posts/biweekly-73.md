@@ -24,9 +24,11 @@ categories:
 ### 后端流水线
 
 - Bug 修复
-
-
-- 时序/面积优化
+  - 修复 trigger 触发以及异常产生时，指令融合未被停止的问题 ([#4439](https://github.com/OpenXiangShan/XiangShan/pull/4439))
+  - 进一步修复 amocas.q 指令卡死的问题 ([#4435](https://github.com/OpenXiangShan/XiangShan/pull/4435))
+  - 修复指令融合译码单元在被无效时，仍然输出有效融合信息的问题 ([#4456](https://github.com/OpenXiangShan/XiangShan/pull/4456))
+  - 修复 reset 后，non-reg 中断等待 difftest 框架同步错误的问题 ([#4449](https://github.com/OpenXiangShan/XiangShan/pull/4449))
+  - 修复 chiselAIA 系列问题 ([#4449](https://github.com/OpenXiangShan/XiangShan/pull/4449))
 
 
 ### 访存与缓存

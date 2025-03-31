@@ -33,10 +33,11 @@ categories:
 
 ### 访存与缓存
 
-- RVA23 Profile
-  
-
 - Bug 修复
+  - 修复 MMU 中，与高位地址检查、异常处理、Svnapot 扩展相关的一系列问题 ([#4422](https://github.com/OpenXiangShan/XiangShan/pull/4422))、([#4448](https://github.com/OpenXiangShan/XiangShan/pull/4448))、([#4453](https://github.com/OpenXiangShan/XiangShan/pull/4453))、([#4454](https://github.com/OpenXiangShan/XiangShan/pull/4454))、([#4455](https://github.com/OpenXiangShan/XiangShan/pull/4455))、([#4471](https://github.com/OpenXiangShan/XiangShan/pull/4471))、([#4472](https://github.com/OpenXiangShan/XiangShan/pull/4472))、([#4473](https://github.com/OpenXiangShan/XiangShan/pull/4473))
+  - 修复 NEMU 作为多核 ref 时，开启虚拟化场景下的 bug ([NEMU #835](https://github.com/OpenXiangShan/NEMU/pull/835))
+  - 修复若干 Uncache、非对齐、异常混合场景的 bug ([#4426](https://github.com/OpenXiangShan/XiangShan/pull/4426))、([#4441](https://github.com/OpenXiangShan/XiangShan/pull/4441))、([#4442](https://github.com/OpenXiangShan/XiangShan/pull/4442))
+  - 修复 NEMU 在 PBMT 将内存属性由 cacheable 覆盖为 IO/NC 时，原子指令和非对齐访存没有报异常的 bug ([NEMU #833](https://github.com/OpenXiangShan/NEMU/pull/833))
   - 修复若干 CoupledL2 违背 CHI 协议的一致性问题 ([CoupledL2 #390](https://github.com/OpenXiangShan/CoupledL2/pull/390))、([CoupledL2 #392](https://github.com/OpenXiangShan/CoupledL2/pull/392))、([CoupledL2 #395](https://github.com/OpenXiangShan/CoupledL2/pull/395))
   - 添加 L2 Cache 退出维护一致性状态前对 WFI(Wait For Interrupt) 状态的检查 ([CoupledL2 #385](https://github.com/OpenXiangShan/CoupledL2/pull/385))
   - 修复若干 CHI 协议中 RespErr 字段处理的相关问题 ([CoupledL2 #384](https://github.com/OpenXiangShan/CoupledL2/pull/384))、([CoupledL2 #394](https://github.com/OpenXiangShan/CoupledL2/pull/394))

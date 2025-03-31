@@ -33,12 +33,14 @@ Additionally, we have also made public the repository for the **XiangShan Open S
 
 ### MemBlock and cache
 
-- **RVA23 Profile**
-
 - **Bug fixes**
+  - Fix a series of bugs in the MMU related to high-address checking, exception handling, and Svnapot extension ([#4422](https://github.com/OpenXiangShan/XiangShan/pull/4422)), ([#4448](https://github.com/OpenXiangShan/XiangShan/pull/4448)), ([#4453](https://github.com/OpenXiangShan/XiangShan/pull/4453)), ([#4454](https://github.com/OpenXiangShan/XiangShan/pull/4454)), ([#4455](https://github.com/OpenXiangShan/XiangShan/pull/4455)), ([#4471](https://github.com/OpenXiangShan/XiangShan/pull/4471)), ([#4472](https://github.com/OpenXiangShan/XiangShan/pull/4472)), ([#4473](https://github.com/OpenXiangShan/XiangShan/pull/4473))
+  - Fix the bug in NEMU for multi-core ref when virtualization is enabled ([NEMU #835](https://github.com/OpenXiangShan/NEMU/pull/835))
+  - Fix several bugs in scenarios combining uncache, misaligned accesses, and exceptions ([#4426](https://github.com/OpenXiangShan/XiangShan/pull/4426)), ([#4441](https://github.com/OpenXiangShan/XiangShan/pull/4441)), ([#4442](https://github.com/OpenXiangShan/XiangShan/pull/4442))
+  - Fix the bug in NEMU where atomic instructions and misaligned memory accesses did not trigger exceptions when PBMT changed memory attributes from cacheable to IO/NC ([NEMU #833](https://github.com/OpenXiangShan/NEMU/pull/833))
   - Fix several consistency issues in CoupledL2 that violated the CHI protocol ([CoupledL2 #390](https://github.com/OpenXiangShan/CoupledL2/pull/390)), ([CoupledL2 #392](https://github.com/OpenXiangShan/CoupledL2/pull/392)), ([CoupledL2 #395](https://github.com/OpenXiangShan/CoupledL2/pull/395))
   - Add check for the WFI (Wait For Interrupt) state before the L2 Cache exits the coherency ([CoupledL2 #385](https://github.com/OpenXiangShan/CoupledL2/pull/385))
-  - Fix several issues related to the handling of the RespErr field in the CHI protocol ([CoupledL2 #384](https://github.com/OpenXiangShan/CoupledL2/pull/384))、([CoupledL2 #394](https://github.com/OpenXiangShan/CoupledL2/pull/394))
+  - Fix several issues related to the handling of the RespErr field in the CHI protocol ([CoupledL2 #384](https://github.com/OpenXiangShan/CoupledL2/pull/384)), ([CoupledL2 #394](https://github.com/OpenXiangShan/CoupledL2/pull/394))
 
 - Timing/Area Optimizations
   - Adjust L2 Cache SRAM (tag) specifications ([CoupledL2 #388](https://github.com/OpenXiangShan/CoupledL2/pull/388)); add SRAM control interface ([CoupledL2 #389](https://github.com/OpenXiangShan/CoupledL2/pull/389))

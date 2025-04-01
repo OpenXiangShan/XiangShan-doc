@@ -20,6 +20,10 @@ categories:
 ### 前端
 
 - Bug 修复
+  - 修复指令预取流水线对于高位地址异常的处理 ([#4423](https://github.com/OpenXiangShan/XiangShan/pull/4423))
+
+- 时序/面积优化
+  - 一系列 SRAM 拆分 ([#4468](https://github.com/OpenXiangShan/XiangShan/pull/4468)) 、 ([#4360](https://github.com/OpenXiangShan/XiangShan/pull/4360))、 ([#4485](https://github.com/OpenXiangShan/XiangShan/pull/4485))
 
 ### 后端流水线
 
@@ -41,7 +45,7 @@ categories:
   - 修复若干 CoupledL2 违背 CHI 协议的一致性问题 ([CoupledL2 #390](https://github.com/OpenXiangShan/CoupledL2/pull/390))、([CoupledL2 #392](https://github.com/OpenXiangShan/CoupledL2/pull/392))、([CoupledL2 #395](https://github.com/OpenXiangShan/CoupledL2/pull/395))
   - 添加 L2 Cache 退出维护一致性状态前对 WFI(Wait For Interrupt) 状态的检查 ([CoupledL2 #385](https://github.com/OpenXiangShan/CoupledL2/pull/385))
   - 修复若干 CHI 协议中 RespErr 字段处理的相关问题 ([CoupledL2 #384](https://github.com/OpenXiangShan/CoupledL2/pull/384))、([CoupledL2 #394](https://github.com/OpenXiangShan/CoupledL2/pull/394))
-  
+
 - 时序/面积优化
   - 调整 L2 Cache SRAM(tag) 规格 ([CoupledL2 #388](https://github.com/OpenXiangShan/CoupledL2/pull/388))；添加 SRAM 控制接口 ([CoupledL2 #389](https://github.com/OpenXiangShan/CoupledL2/pull/389))
 

@@ -19,6 +19,10 @@ Additionally, we have also made public the repository for the **XiangShan Open S
 ### Frontend
 
 - **Bug Fixes**
+  - Fixed instruction prefetch pipeline handling of high address exceptions ([#4423](https://github.com/OpenXiangShan/XiangShan/pull/4423))
+
+- **Timing/Area Optimizations** 
+  - A series of SRAM partitioning ([#4468](https://github.com/OpenXiangShan/XiangShan/pull/4468)), ([#4360](https://github.com/OpenXiangShan/XiangShan/pull/4360)), ([#4485](https://github.com/OpenXiangShan/XiangShan/pull/4485))
 
 
 ### Backend

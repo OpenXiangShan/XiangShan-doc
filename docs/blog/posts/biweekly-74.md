@@ -38,21 +38,23 @@ categories:
 
 ### 访存与缓存
 
-- RVA23 Profile
-
 - Bug 修复
-  
+  - 修复 misalign 请求访问 uncache 空间时，未成功报出非对齐异常的 bug ([#4526](https://github.com/OpenXiangShan/XiangShan/pull/4526))
+  - 修复一处 storequeue 指针更新同步的 bug ([#4531](https://github.com/OpenXiangShan/XiangShan/pull/4531))
+  - 修复预取相关自定义 CSR 控制逻辑的 bug ([#4534](https://github.com/OpenXiangShan/XiangShan/pull/4534))
+  - 修复在 MMU 进行 Page Table Walk 时，异常处理的若干 bug ([#4510](https://github.com/OpenXiangShan/XiangShan/pull/4510))、([#4524](https://github.com/OpenXiangShan/XiangShan/pull/4524))、([#4525](https://github.com/OpenXiangShan/XiangShan/pull/4525))、([#4540](https://github.com/OpenXiangShan/XiangShan/pull/4540))
+  - 修复与 hfence 或 flush 相关的两处 bug ([#4539](https://github.com/OpenXiangShan/XiangShan/pull/4539))、([#4541](https://github.com/OpenXiangShan/XiangShan/pull/4541))
+  - 修复 PageCache 命中 napot 项后，生成 ppn 有误的 bug ([#4527](https://github.com/OpenXiangShan/XiangShan/pull/4527))
   - 修正 Temporal Prefetcher 参数化 ([CoupledL2 #391](https://github.com/OpenXiangShan/CoupledL2/pull/391))、([HuanCun #187](https://github.com/OpenXiangShan/HuanCun/pull/187))
 
 - CHI 总线
-  
   - 将 Non-secure 字段默认设为 Secure ([CoupledL2 #398](https://github.com/OpenXiangShan/CoupledL2/pull/398))
 
 - 工具
-  
   - 添加 CHIron CLog.B （CHI 事务记录）功能 ([OpenLLC #55](https://github.com/OpenXiangShan/OpenLLC/pull/55))
 
 - PPA 优化
+  - 修复 storeMisalignBuffer 的入队逻辑以优化时序 ([#4493](https://github.com/OpenXiangShan/XiangShan/pull/4493))
 
 
 ## 评估

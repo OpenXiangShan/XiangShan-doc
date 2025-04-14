@@ -26,10 +26,15 @@ categories:
 ### 后端流水线
 
 - Bug 修复
-
-- 时序/面积优化
+    - 修复修改 hstatus.VGEIN 后, vstopi 比对出错的问题 ([#4517](https://github.com/OpenXiangShan/XiangShan/pull/4517))
+    - 修复 vstopi 在 SEI/LCOFI 中断混合场景选择出错的问题 ([#4533](https://github.com/OpenXiangShan/XiangShan/pull/4533))
+    - 修复 imisc 错误给 csr 传递非法异常的问题 ([#4546](https://github.com/OpenXiangShan/XiangShan/pull/4546))
+    - 修复 vsetvl 未完成更新vtypegen操作，导致译码错误的问题 ([#4535](https://github.com/OpenXiangShan/XiangShan/pull/4535))
+    - 修复 ROB 中针对 Svinval 拓展添加过于严格 assertion 的问题 ([#4519](https://github.com/OpenXiangShan/XiangShan/pull/4519))
 
 - RVA23 Profile
+    - 集成 Chisel AIA ([#4509](https://github.com/OpenXiangShan/XiangShan/pull/4509))
+    - WFI 状态自动退出 ([#4491](https://github.com/OpenXiangShan/XiangShan/pull/4491))
 
 ### 访存与缓存
 

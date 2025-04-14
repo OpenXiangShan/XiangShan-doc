@@ -22,10 +22,15 @@ Welcome to XiangShan biweekly column, this is the 74th issue of our biweekly col
 ### Backend
 
 - **Bug Fixes**
-
-- **Timing/Area Optimization**
+    - Fixed an issue where modifying `hstatus.VGEIN` caused incorrect `vstopi` comparison ([#4517](https://github.com/OpenXiangShan/XiangShan/pull/4517)).  
+    - Fixed incorrect selection in `vstopi` when SEI and LCOFI interrupts are mixed ([#4533](https://github.com/OpenXiangShan/XiangShan/pull/4533)).  
+    - Fixed an issue where `imsic` incorrectly triggered illegal exceptions to CSR ([#4546](https://github.com/OpenXiangShan/XiangShan/pull/4546)).  
+    - Fixed a decoding error caused by `vtypegen` operating before `vsetvl` completion ([#4535](https://github.com/OpenXiangShan/XiangShan/pull/4535)).  
+    - Removed overly strict assertion related to the `Svinval` extension in ROB ([#4519](https://github.com/OpenXiangShan/XiangShan/pull/4519)).  
 
 - **RVA23 Profile**
+    - Re-integrated Chisel AIA ([#4509](https://github.com/OpenXiangShan/XiangShan/pull/4509)).  
+    - Added support for configurable automatic exit from `WFI` state ([#4491](https://github.com/OpenXiangShan/XiangShan/pull/4491)).
 
 ### MemBlock and cache
 

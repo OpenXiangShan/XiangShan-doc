@@ -32,6 +32,17 @@ Welcome to XiangShan biweekly column, this is the 74th issue of our biweekly col
 - **RVA23 Profile**
 
 - **Bug fixes**
+  
+  - Fix parameterization of Temporal Prefetcher ([CoupledL2 #391](https://github.com/OpenXiangShan/CoupledL2/pull/391)), ([HuanCun #187](https://github.com/OpenXiangShan/HuanCun/pull/187))
+
+- **CHI Bus**
+  
+  - Set the Non-secure field to Secure by default ([CoupledL2 #398](https://github.com/OpenXiangShan/CoupledL2/pull/398))
+
+- **Tools**
+  
+  - Add CHIron CLog.B (CHI transaction logger) feature ([OpenLLC #55](https://github.com/OpenXiangShan/OpenLLC/pull/55))
+
 
 - **PPA Optimizations**
 

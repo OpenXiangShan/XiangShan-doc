@@ -36,6 +36,16 @@ categories:
 - RVA23 Profile
 
 - Bug 修复
+  
+  - 修正 Temporal Prefetcher 参数化 ([CoupledL2 #391](https://github.com/OpenXiangShan/CoupledL2/pull/391))、([HuanCun #187](https://github.com/OpenXiangShan/HuanCun/pull/187))
+
+- CHI 总线
+  
+  - 将 Non-secure 字段默认设为 Secure ([CoupledL2 #398](https://github.com/OpenXiangShan/CoupledL2/pull/398))
+
+- 工具
+  
+  - 添加 CHIron CLog.B （CHI 事务记录）功能 ([OpenLLC #55](https://github.com/OpenXiangShan/OpenLLC/pull/55))
 
 - PPA 优化
 

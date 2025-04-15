@@ -55,30 +55,32 @@ Welcome to XiangShan biweekly column, this is the 74th issue of our biweekly col
 
 ## RTL Evaluation
 
-We used SimPoint for program sampling and created checkpoint images based on our custom Checkpoint format, with a **SimPoint clustering coverage of 100%**. SPEC CPU2006 was compiled using gcc12 with O3 optimization enabled, the jemalloc memory library, and the `-ffp-contraction` option for SPECfp 2006 set to fast. The instruction set used was RV64GCB. We ran SPEC CPU2006 checkpoints on the XiangShan processor **commit a60d667 from December 6** (**configured with 64KB L1 ICache, 64KB L1 DCache, 1MB L2, and 16MB L3, and a 3ld2st LSU**) in a simulation environment. DRAMsim3 was used to simulate DDR4-3200 memory latency with a CPU running at 3GHz. Below are the estimated SPEC CPU2006 scores:
+We used SimPoint for program sampling and created checkpoint images based on our custom Checkpoint format, with a **SimPoint clustering coverage of 100%**. SPEC CPU2006 was compiled using gcc12 with O3 optimization enabled, the jemalloc memory library, and the `-ffp-contraction` option for SPECfp 2006 set to fast. The instruction set used was RV64GCB. We ran SPEC CPU2006 checkpoints on the XiangShan processor **commit 0e64db5 from March 28** (**configured with 64KB L1 ICache, 64KB L1 DCache, 1MB L2, and 16MB L3, and a 3ld2st LSU, TileLink bus protocol**) in a simulation environment. DRAMsim3 was used to simulate DDR4-3200 memory latency with a CPU running at 3GHz. Below are the estimated SPEC CPU2006 scores:
 
-| SPECint 2006 est. | @ 3GHz | SPECfp 2006 est.  | @ 3GHz |
-| :---------------- | :----: | :---------------- | :----: |
-| 400.perlbench     | 38.10  | 410.bwaves        | 67.07  |
-| 401.bzip2         | 25.53  | 416.gamess        | 42.95  |
-| 403.gcc           | 47.17  | 433.milc          | 45.29  |
-| 429.mcf           | 58.86  | 434.zeusmp        | 56.75  |
-| 445.gobmk         | 30.30  | 435.gromacs       | 37.44  |
-| 456.hmmer         | 40.79  | 436.cactusADM     | 49.30  |
-| 458.sjeng         | 30.22  | 437.leslie3d      | 45.29  |
-| 462.libquantum    | 124.56 | 444.namd          | 34.65  |
-| 464.h264ref       | 57.72  | 447.dealII        | 74.37  |
-| 471.omnetpp       | 40.11  | 450.soplex        | 54.63  |
-| 473.astar         | 29.14  | 453.povray        | 54.95  |
-| 483.xalancbmk     | 73.25  | 454.Calculix      | 18.33  |
-| **GEOMEAN**       | 44.61  | 459.GemsFDTD      | 40.22  |
-|                   |        | 465.tonto         | 37.99  |
-|                   |        | 470.lbm           | 102.47 |
-|                   |        | 481.wrf           | 43.22  |
-|                   |        | 482.sphinx3       | 53.26  |
-|                   |        | **GEOMEAN**       | 47.48  |
+| SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
+| :---------------- | :----: | :--------------- | :----: |
+| 400.perlbench     | 35.85  | 410.bwaves       | 66.93  |
+| 401.bzip2         | 25.49  | 416.gamess       | 40.90  |
+| 403.gcc           | 46.64  | 433.milc         | 45.30  |
+| 429.mcf           | 58.07  | 434.zeusmp       | 51.77  |
+| 445.gobmk         | 30.25  | 435.gromacs      | 33.65  |
+| 456.hmmer         | 41.60  | 436.cactusADM    | 46.21  |
+| 458.sjeng         | 30.39  | 437.leslie3d     | 45.99  |
+| 462.libquantum    | 122.51 | 444.namd         | 28.88  |
+| 464.h264ref       | 56.56  | 447.dealII       | 73.41  |
+| 471.omnetpp       | 39.51  | 450.soplex       | 51.98  |
+| 473.astar         | 29.22  | 453.povray       | 53.43  |
+| 483.xalancbmk     | 71.97  | 454.Calculix     | 16.37  |
+| **GEOMEAN**       | 44.13  | 459.GemsFDTD     | 36.38  |
+|                   |        | 465.tonto        | 36.72  |
+|                   |        | 470.lbm          | 91.22  |
+|                   |        | 481.wrf          | 40.64  |
+|                   |        | 482.sphinx3      | 48.59  |
+|                   |        | **GEOMEAN**      | 44.53  |
 
 **Scores are estimated with SimPoint checkpoints of SPEC CPU2006, which might deviate from real chip!**
+
+> Note: The report version of this performance evaluation is the same as the last biweekly report, and the latest score will be updated in the next biweekly report.
 
 ## Afterthought
 

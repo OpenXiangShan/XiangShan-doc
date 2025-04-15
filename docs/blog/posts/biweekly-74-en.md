@@ -9,6 +9,8 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 74th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed an issue with SC dual-port SRAM reading and writing to the same address, the backend fixed incorrect selection in `vstopi` when SEI and LCOFI interrupts are mixed, and the memory and cache subsystem fixed a bug in the custom CSR control logic related to prefetching.
+
 <!-- more -->
 ## Recent developments
 

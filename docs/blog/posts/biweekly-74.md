@@ -19,7 +19,8 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 修复 SC 双端口 SRAM 读写同地址的问题 ([#4445](https://github.com/OpenXiangShan/XiangShan/pull/4445))
+    - 修复一个 SRAM Template 误用的问题 ([#4485](https://github.com/OpenXiangShan/XiangShan/pull/4485))
 
 - 面积
 

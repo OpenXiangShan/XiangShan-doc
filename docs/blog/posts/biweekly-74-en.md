@@ -15,43 +15,42 @@ Welcome to XiangShan biweekly column, this is the 74th issue of our biweekly col
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- **Area**
+    - Fixed an issue with SC dual-port SRAM reading and writing to the same address ([#4445](https://github.com/OpenXiangShan/XiangShan/pull/4445))
+    - Fixed an issue with incorrect usage of the SRAM Template ([#4485](https://github.com/OpenXiangShan/XiangShan/pull/4485))
 
 ### Backend
 
 - **Bug Fixes**
-    - Fixed an issue where modifying `hstatus.VGEIN` caused incorrect `vstopi` comparison ([#4517](https://github.com/OpenXiangShan/XiangShan/pull/4517)).  
-    - Fixed incorrect selection in `vstopi` when SEI and LCOFI interrupts are mixed ([#4533](https://github.com/OpenXiangShan/XiangShan/pull/4533)).  
-    - Fixed an issue where `imsic` incorrectly triggered illegal exceptions to CSR ([#4546](https://github.com/OpenXiangShan/XiangShan/pull/4546)).  
-    - Fixed a decoding error caused by `vtypegen` operating before `vsetvl` completion ([#4535](https://github.com/OpenXiangShan/XiangShan/pull/4535)).  
-    - Removed overly strict assertion related to the `Svinval` extension in ROB ([#4519](https://github.com/OpenXiangShan/XiangShan/pull/4519)).  
+    - Fixed an issue where modifying `hstatus.VGEIN` caused incorrect `vstopi` comparison ([#4517](https://github.com/OpenXiangShan/XiangShan/pull/4517)).
+    - Fixed incorrect selection in `vstopi` when SEI and LCOFI interrupts are mixed ([#4533](https://github.com/OpenXiangShan/XiangShan/pull/4533)).
+    - Fixed an issue where `imsic` incorrectly triggered illegal exceptions to CSR ([#4546](https://github.com/OpenXiangShan/XiangShan/pull/4546)).
+    - Fixed a decoding error caused by `vtypegen` operating before `vsetvl` completion ([#4535](https://github.com/OpenXiangShan/XiangShan/pull/4535)).
+    - Removed overly strict assertion related to the `Svinval` extension in ROB ([#4519](https://github.com/OpenXiangShan/XiangShan/pull/4519)).
 
 - **RVA23 Profile**
-    - Re-integrated Chisel AIA ([#4509](https://github.com/OpenXiangShan/XiangShan/pull/4509)).  
+    - Re-integrated Chisel AIA ([#4509](https://github.com/OpenXiangShan/XiangShan/pull/4509)).
     - Added support for configurable automatic exit from `WFI` state ([#4491](https://github.com/OpenXiangShan/XiangShan/pull/4491)).
 
 ### MemBlock and cache
 
 - **Bug fixes**
-  - Fix bug where a misaligned request accessing the uncache space did not correctly raise an unaligned exception ([#4526](https://github.com/OpenXiangShan/XiangShan/pull/4526))
-  - Fix a bug in the synchronization of the store queue pointer update ([#4531](https://github.com/OpenXiangShan/XiangShan/pull/4531))
-  - Fix a bug in the custom CSR control logic related to prefetching ([#4534](https://github.com/OpenXiangShan/XiangShan/pull/4534))
-  - Fix several bugs in exception handling during the page table walk in MMU ([#4510](https://github.com/OpenXiangShan/XiangShan/pull/4510)), ([#4524](https://github.com/OpenXiangShan/XiangShan/pull/4524)), ([#4525](https://github.com/OpenXiangShan/XiangShan/pull/4525)), ([#4540](https://github.com/OpenXiangShan/XiangShan/pull/4540))
-  - Fix two bugs related to hfence or flush ([#4539](https://github.com/OpenXiangShan/XiangShan/pull/4539)), ([#4541](https://github.com/OpenXiangShan/XiangShan/pull/4541))
-  - Fix a bug where an incorrect ppn is generated when a PageCache napot entry is hit ([#4527](https://github.com/OpenXiangShan/XiangShan/pull/4527))
-  - Fix parameterization of Temporal Prefetcher ([CoupledL2 #391](https://github.com/OpenXiangShan/CoupledL2/pull/391)), ([HuanCun #187](https://github.com/OpenXiangShan/HuanCun/pull/187))
+    - Fix bug where a misaligned request accessing the uncache space did not correctly raise an unaligned exception ([#4526](https://github.com/OpenXiangShan/XiangShan/pull/4526))
+    - Fix a bug in the synchronization of the store queue pointer update ([#4531](https://github.com/OpenXiangShan/XiangShan/pull/4531))
+    - Fix a bug in the custom CSR control logic related to prefetching ([#4534](https://github.com/OpenXiangShan/XiangShan/pull/4534))
+    - Fix several bugs in exception handling during the page table walk in MMU ([#4510](https://github.com/OpenXiangShan/XiangShan/pull/4510)), ([#4524](https://github.com/OpenXiangShan/XiangShan/pull/4524)), ([#4525](https://github.com/OpenXiangShan/XiangShan/pull/4525)), ([#4540](https://github.com/OpenXiangShan/XiangShan/pull/4540))
+    - Fix two bugs related to hfence or flush ([#4539](https://github.com/OpenXiangShan/XiangShan/pull/4539)), ([#4541](https://github.com/OpenXiangShan/XiangShan/pull/4541))
+    - Fix a bug where an incorrect ppn is generated when a PageCache napot entry is hit ([#4527](https://github.com/OpenXiangShan/XiangShan/pull/4527))
+    - Fix parameterization of Temporal Prefetcher ([CoupledL2 #391](https://github.com/OpenXiangShan/CoupledL2/pull/391)), ([HuanCun #187](https://github.com/OpenXiangShan/HuanCun/pull/187))
 
 - **CHI Bus**
-  - Set the Non-secure field to Secure by default ([CoupledL2 #398](https://github.com/OpenXiangShan/CoupledL2/pull/398))
+    - Set the Non-secure field to Secure by default ([CoupledL2 #398](https://github.com/OpenXiangShan/CoupledL2/pull/398))
 
 - **Tools**
-  - Add CHIron CLog.B (CHI transaction logger) feature ([OpenLLC #55](https://github.com/OpenXiangShan/OpenLLC/pull/55))
+    - Add CHIron CLog.B (CHI transaction logger) feature ([OpenLLC #55](https://github.com/OpenXiangShan/OpenLLC/pull/55))
 
 
 - **PPA Optimizations**
-  - Fix the enqueuing logic of the storeMisalignBuffer to optimize timing ([#4493](https://github.com/OpenXiangShan/XiangShan/pull/4493))
+    - Fix the enqueuing logic of the storeMisalignBuffer to optimize timing ([#4493](https://github.com/OpenXiangShan/XiangShan/pull/4493))
 
 ## RTL Evaluation
 

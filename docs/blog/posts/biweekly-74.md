@@ -22,20 +22,18 @@ categories:
     - 修复 SC 双端口 SRAM 读写同地址的问题 ([#4445](https://github.com/OpenXiangShan/XiangShan/pull/4445))
     - 修复一个 SRAM Template 误用的问题 ([#4485](https://github.com/OpenXiangShan/XiangShan/pull/4485))
 
-- 面积
-
 ### 后端流水线
 
 - Bug 修复
     - 修复修改 hstatus.VGEIN 后，vstopi 比对出错的问题 ([#4517](https://github.com/OpenXiangShan/XiangShan/pull/4517))
     - 修复 vstopi 在 SEI/LCOFI 中断混合场景选择出错的问题 ([#4533](https://github.com/OpenXiangShan/XiangShan/pull/4533))
-    - 修复 imisc 错误给 csr 传递非法异常的问题 ([#4546](https://github.com/OpenXiangShan/XiangShan/pull/4546))
+    - 修复 IMSIC 错误给 csr 传递非法异常的问题 ([#4546](https://github.com/OpenXiangShan/XiangShan/pull/4546))
     - 修复 vsetvl 未完成更新 vtypegen 操作，导致译码错误的问题 ([#4535](https://github.com/OpenXiangShan/XiangShan/pull/4535))
     - 修复 ROB 中针对 Svinval 拓展添加过于严格 assertion 的问题 ([#4519](https://github.com/OpenXiangShan/XiangShan/pull/4519))
 
 - RVA23 Profile
     - 集成 Chisel AIA ([#4509](https://github.com/OpenXiangShan/XiangShan/pull/4509))
-    - WFI 状态自动退出 ([#4491](https://github.com/OpenXiangShan/XiangShan/pull/4491))
+    - 支持配置 WFI 指令的超时时间 ([#4491](https://github.com/OpenXiangShan/XiangShan/pull/4491))
 
 ### 访存与缓存
 
@@ -44,7 +42,7 @@ categories:
     - 修复一处 storequeue 指针更新同步的 bug ([#4531](https://github.com/OpenXiangShan/XiangShan/pull/4531))
     - 修复预取相关自定义 CSR 控制逻辑的 bug ([#4534](https://github.com/OpenXiangShan/XiangShan/pull/4534))
     - 修复在 MMU 进行 Page Table Walk 时，异常处理的若干 bug ([#4510](https://github.com/OpenXiangShan/XiangShan/pull/4510))、([#4524](https://github.com/OpenXiangShan/XiangShan/pull/4524))、([#4525](https://github.com/OpenXiangShan/XiangShan/pull/4525))、([#4540](https://github.com/OpenXiangShan/XiangShan/pull/4540))
-    - 修复与 hfence 或 flush 相关的两处 bug ([#4539](https://github.com/OpenXiangShan/XiangShan/pull/4539))、([#4541](https://github.com/OpenXiangShan/XiangShan/pull/4541))
+    - 修复与 hfence 和 flush 相关的两处 bug ([#4539](https://github.com/OpenXiangShan/XiangShan/pull/4539))、([#4541](https://github.com/OpenXiangShan/XiangShan/pull/4541))
     - 修复 PageCache 命中 napot 项后，生成 ppn 有误的 bug ([#4527](https://github.com/OpenXiangShan/XiangShan/pull/4527))
     - 修正 Temporal Prefetcher 参数化 ([CoupledL2 #391](https://github.com/OpenXiangShan/CoupledL2/pull/391))、([HuanCun #187](https://github.com/OpenXiangShan/HuanCun/pull/187))
 
@@ -61,6 +59,8 @@ categories:
 ## 评估
 
 我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC CPU2006 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPECfp 2006 的 -ffp-contraction 选项为 fast，指令集为 RV64GCB。我们使用 **3 月 28 日 0e64db5 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld2st 流水线，总线协议为 TileLink**），在仿真环境下运行了 SPEC CPU2006 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPEC CPU2006 的分数估计情况：
+
+**注：本次双周报的性能评估代码版本与上次双周报相同，将会在下次双周报时更新最新分数。**
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
@@ -85,8 +85,6 @@ categories:
 
 **上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差！**
 
-> 注：本次双周报的性能评估代码版本与上次双周报相同，将会在下次双周报时更新最新分数。
-
 ## 后记
 
 香山开源处理器正在火热地开发中，新的功能与新的优化在持续添加中，我们将通过香山双周报专栏定期地同步我们的开源进展。感谢您的关注，欢迎在后台留言与我们交流！
@@ -95,9 +93,11 @@ categories:
 
 ## 相关链接
 
-* 香山技术讨论 QQ 群：879550595
-* 香山技术讨论网站：https://github.com/OpenXiangShan/XiangShan/discussions
-* 香山文档：https://xiangshan-doc.readthedocs.io/
+- 香山技术讨论 QQ 群：879550595
+- 香山技术讨论网站：https://github.com/OpenXiangShan/XiangShan/discussions
+- 香山文档：https://xiangshan-doc.readthedocs.io/
+- 香山用户手册：https://docs.xiangshan.cc/projects/user-guide/
+- 香山设计文档：https://docs.xiangshan.cc/projects/design/
 
 编辑：李燕琴、林志达、满洋、刘泽昊、冯浩原、马月骁
 

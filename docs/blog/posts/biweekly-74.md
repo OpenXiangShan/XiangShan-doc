@@ -9,7 +9,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 74 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端修复 SC 双端口 SRAM 读写同地址的问题，后端修复 vstopi 在 SEI/LCOFI 中断混合场景选择出错的问题，访存和缓存部分修复预取相关自定义 CSR 控制逻辑的 bug。
+近期，昆明湖各组持续推进面积、时序、功耗的优化。此外，前端修复 SC 双端口 SRAM 读写同地址的问题，后端修复 vstopi 在 SEI/LCOFI 中断混合场景选择出错的问题，访存和缓存部分修复预取相关自定义 CSR 控制逻辑的 Bug。
 
 <!-- more -->
 
@@ -37,12 +37,12 @@ categories:
 ### 访存与缓存
 
 - Bug 修复
-    - 修复 misalign 请求访问 uncache 空间时，未成功报出非对齐异常的 bug ([#4526](https://github.com/OpenXiangShan/XiangShan/pull/4526))
-    - 修复一处 storequeue 指针更新同步的 bug ([#4531](https://github.com/OpenXiangShan/XiangShan/pull/4531))
-    - 修复预取相关自定义 CSR 控制逻辑的 bug ([#4534](https://github.com/OpenXiangShan/XiangShan/pull/4534))
-    - 修复在 MMU 进行 Page Table Walk 时，异常处理的若干 bug ([#4510](https://github.com/OpenXiangShan/XiangShan/pull/4510))、([#4524](https://github.com/OpenXiangShan/XiangShan/pull/4524))、([#4525](https://github.com/OpenXiangShan/XiangShan/pull/4525))、([#4540](https://github.com/OpenXiangShan/XiangShan/pull/4540))
-    - 修复与 hfence 和 flush 相关的两处 bug ([#4539](https://github.com/OpenXiangShan/XiangShan/pull/4539))、([#4541](https://github.com/OpenXiangShan/XiangShan/pull/4541))
-    - 修复 PageCache 命中 napot 项后，生成 ppn 有误的 bug ([#4527](https://github.com/OpenXiangShan/XiangShan/pull/4527))
+    - 修复 misalign 请求访问 uncache 空间时，未成功报出非对齐异常的 Bug ([#4526](https://github.com/OpenXiangShan/XiangShan/pull/4526))
+    - 修复一处 storequeue 指针更新同步的 Bug ([#4531](https://github.com/OpenXiangShan/XiangShan/pull/4531))
+    - 修复预取相关自定义 CSR 控制逻辑的 Bug ([#4534](https://github.com/OpenXiangShan/XiangShan/pull/4534))
+    - 修复在 MMU 进行 Page Table Walk 时，异常处理的若干 Bug ([#4510](https://github.com/OpenXiangShan/XiangShan/pull/4510))、([#4524](https://github.com/OpenXiangShan/XiangShan/pull/4524))、([#4525](https://github.com/OpenXiangShan/XiangShan/pull/4525))、([#4540](https://github.com/OpenXiangShan/XiangShan/pull/4540))
+    - 修复与 hfence 和 flush 相关的两处 Bug ([#4539](https://github.com/OpenXiangShan/XiangShan/pull/4539))、([#4541](https://github.com/OpenXiangShan/XiangShan/pull/4541))
+    - 修复 PageCache 命中 napot 项后，生成 ppn 有误的 Bug ([#4527](https://github.com/OpenXiangShan/XiangShan/pull/4527))
     - 修正 Temporal Prefetcher 参数化 ([CoupledL2 #391](https://github.com/OpenXiangShan/CoupledL2/pull/391))、([HuanCun #187](https://github.com/OpenXiangShan/HuanCun/pull/187))
 
 - CHI 总线

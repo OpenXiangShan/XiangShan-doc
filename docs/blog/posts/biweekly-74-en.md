@@ -36,13 +36,13 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
 ### MemBlock and cache
 
 - **Bug fixes**
-    - Fix bug where a misaligned request accessing the uncache space did not correctly raise an unaligned exception ([#4526](https://github.com/OpenXiangShan/XiangShan/pull/4526))
-    - Fix a bug in the synchronization of the store queue pointer update ([#4531](https://github.com/OpenXiangShan/XiangShan/pull/4531))
-    - Fix a bug in the custom CSR control logic related to prefetching ([#4534](https://github.com/OpenXiangShan/XiangShan/pull/4534))
-    - Fix several bugs in exception handling during the page table walk in MMU ([#4510](https://github.com/OpenXiangShan/XiangShan/pull/4510)), ([#4524](https://github.com/OpenXiangShan/XiangShan/pull/4524)), ([#4525](https://github.com/OpenXiangShan/XiangShan/pull/4525)), ([#4540](https://github.com/OpenXiangShan/XiangShan/pull/4540))
-    - Fix two bugs related to hfence and flush ([#4539](https://github.com/OpenXiangShan/XiangShan/pull/4539)), ([#4541](https://github.com/OpenXiangShan/XiangShan/pull/4541))
-    - Fix a bug where an incorrect ppn is generated when a PageCache napot entry is hit ([#4527](https://github.com/OpenXiangShan/XiangShan/pull/4527))
-    - Fix parameterization of Temporal Prefetcher ([CoupledL2 #391](https://github.com/OpenXiangShan/CoupledL2/pull/391)), ([HuanCun #187](https://github.com/OpenXiangShan/HuanCun/pull/187))
+    - Fixed bug where a misaligned request accessing the uncache space did not correctly raise an unaligned exception ([#4526](https://github.com/OpenXiangShan/XiangShan/pull/4526))
+    - Fixed a bug in the synchronization of the store queue pointer update ([#4531](https://github.com/OpenXiangShan/XiangShan/pull/4531))
+    - Fixed a bug in the custom CSR control logic related to prefetching ([#4534](https://github.com/OpenXiangShan/XiangShan/pull/4534))
+    - Fixed several bugs in exception handling during the page table walk in MMU ([#4510](https://github.com/OpenXiangShan/XiangShan/pull/4510)), ([#4524](https://github.com/OpenXiangShan/XiangShan/pull/4524)), ([#4525](https://github.com/OpenXiangShan/XiangShan/pull/4525)), ([#4540](https://github.com/OpenXiangShan/XiangShan/pull/4540))
+    - Fixed two bugs related to hfence and flush ([#4539](https://github.com/OpenXiangShan/XiangShan/pull/4539)), ([#4541](https://github.com/OpenXiangShan/XiangShan/pull/4541))
+    - Fixed a bug where an incorrect ppn is generated when a PageCache napot entry is hit ([#4527](https://github.com/OpenXiangShan/XiangShan/pull/4527))
+    - Fixed parameterization of Temporal Prefetcher ([CoupledL2 #391](https://github.com/OpenXiangShan/CoupledL2/pull/391)), ([HuanCun #187](https://github.com/OpenXiangShan/HuanCun/pull/187))
 
 - **CHI Bus**
     - Set the Non-secure field to Secure by default ([CoupledL2 #398](https://github.com/OpenXiangShan/CoupledL2/pull/398))
@@ -52,7 +52,7 @@ Recently, various teams working on Kunminghu have continued to advance optimizat
 
 
 - **PPA Optimizations**
-    - Fix the enqueuing logic of the storeMisalignBuffer to optimize timing ([#4493](https://github.com/OpenXiangShan/XiangShan/pull/4493))
+    - Fixed the enqueuing logic of the storeMisalignBuffer to optimize timing ([#4493](https://github.com/OpenXiangShan/XiangShan/pull/4493))
 
 ## RTL Evaluation
 

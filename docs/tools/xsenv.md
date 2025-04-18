@@ -9,7 +9,7 @@ This chapter has [English version](./xsenv-en.md).
 
 ## TLDR
 
-使用以下脚本来布署香山开发环境，**部署脚本只需运行一次.**：
+使用以下脚本来布署香山开发环境，**部署脚本只需运行一次**：
 
 ```sh
 git clone https://github.com/OpenXiangShan/xs-env
@@ -18,7 +18,7 @@ sudo -s ./setup-tools.sh # use apt to install dependencies, you may modify it to
 source setup.sh # prepare tools, test develop env using a small project
 ```
 
-由于香山 `master` 分支更新频繁，此仓库中的 submodule 默认追踪香山主线分支上的一个稳定提交，**并不是香山及其他工具的最新版本**。要更新各子仓库到最新版本，可以运行:
+由于香山 `master` 分支更新频繁，此仓库中的 submodule 默认追踪香山主线分支上的一个稳定提交，**并不是香山及其他工具的最新版本**。要更新各子仓库到最新版本，可以运行：
 
 ```sh
 source update-submodule.sh
@@ -35,19 +35,19 @@ source ./env.sh # setup XiangShan environment variables
 
 请准备一台**性能较强**的服务器，以下为服务器的一些配置要求：
 
-- 操作系统：Ubuntu 20.04 LTS （其他版本未测试，不建议使用）
+- 操作系统：Ubuntu 22.04 LTS（其他版本未测试，不建议使用）
 - CPU：不限，性能将决定编译与生成的速度
 - 内存：**最低 32G，推荐 64G 及以上**
 - 磁盘空间：20G 及以上
 - 网络：请自行配置顺畅的网络环境
 
-> 提示：内存过小、SWAP空间不足会导致编译错误。参见：[https://github.com/OpenXiangShan/XiangShan/issues/891](https://github.com/OpenXiangShan/XiangShan/issues/891)
+> 提示：内存过小、SWAP 空间不足会导致编译错误。参见：[https://github.com/OpenXiangShan/XiangShan/issues/891](https://github.com/OpenXiangShan/XiangShan/issues/891)
 
 （如果有条件，登录时推荐使用桌面环境或者开启 X11 转发以试用一些带有 GUI 界面的工具）
 
-如您在国内环境执行下方操作遇到网络问题，可以使用我们在[Gitee](https://gitee.com/OpenXiangShan/XiangShan)和[GitLink](https://www.gitlink.org.cn/OpenXiangShan/XiangShan)上的镜像。
+如果您的网络环境访问 GitHub 存在困难，您可以参照 [使用代码仓库镜像](mirrors.md) 这篇文档使用我们在 [Gitee](https://gitee.com/OpenXiangShan/XiangShan)、[GitLink](https://www.gitlink.org.cn/OpenXiangShan/XiangShan) 等平台上的镜像。
 
-在服务器上安装 git, 随后使用 git 克隆以下仓库到本地:
+在服务器上安装 git, 随后使用 git 克隆以下仓库到本地：
 
 ```bash
 git clone https://github.com/OpenXiangShan/xs-env.git
@@ -79,7 +79,7 @@ source env.sh
 ```
 
 
-上述命令设置了`NOOP_HOME`，`NEMU_HOME`，`AM_HOME`三个环境变量。您可以将这些环境变量加入到`.bashrc`中，也可以在每次使用香山前重新运行`env.sh`这一脚本配置环境变量（推荐）。**在完成开发环境配置后, 每次使用开发环境前只需`source env.sh`配置环境变量即可**。
+上述命令设置了 `NOOP_HOME`，`NEMU_HOME`，`AM_HOME` 三个环境变量。您可以将这些环境变量加入到`.bashrc`中，也可以在每次使用香山前重新运行 `env.sh`这一脚本配置环境变量（推荐）。**在完成开发环境配置后，每次使用开发环境前只需 `source env.sh` 配置环境变量即可**。
 
 在后续步骤出现问题时，可以参考 [Troubleshooting-Guide](https://github.com/OpenXiangShan/XiangShan/wiki/Troubleshooting-Guide) 来自行排查。
 
@@ -91,18 +91,19 @@ source env.sh
 make init
 ```
 该命令会将一些必要的 submodule 克隆下来。
+
 > 提示：请务必确保这一过程期间到 github 的网络连接顺畅。submodule 的克隆不完整将会导致后续的编译错误。参见：[https://github.com/OpenXiangShan/XiangShan/issues/837](https://github.com/OpenXiangShan/XiangShan/issues/837)
 
-在国内网络环境下载scala相关依赖可能遇到问题，可将该[patch](https://github.com/OpenXiangShan/XiangShan-doc/blob/main/docs/tools/maven.patch)应用到XiangShan项目的`build.sc`文件。
+在国内网络环境下载 scala 相关依赖可能遇到问题，可将该 [patch](https://github.com/OpenXiangShan/XiangShan-doc/blob/main/docs/tools/maven.patch) 应用到 XiangShan 项目的 `build.sc` 文件。
 
 ### 生成可综合的单核代码
 
 在 `/xs-env/XiangShan` 下运行 `make verilog` ，该命令将会编译香山的 Chisel 代码，生成 Verilog，输出的文件在 `XiangShan/build/rtl/XSTop.sv`
 
-> 提示： `make verilog`命令生成的Verilog文件用于生成FPGA的bitstream和流片，去除了Difftest等仿真用的调试模块。
-如果需要生成带有Difftest的用于仿真的Verilog文件，可以使用`make sim-verilog`命令。
+> 提示： `make verilog`命令生成的 Verilog 文件用于生成 FPGA 的 bitstream 和流片，去除了 Difftest 等仿真用的调试模块。
+如果需要生成带有 Difftest 的用于仿真的 Verilog 文件，可以使用`make sim-verilog`命令。
 
-> 提示2：如果您没有可以容纳香山核的FPGA，可以跳过这里，直接使用香山提供的软件仿真环境进行仿真：
+> 提示 2：如果您没有可以容纳香山核的 FPGA，可以跳过这里，直接使用香山提供的软件仿真环境进行仿真：
 [生成香山核的仿真程序](###生成香山核的仿真程序)。
 
 ### 生成可综合的双核代码
@@ -113,7 +114,7 @@ make init
 
 > 提示：生成完整香山核的 Verilog 代码所需的时间会稍久，推荐大家使用 Tmux 等工具在后台运行上述命令。可以在命令行参数中添加 `CONFIG=MinimalConfig`，将会生成一个最小配置的香山的 Verilog 代码。（参见：[香山参数系统说明](https://xiangshan-doc.readthedocs.io/zh_CN/latest/misc/config/)）
 
-> 提示2：这里生成的仍然是用于FPGA和流片的Verilog。
+> 提示 2：这里生成的仍然是用于 FPGA 和流片的 Verilog。
 
 
 ## 仿真环境下验证香山
@@ -234,6 +235,6 @@ make -j
 
 ### 性能计数器的查看和分析
 当 workload 执行结束后，将会打印性能计数器结果。如果将性能计数器的内容重定向到文件中，就可以使用可视化工具参看结构化的性能计数器信息。
-> 提示: 在运行 `emu` 时, 可以添加 `--force-dump-result` 参数来强制输出性能计数器结果到标准输出流。
+> 提示：在运行 `emu` 时，可以添加 `--force-dump-result` 参数来强制输出性能计数器结果到标准输出流。
 
 我们提供了一个[可视化性能计数器的结果的工具](https://github.com/OpenXiangShan/perfUI)。注意！该工具具有 GUI 界面，如果想要使用请做好 X11 转发相关配置。

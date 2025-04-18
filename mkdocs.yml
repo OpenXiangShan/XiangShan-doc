@@ -143,6 +143,7 @@ nav:
     - 开发 Development:
         - 使用说明:
             - 前端开发环境: tools/xsenv.md
+            - 使用代码仓库镜像: tools/mirrors.md
             - 调试前必读: tools/best_practice.md
             - 编译与仿真加速: tools/compile-and-sim.md
             - VCS 验证框架介绍: tools/vcs.md

@@ -1,2 +1,6 @@
 .DS_Store
 
+build/
+site/
+venv
+.venv

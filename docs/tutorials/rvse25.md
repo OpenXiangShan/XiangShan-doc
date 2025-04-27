@@ -1,18 +1,21 @@
-# Tutorials at ASPLOS'25
+# Tutorials and Demo at RVSE'25
 
-We are going to host half-day tutorials on XiangShan and MinJie during ASPLOS'25 in Rotterdam, The Netherlands on March 30, 2025.
+We are going to host one-and-a-half-hour tutorials on XiangShan and MinJie on May 12, 2025, and a Nanhu processor demonstration event on May 15, 2025 during RVSE'25 in Paris, France.
 
 ## Agenda
 
-**Time: Morning, Sunday, March 30**
+**Time: Morning, Monday, May 12**
 
 | Time | Topic | Slides |
 | -------- | ----- | ------ |
-| To be done | Introduction of the XiangShan Project | To be done |
-| To be done | Microarchitecture Design and Implementation | To be done |
-| To be done | Hands-on Development | To be done |
+| 11:30 - 12:00 | Introduction of the XiangShan Project | To be done |
+| 12:00 - 13:00 | Hands-on Development | To be done |
 
+**Time: Afternoon, Thursday, May 15**
 
+| Time | Topic | Slides |
+| -------- | ----- | ------ |
+| 16:00 - 18:00 | Introduction, Demonstration and Experience of Open-Source XiangShan Nanhu Processor | To be done |
 
 ## XiangShan: An Open Source High Performance RISC-V Processor and Infrastructure for Architecture Research
 
@@ -24,17 +27,11 @@ The major goal of the tutorial is to demonstrate how the XiangShan project can m
 
 Target audience includes researchers on architecture design, agile development, etc.
 
-
-
-## To be covered
+## To be covered in tutorials
 
 - Introduction to the XiangShan project
 
 In June 2020, we launched XiangShan project. We have developed two major generations of codenamed YQH and NH respectively. The latest version of XiangShan processor achieves the highest performance of open-source RISC-V processors to the best of our knowledge. There is an on-going third generation called KMH targeting higher performance. We will also cover XiangShan tape-out status, performance evaluation, future roadmap, etc.
-
-- Introduction to the microarchitecture and design concepts of XiangShan processor
-
-XiangShan is a superscalar out-of-order RISC-V processor with RV64GCBK ISA support. Vector and Hypervisor extensions are to be supported in the 3rd generation KMH. It features high-throughput frontend with advanced branch predictor, six-way aggressive out-of-order execution engine, high-bandwidth load/store unit and highly configurable cache system. Written in Chisel, a high-level hardware description language, XiangShan also achieves high readability and maintainability.
 
 - Introduction to the infrastructures for XiangShan development
 
@@ -44,3 +41,16 @@ We will introduce the development infrastructure of XiangShan processor, also kn
 
 We have established a comprehensive workflow to simulate XiangShan processor and do prototype on FPGA. In this part, we will perform a practical demonstration, including argument details and key points to pay attention to. We will present some typical cases for XiangShan development. For example, how to add an instruction, how to add a peripheral device and how to re-configure cache structure. Based on XiangShan and Minjie platform, many architectural works can be reproduced and accelerate the interactions between academia and industry.
 
+## To be covered in the demonstration of Nanhu processor
+
+- Brief introduction to the XiangShan Nanhu project
+
+The Open-Source XiangShan Nanhu Processor is a significant development in computing architecture. It aims to promote innovation and collaboration in processor design by providing a transparent and accessible platform for researchers, developers, and enthusiasts. The project embraces an open-source philosophy to break down proprietary barriers and facilitate the free exchange of ideas, ultimately contributing to more efficient, customizable, and widely-applicable processing solutions.
+
+- Demonstration of XiangShan Nanhu development board
+
+The demonstration of the Open-Source XiangShan Nanhu Processor on the development board showcases its practical functionality and performance. Users can observe the processor's operation in real-time. The development board supports various peripherals and interfaces, allowing for the real-world application scenarios. Performance metrics, such as execution speed and power consumption, can be directly measured and compared against theoretical specifications. This hands-on demonstration provides a clear and tangible understanding of the processor's capabilities and potential applications.
+
+- Hand-on experience of XiangShan Nanhu development board
+
+The experience of Open-Source XiangShan Nanhu Processor development board offers a rewarding journey of learning and experimentation. Users can directly interact with the processor, testing and optimizing code in a real hardware environment. The development board's accessible design and comprehensive documentation make it easier for developers of all levels to engage with the technology. 

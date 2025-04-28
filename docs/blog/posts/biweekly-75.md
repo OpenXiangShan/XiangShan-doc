@@ -36,8 +36,14 @@ categories:
 - RVA23 Profile
 
 - Bug 修复
+  - 修复 L2 Cache 中 tag 校验出错时的相关处理逻辑 ([CoupledL2 #399](https://github.com/OpenXiangShan/CoupledL2/pull/399))
+  - 修复 L2 Cache 退出一致性状态时，没有去激活 TX 通道 linkactive 的 bug ([CoupledL2 #407](https://github.com/OpenXiangShan/CoupledL2/pull/407))
 
 - PPA 优化
+  - 调整 L2 Cache 中 tag 和 data SRAM 规格 ([CoupledL2 #402](https://github.com/OpenXiangShan/CoupledL2/pull/402))、([CoupledL2 #405](https://github.com/OpenXiangShan/CoupledL2/pull/405))
+
+- 工具
+  - CLog.B 支持多种时间输入方式 ([OpenLLC #62](https://github.com/OpenXiangShan/OpenLLC/pull/62))
 
 
 ## 评估

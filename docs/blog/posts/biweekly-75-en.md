@@ -32,8 +32,14 @@ Welcome to XiangShan biweekly column, this is the 75th issue of our biweekly col
 - **RVA23 Profile**
 
 - **Bug fixes**
+  - Fix handling logic for tag verification errors in the L2 Cache ([CoupledL2 #399](https://github.com/OpenXiangShan/CoupledL2/pull/399))
+  - Fix bug where the TX linkactive channel is not deactivated when exiting coherency in the L2 Cache ([CoupledL2 #407](https://github.com/OpenXiangShan/CoupledL2/pull/407))
 
 - **PPA Optimizations**
+  - Adjust tag and data SRAM specifications in the L2 Cache ([CoupledL2 #402](https://github.com/OpenXiangShan/CoupledL2/pull/402)), ([CoupledL2 #405](https://github.com/OpenXiangShan/CoupledL2/pull/405))
+
+- **Tools**
+  - Add support for multiple time input formats in CLog.B ([OpenLLC #62](https://github.com/OpenXiangShan/OpenLLC/pull/62))
 
 ## RTL Evaluation
 

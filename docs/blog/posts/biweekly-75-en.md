@@ -9,6 +9,8 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 75th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend changed FTQ meta SRAM size, the backend fixed an overflow issue of the ROB commit pointer in extreme cases, and the memory and cache subsystem fixed a bug in cbo.zero where RAW violation checks were not performed at cacheline granularity. This update also includes the latest performance improvements of the Kunminghu architecture.
+
 <!-- more -->
 ## Recent developments
 
@@ -47,8 +49,8 @@ Welcome to XiangShan biweekly column, this is the 75th issue of our biweekly col
   - Changed MMIO-path exceptions to be reported as Hardware Errors instead of Access Faults ([#4619](https://github.com/OpenXiangShan/XiangShan/pull/4619))
   - Fixed several bugs in PTW and LLPTW modules related to exception handling during MMU page-table walks ([#4586](https://github.com/OpenXiangShan/XiangShan/pull/4586)), ([#4596](https://github.com/OpenXiangShan/XiangShan/pull/4596)), ([#4597](https://github.com/OpenXiangShan/XiangShan/pull/4597))
   - Fixed two bugs in L1 TLB related to the virtualization extensions ([#4587](https://github.com/OpenXiangShan/XiangShan/pull/4587)), ([#4588](https://github.com/OpenXiangShan/XiangShan/pull/4588))
-  - Fix handling logic for tag verification errors in the L2 Cache ([CoupledL2 #399](https://github.com/OpenXiangShan/CoupledL2/pull/399))
-  - Fix bug where the TX linkactive channel is not deactivated when exiting coherency in the L2 Cache ([CoupledL2 #407](https://github.com/OpenXiangShan/CoupledL2/pull/407))
+  - Fixed handling logic for tag verification errors in the L2 Cache ([CoupledL2 #399](https://github.com/OpenXiangShan/CoupledL2/pull/399))
+  - Fixed bug where the TX linkactive channel is not deactivated when exiting coherency in the L2 Cache ([CoupledL2 #407](https://github.com/OpenXiangShan/CoupledL2/pull/407))
 
 - **PPA Optimizations**
   - Optimized the redundant enqueue logic of the uncacheBuffer in the LoadQueue to improve timing ([#4603](https://github.com/OpenXiangShan/XiangShan/pull/4603))
@@ -92,8 +94,10 @@ In the late stage of XiangShan Kunminghu architecture development, XiangShan's p
 
 ## Related links
 
-* XiangShan technical discussion QQ group: 879550595
-* XiangShan technical discussion website: https://github.com/OpenXiangShan/XiangShan/discussions
-* XiangShan Documentation: https://xiangshan-doc.readthedocs.io/
+- XiangShan technical discussion QQ group: 879550595
+- XiangShan technical discussion website: https://github.com/OpenXiangShan/XiangShan/discussions
+- XiangShan Documentation: https://xiangshan-doc.readthedocs.io/
+- XiangShan User Guide: https://docs.xiangshan.cc/projects/user-guide/
+- XiangShan Design Doc: https://docs.xiangshan.cc/projects/design/
 
 Editors: Li Yanqin, Lin Zhida, Man Yang, Liu Zehao, Feng Haoyuan, Ma Yuexiao

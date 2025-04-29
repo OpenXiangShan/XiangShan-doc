@@ -18,10 +18,8 @@ categories:
 
 ### 前端
 
-- Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- 面积
+- 杂项
+    - FTQ meta SRAM 规格修改 ([#4569](https://github.com/OpenXiangShan/XiangShan/pull/4569))
 
 ### 后端流水线
 
@@ -42,26 +40,26 @@ categories:
 ### 访存与缓存
 
 - Bug 修复
-  - 修复仿真环境内存 AXI4Memory 连续写 burst=1 时产生的卡死 bug ([#4611](https://github.com/OpenXiangShan/XiangShan/pull/4611))
-  - 修复 StoreQueue 中与 uncache store 出队逻辑有关的若干 bug ([#4641](https://github.com/OpenXiangShan/XiangShan/pull/4641))
-  - 修复 cbo.zero 没有按 cacheline 粒度做 RAW 违例检查的 bug ([#4592](https://github.com/OpenXiangShan/XiangShan/pull/4592))
-  - 修复非对齐 load 在 replay 时，误做 RAR/RAW 违例检查的 bug ([#4580](https://github.com/OpenXiangShan/XiangShan/pull/4580))
-  - 修复在个别 corner case 下没有正确上报 ECC 错误的 bug ([#4572](https://github.com/OpenXiangShan/XiangShan/pull/4572))
-  - 修复向量 EMUL<1 的非对齐 Unit-stride 指令元素 index 计算错误，导致异常信息有误的 bug ([#4593](https://github.com/OpenXiangShan/XiangShan/pull/4593))
-  - 软件预取指令不应产生 uncache 地址的访问，避免误报异常 ([#4636](https://github.com/OpenXiangShan/XiangShan/pull/4636))
-  - 修复 Dcache 中，同 set 访存密集场景下的死锁 bug ([#4622](https://github.com/OpenXiangShan/XiangShan/pull/4622))
-  - 对于 MMIO 通路产生的异常，应上报 Hardware Error 而非 Access Fault ([#4619](https://github.com/OpenXiangShan/XiangShan/pull/4619))
-  - 修复 MMU 页表遍历时，在 PTW 与 LLPTW 模块中和异常处理相关的几处 bug ([#4586](https://github.com/OpenXiangShan/XiangShan/pull/4586))、([#4596](https://github.com/OpenXiangShan/XiangShan/pull/4596))、([#4597](https://github.com/OpenXiangShan/XiangShan/pull/4597))
-  - 修复 L1 TLB 中与虚拟化扩展相关的两处 bug ([#4587](https://github.com/OpenXiangShan/XiangShan/pull/4587))、([#4588](https://github.com/OpenXiangShan/XiangShan/pull/4588))
-  - 修复 L2 Cache 中 tag 校验出错时的相关处理逻辑 ([CoupledL2 #399](https://github.com/OpenXiangShan/CoupledL2/pull/399))
-  - 修复 L2 Cache 退出一致性状态时，没有去激活 TX 通道 linkactive 的 bug ([CoupledL2 #407](https://github.com/OpenXiangShan/CoupledL2/pull/407))
+    - 修复仿真环境内存 AXI4Memory 连续写 burst=1 时产生的卡死 bug ([#4611](https://github.com/OpenXiangShan/XiangShan/pull/4611))
+    - 修复 StoreQueue 中与 uncache store 出队逻辑有关的若干 bug ([#4641](https://github.com/OpenXiangShan/XiangShan/pull/4641))
+    - 修复 cbo.zero 没有按 cacheline 粒度做 RAW 违例检查的 bug ([#4592](https://github.com/OpenXiangShan/XiangShan/pull/4592))
+    - 修复非对齐 load 在 replay 时，误做 RAR/RAW 违例检查的 bug ([#4580](https://github.com/OpenXiangShan/XiangShan/pull/4580))
+    - 修复在个别 corner case 下没有正确上报 ECC 错误的 bug ([#4572](https://github.com/OpenXiangShan/XiangShan/pull/4572))
+    - 修复向量 EMUL<1 的非对齐 Unit-stride 指令元素 index 计算错误，导致异常信息有误的 bug ([#4593](https://github.com/OpenXiangShan/XiangShan/pull/4593))
+    - 软件预取指令不应产生 uncache 地址的访问，避免误报异常 ([#4636](https://github.com/OpenXiangShan/XiangShan/pull/4636))
+    - 修复 Dcache 中，同 set 访存密集场景下的死锁 bug ([#4622](https://github.com/OpenXiangShan/XiangShan/pull/4622))
+    - 对于 MMIO 通路产生的异常，应上报 Hardware Error 而非 Access Fault ([#4619](https://github.com/OpenXiangShan/XiangShan/pull/4619))
+    - 修复 MMU 页表遍历时，在 PTW 与 LLPTW 模块中和异常处理相关的几处 bug ([#4586](https://github.com/OpenXiangShan/XiangShan/pull/4586))、([#4596](https://github.com/OpenXiangShan/XiangShan/pull/4596))、([#4597](https://github.com/OpenXiangShan/XiangShan/pull/4597))
+    - 修复 L1 TLB 中与虚拟化扩展相关的两处 bug ([#4587](https://github.com/OpenXiangShan/XiangShan/pull/4587))、([#4588](https://github.com/OpenXiangShan/XiangShan/pull/4588))
+    - 修复 L2 Cache 中 tag 校验出错时的相关处理逻辑 ([CoupledL2 #399](https://github.com/OpenXiangShan/CoupledL2/pull/399))
+    - 修复 L2 Cache 退出一致性状态时，没有去激活 TX 通道 linkactive 的 bug ([CoupledL2 #407](https://github.com/OpenXiangShan/CoupledL2/pull/407))
 
 - PPA 优化
-  - 优化 LoadQueue 中 uncacheBuffer 的冗余入队逻辑以改善时序 ([#4603](https://github.com/OpenXiangShan/XiangShan/pull/4603))
-  - 调整 L2 Cache 中 tag 和 data SRAM 规格 ([CoupledL2 #402](https://github.com/OpenXiangShan/CoupledL2/pull/402))、([CoupledL2 #405](https://github.com/OpenXiangShan/CoupledL2/pull/405))
+    - 优化 LoadQueue 中 uncacheBuffer 的冗余入队逻辑以改善时序 ([#4603](https://github.com/OpenXiangShan/XiangShan/pull/4603))
+    - 调整 L2 Cache 中 tag 和 data SRAM 规格 ([CoupledL2 #402](https://github.com/OpenXiangShan/CoupledL2/pull/402))、([CoupledL2 #405](https://github.com/OpenXiangShan/CoupledL2/pull/405))
 
 - 工具
-  - CLog.B 支持多种时间输入方式 ([OpenLLC #62](https://github.com/OpenXiangShan/OpenLLC/pull/62))
+    - CLog.B 支持多种时间输入方式 ([OpenLLC #62](https://github.com/OpenXiangShan/OpenLLC/pull/62))
 
 
 ## 评估

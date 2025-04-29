@@ -14,10 +14,8 @@ Welcome to XiangShan biweekly column, this is the 75th issue of our biweekly col
 
 ### Frontend
 
-- **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- **Area**
+- **Miscellaneous**
+    - Changed FTQ meta SRAM size ([#4569](https://github.com/OpenXiangShan/XiangShan/pull/4569))
 
 ### Backend
 

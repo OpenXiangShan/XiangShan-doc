@@ -21,11 +21,19 @@ Welcome to XiangShan biweekly column, this is the 75th issue of our biweekly col
 
 ### Backend
 
-- **Bug Fixes**
-
-- **Timing/Area Optimization**
-
-- **RVA23 Profile**
+- **Bug Fixes**  
+    - Fixed an issue where the highest priority result selection for the `xtopi` CSR was incorrect ([#4571](https://github.com/OpenXiangShan/XiangShan/pull/4571)).  
+    - Filtered out read-only CSRs from `regOut` ([#4412](https://github.com/OpenXiangShan/XiangShan/pull/4412)).  
+    - Fixed an issue where instructions in `singlestep` mode did not stop before entering the exception handler ([#4629](https://github.com/OpenXiangShan/XiangShan/pull/4629)).  
+    - Fixed an issue where the WFI timeout counter overflowed when WFI was configured to wait indefinitely, incorrectly causing a critical error ([#4623](https://github.com/OpenXiangShan/XiangShan/pull/4623)).  
+    - Fixed an issue where RNMI interrupts failed to wake up WFI instructions ([#4645](https://github.com/OpenXiangShan/XiangShan/pull/4645)).  
+    - Enabled the CPU clock upon receiving a debug halt request ([#4583](https://github.com/OpenXiangShan/XiangShan/pull/4583)).  
+    - Fixed incorrect trace parameter settings ([#4561](https://github.com/OpenXiangShan/XiangShan/pull/4561)).  
+    - Fixed `imsic` incorrectly triggering illegal exceptions ([#4546](https://github.com/OpenXiangShan/XiangShan/pull/4546)).  
+    - Fixed `xiselect` minimum range settings ([#4594](https://github.com/OpenXiangShan/XiangShan/pull/4594)).  
+    - Fixed an issue where younger vector memory exceptions incorrectly overwrote older exceptions ([#4570](https://github.com/OpenXiangShan/XiangShan/pull/4570)).  
+    - Fixed PC high bit calculation errors during difftest ([#4632](https://github.com/OpenXiangShan/XiangShan/pull/4632)).  
+    - Fixed an overflow issue of the ROB commit pointer in extreme cases ([#4642](https://github.com/OpenXiangShan/XiangShan/pull/4642)).
 
 ### MemBlock and cache
 

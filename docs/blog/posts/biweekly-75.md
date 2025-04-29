@@ -26,10 +26,18 @@ categories:
 ### 后端流水线
 
 - Bug 修复
-
-- 时序/面积优化
-
-- RVA23 Profile
+    - 修复 xtopi CSR 的最高优先级结果选择出错的问题 ([#4571](https://github.com/OpenXiangShan/XiangShan/pull/4571))
+    - 去除 CSR 中 regOut 里只读的 CSR 寄存器 ([#4412](https://github.com/OpenXiangShan/XiangShan/pull/4412))
+    - 修复 singlestep 状态下异常指令未能停在异常处理程序之前的问题 ([#4629](https://github.com/OpenXiangShan/XiangShan/pull/4629))
+    - 修复在 wfi 指令设置为死等时，指令提交超时寄存器溢出，错误导致 critical error 的问题 ([#4623](https://github.com/OpenXiangShan/XiangShan/pull/4623))
+    - 修复 rnmi 中断未能唤醒 wfi 指令的问题 ([#4645](https://github.com/OpenXiangShan/XiangShan/pull/4645))
+    - 在 debug halt 请求到来时，开启 CPU 时钟 ([#4583](https://github.com/OpenXiangShan/XiangShan/pull/4583))
+    - 修复部分 trace 参数设置出错的问题 ([#4561](https://github.com/OpenXiangShan/XiangShan/pull/4561))
+    - 修复 imsic 错误发送非法异常的问题 ([#4546](https://github.com/OpenXiangShan/XiangShan/pull/4546))
+    - 修复 xiselect 范围设置过小的问题 ([#4594](https://github.com/OpenXiangShan/XiangShan/pull/4594))
+    - 修复更年轻的向量访存异常错误覆盖已经存在的向量访存指令异常的问题 ([#4570](https://github.com/OpenXiangShan/XiangShan/pull/4570))
+    - 修复 difftest 时，pc 高位计算出错的问题 ([#4632](https://github.com/OpenXiangShan/XiangShan/pull/4632))
+    - 修复 rob 提交指针在极端情况下越界的问题 ([#4642](https://github.com/OpenXiangShan/XiangShan/pull/4642))
 
 ### 访存与缓存
 

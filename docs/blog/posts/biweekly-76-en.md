@@ -14,10 +14,7 @@ Welcome to XiangShan biweekly column, this is the 76th issue of our biweekly col
 
 ### Frontend
 
-- **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- **Area**
+Nothing
 
 ### Backend
 

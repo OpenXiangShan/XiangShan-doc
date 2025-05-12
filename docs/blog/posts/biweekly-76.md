@@ -18,10 +18,7 @@ categories:
 
 ### 前端
 
-- Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- 面积
+无
 
 ### 后端流水线
 

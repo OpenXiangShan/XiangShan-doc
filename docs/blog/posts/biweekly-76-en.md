@@ -21,11 +21,20 @@ Welcome to XiangShan biweekly column, this is the 76th issue of our biweekly col
 
 ### Backend
 
-- **Bug Fixes**
+* **Bug Fixes**
 
-- **Timing/Area Optimization**
+  * Fixed the read/write permission issue for the LCOFI (Local Counter Overflow Interrupt) bit (bit 13) in `xvip`/`xvien` registers ([#4648](https://github.com/OpenXiangShan/XiangShan/pull/4648)).
+  * Fixed incorrect access control of `sireg` and `vsireg` by `xstateen` ([#4649](https://github.com/OpenXiangShan/XiangShan/pull/4649)).
+  * Fixed an issue where virtual interrupt injection was not gated by `mnstatus.nmie` ([#4645](https://github.com/OpenXiangShan/XiangShan/pull/4645)).
+  * Fixed WFI instructions not being woken up by non-maskable interrupts ([#4645](https://github.com/OpenXiangShan/XiangShan/pull/4645)).
+  * Fixed incorrect updates to the `tval` register in scenarios where interrupts, CSR-related exceptions, and redirects occurred simultaneously ([#4671](https://github.com/OpenXiangShan/XiangShan/pull/4671)).
+  * Fixed incorrect `mcause` updates during interrupt double-trap scenarios ([#4671](https://github.com/OpenXiangShan/XiangShan/pull/4671)).
+  * Fixed an issue where `tval` failed to update correctly if EX\_II/EX\_VI exceptions occurred both in the original instruction and again in the interrupt handler ([#4671](https://github.com/OpenXiangShan/XiangShan/pull/4671)).
 
-- **RVA23 Profile**
+* **Others**
+
+  * Added version information to the simulation output ([#4626](https://github.com/OpenXiangShan/XiangShan/pull/4626)).
+
 
 ### MemBlock and cache
 

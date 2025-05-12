@@ -26,10 +26,16 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复 LCOFI (本地计数器溢出中断) 位在 xvip/xvien 寄存器中的可读写性问题 ([#4648](https://github.com/OpenXiangShan/XiangShan/pull/4648))
+    - 修复 xstateen 对 sireg/vsireg 寄存器控制出错的问题 ([#4649](https://github.com/OpenXiangShan/XiangShan/pull/4649))
+    - 修复虚拟中断注入没有被 mnstatus.nmie 控制的问题 ([#4645](https://github.com/OpenXiangShan/XiangShan/pull/4645))
+    - 修复 wfi 未能被非屏蔽中断唤醒的问题 ([#4645](https://github.com/OpenXiangShan/XiangShan/pull/4645))
+    - 修复 tval 寄存器在中断，CSR 相关异常，重定向同时发生的综合场景下更新出错的问题 ([#4671](https://github.com/OpenXiangShan/XiangShan/pull/4671))
+    - 修复 mcause 在中断的双重陷入时更新出错的问题 ([#4671](https://github.com/OpenXiangShan/XiangShan/pull/4671))
+    - 修复部分发生 EX\_II/EX\_VI 异常指令同时发生中断，且在中断处理函数再次发生上述异常时，tval 寄存器无法正常更新的错误 ([#4671](https://github.com/OpenXiangShan/XiangShan/pull/4671))
 
-- 时序/面积优化
-
-- RVA23 Profile
+- 其他
+    - 在仿真输出中添加版本信息 ([#4626](https://github.com/OpenXiangShan/XiangShan/pull/4626))
 
 ### 访存与缓存
 

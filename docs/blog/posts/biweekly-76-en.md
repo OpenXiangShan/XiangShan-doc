@@ -35,11 +35,16 @@ Nothing
 
 ### MemBlock and cache
 
-- **RVA23 Profile**
-
 - **Bug fixes**
-
-- **PPA Optimizations**
+  * Fixed the dequeue logic in StoreQueue when a uncache store causes an exception ([#4641](https://github.com/OpenXiangShan/XiangShan/pull/4641))
+  * Change UncacheBuffer’s store and load to enqueue based on robIdx arbitration to prevent dependency deadlock ([#4628](https://github.com/OpenXiangShan/XiangShan/pull/4628))
+  * Fixed bug where, for unaligned memory accesses crossing a page boundary that trigger an exception on the new page, the written *tval still takes the address of the previous page ([#4673](https://github.com/OpenXiangShan/XiangShan/pull/4673))
+  * For unaligned memory-access instructions, perform a rollback when the RAW queue is full to avoid stalling ([#4674](https://github.com/OpenXiangShan/XiangShan/pull/4674))
+  * Fixed a bug in StoreQueue when a CBO instruction raises an exception ([#4663](https://github.com/OpenXiangShan/XiangShan/pull/4663))
+  * Fixed bugs in the genVpn function that didn’t account for different virtualization stages and didn’t handle large-page VPN concatenation correctly ([#4647](https://github.com/OpenXiangShan/XiangShan/pull/4647))
+  * Fixed a bug where PPNs were generated incorrectly when using virtualization allStage while both VS-Stage and G-Stage are huge pages ([#4648](https://github.com/OpenXiangShan/XiangShan/pull/4648))
+  * Fixed the hit-matching logic in the MMU for some napot scenarios ([#4659](https://github.com/OpenXiangShan/XiangShan/pull/4659))
+  * Fixed bug in StoreQueue where vector exception flags could incorrectly trigger a timeout assert ([#4660](https://github.com/OpenXiangShan/XiangShan/pull/4660))
 
 ## RTL Evaluation
 

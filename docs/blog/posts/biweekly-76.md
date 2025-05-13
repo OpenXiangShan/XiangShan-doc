@@ -82,9 +82,11 @@ categories:
 
 ## 相关链接
 
-* 香山技术讨论 QQ 群：879550595
-* 香山技术讨论网站：https://github.com/OpenXiangShan/XiangShan/discussions
-* 香山文档：https://xiangshan-doc.readthedocs.io/
+- 香山技术讨论 QQ 群：879550595
+- 香山技术讨论网站：https://github.com/OpenXiangShan/XiangShan/discussions
+- 香山文档：https://xiangshan-doc.readthedocs.io/
+- 香山用户手册：https://docs.xiangshan.cc/projects/user-guide/
+- 香山设计文档：https://docs.xiangshan.cc/projects/design/
 
 编辑：李燕琴、林志达、满洋、刘泽昊、冯浩原、马月骁
 

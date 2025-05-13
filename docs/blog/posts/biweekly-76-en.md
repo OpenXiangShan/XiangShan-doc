@@ -81,8 +81,10 @@ In the late stage of XiangShan Kunminghu architecture development, XiangShan's p
 
 ## Related links
 
-* XiangShan technical discussion QQ group: 879550595
-* XiangShan technical discussion website: https://github.com/OpenXiangShan/XiangShan/discussions
-* XiangShan Documentation: https://xiangshan-doc.readthedocs.io/
+- XiangShan technical discussion QQ group: 879550595
+- XiangShan technical discussion website: https://github.com/OpenXiangShan/XiangShan/discussions
+- XiangShan Documentation: https://xiangshan-doc.readthedocs.io/
+- XiangShan User Guide: https://docs.xiangshan.cc/projects/user-guide/
+- XiangShan Design Doc: https://docs.xiangshan.cc/projects/design/
 
 Editors: Li Yanqin, Lin Zhida, Man Yang, Liu Zehao, Feng Haoyuan, Ma Yuexiao

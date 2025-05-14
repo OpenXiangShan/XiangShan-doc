@@ -9,6 +9,8 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 76th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the backend has fixed a number of bugs related to interrupt handling, and the memory and cache  have fixed many bugs related to StoreQueue, Uncache, and misalignment. This update also includes the latest performance improvements of the Kunminghu architecture.
+
 <!-- more -->
 ## Recent developments
 

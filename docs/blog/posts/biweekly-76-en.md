@@ -44,7 +44,7 @@ Nothing
   * For unaligned memory-access instructions, perform a rollback when the RAW queue is full to avoid stalling ([#4674](https://github.com/OpenXiangShan/XiangShan/pull/4674))
   * Fixed a bug in StoreQueue when a CBO instruction raises an exception ([#4663](https://github.com/OpenXiangShan/XiangShan/pull/4663))
   * Fixed bugs in the genVpn function that didn’t account for different virtualization stages and didn’t handle large-page VPN concatenation correctly ([#4647](https://github.com/OpenXiangShan/XiangShan/pull/4647))
-  * Fixed a bug where PPNs were generated incorrectly when using virtualization allStage while both VS-Stage and G-Stage are huge pages ([#4648](https://github.com/OpenXiangShan/XiangShan/pull/4648))
+  * Fixed a bug where PPNs were generated incorrectly when using virtualization allStage while both VS-Stage and G-Stage are huge pages ([#4658](https://github.com/OpenXiangShan/XiangShan/pull/4658))
   * Fixed the hit-matching logic in the MMU for some napot scenarios ([#4659](https://github.com/OpenXiangShan/XiangShan/pull/4659))
   * Fixed bug in StoreQueue where vector exception flags could incorrectly trigger a timeout assert ([#4660](https://github.com/OpenXiangShan/XiangShan/pull/4660))
 

@@ -43,7 +43,7 @@ categories:
     - 对于非对齐访存指令，当 RAW queue 满时需要 rollback 以避免阻塞 ([#4674](https://github.com/OpenXiangShan/XiangShan/pull/4674))
     - 修复在 StoreQueue 中 cbo 指令出现异常时的 bug ([#4663](https://github.com/OpenXiangShan/XiangShan/pull/4663))
     - 修复 genVpn 函数未考虑虚拟化不同阶段、以及未考虑大页的 vpn 拼接等 bug ([#4647](https://github.com/OpenXiangShan/XiangShan/pull/4647))
-    - 修复虚拟化 allStage 且两阶段均为大页时的部分场景下，生成 ppn 有误的 bug ([#4648](https://github.com/OpenXiangShan/XiangShan/pull/4648))
+    - 修复虚拟化 allStage 且两阶段均为大页时的部分场景下，生成 ppn 有误的 bug ([#4658](https://github.com/OpenXiangShan/XiangShan/pull/4658))
     - 修复 MMU 在 napot 场景下的部分命中匹配逻辑 ([#4659](https://github.com/OpenXiangShan/XiangShan/pull/4659))
     - 修复 StoreQueue 中向量异常的 flag 误发生超时 assert 的问题 ([#4660](https://github.com/OpenXiangShan/XiangShan/pull/4660))
 

@@ -5,7 +5,7 @@ In this chapter, we will introduce how to run Xiangshan core in simulation, how 
 
 **If you encounter problems, you may refer to [Troubleshooting](./troubleshoot.md) and [https://github.com/OpenXiangShan/XiangShan/issues](https://github.com/OpenXiangShan/XiangShan/issues) for Q&As**.
 
-##TLDR
+## TLDR
 
 Use the following script to deploy the Xiangshan development environment, **the deployment script only needs to be run once**:
 
@@ -35,7 +35,7 @@ source ./env.sh # setup XiangShan environment variables
 
 ## Requirements for the server
 
-- Operating system: Ubuntu 20.04 LTS (other versions have not been tested and are not recommended)
+- Operating system: Ubuntu 22.04 LTS (other versions have not been tested and are not recommended)
 - CPU: no limit. Will influence the speed of Verilog generation & simulation
 - Memory: **32G minimum, 64G and above recommended**
 - Disk space: 20G or above
@@ -43,9 +43,11 @@ source ./env.sh # setup XiangShan environment variables
 
 > Tip: insufficient memory and insufficient SWAP space will cause compilation errors. See: [https://github.com/OpenXiangShan/XiangShan/issues/891](https://github.com/OpenXiangShan/XiangShan/issues/891)
 
-## Setup Verilator based simulation environment
-
 <!-- If possible, it is recommended to use a desktop environment or enable X11 forwarding when logging in to try out some tools with a GUI interface -->
+
+## Setup XiangShan development environment
+
+### Using setup script
 
 Install git on the server, then use git to clone the following repositories:
 
@@ -67,6 +69,66 @@ Execute `setup.sh` script after installing the dependencies. This script will co
 ```bash
 ./setup.sh
 ```
+
+### Using Nix
+
+Same as above, use git to clone the `xs-env` repository:
+
+```bash
+git clone https://github.com/OpenXiangShan/xs-env.git
+cd xs-env
+```
+
+This repository also provides a nix flake based devshell. Check out `flake.nix`.
+
+> Tip: Please refer to [nix wiki](https://nixos.wiki/wiki/flakes) for more information about how to setup nix & nix flake.
+
+Then there are two ways to enter the devshell:
+
+1. Use `nix develop` command to enter the devshell.
+
+   ```bash
+   $ nix develop
+   ... # nix will update nixpkgs and download & build dependencies
+   === Welcome to XiangShan devshell! ===
+   Version info:
+   - Verilator 5.028 2024-08-21 rev v5.028
+   - Mill Build Tool version 0.12.3
+   - gcc (GCC) 14.2.1 20250322
+   - riscv64-unknown-linux-gnu-gcc (GCC) 14.2.1 20250322
+   - openjdk version "21.0.7" 2025-04-15
+   You can press Ctrl + D to exit devshell.
+
+   $ # here nix has setup the environment for you, you can start using XiangShan
+
+   $ exit # exit devshell
+   ```
+
+2. Use nix-direnv. It will manage all the devshells for you, and each time you `cd` into a directory with direnv enabled, it will automatically enter the devshell.
+
+   > Tip: You need to install `nix-direnv` first. Please refer to [nix-direnv repo](https://github.com/nix-community/nix-direnv).
+
+   ```bash
+   $ direnv allow <path-to-xs-env> # allow direnv to manage current directory, this is needed only once
+
+   $ cd <path-to-xs-env> # enter the directory (or sub-directories), direnv will automatically enter the devshell
+   direnv: loading ~/workspace/xs-env/.envrc
+   direnv: using flake
+   === Welcome to XiangShan devshell! ===
+   Version info:
+   - Verilator 5.028 2024-08-21 rev v5.028
+   - Mill Build Tool version 0.12.3
+   - gcc (GCC) 14.2.1 20250322
+   - riscv64-unknown-linux-gnu-gcc (GCC) 14.2.1 20250322
+   - openjdk version "21.0.7" 2025-04-15
+   You can press Ctrl + D to exit devshell.
+   direnv: export +AR +AS +CC +CLASSPATH +CONFIG_SHELL +CXX +DETERMINISTIC_BUILD +HOST_PATH +IN_NIX_SHELL +JAVA_HOME +LD +NIX_BINTOOLS +NIX_BINTOOLS_WRAPPER_TARGET_HOST_riscv64_unknown_linux_gnu +NIX_BINTOOLS_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu +NIX_BUILD_CORES +NIX_BUILD_TOP +NIX_CC +NIX_CC_WRAPPER_TARGET_HOST_riscv64_unknown_linux_gnu +NIX_CC_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu +NIX_CFLAGS_COMPILE +NIX_ENFORCE_NO_NATIVE +NIX_HARDENING_ENABLE +NIX_LDFLAGS +NIX_STORE +NM +OBJCOPY +OBJDUMP +PYTHONHASHSEED +PYTHONNOUSERSITE +PYTHONPATH +RANLIB +READELF +SDL2_PATH +SIZE +SOURCE_DATE_EPOCH +STRINGS +STRIP +TEMP +TEMPDIR +TMP +TMPDIR +_PYTHON_HOST_PLATFORM +_PYTHON_SYSCONFIGDATA_NAME +__structuredAttrs +buildInputs +buildPhase +builder +cmakeFlags +configureFlags +depsBuildBuild +depsBuildBuildPropagated +depsBuildTarget +depsBuildTargetPropagated +depsHostHost +depsHostHostPropagated +depsTargetTarget +depsTargetTargetPropagated +doCheck +doInstallCheck +dontAddDisableDepTrack +mesonFlags +name +nativeBuildInputs +out +outputs +patches +phases +preferLocalBuild +propagatedBuildInputs +propagatedNativeBuildInputs +shell +shellHook +stdenv +strictDeps +system ~PATH ~XDG_DATA_DIRS
+
+   $ # here nix has setup the environment for you, you can start using XiangShan
+
+   $ cd ~ # exit xs-env, direnv will automatically exit the devshell
+   direnv: unloading
+   ```
 
 ## Configure environment variables
 

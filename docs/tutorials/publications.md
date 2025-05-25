@@ -1,5 +1,13 @@
 # Publications
 
+## XiangShan: An Open-Source Project for High-Performance RISC-V Processors Meeting Industrial-Grade Standards
+
+Published at *2024 IEEE Hot Chips 36 Symposium (HCS)*. DOI: [10.1109/HCS61935.2024.10665293](https://doi.org/10.1109/HCS61935.2024.10665293).
+
+Developing an open-source industrial-grade high-performance processor is a challenging undertaking. With best-in-class performance, XiangShan is an open-source project for RISC-V processors. To maximize overall efficiency, XiangShan adopted a collaborative hardware development model, teaming up with industry partners on processor design, implementation, and verification.
+
+[IEEE Micro Special Issue](https://ieeexplore.ieee.org/document/10980411) | [Hot Chips Slides](https://ieeexplore.ieee.org/document/10665293)
+
 ## Towards Developing High Performance RISC-V Processors Using Agile Methodology
 
 Published at *the 55th IEEE/ACM International Symposium on Microarchitecture (MICRO 2022)*. DOI: [10.1109/MICRO56248.2022.00080](https://doi.org/10.1109/MICRO56248.2022.00080).

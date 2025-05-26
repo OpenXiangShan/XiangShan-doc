@@ -19,9 +19,7 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- 面积
+    - 修复 ICache 性能计数器 ([#4725](https://github.com/OpenXiangShan/XiangShan/pull/4725))
 
 ### 后端流水线
 

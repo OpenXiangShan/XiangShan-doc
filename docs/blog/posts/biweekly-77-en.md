@@ -15,9 +15,7 @@ Welcome to XiangShan biweekly column, this is the 77th issue of our biweekly col
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- **Area**
+    - Fixed ICache performance counter ([#4725](https://github.com/OpenXiangShan/XiangShan/pull/4725))
 
 ### Backend
 

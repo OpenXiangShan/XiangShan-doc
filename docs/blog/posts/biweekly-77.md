@@ -35,10 +35,14 @@ categories:
 
 - RVA23 Profile
 
+- 功能
+  - L2 Cache 支持 NS；MPAM NS 位与可配置 NS 位绑定 ([CoupledL2 #412](https://github.com/OpenXiangShan/CoupledL2/pull/412))、([CoupledL2 #414](https://github.com/OpenXiangShan/CoupledL2/pull/414))
+
 - Bug 修复
 
 - PPA 优化
-
+  - L2 Cache 支持非阻塞式 RXDAT 和 RXRSP ([CoupledL2 #397](https://github.com/OpenXiangShan/CoupledL2/pull/397))
+  - 调整 BOP 延迟，以适配 CHI 版本 L2 Cache ([CoupledL2 #413](https://github.com/OpenXiangShan/CoupledL2/pull/413))
 
 ## 评估
 

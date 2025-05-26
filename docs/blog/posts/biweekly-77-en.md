@@ -31,9 +31,14 @@ Welcome to XiangShan biweekly column, this is the 77th issue of our biweekly col
 
 - **RVA23 Profile**
 
+- **Features**
+  - L2 Cache supports NS; the MPAM NS bit is bound to a configurable NS bit ([CoupledL2 #412](https://github.com/OpenXiangShan/CoupledL2/pull/412), [#414](https://github.com/OpenXiangShan/CoupledL2/pull/414))
+
 - **Bug fixes**
 
 - **PPA Optimizations**
+  - L2 Cache supports non-blocking RXDAT and RXRSP ([CoupledL2 #397](https://github.com/OpenXiangShan/CoupledL2/pull/397))
+  - Adjusted BOP latency to match the CHI version of the L2 Cache ([CoupledL2 #413](https://github.com/OpenXiangShan/CoupledL2/pull/413))
 
 ## RTL Evaluation
 

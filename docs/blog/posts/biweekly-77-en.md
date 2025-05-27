@@ -9,6 +9,8 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 77th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the frontend fixed ICache performance counter, the backend fixed functional issues caused by out-of-order reads of `xtopi`/`xtopei` registers, and the memory and cache subsystem added handling logic for bus errors on Uncache Store.
+
 <!-- more -->
 ## Recent developments
 
@@ -30,17 +32,17 @@ Welcome to XiangShan biweekly column, this is the 77th issue of our biweekly col
 
 - **Features**
   - L2 Cache supports NS; the MPAM NS bit is bound to a configurable NS bit ([CoupledL2 #412](https://github.com/OpenXiangShan/CoupledL2/pull/412), [#414](https://github.com/OpenXiangShan/CoupledL2/pull/414))
-  - Add WFI safe-protection mechanism to ensure no outstanding L2 requests before the CPU core enters WFI state ([#4691](https://github.com/OpenXiangShan/XiangShan/pull/4691))
+  - Added WFI safe-protection mechanism to ensure no outstanding L2 requests before the CPU core enters WFI state ([#4691](https://github.com/OpenXiangShan/XiangShan/pull/4691))
 
 - **Bug fixes**
-  - Add handling logic for bus errors on Uncache Store ([#4717](https://github.com/OpenXiangShan/XiangShan/pull/4717))
-  - Fix bug where a misaligned vector store incorrectly wrote data to sbuffer when exception happened ([#4731](https://github.com/OpenXiangShan/XiangShan/pull/4731))
-  - Fix bug in page-fault determination for the CBO instruction ([#4702](https://github.com/OpenXiangShan/XiangShan/pull/4702))
-  - Fix store–load forwarding data error caused by an incorrect forwarding mask for CMO instructions ([#4730](https://github.com/OpenXiangShan/XiangShan/pull/4730))
-  - Fix CPU stuck caused by incorrect redirect handling of vector instructions in the storequeue ([#4711](https://github.com/OpenXiangShan/XiangShan/pull/4711))
-  - Fix performance bug where huge pages in TLB should have hit but were falsely reported as missing in certain scenarios ([#4694](https://github.com/OpenXiangShan/XiangShan/pull/4694))
-  - Fix bug where SC/AMO instructions failed to report an access fault when the target address lacked atomic permissions ([#4724](https://github.com/OpenXiangShan/XiangShan/pull/4724))
-  - Fix bugs related to ECC error injection handling ([#4718](https://github.com/OpenXiangShan/XiangShan/pull/4718))
+  - Added handling logic for bus errors on Uncache Store ([#4717](https://github.com/OpenXiangShan/XiangShan/pull/4717))
+  - Fixed bug where a misaligned vector store incorrectly wrote data to sbuffer when exception happened ([#4731](https://github.com/OpenXiangShan/XiangShan/pull/4731))
+  - Fixed bug in page-fault determination for the CBO instruction ([#4702](https://github.com/OpenXiangShan/XiangShan/pull/4702))
+  - Fixed store–load forwarding data error caused by an incorrect forwarding mask for CMO instructions ([#4730](https://github.com/OpenXiangShan/XiangShan/pull/4730))
+  - Fixed CPU stuck caused by incorrect redirect handling of vector instructions in the storequeue ([#4711](https://github.com/OpenXiangShan/XiangShan/pull/4711))
+  - Fixed performance bug where huge pages in TLB should have hit but were falsely reported as missing in certain scenarios ([#4694](https://github.com/OpenXiangShan/XiangShan/pull/4694))
+  - Fixed bug where SC/AMO instructions failed to report an access fault when the target address lacked atomic permissions ([#4724](https://github.com/OpenXiangShan/XiangShan/pull/4724))
+  - Fixed bugs related to ECC error injection handling ([#4718](https://github.com/OpenXiangShan/XiangShan/pull/4718))
 
 - **PPA Optimizations**
   - L2 Cache supports non-blocking RXDAT and RXRSP ([CoupledL2 #397](https://github.com/OpenXiangShan/CoupledL2/pull/397))
@@ -49,6 +51,8 @@ Welcome to XiangShan biweekly column, this is the 77th issue of our biweekly col
 ## RTL Evaluation
 
 We used SimPoint for program sampling and created checkpoint images based on our custom Checkpoint format, with a **SimPoint clustering coverage of 100%**. SPEC CPU2006 was compiled using gcc12 with O3 optimization enabled, the jemalloc memory library, and the `-ffp-contraction` option for SPECfp 2006 set to fast. The instruction set used was RV64GCB. We ran SPEC CPU2006 checkpoints on the XiangShan processor **commit f9d8efe from May 8** (**configured with 64KB L1 ICache, 64KB L1 DCache, 1MB L2, and 16MB L3, and a 3ld2st LSU, TileLink bus protocol**) in a simulation environment. DRAMsim3 was used to simulate DDR4-3200 memory latency with a CPU running at 3GHz. Below are the estimated SPEC CPU2006 scores:
+
+**Note: The performance evaluation code version for this biweekly are the same as the last biweekly, and will be updated with the latest scores in the next biweekly.**
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est.  | @ 3GHz |
 | :---------------- | :----: | :---------------- | :----: |

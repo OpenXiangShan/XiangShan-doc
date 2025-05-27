@@ -19,11 +19,12 @@ Welcome to XiangShan biweekly column, this is the 77th issue of our biweekly col
 
 ### Backend
 
-- **Bug Fixes**
+* **Bug Fixes**
 
-- **Timing/Area Optimization**
-
-- **RVA23 Profile**
+  * Aligned the implementation of `xcontext` and `xstateen` CSRs with the latest privileged specification ([#4696](https://github.com/OpenXiangShan/XiangShan/pull/4696), [#4676](https://github.com/OpenXiangShan/XiangShan/pull/4676)).
+  * Fixed functional issues caused by out-of-order reads of `xtopi`/`xtopei` registers ([#4698](https://github.com/OpenXiangShan/XiangShan/pull/4698)).
+  * Added missing permission checks in accordance with the latest privileged specification ([#4672](https://github.com/OpenXiangShan/XiangShan/pull/4672)).
+  * Fixed sign extension errors of the program counter under the `sv48x4` mode ([#4728](https://github.com/OpenXiangShan/XiangShan/pull/4728)).
 
 ### MemBlock and cache
 

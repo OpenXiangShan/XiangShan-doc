@@ -24,10 +24,10 @@ categories:
 ### 后端流水线
 
 - Bug 修复
-
-- 时序/面积优化
-
-- RVA23 Profile
+    - 修复 xcontext/xstateen 寄存器实现对齐最新版特权手册 ([#4696](https://github.com/OpenXiangShan/XiangShan/pull/4696))、([#4676](https://github.com/OpenXiangShan/XiangShan/pull/4676))
+    - 修复 xtopi/xtopei 寄存器乱序读导致的功能问题 ([#4698](https://github.com/OpenXiangShan/XiangShan/pull/4698))
+    - 添加权限检查对齐最新版特权手册 ([#4672](https://github.com/OpenXiangShan/XiangShan/pull/4672))
+    - 修复 pc 在 sv48*4 模式下符号拓展出错的问题 ([#4728](https://github.com/OpenXiangShan/XiangShan/pull/4728))
 
 ### 访存与缓存
 

@@ -31,12 +31,19 @@ categories:
 
 ### 访存与缓存
 
-- RVA23 Profile
-
 - 功能
   - L2 Cache 支持 NS；MPAM NS 位与可配置 NS 位绑定 ([CoupledL2 #412](https://github.com/OpenXiangShan/CoupledL2/pull/412))、([CoupledL2 #414](https://github.com/OpenXiangShan/CoupledL2/pull/414))
+  - 添加 WFI 的安全保护机制，确保在进入 WFI 状态前，CPU 核没有未返回的 L2 请求 ([#4691](https://github.com/OpenXiangShan/XiangShan/pull/4691))
 
 - Bug 修复
+  - 添加 Uncache Store 发生 bus error 的处理逻辑 ([#4717](https://github.com/OpenXiangShan/XiangShan/pull/4717))
+  - 修复一条非对齐的向量 store 指令发生异常时，对 sbuffer 写入有误的 bug ([#4731](https://github.com/OpenXiangShan/XiangShan/pull/4731))
+  - 修复对 cbo 指令是否触发 page fault 判断的一处 bug ([#4702](https://github.com/OpenXiangShan/XiangShan/pull/4702))
+  - 修复对 cmo 指令的前递掩码设置有误导致的 store-load forward 数据出错 ([#4730](https://github.com/OpenXiangShan/XiangShan/pull/4730))
+  - 修复 storequeue 中对向量指令重定向处理有误导致的卡死 ([#4711](https://github.com/OpenXiangShan/XiangShan/pull/4711))
+  - 修复部分场景下，TLB 中存储的大页本应命中，但误报缺失的性能 bug ([#4694](https://github.com/OpenXiangShan/XiangShan/pull/4694))
+  - 修复 sc / amo 指令的访存地址不具有 atomic 权限时，未成功上报 access fault 的 bug ([#4724](https://github.com/OpenXiangShan/XiangShan/pull/4724))
+  - 修复 ECC 错误注入处理相关的 bug ([#4718](https://github.com/OpenXiangShan/XiangShan/pull/4718))
 
 - PPA 优化
   - L2 Cache 支持非阻塞式 RXDAT 和 RXRSP ([CoupledL2 #397](https://github.com/OpenXiangShan/CoupledL2/pull/397))

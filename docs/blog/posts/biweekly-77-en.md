@@ -27,12 +27,19 @@ Welcome to XiangShan biweekly column, this is the 77th issue of our biweekly col
 
 ### MemBlock and cache
 
-- **RVA23 Profile**
-
 - **Features**
   - L2 Cache supports NS; the MPAM NS bit is bound to a configurable NS bit ([CoupledL2 #412](https://github.com/OpenXiangShan/CoupledL2/pull/412), [#414](https://github.com/OpenXiangShan/CoupledL2/pull/414))
+  - Add WFI safe-protection mechanism to ensure no outstanding L2 requests before the CPU core enters WFI state ([#4691](https://github.com/OpenXiangShan/XiangShan/pull/4691))
 
 - **Bug fixes**
+  - Add handling logic for bus errors on Uncache Store ([#4717](https://github.com/OpenXiangShan/XiangShan/pull/4717))
+  - Fix bug where a misaligned vector store incorrectly wrote data to sbuffer when exception happened ([#4731](https://github.com/OpenXiangShan/XiangShan/pull/4731))
+  - Fix bug in page-fault determination for the CBO instruction ([#4702](https://github.com/OpenXiangShan/XiangShan/pull/4702))
+  - Fix store–load forwarding data error caused by an incorrect forwarding mask for CMO instructions ([#4730](https://github.com/OpenXiangShan/XiangShan/pull/4730))
+  - Fix CPU stuck caused by incorrect redirect handling of vector instructions in the storequeue ([#4711](https://github.com/OpenXiangShan/XiangShan/pull/4711))
+  - Fix performance bug where huge pages in TLB should have hit but were falsely reported as missing in certain scenarios ([#4694](https://github.com/OpenXiangShan/XiangShan/pull/4694))
+  - Fix bug where SC/AMO instructions failed to report an access fault when the target address lacked atomic permissions ([#4724](https://github.com/OpenXiangShan/XiangShan/pull/4724))
+  - Fix bugs related to ECC error injection handling ([#4718](https://github.com/OpenXiangShan/XiangShan/pull/4718))
 
 - **PPA Optimizations**
   - L2 Cache supports non-blocking RXDAT and RXRSP ([CoupledL2 #397](https://github.com/OpenXiangShan/CoupledL2/pull/397))

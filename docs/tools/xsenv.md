@@ -31,7 +31,7 @@ cd xs-env
 source ./env.sh # setup XiangShan environment variables
 ```
 
-## 初始环境准备
+## 性能要求
 
 请准备一台**性能较强**的服务器，以下为服务器的一些配置要求：
 
@@ -45,7 +45,11 @@ source ./env.sh # setup XiangShan environment variables
 
 （如果有条件，登录时推荐使用桌面环境或者开启 X11 转发以试用一些带有 GUI 界面的工具）
 
+## 配置香山开发环境
+
 如果您的网络环境访问 GitHub 存在困难，您可以参照 [使用代码仓库镜像](mirrors.md) 这篇文档使用我们在 [Gitee](https://gitee.com/OpenXiangShan/XiangShan)、[GitLink](https://www.gitlink.org.cn/OpenXiangShan/XiangShan) 等平台上的镜像。
+
+### 使用安装脚本
 
 在服务器上安装 git, 随后使用 git 克隆以下仓库到本地：
 
@@ -61,23 +65,86 @@ sudo -s ./setup-tools.sh
 ```
 > 提示：这个脚本的执行需要 sudo 权限来安装香山项目依赖的软件包，请阅读理解脚本内容后执行，以防搅乱环境
 
+安装完依赖以后执行 `setup` 脚本来编译 NEMU 和进行环境测试。
 
-安装完依赖以后执行`make`脚本
 ```bash
 ./setup.sh
 ```
 
+### 使用 Nix
+
+同上，首先将 `xs-env` 仓库克隆到本地：
+
+```bash
+git clone https://github.com/OpenXiangShan/xs-env.git
+cd xs-env
+```
+
+该仓库提供一个基于 nix flake 的开发环境配置，详见 `flake.nix`。
+
+> 提示：请参考 [nix wiki](https://nixos.wiki/wiki/flakes) 来安装 nix 和 nix flake。
+
+有两种方法可以使用这一开发环境：
+
+1. 使用 `nix develop` 命令进入开发环境。
+
+   ```bash
+   $ nix develop
+   ... # nix 会自动拉取 nixpkgs 并下载和构建正确版本的依赖
+   === Welcome to XiangShan devshell! ===
+   Version info:
+   - Verilator 5.028 2024-08-21 rev v5.028
+   - Mill Build Tool version 0.12.3
+   - gcc (GCC) 14.2.1 20250322
+   - riscv64-unknown-linux-gnu-gcc (GCC) 14.2.1 20250322
+   - openjdk version "21.0.7" 2025-04-15
+   You can press Ctrl + D to exit devshell.
+
+   $ # 现在 nix 已经设置好了开发环境，您可以开始开发和编译 XiangShan 了
+
+   $ exit # 退出开发环境
+   ```
+
+2. 使用 nix-direnv。该工具可以自动管理本机的所有开发环境，每次 `cd` 进一个启用了 direnv 的目录时，它会自动激活相应的开发环境。
+
+   > 提示：您需要手动安装 `nix-direnv`。请参考[nix-direnv 仓库](https://github.com/nix-community/nix-direnv)。
+
+   ```bash
+   $ direnv allow <path-to-xs-env> # 在 xs-env 目录启用 direnv，仅需运行一次
+
+   $ cd <path-to-xs-env> # 进入 xs-env 目录（或任意子目录）时，direnv 会自动加载开发环境
+   direnv: loading ~/workspace/xs-env/.envrc
+   direnv: using flake
+   === Welcome to XiangShan devshell! ===
+   Version info:
+   - Verilator 5.028 2024-08-21 rev v5.028
+   - Mill Build Tool version 0.12.3
+   - gcc (GCC) 14.2.1 20250322
+   - riscv64-unknown-linux-gnu-gcc (GCC) 14.2.1 20250322
+   - openjdk version "21.0.7" 2025-04-15
+   You can press Ctrl + D to exit devshell.
+   direnv: export +AR +AS +CC +CLASSPATH +CONFIG_SHELL +CXX +DETERMINISTIC_BUILD +HOST_PATH +IN_NIX_SHELL +JAVA_HOME +LD +NIX_BINTOOLS +NIX_BINTOOLS_WRAPPER_TARGET_HOST_riscv64_unknown_linux_gnu +NIX_BINTOOLS_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu +NIX_BUILD_CORES +NIX_BUILD_TOP +NIX_CC +NIX_CC_WRAPPER_TARGET_HOST_riscv64_unknown_linux_gnu +NIX_CC_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu +NIX_CFLAGS_COMPILE +NIX_ENFORCE_NO_NATIVE +NIX_HARDENING_ENABLE +NIX_LDFLAGS +NIX_STORE +NM +OBJCOPY +OBJDUMP +PYTHONHASHSEED +PYTHONNOUSERSITE +PYTHONPATH +RANLIB +READELF +SDL2_PATH +SIZE +SOURCE_DATE_EPOCH +STRINGS +STRIP +TEMP +TEMPDIR +TMP +TMPDIR +_PYTHON_HOST_PLATFORM +_PYTHON_SYSCONFIGDATA_NAME +__structuredAttrs +buildInputs +buildPhase +builder +cmakeFlags +configureFlags +depsBuildBuild +depsBuildBuildPropagated +depsBuildTarget +depsBuildTargetPropagated +depsHostHost +depsHostHostPropagated +depsTargetTarget +depsTargetTargetPropagated +doCheck +doInstallCheck +dontAddDisableDepTrack +mesonFlags +name +nativeBuildInputs +out +outputs +patches +phases +preferLocalBuild +propagatedBuildInputs +propagatedNativeBuildInputs +shell +shellHook +stdenv +strictDeps +system ~PATH ~XDG_DATA_DIRS
+
+   $ # 现在 nix 已经设置好了开发环境，您可以开始开发和编译 XiangShan 了
+
+   $ cd ~ # 离开 xs-env 目录时，direnv 会自动退出开发环境
+   direnv: unloading
+   ```
+
+## 配置环境变量
+
 执行 `ls` 确认其中拥有以下目录：
 
-```
+```bash
+$ ls
 XiangShan    NEMU    nexus-am
 ```
 
-配置环境变量：
-```shell
+**完成环境配置后，您需要通过以下命令配置一些环境变量才能正常进行编译：**
+
+```bash
 source env.sh
 ```
-
 
 上述命令设置了 `NOOP_HOME`，`NEMU_HOME`，`AM_HOME` 三个环境变量。您可以将这些环境变量加入到`.bashrc`中，也可以在每次使用香山前重新运行 `env.sh`这一脚本配置环境变量（推荐）。**在完成开发环境配置后，每次使用开发环境前只需 `source env.sh` 配置环境变量即可**。
 

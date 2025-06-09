@@ -21,11 +21,14 @@ Welcome to XiangShan biweekly column, this is the 78th issue of our biweekly col
 
 ### Backend
 
-- **Bug Fixes**
+* **Bug Fixes**
 
-- **Timing/Area Optimization**
+  * Fixed an issue where asynchronous updates to the `xtopi` CSR caused difftest mismatches: temporarily skipped `xtopi` in difftest comparison ([#4742](https://github.com/OpenXiangShan/XiangShan/pull/4742))
+  * Fixed a problem where `sstateenx` was not correctly generated as a Verilog module ([#4723](https://github.com/OpenXiangShan/XiangShan/pull/4723))
+  * Moved the core-side trace collection of `xret` instructions from the commit stage to the rename stage ([#4736](https://github.com/OpenXiangShan/XiangShan/pull/4736))
 
-- **RVA23 Profile**
+* **Tooling**
+  * Added support for using a custom `HINT` instruction as a debug trigger in FPGA simulation ([#4776](https://github.com/OpenXiangShan/XiangShan/pull/4776))
 
 ### MemBlock and cache
 

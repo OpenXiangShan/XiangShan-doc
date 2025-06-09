@@ -26,10 +26,12 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复 xtopi 寄存器异步更新导致 difftest 同步出错的问题：暂时跳过 xtopi 比对 ([#4742](https://github.com/OpenXiangShan/XiangShan/pull/4742))
+    - 修复 sstateenx 未正确生成为 Verilog 模块的问题 ([#4723](https://github.com/OpenXiangShan/XiangShan/pull/4723))
+    - 将核内 trace 对 xret 指令的统计从指令提交阶段提前到重命名阶段 ([#4736](https://github.com/OpenXiangShan/XiangShan/pull/4736))
 
-- 时序/面积优化
-
-- RVA23 Profile
+- 工具
+    - 添加自定义 HINT 指令作为 FPGA 仿真调试触发器 ([#4776](https://github.com/OpenXiangShan/XiangShan/pull/4776))
 
 ### 访存与缓存
 

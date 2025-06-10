@@ -38,6 +38,7 @@ categories:
 - RVA23 Profile
 
 - Bug 修复
+    - 将 TXRSP、TXDAT 通道的仲裁逻辑修改为轮询，以避免拥塞场景下低优先级请求超时问题 ([CoupledL2 #415](https://github.com/OpenXiangShan/CoupledL2/pull/415))
 
 - PPA 优化
 

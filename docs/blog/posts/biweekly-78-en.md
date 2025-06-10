@@ -35,6 +35,7 @@ Welcome to XiangShan biweekly column, this is the 78th issue of our biweekly col
 - **RVA23 Profile**
 
 - **Bug fixes**
+  * Change the arbitration logic for the TXRSP and TXDAT channels to RoundRobin scheduling to prevent low-priority requests from timing out under congestion ([CoupledL2 #415](https://github.com/OpenXiangShan/CoupledL2/pull/415))
 
 - **PPA Optimizations**
 

@@ -32,12 +32,20 @@ Welcome to XiangShan biweekly column, this is the 78th issue of our biweekly col
 
 ### MemBlock and cache
 
-- **RVA23 Profile**
-
 - **Bug fixes**
+  * Fixed a bug where, upon cache aliasing in DCache, the probe request’s blocking logic considered only the physical address and ignored the alias bit, causing stuck ([#4741](https://github.com/OpenXiangShan/XiangShan/pull/4741))
+  * Fixed a bug in DCache’s MetaArray where read–write conflicts were not properly marked in the RAR Queue, causing loads to read old values ([#4795](https://github.com/OpenXiangShan/XiangShan/pull/4795))
+  * Fixed several bugs related to DCache ECC and custom ECC error injection ([#4753](https://github.com/OpenXiangShan/XiangShan/pull/4753)), ([#4755](https://github.com/OpenXiangShan/XiangShan/pull/4755)), ([#4782](https://github.com/OpenXiangShan/XiangShan/pull/4782))
+  * Fixed a bug where, on a misaligned and cross-page memory load request that raises an exception, the exception address written into *tval is incorrect ([#4751](https://github.com/OpenXiangShan/XiangShan/pull/4751))
+  * Fixed a bug where uncache accesses to illegal addresses did not correctly report a hardware error ([#4774](https://github.com/OpenXiangShan/XiangShan/pull/4774))
+  * Fixed a difftest framework bug where uncache store and memory store comparisons were mistimed, leading to difftest mismatches ([#4779](https://github.com/OpenXiangShan/XiangShan/pull/4779))
+  * Fixed a bug in IFU address generation where, in certain scenarios, the wrong lower bits of the address were used as the offset ([#4748](https://github.com/OpenXiangShan/XiangShan/pull/4748))
+  * Fixed a bug during two-stage address translation where, after a guest-page fault (gpf) was triggered, both page fault (pf) and gpf were erroneously reported simultaneously ([#4754](https://github.com/OpenXiangShan/XiangShan/pull/4754))
+  * Fixed a bug in PMA address checks where the signal was mistimed when selecting the check type based on the request’s cmd, leading to incorrect permission checks ([#4769](https://github.com/OpenXiangShan/XiangShan/pull/4769))
+  * Fixed a corner-case bug in TLB hit logic where mismatched page sizes between stages were not considered, causing false hits ([#4780](https://github.com/OpenXiangShan/XiangShan/pull/4780))
+  * Fixed a bug in the TLB’s handle_block function where, in certain scenarios, the logic for generating gpaddr was incorrect ([#4793](https://github.com/OpenXiangShan/XiangShan/pull/4793))
   * Change the arbitration logic for the TXRSP and TXDAT channels to RoundRobin scheduling to prevent low-priority requests from timing out under congestion ([CoupledL2 #415](https://github.com/OpenXiangShan/CoupledL2/pull/415))
 
-- **PPA Optimizations**
 
 ## RTL Evaluation
 

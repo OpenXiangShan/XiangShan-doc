@@ -9,15 +9,14 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 78th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
+Recently, various teams working on Kunminghu have continued to advance optimizations in area, timing, and power consumption. In addition, the backend has fixed a problem where `sstateenx` was not correctly generated as a Verilog module, and the memory and cache subsystem have fixed a bug where, on a misaligned and cross-page memory load request that raises an exception, the exception address written into xtval is incorrect. This update also includes the latest performance improvements of the Kunminghu architecture.
+
 <!-- more -->
 ## Recent developments
 
 ### Frontend
 
-- **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- **Area**
+Nothing
 
 ### Backend
 
@@ -36,7 +35,7 @@ Welcome to XiangShan biweekly column, this is the 78th issue of our biweekly col
   * Fixed a bug where, upon cache aliasing in DCache, the probe request’s blocking logic considered only the physical address and ignored the alias bit, causing stuck ([#4741](https://github.com/OpenXiangShan/XiangShan/pull/4741))
   * Fixed a bug in DCache’s MetaArray where read–write conflicts were not properly marked in the RAR Queue, causing loads to read old values ([#4795](https://github.com/OpenXiangShan/XiangShan/pull/4795))
   * Fixed several bugs related to DCache ECC and custom ECC error injection ([#4753](https://github.com/OpenXiangShan/XiangShan/pull/4753)), ([#4755](https://github.com/OpenXiangShan/XiangShan/pull/4755)), ([#4782](https://github.com/OpenXiangShan/XiangShan/pull/4782))
-  * Fixed a bug where, on a misaligned and cross-page memory load request that raises an exception, the exception address written into *tval is incorrect ([#4751](https://github.com/OpenXiangShan/XiangShan/pull/4751))
+  * Fixed a bug where, on a misaligned and cross-page memory load request that raises an exception, the exception address written into xtval is incorrect ([#4751](https://github.com/OpenXiangShan/XiangShan/pull/4751))
   * Fixed a bug where uncache accesses to illegal addresses did not correctly report a hardware error ([#4774](https://github.com/OpenXiangShan/XiangShan/pull/4774))
   * Fixed a difftest framework bug where uncache store and memory store comparisons were mistimed, leading to difftest mismatches ([#4779](https://github.com/OpenXiangShan/XiangShan/pull/4779))
   * Fixed a bug in IFU address generation where, in certain scenarios, the wrong lower bits of the address were used as the offset ([#4748](https://github.com/OpenXiangShan/XiangShan/pull/4748))

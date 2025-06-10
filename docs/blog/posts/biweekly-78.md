@@ -35,13 +35,19 @@ categories:
 
 ### 访存与缓存
 
-- RVA23 Profile
-
 - Bug 修复
+    - 修复在 DCache 中发生 cache 别名时，Probe 请求阻塞只考虑了物理地址，没有考虑别名位，导致卡死的 bug ([#4741](https://github.com/OpenXiangShan/XiangShan/pull/4741))
+    - 修复 DCache MetaArray 读写冲突，但没有在 RAR 中作相应标记，导致 Load 读到旧值的 bug ([#4795](https://github.com/OpenXiangShan/XiangShan/pull/4795))
+    - 修复若干与 DCache ECC 与自定义故障注入有关的 bug ([#4753](https://github.com/OpenXiangShan/XiangShan/pull/4753))、([#4755](https://github.com/OpenXiangShan/XiangShan/pull/4755))、([#4782](https://github.com/OpenXiangShan/XiangShan/pull/4782))
+    - 修复非对齐且跨页的访存请求发生异常时，写入 *tval 的异常地址错误的 bug ([#4751](https://github.com/OpenXiangShan/XiangShan/pull/4751))
+    - 修复 uncache 访问非法地址没有正确报 hardware error 的 bug ([#4774](https://github.com/OpenXiangShan/XiangShan/pull/4774))
+    - 修复 difftest 框架中，uncache store 和 memory store 对比时机不同导致的 diff 出错 ([#4779](https://github.com/OpenXiangShan/XiangShan/pull/4779))
+    - 修复 IFU 在生成物理地址时，部分场景下误使用了错误的地址低位作为 offset 的 bug ([#4748](https://github.com/OpenXiangShan/XiangShan/pull/4748))
+    - 修复两阶段地址翻译过程中，G-Stage 已经触发 gpf，但错误地同时上报 pf 和 gpf 的 bug ([#4754](https://github.com/OpenXiangShan/XiangShan/pull/4754))
+    - 修复 PMA 在根据请求 cmd 类型做地址检查时信号错拍，导致权限检查出错的 bug ([#4769](https://github.com/OpenXiangShan/XiangShan/pull/4769))
+    - 修复部分 corner case 情况下，TLB 的命中逻辑没有考虑两阶段页大小不同的情况导致误匹配的 bug ([#4780](https://github.com/OpenXiangShan/XiangShan/pull/4780))
+    - 修复 TLB 的 handle_block 函数中，生成 gpaddr 在部分场景下逻辑有误的 bug ([#4793](https://github.com/OpenXiangShan/XiangShan/pull/4793))
     - 将 TXRSP、TXDAT 通道的仲裁逻辑修改为轮询，以避免拥塞场景下低优先级请求超时问题 ([CoupledL2 #415](https://github.com/OpenXiangShan/CoupledL2/pull/415))
-
-- PPA 优化
-
 
 ## 评估
 

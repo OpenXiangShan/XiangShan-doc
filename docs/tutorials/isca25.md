@@ -8,9 +8,10 @@ We are going to host half-day tutorials on XiangShan and MinJie during ISCA'25 i
 
 | Time | Topic | Slides |
 | -------- | ----- | ------ |
-| To be done | Introduction of the XiangShan Project | To be done |
-| To be done | Microarchitecture Design and Implementation | To be done |
-| To be done | Hands-on Development | To be done |
+| 14:00 - 14:30 | Introduction of the XiangShan Project | To be done |
+| 14:30 - 15:00 | Introduction to the XS-Gem5 simulator | To be done |
+| 15:00 - 16:00 | Microarchitecture Design and Implementation | To be done |
+| 16:30 - 18:00 | Hands-on Development | To be done |
 
 
 

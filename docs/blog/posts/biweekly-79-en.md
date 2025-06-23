@@ -22,10 +22,10 @@ Welcome to XiangShan biweekly column, this is the 79th issue of our biweekly col
 ### Backend
 
 - **Bug Fixes**
-
-- **Timing/Area Optimization**
-
-- **RVA23 Profile**
+    - Fixed incorrect update of `xstatus.VS` when a vector memory access instruction raises an exception ([#4817](https://github.com/OpenXiangShan/XiangShan/pull/4817))
+    - Fixed incorrect reads of AIA-related CSRs ([#4802](https://github.com/OpenXiangShan/XiangShan/pull/4802))
+    - Fixed issue where the NMI pending bit (`nmip`) was not properly cleared ([#4825](https://github.com/OpenXiangShan/XiangShan/pull/4825))
+    - Fixed cluster-wide broadcast storm caused by external trigger in the Debug Module ([#4801](https://github.com/OpenXiangShan/XiangShan/pull/4801))
 
 ### MemBlock and cache
 

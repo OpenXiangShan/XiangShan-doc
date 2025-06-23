@@ -26,10 +26,10 @@ categories:
 ### 后端流水线
 
 - Bug 修复
-
-- 时序/面积优化
-
-- RVA23 Profile
+    - 修复向量访存指令发生异常时，xstatus.VS 更新错误 ([#4817](https://github.com/OpenXiangShan/XiangShan/pull/4817))
+    - 修复 aia 相关寄存器读取出错的问题 ([#4802](https://github.com/OpenXiangShan/XiangShan/pull/4802))
+    - 修复 nmi 中断等待位未正常清空的问题 ([#4825](https://github.com/OpenXiangShan/XiangShan/pull/4825))
+    - 修复 external trigger 在 cluster 内引起广播风暴的问题 ([#4801](https://github.com/OpenXiangShan/XiangShan/pull/4801))
 
 ### 访存与缓存
 

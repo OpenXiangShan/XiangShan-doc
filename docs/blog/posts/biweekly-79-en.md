@@ -32,6 +32,7 @@ Welcome to XiangShan biweekly column, this is the 79th issue of our biweekly col
 - **RVA23 Profile**
 
 - **Bug fixes**
+    - Fix the hang caused by the MSHR incorrectly waiting for cache replacement when an NDERR occurs ([CoupledL2 #418](https://github.com/OpenXiangShan/CoupledL2/pull/418))
 
 - **PPA Optimizations**
 

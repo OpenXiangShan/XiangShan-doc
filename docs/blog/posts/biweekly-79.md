@@ -36,6 +36,7 @@ categories:
 - RVA23 Profile
 
 - Bug 修复
+    - 修复出现 NDERR 时，MSHR 错误等待缓存替换导致卡死的问题 ([CoupledL2 #418](https://github.com/OpenXiangShan/CoupledL2/pull/418))
 
 - PPA 优化
 

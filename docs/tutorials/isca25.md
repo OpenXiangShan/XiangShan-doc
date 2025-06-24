@@ -33,6 +33,10 @@ Target audience includes researchers on architecture design, agile development, 
 
 In June 2020, we launched XiangShan project. We have developed two major generations of codenamed YQH and NH respectively. The latest version of XiangShan processor achieves the highest performance of open-source RISC-V processors to the best of our knowledge. There is an on-going third generation called KMH targeting higher performance. We will also cover XiangShan tape-out status, performance evaluation, future roadmap, etc.
 
+- Introduction to the XS-Gem5 Simulator
+
+XS-GEM5 is an architecture simulator calibrated against the XiangShan RTL architecture, built on top of the open-source GEM5 framework. It supports full-system (FS) simulation and enables fast performance evaluation using RVGCpt. It enables us to perform fast design space exploration and parameter optimization of the XiangShan processor. We will also show an example of quickly adding a new feature to it.
+
 - Introduction to the microarchitecture and design concepts of XiangShan processor
 
 XiangShan is a superscalar out-of-order RISC-V processor with RV64GCBK ISA support. Vector and Hypervisor extensions are to be supported in the 3rd generation KMH. It features high-throughput frontend with advanced branch predictor, six-way aggressive out-of-order execution engine, high-bandwidth load/store unit and highly configurable cache system. Written in Chisel, a high-level hardware description language, XiangShan also achieves high readability and maintainability.

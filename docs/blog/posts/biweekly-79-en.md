@@ -29,12 +29,14 @@ Welcome to XiangShan biweekly column, this is the 79th issue of our biweekly col
 
 ### MemBlock and cache
 
-- **RVA23 Profile**
-
 - **Bug fixes**
     - Fix the hang caused by the MSHR incorrectly waiting for cache replacement when an NDERR occurs ([CoupledL2 #418](https://github.com/OpenXiangShan/CoupledL2/pull/418))
-
-- **PPA Optimizations**
+    - Fix a deadlock bug in LLPTW caused by a corner case when handling both virtualized and non-virtualized requests ([#4829](https://github.com/OpenXiangShan/XiangShan/pull/4829))
+    - Fix performance degradation after context switch caused by ineffective global bit setting in page tables ([#4811](https://github.com/OpenXiangShan/XiangShan/pull/4811))
+    - Refactor and distinguish storemisalignbuffernack behavior under scalar/vector modes when the smb is full ([#4807](https://github.com/OpenXiangShan/XiangShan/pull/4807))
+    - Disable misaligned exceptions for vector memory access (vector currently does not support MMIO) ([#4792](https://github.com/OpenXiangShan/XiangShan/pull/4792))
+    - Fix missing hardware error exceptions for vector segment load/store to MMIO ([#4800](https://github.com/OpenXiangShan/XiangShan/pull/4800)), ([#4799](https://github.com/OpenXiangShan/XiangShan/pull/4799))
+    - Fix an assertion issue caused by incorrect LLPTW FSM transitions under virtualization ([#4788](https://github.com/OpenXiangShan/XiangShan/pull/4788))
 
 ## RTL Evaluation
 
@@ -77,4 +79,4 @@ In the late stage of XiangShan Kunminghu architecture development, XiangShan's p
 - XiangShan User Guide: https://docs.xiangshan.cc/projects/user-guide/
 - XiangShan Design Doc: https://docs.xiangshan.cc/projects/design/
 
-Editors: Li Yanqin, Lin Zhida, Man Yang, Liu Zehao, Feng Haoyuan, Ma Yuexiao
+Editors: Li Yanqin, Lin Zhida, Man Yang, Liu Zehao, Liu Weiding, Ma Yuexiao

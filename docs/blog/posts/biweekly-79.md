@@ -33,12 +33,16 @@ categories:
 
 ### 访存与缓存
 
-- RVA23 Profile
-
 - Bug 修复
     - 修复出现 NDERR 时，MSHR 错误等待缓存替换导致卡死的问题 ([CoupledL2 #418](https://github.com/OpenXiangShan/CoupledL2/pull/418))
+    - 修复 LLPTW 同时虚拟化和非虚拟化请求的 corner case 导致硬件卡死的 bug ([#4829](https://github.com/OpenXiangShan/XiangShan/pull/4829))
+    - 修复 handle_block 生成 gpaddr 错误 ([#4793](https://github.com/OpenXiangShan/XiangShan/pull/4793))
+    - 修复页表 global 设置导致进程切换失败问题 ([#4811](https://github.com/OpenXiangShan/XiangShan/pull/4811))
+    - 调整/区分了 StoreUnit 中 storemisalignbuffernack 在标量/向量下，smb 满时的处理逻辑 ([#4807](https://github.com/OpenXiangShan/XiangShan/pull/4807))
+    - 向量访存不产生非对齐异常（当前向量不支持 MMIO 访问）([#4792](https://github.com/OpenXiangShan/XiangShan/pull/4792))
+    - 修复 vector segment load 与 store(MMIO) 不响应 hardware error 异常的问题 ([#4800](https://github.com/OpenXiangShan/XiangShan/pull/4800)) ([#4799](https://github.com/OpenXiangShan/XiangShan/pull/4799))
+    - 修复 LLPTW 虚拟化场景下状态机状态错误转移导致的 assertion 问题 ([#4788](https://github.com/OpenXiangShan/XiangShan/pull/4788))
 
-- PPA 优化
 
 
 ## 评估

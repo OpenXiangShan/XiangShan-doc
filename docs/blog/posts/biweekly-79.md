@@ -86,4 +86,4 @@ categories:
 - 香山用户手册：https://docs.xiangshan.cc/projects/user-guide/
 - 香山设计文档：https://docs.xiangshan.cc/projects/design/
 
-编辑：李燕琴、林志达、满洋、刘泽昊、冯浩原、马月骁
+编辑：李燕琴、林志达、满洋、刘泽昊、刘威丁、马月骁

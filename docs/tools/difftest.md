@@ -36,6 +36,32 @@
 
 下一步 DiffTest 通信优化方法将迁移适配至 FPGA，进一步利用 FPGA 加速能力加速协同仿真。目前已经完成了整体软硬件通路适配并跑通基本流程，正在进一步调优中。
 
+## 运行前准备工作
+
+### FPGA-DIFF:
+
+#### 安装xilinx dma驱动
+https://github.com/Xilinx/dma_ip_drivers
+```shell
+cd dma_ip_drivers/XDMA/linux-kernel/xdma
+make -j16
+sudo make install
+```
+此项命令需添加到开机任务中
+```shell
+/sbin/modprobe xdma poll_mode=1
+```
+#### 安装 vivado (需自行准备安装包  2020.2以上版本)
+添加vivado lib到环境(版本号根据实际更换)
+```shell
+export VIVADO_PATH=/Xilinx/vivado/2020.2/
+export LD_LIBRARY_PATH=$VIVADO_PATH/lib/lnx64.o:$LD_LIBRARY_PATH
+```
+#### 启动 hw_server实例
+```shell
+$VIVADO_PATH bin/unwrapped/lnx64.o/hw_server -s tcp::3125
+```
+
 ## 编译及运行命令
 ### 生成 RTL
 ```shell
@@ -59,6 +85,13 @@ make pldm-build DIFFTEST_PERFCNT=1 WITH_CHISELDB=0 WITH_CONSTANTIN=0
 make pldm-run PLDM_EXTRA_ARGS="+diff=../../ready-to-run/riscv64-nemu-interpreter-so +workload=../../ready-to-run/linux.bin"
 ```
 运行命令中路径为 XiangShan/build/pldm-compile 的相对路径或绝对路径，+diff 和 +workload 分别指定参考模型及测试负载路径。
+### Fpga 编译运行
+在上位机运行时，需要传入的flash与fpga上固化的flash保持相同
+```shell
+make fpga-build FPGA=1 DIFFTEST_PERFCNT=1 USE_THREAD_MEMPOOL=1
+
+./fpga-host --diff ./ready-to-run/riscv64-nemu-interpreter-so -i ./ready-to-run/microbench.bin --flash flash.bin
+```
 ## 加速原理
 ### 通信开销分析
 DiffTest 部署至硬件仿真平台，如 Cadence Palladium Z2 时，仅 DUT 部分的硬件仿真速度可以达到 800 KHz，然而整体协同仿真速度只有 6 KHz，根据仿真用时拆解，高达 98% 的仿真时间用于软硬件通信。

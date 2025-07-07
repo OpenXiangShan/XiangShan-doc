@@ -26,10 +26,12 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复 xtopi 选出条件与选出数据错拍的问题 ([#4836](https://github.com/OpenXiangShan/XiangShan/pull/4836))
+    - 修复 VTypeBuffer 中指令提交总数、回滚总数等变量在特定参数下位宽计算错误的问题 ([#4850](https://github.com/OpenXiangShan/XiangShan/pull/4850))
 
-- 时序/面积优化
-
-- RVA23 Profile
+- V3 Feature
+    - 增加 ROB 可压缩指令类型 ([#4114](https://github.com/OpenXiangShan/XiangShan/pull/4114))
+    - 协商修改提交时后端通知前端 ftq 的机制 ([#4114](https://github.com/OpenXiangShan/XiangShan/pull/4114))
 
 ### 访存与缓存
 

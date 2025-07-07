@@ -22,8 +22,12 @@ Welcome to XiangShan biweekly column, this is the 80th issue of our biweekly col
 ### Backend
 
 - **Bug Fixes**
+    - Fixed the issue where the selection conditions and selected data of xtopi are out of sync ([#4836](https://github.com/OpenXiangShan/XiangShan/pull/4836))
+    - Fixed the issue of incorrect bit width calculation for variables such as the total number of instruction commit and the total number of walk in VTypeBuffer under specific parameters ([#4850](https://github.com/OpenXiangShan/XiangShan/pull/4850))
 
-- **Timing/Area Optimization**
+- **V3 Feature**
+    - Increased the types of ROB compressible instructions ([#4114](https://github.com/OpenXiangShan/XiangShan/pull/4114))
+    - Modified the mechanism for the backend to notify the frontend ftq when committing ([#4114](https://github.com/OpenXiangShan/XiangShan/pull/4114))
 
 - **RVA23 Profile**
 

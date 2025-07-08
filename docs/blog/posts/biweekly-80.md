@@ -35,13 +35,20 @@ categories:
 
 ### 访存与缓存
 
-- RVA23 Profile
-
 - Bug 修复
+    - 修复向量 segment 指令未成功上报 ecc error 的 bug ([#4831](https://github.com/OpenXiangShan/XiangShan/pull/4831))
+    - 对齐 RTL 和 NEMU 对 vleff 指令的 agnostic 设置 ([#4820](https://github.com/OpenXiangShan/XiangShan/pull/4820))、([NEMU #906](https://github.com/OpenXiangShan/NEMU/pull/906))
+    - 修复 Dcache 请求阻塞在 s1 时，extra_meta_resp 信号错误地被覆盖的 bug ([#4842](https://github.com/OpenXiangShan/XiangShan/pull/4842))
+    - 修复已被 flush 的一条非对齐访存指令依然错误地进入 misaligned buffer 的 bug ([#4840](https://github.com/OpenXiangShan/XiangShan/pull/4840))
+    - 在 sbuffer 清空前，向量 segment 单元应该保持 flush sbuffer 的信号一直拉高 ([#4853](https://github.com/OpenXiangShan/XiangShan/pull/4853))
+    - 修复一条非对齐向量指令被拆分成两条对齐的请求后，第二条请求触发异常时上报异常有误的 bug ([#4854](https://github.com/OpenXiangShan/XiangShan/pull/4854))
+    - 修复 Dcache 请求缺失后产生的 mainpipe X 态传播 bug ([#4856](https://github.com/OpenXiangShan/XiangShan/pull/4856))
+    - 修复向量 unit-stride 指令触发 guest page fault 时，gpaddr 计算有误的 bug ([#4865](https://github.com/OpenXiangShan/XiangShan/pull/4865))
     - 修复断电（退出一致性状态）后 linkactive 在 syscozck==0 前失效的问题 ([CoupledL2 #422](https://github.com/OpenXiangShan/CoupledL2/pull/422))
     - 修复 reset 后 exitcoDone 信号错误有效时机的问题 ([CoupledL2 #424](https://github.com/OpenXiangShan/CoupledL2/pull/424))
 
-- PPA 优化
+- V3 Feature
+    - 重构 L1 预取框架，包括参数化和去耦合等 ([#4790](https://github.com/OpenXiangShan/XiangShan/pull/4790))
 
 
 ## 评估

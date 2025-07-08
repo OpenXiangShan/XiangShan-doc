@@ -29,17 +29,22 @@ Welcome to XiangShan biweekly column, this is the 80th issue of our biweekly col
     - Increased the types of ROB compressible instructions ([#4114](https://github.com/OpenXiangShan/XiangShan/pull/4114))
     - Modified the mechanism for the backend to notify the frontend ftq when committing ([#4114](https://github.com/OpenXiangShan/XiangShan/pull/4114))
 
-- **RVA23 Profile**
-
 ### MemBlock and cache
 
-- **RVA23 Profile**
-
 - **Bug fixes**
-    - Fix the issue where linkActive is de-asserted before syscozck==0 after powerdown (leaving coherence state) ([CoupledL2 #422](https://github.com/OpenXiangShan/CoupledL2/pull/422))
-    - Fix the incorrect assertion timing of the exitcoDone signal after reset ([CoupledL2 #424](https://github.com/OpenXiangShan/CoupledL2/pull/424))
+    - Fixed a bug where vector segment instructions failed to correctly report ECC errors ([#4831](https://github.com/OpenXiangShan/XiangShan/pull/4831))
+    - Aligned the agnostic behavior of the vleff instruction between RTL and NEMU ([#4820](https://github.com/OpenXiangShan/XiangShan/pull/4820)), ([NEMU #906](https://github.com/OpenXiangShan/NEMU/pull/906))
+    - Fixed a bug where the extra_meta_resp signal was incorrectly overwritten when a DCache request was blocked in the s1 stage ([#4842](https://github.com/OpenXiangShan/XiangShan/pull/4842))
+    - Fixed a bug where a flushed misaligned memory instruction was mistakenly enqueued into the misaligned buffer ([#4840](https://github.com/OpenXiangShan/XiangShan/pull/4840))
+    - Ensured the flush signal to the sbuffer remains asserted until the vector segment unit completes the flush operation ([#4853](https://github.com/OpenXiangShan/XiangShan/pull/4853))
+    - Fixed incorrect exception reporting when the second request of a split misaligned vector instruction triggered an exception ([#4854](https://github.com/OpenXiangShan/XiangShan/pull/4854))
+    - Fixed X-propagation in Dcache mainpipe caused by missing requests ([#4856](https://github.com/OpenXiangShan/XiangShan/pull/4856))
+    - Fixed incorrect gpaddr calculation when a vector unit-stride instruction triggers a guest page fault ([#4865](https://github.com/OpenXiangShan/XiangShan/pull/4865))
+    - Fixed the issue where linkActive is de-asserted before syscozck==0 after powerdown (leaving coherence state) ([CoupledL2 #422](https://github.com/OpenXiangShan/CoupledL2/pull/422))
+    - Fixed the incorrect assertion timing of the exitcoDone signal after reset ([CoupledL2 #424](https://github.com/OpenXiangShan/CoupledL2/pull/424))
 
-- **PPA Optimizations**
+- **V3 Feature**
+    - Refactored the L1 prefetch framework, including parameterization and decoupling, etc. ([#4790](https://github.com/OpenXiangShan/XiangShan/pull/4790))
 
 ## RTL Evaluation
 

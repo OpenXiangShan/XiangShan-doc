@@ -36,6 +36,8 @@ Welcome to XiangShan biweekly column, this is the 80th issue of our biweekly col
 - **RVA23 Profile**
 
 - **Bug fixes**
+    - Fix the issue where linkActive is de-asserted before syscozck==0 after powerdown (leaving coherence state) ([CoupledL2 #422](https://github.com/OpenXiangShan/CoupledL2/pull/422))
+    - Fix the incorrect assertion timing of the exitcoDone signal after reset ([CoupledL2 #424](https://github.com/OpenXiangShan/CoupledL2/pull/424))
 
 - **PPA Optimizations**
 

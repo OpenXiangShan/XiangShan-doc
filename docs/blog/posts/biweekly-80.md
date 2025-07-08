@@ -38,6 +38,8 @@ categories:
 - RVA23 Profile
 
 - Bug 修复
+    - 修复断电（退出一致性状态）后 linkactive 在 syscozck==0 前失效的问题 ([CoupledL2 #422](https://github.com/OpenXiangShan/CoupledL2/pull/422))
+    - 修复 reset 后 exitcoDone 信号错误有效时机的问题 ([CoupledL2 #424](https://github.com/OpenXiangShan/CoupledL2/pull/424))
 
 - PPA 优化
 

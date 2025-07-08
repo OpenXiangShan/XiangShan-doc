@@ -19,9 +19,11 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 修复 ICache 请求跨行时，parity 检查可能使用无效结果的问题 ([#4814](https://github.com/OpenXiangShan/XiangShan/pull/4814))
 
-- 面积
+- V3 Feature
+    - BPU 顶层流水、新 uBTB、Ahead BTB ([#4851](https://github.com/OpenXiangShan/XiangShan/pull/4851))
+    - IFU 将预译码的检查从关键路径上移除 ([#4849](https://github.com/OpenXiangShan/XiangShan/pull/4849))
 
 ### 后端流水线
 

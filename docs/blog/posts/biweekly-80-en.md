@@ -15,9 +15,11 @@ Welcome to XiangShan biweekly column, this is the 80th issue of our biweekly col
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Fix issue where parity check might use invalid results when ICache requests cross lines ([#4814](https://github.com/OpenXiangShan/XiangShan/pull/4814))
 
-- **Area**
+- **V3 Feature**
+    - BPU top-level pipeline, new uBTB, Ahead BTB ([#4851](https://github.com/OpenXiangShan/XiangShan/pull/4851))
+    - IFU removes predecode checks from the critical path ([#4849](https://github.com/OpenXiangShan/XiangShan/pull/4849))
 
 ### Backend
 

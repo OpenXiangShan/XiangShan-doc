@@ -9,7 +9,7 @@ In this chapter, we will introduce how to run Xiangshan core in simulation, how 
 
 Use the following script to deploy the Xiangshan development environment, **the deployment script only needs to be run once**:
 
-This script will setup XiangShan develop environment automatically. Note that `./setup-tools.sh` and `setup.sh` only need to be run **ONCE**. You may need to read and modify `setup-tools.sh` before you start.
+This script will setup XiangShan development environment automatically. Note that `./setup-tools.sh` and `setup.sh` only need to be run **ONCE**. You may need to read and modify `setup-tools.sh` before you start.
 
 ```sh
 git clone https://github.com/OpenXiangShan/xs-env
@@ -159,7 +159,7 @@ Run `make verilog` under `/xs-env/XiangShan`, this command will compile Xiangsha
 
 Run `make verilog NUM_CORES=2` under `/xs-env/XiangShan`, this command will generate the Verilog of Xiangshan (dual core), the output Verilog file is `XiangShan/build/rtl/XSTop.sv`
 
-> Tip: Generate Verilog is slow. It is recommended to use tools such as Tmux to run these commands in background. You can add `CONFIG=MinimalConfig` to command-line arguments which will generate Verilog code of Xiangshan with minimal configuration.
+> Tip: Generating Verilog is slow. It is recommended to use tools such as Tmux to run these commands in background. You can add `CONFIG=MinimalConfig` to command-line arguments which will generate Verilog code of Xiangshan with minimal configuration.
 
 ## Verify Xiangshan in the simulation environment
 
@@ -174,7 +174,7 @@ Enter the `/xs-env/nexus-am/apps` directory, you can see that there are some pre
 ```
 coremark-riscv64-xs.elf   # ELF file for the program
 coremark-riscv64-xs.bin   # binary running image of the program
-coremark-riscv64-xs.txt   # Disassemble of the program
+coremark-riscv64-xs.txt   # Disassembled output of the program
 ```
 
 The generated `coremark-riscv64-xs.bin` can be used as program input in simulation.
@@ -190,13 +190,13 @@ To run Linux Kernel on XiangShan, we need to use BBL. See [building the Linux Ke
 
 The environment we provide does not include the src code for compiling Linux Kernel, users need to download it by themselves.
 
-> Tip: We provide pre-generated workloads in `xs-env/XiangShan/ready-to-run`, including workloads that boots linux and run hello.c (linux.bin).
+> Tip: We provide pre-generated workloads in `xs-env/XiangShan/ready-to-run`, including workloads that boot linux and run hello.c (linux.bin).
 
 ### Run workload using NEMU emulator
 
-NEMU is an instruction set emulator. We use NEMU as the implementation reference for Xiangshan. After you generated workload based on nexus-am or bbl, it is recommend that to test the workload on NEMU.
+NEMU is an instruction set emulator. We use NEMU as the implementation reference for Xiangshan. After you generated workload based on nexus-am or bbl, it is recommended to test the workload on NEMU.
 
-Before running the workload on the NEMU emulator, we need to make sure the virtual peripherals of NEMU uses the same address as Xiangshan. Go to the `/xs-env/NEMU` directory and run the following command:
+Before running the workload on the NEMU emulator, we need to make sure the virtual peripherals of NEMU use the same address as Xiangshan. Go to the `/xs-env/NEMU` directory and run the following command:
 
 ```bash
 make clean
@@ -243,7 +243,7 @@ make emu EMU_TRACE=1 -j32
 ```
 
 
-> Attention! Generate Verilog is slow. It is recommended to use tools such as Tmux to run these commands in background
+> Attention! Generating Verilog is slow. It is recommended to use tools such as Tmux to run these commands in background
 
 ### Run workload on Xiangshan core simulator
 

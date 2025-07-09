@@ -9,7 +9,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 80 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组开始进行 V3 的设计。此外，前端修复 ICache 请求跨行时，parity 检查可能使用无效结果的问题，后端修复 VTypeBuffer 中指令提交总数、回滚总数等变量在特定参数下位宽计算错误的问题，访存和缓存部分修复向量 segment 指令未成功上报 ecc error 的问题。本期还更新了昆明湖架构近期性能。
 
 
 <!-- more -->
@@ -38,14 +38,14 @@ categories:
 ### 访存与缓存
 
 - Bug 修复
-    - 修复向量 segment 指令未成功上报 ecc error 的 bug ([#4831](https://github.com/OpenXiangShan/XiangShan/pull/4831))
+    - 修复向量 segment 指令未成功上报 ecc error 的 Bug ([#4831](https://github.com/OpenXiangShan/XiangShan/pull/4831))
     - 对齐 RTL 和 NEMU 对 vleff 指令的 agnostic 设置 ([#4820](https://github.com/OpenXiangShan/XiangShan/pull/4820))、([NEMU #906](https://github.com/OpenXiangShan/NEMU/pull/906))
-    - 修复 Dcache 请求阻塞在 s1 时，extra_meta_resp 信号错误地被覆盖的 bug ([#4842](https://github.com/OpenXiangShan/XiangShan/pull/4842))
-    - 修复已被 flush 的一条非对齐访存指令依然错误地进入 misaligned buffer 的 bug ([#4840](https://github.com/OpenXiangShan/XiangShan/pull/4840))
+    - 修复 Dcache 请求阻塞在 s1 时，extra_meta_resp 信号错误地被覆盖的 Bug ([#4842](https://github.com/OpenXiangShan/XiangShan/pull/4842))
+    - 修复已被 flush 的一条非对齐访存指令依然错误地进入 misaligned buffer 的 Bug ([#4840](https://github.com/OpenXiangShan/XiangShan/pull/4840))
     - 在 sbuffer 清空前，向量 segment 单元应该保持 flush sbuffer 的信号一直拉高 ([#4853](https://github.com/OpenXiangShan/XiangShan/pull/4853))
-    - 修复一条非对齐向量指令被拆分成两条对齐的请求后，第二条请求触发异常时上报异常有误的 bug ([#4854](https://github.com/OpenXiangShan/XiangShan/pull/4854))
-    - 修复 Dcache 请求缺失后产生的 mainpipe X 态传播 bug ([#4856](https://github.com/OpenXiangShan/XiangShan/pull/4856))
-    - 修复向量 unit-stride 指令触发 guest page fault 时，gpaddr 计算有误的 bug ([#4865](https://github.com/OpenXiangShan/XiangShan/pull/4865))
+    - 修复一条非对齐向量指令被拆分成两条对齐的请求后，第二条请求触发异常时上报异常有误的 Bug ([#4854](https://github.com/OpenXiangShan/XiangShan/pull/4854))
+    - 修复 Dcache 请求缺失后产生的 mainpipe X 态传播 Bug ([#4856](https://github.com/OpenXiangShan/XiangShan/pull/4856))
+    - 修复向量 unit-stride 指令触发 guest page fault 时，gpaddr 计算有误的 Bug ([#4865](https://github.com/OpenXiangShan/XiangShan/pull/4865))
     - 修复断电（退出一致性状态）后 linkactive 在 syscozck==0 前失效的问题 ([CoupledL2 #422](https://github.com/OpenXiangShan/CoupledL2/pull/422))
     - 修复 reset 后 exitcoDone 信号错误有效时机的问题 ([CoupledL2 #424](https://github.com/OpenXiangShan/CoupledL2/pull/424))
 

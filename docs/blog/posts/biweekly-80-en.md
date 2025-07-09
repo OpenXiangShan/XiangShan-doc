@@ -9,17 +9,19 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 80th issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
+Recently, various teams working on Kunminghu have started designing V3. In addition, the fronted fixed issue where parity check might use invalid results when ICache requests cross lines, the backend fixed the issue of incorrect bit width calculation for variables such as the total number of instruction commit and the total number of walk in VTypeBuffer under specific parameters, and the memory and cache subsystem fixed a bug where vector segment instructions failed to correctly report ECC errors. This update also includes the latest performance improvements of the Kunminghu architecture.
+
 <!-- more -->
 ## Recent developments
 
 ### Frontend
 
 - **Bug Fixes**
-    - Fix issue where parity check might use invalid results when ICache requests cross lines ([#4814](https://github.com/OpenXiangShan/XiangShan/pull/4814))
+    - Fixed issue where parity check might use invalid results when ICache requests cross lines ([#4814](https://github.com/OpenXiangShan/XiangShan/pull/4814))
 
 - **V3 Feature**
     - BPU top-level pipeline, new uBTB, Ahead BTB ([#4851](https://github.com/OpenXiangShan/XiangShan/pull/4851))
-    - IFU removes predecode checks from the critical path ([#4849](https://github.com/OpenXiangShan/XiangShan/pull/4849))
+    - IFU removed predecode checks from the critical path ([#4849](https://github.com/OpenXiangShan/XiangShan/pull/4849))
 
 ### Backend
 

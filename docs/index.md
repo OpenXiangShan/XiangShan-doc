@@ -9,25 +9,27 @@ hide:
 
 ## Recent Updates
 
-**Upcoming: 我们将继续在RVSE'25会议期间同地举办香山项目的上手教程和开发板展示. Look forward to seeing you at RVSE'25 in Paris, France. Learn more on [the RVSE'25 Tutorial Page](tutorials/rvse25.md).**
+**Upcoming: 我们将在第 5 届 RISC-V 中国峰会（RVSC 2025）期间举办第 2 届香山开源社区大会，并同时举办香山项目上手教程。Look forward to seeing you at RVSC'25 in Shanghai, China. Learn more on [the RVSC'25 Tutorial Page](https://tutorial.xiangshan.cc/rvsc25/).**
 
-我们将继续在ISCA'25会议期间同地举办香山项目的上手教程. Look forward to seeing you at ISCA'25 in Tokyo, Japan. Learn more on [the ISCA'25 Tutorial Page](tutorials/isca25.md).
+**Upcoming: 我们将在于希腊雅典举行的 APPT'25 会议期间举办香山项目的上手教程。Look forward to seeing you at APPT'25 in Athens, Greece. Learn more on [the APPT'25 Tutorial Page](https://tutorial.xiangshan.cc/appt25/).**
 
-我们在ASPLOS'25会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at ASPLOS'25 in Rotterdam, The Netherlands. Learn more on [the ASPLOS'25 Tutorial Page](tutorials/asplos25.md).
+我们在 ISCA'25 会议期间同地举办香山项目的上手教程。Look forward to seeing you at ISCA'25 in Tokyo, Japan. Learn more on [the ISCA'25 Tutorial Page](tutorials/isca25.md).
 
-我们在HPCA'25会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at HPCA'25 in Las Vegas, USA. Learn more on [the HPCA'25 Tutorial Page](tutorials/hpca25.md).
+我们在 ASPLOS'25 会议期间同地举办了一次香山项目的上手教程。We have hosted tutorials at ASPLOS'25 in Rotterdam, The Netherlands. Learn more on [the ASPLOS'25 Tutorial Page](tutorials/asplos25.md).
 
-我们在MICRO'24会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at MICRO'24 in Austin, USA. Learn more on [the MICRO'24 Tutorial Page](tutorials/micro24.md).
+我们在 HPCA'25 会议期间同地举办了一次香山项目的上手教程。We have hosted tutorials at HPCA'25 in Las Vegas, USA. Learn more on [the HPCA'25 Tutorial Page](tutorials/hpca25.md).
 
-香山社区在第 4 届 RISC-V 中国峰会（RVSC 2024）期间举办了同期活动，在本次同期活动中同时举办了香山项目的上手教程. XiangShan community have held a co-event at RISC-V China Summit 2024 in Hangzhou, China, during which we also hosted XiangShan tutorials. Learn more on [the RVSC'24 Tutorial Page](tutorials/rvsc24.md).
+我们在 MICRO'24 会议期间同地举办了一次香山项目的上手教程。We have hosted tutorials at MICRO'24 in Austin, USA. Learn more on [the MICRO'24 Tutorial Page](tutorials/micro24.md).
 
-我们在ASPLOS'24会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at ASPLOS'24 in San Diego, USA. Learn more on [the ASPLOS'24 Tutorial Page](tutorials/asplos24.md).
+我们在第 4 届 RISC-V 中国峰会（RVSC 2024）期间举办了同期活动，在本次同期活动中同时举办了香山项目的上手教程。XiangShan community have held a co-event at RISC-V China Summit 2024 in Hangzhou, China, during which we also hosted XiangShan tutorials. Learn more on [the RVSC'24 Tutorial Page](tutorials/rvsc24.md).
 
-我们在HPCA'24会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at HPCA'24 in Edinburgh, Scotland. Learn more on [the HPCA'24 Tutorial Page](tutorials/hpca24.md).
+我们在 ASPLOS'24 会议期间同地举办了一次香山项目的上手教程。We have hosted tutorials at ASPLOS'24 in San Diego, USA. Learn more on [the ASPLOS'24 Tutorial Page](tutorials/asplos24.md).
 
-我们在MICRO'23会议期间同地举办了一次香山项目的上手教程，并介绍了第三代（昆明湖）架构的最新进展. We have hosted tutorials at MICRO'23 with latest update on the third generation (Kunminghu) architecture. Learn more on [the MICRO'23 Tutorial Page](tutorials/micro23.md).
+我们在 HPCA'24 会议期间同地举办了一次香山项目的上手教程。We have hosted tutorials at HPCA'24 in Edinburgh, Scotland. Learn more on [the HPCA'24 Tutorial Page](tutorials/hpca24.md).
 
-我们在APSLOS'23会议期间同地举办了一次香山项目的上手教程. We have hosted tutorials at ASPLOS'23. Learn more on [the ASPLOS'23 Tutorial Page](tutorials/asplos23.md).
+我们在 MICRO'23 会议期间同地举办了一次香山项目的上手教程，并介绍了第三代（昆明湖）架构的最新进展。We have hosted tutorials at MICRO'23 with latest update on the third generation (Kunminghu) architecture. Learn more on [the MICRO'23 Tutorial Page](tutorials/micro23.md).
+
+我们在 APSLOS'23 会议期间同地举办了一次香山项目的上手教程。We have hosted tutorials at ASPLOS'23. Learn more on [the ASPLOS'23 Tutorial Page](tutorials/asplos23.md).
 
 **For publications by the XiangShan team, check out [the Publications Page](tutorials/publications.md).**
 
@@ -56,14 +58,14 @@ XiangShan will maintain a microarchitecture iteration cycle of approximately six
 
 The first generation of the XiangShan processor (Yanqihu architecture) supports the RV64GC instruction set and has been taped out in July 2021, achieving a frequency of 1.3GHz on a 28nm process node. In January 2022, it was successfully brought out. It boots Linux/Debian operating systems and runs SPEC CPU2006 for 7@1Hz. The source code is [here](https://github.com/OpenXiangShan/XiangShan/releases/tag/v1.0).
 
-**香山处理器第二版（南湖架构）** 支持 RV64GCBK 指令集，V1 版本面向双核场景，已在 2023 年 2 月完成 RTL 代码冻结，2023 年 6 月完成 GDSII 冻结，并于 2023 年 11 月投片，在 14nm 工艺节点下频率达到 2GHz。南湖架构的设计代码开源地址在[这里](https://github.com/OpenXiangShan/XiangShan/releases/tag/v2.0)。南湖 V2 版本包含了 MBIST 等改进设计，已在 2023 年 2 月完成 RTL 代码冻结，并于 2023 年 4 月投片，2023 年 10 月回片并成功点亮启动 Linux，目前正在进行板卡的进一步功能和性能测试。设计代码开源地址在[这里](https://github.com/OpenXiangShan/XiangShan/releases/tag/v2.1)。南湖 V3 版本将包含更多的微结构、PPA改进，目前项目正在进行中。
+**香山处理器第二版（南湖架构）** 支持 RV64GCBK 指令集，V1 版本面向双核场景，已在 2023 年 2 月完成 RTL 代码冻结，2023 年 6 月完成 GDSII 冻结，并于 2023 年 11 月投片，在 14nm 工艺节点下频率达到 2GHz。南湖架构的设计代码开源地址在[这里](https://github.com/OpenXiangShan/XiangShan/releases/tag/v2.0)，微架构设计文档发布在[这里](https://docs.xiangshan.cc/projects/design/zh-cn/nanhu/)。南湖 V2 版本包含了 MBIST 等改进设计，已在 2023 年 2 月完成 RTL 代码冻结，并于 2023 年 4 月投片，2023 年 10 月回片并成功点亮启动 Linux，目前正在进行板卡的进一步功能和性能测试。设计代码开源地址在[这里](https://github.com/OpenXiangShan/XiangShan/releases/tag/v2.1)。南湖 V3 版本将包含更多的微结构、PPA改进，目前项目正在进行中。
 
-The second generation (Nanhu architecture) supports the RV64GCBK instruction set and completed RTL code freezing in February 2023. The GDSII is fixed in June 2023. It has been taped out in November 2023, achieving a frequency of 2GHz on a 14nm process node. The source code is [here](https://github.com/OpenXiangShan/XiangShan/releases/tag/v2.0).
+The second generation (Nanhu architecture) supports the RV64GCBK instruction set and completed RTL code freezing in February 2023. The GDSII is fixed in June 2023. It has been taped out in November 2023, achieving a frequency of 2GHz on a 14nm process node. The source code is [here](https://github.com/OpenXiangShan/XiangShan/releases/tag/v2.0), and the microarchitecture design doc is [here](https://docs.xiangshan.cc/projects/design/zh-cn/nanhu/) (Chinese).
 Nanhu V2 adds support for more functionalities such as MBIST. Its design has been frozen in February 2023, and it was taped out in April 2023. The chip was back and brought up in October 2023. It is currently being further tested. The source code of Nanhu v2 is [here](https://github.com/OpenXiangShan/XiangShan/releases/tag/v2.1). Nanhu V3 will include more microarchitecture and PPA improvements and is currently in progress.
 
-**香山处理器第三版（昆明湖架构）** 正在进行中，我们非常欢迎来自社区的贡献。
+**香山处理器第三版（昆明湖架构）** 正在进行中，我们非常欢迎来自社区的贡献。其中，V2R2 版本已接近收尾，其[用户手册](https://docs.xiangshan.cc/projects/user-guide/zh-cn/latest/)、[设计文档](https://docs.xiangshan.cc/projects/design/zh-cn/latest/)均已发布；V3 版本正在积极开发中。
 
-The third generation (Kunminghu) is in progress. We welcome your contributions.
+The third generation (Kunminghu) is in progress. We welcome your contributions. The V2R2 version is nearing completion, with both the [User Guide](https://docs.xiangshan.cc/projects/user-guide/en/latest/) and the [Design Documentation](https://docs.xiangshan.cc/projects/design/en/latest/) already released. The V3 version is currently under active development.
 
 **香山处理器将始终坚持开源，坚定地开源我们所有的设计、验证、基础工具代码。** 我们非常感谢社区对香山的贡献，在硬件设计方面，香山处理器的部分模块设计受到了开源处理器、公开论文等的启发，曾参考了现有的开源 rocket-chip、berkeley-hardfloat、SiFive block-inclusivecache 等代码。我们在 Chisel 开源社区的现有总线工具、浮点运算单元、系统缓存等基础上，修改完善了它们的功能，同时优化了频率、吞吐等性能指标。与此同时，我们非常欢迎社区基于香山进行开发或者使用香山项目的代码。在众多开源协议中，我们选择了 [木兰宽松许可证第 2 版](http://license.coscl.org.cn/MulanPSL2)，希望（1）始终保持香山处理器的开放性，木兰宽松许可证不具有传染性，用户可以放心使用；（2）立足中国国内、面向全世界，木兰宽松许可证以中英文双语表述，中英文版本具有同等法律效力。
 

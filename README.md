@@ -75,3 +75,9 @@ We need to translate most of the documentations to English and other languages. 
 - 香山处理器的[源码](https://github.com/OpenXiangShan)
 
 香山的核心理念之一是开源、开放，针对这一话题，我们推荐阅读[孙凝晖院士的《论开源精神》](https://mp.weixin.qq.com/s/1Irs9a0EKoB7P-J_4ju66A)。
+
+## LICENSE
+
+XiangShan Documents are licensed under CC BY 4.0.
+
+Copyright © 2021-2025 The XiangShan Team

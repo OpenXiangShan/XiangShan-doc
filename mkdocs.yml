@@ -1,5 +1,8 @@
 # doc for pdf plug-in: https://pypi.org/project/mkdocs-with-pdf/
 site_name: XiangShan 官方文档
+copyright: |
+  <div>XiangShan Documents are licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div>
+  <div>Copyright © 2021 - 2025 The XiangShan Team</div>
 
 # Repository
 repo_name: OpenXiangShan/XiangShan

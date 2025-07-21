@@ -37,28 +37,28 @@ Recently, various teams working on Kunminghu have started designing V3. In addi
 
 ## RTL Evaluation
 
-We used SimPoint for program sampling and created checkpoint images based on our custom Checkpoint format, with a **SimPoint clustering coverage of 100%**. SPEC CPU2006 was compiled using gcc12 with O3 optimization enabled, the jemalloc memory library, and the `-ffp-contraction` option for SPECfp 2006 set to fast. The instruction set used was RV64GCB. We ran SPEC CPU2006 checkpoints on the XiangShan processor **commit c25dcc6 from July 3** (**configured with 64KB L1 ICache, 64KB L1 DCache, 1MB L2, and 16MB L3, and a 3ld2st LSU, TileLink bus protocol**) in a simulation environment. DRAMsim3 was used to simulate DDR4-3200 memory latency with a CPU running at 3GHz. Below are the estimated SPEC CPU2006 scores:
+We used SimPoint for program sampling and created checkpoint images based on our custom Checkpoint format, with a **SimPoint clustering coverage of 100%**. SPEC CPU2006 was compiled using gcc12 with O3 optimization enabled, the jemalloc memory library, and the `-ffp-contraction` option for SPECfp 2006 set to fast. The instruction set used was RV64GCB. We ran SPEC CPU2006 checkpoints on the XiangShan processor **commit a193669 from July 17** (**configured with 64KB L1 ICache, 64KB L1 DCache, 1MB L2, and 16MB L3, and a 3ld2st LSU, TileLink bus protocol**) in a simulation environment. DRAMsim3 was used to simulate DDR4-3200 memory latency with a CPU running at 3GHz. Below are the estimated SPEC CPU2006 scores:
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est.  | @ 3GHz |
 | :---------------- | :----: | :---------------- | :----: |
-| 400.perlbench     | 35.88  | 410.bwaves        | 67.02  |
-| 401.bzip2         | 25.50  | 416.gamess        | 40.99  |
-| 403.gcc           | 47.90  | 433.milc          | 44.69  |
-| 429.mcf           | 60.13  | 434.zeusmp        | 51.57  |
-| 445.gobmk         | 30.70  | 435.gromacs       | 33.63  |
+| 400.perlbench     | 35.89  | 410.bwaves        | 67.24  |
+| 401.bzip2         | 25.51  | 416.gamess        | 41.00  |
+| 403.gcc           | 47.91  | 433.milc          | 44.95  |
+| 429.mcf           | 60.17  | 434.zeusmp        | 51.71  |
+| 445.gobmk         | 30.71  | 435.gromacs       | 33.65  |
 | 456.hmmer         | 41.61  | 436.cactusADM     | 46.18  |
-| 458.sjeng         | 30.65  | 437.leslie3d      | 46.68  |
-| 462.libquantum    | 105.08 | 444.namd          | 28.87  |
-| 464.h264ref       | 56.60  | 447.dealII        | 72.19  |
-| 471.omnetpp       | 41.52  | 450.soplex        | 52.33  |
-| 473.astar         | 29.35  | 453.povray        | 53.46  |
-| 483.xalancbmk     | 72.11  | 454.Calculix      | 16.37  |
-| **GEOMEAN**       | 44.09  | 459.GemsFDTD      | 39.64  |
-|                   |        | 465.tonto         | 36.12  |
-|                   |        | 470.lbm           | 85.79  |
-|                   |        | 481.wrf           | 40.30  |
-|                   |        | 482.sphinx3       | 48.48  |
-|                   |        | **GEOMEAN**       | 44.50  |
+| 458.sjeng         | 30.65  | 437.leslie3d      | 47.77  |
+| 462.libquantum    | 122.65 | 444.namd          | 28.88  |
+| 464.h264ref       | 56.62  | 447.dealII        | 73.21  |
+| 471.omnetpp       | 41.49  | 450.soplex        | 52.55  |
+| 473.astar         | 29.35  | 453.povray        | 53.48  |
+| 483.xalancbmk     | 72.75  | 454.Calculix      | 16.38  |
+| **GEOMEAN**       | 44.70  | 459.GemsFDTD      | 40.45  |
+|                   |        | 465.tonto         | 36.68  |
+|                   |        | 470.lbm           | 91.96  |
+|                   |        | 481.wrf           | 40.64  |
+|                   |        | 482.sphinx3       | 49.12  |
+|                   |        | **GEOMEAN**       | 44.98  |
 
 **Scores are estimated with SimPoint checkpoints of SPEC CPU2006, which might deviate from real chip!**
 

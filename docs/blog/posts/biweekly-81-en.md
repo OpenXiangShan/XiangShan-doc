@@ -24,8 +24,8 @@ Recently, various teams working on Kunminghu have started designing V3. In addi
 ### Backend
 
 - **Bug Fixes**
-
-- **V3 Feature**
+  * Fixed the issue where RAB fails to correctly walk and reallocate physical registers when a move instruction triggers an exception ([#4874](https://github.com/OpenXiangShan/XiangShan/pull/4874))
+  * Fixed the missing exception check for the `vm` bit in certain instructions (vadc/vsbc) in NEMU ([NEMU #914](https://github.com/OpenXiangShan/NEMU/pull/914))
 
 ### MemBlock and cache
 

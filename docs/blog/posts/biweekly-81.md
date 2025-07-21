@@ -24,10 +24,8 @@ categories:
 ### 后端流水线
 
 - Bug 修复
-
-- 时序/面积优化
-
-- RVA23 Profile
+    - 修复 move 指令发生异常时，rab 回滚重新分配物理寄存器异常的问题 ([#4874](https://github.com/OpenXiangShan/XiangShan/pull/4874))
+    - 修复 NEMU 中部分指令 (vadc/vsbc) 遗漏 vm 位异常检查的问题 ([NEMU #914](https://github.com/OpenXiangShan/NEMU/pull/914))  
 
 ### 访存与缓存
 

@@ -19,9 +19,7 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
-
-- 面积
+    - 修复 MMIO 取指前判断前一条 MMIO 提交成功的逻辑 ([#4881](https://github.com/OpenXiangShan/XiangShan/pull/4881))
 
 ### 后端流水线
 

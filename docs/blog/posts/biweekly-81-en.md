@@ -17,7 +17,7 @@ Recently, various teams working on Kunminghu have started designing V3. In addi
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Fix the logic that checks whether the previous MMIO instruction was successfully committed before fetching a new MMIO instruction ([#4881](https://github.com/OpenXiangShan/XiangShan/pull/4881))
 
 - **V3 Feature**
 

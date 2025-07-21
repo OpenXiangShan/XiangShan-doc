@@ -30,6 +30,8 @@ Recently, various teams working on Kunminghu have started designing V3. In addi
 ### MemBlock and cache
 
 - **Bug fixes**
+    - L2 Cache maintains maximum QoS for real-time device-related transactions ([CoupledL2 #423](https://github.com/OpenXiangShan/CoupledL2/pull/423))
+    - Resolve the X-state error propagation from the RefillBuffer to the DataStorage ([CoupledL2 #426](https://github.com/OpenXiangShan/CoupledL2/pull/426))
 
 - **V3 Feature**
 

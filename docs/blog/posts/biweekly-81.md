@@ -36,6 +36,8 @@ categories:
 - RVA23 Profile
 
 - Bug 修复
+    - L2 Cache 对实时设备相关事务保留最大 QoS ([CoupledL2 #423](https://github.com/OpenXiangShan/CoupledL2/pull/423))
+    - 修复 RefillBuffer 到 DataStorage 的数据 X 态错误传播问题 ([CoupledL2 #426](https://github.com/OpenXiangShan/CoupledL2/pull/426))
 
 - PPA 优化
 

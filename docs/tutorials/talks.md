@@ -132,6 +132,8 @@ Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
 
 所有的报告均是中文的。All talks are in Chinese.
 
+- 香山处理器昆明湖后端流水线的设计演进 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250716-RVSC-香山处理器昆明湖后端流水线的设计演进.pdf)
+
 - 用可综合方法实现RISC-V处理器的高效验证 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250718-SVM-用可综合方法实现RISC-V处理器的高效验证.pdf)
 
 ## More Talks 更多的报告

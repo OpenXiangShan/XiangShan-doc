@@ -144,6 +144,8 @@ Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
 
 - 构建香山开源芯片研发的基础设施 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250719-RVSC-构建香山开源芯片研发的基础设施.pdf)
 
+- XSAI：以CPU的编程范式支持现代LLM核函数 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250716&0718-RVSC-XSAI：以CPU的编程范式支持现代LLM核函数.pdf)
+
 ## More Talks 更多的报告
 
 See [https://github.com/OpenXiangShan/XiangShan-doc/tree/main/slides](https://github.com/OpenXiangShan/XiangShan-doc/tree/main/slides).

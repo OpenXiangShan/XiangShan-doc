@@ -128,6 +128,8 @@ Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
 
 - 香山缓存系统的形式化验证 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-香山缓存系统的形式化验证.pdf)
 
+- 香山开源处理器社区发展与展望 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-香山开源处理器社区发展与展望.pdf)
+
 ## RISC-V Summit China 2025 (2025 RISC-V 中国峰会)
 
 所有的报告均是中文的。All talks are in Chinese.
@@ -137,6 +139,8 @@ Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
 - SVM：用可综合方法实现RISC-V处理器的高效验证 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250718-RVSC-SVM-用可综合方法实现RISC-V处理器的高效验证.pdf)
 
 - 构建香山开源芯片研发的基础设施 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250719-RVSC-构建香山开源芯片研发的基础设施.pdf)
+
+- 香山社区：2024~2025 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250716-RVSC-香山社区20242025.pdf)
 
 ## More Talks 更多的报告
 

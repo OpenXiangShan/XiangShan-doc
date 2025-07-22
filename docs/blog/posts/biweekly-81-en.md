@@ -9,7 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 81st issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
-Recently, various teams working on Kunminghu have started designing V3. In addition, the fronted fixed issue where parity check might use invalid results when ICache requests cross lines, the backend fixed the issue of incorrect bit width calculation for variables such as the total number of instruction commit and the total number of walk in VTypeBuffer under specific parameters, and the memory and cache subsystem fixed a bug where vector segment instructions failed to correctly report ECC errors. This update also includes the latest performance improvements of the Kunminghu architecture.
+Recently, various teams working on Kunminghu have started designing V3. In addition, the fronted fixed the logic that checks whether the previous MMIO instruction was successfully committed before fetching a new MMIO instruction, the backend fixed the issue where RAB fails to correctly walk and reallocate physical registers when a move instruction triggers an exception, and the memory and cache subsystem fixed a series of bugs related to misaligned vector loads / stores. This update also includes the latest performance improvements of the Kunminghu architecture.
 
 <!-- more -->
 ## Recent developments
@@ -17,9 +17,7 @@ Recently, various teams working on Kunminghu have started designing V3. In addi
 ### Frontend
 
 - **Bug Fixes**
-    - Fix the logic that checks whether the previous MMIO instruction was successfully committed before fetching a new MMIO instruction ([#4881](https://github.com/OpenXiangShan/XiangShan/pull/4881))
-
-- **V3 Feature**
+    - Fixed the logic that checks whether the previous MMIO instruction was successfully committed before fetching a new MMIO instruction ([#4881](https://github.com/OpenXiangShan/XiangShan/pull/4881))
 
 ### Backend
 

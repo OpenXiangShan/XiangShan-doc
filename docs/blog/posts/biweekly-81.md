@@ -9,7 +9,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 81 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组开始进行 V3 的设计。此外，前端修复 MMIO 取指前判断前一条 MMIO 提交成功的逻辑，后端修复 move 指令发生异常时，rab 回滚重新分配物理寄存器异常的问题，访存和缓存部分修复一系列和向量非对齐相关的 Bug。本期还更新了昆明湖架构近期性能。
 
 
 <!-- more -->
@@ -30,8 +30,8 @@ categories:
 ### 访存与缓存
 
 - Bug 修复
-    - 修复一系列和向量非对齐相关的 bug ([#4869](https://github.com/OpenXiangShan/XiangShan/pull/4869))、([#4876](https://github.com/OpenXiangShan/XiangShan/pull/4876))、([#4877](https://github.com/OpenXiangShan/XiangShan/pull/4877))、([#4889](https://github.com/OpenXiangShan/XiangShan/pull/4889))
-    - 修复 VBOP 预取器未成功传递 isPrefetch 信号至 TLB 的 bug ([#4886](https://github.com/OpenXiangShan/XiangShan/pull/4886))
+    - 修复一系列和向量非对齐相关的 Bug ([#4869](https://github.com/OpenXiangShan/XiangShan/pull/4869))、([#4876](https://github.com/OpenXiangShan/XiangShan/pull/4876))、([#4877](https://github.com/OpenXiangShan/XiangShan/pull/4877))、([#4889](https://github.com/OpenXiangShan/XiangShan/pull/4889))
+    - 修复 VBOP 预取器未成功传递 isPrefetch 信号至 TLB 的 Bug ([#4886](https://github.com/OpenXiangShan/XiangShan/pull/4886))
     - L2 Cache 对实时设备相关事务保留最大 QoS ([CoupledL2 #423](https://github.com/OpenXiangShan/CoupledL2/pull/423))
     - 修复 RefillBuffer 到 DataStorage 的数据 X 态错误传播问题 ([CoupledL2 #426](https://github.com/OpenXiangShan/CoupledL2/pull/426))
 

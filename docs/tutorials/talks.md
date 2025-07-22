@@ -136,7 +136,7 @@ Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
 
 - SVM：用可综合方法实现RISC-V处理器的高效验证 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250718-RVSC-SVM-用可综合方法实现RISC-V处理器的高效验证.pdf)
 
-- 构建香山开源芯片研发的基础设施 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250719-RVSC-构建香山开源芯片研发的基础设施.pdf
+- 构建香山开源芯片研发的基础设施 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250719-RVSC-构建香山开源芯片研发的基础设施.pdf)
 
 ## More Talks 更多的报告
 

@@ -30,10 +30,13 @@ Recently, various teams working on Kunminghu have started designing V3. In addi
 ### MemBlock and cache
 
 - **Bug fixes**
+    - Fixed a series of bugs related to misaligned vector loads / stores ([#4869](https://github.com/OpenXiangShan/XiangShan/pull/4869)), ([#4876](https://github.com/OpenXiangShan/XiangShan/pull/4876)), ([#4877](https://github.com/OpenXiangShan/XiangShan/pull/4877)), ([#4889](https://github.com/OpenXiangShan/XiangShan/pull/4889))
+    - Fixed a bug where VBOP prefetcher failed to pass the isPrefetch signal to TLB ([#4886](https://github.com/OpenXiangShan/XiangShan/pull/4886))
     - L2 Cache maintains maximum QoS for real-time device-related transactions ([CoupledL2 #423](https://github.com/OpenXiangShan/CoupledL2/pull/423))
     - Resolve the X-state error propagation from the RefillBuffer to the DataStorage ([CoupledL2 #426](https://github.com/OpenXiangShan/CoupledL2/pull/426))
 
 - **V3 Feature**
+    - L1 DCache now supports using a hash of higher virtual address bits as index ([#4810](https://github.com/OpenXiangShan/XiangShan/pull/4810))
 
 ## RTL Evaluation
 

@@ -25,17 +25,18 @@ categories:
 
 - Bug 修复
     - 修复 move 指令发生异常时，rab 回滚重新分配物理寄存器异常的问题 ([#4874](https://github.com/OpenXiangShan/XiangShan/pull/4874))
-    - 修复 NEMU 中部分指令 (vadc/vsbc) 遗漏 vm 位异常检查的问题 ([NEMU #914](https://github.com/OpenXiangShan/NEMU/pull/914))  
+    - 修复 NEMU 中部分指令 (vadc/vsbc) 遗漏 vm 位异常检查的问题 ([NEMU #914](https://github.com/OpenXiangShan/NEMU/pull/914))
 
 ### 访存与缓存
 
-- RVA23 Profile
-
 - Bug 修复
+    - 修复一系列和向量非对齐相关的 bug ([#4869](https://github.com/OpenXiangShan/XiangShan/pull/4869))、([#4876](https://github.com/OpenXiangShan/XiangShan/pull/4876))、([#4877](https://github.com/OpenXiangShan/XiangShan/pull/4877))、([#4889](https://github.com/OpenXiangShan/XiangShan/pull/4889))
+    - 修复 VBOP 预取器未成功传递 isPrefetch 信号至 TLB 的 bug ([#4886](https://github.com/OpenXiangShan/XiangShan/pull/4886))
     - L2 Cache 对实时设备相关事务保留最大 QoS ([CoupledL2 #423](https://github.com/OpenXiangShan/CoupledL2/pull/423))
     - 修复 RefillBuffer 到 DataStorage 的数据 X 态错误传播问题 ([CoupledL2 #426](https://github.com/OpenXiangShan/CoupledL2/pull/426))
 
-- PPA 优化
+- V3 Feature
+    - L1 DCache 支持根据使用多位虚拟地址的哈希结果作为 index ([#4810](https://github.com/OpenXiangShan/XiangShan/pull/4810))
 
 
 ## 评估

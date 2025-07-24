@@ -9,9 +9,11 @@ hide:
 
 ## Recent Updates
 
-**Upcoming: 我们将在第 5 届 RISC-V 中国峰会（RVSC 2025）期间举办第 2 届香山开源社区大会，并同时举办香山项目上手教程。Look forward to seeing you at RVSC'25 in Shanghai, China. Learn more on [the RVSC'25 Tutorial Page](https://tutorial.xiangshan.cc/rvsc25/).**
+**Upcoming: 我们将在于韩国首尔举行的 MICRO'25 会议期间举办香山项目的上手教程。Look forward to seeing you at MICRO'25 in Seoul, South Korea. Learn more on [the MICRO'25 Tutorial Page](tutorials/micro25.md).**
 
-**Upcoming: 我们将在于希腊雅典举行的 APPT'25 会议期间举办香山项目的上手教程。Look forward to seeing you at APPT'25 in Athens, Greece. Learn more on [the APPT'25 Tutorial Page](https://tutorial.xiangshan.cc/appt25/).**
+我们在 APPT'25 会议期间同地举办了一次香山项目的上手教程。We have hosted tutorials at APPT'25 in Athens, Greece. Learn more on [the APPT'25 Tutorial Page](https://tutorial.xiangshan.cc/appt25/).
+
+我们在第 5 届 RISC-V 中国峰会（RVSC 2025）期间举办了同期活动，在本次同期活动中同时举办了香山项目的上手教程。XiangShan community have held a co-event at RISC-V China Summit 2025 in Shanghai, China, during which we also hosted XiangShan tutorials. Learn more on [the RVSC'25 Tutorial Page](https://tutorial.xiangshan.cc/rvsc25/).
 
 我们在 ISCA'25 会议期间同地举办香山项目的上手教程。Look forward to seeing you at ISCA'25 in Tokyo, Japan. Learn more on [the ISCA'25 Tutorial Page](tutorials/isca25.md).
 

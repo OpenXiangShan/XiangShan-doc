@@ -128,6 +128,28 @@ Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
 
 - 香山缓存系统的形式化验证 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-香山缓存系统的形式化验证.pdf)
 
+- 香山开源处理器社区发展与展望 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20240822-RVSC-香山开源处理器社区发展与展望.pdf)
+
+## RISC-V Summit China 2025 (2025 RISC-V 中国峰会)
+
+所有的报告均是中文的。All talks are in Chinese.
+
+- 香山：迈向产业实践的开源高性能 RISC-V 处理器 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250716-RVSC-香山：迈向产业实践的开源高性能%20RISC-V%20处理器.pdf)
+
+- 香山社区：2024~2025 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250716-RVSC-香山社区20242025.pdf)
+
+- 香山昆明湖V3前端架构 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250716-RVSC-香山昆明湖V3前端架构.pdf)
+
+- 香山处理器昆明湖后端流水线的设计演进 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250716-RVSC-香山处理器昆明湖后端流水线的设计演进.pdf)
+
+- 香山处理器访存、缓存架构解决方案与演进 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250716-RVSC-香山处理器访存缓存架构解决方案与演进.pdf)
+
+- SVM：用可综合方法实现RISC-V处理器的高效验证 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250718-RVSC-SVM-用可综合方法实现RISC-V处理器的高效验证.pdf)
+
+- 构建香山开源芯片研发的基础设施 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250719-RVSC-构建香山开源芯片研发的基础设施.pdf)
+
+- XSAI：以CPU的编程范式支持现代LLM核函数 [Slides](https://raw.githubusercontent.com/OpenXiangShan/XiangShan-doc/main/slides/20250716&0718-RVSC-XSAI：以CPU的编程范式支持现代LLM核函数.pdf)
+
 ## More Talks 更多的报告
 
 See [https://github.com/OpenXiangShan/XiangShan-doc/tree/main/slides](https://github.com/OpenXiangShan/XiangShan-doc/tree/main/slides).

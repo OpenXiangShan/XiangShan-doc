@@ -24,8 +24,13 @@ Recently, various teams working on Kunminghu have started designing V3. In addi
 ### Backend
 
 - **Bug Fixes**
+  - Fix the issue where the `xcontext` CSR was not reset properly ([#4915](https://github.com/OpenXiangShan/XiangShan/pull/4915))
+  - Fix missing exception priority configuration for software check exceptions ([#4923](https://github.com/OpenXiangShan/XiangShan/pull/4923))
 
 - **V3 Feature**
+  - Increase issue width to 8, update issue queue configurations, and add more ALU units ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
+  - Support speculative wakeup and cancellation for variable-latency functional units ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
+  - Support speculative wakeup and cancellation for load instructions ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
 
 ### MemBlock and cache
 

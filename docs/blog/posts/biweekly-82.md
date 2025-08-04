@@ -26,10 +26,13 @@ categories:
 ### 后端流水线
 
 - Bug 修复
+    - 修复 xcontext 寄存器未复位的问题 ([#4915](https://github.com/OpenXiangShan/XiangShan/pull/4915))
+    - 修复软件检查异常未配置异常优先级的问题 ([#4923](https://github.com/OpenXiangShan/XiangShan/pull/4923))
 
-- 时序/面积优化
-
-- RVA23 Profile
+- V3 Feature
+    - 扩大发射宽度至 8，配套修改发射队列配置，并增加 ALU 数量 ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
+    - 支持不定周期功能单元的推测唤醒及取消 ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
+    - 支持 load 推测唤醒及取消 ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
 
 ### 访存与缓存
 

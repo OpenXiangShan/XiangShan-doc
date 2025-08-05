@@ -9,7 +9,7 @@ categories:
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 82 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
-近期，
+近期，昆明湖各组开始进行 V3 的设计。此外，前端修复 Svpbmt NC 取指冲刷后仍入队 IBuffer 的问题，后端修复 xcontext 寄存器未复位的问题，访存和缓存部分修复 Dcache bus error 相关的生成逻辑，以避免 X 态传播。本期还更新了昆明湖架构近期性能。
 
 
 <!-- more -->
@@ -41,11 +41,11 @@ categories:
 
 - Bug 修复
     - 修复 Napot 页的判断条件，只有 PPN 低 4 位为 4'b1000 的页才能覆盖 64KB 范围 ([#4828](https://github.com/OpenXiangShan/XiangShan/pull/4828))、([#4900](https://github.com/OpenXiangShan/XiangShan/pull/4900))
-    - 修复发生 gpf、获取 gpaddr 时的 vpn 匹配逻辑未考虑 Napot 页的 bug ([#4911](https://github.com/OpenXiangShan/XiangShan/pull/4911))
-    - 修复 vaddr 最高 2 位被误截断，导致部分场景下写回 CSR 的 gpaddr 值高两位可能错误的 bug ([#4913](https://github.com/OpenXiangShan/XiangShan/pull/4913))
+    - 修复发生 gpf、获取 gpaddr 时的 vpn 匹配逻辑未考虑 Napot 页的 Bug ([#4911](https://github.com/OpenXiangShan/XiangShan/pull/4911))
+    - 修复 vaddr 最高 2 位被误截断，导致部分场景下写回 CSR 的 gpaddr 值高两位可能错误的 Bug ([#4913](https://github.com/OpenXiangShan/XiangShan/pull/4913))
     - 修复 Dcache bus error 相关的生成逻辑，以避免 X 态传播 ([#4899](https://github.com/OpenXiangShan/XiangShan/pull/4899))
     - 在 Dcache MSHR 中设置 memBackType 初始值，以正确告知 L2 Cache 请求的类型属于 memory 或 uncache ([#4907](https://github.com/OpenXiangShan/XiangShan/pull/4907))
-    - 修复向量 Segment 指令的 vaddr 高位被截断，导致误报异常的 bug ([#4892](https://github.com/OpenXiangShan/XiangShan/pull/4892))
+    - 修复向量 Segment 指令的 vaddr 高位被截断，导致误报异常的 Bug ([#4892](https://github.com/OpenXiangShan/XiangShan/pull/4892))
     - 修复向量非对齐可能产生的部分卡死问题 ([#4914](https://github.com/OpenXiangShan/XiangShan/pull/4914))
 
 

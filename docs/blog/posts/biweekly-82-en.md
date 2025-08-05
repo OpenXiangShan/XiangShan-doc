@@ -9,7 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column, this is the 82nd issue of our biweekly column. Through this column, we will regularly introduce the progress of XiangShan, hoping to learn and improve together with you.
 
-Recently, various teams working on Kunminghu have started designing V3. In addition, the fronted fixed issue where parity check might use invalid results when ICache requests cross lines, the backend fixed the issue of incorrect bit width calculation for variables such as the total number of instruction commit and the total number of walk in VTypeBuffer under specific parameters, and the memory and cache subsystem fixed a bug where vector segment instructions failed to correctly report ECC errors. This update also includes the latest performance improvements of the Kunminghu architecture.
+Recently, various teams working on Kunminghu have started designing V3. In addition, the fronted fixed the issue where Svpbmt NC fetch would still enqueue to IBuffer after flushing, the backend fixed the issue where the `xcontext` CSR was not reset properly, and the memory and cache subsystem fixed the generation logic related to DCache bus errors to prevent propagation of X states. This update also includes the latest performance improvements of the Kunminghu architecture.
 
 <!-- more -->
 ## Recent developments
@@ -27,24 +27,24 @@ Recently, various teams working on Kunminghu have started designing V3. In addi
 ### Backend
 
 - **Bug Fixes**
-  - Fix the issue where the `xcontext` CSR was not reset properly ([#4915](https://github.com/OpenXiangShan/XiangShan/pull/4915))
-  - Fix missing exception priority configuration for software check exceptions ([#4923](https://github.com/OpenXiangShan/XiangShan/pull/4923))
+  - Fixed the issue where the `xcontext` CSR was not reset properly ([#4915](https://github.com/OpenXiangShan/XiangShan/pull/4915))
+  - Fixed missing exception priority configuration for software check exceptions ([#4923](https://github.com/OpenXiangShan/XiangShan/pull/4923))
 
 - **V3 Feature**
-  - Increase issue width to 8, update issue queue configurations, and add more ALU units ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
-  - Support speculative wakeup and cancellation for variable-latency functional units ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
-  - Support speculative wakeup and cancellation for load instructions ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
+  - Increased issue width to 8, update issue queue configurations, and add more ALU units ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
+  - Supported speculative wakeup and cancellation for variable-latency functional units ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
+  - Supported speculative wakeup and cancellation for load instructions ([#4845](https://github.com/OpenXiangShan/XiangShan/pull/4845))
 
 ### MemBlock and cache
 
 - **Bug fixes**
-  - Fix the condition for identifying Napot pages: only pages with the lower 4 bits of PPN equal to 4'b1000 are allowed to cover a 64KB range ([#4828](https://github.com/OpenXiangShan/XiangShan/pull/4828)), ([#4900](https://github.com/OpenXiangShan/XiangShan/pull/4900))
-  - Fix a bug in the vpn matching logic during gpf handling and gpaddr retrieval, where NAPOT page attributes were not properly considered ([#4911](https://github.com/OpenXiangShan/XiangShan/pull/4911))
-  - Fix a bug where the top two bits of vaddr were incorrectly truncated, which could result in incorrect upper bits in gpaddr when written back to CSR in certain scenarios ([#4913](https://github.com/OpenXiangShan/XiangShan/pull/4913))
-  - Fix the generation logic related to DCache bus errors to prevent propagation of X states ([#4899](https://github.com/OpenXiangShan/XiangShan/pull/4899))
-  - Set the initial value of memBackType in DCache MSHR to correctly indicate whether the request to L2 Cache targets memory or uncache ([#4907](https://github.com/OpenXiangShan/XiangShan/pull/4907))
-  - Fix a bug where the high bits of vaddr were truncated in vector segment instructions, causing false exception reports ([#4892](https://github.com/OpenXiangShan/XiangShan/pull/4892))
-  - Fix some stuck bugs during vector misalignment handling ([#4914](https://github.com/OpenXiangShan/XiangShan/pull/4914))
+  - Fixed the condition for identifying Napot pages: only pages with the lower 4 bits of PPN equal to 4'b1000 are allowed to cover a 64KB range ([#4828](https://github.com/OpenXiangShan/XiangShan/pull/4828)), ([#4900](https://github.com/OpenXiangShan/XiangShan/pull/4900))
+  - Fixed a bug in the vpn matching logic during gpf handling and gpaddr retrieval, where NAPOT page attributes were not properly considered ([#4911](https://github.com/OpenXiangShan/XiangShan/pull/4911))
+  - Fixed a bug where the top two bits of vaddr were incorrectly truncated, which could result in incorrect upper bits in gpaddr when written back to CSR in certain scenarios ([#4913](https://github.com/OpenXiangShan/XiangShan/pull/4913))
+  - Fixed the generation logic related to DCache bus errors to prevent propagation of X states ([#4899](https://github.com/OpenXiangShan/XiangShan/pull/4899))
+  - Seted the initial value of memBackType in DCache MSHR to correctly indicate whether the request to L2 Cache targets memory or uncache ([#4907](https://github.com/OpenXiangShan/XiangShan/pull/4907))
+  - Fixed a bug where the high bits of vaddr were truncated in vector segment instructions, causing false exception reports ([#4892](https://github.com/OpenXiangShan/XiangShan/pull/4892))
+  - Fixed some stuck bugs during vector misalignment handling ([#4914](https://github.com/OpenXiangShan/XiangShan/pull/4914))
 
 ## RTL Evaluation
 

@@ -35,8 +35,13 @@ Recently, various teams working on Kunminghu have started designing V3. In addi
 ### MemBlock and cache
 
 - **Bug fixes**
-
-- **V3 Feature**
+  - Fix the condition for identifying Napot pages: only pages with the lower 4 bits of PPN equal to 4'b1000 are allowed to cover a 64KB range ([#4828](https://github.com/OpenXiangShan/XiangShan/pull/4828)), ([#4900](https://github.com/OpenXiangShan/XiangShan/pull/4900))
+  - Fix a bug in the vpn matching logic during gpf handling and gpaddr retrieval, where NAPOT page attributes were not properly considered ([#4911](https://github.com/OpenXiangShan/XiangShan/pull/4911))
+  - Fix a bug where the top two bits of vaddr were incorrectly truncated, which could result in incorrect upper bits in gpaddr when written back to CSR in certain scenarios ([#4913](https://github.com/OpenXiangShan/XiangShan/pull/4913))
+  - Fix the generation logic related to DCache bus errors to prevent propagation of X states ([#4899](https://github.com/OpenXiangShan/XiangShan/pull/4899))
+  - Set the initial value of memBackType in DCache MSHR to correctly indicate whether the request to L2 Cache targets memory or uncache ([#4907](https://github.com/OpenXiangShan/XiangShan/pull/4907))
+  - Fix a bug where the high bits of vaddr were truncated in vector segment instructions, causing false exception reports ([#4892](https://github.com/OpenXiangShan/XiangShan/pull/4892))
+  - Fix some stuck bugs during vector misalignment handling ([#4914](https://github.com/OpenXiangShan/XiangShan/pull/4914))
 
 ## RTL Evaluation
 

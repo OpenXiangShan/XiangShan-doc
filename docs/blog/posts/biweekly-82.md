@@ -19,9 +19,12 @@ categories:
 ### 前端
 
 - Bug 修复
-    - 修复 ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - 修复 Svpbmt NC 取指未在 L1-L2 总线上打上相应标记的问题 ([#4898](https://github.com/OpenXiangShan/XiangShan/pull/4898))
+    - 修复 Svpbmt NC 取指状态机冲刷的问题 ([#4903](https://github.com/OpenXiangShan/XiangShan/pull/4903))
+    - 修复 Svpbmt NC 取指冲刷后仍入队 IBuffer 的问题 ([#4922](https://github.com/OpenXiangShan/XiangShan/pull/4922))
 
-- 面积
+- V3 Feature
+    - 半行对齐的预测块生成，uBTB 和 mBTB 相应的支持，删除跨页预测，增加 SRAM 读优先读写冲突时的写 buffer，分支预测器历史改为路径历史 ([#4896](https://github.com/OpenXiangShan/XiangShan/pull/4896))
 
 ### 后端流水线
 

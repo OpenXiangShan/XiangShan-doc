@@ -17,9 +17,12 @@ Recently, various teams working on Kunminghu have started designing V3. In addi
 ### Frontend
 
 - **Bug Fixes**
-    - Fixed ([#1](https://github.com/OpenXiangShan/XiangShan/pull/1))
+    - Fixed the issue where Svpbmt NC fetch did not set the corresponding tag on the L1-L2 bus ([#4898](https://github.com/OpenXiangShan/XiangShan/pull/4898))
+    - Fixed the issue with Svpbmt NC fetch state machine flushing ([#4903](https://github.com/OpenXiangShan/XiangShan/pull/4903))
+    - Fixed the issue where Svpbmt NC fetch would still enqueue to IBuffer after flushing ([#4922](https://github.com/OpenXiangShan/XiangShan/pull/4922))
 
 - **V3 Feature**
+    - Generation of half-aligned prediction blocks, with corresponding support in uBTB and mBTB; removal of cross-page prediction; added write buffer for SRAM read-write conflicts with read priority; changed branch predictor history to use path history ([#4896](https://github.com/OpenXiangShan/XiangShan/pull/4896))
 
 ### Backend
 

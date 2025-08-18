@@ -18,6 +18,16 @@ categories:
 
 ### 后端流水线
 
+- Bug 修复
+  - 修复 PMA 寄存器输出的命名问题 ([#4929](https://github.com/OpenXiangShan/XiangShan/pull/4929))
+  - 调整 PMA 寄存器的基地址 ([#4940](https://github.com/OpenXiangShan/XiangShan/pull/4940))
+  - 修复 load 快速唤醒 `vsetvli` 指令产生错误的问题 ([#4941](https://github.com/OpenXiangShan/XiangShan/pull/4941))
+
+- V3 Feature
+  - 更改后段内部分 Bundle 的命名格式 ([#4921](https://github.com/OpenXiangShan/XiangShan/pull/4921))、([#4937](https://github.com/OpenXiangShan/XiangShan/pull/4937))
+  - 允许FTQ中最后一项的指令进行压缩 ([#4931](https://github.com/OpenXiangShan/XiangShan/pull/4931))
+  - 在后端中检查BJU的跳转目标预测 ([#4932](https://github.com/OpenXiangShan/XiangShan/pull/4932))
+
 ### 访存与缓存
 
 

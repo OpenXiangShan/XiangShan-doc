@@ -16,6 +16,16 @@ Welcome to XiangShan biweekly column, this is the 82nd issue of our biweekly col
 
 ### Backend
 
+- **Bug Fixes**
+  - Fixed the naming issue of PMA register output ([#4929](https://github.com/OpenXiangShan/XiangShan/pull/4929))
+  - Adjusted the base address of PMA registers ([#4940](https://github.com/OpenXiangShan/XiangShan/pull/4940))
+  - Fixed the issue with load fast wake-up where `vsetvli` instruction generates errors ([#4941](https://github.com/OpenXiangShan/XiangShan/pull/4941))
+
+- **V3 Feature**
+  - Changed the naming format of some bundles in the backend ([#4921](https://github.com/OpenXiangShan/XiangShan/pull/4921)), ([#4937](https://github.com/OpenXiangShan/XiangShan/pull/4937))
+  - Allowed the last instruction in FTQ to be compressed ([#4931](https://github.com/OpenXiangShan/XiangShan/pull/4931))
+  - Checked BJU's predicted jump target in the backend ([#4932](https://github.com/OpenXiangShan/XiangShan/pull/4932))
+
 ### MemBlock and cache
 
 ## RTL Evaluation

@@ -16,6 +16,22 @@ This is the 83rd issue of the biweekly report.
 
 ### Frontend
 
+- RTL feature
+  - Initial support for Ifu 2-fetch; Optimize timing ([#4917](https://github.com/OpenXiangShan/XiangShan/pull/4917))
+  - Merged Bpu V3 fourth part ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946))
+    - Ported V2 Ras
+    - Ported V2 Ittage (draft)
+    - Support WriteBuffer multi-port access; Integrated into abtb and mbtb
+    - Fixed Phr speculation update logic; Added Phr history difftest
+- RTL debug
+  - Set MemBackType and Alias field of ICache tilelink bus correctly ([#4943](https://github.com/OpenXiangShan/XiangShan/pull/4943)) (partially ported from V2 [#4898](https://github.com/OpenXiangShan/XiangShan/pull/4898))
+- Model exploration
+  - Explored Tage-sc implementable solutions
+  - Analyzed 2-taken performance
+- Code quality
+  - Migrated ICache to new parameter system ([#4934](https://github.com/OpenXiangShan/XiangShan/pull/4934))
+  - Cleaned up Bpu outdated code and related parameters ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946))
+
 ### Backend
 
 - Bug Fixes

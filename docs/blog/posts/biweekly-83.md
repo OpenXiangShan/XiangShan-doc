@@ -17,6 +17,22 @@ categories:
 
 ### 前端
 
+- RTL feature
+  - 初步支持 Ifu 2-fetch；优化时序 ([#4917](https://github.com/OpenXiangShan/XiangShan/pull/4917))
+  - 合入 Bpu V3 第四部分 ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946))
+    - 移植 V2 Ras
+    - 移植 V2 Ittage （初稿）
+    - 支持 WriteBuffer 多端口访问；接入到 abtb 及 mbtb
+    - 修复 Phr 推测更新逻辑；增加 Phr 历史 difftest
+- RTL debug
+  - 正确设置 ICache tilelink 总线的 MemBackType、Alias 域 ([#4943](https://github.com/OpenXiangShan/XiangShan/pull/4943)) (部分移植自 V2 [#4898](https://github.com/OpenXiangShan/XiangShan/pull/4898))
+- 模型探索
+  - 探索 Tage-sc 可落地方案
+  - 分析 2-taken 性能
+- 代码质量
+  - 迁移 ICache 到新参数系统 ([#4934](https://github.com/OpenXiangShan/XiangShan/pull/4934))
+  - 清理 Bpu 过时代码和相关参数 ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946))
+
 ### 后端
 
 - Bug 修复

@@ -47,6 +47,13 @@ categories:
 
 ### 访存与缓存
 
+- Bug 修复
+  - 修复了 PageTableCache 中触发 jmp_bitmap_check 的逻辑。([#4935](https://github.com/OpenXiangShan/XiangShan/pull/4935))
+  - 修复了 NEMU 在发生 hardware-error exception 时未正确设置 GVA 的问题。([NEMU #921](https://github.com/OpenXiangShan/NEMU/pull/921))
+  - 修复了 NEMU 使用 MPRV 时未检查 NMIE 的问题。当 NMIE = 0 时，MPRV 应被视为清除。([NEMU #920](https://github.com/OpenXiangShan/NEMU/pull/920))
+
+- 工具
+  - 修复了 CHIron 的一系列问题
 
 ## 评估
 

@@ -46,6 +46,15 @@ This is the 83rd issue of the biweekly report.
 
 ### MemBlock and cache
 
+- Bug Fixes
+  - Fixed the logic triggering jmp_bitmap_check in PageTableCache. ([#4935](https://github.com/OpenXiangShan/XiangShan/pull/4935))
+  - Fixed an issue in NEMU where the GVA was not correctly set when a hardware-error exception occurred. ([NEMU #921](https://github.com/OpenXiangShan/NEMU/pull/921))
+  - Fixed an issue in NEMU where MPRV was not checked against NMIE. When NMIE = 0, MPRV should be treated as cleare. ([NEMU #920](https://github.com/OpenXiangShan/NEMU/pull/920))
+
+- Tools
+  - Fixed a series of issues in CHIron.
+
+
 ## RTL Evaluation
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |

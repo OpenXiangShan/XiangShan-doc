@@ -11,6 +11,8 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the 83rd issue of the biweekly report.
 
+In the last two weeks, frontend continues V3 RTL development, while exploring BP design in simulator. Backend and memory subsystem fix some bugs in V2. In the meantime, backend makes some preparations for V3 RTL development, mainly including some code clean-up and refactors together with frontend.
+
 <!-- more -->
 ## Recent developments
 
@@ -53,7 +55,6 @@ This is the 83rd issue of the biweekly report.
 
 - Tools
   - Fixed a series of issues in CHIron.
-
 
 ## RTL Evaluation
 

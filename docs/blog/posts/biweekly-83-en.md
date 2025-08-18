@@ -11,52 +11,50 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the 83rd issue of the biweekly report.
 
-In the last two weeks, frontend continues V3 RTL development, while exploring BP design in simulator. Backend and memory subsystem fix some bugs in V2. In the meantime, backend makes some preparations for V3 RTL development, mainly including some code clean-up and refactors together with frontend.
+In the last two weeks, frontend continues V3 RTL development, while exploring BP design in simulator. Backend and memory subsystem fix some bugs in V2. In the meantime, backend makes some preparations for V3 RTL development, mainly including some code clean-up and fontend-backend IO refactor.
 
 <!-- more -->
-## Recent developments
+## Recent Developments
 
 ### Frontend
 
 - RTL feature
-  - Initial support for Ifu 2-fetch; Optimize timing ([#4917](https://github.com/OpenXiangShan/XiangShan/pull/4917))
-  - Merged Bpu V3 fourth part ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946))
-    - Ported V2 Ras
-    - Ported V2 Ittage (draft)
-    - Support WriteBuffer multi-port access; Integrated into abtb and mbtb
-    - Fixed Phr speculation update logic; Added Phr history difftest
-- RTL debug
-  - Set MemBackType and Alias field of ICache tilelink bus correctly ([#4943](https://github.com/OpenXiangShan/XiangShan/pull/4943)) (partially ported from V2 [#4898](https://github.com/OpenXiangShan/XiangShan/pull/4898))
+  - Initial support for IFU 2-fetch; Optimize timing ([#4917](https://github.com/OpenXiangShan/XiangShan/pull/4917))
+  - Merge BPU V3 fourth part ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946))
+    - Port V2 RAS
+    - Port V2 ITTAGE (draft)
+    - Support WriteBuffer multi-port access; Integrate into ABTB and MBTB
+    - Fix PHR speculation update logic; Add PHR history difftest
+- Bug fix
+  - Set MemBackType and Alias field of ICache TileLink bus correctly ([#4943](https://github.com/OpenXiangShan/XiangShan/pull/4943), partially ported from V2 [#4898](https://github.com/OpenXiangShan/XiangShan/pull/4898))
 - Model exploration
-  - Explored Tage-sc implementable solutions
-  - Analyzed 2-taken performance
+  - Explore TAGE-SC implementable solutions
+  - Analyze 2-taken performance
 - Code quality
-  - Migrated ICache to new parameter system ([#4934](https://github.com/OpenXiangShan/XiangShan/pull/4934))
-  - Cleaned up Bpu outdated code and related parameters ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946))
+  - Migrate ICache to new parameter system ([#4934](https://github.com/OpenXiangShan/XiangShan/pull/4934))
+  - Clean up BPU outdated code and related parameters ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946))
 
 ### Backend
 
-- Bug Fixes
-  - Fixed the naming issue of PMA register output ([#4929](https://github.com/OpenXiangShan/XiangShan/pull/4929))
-  - Adjusted the base address of PMA registers ([#4940](https://github.com/OpenXiangShan/XiangShan/pull/4940))
-  - Fixed the issue with load fast wake-up where `vsetvli` instruction generates errors ([#4941](https://github.com/OpenXiangShan/XiangShan/pull/4941))
+- RTL feature
+  - Change the naming format of some bundles in the backend ([#4921](https://github.com/OpenXiangShan/XiangShan/pull/4921), [#4937](https://github.com/OpenXiangShan/XiangShan/pull/4937))
+  - Allow the last instruction in FTQ to be compressed ([#4931](https://github.com/OpenXiangShan/XiangShan/pull/4931))
+  - Check BJU's predicted jump target in the backend ([#4932](https://github.com/OpenXiangShan/XiangShan/pull/4932))
+- Bug fix
+  - (V2) Fix the naming issue of PMA register output ([#4929](https://github.com/OpenXiangShan/XiangShan/pull/4929))
+  - (V2) Adjust the base address of PMA registers ([#4940](https://github.com/OpenXiangShan/XiangShan/pull/4940))
+  - (V2) Fix the issue with load fast wake-up where `vsetvli` instruction generates errors ([#4941](https://github.com/OpenXiangShan/XiangShan/pull/4941))
 
-- V3 Feature
-  - Changed the naming format of some bundles in the backend ([#4921](https://github.com/OpenXiangShan/XiangShan/pull/4921)), ([#4937](https://github.com/OpenXiangShan/XiangShan/pull/4937))
-  - Allowed the last instruction in FTQ to be compressed ([#4931](https://github.com/OpenXiangShan/XiangShan/pull/4931))
-  - Checked BJU's predicted jump target in the backend ([#4932](https://github.com/OpenXiangShan/XiangShan/pull/4932))
+### MemBlock and Cache
 
-### MemBlock and cache
-
-- Bug Fixes
-  - Fixed the logic triggering jmp_bitmap_check in PageTableCache. ([#4935](https://github.com/OpenXiangShan/XiangShan/pull/4935))
-  - Fixed an issue in NEMU where the GVA was not correctly set when a hardware-error exception occurred. ([NEMU #921](https://github.com/OpenXiangShan/NEMU/pull/921))
-  - Fixed an issue in NEMU where MPRV was not checked against NMIE. When NMIE = 0, MPRV should be treated as cleare. ([NEMU #920](https://github.com/OpenXiangShan/NEMU/pull/920))
-
+- Bug fix
+  - (V2) Fix the logic triggering `jmp_bitmap_check` in PageTableCache ([#4935](https://github.com/OpenXiangShan/XiangShan/pull/4935))
+  - Fix an issue in NEMU where the GVA was not correctly set when a hardware-error exception occurred ([NEMU #921](https://github.com/OpenXiangShan/NEMU/pull/921))
+  - Fix an issue in NEMU where MPRV was not checked against NMIE. When NMIE = 0, MPRV should be treated as cleared ([NEMU #920](https://github.com/OpenXiangShan/NEMU/pull/920))
 - Tools
-  - Fixed a series of issues in CHIron.
+  - Fix a series of issues in CHIron
 
-## RTL Evaluation
+## Performance Evaluation
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
@@ -79,32 +77,31 @@ In the last two weeks, frontend continues V3 RTL development, while exploring BP
 |                   |        | 482.sphinx3      | 49.10  |
 |                   |        | GEOMEAN          | 44.94  |
 
-We use SimPoint to sample programs and create checkpoints images based on our custom format. The coverage of SimPoint clustering reaches 100%[^1].
+We use SimPoint to sample programs and create checkpoints images based on our custom format. The coverage of SimPoint clustering reaches 100%. Note that the above scores are estimated based on program segments rather than a complete SPEC CPU2006 evaluation, which may deviate from the actual performance of real chips.
 
 Compilation parameters are as follows:
 
 |                    |          |
 | ------------------ | -------- |
-| Instruction set    | RV64GCB  |
 | Compiler           | gcc12    |
 | Optimization level | O3       |
 | Memory library     | jemalloc |
+| -march             | RV64GCB  |
 | -ffp-contraction   | fast     |
 
 Processor and SoC parameters are as follows:
 
-|                |           |
-| -------------- | --------- |
-| Commit         | ef913a6   |
-| L1 ICache      | 64KB      |
-| L1 DCache      | 64KB      |
-| L2 Cache       | 1MB       |
-| L3 Cache       | 16MB      |
-| LSU            | 3ld2st    |
-| Bus protocol   | TileLink  |
-| Memory latency | DDR4-3200 |
-
-[^1]：The above scores are estimated based on program segments rather than a complete SPEC CPU2006 evaluation, which may deviate from the actual performance of real chips.
+|                |            |
+| -------------- | ---------- |
+| Commit         | ef913a6    |
+| Date           | 08/14/2025 |
+| L1 ICache      | 64KB       |
+| L1 DCache      | 64KB       |
+| L2 Cache       | 1MB        |
+| L3 Cache       | 16MB       |
+| LSU            | 3ld2st     |
+| Bus protocol   | TileLink   |
+| Memory latency | DDR4-3200  |
 
 ## Related links
 

@@ -11,7 +11,7 @@ categories:
 
 本次是第 83 期双周报。
 
-在过去的两周，前端继续进行 V3 的 RTL开发，同时在模型上探索分支预测的设计。后端与访存缓存修复了一系列功能 bug。后端同时进行了 V3 开发的准备工作，主要包含一些代码清理和与前端配合完成的代码重构。
+在过去的两周，前端继续进行 V3 的 RTL 开发，同时在模型上探索分支预测的设计。后端与访存缓存修复了一系列功能 bug。后端还进行了 V3 开发的准备工作，主要包含一些代码清理和前后端接口重构。
 
 <!-- more -->
 
@@ -19,45 +19,43 @@ categories:
 
 ### 前端
 
-- RTL feature
-  - 初步支持 Ifu 2-fetch；优化时序 ([#4917](https://github.com/OpenXiangShan/XiangShan/pull/4917))
-  - 合入 Bpu V3 第四部分 ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946))
-    - 移植 V2 Ras
-    - 移植 V2 Ittage （初稿）
-    - 支持 WriteBuffer 多端口访问；接入到 abtb 及 mbtb
-    - 修复 Phr 推测更新逻辑；增加 Phr 历史 difftest
-- RTL debug
-  - 正确设置 ICache tilelink 总线的 MemBackType、Alias 域 ([#4943](https://github.com/OpenXiangShan/XiangShan/pull/4943)) (部分移植自 V2 [#4898](https://github.com/OpenXiangShan/XiangShan/pull/4898))
+- RTL 新特性
+  - 初步支持 IFU 2-fetch；优化时序（[#4917](https://github.com/OpenXiangShan/XiangShan/pull/4917)）
+  - 合入 BPU V3 第四部分（[#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946)）
+    - 移植 V2 RAS
+    - 移植 V2 ITTAGE（初稿）
+    - 支持 WriteBuffer 多端口访问；接入到 ABTB 及 MBTB
+    - 修复 PHR 推测更新逻辑；增加 PHR 历史 difftest
+- Bug 修复
+  - 正确设置 ICache TileLink 总线的 MemBackType、Alias 域（[#4943](https://github.com/OpenXiangShan/XiangShan/pull/4943)，部分移植自 V2 [#4898](https://github.com/OpenXiangShan/XiangShan/pull/4898)）
 - 模型探索
-  - 探索 Tage-sc 可落地方案
+  - 探索 TAGE-SC 可落地方案
   - 分析 2-taken 性能
 - 代码质量
-  - 迁移 ICache 到新参数系统 ([#4934](https://github.com/OpenXiangShan/XiangShan/pull/4934))
-  - 清理 Bpu 过时代码和相关参数 ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946))
+  - 迁移 ICache 到新参数系统（[#4934](https://github.com/OpenXiangShan/XiangShan/pull/4934)）
+  - 清理 BPU 过时代码和相关参数（[#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946)）
 
 ### 后端
 
+- RTL 新特性
+  - 更改后段内部分 Bundle 的命名格式（[#4921](https://github.com/OpenXiangShan/XiangShan/pull/4921)，[#4937](https://github.com/OpenXiangShan/XiangShan/pull/4937)）
+  - 允许 FTQ 中最后一项的指令进行压缩（[#4931](https://github.com/OpenXiangShan/XiangShan/pull/4931)）
+  - 在后端中检查 BJU 的跳转目标预测（[#4932](https://github.com/OpenXiangShan/XiangShan/pull/4932)）
 - Bug 修复
-  - 修复 PMA 寄存器输出的命名问题 ([#4929](https://github.com/OpenXiangShan/XiangShan/pull/4929))
-  - 调整 PMA 寄存器的基地址 ([#4940](https://github.com/OpenXiangShan/XiangShan/pull/4940))
-  - 修复 load 快速唤醒 `vsetvli` 指令产生错误的问题 ([#4941](https://github.com/OpenXiangShan/XiangShan/pull/4941))
-
-- V3 Feature
-  - 更改后段内部分 Bundle 的命名格式 ([#4921](https://github.com/OpenXiangShan/XiangShan/pull/4921))、([#4937](https://github.com/OpenXiangShan/XiangShan/pull/4937))
-  - 允许FTQ中最后一项的指令进行压缩 ([#4931](https://github.com/OpenXiangShan/XiangShan/pull/4931))
-  - 在后端中检查BJU的跳转目标预测 ([#4932](https://github.com/OpenXiangShan/XiangShan/pull/4932))
+  - （V2）修复 PMA 寄存器输出的命名问题（[#4929](https://github.com/OpenXiangShan/XiangShan/pull/4929)）
+  - （V2）调整 PMA 寄存器的基地址（[#4940](https://github.com/OpenXiangShan/XiangShan/pull/4940)）
+  - （V2）修复 load 快速唤醒 `vsetvli` 指令产生错误的问题（[#4941](https://github.com/OpenXiangShan/XiangShan/pull/4941)）
 
 ### 访存与缓存
 
 - Bug 修复
-  - 修复了 PageTableCache 中触发 jmp_bitmap_check 的逻辑。([#4935](https://github.com/OpenXiangShan/XiangShan/pull/4935))
-  - 修复了 NEMU 在发生 hardware-error exception 时未正确设置 GVA 的问题。([NEMU #921](https://github.com/OpenXiangShan/NEMU/pull/921))
-  - 修复了 NEMU 使用 MPRV 时未检查 NMIE 的问题。当 NMIE = 0 时，MPRV 应被视为清除。([NEMU #920](https://github.com/OpenXiangShan/NEMU/pull/920))
-
+  - （V2）修复了 PageTableCache 中触发 `jmp_bitmap_check` 的逻辑（[#4935](https://github.com/OpenXiangShan/XiangShan/pull/4935)）
+  - 修复了 NEMU 在发生 hardware-error exception 时未正确设置 GVA 的问题（[NEMU #921](https://github.com/OpenXiangShan/NEMU/pull/921)）
+  - 修复了 NEMU 使用 MPRV 时未检查 NMIE 的问题。当 NMIE = 0 时，MPRV 应被视为清除（[NEMU #920](https://github.com/OpenXiangShan/NEMU/pull/920)）
 - 工具
   - 修复了 CHIron 的一系列问题
 
-## 评估
+## 性能评估
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
@@ -80,32 +78,31 @@ categories:
 |                   |        | 482.sphinx3      | 49.10  |
 |                   |        | GEOMEAN          | 44.94  |
 
-我们使用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，Simpoint 聚类的覆盖率为 100%[^1]。
+我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，Simpoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
 
 编译参数如下所示：
 
 |                  |          |
 | ---------------- | -------- |
-| 指令集           | RV64GCB  |
 | 编译器           | gcc12    |
 | 编译优化         | O3       |
 | 内存库           | jemalloc |
+| -march           | RV64GCB  |
 | -ffp-contraction | fast     |
 
 处理器及 SoC 参数如下所示：
 
-|           |           |
-| --------- | --------- |
-| commit    | ef913a6   |
-| L1 ICache | 64KB      |
-| L1 DCache | 64KB      |
-| L2 Cache  | 1MB       |
-| L3 Cache  | 16MB      |
-| 访存单元  | 3ld2st    |
-| 总线协议  | TileLink  |
-| 内存延迟  | DDR4-3200 |
-
-[^1]: 上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
+|           |            |
+| --------- | ---------- |
+| commit    | ef913a6    |
+| 日期      | 2025/08/14 |
+| L1 ICache | 64KB       |
+| L1 DCache | 64KB       |
+| L2 Cache  | 1MB        |
+| L3 Cache  | 16MB       |
+| 访存单元  | 3ld2st     |
+| 总线协议  | TileLink   |
+| 内存延迟  | DDR4-3200  |
 
 ## 相关链接
 

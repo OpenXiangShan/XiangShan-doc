@@ -19,21 +19,23 @@ categories:
 
 ### 前端
 
-<!-- - RTL 新特性
-  - 初步支持 IFU 2-fetch；优化时序（[#4917](https://github.com/OpenXiangShan/XiangShan/pull/4917)）
-  - 合入 BPU V3 第四部分（[#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946)）
-    - 移植 V2 RAS
-    - 移植 V2 ITTAGE（初稿）
-    - 支持 WriteBuffer 多端口访问；接入到 ABTB 及 MBTB
-    - 修复 PHR 推测更新逻辑；增加 PHR 历史 difftest
+- RTL 新特性
+  - 优化 IFU 指令标记和跨块指令拼接逻辑（[#4961](https://github.com/OpenXiangShan/XiangShan/pull/4961)）
+    - 使用指令末尾的 2B 标记指令（4 字节指令的 `pc + 2` 或 2 字节指令的 `pc`）
+    - 将单条 4 字节指令跨取指块的处理逻辑由每次从 ICache 多读取 2 字节改为缓存并等待下一次取指再拼接
+  - 优化 FTQ 重定向逻辑：当重定向请求使 FTQ 项为空时，将新项写入该空项，而非分配新项（[#4939](https://github.com/OpenXiangShan/XiangShan/pull/4939)）
+  - 删除 ICache 和 IFU 内的跨页取指支持（[#4909](https://github.com/OpenXiangShan/XiangShan/pull/4909)，[#4989](https://github.com/OpenXiangShan/XiangShan/pull/4989)）
+  - 优化 mBTB 多路命中处理逻辑（[#4984](https://github.com/OpenXiangShan/XiangShan/pull/4984)）
+  - TAGE、ITTAGE、分支 resolve 更新等特性持续开发中
 - Bug 修复
-  - 正确设置 ICache TileLink 总线的 MemBackType、Alias 域（[#4943](https://github.com/OpenXiangShan/XiangShan/pull/4943)，部分移植自 V2 [#4898](https://github.com/OpenXiangShan/XiangShan/pull/4898)）
+  - （V2）修复 FTB 中 SRAM 读写冲突导致的 X 态传播问题（[#4971](https://github.com/OpenXiangShan/XiangShan/pull/4971)）
+  - 修复 BPU SRAM 未完全初始化就开始预测导致的 X 状态传播问题（[#4968](https://github.com/OpenXiangShan/XiangShan/pull/4968)）
+  - 修复 uBTB 会训练不跳转分支的问题（[#4977](https://github.com/OpenXiangShan/XiangShan/pull/4977)）
 - 模型探索
-  - 探索 TAGE-SC 可落地方案
-  - 分析 2-taken 性能
+  - 调试 SC 可落地方案
+  - 调整 PHR 实现，避免降低仿真性能
 - 代码质量
-  - 迁移 ICache 到新参数系统（[#4934](https://github.com/OpenXiangShan/XiangShan/pull/4934)）
-  - 清理 BPU 过时代码和相关参数（[#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946)） -->
+  - 整理 IFU 代码
 
 ### 后端
 

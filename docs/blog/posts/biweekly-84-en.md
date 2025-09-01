@@ -19,21 +19,23 @@ This is the 83rd issue of the biweekly report.
 
 ### Frontend
 
-<!-- - RTL feature
-  - Initial support for IFU 2-fetch; Optimize timing ([#4917](https://github.com/OpenXiangShan/XiangShan/pull/4917))
-  - Merge BPU V3 fourth part ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946))
-    - Port V2 RAS
-    - Port V2 ITTAGE (draft)
-    - Support WriteBuffer multi-port access; Integrate into ABTB and MBTB
-    - Fix PHR speculation update logic; Add PHR history difftest
+- RTL feature
+  - Optimize IFU instruction marking and cross-block instruction concatenation logic ([#4961](https://github.com/OpenXiangShan/XiangShan/pull/4961))
+    - Use the latter 2B of the instruction to mark it (`pc + 2` for 4B instructions or `pc` for 2B instructions)
+    - When a single 4B instruction crosses the boundry of the fetch block, cache it in IFU and wait for next fetch request to do concatenation, instead of reading extra 2B from ICache
+  - Optimize FTQ redirect logic: When a redirection request flushes an FTQ slot to empty, write new entry into that empty slot instead of allocating a new one ([#4939](https://github.com/OpenXiangShan/XiangShan/pull/4939))
+  - Drop cross-page fetch support in ICache and IFU ([#4909](https://github.com/OpenXiangShan/XiangShan/pull/4909), [#4989](https://github.com/OpenXiangShan/XiangShan/pull/4989))
+  - Optimize mBTB multi-hit handling logic ([#4984](https://github.com/OpenXiangShan/XiangShan/pull/4984))
+  - TAGE, ITTAGE, branch resolve update, etc. are under ongoing development, we'll see them soon
 - Bug fix
-  - Set MemBackType and Alias field of ICache TileLink bus correctly ([#4943](https://github.com/OpenXiangShan/XiangShan/pull/4943), partially ported from V2 [#4898](https://github.com/OpenXiangShan/XiangShan/pull/4898))
+  - (V2) Fix X-state propagation issue caused by SRAM read/write conflicts in FTB ([#4971](https://github.com/OpenXiangShan/XiangShan/pull/4971))
+  - Fix X-state propagation issues caused by BPU prediction starting before SRAM initialization ([#4968](https://github.com/OpenXiangShan/XiangShan/pull/4968))
+  - Fix uBTB training non-jump branches ([#4977](https://github.com/OpenXiangShan/XiangShan/pull/4977))
 - Model exploration
-  - Explore TAGE-SC implementable solutions
-  - Analyze 2-taken performance
+  - Debug SC implementable solutions
+  - Adjust PHR implementation to avoid simulation performance degradation
 - Code quality
-  - Migrate ICache to new parameter system ([#4934](https://github.com/OpenXiangShan/XiangShan/pull/4934))
-  - Clean up BPU outdated code and related parameters ([#4946](https://github.com/OpenXiangShan/XiangShan/pull/4946)) -->
+  - Refactor IFU code
 
 ### Backend
 

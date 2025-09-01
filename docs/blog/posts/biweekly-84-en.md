@@ -1,15 +1,15 @@
 ---
-slug: biweekly-83-en
-date: 2025-08-18
+slug: biweekly-84-en
+date: 2025-09-01
 categories:
   - Biweekly-en
 ---
 
-# [XiangShan Biweekly 83] 20250818
+# [XiangShan Biweekly 84] 20250901
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. We look forward to your contribution.
 
-This is the 83rd issue of the biweekly report.
+This is the 84th issue of the biweekly report.
 
 <!-- In the last two weeks, frontend continues V3 RTL development, while exploring BP design in simulator. Backend and memory subsystem fix some bugs in V2. In the meantime, backend makes some preparations for V3 RTL development, mainly including some code clean-up and fontend-backend IO refactor. -->
 
@@ -39,14 +39,12 @@ This is the 83rd issue of the biweekly report.
 
 ### Backend
 
-<!-- - RTL feature
-  - Change the naming format of some bundles in the backend ([#4921](https://github.com/OpenXiangShan/XiangShan/pull/4921), [#4937](https://github.com/OpenXiangShan/XiangShan/pull/4937))
-  - Allow the last instruction in FTQ to be compressed ([#4931](https://github.com/OpenXiangShan/XiangShan/pull/4931))
-  - Check BJU's predicted jump target in the backend ([#4932](https://github.com/OpenXiangShan/XiangShan/pull/4932))
+- RTL feature
+  - fix the source of standard uop's number of write back registers（[#4944](https://github.com/OpenXiangShan/XiangShan/pull/4944)）
 - Bug fix
-  - (V2) Fix the naming issue of PMA register output ([#4929](https://github.com/OpenXiangShan/XiangShan/pull/4929))
-  - (V2) Adjust the base address of PMA registers ([#4940](https://github.com/OpenXiangShan/XiangShan/pull/4940))
-  - (V2) Fix the issue with load fast wake-up where `vsetvli` instruction generates errors ([#4941](https://github.com/OpenXiangShan/XiangShan/pull/4941)) -->
+  - (V2) add software check exception caused by Zicfilp to exception priority（[#4923](https://github.com/OpenXiangShan/XiangShan/pull/4923)）
+  - (V2) fix DPC register related issues（[#4979](https://github.com/OpenXiangShan/XiangShan/pull/4979)）
+
 
 ### MemBlock and Cache
 

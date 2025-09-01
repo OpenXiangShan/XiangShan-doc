@@ -1,15 +1,15 @@
 ---
-slug: biweekly-83
-date: 2025-08-18
+slug: biweekly-84
+date: 2025-09-01
 categories:
   - Biweekly
 ---
 
-# 【香山双周报 83】20250818 期
+# 【香山双周报 84】20250901 期
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。我们期待您的贡献。
 
-本次是第 83 期双周报。
+本次是第 84 期双周报。
 
 <!-- 在过去的两周，前端继续进行 V3 的 RTL 开发，同时在模型上探索分支预测的设计。后端与访存缓存修复了一系列功能 bug。后端还进行了 V3 开发的准备工作，主要包含一些代码清理和前后端接口重构。 -->
 
@@ -39,14 +39,11 @@ categories:
 
 ### 后端
 
-<!-- - RTL 新特性
-  - 更改后段内部分 Bundle 的命名格式（[#4921](https://github.com/OpenXiangShan/XiangShan/pull/4921)，[#4937](https://github.com/OpenXiangShan/XiangShan/pull/4937)）
-  - 允许 FTQ 中最后一项的指令进行压缩（[#4931](https://github.com/OpenXiangShan/XiangShan/pull/4931)）
-  - 在后端中检查 BJU 的跳转目标预测（[#4932](https://github.com/OpenXiangShan/XiangShan/pull/4932)）
+- RTL 新特性
+  - 修改普通微操作的写回寄存器个数来源（[#4944](https://github.com/OpenXiangShan/XiangShan/pull/4944)）
 - Bug 修复
-  - （V2）修复 PMA 寄存器输出的命名问题（[#4929](https://github.com/OpenXiangShan/XiangShan/pull/4929)）
-  - （V2）调整 PMA 寄存器的基地址（[#4940](https://github.com/OpenXiangShan/XiangShan/pull/4940)）
-  - （V2）修复 load 快速唤醒 `vsetvli` 指令产生错误的问题（[#4941](https://github.com/OpenXiangShan/XiangShan/pull/4941)） -->
+  - （V2）将 Zicfilp 引起的软件检查异常添加到异常优先级（[#4923](https://github.com/OpenXiangShan/XiangShan/pull/4923)）
+  - （V2）修复 DPC 寄存器的相关问题（[#4979](https://github.com/OpenXiangShan/XiangShan/pull/4979)）
 
 ### 访存与缓存
 

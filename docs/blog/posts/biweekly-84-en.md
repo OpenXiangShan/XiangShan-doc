@@ -50,12 +50,13 @@ This is the 83rd issue of the biweekly report.
 
 ### MemBlock and Cache
 
-<!-- - Bug fix
-  - (V2) Fix the logic triggering `jmp_bitmap_check` in PageTableCache ([#4935](https://github.com/OpenXiangShan/XiangShan/pull/4935))
-  - Fix an issue in NEMU where the GVA was not correctly set when a hardware-error exception occurred ([NEMU #921](https://github.com/OpenXiangShan/NEMU/pull/921))
-  - Fix an issue in NEMU where MPRV was not checked against NMIE. When NMIE = 0, MPRV should be treated as cleared ([NEMU #920](https://github.com/OpenXiangShan/NEMU/pull/920))
-- Tools
-  - Fix a series of issues in CHIron -->
+- RTL feature
+  - L2 directory updates moved from mainpipe stage 3 to stage 4
+  - The refactoring of MMU, LoadUnit, StoreQueue, L2, etc. is ongoing
+- Bug fix
+  - Adjust the fullva bit width of the tlb req to pass the complete vaddr for the virtual address check ([#4954](https://github.com/OpenXiangShan/XiangShan/pull/4954))
+  - Fix the mismatch of reference and dut when execute segment fault only first instruction, which should be written back to the vl CSR ([#4956](https://github.com/OpenXiangShan/XiangShan/pull/4956))
+  - Fix X-prop in PTW caused by using uninitialized stage1Hit signal in Mux ([#4916](https://github.com/OpenXiangShan/XiangShan/pull/4916))
 
 ## Performance Evaluation
 

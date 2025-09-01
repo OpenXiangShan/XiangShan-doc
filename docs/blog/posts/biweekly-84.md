@@ -50,12 +50,13 @@ categories:
 
 ### 访存与缓存
 
-<!-- - Bug 修复
-  - （V2）修复了 PageTableCache 中触发 `jmp_bitmap_check` 的逻辑（[#4935](https://github.com/OpenXiangShan/XiangShan/pull/4935)）
-  - 修复了 NEMU 在发生 hardware-error exception 时未正确设置 GVA 的问题（[NEMU #921](https://github.com/OpenXiangShan/NEMU/pull/921)）
-  - 修复了 NEMU 使用 MPRV 时未检查 NMIE 的问题。当 NMIE = 0 时，MPRV 应被视为清除（[NEMU #920](https://github.com/OpenXiangShan/NEMU/pull/920)）
-- 工具
-  - 修复了 CHIron 的一系列问题 -->
+- RTL 新特性
+  - L2 目录更新从主流水线第 3 级后移至第 4 级
+  - MMU、LoadUnit、StoreQueue、L2 等模块重构持续推进中
+- Bug 修复
+  - 调整了 tlb 请求中 fullva 的位宽，以传递完整的虚拟地址用于虚拟地址检查（[#4954](https://github.com/OpenXiangShan/XiangShan/pull/4954)）
+  - 修复了执行 segment fault only first 指令时参考模型和被测设计不一致的问题，这类指令应写回 vl CSR（[#4956](https://github.com/OpenXiangShan/XiangShan/pull/4956)）
+  - 修复了 pTW 中 Mux 使用未初始化的 stage1Hit 信号导致 X 态传播的问题（[#4916](https://github.com/OpenXiangShan/XiangShan/pull/4916)）
 
 ## 性能评估
 

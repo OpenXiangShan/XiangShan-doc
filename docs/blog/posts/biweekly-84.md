@@ -11,7 +11,7 @@ categories:
 
 本次是第 84 期双周报。
 
-<!-- 在过去的两周，前端继续进行 V3 的 RTL 开发，同时在模型上探索分支预测的设计。后端与访存缓存修复了一系列功能 bug。后端还进行了 V3 开发的准备工作，主要包含一些代码清理和前后端接口重构。 -->
+在过去的两周，前端继续进行 V3 开发，一阶段重构即将完成。后端和访存与缓存稳步推进 V3 探索与代码重构，同时修复了一系列 V2 的 Bug。
 
 <!-- more -->
 
@@ -51,32 +51,32 @@ categories:
   - L2 目录更新从主流水线第 3 级后移至第 4 级
   - MMU、LoadUnit、StoreQueue、L2 等模块重构持续推进中
 - Bug 修复
-  - 调整了 tlb 请求中 fullva 的位宽，以传递完整的虚拟地址用于虚拟地址检查（[#4954](https://github.com/OpenXiangShan/XiangShan/pull/4954)）
-  - 修复了执行 segment fault only first 指令时参考模型和被测设计不一致的问题，这类指令应写回 vl CSR（[#4956](https://github.com/OpenXiangShan/XiangShan/pull/4956)）
-  - 修复了 pTW 中 Mux 使用未初始化的 stage1Hit 信号导致 X 态传播的问题（[#4916](https://github.com/OpenXiangShan/XiangShan/pull/4916)）
+  - （V2）调整 TLB 请求中 `fullva` 的位宽，以传递完整的虚拟地址用于虚拟地址检查（[#4954](https://github.com/OpenXiangShan/XiangShan/pull/4954)）
+  - （V2）修复执行 segment fault only first 指令时参考模型和被测设计不一致的问题，这类指令应写回 `vl` CSR（[#4956](https://github.com/OpenXiangShan/XiangShan/pull/4956)）
+  - （V2）修复 PTW 中 Mux 使用未初始化的 `stage1Hit` 信号导致 X 态传播的问题（[#4916](https://github.com/OpenXiangShan/XiangShan/pull/4916)）
 
 ## 性能评估
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 35.88  | 410.bwaves       | 67.22  |
-| 401.bzip2         | 25.51  | 416.gamess       | 41.01  |
-| 403.gcc           | 47.95  | 433.milc         | 45.09  |
-| 429.mcf           | 60.19  | 434.zeusmp       | 51.78  |
-| 445.gobmk         | 30.62  | 435.gromacs      | 33.67  |
+| 400.perlbench     | 35.90  | 410.bwaves       | 67.22  |
+| 401.bzip2         | 25.50  | 416.gamess       | 41.01  |
+| 403.gcc           | 47.89  | 433.milc         | 45.10  |
+| 429.mcf           | 60.18  | 434.zeusmp       | 51.83  |
+| 445.gobmk         | 30.48  | 435.gromacs      | 33.67  |
 | 456.hmmer         | 41.61  | 436.cactusADM    | 46.20  |
 | 458.sjeng         | 30.62  | 437.leslie3d     | 47.80  |
-| 462.libquantum    | 122.58 | 444.namd         | 28.88  |
-| 464.h264ref       | 56.57  | 447.dealII       | 73.27  |
-| 471.omnetpp       | 41.35  | 450.soplex       | 52.50  |
+| 462.libquantum    | 122.58 | 444.namd         | 28.87  |
+| 464.h264ref       | 56.59  | 447.dealII       | 73.63  |
+| 471.omnetpp       | 41.50  | 450.soplex       | 52.48  |
 | 473.astar         | 29.30  | 453.povray       | 53.49  |
-| 483.xalancbmk     | 72.76  | 454.Calculix     | 16.37  |
+| 483.xalancbmk     | 72.79  | 454.Calculix     | 16.38  |
 | GEOMEAN           | 44.66  | 459.GemsFDTD     | 39.71  |
-|                   |        | 465.tonto        | 36.73  |
+|                   |        | 465.tonto        | 36.72  |
 |                   |        | 470.lbm          | 91.98  |
-|                   |        | 481.wrf          | 40.63  |
-|                   |        | 482.sphinx3      | 49.10  |
-|                   |        | GEOMEAN          | 44.94  |
+|                   |        | 481.wrf          | 40.78  |
+|                   |        | 482.sphinx3      | 49.13  |
+|                   |        | GEOMEAN          | 44.97  |
 
 我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，Simpoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
 
@@ -94,8 +94,8 @@ categories:
 
 |           |            |
 | --------- | ---------- |
-| commit    | ef913a6    |
-| 日期      | 2025/08/14 |
+| commit    | b2daf0a    |
+| 日期      | 2025/08/29 |
 | L1 ICache | 64KB       |
 | L1 DCache | 64KB       |
 | L2 Cache  | 1MB        |
@@ -103,6 +103,18 @@ categories:
 | 访存单元  | 3ld2st     |
 | 总线协议  | TileLink   |
 | 内存延迟  | DDR4-3200  |
+
+
+## 功耗与面积
+
+|                | 时序（GHz） | 单元面积 | 布局规划面积 | 功耗 |
+| -------------- | ----------- | -------- | ------------ | ---- |
+| 前端           | 2.8         | 0.18     | 0.28         | 0.39 |
+| 后端           | 2.8         | 0.37     | 0.57         | 0.68 |
+| 访存           | 2.8         | 0.30     | 0.46         | 0.47 |
+| L2（512KB）    | 2.8         | 0.39     | 0.55         | 0.11 |
+| 香山（层次化） | 2.8         | 1.24     | 1.86         | 1.65 |
+| 香山（扁平化） | 2.7         | 1.23     | 1.73         | 1.63 |
 
 ## 相关链接
 

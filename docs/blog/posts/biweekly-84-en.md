@@ -11,7 +11,11 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the 84th issue of the biweekly report.
 
+In this issue, we are very pleased to share some news. Lanxin Computing has successfully launched Linux on an 8-core SoC built on the recently delivered Kunminghu V2 IP core, completing 8-core consistency verification. In the next phase, we will continue to work closely with Lanxin Computing to carry out 32-core consistency verification and performance optimization.
+
 Over the past two weeks, the frontend team has continued V3 development, with the first phase of refactoring nearing completion. The backend and memory/cache teams have steadily advanced V3 exploration and code refactoring, while also fixing a series of V2 bugs.
+
+From this issue onwards, we will periodically include timing, area, and power consumption data for the XiangShan processor for your reference.
 
 <!-- more -->
 

@@ -1,11 +1,11 @@
-# 排版
+# 文档排版规则
+
+本章介绍香山文档中允许使用的 Markdown 标记语法，以及标记语法以外的一些排版规则。
 
 !!! note
     本章仅适用于使用新版文档框架的[用户手册](https://github.com/OpenXiangShan/XiangShan-User-Guide/)和[设计文档](https://github.com/OpenXiangShan/XiangShan-Design-Doc/)。
 
-    由于新版文档框架同时使用 Mkdocs 和 Pandoc 两套工具链来分别生成在线网站和可打印的 PDF 文件，我们在撰写文档时需要同时满足两方的要求和约定。
-
-本节介绍香山文档中允许使用的 Markdown 标记语法，以及标记语法以外的一些排版规则。
+    由于新版文档框架同时使用 Mkdocs 和 Pandoc 两套工具链来分别生成在线网站和 PDF 版式文件，我们在撰写文档时需要同时满足两方的要求和约定。
 
 ## 章节标题
 

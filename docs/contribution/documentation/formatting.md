@@ -106,7 +106,7 @@ Try to make ***text*** bold and italic.
 要将文本表示为行内代码，可在文本前后分别加上反引号 `` ` ``。行内代码的前后（反引号的外侧）需要增加空格，但与全角标点之间不加空格。
 
 ```markdown
-我们需要使用 `Valid` 和 `ready` 信号来控制 `DecoupledIO`。
+我们需要使用 `valid` 和 `ready` 信号来控制 `DecoupledIO`。
 ```
 
 ### 代码块

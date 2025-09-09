@@ -171,5 +171,17 @@ nav:
         - 编译使用 RISCV-pk 的 Linux Kernel: workloads/linux-kernel-for-xs.md
         - 编译使用 OpenSBI 的 Linux Kernel: workloads/opensbi-kernel-for-xs.md
         - 制作 Debian 镜像: workloads/debian.md
+    - 贡献 Contribution:
+        # - 概览: contribution/index.md
+        # - 代码规范: contribution/code-style.md
+        # - 提交补丁: contribution/pull-request.md
+        # - 开发流程: contribution/development-process.md
+        - 文档规范: 
+            - 总览: contribution/documentation/index.md
+            - 结构: contribution/documentation/structure.md
+            - 排版: contribution/documentation/formatting.md
+            # - 语言风格: contribution/documentation/language-style.md
+            # - 国际化: contribution/documentation/internationalization.md
+        # - 常见问题: contribution/faq.md
     - 博客 Blog: 
         - blog/index.md

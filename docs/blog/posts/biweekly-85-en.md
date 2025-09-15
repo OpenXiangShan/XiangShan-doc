@@ -50,13 +50,21 @@ From this issue onwards, we will periodically include timing, area, and power co
 
 ### MemBlock and Cache
 
-<!-- - RTL feature
-  - Move L2 directory updates from MainPipe stage 3 to stage 4
+- RTL feature
+  - (V2) In the MMIOBridge of CoupledL2, the CLINT address range has been excluded from xstilewrap’s mapping and reconfigured to integrate a private CLINT IP ([CoupledL2 #429](https://github.com/OpenXiangShan/CoupledL2/pull/429))
   - The refactoring of MMU, LoadUnit, StoreQueue, L2, etc. is ongoing
+  - Refactored the memory access unit of NEMU, including code cleanup and the addition of new V3 features
+
 - Bug fix
-  - (V2) Adjust the `fullva` port width of the TLB request to pass the full virtual address for its check ([#4954](https://github.com/OpenXiangShan/XiangShan/pull/4954))
-  - (V2) Fix the mismatch of reference and DUT when execute segment fault only first instruction, which should be written back to the `vl` CSR ([#4956](https://github.com/OpenXiangShan/XiangShan/pull/4956))
-  - (V2) Fix X-state propagation in PTW caused by using uninitialized `stage1Hit` signal in Mux ([#4916](https://github.com/OpenXiangShan/XiangShan/pull/4916)) -->
+  - (V2) Fix an issue where ITLB freeze when receiving PWT response in particular cycles ([#4983](https://github.com/OpenXiangShan/XiangShan/pull/4983))
+  - (V2) Add first_s2xlate_fault init when LLPTW handle jmp_bitmap_check reques to prevent issues when L2TLB handles both allStage and noS2xlate requests in same time ([#4996](https://github.com/OpenXiangShan/XiangShan/pull/4996))
+  - (V2) Fix the implementation error of prefetch hit counter that caused the recorded number of prefetch hits to exceed the number of prefetch requests ([#5005](https://github.com/OpenXiangShan/XiangShan/pull/5005))
+  - (V2) Fix address generation error during misaligned memory access splitting in VSegment ([#5006](https://github.com/OpenXiangShan/XiangShan/pull/5006))
+  - (V2) Fix unnecessary bitmap check logic in LLPTW ([#0518](https://github.com/OpenXiangShan/XiangShan/commit/143ba1cb97fa43bdbd199b34deae21bd52c9adfe))
+
+- Tools
+  - Support noise generation for anvil mode in tl-test-new ([tl-test-new #80](https://github.com/OpenXiangShan/tl-test-new/pull/80))
+  - Support generating binary-format CHI logs in CoupledL2’s TestTop to reduce log file size ([CoupledL2 #410](http://github.com/OpenXiangShan/CoupledL2/pull/410))
 
 ## Performance Evaluation
 

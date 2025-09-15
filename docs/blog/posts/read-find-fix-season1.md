@@ -87,6 +87,8 @@ categories:
 * **翻译问题：**译文与原文存在偏差、专有名词未被正确翻译等。
 * **其他**：除上述分类之外的任何影响文档质量的问题。
 
+关于详细的文档规范，请参考 [香山文档贡献指南](https://docs.xiangshan.cc/zh-cn/latest/contribution/documentation/)。
+
 ### 4. 提交 Issue 报告问题
 
 在发现问题后，您即可在对应的文档仓库提交 Issue 来详细报告您所发现的文档问题。

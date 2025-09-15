@@ -97,6 +97,8 @@ Once you’ve claimed a task, start hunting! Common issues include:
 * **Translation problems**: Mistranslations, inconsistent terminology, or improper handling of technical terms
 * **Other**: Any additional problems that affect documentation quality
 
+For detailed documentation rules, please refer to the [XiangShan Documentation Contribution Guide](https://docs.xiangshan.cc/zh-cn/latest/contribution/documentation/).
+
 ### 4. Submit an Issue
 
 When you find a problem, submit an **Issue** in the corresponding repository with full details.

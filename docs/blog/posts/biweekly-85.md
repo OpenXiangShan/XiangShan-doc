@@ -44,11 +44,9 @@ categories:
 
 ### 后端
 
-<!-- - RTL 新特性
-  - 修改普通微操作的写回寄存器个数来源（[#4944](https://github.com/OpenXiangShan/XiangShan/pull/4944)）
 - Bug 修复
-  - （V2）将 Zicfilp 引起的软件检查异常添加到异常优先级（[#4923](https://github.com/OpenXiangShan/XiangShan/pull/4923)）
-  - （V2）修复 DPC 寄存器的相关问题（[#4979](https://github.com/OpenXiangShan/XiangShan/pull/4979)） -->
+  - 后端应提供 FTQ 项的起始 PC（[#5017](https://github.com/OpenXiangShan/XiangShan/pull/5017)）
+  - 修复 isRVC 传输逻辑以适应新的 FTQ 设计（[#5003](https://github.com/OpenXiangShan/XiangShan/pull/5003)）
 
 ### 访存与缓存
 

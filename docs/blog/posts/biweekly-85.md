@@ -23,23 +23,24 @@ categories:
 
 ### 前端
 
-<!-- - RTL 新特性
-  - 优化 IFU 指令标记和跨块指令拼接逻辑（[#4961](https://github.com/OpenXiangShan/XiangShan/pull/4961)）
-    - 使用指令末尾的 2B 标记指令（4 字节指令的 `pc + 2` 或 2 字节指令的 `pc`）
-    - 将单条 4 字节指令跨取指块的处理逻辑由每次从 ICache 多读取 2 字节改为缓存并等待下一次取指再拼接
-  - 优化 FTQ 重定向逻辑：当重定向请求使 FTQ 项为空时，将新项写入该空项，而非分配新项（[#4939](https://github.com/OpenXiangShan/XiangShan/pull/4939)）
-  - 删除 ICache 和 IFU 内的跨页取指支持（[#4909](https://github.com/OpenXiangShan/XiangShan/pull/4909)，[#4989](https://github.com/OpenXiangShan/XiangShan/pull/4989)）
-  - 优化 mBTB 多路命中处理逻辑（[#4984](https://github.com/OpenXiangShan/XiangShan/pull/4984)）
-  - TAGE、ITTAGE、分支 resolve 更新等特性持续开发中
+- RTL 新特性
+  - 支持 resolve 更新 BPU（[#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962)）
+  - 支持 ICache 动态取指块大小，节省功耗，同时为 64B 取指块做准备（[#4999](https://github.com/OpenXiangShan/XiangShan/pull/4999)）
+  - 优化 mbtb、abtb 替换算法，采用 SRAM 实现的 PLRU 以节省面积（[#4964](https://github.com/OpenXiangShan/XiangShan/pull/4964)）
+  - 实现 ITTAGE 接入 V3 BPU（[#5000](https://github.com/OpenXiangShan/XiangShan/pull/5000)，[#5020](https://github.com/OpenXiangShan/XiangShan/pull/5020)）
+  - 优化 PHR 更新机制（[#4995](https://github.com/OpenXiangShan/XiangShan/pull/4995)）
+  - TAGE-SC 持续开发中，暂未合入（[#5001](https://github.com/OpenXiangShan/XiangShan/pull/5001)）
 - Bug 修复
-  - （V2）修复 FTB 中 SRAM 读写冲突导致的 X 态传播问题（[#4971](https://github.com/OpenXiangShan/XiangShan/pull/4971)）
-  - 修复 BPU SRAM 未完全初始化就开始预测导致的 X 状态传播问题（[#4968](https://github.com/OpenXiangShan/XiangShan/pull/4968)）
-  - 修复 uBTB 会训练不跳转分支的问题（[#4977](https://github.com/OpenXiangShan/XiangShan/pull/4977)）
+  - 修复 resolve 更新触发的一些 bug
+    - 修复 IFU 处理跨预测块的、被预测为分支指令的非分支指令时重定向错误的问题（与 [#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962) 一起合入）
+    - 协助修复后端 branchUnit 计算分支目标地址错误的问题（与 [#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962) 一起合入）
+    - 修复 ubtb 更新条件错误导致多路命中的问题（[#5004](https://github.com/OpenXiangShan/XiangShan/pull/5004)，[#5008](https://github.com/OpenXiangShan/XiangShan/pull/5008)）
+    - 修复 IBuffer 错误传递 identifiedCfi 的问题（[#5019](https://github.com/OpenXiangShan/XiangShan/pull/5019)）
 - 模型探索
-  - 调试 SC 可落地方案
-  - 调整 PHR 实现，避免降低仿真性能
+  - 分析 TAGE 实现，修复两个存在性能问题的方向，实现和 CBP 对齐
 - 代码质量
-  - 整理 IFU 代码 -->
+  - 重构 IFU、IBuffer 使用 V3 前端参数系统（[#4975](https://github.com/OpenXiangShan/XiangShan/pull/4975)，[#5013](https://github.com/OpenXiangShan/XiangShan/pull/5013)）
+  - 简化 mbtb 参数（[#4987](https://github.com/OpenXiangShan/XiangShan/pull/4987)）
 
 ### 后端
 

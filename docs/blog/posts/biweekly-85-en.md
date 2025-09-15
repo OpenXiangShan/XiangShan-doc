@@ -23,23 +23,24 @@ From this issue onwards, we will periodically include timing, area, and power co
 
 ### Frontend
 
-<!-- - RTL feature
-  - Optimize IFU instruction marking and cross-block instruction concatenation logic ([#4961](https://github.com/OpenXiangShan/XiangShan/pull/4961))
-    - Use the latter 2B of the instruction to mark it (`pc + 2` for 4B instructions or `pc` for 2B instructions)
-    - When a single 4B instruction crosses the boundry of the fetch block, cache it in IFU and wait for next fetch request to do concatenation, instead of reading extra 2B from ICache
-  - Optimize FTQ redirect logic: When a redirection request flushes an FTQ slot to empty, write new entry into that empty slot instead of allocating a new one ([#4939](https://github.com/OpenXiangShan/XiangShan/pull/4939))
-  - Drop cross-page fetch support in ICache and IFU ([#4909](https://github.com/OpenXiangShan/XiangShan/pull/4909), [#4989](https://github.com/OpenXiangShan/XiangShan/pull/4989))
-  - Optimize mBTB multi-hit handling logic ([#4984](https://github.com/OpenXiangShan/XiangShan/pull/4984))
-  - TAGE, ITTAGE, branch resolve update, etc. are under ongoing development, we'll see them soon
+- RTL feature
+  - Support resolve update BPU ([#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962))
+  - Support dynamic fetch block size in ICache to save power and prepare for 64B fetch block ([#4999](https://github.com/OpenXiangShan/XiangShan/pull/4999))
+  - Optimize mbtb and abtb replacement algorithm, using SRAM-based PLRU to save area ([#4964](https://github.com/OpenXiangShan/XiangShan/pull/4964))
+  - Implement ITTAGE in V3 BPU ([#5000](https://github.com/OpenXiangShan/XiangShan/pull/5000), [#5020](https://github.com/OpenXiangShan/XiangShan/pull/5020))
+  - Optimize PHR update mechanism ([#4995](https://github.com/OpenXiangShan/XiangShan/pull/4995))
+  - TAGE-SC development is ongoing, not merged yet ([#5001](https://github.com/OpenXiangShan/XiangShan/pull/5001))
 - Bug fix
-  - (V2) Fix X-state propagation issue caused by SRAM read/write conflicts in FTB ([#4971](https://github.com/OpenXiangShan/XiangShan/pull/4971))
-  - Fix X-state propagation issues caused by BPU prediction starting before SRAM initialization ([#4968](https://github.com/OpenXiangShan/XiangShan/pull/4968))
-  - Fix uBTB training not-taken branches ([#4977](https://github.com/OpenXiangShan/XiangShan/pull/4977))
+  - Fix some bugs triggered by resolve update
+    - Fix the incorrect IFU redirection of a cross-fetch-block non-cfi (control-flow instruction) predicted as cfi (Merged with [#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962))
+    - Assist in fixing the backend branchUnit's incorrect branch target address calculation (Merged with [#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962))
+    - Fix ubtb multi-hit issue caused by wrong update condition ([#5004](https://github.com/OpenXiangShan/XiangShan/pull/5004), [#5008](https://github.com/OpenXiangShan/XiangShan/pull/5008))
+    - Fix IBuffer's incorrect passing of identifiedCfi ([#5019](https://github.com/OpenXiangShan/XiangShan/pull/5019))
 - Model exploration
-  - Debug SC implementable solutions
-  - Adjust PHR implementation to avoid simulation performance degradation
+  - Analyze the TAGE implementation, fix two performance issues, now align with CBP
 - Code quality
-  - Refactor IFU code -->
+  - Refactor IFU and IBuffer to use V3 frontend parameter system ([#4975](https://github.com/OpenXiangShan/XiangShan/pull/4975), [#5013](https://github.com/OpenXiangShan/XiangShan/pull/5013))
+  - Simplify mbtb parameters ([#4987](https://github.com/OpenXiangShan/XiangShan/pull/4987))
 
 ### Backend
 

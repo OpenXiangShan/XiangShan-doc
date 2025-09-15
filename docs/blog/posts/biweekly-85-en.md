@@ -44,11 +44,9 @@ From this issue onwards, we will periodically include timing, area, and power co
 
 ### Backend
 
-<!-- - RTL feature
-  - Fix the source of standard uop's number of write back registers（[#4944](https://github.com/OpenXiangShan/XiangShan/pull/4944)）
-- Bug fix
-  - (V2) Add software check exception caused by Zicfilp to exception priority（[#4923](https://github.com/OpenXiangShan/XiangShan/pull/4923)）
-  - (V2) Fix DPC register related issues（[#4979](https://github.com/OpenXiangShan/XiangShan/pull/4979)） -->
+- Bug Fix
+  - Backend should provide start pc of the FTQ entry.（[#5017](https://github.com/OpenXiangShan/XiangShan/pull/5017)）
+  - Fix isRVC transfer logic for new ftqoffset （[#5003](https://github.com/OpenXiangShan/XiangShan/pull/5003)）
 
 ### MemBlock and Cache
 

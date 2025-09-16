@@ -11,13 +11,13 @@ categories:
 
 本次是第 85 期双周报。
 
-在本次双周报中，我们非常高兴地发布香山编译器（XiangShang Compiler Collection, XSCC）。XSCC 是一款基于香山开源高性能 RISC-V 处理器研发的高性能编译器，依托 LLVM 框架开发，专注于访存优化、分支预测改进、循环展开与自动矢量化等微架构级性能提升策略。目前，XSCC 1.0 基于 LLVM 19.1.0 开发。
+在本次双周报中，我们非常高兴地向大家宣布，香山要有属于自己的编译器了！香山编译器（XiangShan Compiler Collection, XSCC） 是一款基于香山开源高性能 RISC-V 处理器研发的高性能编译器，依托 LLVM 框架开发，专注于访存优化、分支预测改进、循环展开与自动矢量化等微架构级性能提升策略。目前，XSCC 1.0 基于 LLVM 19.1.0 开发。
 
-本次发布为 XSCC v1.0 二进制发行包，提供面向 RISC‑V 的交叉编译器（生成 riscv64 目标代码）。可在 Ubuntu 22.04 以上版本的主机 (x86_64) 运行，默认配套的 C 标准库为 glibc。在 GitHub Releases 页面可下载该发行包：<https://github.com/OpenXiangShan/xscc/releases>。
-
-从本期双周报开始，我们将在性能评估部分加入使用 XSCC 编译的 SPEC 2006 性能数据，供大家参考。
+本次发布为 XSCC v1.0 二进制发行包，提供面向 RISC‑V 的交叉编译器（生成 riscv64 目标代码）。可在 Ubuntu 22.04 以上版本的主机 (x86_64) 运行，默认配套的 C 标准库为 glibc。在 GitHub Releases 页面可下载该发行包：https://github.com/OpenXiangShan/xscc/releases。
 
 在过去的两周，前端 V3 重构基本完成，各个 BPU 适配新的前端框架，后端也做了对应修改。访存与缓存主要修复了 V2 的一些 bug，同时开发了一些新的工具。
+
+从本期双周报开始，我们将在性能评估部分加入使用 XSCC 编译的 SPEC 2006 性能数据，供大家参考。
 
 <!-- more -->
 

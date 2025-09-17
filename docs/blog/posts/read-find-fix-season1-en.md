@@ -1,6 +1,6 @@
 ---
 slug: read-find-fix-season1-en
-date: 2025-09-15
+date: 2025-09-17
 categories:
 - Event-en
 ---

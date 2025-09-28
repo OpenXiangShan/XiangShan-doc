@@ -26,23 +26,29 @@ In the past two weeks, the V3 frontend refactoring is nearly complete, with each
 ### Frontend
 
 - RTL feature
-  - Support resolve update BPU ([#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962))
-  - Support dynamic fetch block size in ICache to save power and prepare for 64B fetch block ([#4999](https://github.com/OpenXiangShan/XiangShan/pull/4999))
-  - Optimize mbtb and abtb replacement algorithm, using SRAM-based PLRU to save area ([#4964](https://github.com/OpenXiangShan/XiangShan/pull/4964))
-  - Implement ITTAGE in V3 BPU ([#5000](https://github.com/OpenXiangShan/XiangShan/pull/5000), [#5020](https://github.com/OpenXiangShan/XiangShan/pull/5020))
-  - Optimize PHR update mechanism ([#4995](https://github.com/OpenXiangShan/XiangShan/pull/4995))
-  - TAGE-SC development is ongoing, not merged yet ([#5001](https://github.com/OpenXiangShan/XiangShan/pull/5001))
+  - Optimize BPU training mechanism by training the first mispredicted branch in a resolve entry, drop subsequent branches ([#5023](https://github.com/OpenXiangShan/XiangShan/pull/5023), [#5037](https://github.com/OpenXiangShan/XiangShan/pull/5037), [#5041](https://github.com/OpenXiangShan/XiangShan/pull/5041))
+  - Support training s1 fast predictor with results from s3 accurate predictor, not enabled yet as accurate predictor is not ready ([#4970](https://github.com/OpenXiangShan/XiangShan/pull/4970))
+  - Increase abtb ways to 8, consistent with mbtb default configuration ([#5042](https://github.com/OpenXiangShan/XiangShan/pull/5042))
+  - Merge TAGE, not enabled yet due to some issues with override mechanism ([#5001](https://github.com/OpenXiangShan/XiangShan/pull/5001))
+  - Support multi-way write in TAGE WriteBuffer ([#5044](https://github.com/OpenXiangShan/XiangShan/pull/5044))
+  - Increase number of branches stored in a resolve entry to 8 ([#5050](https://github.com/OpenXiangShan/XiangShan/pull/5050))
+  - Support 64B fetch ([#5014](https://github.com/OpenXiangShan/XiangShan/pull/5014))
+  - Remove ICache MainPipe s2 stage to simplify design and prepare for future features ([#5053](https://github.com/OpenXiangShan/XiangShan/pull/5053))
+  - Relax IBuffer enqueue conditions to reduce stalls ([#5036](https://github.com/OpenXiangShan/XiangShan/pull/5036))
 - Bug fix
-  - Fix some bugs triggered by resolve update
-    - Fix the incorrect IFU redirection of a cross-fetch-block non-cfi (control-flow instruction) predicted as cfi (Merged with [#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962))
-    - Assist in fixing the backend branchUnit's incorrect branch target address calculation (Merged with [#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962))
-    - Fix ubtb multi-hit issue caused by wrong update condition ([#5004](https://github.com/OpenXiangShan/XiangShan/pull/5004), [#5008](https://github.com/OpenXiangShan/XiangShan/pull/5008))
-    - Fix IBuffer's incorrect passing of identifiedCfi ([#5019](https://github.com/OpenXiangShan/XiangShan/pull/5019))
+  - Fix abtb X-propagation issue ([#5028](https://github.com/OpenXiangShan/XiangShan/pull/5028))
+  - Fix issue that mbtb predicting cross-page fetch blocks, V3 ICache/IFU removed support for cross-page fetch, BPU needs to ensure no cross-page prediction ([#5060](https://github.com/OpenXiangShan/XiangShan/pull/5060))
+  - Fix TAGE X-propagation issue ([#5043](https://github.com/OpenXiangShan/XiangShan/pull/5043))
+  - Fix issue that V2 RAS integration with V3 FTQ not handling IFU redirect, and rasAction in backend redirect not being correctly assigned ([#5040](https://github.com/OpenXiangShan/XiangShan/pull/5040))
+  - Fix Ftq backendException write condition fault ([#5016](https://github.com/OpenXiangShan/XiangShan/pull/5016), [#5035](https://github.com/OpenXiangShan/XiangShan/pull/5035))
+  - Fix IFU instruction offset calculation error ([#5012](https://github.com/OpenXiangShan/XiangShan/pull/5012))
+  - Fix IFU s1 stage flush condition error, fix issue that ICache WayLookup and MainPipe s1 stage not being flushed by BPU s3 override ([#5054](https://github.com/OpenXiangShan/XiangShan/pull/5054), [#5055](https://github.com/OpenXiangShan/XiangShan/pull/5055), [#5072](https://github.com/OpenXiangShan/XiangShan/pull/5072))
 - Model exploration
-  - Analyze the TAGE implementation, fix two performance issues, now align with CBP
+  - Organize TAGE PHR related commits, performance improved ([GEM5 #524](https://github.com/OpenXiangShan/GEM5/pull/524))
+  - Adjust SC implementable solution to adapt to updateThreshold and weight Table
 - Code quality
-  - Refactor IFU and IBuffer to use V3 frontend parameter system ([#4975](https://github.com/OpenXiangShan/XiangShan/pull/4975), [#5013](https://github.com/OpenXiangShan/XiangShan/pull/5013))
-  - Simplify mbtb parameters ([#4987](https://github.com/OpenXiangShan/XiangShan/pull/4987))
+  - Refactor BPU S3 prediction generation logic by moving takenMask generation from TAGE to BPU top level for clearer module functionality division ([#5045](https://github.com/OpenXiangShan/XiangShan/pull/5045))
+  - Refactor IFU instruction boundary calculation logic ([#5012](https://github.com/OpenXiangShan/XiangShan/pull/5012))
 
 ### Backend
 

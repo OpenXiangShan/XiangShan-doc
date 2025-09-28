@@ -26,23 +26,29 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 支持 resolve 更新 BPU（[#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962)）
-  - 支持 ICache 动态取指块大小，节省功耗，同时为 64B 取指块做准备（[#4999](https://github.com/OpenXiangShan/XiangShan/pull/4999)）
-  - 优化 mbtb、abtb 替换算法，采用 SRAM 实现的 PLRU 以节省面积（[#4964](https://github.com/OpenXiangShan/XiangShan/pull/4964)）
-  - 实现 ITTAGE 接入 V3 BPU（[#5000](https://github.com/OpenXiangShan/XiangShan/pull/5000)，[#5020](https://github.com/OpenXiangShan/XiangShan/pull/5020)）
-  - 优化 PHR 更新机制（[#4995](https://github.com/OpenXiangShan/XiangShan/pull/4995)）
-  - TAGE-SC 持续开发中，暂未合入（[#5001](https://github.com/OpenXiangShan/XiangShan/pull/5001)）
+  - 优化 BPU 训练机制，采用一个 resolve 项内第一条误预测的分支进行训练，丢弃后续分支的训练信息（[#5023](https://github.com/OpenXiangShan/XiangShan/pull/5023)，[#5037](https://github.com/OpenXiangShan/XiangShan/pull/5037)，[#5041](https://github.com/OpenXiangShan/XiangShan/pull/5041)）
+  - 支持使用 s3 精确预测器的结果训练 s1 快速预测器，因精确预测器尚未就绪，暂未启用（[#4970](https://github.com/OpenXiangShan/XiangShan/pull/4970)）
+  - 增加 abtb 的路数到 8 路，和 mbtb 默认配置一致（[#5042](https://github.com/OpenXiangShan/XiangShan/pull/5042)）
+  - 合入 TAGE，因 override 机制存在一些问题，暂未启用（[#5001](https://github.com/OpenXiangShan/XiangShan/pull/5001)）
+  - 支持 TAGE WriteBuffer 多路写入（[#5044](https://github.com/OpenXiangShan/XiangShan/pull/5044)，[#5056](https://github.com/OpenXiangShan/XiangShan/pull/5056)）
+  - 增加 resolve 项内存储的分支数到 8 条（[#5050](https://github.com/OpenXiangShan/XiangShan/pull/5050)）
+  - 支持 64B 取指（[#5014](https://github.com/OpenXiangShan/XiangShan/pull/5014)）
+  - 移除 ICache 主流水 s2 流水级，简化设计，为后续功能做准备（[#5053](https://github.com/OpenXiangShan/XiangShan/pull/5053)）
+  - 放松 IBuffer 入队条件，减少阻塞（[#5036](https://github.com/OpenXiangShan/XiangShan/pull/5036)）
 - Bug 修复
-  - 修复 resolve 更新触发的一些 bug
-    - 修复 IFU 处理跨预测块的、被预测为分支指令的非分支指令时重定向错误的问题（与 [#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962) 一起合入）
-    - 协助修复后端 branchUnit 计算分支目标地址错误的问题（与 [#4962](https://github.com/OpenXiangShan/XiangShan/pull/4962) 一起合入）
-    - 修复 ubtb 更新条件错误导致多路命中的问题（[#5004](https://github.com/OpenXiangShan/XiangShan/pull/5004)，[#5008](https://github.com/OpenXiangShan/XiangShan/pull/5008)）
-    - 修复 IBuffer 错误传递 identifiedCfi 的问题（[#5019](https://github.com/OpenXiangShan/XiangShan/pull/5019)）
+  - 修复 abtb X 态传播的问题（[#5028](https://github.com/OpenXiangShan/XiangShan/pull/5028)）
+  - 修复 mbtb 预测出跨页取指块的问题，V3 ICache/IFU 去除了跨页取指的支持，需要 BPU 保证不给出跨页预测（[#5060](https://github.com/OpenXiangShan/XiangShan/pull/5060)）
+  - 修复 TAGE X 态传播的问题（[#5043](https://github.com/OpenXiangShan/XiangShan/pull/5043)）
+  - 修复 V2 RAS 接入 V3 FTQ 时没有处理 IFU 重定向的问题，以及后端重定向的 rasAction 没有正确赋值的问题（[#5040](https://github.com/OpenXiangShan/XiangShan/pull/5040)）
+  - 修复 Ftq backendException 写条件错拍的问题（[#5016](https://github.com/OpenXiangShan/XiangShan/pull/5016)，[#5035](https://github.com/OpenXiangShan/XiangShan/pull/5035)）
+  - 修复 IFU 指令 offset 计算错误的问题（[#5012](https://github.com/OpenXiangShan/XiangShan/pull/5012)）
+  - 修复 IFU s1 流水级冲刷条件错误、ICache WayLookup 和主流水 s1 流水级未被 BPU s3 override 冲刷的问题（[#5054](https://github.com/OpenXiangShan/XiangShan/pull/5054)），[#5055](https://github.com/OpenXiangShan/XiangShan/pull/5055)，[#5072](https://github.com/OpenXiangShan/XiangShan/pull/5072)）
 - 模型探索
-  - 分析 TAGE 实现，修复两个存在性能问题的方向，实现和 CBP 对齐
+  - 整理 TAGE PHR 相关 commit，性能有改善（[GEM5#524](https://github.com/OpenXiangShan/GEM5/pull/524)）
+  - 调整 SC 落地改造方案，适配 updateThreshold 和 weight Table
 - 代码质量
-  - 重构 IFU、IBuffer 使用 V3 前端参数系统（[#4975](https://github.com/OpenXiangShan/XiangShan/pull/4975)，[#5013](https://github.com/OpenXiangShan/XiangShan/pull/5013)）
-  - 简化 mbtb 参数（[#4987](https://github.com/OpenXiangShan/XiangShan/pull/4987)）
+  - 重构 BPU S3 预测生成逻辑，将 takenMask 的生成从 TAGE 移动到 BPU 顶层，使模块功能划分更加清晰（[#5045](https://github.com/OpenXiangShan/XiangShan/pull/5045)）
+  - 重构 IFU 指令边界计算逻辑（[#5012](https://github.com/OpenXiangShan/XiangShan/pull/5012)）
 
 ### 后端
 

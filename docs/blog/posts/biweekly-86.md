@@ -58,19 +58,16 @@ categories:
 
 ### 访存与缓存
 
-- RTL新特性
-  - （V2）在 CoupledL2 的 MMIOBridge 中，将 clint 的地址范围从 xstilewrap 的映射中排除并重新配置，以集成私有的 clint ip（[CoupledL2 #429](https://github.com/OpenXiangShan/CoupledL2/pull/429)）
-  - MMU、LoadUnit、StoreQueue、L2 等模块重构持续推进中
-  - 重构 NEMU 的访存部分，包括代码整理以及增加 V3 新特性
 - Bug 修复
-  - （V2）修复了 ITLB 在特定周期收到 PWT 响应时卡死的问题（[#4983](https://github.com/OpenXiangShan/XiangShan/pull/4983)）
-  - （V2）在 LLTLB 处理 jmp_bitmap_check 请求时初始化 first_s2xlate_fault 信号，以避免 L2TLB 同时处理 allStage 与 noS2xlate 请求时发生问题（[#4996](https://github.com/OpenXiangShan/XiangShan/pull/4996)）
-  - （V2）修复了 prefetch hit 计数器实现错误，导致统计得到的预取命中数目大于预取请求数目的问题（[#5005](https://github.com/OpenXiangShan/XiangShan/pull/5005)）
-  - （V2）修复了 VSegment 中非对齐访存拆分时地址生成错误的问题（[#5006](https://github.com/OpenXiangShan/XiangShan/pull/5006)）
-  - （V2）修复了 LLPTW 中非必要的位图检查逻辑（[#0518](https://github.com/OpenXiangShan/XiangShan/commit/143ba1cb97fa43bdbd199b34deae21bd52c9adfe)）
-- 工具
-  - tl-test-new 支持 anvil 模式下的噪声生成（[tl-test-new #80](https://github.com/OpenXiangShan/tl-test-new/pull/80)）
-  - 为 CoupledL2 的 TestTop 添加生成二进制格式 CHI log 的功能，用于压缩日志文件大小（[CoupledL2 #410](http://github.com/OpenXiangShan/CoupledL2/pull/410)）
+  - 修复 FDP 中 counter filter 容量不够需要加 1 的问题（[#5030](https://github.com/OpenXiangShan/XiangShan/pull/5030)）
+  - 修复了 LoadUnit 在 fast replay 时没有重新访问数据的问题，以避免产生内存一致性问题（[#4965](https://github.com/OpenXiangShan/XiangShan/pull/4965)）
+- 时序优化
+  - 将 CoupledL2 的数据 SRAM 拆分改为 4份，以适应新的物理设计后端要求（[CoupledL2 #432](https://github.com/OpenXiangShan/CoupledL2/pull/432)）
+  - 旧版 MMU 时序修复进行中
+  - 分析往期版本的 LoadQueueReplay 时序，找到时序退化点
+- RTL 新特性
+  - MMU、LoadUnit、StoreQueue、L2 等模块重构持续推进中
+  - L1 Acquire 时获取路信息以在 Release 时省去读目录获得路数的过程。正在修复 Bug
 
 ## 性能评估
 

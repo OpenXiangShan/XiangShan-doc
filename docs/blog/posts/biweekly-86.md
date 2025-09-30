@@ -15,7 +15,7 @@ categories:
 
 本次发布为 XSCC v1.0 二进制发行包，提供面向 RISC‑V 的交叉编译器（生成 riscv64 目标代码）。可在 Ubuntu 22.04 以上版本的主机 (x86_64) 运行，默认配套的 C 标准库为 glibc。在 GitHub Releases 页面可下载该发行包：https://github.com/OpenXiangShan/xscc/releases。
 
-在过去的两周，前端 V3 重构基本完成，各个 BPU 适配新的前端框架，后端也做了对应修改。访存与缓存主要修复了 V2 的一些 bug，同时开发了一些新的工具。
+在过去的两周，前端 V3 重构基本完成，各个 BPU 适配新的前端框架，后端也做了对应修改。后端主要在推进向量单元的性能优化。访存与缓存主要修复了 V2 的一些 bug，同时开发了一些新的工具。
 
 从本期双周报开始，我们将在性能评估部分加入使用 XSCC 编译的 SPEC 2006 性能数据，供大家参考。
 
@@ -53,8 +53,19 @@ categories:
 ### 后端
 
 - Bug 修复
-  - 后端应提供 FTQ 项的起始 PC（[#5017](https://github.com/OpenXiangShan/XiangShan/pull/5017)）
-  - 修复 isRVC 传输逻辑以适应新的 FTQ 设计（[#5003](https://github.com/OpenXiangShan/XiangShan/pull/5003)）
+  - 通过当预测和实际都被采用时检查目标修复分支预测性能bug（[#5027](https://github.com/OpenXiangShan/XiangShan/pull/5027)）
+  - 修复nmi寄存器的gate逻辑的bug（[#5031](https://github.com/OpenXiangShan/XiangShan/pull/5031)）
+  - 修复预取指令不应响应load trigger的bug（[#5059](https://github.com/OpenXiangShan/XiangShan/pull/5059)）
+  - 修复关闭rob压缩后融合指令后跟分支指令时出错的bug（[#5074](https://github.com/OpenXiangShan/XiangShan/pull/5074)）
+- 时序优化
+  - 重新划分后端一级子模块，便于物理设计划分（[#5032](https://github.com/OpenXiangShan/XiangShan/pull/5032)）
+- RTL新特性
+  - 完成Trace Control Interface对APB总线与AXI总线的支持
+  - 拆分SRAM Sink拆为SMEM模式（通过AXI写入内存）和SRAM模式（组件内置专用的FIFO Buffer）
+  - 进行branch_map逻辑设计，同步packet和trap packet的设计
+  - 增加性能计数器统计任意两个发射队列之间可旁路ALU的数量
+- 代码质量
+  - 移除部分死代码（[#5071](https://github.com/OpenXiangShan/XiangShan/pull/5071)）
 
 ### 访存与缓存
 

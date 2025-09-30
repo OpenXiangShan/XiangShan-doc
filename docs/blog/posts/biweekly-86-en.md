@@ -53,8 +53,19 @@ In the past two weeks, the V3 frontend refactoring is nearly complete, with each
 ### Backend
 
 - Bug Fix
-  - Backend should provide start pc of the FTQ entry.（[#5017](https://github.com/OpenXiangShan/XiangShan/pull/5017)）
-  - Fix isRVC transfer logic for new ftqoffset （[#5003](https://github.com/OpenXiangShan/XiangShan/pull/5003)）
+  - Fix a branch prediction performance bug by checking the target when both the prediction and the actual execution are taken ([#5027](https://github.com/OpenXiangShan/XiangShan/pull/5027))
+  - Fix a bug in the gate logic of the NMI register ([#5031](https://github.com/OpenXiangShan/XiangShan/pull/5031))
+  - Fix a bug where prefetch instructions should not respond to load triggers ([#5059](https://github.com/OpenXiangShan/XiangShan/pull/5059))
+  - Fix a bug where errors occurred when fusion instructions followed by branch instructions after disabling ROB compression ([#5074](https://github.com/OpenXiangShan/XiangShan/pull/5074))
+- Timing optimization
+  - Split the backend's first-level submodules to facilitate physical design partitioning ([#5032](https://github.com/OpenXiangShan/XiangShan/pull/5032))
+- New RTL features
+  - Completed Trace Control Interface support for APB and AXI buses
+  - Split the SRAM sink into SMEM mode (writing to memory via AXI) and SRAM mode (with a dedicated FIFO buffer built into the component)
+  - Designed branch_map logic and synchronized packet and trap packet processing
+  - Added performance counters to count the number of bypassable ALUs between any two transmit queues
+- Code quality improvements
+  - Removed some dead code ([#5071](https://github.com/OpenXiangShan/XiangShan/pull/5071))
 
 ### MemBlock and Cache
 

@@ -54,24 +54,24 @@ In the past two weeks, the V3 frontend refactoring is nearly complete, with each
 
 - Bug Fix
   - Fix a branch prediction performance bug by checking the target when both the prediction and the actual execution are taken ([#5027](https://github.com/OpenXiangShan/XiangShan/pull/5027))
-  - Fix a bug in the gate logic of the NMI register ([#5031](https://github.com/OpenXiangShan/XiangShan/pull/5031))
-  - Fix a bug where prefetch instructions should not respond to load triggers ([#5059](https://github.com/OpenXiangShan/XiangShan/pull/5059))
+  - Fix a bug in the gate logic of the NMI register ([#5067](https://github.com/OpenXiangShan/XiangShan/pull/5067))
   - Fix a bug where errors occurred when fusion instructions followed by branch instructions after disabling ROB compression ([#5074](https://github.com/OpenXiangShan/XiangShan/pull/5074))
+  - (V2) Fix a bug where prefetch instructions should not respond to load triggers ([#5059](https://github.com/OpenXiangShan/XiangShan/pull/5059))
 - Timing optimization
   - Split the backend's first-level submodules to facilitate physical design partitioning ([#5032](https://github.com/OpenXiangShan/XiangShan/pull/5032))
 - New RTL features
-  - Completed Trace Control Interface support for APB and AXI buses
+  - Complete Trace Control Interface support for APB and AXI buses
   - Split the SRAM sink into SMEM mode (writing to memory via AXI) and SRAM mode (with a dedicated FIFO buffer built into the component)
-  - Designed branch_map logic and synchronized packet and trap packet processing
-  - Added performance counters to count the number of bypassable ALUs between any two transmit queues
+  - Design branch_map logic and synchronize packet and trap packet processing
+  - Add performance counters to count the number of bypassable ALUs between any two transmit queues
 - Code quality improvements
-  - Removed some dead code ([#5071](https://github.com/OpenXiangShan/XiangShan/pull/5071))
+  - Remove some dead code ([#5071](https://github.com/OpenXiangShan/XiangShan/pull/5071))
 
 ### MemBlock and Cache
 
 - Bug Fix
-  - Fix the issue in FDP where the counter filter capacity is insufficient and needs to be increased by 1 ([#5030](https://github.com/OpenXiangShan/XiangShan/pull/5030))
-  - Fix the issue that LoadUnit did not re-access data during fast replay was performed to avoid memory consistency issues  ([#4965](https://github.com/OpenXiangShan/XiangShan/pull/4965))
+  - (V2) Fix the issue in FDP where the counter filter capacity is insufficient and needs to be increased by 1 ([#5030](https://github.com/OpenXiangShan/XiangShan/pull/5030))
+  - (V2) Fix the issue that LoadUnit did not re-access data during fast replay was performed to avoid memory consistency issues  ([#4965](https://github.com/OpenXiangShan/XiangShan/pull/4965))
 - Timing optimization
   - Split the data SRAM of CoupledL2 into 4 parts to meet the new physical design backend requirements  ([CoupledL2 #432](https://github.com/OpenXiangShan/CoupledL2/pull/432))
   - Old MMU timing fixes is on going

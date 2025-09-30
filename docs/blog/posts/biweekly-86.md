@@ -44,7 +44,7 @@ categories:
   - 修复 IFU 指令 offset 计算错误的问题（[#5012](https://github.com/OpenXiangShan/XiangShan/pull/5012)）
   - 修复 IFU s1 流水级冲刷条件错误、ICache WayLookup 和主流水 s1 流水级未被 BPU s3 override 冲刷的问题（[#5054](https://github.com/OpenXiangShan/XiangShan/pull/5054)），[#5055](https://github.com/OpenXiangShan/XiangShan/pull/5055)，[#5072](https://github.com/OpenXiangShan/XiangShan/pull/5072)）
 - 模型探索
-  - 整理 TAGE PHR 相关 commit，性能有改善（[GEM5#524](https://github.com/OpenXiangShan/GEM5/pull/524)）
+  - 整理 TAGE PHR 相关 commit，性能有改善（[GEM5 #524](https://github.com/OpenXiangShan/GEM5/pull/524)）
   - 调整 SC 落地改造方案，适配 updateThreshold 和 weight Table
 - 代码质量
   - 重构 BPU S3 预测生成逻辑，将 takenMask 的生成从 TAGE 移动到 BPU 顶层，使模块功能划分更加清晰（[#5045](https://github.com/OpenXiangShan/XiangShan/pull/5045)）
@@ -53,27 +53,27 @@ categories:
 ### 后端
 
 - Bug 修复
-  - 通过当预测和实际都被采用时检查目标修复分支预测性能bug（[#5027](https://github.com/OpenXiangShan/XiangShan/pull/5027)）
-  - 修复nmi寄存器的gate逻辑的bug（[#5031](https://github.com/OpenXiangShan/XiangShan/pull/5031)）
-  - 修复预取指令不应响应load trigger的bug（[#5059](https://github.com/OpenXiangShan/XiangShan/pull/5059)）
-  - 修复关闭rob压缩后融合指令后跟分支指令时出错的bug（[#5074](https://github.com/OpenXiangShan/XiangShan/pull/5074)）
+  - 通过当预测和实际都为跳转时检查目标修复分支预测性能 bug（[#5027](https://github.com/OpenXiangShan/XiangShan/pull/5027)）
+  - 修复 nmi 寄存器的 gate 逻辑的 bug（[#5067](https://github.com/OpenXiangShan/XiangShan/pull/5067)）
+  - 修复关闭 rob 压缩后融合指令后跟分支指令时出错的 bug（[#5074](https://github.com/OpenXiangShan/XiangShan/pull/5074)）
+  - （V2）修复预取指令不应响应 load trigger 的 bug（[#5059](https://github.com/OpenXiangShan/XiangShan/pull/5059)）
 - 时序优化
   - 重新划分后端一级子模块，便于物理设计划分（[#5032](https://github.com/OpenXiangShan/XiangShan/pull/5032)）
-- RTL新特性
-  - 完成Trace Control Interface对APB总线与AXI总线的支持
-  - 拆分SRAM Sink拆为SMEM模式（通过AXI写入内存）和SRAM模式（组件内置专用的FIFO Buffer）
-  - 进行branch_map逻辑设计，同步packet和trap packet的设计
-  - 增加性能计数器统计任意两个发射队列之间可旁路ALU的数量
+- RTL 新特性
+  - 完成 Trace Control Interface 对 APB 总线与 AXI 总线的支持
+  - 拆分 SRAM Sink 拆为 SMEM 模式（通过 AXI 写入内存）和 SRAM 模式（组件内置专用的 FIFO Buffer）
+  - 进行 branch_map 逻辑设计，同步 packet 和 trap packet 的设计
+  - 增加性能计数器统计任意两个发射队列之间可旁路 ALU 的数量
 - 代码质量
   - 移除部分死代码（[#5071](https://github.com/OpenXiangShan/XiangShan/pull/5071)）
 
 ### 访存与缓存
 
 - Bug 修复
-  - 修复 FDP 中 counter filter 容量不够需要加 1 的问题（[#5030](https://github.com/OpenXiangShan/XiangShan/pull/5030)）
-  - 修复了 LoadUnit 在 fast replay 时没有重新访问数据的问题，以避免产生内存一致性问题（[#4965](https://github.com/OpenXiangShan/XiangShan/pull/4965)）
+  - （V2）修复 FDP 中 counter filter 容量不够需要加 1 的问题（[#5030](https://github.com/OpenXiangShan/XiangShan/pull/5030)）
+  - （V2）修复了 LoadUnit 在 fast replay 时没有重新访问数据的问题，以避免产生内存一致性问题（[#4965](https://github.com/OpenXiangShan/XiangShan/pull/4965)）
 - 时序优化
-  - 将 CoupledL2 的数据 SRAM 拆分改为 4份，以适应新的物理设计后端要求（[CoupledL2 #432](https://github.com/OpenXiangShan/CoupledL2/pull/432)）
+  - 将 CoupledL2 的数据 SRAM 拆分改为 4 份，以适应新的物理设计后端要求（[CoupledL2 #432](https://github.com/OpenXiangShan/CoupledL2/pull/432)）
   - 旧版 MMU 时序修复进行中
   - 分析往期版本的 LoadQueueReplay 时序，找到时序退化点
 - RTL 新特性

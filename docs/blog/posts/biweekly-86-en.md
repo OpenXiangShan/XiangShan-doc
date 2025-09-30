@@ -9,15 +9,17 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. We look forward to your contribution.
 
-This is the 85th issue of the biweekly report.
+This is the 86th issue of the biweekly report.
 
-In this biweekly report, we are excited to announce the release of the XiangShan Compiler Collection (XSCC). Built on the LLVM framework, XSCC is a high-performance compiler optimized for open-source high-performance RISC-V processor XiangShan. It focuses on microarchitecture-level performance enhancement strategies such as memory access optimization, branch prediction improvement, loop unrolling, and automatic vectorization. Currently, XSCC 1.0 is developed based on LLVM 19.1.0.
+We are very pleased to share two pieces of news with you.
 
-This release is the XSCC v1.0 binary distribution package, providing a cross-compiler for RISC-V (generating riscv64 target code). It can run on hosts with Ubuntu 22.04 or above (x86_64), with glibc as the default C standard library. The distribution package can be downloaded from the GitHub Releases page: <https://github.com/OpenXiangShan/xscc/releases>.
+On September 20, the XiangShan team won the first Open Source Contribution Award from the CCF Architecture Committee. This collective award holds special significance for the XiangShan team—it represents recognition and support from our academic peers for the open-source processor and the team itself, laying the foundation for XiangShan to have a broad impact. The XiangShan team will continue to move forward, step by step, striving to keep XiangShan alive for 30 years!
 
-From this issue onwards, we will include performance data of SPEC 2006 compiled with XSCC for your reference.
+On September 22, Innosilicon released the "Fenghua 3" full-featured GPU. The "Fenghua 3" GPU successfully integrated the XiangShan "Nanhu" processor IP core, which is performance-competitive with the ARM Cortex-A76, as its high-performance on-chip main control CPU. This integration marks a new phase in the industrial application of open-source high-performance CPU IPs and signifies that RISC-V can carve out a path different from the traditional ARM model.
 
-In the past two weeks, the V3 frontend refactoring is nearly complete, with each BPU adapted to the new frontend framework, and corresponding modifications made to the backend. The backend is mainly focused on promoting the performance optimization of the vector unit. The memory access and cache team mainly fixed some bugs in V2 while developing new tools.
+We believe that open-source chips do not equate to low performance or low quality. Open source will profoundly change the cost structure of chip development, providing a new paradigm for chip design in the industry.
+
+In the past two weeks, the frontend has fixed functional and performance bugs caused by the integration of the new BPU, while continuing performance exploration and tuning. The memory access and cache teams have fixed some bugs and refactored some code to advance the development of V3.
 
 <!-- more -->
 

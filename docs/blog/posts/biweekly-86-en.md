@@ -17,7 +17,7 @@ This release is the XSCC v1.0 binary distribution package, providing a cross-com
 
 From this issue onwards, we will include performance data of SPEC 2006 compiled with XSCC for your reference.
 
-In the past two weeks, the V3 frontend refactoring is nearly complete, with each BPU adapted to the new frontend framework, and corresponding modifications made to the backend. The memory access and cache team mainly fixed some bugs in V2 while developing new tools.
+In the past two weeks, the V3 frontend refactoring is nearly complete, with each BPU adapted to the new frontend framework, and corresponding modifications made to the backend. The backend is mainly focused on promoting the performance optimization of the vector unit. The memory access and cache team mainly fixed some bugs in V2 while developing new tools.
 
 <!-- more -->
 

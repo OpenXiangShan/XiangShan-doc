@@ -73,15 +73,15 @@ categories:
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 35.89  | 410.bwaves       | 67.22  |
+| 400.perlbench     | 35.88  | 410.bwaves       | 67.22  |
 | 401.bzip2         | 25.51  | 416.gamess       | 41.01  |
-| 403.gcc           | 47.96  | 433.milc         | 45.10  |
-| 429.mcf           | 59.97  | 434.zeusmp       | 51.83  |
+| 403.gcc           | 47.90  | 433.milc         | 50.44  |
+| 429.mcf           | 60.18  | 434.zeusmp       | 51.83  |
 | 445.gobmk         | 30.63  | 435.gromacs      | 33.67  |
 | 456.hmmer         | 41.61  | 436.cactusADM    | 46.20  |
 | 458.sjeng         | 30.62  | 437.leslie3d     | 47.80  |
-| 462.libquantum    | 122.58 | 444.namd         | 28.94  |
-| 464.h264ref       | 56.59  | 447.dealII       | 73.63  |
+| 462.libquantum    | 122.58 | 444.namd         | 28.87  |
+| 464.h264ref       | 56.59  | 447.dealII       | 73.77  |
 | 471.omnetpp       | 41.50  | 450.soplex       | 52.48  |
 | 473.astar         | 29.30  | 453.povray       | 53.49  |
 | 483.xalancbmk     | 72.79  | 454.Calculix     | 16.38  |
@@ -90,7 +90,7 @@ categories:
 |                   |        | 470.lbm          | 91.98  |
 |                   |        | 481.wrf          | 40.64  |
 |                   |        | 482.sphinx3      | 49.13  |
-|                   |        | GEOMEAN          | 44.97  |
+|                   |        | GEOMEAN          | 45.26  |
 
 我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，Simpoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
 
@@ -108,8 +108,8 @@ categories:
 
 |           |            |
 | --------- | ---------- |
-| commit    | b2daf0a    |
-| 日期      | 2025/08/29 |
+| commit    | 324b389    |
+| 日期      | 2025/09/25 |
 | L1 ICache | 64KB       |
 | L1 DCache | 64KB       |
 | L2 Cache  | 1MB        |
@@ -117,39 +117,6 @@ categories:
 | 访存单元  | 3ld2st     |
 | 总线协议  | TileLink   |
 | 内存延迟  | DDR4-3200  |
-
-使用 XSCC 编译的 SPEC 2006 性能数据如下所示：
-
-| SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
-| :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 36.33  | 410.bwaves       | 68.97  |
-| 401.bzip2         | 25.74  | 416.gamess       | 44.43  |
-| 403.gcc           | 35.70  | 433.milc         | 68.07  |
-| 429.mcf           | 61.14  | 434.zeusmp       | 51.66  |
-| 445.gobmk         | 30.81  | 435.gromacs      | 30.72  |
-| 456.hmmer         | 46.74  | 436.cactusADM    | 66.66  |
-| 458.sjeng         | 32.19  | 437.leslie3d     | 49.47  |
-| 462.libquantum    | 268.14 | 444.namd         | 34.47  |
-| 464.h264ref       | 61.02  | 447.dealII       | 80.67  |
-| 471.omnetpp       | 36.09  | 450.soplex       | 52.26  |
-| 473.astar         | 28.41  | 453.povray       | 55.62  |
-| 483.xalancbmk     | 78.27  | 454.Calculix     | 33.00  |
-| GEOMEAN           | 47.25  | 459.GemsFDTD     | 53.37  |
-|                   |        | 465.tonto        | 29.55  |
-|                   |        | 470.lbm          | 121.32 |
-|                   |        | 481.wrf          | 36.72  |
-|                   |        | 482.sphinx3      | 51.93  |
-|                   |        | GEOMEAN          | 50.97  |
-
-编译参数如下所示：
-
-|          |                        |
-| -------- | ---------------------- |
-| 编译器   | XSCC 1.0               |
-| 编译优化 | O3                     |
-| 内存库   | jemalloc               |
-| -march   | rv64gc_zba_zbb_zbs_zbc |
-| 其他参数 | -ffast-math, -flto     |
 
 ## 相关链接
 

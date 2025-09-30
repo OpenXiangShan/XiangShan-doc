@@ -73,15 +73,15 @@ In the past two weeks, the V3 frontend refactoring is nearly complete, with each
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 35.89  | 410.bwaves       | 67.22  |
+| 400.perlbench     | 35.88  | 410.bwaves       | 67.22  |
 | 401.bzip2         | 25.51  | 416.gamess       | 41.01  |
-| 403.gcc           | 47.96  | 433.milc         | 45.10  |
-| 429.mcf           | 59.97  | 434.zeusmp       | 51.83  |
+| 403.gcc           | 47.90  | 433.milc         | 50.44  |
+| 429.mcf           | 60.18  | 434.zeusmp       | 51.83  |
 | 445.gobmk         | 30.63  | 435.gromacs      | 33.67  |
 | 456.hmmer         | 41.61  | 436.cactusADM    | 46.20  |
 | 458.sjeng         | 30.62  | 437.leslie3d     | 47.80  |
-| 462.libquantum    | 122.58 | 444.namd         | 28.94  |
-| 464.h264ref       | 56.59  | 447.dealII       | 73.63  |
+| 462.libquantum    | 122.58 | 444.namd         | 28.87  |
+| 464.h264ref       | 56.59  | 447.dealII       | 73.77  |
 | 471.omnetpp       | 41.50  | 450.soplex       | 52.48  |
 | 473.astar         | 29.30  | 453.povray       | 53.49  |
 | 483.xalancbmk     | 72.79  | 454.Calculix     | 16.38  |
@@ -90,7 +90,7 @@ In the past two weeks, the V3 frontend refactoring is nearly complete, with each
 |                   |        | 470.lbm          | 91.98  |
 |                   |        | 481.wrf          | 40.64  |
 |                   |        | 482.sphinx3      | 49.13  |
-|                   |        | GEOMEAN          | 44.97  |
+|                   |        | GEOMEAN          | 45.26  |
 
 We use SimPoint to sample programs and create checkpoints images based on our custom format. The coverage of SimPoint clustering reaches 100%. Note that the above scores are estimated based on program segments rather than a complete SPEC CPU2006 evaluation, which may deviate from the actual performance of real chips.
 
@@ -108,8 +108,8 @@ Processor and SoC parameters are as follows:
 
 |                |            |
 | -------------- | ---------- |
-| Commit         | b2daf0a    |
-| Date           | 08/29/2025 |
+| Commit         | 324b389    |
+| Date           | 09/25/2025 |
 | L1 ICache      | 64KB       |
 | L1 DCache      | 64KB       |
 | L2 Cache       | 1MB        |
@@ -117,39 +117,6 @@ Processor and SoC parameters are as follows:
 | LSU            | 3ld2st     |
 | Bus protocol   | TileLink   |
 | Memory latency | DDR4-3200  |
-
-The SPEC 2006 performance data compiled with XSCC is as follows:
-
-| SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
-| :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 36.33  | 410.bwaves       | 68.97  |
-| 401.bzip2         | 25.74  | 416.gamess       | 44.43  |
-| 403.gcc           | 35.70  | 433.milc         | 68.07  |
-| 429.mcf           | 61.14  | 434.zeusmp       | 51.66  |
-| 445.gobmk         | 30.81  | 435.gromacs      | 30.72  |
-| 456.hmmer         | 46.74  | 436.cactusADM    | 66.66  |
-| 458.sjeng         | 32.19  | 437.leslie3d     | 49.47  |
-| 462.libquantum    | 268.14 | 444.namd         | 34.47  |
-| 464.h264ref       | 61.02  | 447.dealII       | 80.67  |
-| 471.omnetpp       | 36.09  | 450.soplex       | 52.26  |
-| 473.astar         | 28.41  | 453.povray       | 55.62  |
-| 483.xalancbmk     | 78.27  | 454.Calculix     | 33.00  |
-| GEOMEAN           | 47.25  | 459.GemsFDTD     | 53.37  |
-|                   |        | 465.tonto        | 29.55  |
-|                   |        | 470.lbm          | 121.32 |
-|                   |        | 481.wrf          | 36.72  |
-|                   |        | 482.sphinx3      | 51.93  |
-|                   |        | GEOMEAN          | 50.97  |
-
-Compilation parameters are as follows:
-
-|                    |                        |
-| ------------------ | ---------------------- |
-| Compiler           | XSCC 1.0               |
-| Optimization level | O3                     |
-| Memory library     | jemalloc               |
-| -march             | rv64gc_zba_zbb_zbs_zbc |
-| Other Parameters   | -ffast-math, -flto     |
 
 ## Related links
 

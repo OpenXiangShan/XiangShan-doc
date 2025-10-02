@@ -61,7 +61,7 @@ categories:
   - （V2）在 LLTLB 处理 jmp_bitmap_check 请求时初始化 first_s2xlate_fault 信号，以避免 L2TLB 同时处理 allStage 与 noS2xlate 请求时发生问题（[#4996](https://github.com/OpenXiangShan/XiangShan/pull/4996)）
   - （V2）修复了 prefetch hit 计数器实现错误，导致统计得到的预取命中数目大于预取请求数目的问题（[#5005](https://github.com/OpenXiangShan/XiangShan/pull/5005)）
   - （V2）修复了 VSegment 中非对齐访存拆分时地址生成错误的问题（[#5006](https://github.com/OpenXiangShan/XiangShan/pull/5006)）
-  - （V2）修复了 LLPTW 中非必要的位图检查逻辑（[#0518](https://github.com/OpenXiangShan/XiangShan/commit/143ba1cb97fa43bdbd199b34deae21bd52c9adfe)）
+  - （V2）修复了 LLPTW 中非必要的位图检查逻辑（[#5018](https://github.com/OpenXiangShan/XiangShan/pull/5018)）
 - 工具
   - tl-test-new 支持 anvil 模式下的噪声生成（[tl-test-new #80](https://github.com/OpenXiangShan/tl-test-new/pull/80)）
   - 为 CoupledL2 的 TestTop 添加生成二进制格式 CHI log 的功能，用于压缩日志文件大小（[CoupledL2 #410](http://github.com/OpenXiangShan/CoupledL2/pull/410)）

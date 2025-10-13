@@ -63,12 +63,12 @@ In the past two weeks, the frontend has fixed functional and performance bugs ca
 ### MemBlock and Cache
 
 - Bug Fix
-  - (V2) Fix the issue in FDP where the counter filter capacity is insufficient and needs to be increased by 1 ([#5030](https://github.com/OpenXiangShan/XiangShan/pull/5030))
-  - (V2) Fix the issue that LoadUnit did not re-access data during fast replay was performed to avoid memory consistency issues  ([#4965](https://github.com/OpenXiangShan/XiangShan/pull/4965))
+  - （V2）Fix incorrect TLB level refill during exceptions, which caused large pages to be recorded as small pages（[#5087](https://github.com/OpenXiangShan/XiangShan/pull/5087)）
+  - （V2）fix bitmap check result wakeup l0BitmapReg logic（[#5073](https://github.com/OpenXiangShan/XiangShan/pull/5073)）
+  - Move NEMU's PMEMBASE to higher address to prevent conflicts with mmap mappings that use the MAP_FIXED mode. Future work may further eliminate the dependency on MAP_FIXED（[NEMU #930](https://github.com/OpenXiangShan/NEMU/pull/930)）
 - Timing optimization
   - Split the data SRAM of CoupledL2 into 4 parts to meet the new physical design backend requirements  ([CoupledL2 #432](https://github.com/OpenXiangShan/CoupledL2/pull/432))
-  - Old MMU timing fixes is on going
-  - Analyze the timing of LoadQueueReplay in previous versions to find the timing degradation point
+  - The timing fix of old MMU, LoadQueueReplay, etc. is on going
 - RTL new features
   - The refactoring of MMU, LoadUnit, StoreQueue, L2, etc. is ongoing
   - L1 Acquire gets the way information to save the cost of reading the directory to obtain the number of way during Release. Fixing bugs

@@ -63,12 +63,11 @@ categories:
 ### 访存与缓存
 
 - Bug 修复
-  - （V2）修复 FDP 中 counter filter 容量不够需要加 1 的问题（[#5030](https://github.com/OpenXiangShan/XiangShan/pull/5030)）
-  - （V2）修复了 LoadUnit 在 fast replay 时没有重新访问数据的问题，以避免产生内存一致性问题（[#4965](https://github.com/OpenXiangShan/XiangShan/pull/4965)）
+  - （V2）修复发生异常时 TLB 层级重填错误、将大页错误记录为小页的问题（[#5087](https://github.com/OpenXiangShan/XiangShan/pull/5087)）
+  - （V2）修复位图检查唤醒 l0BitmapReg 逻辑的问题（[#5073](https://github.com/OpenXiangShan/XiangShan/pull/5073)）
+  - 将 NEMU 的 PMEMBASE 移至更高的地址空间，以防止在 mmap 以 MAP_FIXED 模式映射时发生冲突。未来可能会进一步消除对 MAP_FIXED 的依赖（[NEMU #930](https://github.com/OpenXiangShan/NEMU/pull/930)）
 - 时序优化
-  - 将 CoupledL2 的数据 SRAM 拆分改为 4 份，以适应新的物理设计后端要求（[CoupledL2 #432](https://github.com/OpenXiangShan/CoupledL2/pull/432)）
-  - 旧版 MMU 时序修复进行中
-  - 分析往期版本的 LoadQueueReplay 时序，找到时序退化点
+  - 旧版 MMU、LoadQueueReplay 时序修复进行中
 - RTL 新特性
   - MMU、LoadUnit、StoreQueue、L2 等模块重构持续推进中
   - L1 Acquire 时获取路信息以在 Release 时省去读目录获得路数的过程。正在修复 Bug

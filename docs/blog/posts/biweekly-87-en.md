@@ -19,7 +19,7 @@ On September 22, Innosilicon released the "Fenghua 3" full-featured GPU. The "Fe
 
 We believe that open-source chips do not equate to low performance or low quality. Open source will profoundly change the cost structure of chip development, providing a new paradigm for chip design in the industry.
 
-In the past two weeks, the frontend has fixed functional and performance bugs caused by the integration of the new BPU, while continuing performance exploration and tuning. The memory access and cache teams have fixed some bugs and refactored some code to advance the development of V3.
+In the past two weeks, the frontend has fixed functional and performance bugs caused by the integration of the new BPU, while continuing performance exploration and tuning. The backend continues to fix performance bugs in the instruction execution related modules and optimize timing and performance. The memory access and cache teams have fixed some bugs and refactored some code to advance the development of V3.
 
 <!-- more -->
 
@@ -55,19 +55,10 @@ In the past two weeks, the frontend has fixed functional and performance bugs ca
 ### Backend
 
 - Bug Fix
-  - Fix a branch prediction performance bug by checking the target when both the prediction and the actual execution are taken ([#5027](https://github.com/OpenXiangShan/XiangShan/pull/5027))
-  - Fix a bug in the gate logic of the NMI register ([#5067](https://github.com/OpenXiangShan/XiangShan/pull/5067))
-  - Fix a bug where errors occurred when fusion instructions followed by branch instructions after disabling ROB compression ([#5074](https://github.com/OpenXiangShan/XiangShan/pull/5074))
-  - (V2) Fix a bug where prefetch instructions should not respond to load triggers ([#5059](https://github.com/OpenXiangShan/XiangShan/pull/5059))
-- Timing optimization
-  - Split the backend's first-level submodules to facilitate physical design partitioning ([#5032](https://github.com/OpenXiangShan/XiangShan/pull/5032))
-- New RTL features
-  - Complete Trace Control Interface support for APB and AXI buses
-  - Split the SRAM sink into SMEM mode (writing to memory via AXI) and SRAM mode (with a dedicated FIFO buffer built into the component)
-  - Design branch_map logic and synchronize packet and trap packet processing
-  - Add performance counters to count the number of bypassable ALUs between any two transmit queues
+  - Fix the issue when ROB compress close, fusion which cross two ftq cannot be compressed ([#5079](https://github.com/OpenXiangShan/XiangShan/pull/5079))
 - Code quality improvements
-  - Remove some dead code ([#5071](https://github.com/OpenXiangShan/XiangShan/pull/5071))
+  - Add jalr/jal/auipc implementation to ALU
+  - Optimize the timing of vialuf in NewMgu
 
 ### MemBlock and Cache
 

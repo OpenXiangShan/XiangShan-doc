@@ -19,7 +19,7 @@ categories:
 
 我们相信，开源芯片不等于低性能、低质量。开源也将深刻改变芯片研发成本结构，为业界提供芯片设计的新范式。
 
-在过去的两周，前端修复接入新 BPU 后引发的功能和性能 bug，同时继续进行性能探索与调优。访存与缓存修复了一些 bug，同时对一部分代码进行重构，推进 V3 的开发。
+在过去的两周，前端修复接入新 BPU 后引发的功能和性能 bug，同时继续进行性能探索与调优。后端继续进行执行模块的性能bug修复以及时序、性能优化。访存与缓存修复了一些 bug，同时对一部分代码进行重构，推进 V3 的开发。
 
 <!-- more -->
 
@@ -55,19 +55,10 @@ categories:
 ### 后端
 
 - Bug 修复
-  - 通过当预测和实际都为跳转时检查目标修复分支预测性能 bug（[#5027](https://github.com/OpenXiangShan/XiangShan/pull/5027)）
-  - 修复 nmi 寄存器的 gate 逻辑的 bug（[#5067](https://github.com/OpenXiangShan/XiangShan/pull/5067)）
-  - 修复关闭 rob 压缩后融合指令后跟分支指令时出错的 bug（[#5074](https://github.com/OpenXiangShan/XiangShan/pull/5074)）
-  - （V2）修复预取指令不应响应 load trigger 的 bug（[#5059](https://github.com/OpenXiangShan/XiangShan/pull/5059)）
-- 时序优化
-  - 重新划分后端一级子模块，便于物理设计划分（[#5032](https://github.com/OpenXiangShan/XiangShan/pull/5032)）
-- RTL 新特性
-  - 完成 Trace Control Interface 对 APB 总线与 AXI 总线的支持
-  - 拆分 SRAM Sink 拆为 SMEM 模式（通过 AXI 写入内存）和 SRAM 模式（组件内置专用的 FIFO Buffer）
-  - 进行 branch_map 逻辑设计，同步 packet 和 trap packet 的设计
-  - 增加性能计数器统计任意两个发射队列之间可旁路 ALU 的数量
+  - 修复了当 ROB 压缩关闭时，跨两个 FTQ 的融合指令不可压缩的问题（[#5079](https://github.com/OpenXiangShan/XiangShan/pull/5079)）
 - 代码质量
-  - 移除部分死代码（[#5071](https://github.com/OpenXiangShan/XiangShan/pull/5071)）
+  - 在 ALU 中添加 jalr/jal/auipc 的实现
+  - 优化 NewMgu 中 vialuf 的时序
 
 ### 访存与缓存
 

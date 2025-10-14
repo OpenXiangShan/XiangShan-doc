@@ -13,7 +13,7 @@ This is the 87th issue of the biweekly report.
 
 In the past two weeks, ~~the XiangShan Team had a great National Day Holiday~~the frontend team continued to fix performance bugs caused by the V3 BPU refactoring. The backend team organized existing code and continued to promote V3 development. The memory and cache team fixed several V2 bugs while conducting code refactoring work to prepare for V3 development.
 
-We also have an announcement to make: the XiangShan Team will be giving a tutorial at the MICRO 25 conference on October 19th. We are very much looking forward to seeing everyone in Seoul!
+We also have an announcement to make: the XiangShan Team will be giving a tutorial at the MICRO 2025 conference on October 19th. We are very much looking forward to seeing everyone in Seoul!
 
 <!-- more -->
 

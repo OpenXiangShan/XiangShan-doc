@@ -11,15 +11,9 @@ categories:
 
 本次是第 87 期双周报。
 
-我们非常高兴地与大家分享两则消息。
+在过去的两周，~~香山团队的大家度过了一个愉快的国庆假期~~前端继续修复 V3 BPU 重构后带来的性能 bug。后端整理现有代码，继续推进 V3 开发。访存缓存部分修复了数个 V2 的 bug，同时进行代码重构工作，为 V3 开发做准备。
 
-9 月 20 日，香山团队荣获中国计算机学会 CCF 体系结构专委会首届开源贡献奖。这次集体获奖对香山团队有着特别的意义——这代表了学术界小同行对香山开源处理器以及香山团队的肯定与支持，是香山要形成广泛影响力的根基。香山团队将会继续前行，一步一脚印，努力让香山存活30年！
-
-9 月 22 日，芯动科技“风华 3 号”全功能 GPU 发布。“风华 3 号” GPU 成功集成了性能对标 ARM Cortex-A76 的香山“南湖”处理器 IP 核，作为其片内高性能主控 CPU。这次集成标志着开源高性能CPU IP正式步入产业落地的新阶段，也标志着基于RISC-V能开辟出一条不同于传统ARM模式的新路径。
-
-我们相信，开源芯片不等于低性能、低质量。开源也将深刻改变芯片研发成本结构，为业界提供芯片设计的新范式。
-
-在过去的两周，前端修复接入新 BPU 后引发的功能和性能 bug，同时继续进行性能探索与调优。后端继续进行执行模块的性能bug修复以及时序、性能优化。访存与缓存修复了一些 bug，同时对一部分代码进行重构，推进 V3 的开发。
+同时向大家预告一则消息，香山团队将于 10 月 19 日在 MICRO 2025 会议上作 tutorial，我们非常期待与大家在首尔相见！
 
 <!-- more -->
 
@@ -28,29 +22,25 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 优化 BPU 训练机制，采用一个 resolve 项内第一条误预测的分支进行训练，丢弃后续分支的训练信息（[#5023](https://github.com/OpenXiangShan/XiangShan/pull/5023)，[#5037](https://github.com/OpenXiangShan/XiangShan/pull/5037)，[#5041](https://github.com/OpenXiangShan/XiangShan/pull/5041)）
-  - 支持使用 s3 精确预测器的结果训练 s1 快速预测器，因精确预测器尚未就绪，暂未启用（[#4970](https://github.com/OpenXiangShan/XiangShan/pull/4970)）
-  - 增加 abtb 的路数到 8 路，和 mbtb 默认配置一致（[#5042](https://github.com/OpenXiangShan/XiangShan/pull/5042)）
-  - 合入 TAGE，因 override 机制存在一些问题，暂未启用（[#5001](https://github.com/OpenXiangShan/XiangShan/pull/5001)）
-  - 支持 TAGE WriteBuffer 多路写入（[#5044](https://github.com/OpenXiangShan/XiangShan/pull/5044)，[#5056](https://github.com/OpenXiangShan/XiangShan/pull/5056)）
-  - 增加 resolve 项内存储的分支数到 8 条（[#5050](https://github.com/OpenXiangShan/XiangShan/pull/5050)）
-  - 支持 64B 取指（[#5014](https://github.com/OpenXiangShan/XiangShan/pull/5014)）
-  - 移除 ICache 主流水 s2 流水级，简化设计，为后续功能做准备（[#5053](https://github.com/OpenXiangShan/XiangShan/pull/5053)）
-  - 放松 IBuffer 入队条件，减少阻塞（[#5036](https://github.com/OpenXiangShan/XiangShan/pull/5036)）
+  - 移除 identifiedCfi （[#5025](https://github.com/OpenXiangShan/XiangShan/pull/5025)）
+  - 合入 V3 SC 框架（[#5062](https://github.com/OpenXiangShan/XiangShan/pull/5062)，[#5097](https://github.com/OpenXiangShan/XiangShan/pull/5097)）
+  - 支持 WriteBuffer 多端口写入（[#5081](https://github.com/OpenXiangShan/XiangShan/pull/5081)）
+  - 优化 V3 ITTAGE，接入 WriteBuffer，支持 resolve 训练（[#5099](https://github.com/OpenXiangShan/XiangShan/pull/5099)）
 - Bug 修复
-  - 修复 abtb X 态传播的问题（[#5028](https://github.com/OpenXiangShan/XiangShan/pull/5028)）
-  - 修复 mbtb 预测出跨页取指块的问题，V3 ICache/IFU 去除了跨页取指的支持，需要 BPU 保证不给出跨页预测（[#5060](https://github.com/OpenXiangShan/XiangShan/pull/5060)）
-  - 修复 TAGE X 态传播的问题（[#5043](https://github.com/OpenXiangShan/XiangShan/pull/5043)）
-  - 修复 V2 RAS 接入 V3 FTQ 时没有处理 IFU 重定向的问题，以及后端重定向的 rasAction 没有正确赋值的问题（[#5040](https://github.com/OpenXiangShan/XiangShan/pull/5040)）
-  - 修复 Ftq backendException 写条件错拍的问题（[#5016](https://github.com/OpenXiangShan/XiangShan/pull/5016)，[#5035](https://github.com/OpenXiangShan/XiangShan/pull/5035)）
-  - 修复 IFU 指令 offset 计算错误的问题（[#5012](https://github.com/OpenXiangShan/XiangShan/pull/5012)）
-  - 修复 IFU s1 流水级冲刷条件错误、ICache WayLookup 和主流水 s1 流水级未被 BPU s3 override 冲刷的问题（[#5054](https://github.com/OpenXiangShan/XiangShan/pull/5054)），[#5055](https://github.com/OpenXiangShan/XiangShan/pull/5055)，[#5072](https://github.com/OpenXiangShan/XiangShan/pull/5072)）
-- 模型探索
-  - 整理 TAGE PHR 相关 commit，性能有改善（[GEM5 #524](https://github.com/OpenXiangShan/GEM5/pull/524)）
-  - 调整 SC 落地改造方案，适配 updateThreshold 和 weight Table
+  - 修复 BPU fallthrough 预测时 cfiPosition 域有误的问题（[#5058](https://github.com/OpenXiangShan/XiangShan/pull/5058)）
+  - 修复 TAGE 若干笔误（[#5086](https://github.com/OpenXiangShan/XiangShan/pull/5086)，[#5090](https://github.com/OpenXiangShan/XiangShan/pull/5090)）
+  - 修复 MBTB 若干笔误（[#5096](https://github.com/OpenXiangShan/XiangShan/pull/5096)）
+  - 修复 FTQ resolve queue 未被 redirect 冲刷导致 meta SRAM 读写冲突的问题（[#5085](https://github.com/OpenXiangShan/XiangShan/pull/5085)，[#5104](https://github.com/OpenXiangShan/XiangShan/pull/5104)）
+  - 移除 FTQ-后端接口中 newest target 逻辑（[#5101](https://github.com/OpenXiangShan/XiangShan/pull/5101)）
+  - 修复 ICache WayLookup 读写冲突断言条件有误的问题（[#5082](https://github.com/OpenXiangShan/XiangShan/pull/5082)）
+  - 修复 Direct 类型分支被 IFU 修正，导致后端 JumpUnit 认为没有误预测，进而导致 BPU 无法训练的问题（[#5103](https://github.com/OpenXiangShan/XiangShan/pull/5103)）
 - 代码质量
-  - 重构 BPU S3 预测生成逻辑，将 takenMask 的生成从 TAGE 移动到 BPU 顶层，使模块功能划分更加清晰（[#5045](https://github.com/OpenXiangShan/XiangShan/pull/5045)）
-  - 重构 IFU 指令边界计算逻辑（[#5012](https://github.com/OpenXiangShan/XiangShan/pull/5012)）
+  - 重构 BPU first taken branch 选择逻辑，换用 CompareMatrix 类（[#5075](https://github.com/OpenXiangShan/XiangShan/pull/5075)）
+  - 修复 FTQ resolve queue 分支索引计算从 1 开始的问题（[#5092](https://github.com/OpenXiangShan/XiangShan/pull/5092)）
+  - 重构 IFU MMIO 取指处理逻辑（[#5021](https://github.com/OpenXiangShan/XiangShan/pull/5021)）
+  - 重构 IFU redirect 端口，将仲裁逻辑从 FTQ 挪到 IFU（[#5064](https://github.com/OpenXiangShan/XiangShan/pull/5064)）
+- 调试工具
+  - 新增 BpTrace 及相关分析脚本（[#5091](https://github.com/OpenXiangShan/XiangShan/pull/5091)）
 
 ### 后端
 
@@ -64,12 +54,11 @@ categories:
 ### 访存与缓存
 
 - Bug 修复
-  - （V2）修复 FDP 中 counter filter 容量不够需要加 1 的问题（[#5030](https://github.com/OpenXiangShan/XiangShan/pull/5030)）
-  - （V2）修复了 LoadUnit 在 fast replay 时没有重新访问数据的问题，以避免产生内存一致性问题（[#4965](https://github.com/OpenXiangShan/XiangShan/pull/4965)）
+  - （V2）修复发生异常时 TLB 层级重填错误、将大页错误记录为小页的问题（[#5087](https://github.com/OpenXiangShan/XiangShan/pull/5087)）
+  - （V2）修复位图检查唤醒 l0BitmapReg 逻辑的问题（[#5073](https://github.com/OpenXiangShan/XiangShan/pull/5073)）
+  - 将 NEMU 的 PMEMBASE 移至更高的地址空间，以防止在 mmap 以 MAP_FIXED 模式映射时发生冲突。未来可能会进一步消除对 MAP_FIXED 的依赖（[NEMU #930](https://github.com/OpenXiangShan/NEMU/pull/930)）
 - 时序优化
-  - 将 CoupledL2 的数据 SRAM 拆分改为 4 份，以适应新的物理设计后端要求（[CoupledL2 #432](https://github.com/OpenXiangShan/CoupledL2/pull/432)）
-  - 旧版 MMU 时序修复进行中
-  - 分析往期版本的 LoadQueueReplay 时序，找到时序退化点
+  - 旧版 MMU、LoadQueueReplay 时序修复进行中
 - RTL 新特性
   - MMU、LoadUnit、StoreQueue、L2 等模块重构持续推进中
   - L1 Acquire 时获取路信息以在 Release 时省去读目录获得路数的过程。正在修复 Bug
@@ -78,24 +67,24 @@ categories:
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 35.88  | 410.bwaves       | 67.22  |
+| 400.perlbench     | 35.87  | 410.bwaves       | 67.22  |
 | 401.bzip2         | 25.51  | 416.gamess       | 41.01  |
-| 403.gcc           | 47.90  | 433.milc         | 50.44  |
+| 403.gcc           | 47.87  | 433.milc         | 45.07  |
 | 429.mcf           | 60.18  | 434.zeusmp       | 51.83  |
-| 445.gobmk         | 30.63  | 435.gromacs      | 33.67  |
+| 445.gobmk         | 30.62  | 435.gromacs      | 33.65  |
 | 456.hmmer         | 41.61  | 436.cactusADM    | 46.20  |
 | 458.sjeng         | 30.62  | 437.leslie3d     | 47.80  |
 | 462.libquantum    | 122.58 | 444.namd         | 28.87  |
-| 464.h264ref       | 56.59  | 447.dealII       | 73.77  |
-| 471.omnetpp       | 41.50  | 450.soplex       | 52.48  |
-| 473.astar         | 29.30  | 453.povray       | 53.49  |
-| 483.xalancbmk     | 72.79  | 454.Calculix     | 16.38  |
-| GEOMEAN           | 44.67  | 459.GemsFDTD     | 39.71  |
+| 464.h264ref       | 56.59  | 447.dealII       | 73.82  |
+| 471.omnetpp       | 41.41  | 450.soplex       | 52.48  |
+| 473.astar         | 29.30  | 453.povray       | 53.50  |
+| 483.xalancbmk     | 72.81  | 454.Calculix     | 16.38  |
+| GEOMEAN           | 44.66  | 459.GemsFDTD     | 39.71  |
 |                   |        | 465.tonto        | 36.72  |
 |                   |        | 470.lbm          | 91.98  |
 |                   |        | 481.wrf          | 40.64  |
 |                   |        | 482.sphinx3      | 49.13  |
-|                   |        | GEOMEAN          | 45.26  |
+|                   |        | GEOMEAN          | 44.96  |
 
 我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，Simpoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
 
@@ -113,8 +102,8 @@ categories:
 
 |           |            |
 | --------- | ---------- |
-| commit    | 324b389    |
-| 日期      | 2025/09/25 |
+| commit    | defcc01    |
+| 日期      | 2025/10/10 |
 | L1 ICache | 64KB       |
 | L1 DCache | 64KB       |
 | L2 Cache  | 1MB        |

@@ -56,9 +56,10 @@ categories:
 
 - Bug 修复
   - 修复了当 ROB 压缩关闭时，跨两个 FTQ 的融合指令不可压缩的问题（[#5079](https://github.com/OpenXiangShan/XiangShan/pull/5079)）
+- RTL 新特性
+  - 在 ALU 中添加 jalr/jal/auipc 的新 uop 拆分实现
 - 代码质量
-  - 在 ALU 中添加 jalr/jal/auipc 的实现
-  - 优化 NewMgu 中 vialuf 的时序
+  - 优化 NewMgu 中 vialuf 的时序（[#5078](https://github.com/OpenXiangShan/XiangShan/pull/5078)）
 
 ### 访存与缓存
 

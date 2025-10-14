@@ -46,9 +46,10 @@ We also have an announcement to make: the XiangShan Team will be giving a tutori
 
 - Bug Fix
   - Fix the issue when ROB compress close, fusion which cross two ftq cannot be compressed ([#5079](https://github.com/OpenXiangShan/XiangShan/pull/5079))
-- Code quality improvements
-  - Add jalr/jal/auipc implementation to ALU
+- RTL new features
   - Optimize the timing of vialuf in NewMgu
+- Code quality improvements
+  - Add jalr/jal/auipc implementation to ALU ([#5078](https://github.com/OpenXiangShan/XiangShan/pull/5078))
 
 ### MemBlock and Cache
 

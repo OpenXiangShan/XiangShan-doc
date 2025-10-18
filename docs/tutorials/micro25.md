@@ -6,11 +6,13 @@ We are going to host half-day tutorials on XiangShan and MinJie during MICRO'25 
 
 **Time: Morning, Sunday, October 19**
 
-| Time | Topic | Slides |
-| -------- | ----- | ------ |
-| To be done | Introduction of the XiangShan Project | To be done |
-| To be done | Microarchitecture Design and Implementation | To be done |
-| To be done | Hands-on Development | To be done |
+| Time          | Topic                                            | Slides     |
+| ------------- | ------------------------------------------------ | ---------- |
+| 8:00 - 8:30   | General introduction                             | To be done |
+| 8:30 - 10:00  | Introduction of XS-Gem5 and hands-on             | To be done |
+| 10:00 - 10:30 | Coffee Break                                     |            |
+| 10:30 - 11:00 | Microarchitecture design philosophy of XiangShan | To be done |
+| 11:00 - 12:00 | Development workflows and hands-on               | To be done |
 
 
 
@@ -43,3 +45,16 @@ We will introduce the development infrastructure of XiangShan processor, also kn
 - Hands-on development with typical use cases on XiangShan and MinJie
 
 We have established a comprehensive workflow to simulate XiangShan processor and do prototype on FPGA. In this part, we will perform a practical demonstration, including argument details and key points to pay attention to. We will present some typical cases for XiangShan development. For example, how to add an instruction, how to add a peripheral device and how to re-configure cache structure. Based on XiangShan and Minjie platform, many architectural works can be reproduced and accelerate the interactions between academia and industry.
+
+## Startup
+
+This time, we're hosting a code-server on demo server for guests, here are steps to take part:
+
+1. Open <https://t.xiangshan.cc> in your browser
+2. Enter password: TO BE DISCLOSED ON SITE
+3. By default you should see a terminal
+   1. If not, click Menu (triple dashes) on the top-left corner, then "Terminal > New Terminal"
+4. Run `./start.sh` in the terminal
+   1. This will create a unique random id for you, and create your workspace at `/data/${random}`
+5. When your workspace is created, it should be opened automatically
+   1. If not, click "Menu > File > Open Folder", enter `/data/${random}`, then click "OK"

@@ -62,6 +62,7 @@ nav:
         - Talks: tutorials/talks.md
         - Acknowledgments: acknowledgments.md
         - Tutorials:
+            - HPCA'26: tutorials/hpca26.md
             - MICRO'25: tutorials/micro25.md
             - RVSC'25: https://tutorial.xiangshan.cc/rvsc25/
             - APPT'25: https://tutorial.xiangshan.cc/appt25/

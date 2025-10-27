@@ -53,15 +53,14 @@ categories:
 
 ### 访存与缓存
 
-- Bug 修复
-  - （V2）修复发生异常时 TLB 层级重填错误、将大页错误记录为小页的问题（[#5087](https://github.com/OpenXiangShan/XiangShan/pull/5087)）
-  - （V2）修复位图检查唤醒 l0BitmapReg 逻辑的问题（[#5073](https://github.com/OpenXiangShan/XiangShan/pull/5073)）
-  - 将 NEMU 的 PMEMBASE 移至更高的地址空间，以防止在 mmap 以 MAP_FIXED 模式映射时发生冲突。未来可能会进一步消除对 MAP_FIXED 的依赖（[NEMU #930](https://github.com/OpenXiangShan/NEMU/pull/930)）
-- 时序优化
-  - 旧版 MMU、LoadQueueReplay 时序修复进行中
 - RTL 新特性
+  - （V2）在 CoupledL2 中为 late prefetch 添加 topdown 接口（[CoupledL2 #411](https://github.com/OpenXiangShan/CoupledL2/pull/411)）
+  - （V2）在 CoupledL2 中添加控制延迟时延的 csr 用于训练 L2 预取（[CoupledL2 #434](https://github.com/OpenXiangShan/CoupledL2/pull/434)）
+  - （V2）添加 Berti 预取，重构了 prefetch 相关的 TopDownMonitor（[CoupledL2 #435](https://github.com/OpenXiangShan/CoupledL2/pull/435)）
+  - （V2）添加用于检查 L2 预取和 Berti 预取的 api（[Utility #128](https://github.com/OpenXiangShan/Utility/pull/128)）
   - MMU、LoadUnit、StoreQueue、L2 等模块重构持续推进中
-  - L1 Acquire 时获取路信息以在 Release 时省去读目录获得路数的过程。正在修复 Bug
+- 工具
+  - 完善 CHIron 的功能
 
 ## 性能评估
 

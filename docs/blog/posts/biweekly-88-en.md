@@ -53,16 +53,14 @@ We also have an announcement to make: the XiangShan Team will be giving a tutori
 
 ### MemBlock and Cache
 
-- Bug Fix
-  - （V2）Fix incorrect TLB level refill during exceptions, which caused large pages to be recorded as small pages（[#5087](https://github.com/OpenXiangShan/XiangShan/pull/5087)）
-  - （V2）fix bitmap check result wakeup l0BitmapReg logic（[#5073](https://github.com/OpenXiangShan/XiangShan/pull/5073)）
-  - Move NEMU's PMEMBASE to higher address to prevent conflicts with mmap mappings that use the MAP_FIXED mode. Future work may further eliminate the dependency on MAP_FIXED（[NEMU #930](https://github.com/OpenXiangShan/NEMU/pull/930)）
-- Timing optimization
-  - Split the data SRAM of CoupledL2 into 4 parts to meet the new physical design backend requirements  ([CoupledL2 #432](https://github.com/OpenXiangShan/CoupledL2/pull/432))
-  - The timing fix of old MMU, LoadQueueReplay, etc. is on going
 - RTL new features
+  - (V2) Add topdown interface for late prefetch in CoupledL2 ([CoupledL2 #411](https://github.com/OpenXiangShan/CoupledL2/pull/411))
+  - (V2) Add csr control of delay latency for training L2 prefetch in CoupledL2 ([CoupledL2 #434](https://github.com/OpenXiangShan/CoupledL2/pull/434))
+  - (V2) Add Berti prefetch and refactored prefetch related TopDownMonitor([CoupledL2 #435](https://github.com/OpenXiangShan/CoupledL2/pull/435))
+  - (V2) Add api for checking L2 prefetch and Berti prefetch ([Utility #128](https://github.com/OpenXiangShan/Utility/pull/128))
   - The refactoring of MMU, LoadUnit, StoreQueue, L2, etc. is ongoing
-  - L1 Acquire gets the way information to save the cost of reading the directory to obtain the number of way during Release. Fixing bugs
+- Tools
+  - Complete the functions of CHIron
 
 ## Performance Evaluation
 

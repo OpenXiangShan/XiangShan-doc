@@ -22,25 +22,25 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 移除 identifiedCfi （[#5025](https://github.com/OpenXiangShan/XiangShan/pull/5025)）
-  - 合入 V3 SC 框架（[#5062](https://github.com/OpenXiangShan/XiangShan/pull/5062)，[#5097](https://github.com/OpenXiangShan/XiangShan/pull/5097)）
-  - 支持 WriteBuffer 多端口写入（[#5081](https://github.com/OpenXiangShan/XiangShan/pull/5081)）
-  - 优化 V3 ITTAGE，接入 WriteBuffer，支持 resolve 训练（[#5099](https://github.com/OpenXiangShan/XiangShan/pull/5099)）
+  - 启用 V3 BPU 的高级预测器 override 机制（TAGE 仅启用 BaseTable，RAS 未启用）（[#5057](https://github.com/OpenXiangShan/XiangShan/pull/5057)）
+  - 新增 IBuffer 对 2-fetch 的接口支持（[#5098](https://github.com/OpenXiangShan/XiangShan/pull/5098)）
+  - 重写 ABTB 快速训练接口（[#5070](https://github.com/OpenXiangShan/XiangShan/pull/5070)）
 - Bug 修复
-  - 修复 BPU fallthrough 预测时 cfiPosition 域有误的问题（[#5058](https://github.com/OpenXiangShan/XiangShan/pull/5058)）
-  - 修复 TAGE 若干笔误（[#5086](https://github.com/OpenXiangShan/XiangShan/pull/5086)，[#5090](https://github.com/OpenXiangShan/XiangShan/pull/5090)）
-  - 修复 MBTB 若干笔误（[#5096](https://github.com/OpenXiangShan/XiangShan/pull/5096)）
-  - 修复 FTQ resolve queue 未被 redirect 冲刷导致 meta SRAM 读写冲突的问题（[#5085](https://github.com/OpenXiangShan/XiangShan/pull/5085)，[#5104](https://github.com/OpenXiangShan/XiangShan/pull/5104)）
-  - 移除 FTQ-后端接口中 newest target 逻辑（[#5101](https://github.com/OpenXiangShan/XiangShan/pull/5101)）
-  - 修复 ICache WayLookup 读写冲突断言条件有误的问题（[#5082](https://github.com/OpenXiangShan/XiangShan/pull/5082)）
-  - 修复 Direct 类型分支被 IFU 修正，导致后端 JumpUnit 认为没有误预测，进而导致 BPU 无法训练的问题（[#5103](https://github.com/OpenXiangShan/XiangShan/pull/5103)）
+  - 修复 MBTB 错误过滤取指块开头位置上的分支的问题（[#5113](https://github.com/OpenXiangShan/XiangShan/pull/5113)）
+  - 修复 SC 训练逻辑相关问题（[#5118](https://github.com/OpenXiangShan/XiangShan/pull/5118)）
+  - 修复 RAS 栈大小参数计算相关问题（[#5132](https://github.com/OpenXiangShan/XiangShan/pull/5132)）
+  - 修复 WriteBuffer 写入索引相关笔误（[#5134](https://github.com/OpenXiangShan/XiangShan/pull/5134)）
+  - 修复 FTQ resolve queue 中无效项被标记为 flushed 导致的 Bpu 训练丢失问题（[#5107](https://github.com/OpenXiangShan/XiangShan/pull/5107)）
+  - 修复 IFU 内断言条件错误的问题（[#5122](https://github.com/OpenXiangShan/XiangShan/pull/5122)）
+- 时序优化
+  - （V2）更换 TageBTable 和 SCTable 的双端口 SRAM 为单端口（[#5094](https://github.com/OpenXiangShan/XiangShan/pull/5094)）
+  - 修改指令定界逻辑，由 IFU 取出指令数据后计算改为由 ICache 在重填时预先计算；IFU 流水级缩短（[#5108](https://github.com/OpenXiangShan/XiangShan/pull/5108)）
+- 面积优化
+  - 支持 IBuffer 仅存储上电/重定向后遇到的第一条 exception（[#5095](https://github.com/OpenXiangShan/XiangShan/pull/5095)）
 - 代码质量
-  - 重构 BPU first taken branch 选择逻辑，换用 CompareMatrix 类（[#5075](https://github.com/OpenXiangShan/XiangShan/pull/5075)）
-  - 修复 FTQ resolve queue 分支索引计算从 1 开始的问题（[#5092](https://github.com/OpenXiangShan/XiangShan/pull/5092)）
-  - 重构 IFU MMIO 取指处理逻辑（[#5021](https://github.com/OpenXiangShan/XiangShan/pull/5021)）
-  - 重构 IFU redirect 端口，将仲裁逻辑从 FTQ 挪到 IFU（[#5064](https://github.com/OpenXiangShan/XiangShan/pull/5064)）
+  - 移除 V2 的 brType 类型，统一使用 V3 BranchAttribute（[#5076](https://github.com/OpenXiangShan/XiangShan/pull/5076)）
 - 调试工具
-  - 新增 BpTrace 及相关分析脚本（[#5091](https://github.com/OpenXiangShan/XiangShan/pull/5091)）
+  - 新增一些 BPU 性能计数器（[#5112](https://github.com/OpenXiangShan/XiangShan/pull/5112)）
 
 ### 后端
 

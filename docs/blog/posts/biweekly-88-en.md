@@ -11,11 +11,28 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the 88th issue of the biweekly report.
 
-In the past two weeks, ~~the XiangShan Team had a great National Day Holiday~~the frontend team continued to fix performance bugs caused by the V3 BPU refactoring. The backend team organized existing code and continued to promote V3 development. The memory and cache team fixed several V2 bugs while conducting code refactoring work to prepare for V3 development.
+XiangShan has successfully held the MICRO 2025 tutorial! We are very excited to see everyone in Seoul, and we would like to thank every participant and partner who cares about the development of XiangShan! If you were unable to attend in person, we welcome you to visit <https://tutorial.xiangshan.cc/micro25/> to review the content of this tutorial. The next XiangShan tutorial will be held at the HPCA 2026 conference in Australia early next year, and we look forward to seeing you again!
+
+In this tutorial, we carried out a large-scale refactoring, mainly including:
+
+- A completely restructured getting-started section. The new getting-started section is organized using Jupyter Notebook, further lowering the barrier to understanding XiangShan. All content has been open-sourced to <https://github.com/OpenXiangShan/bootcamp>, and we welcome everyone to try it out.
+- A completely restructured microarchitecture introduction. Instead of flatly introducing the current state of XiangShan's microarchitecture, the new microarchitecture section focuses on XiangShan's design philosophy, helping everyone better understand XiangShan's design ideas.
+- We are very honored to invite Nisa Bostanci as a representative of Onur Mutlu's team to share Ramulator! XiangShan's GEM5 simulator has now integrated Ramulator.
 
 We also have an announcement to make: the XiangShan Team will be giving a tutorial at the MICRO 2025 conference on October 19th. We are very much looking forward to seeing everyone in Seoul!
 
 <!-- more -->
+
+## Bonus: Tutorial Highlights
+- Group photo to kick off
+  
+  ![Group photo to kick off](./figs/micro2025-tutorial/group-photo.png)
+- On the early morning of October 17th at 5:28 AM, Professor Onur replied to our invitation, confirming his attendance and introduction of Ramulator. Before boarding the plane, we urgently rearranged the GEM5 section to allocate 15 minutes for this part.
+- On the evening of October 18th, members of the XiangShan team modified the GEM5 getting-started code at a barbecue restaurant.
+  
+  ![DDL is the first productivity](./figs/micro2025-tutorial/ddl.png)
+- On October 19th, the tutorial started promptly at 8:00 AM. Due to the early time, the number of participants was not very high at the beginning~~early morning classes are still too much, it seems that everyone can't get up~~. As the tutorial progressed, the number of attendees gradually increased, eventually filling the entire room.
+- ![XiangShan 30 years](./figs/micro2025-tutorial/xiangshan-30years.png)
 
 ## Recent Developments
 
@@ -66,24 +83,24 @@ We also have an announcement to make: the XiangShan Team will be giving a tutori
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 35.87  | 410.bwaves       | 67.22  |
-| 401.bzip2         | 25.51  | 416.gamess       | 41.01  |
-| 403.gcc           | 47.87  | 433.milc         | 45.07  |
-| 429.mcf           | 60.18  | 434.zeusmp       | 51.83  |
-| 445.gobmk         | 30.62  | 435.gromacs      | 33.65  |
-| 456.hmmer         | 41.61  | 436.cactusADM    | 46.20  |
-| 458.sjeng         | 30.62  | 437.leslie3d     | 47.80  |
-| 462.libquantum    | 122.58 | 444.namd         | 28.87  |
-| 464.h264ref       | 56.59  | 447.dealII       | 73.82  |
-| 471.omnetpp       | 41.41  | 450.soplex       | 52.48  |
-| 473.astar         | 29.30  | 453.povray       | 53.50  |
-| 483.xalancbmk     | 72.81  | 454.Calculix     | 16.38  |
-| GEOMEAN           | 44.66  | 459.GemsFDTD     | 39.71  |
-|                   |        | 465.tonto        | 36.72  |
+| 400.perlbench     | 35.82  | 410.bwaves       | 67.23  |
+| 401.bzip2         | 25.40  | 416.gamess       | 40.96  |
+| 403.gcc           | 47.81  | 433.milc         | 45.06  |
+| 429.mcf           | 60.26  | 434.zeusmp       | 51.80  |
+| 445.gobmk         | 30.24  | 435.gromacs      | 33.58  |
+| 456.hmmer         | 41.60  | 436.cactusADM    | 46.20  |
+| 458.sjeng         | 30.35  | 437.leslie3d     | 47.88  |
+| 462.libquantum    | 122.66 | 444.namd         | 28.86  |
+| 464.h264ref       | 56.55  | 447.dealII       | 73.57  |
+| 471.omnetpp       | 41.43  | 450.soplex       | 52.49  |
+| 473.astar         | 29.12  | 453.povray       | 53.44  |
+| 483.xalancbmk     | 72.71  | 454.Calculix     | 16.37  |
+| GEOMEAN           | 44.54  | 459.GemsFDTD     | 39.73  |
+|                   |        | 465.tonto        | 36.65  |
 |                   |        | 470.lbm          | 91.98  |
-|                   |        | 481.wrf          | 40.64  |
-|                   |        | 482.sphinx3      | 49.13  |
-|                   |        | GEOMEAN          | 44.96  |
+|                   |        | 481.wrf          | 40.65  |
+|                   |        | 482.sphinx3      | 49.09  |
+|                   |        | GEOMEAN          | 44.94  |
 
 We use SimPoint to sample programs and create checkpoints images based on our custom format. The coverage of SimPoint clustering reaches 100%. Note that the above scores are estimated based on program segments rather than a complete SPEC CPU2006 evaluation, which may deviate from the actual performance of real chips.
 
@@ -101,8 +118,8 @@ Processor and SoC parameters are as follows:
 
 |                |            |
 | -------------- | ---------- |
-| Commit         | defcc01    |
-| Date           | 10/10/2025 |
+| Commit         | 0fb84f8    |
+| Date           | 10/23/2025 |
 | L1 ICache      | 64KB       |
 | L1 DCache      | 64KB       |
 | L2 Cache       | 1MB        |

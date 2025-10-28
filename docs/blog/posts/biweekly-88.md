@@ -11,11 +11,28 @@ categories:
 
 本次是第 88 期双周报。
 
-在过去的两周，~~香山团队的大家度过了一个愉快的国庆假期~~前端继续修复 V3 BPU 重构后带来的性能 bug。后端整理现有代码，继续推进 V3 开发。访存缓存部分修复了数个 V2 的 bug，同时进行代码重构工作，为 V3 开发做准备。
+香山成功举办了 MICRO 2025 tutorial！我们非常高兴能与大家在首尔相见，感谢每一位参会的朋友和关心香山发展的伙伴们！如果未能现场参与，欢迎大家访问 <https://tutorial.xiangshan.cc/micro25/> 回顾本次 tutorial 的内容。香山的下一场 tutorial 将于明年初在澳大利亚举办的 HPCA 2026 会议上进行，期待与大家再次相见！
 
-同时向大家预告一则消息，香山团队将于 10 月 19 日在 MICRO 2025 会议上作 tutorial，我们非常期待与大家在首尔相见！
+在此次 tutorial 中，我们进行了大规模的重构，主要包括：
+
+- 完全重构的上手环节。新的上手环节使用 Jupyter Notebook 组织，进一步降低了解香山的门槛。所有内容都已开源到 <https://github.com/OpenXiangShan/bootcamp>，欢迎大家尝试
+- 完全重构的微架构介绍。相比于扁平化地介绍香山微架构现状，新的微架构部分着重介绍香山的设计哲学，帮助大家更好地理解香山的设计思路
+- 非常荣幸地邀请到 Nisa Bostanci 代表 Onur Mutlu 的团队分享 Ramulator！香山的 GEM5 模拟器现已集成 Ramulator
+
+在过去的两周，前端继续修复 V3 BPU 重构后带来的性能 bug。后端整理现有代码，继续推进 V3 开发。访存缓存部分修复了数个 V2 的 bug，同时进行代码重构工作，为 V3 开发做准备。
 
 <!-- more -->
+
+## Tutorial 花絮
+- 合影镇楼
+
+  ![合影镇楼](./figs/micro2025-tutorial/group-photo.png)
+- 10 月 17 日清晨 5:28，Onur 教授回复了我们的邀请，确认将出席并介绍 Ramulator。在上飞机前，我们紧急摇人，重新安排了 GEM5 部分的介绍内容，为这部分预留了 15 分钟
+- 10 月 18 日晚，香山团队的同学在烤肉店修改 GEM5 部分的上手代码
+
+  ![DDL 是第一生产力](./figs/micro2025-tutorial/ddl.png)
+- 10 月 19 日，tutorial 于上午 8:00 准时开始。由于时间较早，一开始参加的人数并不多~~早八还是太超模了，看来大家都起不来~~。随着 tutorial 的进行，现场人数逐渐增多，最终坐满了整个屋子
+- ![香山 30 年](./figs/micro2025-tutorial/xiangshan-30years.png)
 
 ## 近期进展
 
@@ -66,24 +83,24 @@ categories:
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 35.87  | 410.bwaves       | 67.22  |
-| 401.bzip2         | 25.51  | 416.gamess       | 41.01  |
-| 403.gcc           | 47.87  | 433.milc         | 45.07  |
-| 429.mcf           | 60.18  | 434.zeusmp       | 51.83  |
-| 445.gobmk         | 30.62  | 435.gromacs      | 33.65  |
-| 456.hmmer         | 41.61  | 436.cactusADM    | 46.20  |
-| 458.sjeng         | 30.62  | 437.leslie3d     | 47.80  |
-| 462.libquantum    | 122.58 | 444.namd         | 28.87  |
-| 464.h264ref       | 56.59  | 447.dealII       | 73.82  |
-| 471.omnetpp       | 41.41  | 450.soplex       | 52.48  |
-| 473.astar         | 29.30  | 453.povray       | 53.50  |
-| 483.xalancbmk     | 72.81  | 454.Calculix     | 16.38  |
-| GEOMEAN           | 44.66  | 459.GemsFDTD     | 39.71  |
-|                   |        | 465.tonto        | 36.72  |
+| 400.perlbench     | 35.82  | 410.bwaves       | 67.23  |
+| 401.bzip2         | 25.40  | 416.gamess       | 40.96  |
+| 403.gcc           | 47.81  | 433.milc         | 45.06  |
+| 429.mcf           | 60.26  | 434.zeusmp       | 51.80  |
+| 445.gobmk         | 30.24  | 435.gromacs      | 33.58  |
+| 456.hmmer         | 41.60  | 436.cactusADM    | 46.20  |
+| 458.sjeng         | 30.35  | 437.leslie3d     | 47.88  |
+| 462.libquantum    | 122.66 | 444.namd         | 28.86  |
+| 464.h264ref       | 56.55  | 447.dealII       | 73.57  |
+| 471.omnetpp       | 41.43  | 450.soplex       | 52.49  |
+| 473.astar         | 29.12  | 453.povray       | 53.44  |
+| 483.xalancbmk     | 72.71  | 454.Calculix     | 16.37  |
+| GEOMEAN           | 44.54  | 459.GemsFDTD     | 39.73  |
+|                   |        | 465.tonto        | 36.65  |
 |                   |        | 470.lbm          | 91.98  |
-|                   |        | 481.wrf          | 40.64  |
-|                   |        | 482.sphinx3      | 49.13  |
-|                   |        | GEOMEAN          | 44.96  |
+|                   |        | 481.wrf          | 40.65  |
+|                   |        | 482.sphinx3      | 49.09  |
+|                   |        | GEOMEAN          | 44.94  |
 
 我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，Simpoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
 
@@ -101,8 +118,8 @@ categories:
 
 |           |            |
 | --------- | ---------- |
-| commit    | defcc01    |
-| 日期      | 2025/10/10 |
+| commit    | 0fb84f8    |
+| 日期      | 2025/10/23 |
 | L1 ICache | 64KB       |
 | L1 DCache | 64KB       |
 | L2 Cache  | 1MB        |

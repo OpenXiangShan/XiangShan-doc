@@ -19,7 +19,7 @@ In this tutorial, we carried out a large-scale refactoring, mainly including:
 - A completely restructured microarchitecture introduction. Instead of flatly introducing the current state of XiangShan's microarchitecture, the new microarchitecture section focuses on XiangShan's design philosophy, helping everyone better understand XiangShan's design ideas.
 - We are very honored to invite Nisa Bostanci as a representative of Onur Mutlu's team to share Ramulator! XiangShan's GEM5 simulator has now integrated Ramulator.
 
-We also have an announcement to make: the XiangShan Team will be giving a tutorial at the MICRO 2025 conference on October 19th. We are very much looking forward to seeing everyone in Seoul!
+In terms of XiangShan development, the frontend has fixed several performance bugs caused by the V3 BPU refactoring, while also advancing support for 2-fetch on the instruction fetch side. The backend continues with V3 development and refactoring. The memory subsystem has improved some topdown PMU and CHIron tools.
 
 <!-- more -->
 

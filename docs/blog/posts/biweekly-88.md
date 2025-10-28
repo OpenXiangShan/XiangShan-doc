@@ -17,7 +17,7 @@ categories:
 
 - 完全重构的上手环节。新的上手环节使用 Jupyter Notebook 组织，进一步降低了解香山的门槛。所有内容都已开源到 <https://github.com/OpenXiangShan/bootcamp>，欢迎大家尝试
 - 完全重构的微架构介绍。相比于扁平化地介绍香山微架构现状，新的微架构部分着重介绍香山的设计哲学，帮助大家更好地理解香山的设计思路
-- 非常荣幸地邀请到 Nisa Bostanci 代表 Onur Mutlu 的团队分享 Ramulator！香山的 GEM5 模拟器现已集成 Ramulator
+- 非常荣幸地邀请到 Nisa Bostanci 代表 Onur Mutlu 教授的团队分享 Ramulator！香山的 GEM5 模拟器现已集成 Ramulator
 
 香山开发方面，前端修复数个 V3 BPU 重构后带来的性能 bug，同时推进取指侧对 2-fetch 的支持。后端继续进行 V3 开发与重构。访存完善了一部分 topdown PMU 与 CHIron 工具。
 
@@ -27,11 +27,15 @@ categories:
 - 合影镇楼
 
   ![合影镇楼](./figs/micro2025-tutorial/group-photo.png)
-- 10 月 17 日清晨 5:28，Onur 教授回复了我们的邀请，确认将出席并介绍 Ramulator。在上飞机前，我们紧急摇人，重新安排了 GEM5 部分的介绍内容，为这部分预留了 15 分钟
+- 10 月 17 日清晨 5:28，Mutlu 教授回复了我们的邀请，确认将出席并介绍 Ramulator
+
+  ![Mutlu 教授](./figs/micro2025-tutorial/professor-mutlu.png)
 - 10 月 18 日晚，香山团队的同学在烤肉店修改 GEM5 部分的上手代码
 
   ![DDL 是第一生产力](./figs/micro2025-tutorial/ddl.png)
 - 10 月 19 日，tutorial 于上午 8:00 准时开始。由于时间较早，一开始参加的人数并不多~~早八还是太超模了，看来大家都起不来~~。随着 tutorial 的进行，现场人数逐渐增多，最终坐满了整个屋子
+
+  ![会场座无虚席](./figs/micro2025-tutorial/full-house.jpg)
 - ![香山 30 年](./figs/micro2025-tutorial/xiangshan-30years.png)
 
 ## 近期进展

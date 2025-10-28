@@ -27,11 +27,15 @@ In terms of XiangShan development, the frontend has fixed several performance bu
 - Group photo to kick off
   
   ![Group photo to kick off](./figs/micro2025-tutorial/group-photo.png)
-- On the early morning of October 17th at 5:28 AM, Professor Onur replied to our invitation, confirming his attendance and introduction of Ramulator. Before boarding the plane, we urgently rearranged the GEM5 section to allocate 15 minutes for this part.
+- On the early morning of October 17th at 5:28 AM, Professor Mutlu replied to our invitation, confirming his attendance and introduction of Ramulator
+
+  ![Professor Mutlu](./figs/micro2025-tutorial/professor-mutlu.png)
 - On the evening of October 18th, members of the XiangShan team modified the GEM5 getting-started code at a barbecue restaurant.
   
   ![DDL is the first productivity](./figs/micro2025-tutorial/ddl.png)
 - On October 19th, the tutorial started promptly at 8:00 AM. Due to the early time, the number of participants was not very high at the beginning~~early morning classes are still too much, it seems that everyone can't get up~~. As the tutorial progressed, the number of attendees gradually increased, eventually filling the entire room.
+
+  ![The venue was packed](./figs/micro2025-tutorial/full-house.jpg)
 - ![XiangShan 30 years](./figs/micro2025-tutorial/xiangshan-30years.png)
 
 ## Recent Developments

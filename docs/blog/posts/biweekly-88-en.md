@@ -62,11 +62,16 @@ We also have an announcement to make: the XiangShan Team will be giving a tutori
 ### Backend
 
 - Bug Fix
-  - Fix the issue when ROB compress close, fusion which cross two ftq cannot be compressed ([#5079](https://github.com/OpenXiangShan/XiangShan/pull/5079))
+  - Fix the issue of out-of-order reading of XIP registers in CSR under specific circumstances ([#5131](https://github.com/OpenXiangShan/XiangShan/pull/5131))
 - RTL new features
-  - Optimize the timing of vialuf in NewMgu
+  - Implement the scheme for splitting uops of direct jump instructions at the IQ exit ([#5128](https://github.com/OpenXiangShan/XiangShan/pull/5128))
+  - Increase the number of floating-point physical registers to 256, and increase robSize and rabSize to 352
+  - Add Vmove functional unit, modify the uops split from instructions that need to move data to use Vmove unit ([#5126](https://github.com/OpenXiangShan/XiangShan/pull/5126))
+- Timing optimization
+  - Improve the timing of vfcvt to support the fast wake-up of vector units ([YunSuan #189](https://github.com/OpenXiangShan/YunSuan/pull/189))
+  - Finish the refactoring of vialu to support the fast wake-up of vector units ([#5136](https://github.com/OpenXiangShan/XiangShan/pull/5136))
 - Code quality improvements
-  - Add jalr/jal/auipc implementation to ALU ([#5078](https://github.com/OpenXiangShan/XiangShan/pull/5078))
+  - Modify recent code legacy issues to improve code quality ([#5135](https://github.com/OpenXiangShan/XiangShan/pull/5135))
 
 ### MemBlock and Cache
 

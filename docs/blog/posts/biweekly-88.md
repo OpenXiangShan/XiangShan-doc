@@ -19,7 +19,7 @@ categories:
 - 完全重构的微架构介绍。相比于扁平化地介绍香山微架构现状，新的微架构部分着重介绍香山的设计哲学，帮助大家更好地理解香山的设计思路
 - 非常荣幸地邀请到 Nisa Bostanci 代表 Onur Mutlu 的团队分享 Ramulator！香山的 GEM5 模拟器现已集成 Ramulator
 
-在过去的两周，前端继续修复 V3 BPU 重构后带来的性能 bug。后端整理现有代码，继续推进 V3 开发。访存缓存部分修复了数个 V2 的 bug，同时进行代码重构工作，为 V3 开发做准备。
+在过去的两周，前端继续修复 V3 BPU 重构后带来的性能 bug。后端继续推进向量单元、整体结构上的开发。访存缓存部分修复了数个 V2 的 bug，同时进行代码重构工作，为 V3 开发做准备。
 
 <!-- more -->
 
@@ -62,11 +62,16 @@ categories:
 ### 后端
 
 - Bug 修复
-  - 修复了当 ROB 压缩关闭时，跨两个 FTQ 的融合指令不可压缩的问题（[#5079](https://github.com/OpenXiangShan/XiangShan/pull/5079)）
+  - 修复特定情况下 CSR 中 XIP 寄存器乱序读取造成的错误 （[#5131](https://github.com/OpenXiangShan/XiangShan/pull/5131)）
 - RTL 新特性
-  - 在 ALU 中添加 jalr/jal/auipc 的新 uop 拆分实现
+  - 实现在 IQ 出口对直接跳转指令拆分 uop 的方案（[#5128](https://github.com/OpenXiangShan/XiangShan/pull/5128)）
+  - 将浮点物理寄存器增加到 256，robSize 和 rabSize 增加到 352
+  - 新增 Vmove 功能单元，将需要搬数据的指令 uop 拆分修改为使用 Vmove 单元（[#5126](https://github.com/OpenXiangShan/XiangShan/pull/5126)）
+- 时序优化
+  - 改善 vfcvt 的时序以支持向量单元的快速唤醒（[YunSuan #189](https://github.com/OpenXiangShan/YunSuan/pull/189)）
+  - 完成 vialu 的重构以支持向量单元的快速唤醒（[#5136](https://github.com/OpenXiangShan/XiangShan/pull/5136)）
 - 代码质量
-  - 优化 NewMgu 中 vialuf 的时序（[#5078](https://github.com/OpenXiangShan/XiangShan/pull/5078)）
+  - 修改近期代码遗留问题，提升代码质量（[#5135](https://github.com/OpenXiangShan/XiangShan/pull/5135)）
 
 ### 访存与缓存
 

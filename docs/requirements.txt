@@ -1,6 +1,6 @@
-mkdocs-material==9.5.40
+mkdocs-material>=9.6.22
 mkdocs-static-i18n
 mkdocs-rss-plugin
 mkdocs-git-revision-date-localized-plugin
 mkdocs-git-committers-plugin-2
-jieba==0.42.1
+jieba>=0.42.1

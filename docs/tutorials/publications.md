@@ -43,6 +43,21 @@ Published at *2023 IEEE International Test Conference in Asia (ITC-Asia)*. DOI: 
 
 [Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/itcasia2023-chiseldft.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/document/10301174) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/itcasia2023-chiseldft-slides.pdf)
 
+## DiffTest-H: Toward Semantic-Aware Communication in Hardware-Accelerated Processor Verification
+
+Published at *the 58th IEEE/ACM International Symposium on Microarchitecture (MICRO 2025)*. DOI: [10.1145/3725843.3756108](https://doi.org/10.1145/3725843.3756108).
+
+Our paper introduces DiffTest-H, a hardware-accelerated co-simulation framework for processor verification.
+It covers several optimizations to minimize communication overhead while preserving instruction-level debuggability.
+This framework is open-sourced and deployed in the XiangShan verification flow, receiving all three available badges for artifact evaluation.
+
+![Artifacts Available](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/artifacts_available_dl.jpg)
+![Artifacts Evaluated — Functional](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/artifacts_evaluated_functional_dl.jpg)
+![Results Reproduced](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/results_reproduced_dl.jpg)
+
+[Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2025-DiffTestH.pdf) | [ACM Digital Library](https://dl.acm.org/doi/10.1145/3725843.3756108) | [BibTeX](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2025-DiffTestH.bib) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2025-DiffTestH-slides.pdf)
+
+
 ## Research on XiangShan
 
 XiangShan has been used by researchers as the underlying platform for their evaluations.

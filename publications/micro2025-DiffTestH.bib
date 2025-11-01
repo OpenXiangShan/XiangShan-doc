@@ -1,0 +1,18 @@
+@inproceedings{10.1145/3725843.3756108,
+author = {You, Kunlin and Xu, Yinan and Feng, Kehan and Cai, Luoshan and Zhou, Yaoyang and Bao, Yungang},
+title = {DiffTest-H: Toward Semantic-Aware Communication in Hardware-Accelerated Processor Verification},
+year = {2025},
+isbn = {9798400715730},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3725843.3756108},
+doi = {10.1145/3725843.3756108},
+abstract = {Verification has become the most time-consuming phase in chip development. Co-simulation frameworks simulate the design under test (DUT) with a golden reference model (REF) and compare their instruction-level results for verification, causing over 98\% communication overhead: although hardware-accelerated platforms, such as FPGA and emulators, speed up DUT simulation by 300 \texttimes{} –10000 \texttimes{} , overall co-simulation speedup is still limited to 2.5 \texttimes{} –20 \texttimes{}. In this paper, we propose DiffTest-H, a semantic-aware, hardware-accelerated co-simulation framework with three techniques reducing communication overhead while preserving debuggability: (1) Batch minimizes communication frequency by tightly packing structurally diverse verification events into a single transfer. (2) Squash reduces data transmission volume by fusing verification events with a decoupled checking order. (3) Replay preserves instruction-level debuggability by reprocessing the original, unfused verification events around the failure point. DiffTest-H is deployed on both Palladium emulator and FPGA to verify a 6-wide, out-of-order RISC-V processor, XiangShan. It achieves simulation speeds of 478KHz and 7.8MHz respectively, with an 80 \texttimes{} and 78 \texttimes{} speedup over the baseline, 119 \texttimes{} and 1945 \texttimes{} faster than 16-thread Verilator, and uncovers 151 bugs in XiangShan.},
+booktitle = {Proceedings of the 58th IEEE/ACM International Symposium on Microarchitecture},
+pages = {1462–1476},
+numpages = {15},
+keywords = {Processor Verification, Simulation Acceleration, Co-simulation},
+location = {
+},
+series = {MICRO '25}
+}

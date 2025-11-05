@@ -1,6 +1,6 @@
 ---
 slug: "memory-access-827-2-memory-access-pipeline"
-date: 2025-11-07
+date: 2025-11-06
 categories:
   - "2025 香山入门指南"
 links:

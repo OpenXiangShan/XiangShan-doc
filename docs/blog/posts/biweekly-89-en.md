@@ -43,25 +43,28 @@ In terms of XiangShan development, the frontend has fixed several performance bu
 ### Frontend
 
 - RTL feature
-  - Enable override mechanism of s3 accurate predictor group in V3 BPU (only BaseTable is enabled for TAGE, RAS is not enabled) ([#5057](https://github.com/OpenXiangShan/XiangShan/pull/5057))
-  - Add 2-fetch interface support for IBuffer ([#5098](https://github.com/OpenXiangShan/XiangShan/pull/5098))
-  - Rewrite ABTB fast training interface ([#5070](https://github.com/OpenXiangShan/XiangShan/pull/5070))
+  - Support Hardware Error exception introduced in RISC-V Privileged Spec v1.13 ([#4770](https://github.com/OpenXiangShan/XiangShan/pull/4770))
+  - Enable UBTB fast training ([#5145](https://github.com/OpenXiangShan/XiangShan/pull/5145))
+  - Remove takenCnt and valid fields of UBTB ([#5157](https://github.com/OpenXiangShan/XiangShan/pull/5157))
+  - Implement globalTable for SC predictor ([#5150](https://github.com/OpenXiangShan/XiangShan/pull/5150))
+  - Support PHR tracking branch target ([#5169](https://github.com/OpenXiangShan/XiangShan/pull/5169))
+  - ABTB override fast predict, MicroTAGE and other new performance features are being explored
+  - Decoupled BPU train and commit path refactoring are in progress
 - Bug Fix
-  - Fix the issue of MBTB misfiltering branches at the beginning of the fetch block ([#5113](https://github.com/OpenXiangShan/XiangShan/pull/5113))
-  - Fix SC training logic related issues ([#5118](https://github.com/OpenXiangShan/XiangShan/pull/5118))
-  - Fix RAS stack size parameter calculation related issues ([#5132](https://github.com/OpenXiangShan/XiangShan/pull/5132))
-  - Fix WriteBuffer write index typo ([#5134](https://github.com/OpenXiangShan/XiangShan/pull/5134))
-  - Fix the issue where invalid entries in the FTQ resolve queue are marked as flushed, causing BPU training loss ([#5107](https://github.com/OpenXiangShan/XiangShan/pull/5107))
-  - Fix assertion condition error in IFU ([#5122](https://github.com/OpenXiangShan/XiangShan/pull/5122))
+  - Fix the X-state propagation issue caused by ABTB and MBTB SRAM read data not being latched ([#5153](https://github.com/OpenXiangShan/XiangShan/pull/5153))
+  - Fix the issue related to ABTB training conditions ([#5160](https://github.com/OpenXiangShan/XiangShan/pull/5160))
+  - Fix the issue of non-one-hot waymask in MBTB multi-hit flush logic ([#5181](https://github.com/OpenXiangShan/XiangShan/pull/5181))
+  - Fix the issue of incorrect set index calculation for TAGE BaseTable and MBTB ([#5155](https://github.com/OpenXiangShan/XiangShan/pull/5155))
+  - Fix the issue related to mismatch of PHR pointer metadata ([#5139](https://github.com/OpenXiangShan/XiangShan/pull/5139))
+  - Fix the issue related to WriteBuffer write port wiring ([#5143](https://github.com/OpenXiangShan/XiangShan/pull/5143))
+  - Fix the issue where IBuffer still records exceptions when the number of enqueued entries is 0 ([#5147](https://github.com/OpenXiangShan/XiangShan/pull/5147))
 - Timing optimization
-  - (V2) Replace the dual-port SRAM of TageBTable and SCTable with single-port SRAM ([#5094](https://github.com/OpenXiangShan/XiangShan/pull/5094))
-  - Modify instruction boundary calculation logic, changing from calculating after IFU fetches instruction data to pre-calculating during ICache refill; shorten IFU pipeline stage ([#5108](https://github.com/OpenXiangShan/XiangShan/pull/5108))
+  - (V2) Replace the dual-port SRAM of FTQ with registers ([#5142](https://github.com/OpenXiangShan/XiangShan/pull/5142))
 - Area optimization
-  - Support IBuffer to only store the first exception encountered after power-on/redirection ([#5095](https://github.com/OpenXiangShan/XiangShan/pull/5095))
+  - Support ICache WayLookup to only store the first exception encountered after power-on/redirection ([#4959](https://github.com/OpenXiangShan/XiangShan/pull/4959), [#5165](https://github.com/OpenXiangShan/XiangShan/pull/5165))
 - Code quality improvements
-  - Remove V2 brType type, unify to use V3 BranchAttribute ([#5076](https://github.com/OpenXiangShan/XiangShan/pull/5076))
-- Debugging tools
-  - Add some BPU performance counters ([#5112](https://github.com/OpenXiangShan/XiangShan/pull/5112))
+  - Refactor the fast training interface of s1 predictors ([#5144](https://github.com/OpenXiangShan/XiangShan/pull/5144))
+  - Refactor MBTB alignBank and fix the issue of incorrect bank index calculation ([#5159](https://github.com/OpenXiangShan/XiangShan/pull/5159))
 
 ### Backend
 

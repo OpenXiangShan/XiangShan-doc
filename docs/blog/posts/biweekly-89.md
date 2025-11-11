@@ -11,32 +11,18 @@ categories:
 
 本次是第 89 期双周报。
 
-香山成功举办了 MICRO 2025 tutorial！我们非常高兴能与大家在首尔相见，感谢每一位参会的朋友和关心香山发展的伙伴们！如果未能现场参与，欢迎大家访问 <https://tutorial.xiangshan.cc/micro25/> 回顾本次 tutorial 的内容。香山的下一场 tutorial 将于明年初在澳大利亚举办的 HPCA 2026 会议上进行，期待与大家再次相见！
-
-在此次 tutorial 中，我们进行了大规模的重构，主要包括：
-
-- 完全重构的上手环节。新的上手环节使用 Jupyter Notebook 组织，进一步降低了解香山的门槛。所有内容都已开源到 <https://github.com/OpenXiangShan/bootcamp>，欢迎大家尝试
-- 完全重构的微架构介绍。相比于扁平化地介绍香山微架构现状，新的微架构部分着重介绍香山的设计哲学，帮助大家更好地理解香山的设计思路
-- 非常荣幸地邀请到 Nisa Bostanci 代表 Onur Mutlu 教授的团队分享 Ramulator！香山的 GEM5 模拟器现已集成 Ramulator
-
-香山开发方面，前端修复数个 V3 BPU 重构后带来的性能 bug，同时推进取指侧对 2-fetch 的支持。后端继续进行 V3 开发与重构。访存完善了一部分 topdown PMU 与 CHIron 工具。
+香山开发方面，前端继续修复 BPU 重构带来的性能 bug~~希望下次双周报时性能能够达到重构前水平~~。后端推进 V3 向量单元的新设计实现，同时优化了 V2 后端的时序。访存持续推进各个模块的重构与测试，并且修复了一些功能 bug，优化了时序，提升了代码质量。
 
 <!-- more -->
 
-## Tutorial 花絮
-- 合影镇楼
+## 开发花絮
+双核昆明湖 V2 成功在 FPGA 上以 50MHz 启动 GUI OpenEuler 24.03！我们还成功运行了 LibreOffice，并且来了一把~~激情四射~~的 DOOM！这标志着香山验证工作的一个里程碑，也给了我们更大的信心。
 
-  ![合影镇楼](./figs/micro2025-tutorial/group-photo.png)
-- 10 月 17 日清晨 5:28，Mutlu 教授回复了我们的邀请，确认将出席并介绍 Ramulator
+由于 FPGA 频率比较低，因此启动稍慢，还望大家耐心观看~
 
-  ![Mutlu 教授](./figs/micro2025-tutorial/professor-mutlu.png)
-- 10 月 18 日晚，香山团队的同学在烤肉店修改 GEM5 部分的上手代码
+（由于 GitHub 的限制，请大家移步公众号观看）
 
-  ![DDL 是第一生产力](./figs/micro2025-tutorial/ddl.png)
-- 10 月 19 日，tutorial 于上午 8:00 准时开始。由于时间较早，一开始参加的人数并不多~~早八还是太超模了，看来大家都起不来~~。随着 tutorial 的进行，现场人数逐渐增多，最终坐满了整个屋子
-
-  ![会场座无虚席](./figs/micro2025-tutorial/full-house.jpg)
-- ![香山 30 年](./figs/micro2025-tutorial/xiangshan-30years.png)
+~~请忽略画质问题，这是极为艺术的摇晃镜头~~
 
 ## 近期进展
 
@@ -133,8 +119,8 @@ categories:
 
 |           |            |
 | --------- | ---------- |
-| commit    | 0fb84f8    |
-| 日期      | 2025/10/23 |
+| commit    | 1e9f1b4    |
+| 日期      | 2025/11/07 |
 | L1 ICache | 64KB       |
 | L1 DCache | 64KB       |
 | L2 Cache  | 1MB        |

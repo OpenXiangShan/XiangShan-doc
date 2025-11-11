@@ -11,32 +11,18 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the 89th issue of the biweekly report.
 
-XiangShan has successfully held the MICRO 2025 tutorial! We are very excited to see everyone in Seoul, and we would like to thank every participant and partner who cares about the development of XiangShan! If you were unable to attend in person, we welcome you to visit <https://tutorial.xiangshan.cc/micro25/> to review the content of this tutorial. The next XiangShan tutorial will be held at the HPCA 2026 conference in Australia early next year, and we look forward to seeing you again!
-
-In this tutorial, we carried out a large-scale refactoring, mainly including:
-
-- A completely restructured getting-started section. The new getting-started section is organized using Jupyter Notebook, further lowering the barrier to understanding XiangShan. All content has been open-sourced to <https://github.com/OpenXiangShan/bootcamp>, and we welcome everyone to try it out.
-- A completely restructured microarchitecture introduction. Instead of flatly introducing the current state of XiangShan's microarchitecture, the new microarchitecture section focuses on XiangShan's design philosophy, helping everyone better understand XiangShan's design ideas.
-- We are very honored to invite Nisa Bostanci as a representative of Onur Mutlu's team to share Ramulator! XiangShan's GEM5 simulator has now integrated Ramulator.
-
-In terms of XiangShan development, the frontend has fixed several performance bugs caused by the V3 BPU refactoring, while also advancing support for 2-fetch on the instruction fetch side. The backend continues with V3 development and refactoring. The memory subsystem has improved some topdown PMU and CHIron tools.
+XiangShan development-wise, the frontend team continued to fix performance bugs caused by BPU refactoring~~hoping that performance can reach pre-refactoring levels by the next biweekly report~~. The backend team is advancing the new design implementation of the V3 vector unit while optimizing the timing of the V2 backend. The MemBlock team is continuously pushing forward with the refactoring and testing of various modules, fixing some functional bugs, optimizing timing, and improving code quality.
 
 <!-- more -->
 
-## Bonus: Tutorial Highlights
-- Group photo to kick off
-  
-  ![Group photo to kick off](./figs/micro2025-tutorial/group-photo.png)
-- On the early morning of October 17th at 5:28 AM, Professor Mutlu replied to our invitation, confirming his attendance and introduction of Ramulator
+## Development Bonus
+The dual-core Kunming Lake V2 successfully booted GUI OpenEuler 24.03 on FPGA at 50MHz! We also successfully ran LibreOffice and had a passionate game of DOOM! This marks a milestone in XiangShan's verification work and gives us greater confidence.
 
-  ![Professor Mutlu](./figs/micro2025-tutorial/professor-mutlu.png)
-- On the evening of October 18th, members of the XiangShan team modified the GEM5 getting-started code at a barbecue restaurant.
-  
-  ![DDL is the first productivity](./figs/micro2025-tutorial/ddl.png)
-- On October 19th, the tutorial started promptly at 8:00 AM. Due to the early time, the number of participants was not very high at the beginning~~early morning classes are still too much, it seems that everyone can't get up~~. As the tutorial progressed, the number of attendees gradually increased, eventually filling the entire room.
+Due to the low frequency of the FPGA, the boot is a bit slow, so please be patient~
 
-  ![The venue was packed](./figs/micro2025-tutorial/full-house.jpg)
-- ![XiangShan 30 years](./figs/micro2025-tutorial/xiangshan-30years.png)
+(Due to GitHub limitations, please watch on the official WeChat public account)
+
+~~Please ignore the image quality issue, this is an extremely artistic shaky camera~~
 
 ## Recent Developments
 
@@ -134,8 +120,8 @@ Processor and SoC parameters are as follows:
 
 |                |            |
 | -------------- | ---------- |
-| Commit         | 0fb84f8    |
-| Date           | 10/23/2025 |
+| Commit         | 1e9f1b4    |
+| Date           | 11/07/2025 |
 | L1 ICache      | 64KB       |
 | L1 DCache      | 64KB       |
 | L2 Cache       | 1MB        |

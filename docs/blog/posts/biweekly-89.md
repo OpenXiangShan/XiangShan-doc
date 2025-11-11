@@ -68,17 +68,12 @@ categories:
 
 ### 后端
 
-- Bug 修复
-  - 修复特定情况下 CSR 中 XIP 寄存器乱序读取造成的错误 （[#5131](https://github.com/OpenXiangShan/XiangShan/pull/5131)）
 - RTL 新特性
-  - 实现在 IQ 出口对直接跳转指令拆分 uop 的方案（[#5128](https://github.com/OpenXiangShan/XiangShan/pull/5128)）
-  - 将浮点物理寄存器增加到 256，robSize 和 rabSize 增加到 352
-  - 新增 Vmove 功能单元，将需要搬数据的指令 uop 拆分修改为使用 Vmove 单元（[#5126](https://github.com/OpenXiangShan/XiangShan/pull/5126)）
+  - 正在推进 V3 向量单元的新设计实现
+  - 支持 OpenSBI 的 PMU 扩展（[#5172](https://github.com/OpenXiangShan/XiangShan/pull/5172)）
+  - 参数化设计 PMP 和 PMA（[#5177](https://github.com/OpenXiangShan/XiangShan/pull/5177)）
 - 时序优化
-  - 改善 vfcvt 的时序以支持向量单元的快速唤醒（[YunSuan #189](https://github.com/OpenXiangShan/YunSuan/pull/189)）
-  - 完成 vialu 的重构以支持向量单元的快速唤醒（[#5136](https://github.com/OpenXiangShan/XiangShan/pull/5136)）
-- 代码质量
-  - 修改近期代码遗留问题，提升代码质量（[#5135](https://github.com/OpenXiangShan/XiangShan/pull/5135)）
+  - 继续推进对 V2 向量运算单元时序的优化
 
 ### 访存与缓存
 

@@ -11,7 +11,7 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the 89th issue of the biweekly report.
 
-XiangShan development-wise, the frontend team continued to fix performance bugs caused by BPU refactoring~~hoping that performance can reach pre-refactoring levels by the next biweekly report~~. The backend team is advancing the new design implementation of the V3 vector unit while optimizing the timing of the V2 backend. The MemBlock team is continuously pushing forward with the refactoring and testing of various modules, fixing some functional bugs, optimizing timing, and improving code quality.
+XiangShan development-wise, the frontend team continued to fix performance bugs caused by BPU refactoring~~hoping that performance can reach pre-refactoring levels by the next biweekly report~~. The backend team is advancing the new design implementation of the V3 vector unit while optimizing the timing of the V2 backend. The MemBlock team is continuously pushing forward with the V3 refactoring and testing of various modules, fixing some V2 functional bugs, optimizing timing, and improving code quality.
 
 <!-- more -->
 

@@ -7,7 +7,7 @@ links:
   - blog/posts/beginner-guide-2025/1-ooo-memory-access.md
   - blog/posts/beginner-guide-2025/2-memory-access-pipeline.md
   - blog/posts/beginner-guide-2025/3-powerful-cache.md
-  # - blog/posts/beginner-guide-2025/4-virtual-memory.md
+  - blog/posts/beginner-guide-2025/4-virtual-memory.md
   # - blog/posts/beginner-guide-2025/5-atomic-operation.md
 authors:
   - Anzooooo

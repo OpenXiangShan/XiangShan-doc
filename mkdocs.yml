@@ -14,15 +14,16 @@ theme:
   features:
     - navigation.tabs
 markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - footnotes
-  - abbr
-  - pymdownx.snippets
-  - attr_list
-  - md_in_html
-  - def_list
+  admonition: {}
+  pymdownx.details:  {}
+  pymdownx.superfences: {}
+  footnotes: {}
+  abbr: {}
+  pymdownx.snippets: {}
+  attr_list: {}
+  md_in_html: {}
+  def_list: {}
+  markdown_captions: {}
 plugins:
   - search:
       lang:

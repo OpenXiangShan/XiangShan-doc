@@ -4,3 +4,4 @@ mkdocs-rss-plugin
 mkdocs-git-revision-date-localized-plugin
 mkdocs-git-committers-plugin-2
 jieba>=0.42.1
+markdown-captions~=2.1.0

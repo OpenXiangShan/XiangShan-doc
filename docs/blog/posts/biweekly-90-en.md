@@ -11,7 +11,7 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the 90th issue of the biweekly report.
 
-XiangShan development-wise, the frontend team continued to fix performance bugs caused by BPU refactoring~~hoping that performance can reach pre-refactoring levels by the next biweekly report~~. The backend team is advancing the new design implementation of the V3 vector unit while optimizing the timing of the V2 backend. The MemBlock team is continuously pushing forward with the V3 refactoring and testing of various modules, fixing some V2 functional bugs, optimizing timing, and improving code quality.
+XiangShan development-wise, the frontend team continued to fix performance bugs caused by BPU refactoring~~hoping that performance can reach pre-refactoring levels by the next biweekly report~~. The backend team is steadily advancing bug fixes and new feature development. The MemBlock team is continuously pushing forward with the V3 refactoring and testing of various modules, fixing some V2 functional bugs, optimizing timing, and improving code quality.
 
 <!-- more -->
 
@@ -54,13 +54,17 @@ Due to the low frequency of the FPGA, the boot is a bit slow, so please be patie
 
 ### Backend
 
-- RTL New Features
-  - V3 vector unit new design implementation is in progress
-  - Support OpenSBI PMU extension ([#5172](https://github.com/OpenXiangShan/XiangShan/pull/5172))
-  - Parameterize PMP and PMA ([#5177](https://github.com/OpenXiangShan/XiangShan/pull/5177))
-- Timing
-  - Continue to optimize the timing of V2 vector arithmetic units
-
+- RTL new features
+  - Implementing the new design of V3 vector unit is in progress
+  - Adding valid flags for each traceGroup and tracking support for the mstatus register in the top-level debug module ([#5146](https://github.com/OpenXiangShan/XiangShan/pull/5146))
+- Bug fixes
+  - Fixing issues related to nmi register gating ([#5067](https://github.com/OpenXiangShan/XiangShan/pull/5067)[#5215](https://github.com/OpenXiangShan/XiangShan/pull/5215))
+  - Rejecting out-of-order reads of xip-type CSRs ([#5131](https://github.com/OpenXiangShan/XiangShan/pull/5131))
+  - Fixing incorrect dependencies on oldVd, ROB compression, and other issues
+- Code quality improvements
+  - Optimizing the code quality of the V3 backend, removing some redundant code, modifying some code styles, and performing some renaming ([#5135](https://github.com/OpenXiangShan/XiangShan/pull/5135))
+- Timing optimization
+  - Advancing the evaluation and optimization of vector reduction, Regfile, and other units
 
 ### MemBlock and Cache
 

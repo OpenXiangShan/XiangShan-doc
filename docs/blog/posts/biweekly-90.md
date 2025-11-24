@@ -11,7 +11,7 @@ categories:
 
 本次是第 90 期双周报。
 
-香山开发方面，前端继续修复 BPU 重构带来的性能 bug~~希望下次双周报时性能能够达到重构前水平~~。后端推进 V3 向量单元的新设计实现，同时优化了 V2 后端的时序。访存持续推进 V3 各个模块的重构与测试，并且修复了一些 V2 功能 bug，优化了时序，提升了代码质量。
+香山开发方面，前端继续修复 BPU 重构带来的性能 bug~~希望下次双周报时性能能够达到重构前水平~~。后端继续稳推进 bug 修复和新功能开发。访存持续推进 V3 各个模块的重构与测试，并且修复了一些 V2 功能 bug，优化了时序，提升了代码质量。
 
 <!-- more -->
 
@@ -56,10 +56,15 @@ categories:
 
 - RTL 新特性
   - 正在推进 V3 向量单元的新设计实现
-  - 支持 OpenSBI 的 PMU 扩展（[#5172](https://github.com/OpenXiangShan/XiangShan/pull/5172)）
-  - 参数化设计 PMP 和 PMA（[#5177](https://github.com/OpenXiangShan/XiangShan/pull/5177)）
+  - 为顶层 debug 模块添加每个 traceGroup 的有效标志，以及 mstatus 寄存器的跟踪支持（[#5146](https://github.com/OpenXiangShan/XiangShan/pull/5146)）
+- Bug 修复
+  - 修复 nmi 寄存器 gating 相关问题（[#5067](https://github.com/OpenXiangShan/XiangShan/pull/5067)[#5215](https://github.com/OpenXiangShan/XiangShan/pull/5215)）
+  - 拒绝 xip 类 CSR 的乱序读取（[#5131](https://github.com/OpenXiangShan/XiangShan/pull/5131)）
+  - 正在修复对 oldVd 的错误依赖、ROB 压缩等等问题
+- 代码质量
+  - 进行 V3 后段代码的质量优化，删除部分冗余代码，修改一些代码风格，进行部分重命名（[#5135](https://github.com/OpenXiangShan/XiangShan/pull/5135)）
 - 时序优化
-  - 继续推进对 V2 向量运算单元时序的优化
+  - 推进对向量 reduction、Regfile 等单元的评估与优化
 
 ### 访存与缓存
 

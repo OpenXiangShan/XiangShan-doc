@@ -1,15 +1,15 @@
 ---
-slug: biweekly-90
-date: 2025-11-24
+slug: biweekly-89
+date: 2025-11-10
 categories:
   - Biweekly
 ---
 
-# 【香山双周报 90】20251124 期
+# 【香山双周报 89】20251110 期
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。我们期待您的贡献。
 
-本次是第 90 期双周报。
+本次是第 89 期双周报。
 
 香山开发方面，前端继续修复 BPU 重构带来的性能 bug~~希望下次双周报时性能能够达到重构前水平~~。后端继续稳推进 bug 修复和新功能开发。访存持续推进 V3 各个模块的重构与测试，并且修复了一些 V2 功能 bug，优化了时序，提升了代码质量。
 
@@ -69,21 +69,19 @@ categories:
 ### 访存与缓存
 
 - RTL 新特性
+  - （V2）为 TLB 添加 pmu 性能事件（[#5205](https://github.com/OpenXiangShan/XiangShan/pull/5205)）
+  - （V2）为 CoupledL2 添加了一些性能事件（[CoupledL2 #437](https://github.com/OpenXiangShan/CoupledL2/pull/437)，[CoupledL2 #441](https://github.com/OpenXiangShan/CoupledL2/pull/441)）
+  - 新增 berti 预取器（[#5049](https://github.com/OpenXiangShan/XiangShan/pull/5049)）
+  - 调整了 MemBlock 中发射与写回的端口（[#5167](https://github.com/OpenXiangShan/XiangShan/pull/5167)）
   - MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
 - Bug 修复
-  - 修复 TLB 刷新逻辑错误的问题。在hfence.vvma、 sfence.vma 且 v=1、或者 mbmc.BME = 1 且 CMODE = 0 时忽略地址匹配，直接刷新所有 TLB 条目（[#5114](https://github.com/OpenXiangShan/XiangShan/pull/5114)）
-  - 修复 VsegmentUnit 中拆分非对齐元素时没有锁存 Paddr 的 Bug。该 Bug 会导致错误发起访存请求（[#5164](https://github.com/OpenXiangShan/XiangShan/pull/5164)）
-  - 修复 TLB 处于 onlyS2 阶段时 gpaddr 与 vaddr 不同的问题（[#5189](https://github.com/OpenXiangShan/XiangShan/pull/5189)）
+  - （V2）修复了 MXR 有效时 PMM 没有被禁用的问题（[#4997](https://github.com/OpenXiangShan/XiangShan/pull/4997)）
+  - （V2）修复了 DCache 转发 corrupt 状态时时序不匹配的问题（[#5228](https://github.com/OpenXiangShan/XiangShan/pull/5228)）
+  - （V2）添加使能位来决定是否检查 KeyID（[#5241](https://github.com/OpenXiangShan/XiangShan/pull/5241)）
+  - （V2）修复了 CoupledL2 中将 SnpUnique 错误译码为 SnpPreferUnique 的问题（[CoupledL2 #438](https://github.com/OpenXiangShan/CoupledL2/pull/438)）
+  - （V2）在 CoupledL2 中添加 l-credit 管理器以修复性能（[CoupledL2 #433](https://github.com/OpenXiangShan/CoupledL2/pull/433)）
 - 时序
-  - 修复了 PTW 的时序问题（[#5170](https://github.com/OpenXiangShan/XiangShan/pull/5170)）
-  - 正在修复 LoadReplayQueue 以及 DCache 中的时序问题（[#5185](https://github.com/OpenXiangShan/XiangShan/pull/5185)）
-- 代码质量
-  - 将 beu 中的 IntBuffer 移动到 L2Top 以进行分区（[#5110](https://github.com/OpenXiangShan/XiangShan/pull/5110)）
-  - 移除了顶层模块 XSCore 中所有的组合逻辑，仅保留连线逻辑（[#5120](https://github.com/OpenXiangShan/XiangShan/pull/5120)）
-  - 对 PMP 与 PMA 进行参数化（[#5177](https://github.com/OpenXiangShan/XiangShan/pull/5177)）
-- 调试工具
-  - 在 DCache 与 LDU 中新增一些硬件性能计数器（[#5166](https://github.com/OpenXiangShan/XiangShan/pull/5166)）
-  - 继续完善 CHI 相关基础设施 CHIron 的功能（[CHIron](https://github.com/RISMicroDevices/CHIron)）
+  - （V2）简化了 CoupledL2 中 RXSNP 端口的 CMO 请求，并将 RXRSP 与 RXDAT 流水化（[CoupledL2 #436](https://github.com/OpenXiangShan/CoupledL2/pull/436)）
 
 ## 性能评估
 

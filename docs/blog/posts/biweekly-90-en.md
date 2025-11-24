@@ -69,21 +69,19 @@ Due to the low frequency of the FPGA, the boot is a bit slow, so please be patie
 ### MemBlock and Cache
 
 - RTL new features
+  - (V2) Add pmu perfevents for TLB ([#5205](https://github.com/OpenXiangShan/XiangShan/pull/5205))
+  - (V2) Add some perfevents in CoupledL2 ([CoupledL2 #437](https://github.com/OpenXiangShan/CoupledL2/pull/437), [CoupledL2 #441](https://github.com/OpenXiangShan/CoupledL2/pull/441))
+  - Add berti prefetcher ([#5049](https://github.com/OpenXiangShan/XiangShan/pull/5049))
+  - Adjust the interface of issue and writeback in MemBlock ([#5167](https://github.com/OpenXiangShan/XiangShan/pull/5167))
   - The refactoring and testing of MMU, LoadUnit, StoreQueue, L2, etc. is ongoing
 - Bug fix
-  - Fix the issue with the TLB refresh logic. When hfence.vvma, sfence.vma have v=1, or mbmc.BME = 1 and CMODE = 0, address matching is ignored, and all TLB entries are refreshed directly ([#5114](https://github.com/OpenXiangShan/XiangShan/pull/5114))
-  - Fix the issue of splitting unaligned elements in VsegmentUnit without locking Paddr. This will cause incorrect access requests to be initiated ([#5164](https://github.com/OpenXiangShan/XiangShan/pull/5164))
-  - Fix the issue that gpaddr and vaddr are different when TLB is in onlyS2 phase ([#5189](https://github.com/OpenXiangShan/XiangShan/pull/5189))
+  - (V2) Fix the issue where PMM was not disabled when MXR was active ([#4997](https://github.com/OpenXiangShan/XiangShan/pull/4997))
+  - (V2) Fix the issue of timing mismatch of corrupt when DCache forwarding ([#5228](https://github.com/OpenXiangShan/XiangShan/pull/5228))
+  - (V2) Add enable bit to determine whether checking KeyID ([#5241](https://github.com/OpenXiangShan/XiangShan/pull/5241))
+  - (V2) Fix the issue in CoupledL2 where SnpUnique was incorrectly decoded as SnpPreferUnique ([CoupledL2 #438](https://github.com/OpenXiangShan/CoupledL2/pull/438))
+  - (V2) Add l-credit manager in CoupledL2 to fix performance ([CoupledL2 #433](https://github.com/OpenXiangShan/CoupledL2/pull/433))
 - Timing
-  - Fix the timing issue of PTW ([#5170](https://github.com/OpenXiangShan/XiangShan/pull/5170))
-  - Fixing the timing issue of LoadReplayQueue and DCache ([#5185](https://github.com/OpenXiangShan/XiangShan/pull/5185))
-- Code quality improvements
-  - Move IntBuffer for beu into L2Top for partition ([#5110](https://github.com/OpenXiangShan/XiangShan/pull/5110))
-  - Remove all combinational logic in XSCore top module, only retain connection logic ([#5120](https://github.com/OpenXiangShan/XiangShan/pull/5120))
-  - Parameterize PMP and PMA ([#5177](https://github.com/OpenXiangShan/XiangShan/pull/5177))
-- Debugging tools
-  - Add some hardware performance counters in DCache and LDU ([#5166](https://github.com/OpenXiangShan/XiangShan/pull/5166))
-  - Continue to improve the functionality of CHI related infrastructure CHIron ([CHIron](https://github.com/RISMicroDevices/CHIron))
+  - (V2) Simplify the CMO req in RXSNP in CoupledL2 and pipeline RXSNP and RXDAT ([CoupledL2 #436](https://github.com/OpenXiangShan/CoupledL2/pull/436)) 
 
 ## Performance Evaluation
 

@@ -29,28 +29,24 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 支持 RISC-V 特权手册 v1.13 引入的 Hardware Error 异常（[#4770](https://github.com/OpenXiangShan/XiangShan/pull/4770)）
-  - 启用 UBTB 快速训练（[#5145](https://github.com/OpenXiangShan/XiangShan/pull/5145)）
-  - 移除 UBTB 的 takenCnt 和 valid 域（[#5157](https://github.com/OpenXiangShan/XiangShan/pull/5157)）
-  - 实现 SC 预测器的 globalTable（[#5150](https://github.com/OpenXiangShan/XiangShan/pull/5150)）
-  - 支持 PHR 追踪分支 target（[#5169](https://github.com/OpenXiangShan/XiangShan/pull/5169)）
-  - ABTB 快速恢复、MicroTAGE 等新性能特性探索中
-  - Decoupled BPU train、commit 通路重构进行中
+  - 支持 BPU 训练反压 Ftq Resolve Queue，避免读写冲突时训练数据丢弃（[#5148](https://github.com/OpenXiangShan/XiangShan/pull/5148)）
+  - 修改 PHR 哈希逻辑（[#5209](https://github.com/OpenXiangShan/XiangShan/pull/5209)）
 - Bug 修复
-  - 修复 ABTB、MBTB SRAM 读出数据没有被寄存导致的 X 态传播问题（[#5153](https://github.com/OpenXiangShan/XiangShan/pull/5153), [#5158](https://github.com/OpenXiangShan/XiangShan/pull/5158)）
-  - 修复 ABTB 训练条件相关问题（[#5160](https://github.com/OpenXiangShan/XiangShan/pull/5160)）
-  - 修复 MBTB multi-hit 冲刷逻辑 waymask 非 one-hot 的问题（[#5181](https://github.com/OpenXiangShan/XiangShan/pull/5181)）
-  - 修复 TAGE BaseTable、MBTB set 索引计算有误的问题（[#5155](https://github.com/OpenXiangShan/XiangShan/pull/5155)）
-  - 修复 PHR 指针元数据错位相关问题（[#5139](https://github.com/OpenXiangShan/XiangShan/pull/5139)）
-  - 修复 WriteBuffer 写端口连线相关问题（[#5143](https://github.com/OpenXiangShan/XiangShan/pull/5143)）
-  - 修复 IBuffer 在入队项数量为 0 时仍然记录 exception 的问题（[#5147](https://github.com/OpenXiangShan/XiangShan/pull/5147)）
-- 时序优化
-  - （V2）更换 FTQ 的双端口 SRAM 为寄存器（[#5142](https://github.com/OpenXiangShan/XiangShan/pull/5142)）
-- 面积优化
-  - 支持 ICache WayLookup 仅存储上电/重定向后遇到的第一条 exception（[#4959](https://github.com/OpenXiangShan/XiangShan/pull/4959), [#5165](https://github.com/OpenXiangShan/XiangShan/pull/5165)）
+  - 修复 ABTB 在阻塞时输出失效的问题（[#5197](https://github.com/OpenXiangShan/XiangShan/pull/5197)）
+  - 修复 TAGE 主表的若干问题，启用主表（[#5156](https://github.com/OpenXiangShan/XiangShan/pull/5156)）
+  - 修复 ITTAGE 训练索引非 one-hot 导致的 assertion fail（[#5184](https://github.com/OpenXiangShan/XiangShan/pull/5184)）
+  - 修复 FTQ ResolveQueue 未被 redirect 正确冲刷的问题（[#5149](https://github.com/OpenXiangShan/XiangShan/pull/5149)，[#5238](https://github.com/OpenXiangShan/XiangShan/pull/5238)）
+  - 修复 FTQ ResolveQueue 项滞留过久导致 BPU 新预测结果已经覆盖原始 FTQ 项，进而导致 BPU 训练错误的问题（[#5225](https://github.com/OpenXiangShan/XiangShan/pull/5225)）
+  - 修复 FTQ bpTrainStallCnt 位宽有误的问题（[#5201](https://github.com/OpenXiangShan/XiangShan/pull/5201)）
+- 时序/面积优化
+  - 移除 ICache Meta/DataArray 的 SRAMTemplate 中冗余的 holdRead 参数，同时优化时序和面积（[#5186](https://github.com/OpenXiangShan/XiangShan/pull/5186)）
 - 代码质量
-  - 重构 s1 预测器组的快速训练接口（[#5144](https://github.com/OpenXiangShan/XiangShan/pull/5144)）
-  - 重构 MBTB alignBank，顺便修复了 bank 索引计算有误的问题（[#5159](https://github.com/OpenXiangShan/XiangShan/pull/5159)）
+  - 移除去除跨页取指支持后冗余的 ipmp/itlb 端口（[#5213](https://github.com/OpenXiangShan/XiangShan/pull/5213)）
+  - 重构 TAGE BaseTable alignBank，顺便修复了 bank 索引计算有误的问题（[#5162](https://github.com/OpenXiangShan/XiangShan/pull/5162)）
+  - 重构 VecRotate 逻辑（[#5218](https://github.com/OpenXiangShan/XiangShan/pull/5218)）
+- 调试工具
+  - 新增 Tage Trace DB（[#5219](https://github.com/OpenXiangShan/XiangShan/pull/5219)）
+  - 新增大量软件仿真性能计数器（[#5187](https://github.com/OpenXiangShan/XiangShan/pull/5187)）
 
 ### 后端
 

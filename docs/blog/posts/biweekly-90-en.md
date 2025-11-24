@@ -29,28 +29,23 @@ Due to the low frequency of the FPGA, the boot is a bit slow, so please be patie
 ### Frontend
 
 - RTL feature
-  - Support Hardware Error exception introduced in RISC-V Privileged Spec v1.13 ([#4770](https://github.com/OpenXiangShan/XiangShan/pull/4770))
-  - Enable UBTB fast training ([#5145](https://github.com/OpenXiangShan/XiangShan/pull/5145))
-  - Remove takenCnt and valid fields of UBTB ([#5157](https://github.com/OpenXiangShan/XiangShan/pull/5157))
-  - Implement globalTable for SC predictor ([#5150](https://github.com/OpenXiangShan/XiangShan/pull/5150))
-  - Support PHR tracking branch target ([#5169](https://github.com/OpenXiangShan/XiangShan/pull/5169))
-  - ABTB override fast predict, MicroTAGE and other new performance features are being explored
-  - Decoupled BPU train and commit path refactoring are in progress
+  - Support BPU training backpressure Ftq Resolve Queue to avoid training data loss during read-write conflicts ([#5148](https://github.com/OpenXiangShan/XiangShan/pull/5148))
+  - Modify PHR hashing logic ([#5209](https://github.com/OpenXiangShan/XiangShan/pull/5209))
 - Bug Fix
-  - Fix the X-state propagation issue caused by ABTB and MBTB SRAM read data not being latched ([#5153](https://github.com/OpenXiangShan/XiangShan/pull/5153))
-  - Fix the issue related to ABTB training conditions ([#5160](https://github.com/OpenXiangShan/XiangShan/pull/5160))
-  - Fix the issue of non-one-hot waymask in MBTB multi-hit flush logic ([#5181](https://github.com/OpenXiangShan/XiangShan/pull/5181))
-  - Fix the issue of incorrect set index calculation for TAGE BaseTable and MBTB ([#5155](https://github.com/OpenXiangShan/XiangShan/pull/5155))
-  - Fix the issue related to mismatch of PHR pointer metadata ([#5139](https://github.com/OpenXiangShan/XiangShan/pull/5139))
-  - Fix the issue related to WriteBuffer write port wiring ([#5143](https://github.com/OpenXiangShan/XiangShan/pull/5143))
-  - Fix the issue where IBuffer still records exceptions when the number of enqueued entries is 0 ([#5147](https://github.com/OpenXiangShan/XiangShan/pull/5147))
-- Timing optimization
-  - (V2) Replace the dual-port SRAM of FTQ with registers ([#5142](https://github.com/OpenXiangShan/XiangShan/pull/5142))
-- Area optimization
-  - Support ICache WayLookup to only store the first exception encountered after power-on/redirection ([#4959](https://github.com/OpenXiangShan/XiangShan/pull/4959), [#5165](https://github.com/OpenXiangShan/XiangShan/pull/5165))
+  - Fix the issue where ABTB output invalidated when pipeline stalled ([#5197](https://github.com/OpenXiangShan/XiangShan/pull/5197))
+  - Fix several issues in TAGE table and enable the table ([#5156](https://github.com/OpenXiangShan/XiangShan/pull/5156))
+  - Fix assertion fail caused by non-one-hot training index in ITTAGE ([#5184](https://github.com/OpenXiangShan/XiangShan/pull/5184))
+  - Fix the issue where FTQ ResolveQueue was not properly flushed upon redirect ([#5149](https://github.com/OpenXiangShan/XiangShan/pull/5149), [#5238](https://github.com/OpenXiangShan/XiangShan/pull/5238))
+  - Fix the issue where FTQ ResolveQueue entries stayed too long causing BPU new prediction results to overwrite original FTQ entries, leading to incorrect BPU training ([#5225](https://github.com/OpenXiangShan/XiangShan/pull/5225))
+  - Fix the issue of incorrect bit-width of FTQ bpTrainStallCnt ([#5201](https://github.com/OpenXiangShan/XiangShan/pull/5201))
+- Timing/Area optimization
+  - Remove redundant holdRead parameter in SRAMTemplate of ICache Meta/DataArray, optimizing both timing and area ([#5186](https://github.com/OpenXiangShan/XiangShan/pull/5186))
 - Code quality improvements
-  - Refactor the fast training interface of s1 predictors ([#5144](https://github.com/OpenXiangShan/XiangShan/pull/5144))
-  - Refactor MBTB alignBank and fix the issue of incorrect bank index calculation ([#5159](https://github.com/OpenXiangShan/XiangShan/pull/5159))
+  - Remove redundant ipmp/itlb ports after removing cross-page instruction fetch support ([#5213](https://github.com/OpenXiangShan/XiangShan/pull/5213))
+  - Refactor TAGE BaseTable alignBank, fixing bank index calculation issue in the process ([#5162](https://github.com/OpenXiangShan/XiangShan/pull/5162))
+- Debugging tools
+  - Add Tage Trace DB ([#5219](https://github.com/OpenXiangShan/XiangShan/pull/5219))
+  - Add many performance counters ([#5187](https://github.com/OpenXiangShan/XiangShan/pull/5187))
 
 ### Backend
 

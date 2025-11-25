@@ -11,18 +11,9 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the 90th issue of the biweekly report.
 
-XiangShan development-wise, the frontend team continued to fix performance bugs caused by BPU refactoring~~hoping that performance can reach pre-refactoring levels by the next biweekly report~~. The backend team is steadily advancing bug fixes and new feature development. The MemBlock team is continuously pushing forward with the V3 refactoring and testing of various modules, fixing some V2 functional bugs, optimizing timing, and improving code quality.
+In terms of XiangShan development, the frontend has implemented some new performance features in V3, while fixing multiple performance bugs caused by BPU refactoring~~hoping that the performance can reach the pre-refactoring level (x2) by the next biweekly report~~. The backend is advancing the design of the new vector unit in V3, while fixing some legacy bugs in V2. The MemBlock has added the berti prefetcher, while continuing to promote code refactoring in various modules and fixing some V2 functional bugs.
 
 <!-- more -->
-
-## Development Bonus
-The dual-core Kunming Lake V2 successfully booted GUI OpenEuler 24.03 on FPGA at 50MHz! We also successfully ran LibreOffice and had a passionate game of DOOM! This marks a milestone in XiangShan's verification work and gives us greater confidence.
-
-Due to the low frequency of the FPGA, the boot is a bit slow, so please be patient~
-
-(Due to GitHub limitations, please watch on the official WeChat public account)
-
-~~Please ignore the image quality issue, this is an extremely artistic shaky camera~~
 
 ## Recent Developments
 
@@ -82,24 +73,24 @@ Due to the low frequency of the FPGA, the boot is a bit slow, so please be patie
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 35.82  | 410.bwaves       | 67.23  |
-| 401.bzip2         | 25.40  | 416.gamess       | 40.96  |
-| 403.gcc           | 47.81  | 433.milc         | 45.06  |
-| 429.mcf           | 60.26  | 434.zeusmp       | 51.80  |
-| 445.gobmk         | 30.24  | 435.gromacs      | 33.58  |
-| 456.hmmer         | 41.60  | 436.cactusADM    | 46.20  |
-| 458.sjeng         | 30.35  | 437.leslie3d     | 47.88  |
-| 462.libquantum    | 122.66 | 444.namd         | 28.86  |
-| 464.h264ref       | 56.55  | 447.dealII       | 73.57  |
-| 471.omnetpp       | 41.43  | 450.soplex       | 52.49  |
-| 473.astar         | 29.12  | 453.povray       | 53.44  |
-| 483.xalancbmk     | 72.71  | 454.Calculix     | 16.37  |
-| GEOMEAN           | 44.54  | 459.GemsFDTD     | 39.73  |
-|                   |        | 465.tonto        | 36.65  |
-|                   |        | 470.lbm          | 91.98  |
-|                   |        | 481.wrf          | 40.65  |
-|                   |        | 482.sphinx3      | 49.09  |
-|                   |        | GEOMEAN          | 44.94  |
+| 400.perlbench     | 36.13  | 410.bwaves       | 67.28  |
+| 401.bzip2         | 25.39  | 416.gamess       | 40.98  |
+| 403.gcc           | 47.97  | 433.milc         | 45.01  |
+| 429.mcf           | 60.54  | 434.zeusmp       | 51.85  |
+| 445.gobmk         | 30.29  | 435.gromacs      | 33.58  |
+| 456.hmmer         | 41.60  | 436.cactusADM    | 46.22  |
+| 458.sjeng         | 30.21  | 437.leslie3d     | 48.02  |
+| 462.libquantum    | 122.60 | 444.namd         | 28.86  |
+| 464.h264ref       | 56.59  | 447.dealII       | 73.54  |
+| 471.omnetpp       | 41.73  | 450.soplex       | 52.53  |
+| 473.astar         | 29.14  | 453.povray       | 53.41  |
+| 483.xalancbmk     | 72.80  | 454.Calculix     | 16.37  |
+| GEOMEAN           | 44.62  | 459.GemsFDTD     | 38.92  |
+|                   |        | 465.tonto        | 36.69  |
+|                   |        | 470.lbm          | 91.96  |
+|                   |        | 481.wrf          | 40.64  |
+|                   |        | 482.sphinx3      | 49.10  |
+|                   |        | GEOMEAN          | 44.90  |
 
 We use SimPoint to sample programs and create checkpoints images based on our custom format. The coverage of SimPoint clustering reaches 100%. Note that the above scores are estimated based on program segments rather than a complete SPEC CPU2006 evaluation, which may deviate from the actual performance of real chips.
 
@@ -117,8 +108,8 @@ Processor and SoC parameters are as follows:
 
 |                |            |
 | -------------- | ---------- |
-| Commit         | 1e9f1b4    |
-| Date           | 11/07/2025 |
+| Commit         | d0adbd4    |
+| Date           | 11/21/2025 |
 | L1 ICache      | 64KB       |
 | L1 DCache      | 64KB       |
 | L2 Cache       | 1MB        |

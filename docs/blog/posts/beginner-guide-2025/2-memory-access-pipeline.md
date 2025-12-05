@@ -9,6 +9,7 @@ links:
   - blog/posts/beginner-guide-2025/3-powerful-cache.md
   - blog/posts/beginner-guide-2025/4-virtual-memory.md
   - blog/posts/beginner-guide-2025/5-atomic-operation.md
+  - blog/posts/beginner-guide-2025/6-vector.md
 authors:
   - Anzooooo
 ---

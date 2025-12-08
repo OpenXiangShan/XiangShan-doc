@@ -11,7 +11,7 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the 91st issue of the biweekly report.
 
-In terms of XiangShan development, the frontend has implemented some new performance features in V3, while fixing multiple performance bugs caused by BPU refactoring~~hoping that the performance can reach the pre-refactoring level (x2) by the next biweekly report~~. The backend is advancing the design of the new vector unit in V3, while fixing some legacy bugs in V2. The MemBlock has added the berti prefetcher, while continuing to promote code refactoring in various modules and fixing some V2 functional bugs.
+In terms of XiangShan development, the frontend has implemented some new performance features in V3, while fixing multiple performance bugs caused by BPU refactoring~~hoping that the performance can reach the pre-refactoring level (x2) by the next biweekly report~~. The backend is advancing the design of the new vector unit in V3 while fixing some bugs in V2, and also working on the timing optimization. The MemBlock has added the berti prefetcher, while continuing to promote code refactoring in various modules and fixing some V2 functional bugs.
 
 <!-- more -->
 
@@ -55,16 +55,13 @@ In terms of XiangShan development, the frontend has implemented some new perform
 ### Backend
 
 - RTL new features
-  - Implementing the new design of V3 vector unit is in progress
-  - Adding valid flags for each traceGroup and tracking support for the mstatus register in the top-level debug module ([#5146](https://github.com/OpenXiangShan/XiangShan/pull/5146))
+  - implementating the new design of V3 vector unit
 - Bug fixes
-  - Fixing issues related to nmi register gating ([#5067](https://github.com/OpenXiangShan/XiangShan/pull/5067)[#5215](https://github.com/OpenXiangShan/XiangShan/pull/5215))
-  - Rejecting out-of-order reads of xip-type CSRs ([#5131](https://github.com/OpenXiangShan/XiangShan/pull/5131))
-  - Fixing incorrect dependencies on oldVd, ROB compression, and other issues
-- Code quality improvements
-  - Optimizing the code quality of the V3 backend, removing some redundant code, modifying some code styles, and performing some renaming ([#5135](https://github.com/OpenXiangShan/XiangShan/pull/5135))
+  - Fix CSR wake-up related issues ([#5259](https://github.com/OpenXiangShan/XiangShan/pull/5259))
+  - Fix uncertain wake-up issues in floating-point division and square root during pipeline flush ([YunSuan #5131](https://github.com/OpenXiangShan/YunSuan/pull/192))
+  - Focusing on bugs with register file read arbitration and wake-up performance
 - Timing optimization
-  - Advancing the evaluation and optimization of vector reduction, Regfile, and other units
+  - Remove a clock gate in BypassNetwork ([#5291](https://github.com/OpenXiangShan/XiangShan/pull/5291/files))
 
 ### MemBlock and Cache
 

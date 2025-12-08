@@ -11,7 +11,7 @@ categories:
 
 本次是第 91 期双周报。
 
-香山开发方面，前端在 V3 实现了一些新的性能特性，同时修复了多个 BPU 重构带来的性能 bug~~希望下次双周报时性能能够达到重构前水平（×2）~~。后端正在推进 V3 新向量单元的设计，同时修复了一些 V2 的遗留 bug。访存新增了 berti 预取器，同时继续推动各个模块的代码重构，还修复了一些 V2 功能 bug。
+香山开发方面，前端在 V3 实现了一些新的性能特性，同时修复了多个 BPU 重构带来的性能 bug~~希望下次双周报时性能能够达到重构前水平（×2）~~。后端正在推进 V3 新向量单元的设计，V2 的 bug 修复，同时进行时序优化。访存新增了 berti 预取器，同时继续推动各个模块的代码重构，还修复了一些 V2 功能 bug。
 
 <!-- more -->
 
@@ -56,15 +56,12 @@ categories:
 
 - RTL 新特性
   - 正在推进 V3 向量单元的新设计实现
-  - 为顶层 debug 模块添加每个 traceGroup 的有效标志，以及 mstatus 寄存器的跟踪支持（[#5146](https://github.com/OpenXiangShan/XiangShan/pull/5146)）
 - Bug 修复
-  - 修复 nmi 寄存器 gating 相关问题（[#5067](https://github.com/OpenXiangShan/XiangShan/pull/5067)[#5215](https://github.com/OpenXiangShan/XiangShan/pull/5215)）
-  - 拒绝 xip 类 CSR 的乱序读取（[#5131](https://github.com/OpenXiangShan/XiangShan/pull/5131)）
-  - 正在修复对 oldVd 的错误依赖、ROB 压缩等等问题
-- 代码质量
-  - 进行 V3 后段代码的质量优化，删除部分冗余代码，修改一些代码风格，进行部分重命名（[#5135](https://github.com/OpenXiangShan/XiangShan/pull/5135)）
+  - 修复 CSR 唤醒的相关问题（[#5259](https://github.com/OpenXiangShan/XiangShan/pull/5259)）
+  - 修复浮点除法、开方在流水线冲刷时非确定唤醒的相关问题（[YunSuan #5131](https://github.com/OpenXiangShan/YunSuan/pull/192)）
+  - 进行寄存器堆读仲裁、唤醒性能 bug 等的修复
 - 时序优化
-  - 推进对向量 reduction、Regfile 等单元的评估与优化
+  - 去除一处 BypassNetwork 内的门控（[#5291](https://github.com/OpenXiangShan/XiangShan/pull/5291/files)）
 
 ### 访存与缓存
 

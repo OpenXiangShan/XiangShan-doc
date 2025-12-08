@@ -68,6 +68,7 @@ categories:
 - RTL 新特性
   - （V2）禁用了 LoadUnit ecc 生成的硬件错误（[#5285](https://github.com/OpenXiangShan/XiangShan/pull/5285)）
   - 将用于 beu 的 IntBuffer 移动到 L2Top 以进行分区（[#5110](https://github.com/OpenXiangShan/XiangShan/pull/5110)）
+  - MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
 - Bug 修复
   - （V2）修复了非对齐 store 的边界情况（[#5233](https://github.com/OpenXiangShan/XiangShan/pull/5233)）
   - （V2）修复了 MemBlock 中生成 tilelink 错误异常的逻辑（[#5269](https://github.com/OpenXiangShan/XiangShan/pull/5269)）

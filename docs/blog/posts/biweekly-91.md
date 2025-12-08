@@ -66,19 +66,32 @@ categories:
 ### 访存与缓存
 
 - RTL 新特性
-  - （V2）为 TLB 添加 pmu 性能事件（[#5205](https://github.com/OpenXiangShan/XiangShan/pull/5205)）
-  - （V2）为 CoupledL2 添加了一些性能事件（[CoupledL2 #437](https://github.com/OpenXiangShan/CoupledL2/pull/437)，[CoupledL2 #441](https://github.com/OpenXiangShan/CoupledL2/pull/441)）
-  - 新增 berti 预取器（[#5049](https://github.com/OpenXiangShan/XiangShan/pull/5049)）
-  - 调整了 MemBlock 中发射与写回的端口（[#5167](https://github.com/OpenXiangShan/XiangShan/pull/5167)）
-  - MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
+  - （V2）禁用了 LoadUnit ecc 生成的硬件错误（[#5285](https://github.com/OpenXiangShan/XiangShan/pull/5285)）
+  - 将用于 beu 的 IntBuffer 移动到 L2Top 以进行分区（[#5110](https://github.com/OpenXiangShan/XiangShan/pull/5110)）
 - Bug 修复
-  - （V2）修复了 MXR 有效时 PMM 没有被禁用的问题（[#4997](https://github.com/OpenXiangShan/XiangShan/pull/4997)）
-  - （V2）修复了 DCache 转发 corrupt 状态时时序不匹配的问题（[#5228](https://github.com/OpenXiangShan/XiangShan/pull/5228)）
-  - （V2）添加使能位来决定是否检查 KeyID（[#5241](https://github.com/OpenXiangShan/XiangShan/pull/5241)）
-  - （V2）修复了 CoupledL2 中将 SnpUnique 错误译码为 SnpPreferUnique 的问题（[CoupledL2 #438](https://github.com/OpenXiangShan/CoupledL2/pull/438)）
-  - （V2）在 CoupledL2 中添加 l-credit 管理器以修复性能（[CoupledL2 #433](https://github.com/OpenXiangShan/CoupledL2/pull/433)）
+  - （V2）修复了非对齐 store 的边界情况（[#5233](https://github.com/OpenXiangShan/XiangShan/pull/5233)）
+  - （V2）修复了 MemBlock 中生成 tilelink 错误异常的逻辑（[#5269](https://github.com/OpenXiangShan/XiangShan/pull/5269)）
+  - （V2）修复了 MemBlock 中 misailgn 异常的优先级（[#5270](https://github.com/OpenXiangShan/XiangShan/pull/5270)）
+  - 修复了 TLB 发生异常时错误的重填级别（[#5087](https://github.com/OpenXiangShan/XiangShan/pull/5087)）
+  - 修复了 Bitmap 检查结果唤醒 l0BitmapReg 的逻辑（[#5073](https://github.com/OpenXiangShan/XiangShan/pull/5073)）
+  - 在 hfence.vvma 或 sfence.vma 且 v = 1 时禁用地址匹配（[#5114](https://github.com/OpenXiangShan/XiangShan/pull/5114)）
+  - 修复了 LoadMissalighBuffer 中 writeback 的端口连线
+- 性能优化
+  - 只向 L1DCache 发送一次 stream 预取请求（[#5224](https://github.com/OpenXiangShan/XiangShan/pull/5224)）
 - 时序
-  - （V2）简化了 CoupledL2 中 RXSNP 端口的 CMO 请求，并将 RXRSP 与 RXDAT 流水化（[CoupledL2 #436](https://github.com/OpenXiangShan/CoupledL2/pull/436)）
+  - （V2）移除了 TLBStorage 中的一些 RegEnable 以避免门控 （[#5229](https://github.com/OpenXiangShan/XiangShan/pull/5229)）
+  - （V2）调整了 StoreUnit 中非对齐重发的逻辑（[#5207](https://github.com/OpenXiangShan/XiangShan/pull/5207)）
+  - （V2）将 VSplit 中 vsta 与 vstd 的 valid 信号解耦（[#5208](https://github.com/OpenXiangShan/XiangShan/pull/5208)）
+  - （V2）移除了 TLB 中由 need_gpa 引发的 ICG（[#5230](https://github.com/OpenXiangShan/XiangShan/pull/5230)）
+  - （V2）优化了 StoreQueueData、MainPipe 与 MissQueue 的时序
+  - （V2）修复了 CoupledL2 中从 Dir error 到 GrantBuffer 的关键路径（[CoupledL2 #448](https://github.com/OpenXiangShan/CoupledL2/pull/448)）
+  - 优化了 pmp 检查、bitmap 与 PTW 的时序
+- 代码质量
+  - （V2）重命名了 MainPipe 中中间变量以提升可读性
+- 构建工具
+  - 禁用了 chisel7 将 assertion 文件放在不同层级文件夹的行为（[OenLLC #71](https://github.com/OpenXiangShan/OpenLLC/pull/71)）
+- 调试工具
+  - 在 tl-test-new 中支持了 L2ToL1Hint 检测（[tl-test-new #82](https://github.com/OpenXiangShan/tl-test-new/pull/82)）
 
 ## 性能评估
 

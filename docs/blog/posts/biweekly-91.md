@@ -100,7 +100,7 @@ categories:
 - 代码质量
   - （V2）重命名了 MainPipe 中中间变量以提升可读性
 - 构建工具
-  - 禁用了 chisel7 将 assertion 文件放在不同层级文件夹的行为（[OenLLC #71](https://github.com/OpenXiangShan/OpenLLC/pull/71)）
+  - 禁用了 chisel7 将 assertion 文件放在不同层级文件夹的行为（[OpenLLC #71](https://github.com/OpenXiangShan/OpenLLC/pull/71)）
 - 调试工具
   - 在 tl-test-new 中支持了 L2ToL1Hint 检测（[tl-test-new #82](https://github.com/OpenXiangShan/tl-test-new/pull/82)）
 

@@ -7,11 +7,21 @@ categories:
 
 # [XiangShan Biweekly 91] 20251208
 
-Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. We look forward to your contribution.
+Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan.
 
 This is the 91st issue of the biweekly report.
 
-In terms of XiangShan development, the frontend has implemented some new performance features in V3, while fixing multiple performance bugs caused by BPU refactoring~~hoping that the performance can reach the pre-refactoring level (x2) by the next biweekly report~~. The backend is advancing the design of the new vector unit in V3 while fixing some bugs in V2, and also working on the timing optimization. The MemBlock has added the berti prefetcher, while continuing to promote code refactoring in various modules and fixing some V2 functional bugs.
+The final performance regression of XiangShan V2 has been successfully completed! Unknowingly, we have completed a total of 46 biweekly performance regression tests. These 46 regressions not only record the performance evolution of XiangShan V2, but also serve as a strong testament to the vigorous development and continuous progress of the XiangShan processor.
+
+![Performance Regression Results for XiangShan V2](./figs/performance-regression.png)
+
+Over the past four years, the XiangShan processor has gradually evolved from a campus course project into an industrial-grade processor. From the starting point "Yanqi Lake", to "Nanhu", which achieved industrial delivery for the first time and has been used in multiple projects, and then to "Kunming Lake V2", the current highest-performance open-source processor core - the evolution of these three generations of XiangShan not only embodies the efforts of every team member but also relies on the continuous attention and strong support from community partners. Here, we express our sincere gratitude to everyone!
+
+Now, it is time to bid farewell to XiangShan V2 and welcome XiangShan V3! V3 will have more powerful performance than V2, which also means greater challenges. It is an uncharted territory for the XiangShan team, and every step we take is writing new history. However, we firmly believe that through the new concept and method of "open source", we can move forward together with the entire community and further enhance the performance benchmark of open-source processors.
+
+Thank you for your companionship and support for XiangShan, and we look forward to your continued attention to the subsequent progress of XiangShan V3!
+
+In terms of XiangShan development, the frontend has fixed ~~countless~~ BPU-related performance bugs ~~performance is finally close to the pre-refactoring level~~, and added performance counters for better performance analysis. The backend and memory system have fixed several bugs in V2 and further optimized timing. In terms of V3, the backend continues to advance the design of the new vector unit, and the memory system has carried out module refactoring and testing, as well as prefetch performance exploration.
 
 <!-- more -->
 
@@ -98,24 +108,24 @@ In terms of XiangShan development, the frontend has implemented some new perform
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 36.13  | 410.bwaves       | 67.28  |
-| 401.bzip2         | 25.39  | 416.gamess       | 40.98  |
-| 403.gcc           | 47.97  | 433.milc         | 45.01  |
-| 429.mcf           | 60.54  | 434.zeusmp       | 51.85  |
-| 445.gobmk         | 30.29  | 435.gromacs      | 33.58  |
-| 456.hmmer         | 41.60  | 436.cactusADM    | 46.22  |
-| 458.sjeng         | 30.21  | 437.leslie3d     | 48.02  |
-| 462.libquantum    | 122.60 | 444.namd         | 28.86  |
-| 464.h264ref       | 56.59  | 447.dealII       | 73.54  |
-| 471.omnetpp       | 41.73  | 450.soplex       | 52.53  |
-| 473.astar         | 29.14  | 453.povray       | 53.41  |
-| 483.xalancbmk     | 72.80  | 454.Calculix     | 16.37  |
-| GEOMEAN           | 44.62  | 459.GemsFDTD     | 38.92  |
-|                   |        | 465.tonto        | 36.69  |
-|                   |        | 470.lbm          | 91.96  |
-|                   |        | 481.wrf          | 40.64  |
-|                   |        | 482.sphinx3      | 49.10  |
-|                   |        | GEOMEAN          | 44.90  |
+| 400.perlbench     | 36.18  | 410.bwaves       | 66.73  |
+| 401.bzip2         | 25.46  | 416.gamess       | 40.99  |
+| 403.gcc           | 48.00  | 433.milc         | 45.12  |
+| 429.mcf           | 60.63  | 434.zeusmp       | 51.61  |
+| 445.gobmk         | 30.32  | 435.gromacs      | 33.60  |
+| 456.hmmer         | 41.62  | 436.cactusADM    | 46.19  |
+| 458.sjeng         | 30.24  | 437.leslie3d     | 47.97  |
+| 462.libquantum    | 122.43 | 444.namd         | 28.86  |
+| 464.h264ref       | 56.58  | 447.dealII       | 73.55  |
+| 471.omnetpp       | 41.77  | 450.soplex       | 52.50  |
+| 473.astar         | 29.19  | 453.povray       | 53.46  |
+| 483.xalancbmk     | 72.84  | 454.Calculix     | 16.37  |
+| GEOMEAN           | 44.66  | 459.GemsFDTD     | 38.60  |
+|                   |        | 465.tonto        | 36.66  |
+|                   |        | 470.lbm          | 91.94  |
+|                   |        | 481.wrf          | 40.70  |
+|                   |        | 482.sphinx3      | 49.13  |
+|                   |        | GEOMEAN          | 44.85  |
 
 We use SimPoint to sample programs and create checkpoints images based on our custom format. The coverage of SimPoint clustering reaches 100%. Note that the above scores are estimated based on program segments rather than a complete SPEC CPU2006 evaluation, which may deviate from the actual performance of real chips.
 
@@ -133,8 +143,8 @@ Processor and SoC parameters are as follows:
 
 |                |            |
 | -------------- | ---------- |
-| Commit         | d0adbd4    |
-| Date           | 11/21/2025 |
+| Commit         | f9daf7c15  |
+| Date           | 12/08/2025 |
 | L1 ICache      | 64KB       |
 | L1 DCache      | 64KB       |
 | L2 Cache       | 1MB        |

@@ -100,7 +100,7 @@ In terms of XiangShan development, the frontend has fixed ~~countless~~ BPU-rela
 - Code quality improvements
   - Rename the intermediate variables to improve readability
 - Build Tools
-  - Disable the behavior of chisel7 to place assertion files in different layers ([OenLLC #71](https://github.com/OpenXiangShan/OpenLLC/pull/71))
+  - Disable the behavior of chisel7 to place assertion files in different layers ([OpenLLC #71](https://github.com/OpenXiangShan/OpenLLC/pull/71))
 - Debugging tools
   - Support L2ToL1Hint checking in tl-test-new ([tl-test-new #82](https://github.com/OpenXiangShan/tl-test-new/pull/82))
 

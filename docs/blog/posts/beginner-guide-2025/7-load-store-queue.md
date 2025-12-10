@@ -235,7 +235,7 @@ Svpbmt 为我们引入了更方便的内存属性管理方式，同时引入了�
 
 ![RISC-V privileged ISA Specification Encodings for PBMT field in Sv39, Sv48, and Sv57 PTEs](images/cea902e1.png)
 
-如上图所示，Svpbmt 扩展为在页表中额外添加了 2 bit 的 PBMT 标记位用来指示这一页的地址属性。PBMT 通过配置覆盖 PMA 的属性，当配置 PBMT 位为非 0 时，我们 PMA 对于该物理地址属性的设置不再有效，转而由 PBMT 进行物理地址配置。
+如上图所示，Svpbmt 扩展为在页表中额外添加了 2 bit 的 PBMT 标记位用来指示这一页的地址属性。PBMT 通过配置覆盖 PMA 的属性，当配置 PBMT 位为非 0 时，我们 PMA 对于该物理地址属性的设置不再有效，转而由 PBMT 进行物理地址属性的配置。
 
 因此，在实现了 Svpbmt 之后，昆明湖 V2 事实上拥有三种不同访存模式：Main Memory、NC、I/O。其中，Main Memory 只能由 PMA 配置；NC 只能由 PBMT 配置；I/O 可以由 PMA 配置也可以由 PBMT 配置。
 

@@ -1,5 +1,5 @@
 ---
-slug: "memory-access-827-1-ooo-memory-access"
+slug: "memory-access-827-7-load-store-queue"
 date: 2025-12-12
 categories:
   - "2025 香山入门指南"
@@ -11,6 +11,7 @@ links:
   - blog/posts/beginner-guide-2025/5-atomic-operation.md
   - blog/posts/beginner-guide-2025/6-vector.md
   - blog/posts/beginner-guide-2025/7-load-store-queue.md
+  - blog/posts/beginner-guide-2025/8-review-memory-access.md
 authors:
   - Anzooooo
 ---

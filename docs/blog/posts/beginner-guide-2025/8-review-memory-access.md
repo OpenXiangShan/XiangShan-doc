@@ -1,6 +1,6 @@
 ---
 slug: "memory-access-827-8-review-memory-access"
-date: 2025-12-18
+date: 2025-12-19
 categories:
   - "2025 香山入门指南"
 links:

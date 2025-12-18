@@ -1,5 +1,5 @@
 ---
-slug: "memory-access-827-8-review-memory-access"
+slug: "memory-access-827-8-revisit-memory-access"
 date: 2025-12-19
 categories:
   - "2025 香山入门指南"
@@ -11,7 +11,7 @@ links:
   - blog/posts/beginner-guide-2025/5-atomic-operation.md
   - blog/posts/beginner-guide-2025/6-vector.md
   - blog/posts/beginner-guide-2025/7-load-store-queue.md
-  - blog/posts/beginner-guide-2025/8-review-memory-access.md
+  - blog/posts/beginner-guide-2025/8-revisit-memory-access.md
 authors:
   - Anzooooo
 ---

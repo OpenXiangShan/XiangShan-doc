@@ -64,33 +64,31 @@ categories:
 ### 访存与缓存
 
 - RTL 新特性
-  - （V2）禁用了 LoadUnit ecc 生成的硬件错误（[#5285](https://github.com/OpenXiangShan/XiangShan/pull/5285)）
-  - 将用于 beu 的 IntBuffer 移动到 L2Top 以进行分区（[#5110](https://github.com/OpenXiangShan/XiangShan/pull/5110)）
+  - （V2）支持在 CoupledL2 中通过参数关闭 ClockGate（[CoupledL2 #451](https://github.com/OpenXiangShan/CoupledL2/pull/451)）
+  - （V2）将 CoupledL2 MMIOBridge 的 TIMERange 参数化（[CoupledL2 #453](https://github.com/OpenXiangShan/CoupledL2/pull/451)）
   - MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
 - Bug 修复
-  - （V2）修复了非对齐 store 的边界情况（[#5233](https://github.com/OpenXiangShan/XiangShan/pull/5233)）
-  - （V2）修复了 MemBlock 中生成 tilelink 错误异常的逻辑（[#5269](https://github.com/OpenXiangShan/XiangShan/pull/5269)）
-  - （V2）修复了 MemBlock 中 misailgn 异常的优先级（[#5270](https://github.com/OpenXiangShan/XiangShan/pull/5270)）
-  - 修复了 TLB 发生异常时错误的重填级别（[#5087](https://github.com/OpenXiangShan/XiangShan/pull/5087)）
-  - 修复了 Bitmap 检查结果唤醒 l0BitmapReg 的逻辑（[#5073](https://github.com/OpenXiangShan/XiangShan/pull/5073)）
-  - 在 hfence.vvma 或 sfence.vma 且 v = 1 时禁用地址匹配（[#5114](https://github.com/OpenXiangShan/XiangShan/pull/5114)）
-  - 修复了 LoadMissalighBuffer 中 writeback 的端口连线
+  - （V2）修复了 LoadQueueReplay 中 load 请求无法被正确唤醒的问题（[#5327](https://github.com/OpenXiangShan/XiangShan/pull/5327)）
+  - （V2）修复了 LoadQueueRAW 中 storeIn.wlineflag 没有延迟一周期的问题（[#5352](https://github.com/OpenXiangShan/XiangShan/pull/5352)）
+  - （V2）修复了 L1StreamPrefetcher 的深度（[#5365](https://github.com/OpenXiangShan/XiangShan/pull/5365)）
+  - （V2）移除了 L2Top 与 MemBlock 中部分 RegNext(hartid)（[#5408](https://github.com/OpenXiangShan/XiangShan/pull/5408)）
+  - （V2）修复了 TXDAT 中错误的 DataCheck 逻辑（[CoupledL2 #455](https://github.com/OpenXiangShan/CoupledL2/pull/455)）
+  - （V2）修复了 l2MissMatch IO 的编译错误（[CoupledL2 #456](https://github.com/OpenXiangShan/CoupledL2/pull/456)）
 - 性能优化
-  - 只向 L1DCache 发送一次 stream 预取请求（[#5224](https://github.com/OpenXiangShan/XiangShan/pull/5224)）
+  - （V2）将 uncachebuffer 的容量从 4 增加至 16（[#5364](https://github.com/OpenXiangShan/XiangShan/pull/5364)）
+  - 为 LoadUnit 添加了 PerfCCT 支持（[#5286](https://github.com/OpenXiangShan/XiangShan/pull/5286)）
 - 时序
-  - （V2）移除了 TLBStorage 中的一些 RegEnable 以避免门控 （[#5229](https://github.com/OpenXiangShan/XiangShan/pull/5229)）
-  - （V2）调整了 StoreUnit 中非对齐重发的逻辑（[#5207](https://github.com/OpenXiangShan/XiangShan/pull/5207)）
-  - （V2）将 VSplit 中 vsta 与 vstd 的 valid 信号解耦（[#5208](https://github.com/OpenXiangShan/XiangShan/pull/5208)）
-  - （V2）移除了 TLB 中由 need_gpa 引发的 ICG（[#5230](https://github.com/OpenXiangShan/XiangShan/pull/5230)）
-  - （V2）优化了 StoreQueueData、MainPipe 与 MissQueue 的时序
-  - （V2）修复了 CoupledL2 中从 Dir error 到 GrantBuffer 的关键路径（[CoupledL2 #448](https://github.com/OpenXiangShan/CoupledL2/pull/448)）
-  - 优化了 pmp 检查、bitmap 与 PTW 的时序
-- 代码质量
-  - （V2）重命名了 MainPipe 中中间变量以提升可读性
-- 构建工具
-  - 禁用了 chisel7 将 assertion 文件放在不同层级文件夹的行为（[OpenLLC #71](https://github.com/OpenXiangShan/OpenLLC/pull/71)）
+  - （V2）调整了 LoadUnit 中 s0 source 的仲裁顺序（[#5300](https://github.com/OpenXiangShan/XiangShan/pull/5300)）
+  - （V2）优化了 VSegmentUnit、exceptionBuffer 的时序（[#5330](https://github.com/OpenXiangShan/XiangShan/pull/5330)，[#5292](https://github.com/OpenXiangShan/XiangShan/pull/5292)）
+  - （V2）移除了 Sbuffer 中 store 预取的 IO 端口（[#5329](https://github.com/OpenXiangShan/XiangShan/pull/5329)）
+  - （V2）移除了 MemBlock 中 TLB 生成 paddr 时非必要的 Mux（[#5331](https://github.com/OpenXiangShan/XiangShan/pull/5331)）
+  - （V2）将 BitmapCache 从寄存器替换为 SRAM（[#5346](https://github.com/OpenXiangShan/XiangShan/pull/5346)）
 - 调试工具
-  - 在 tl-test-new 中支持了 L2ToL1Hint 检测（[tl-test-new #82](https://github.com/OpenXiangShan/tl-test-new/pull/82)）
+  - 在 tl-test-new 中支持输出性能计数器（[tl-test-new #84](https://github.com/OpenXiangShan/tl-test-new/pull/84)）
+  - 在 NEMU 中支持在 check_paddr 失败时输出详细信息（[NEMU #867](https://github.com/OpenXiangShan/NEMU/pull/867)）
+  - 持续改进 CHI 基础设施 CHIron
+  - 开发用于新版 L2 Cache 的验证工具 CHI Test。持续推进中
+  - 改进了 L2 Topdown Monitor 中统计的预取信息（[CoupledL2 #452](https://github.com/OpenXiangShan/CoupledL2/pull/452)）
 
 ## 性能评估
 

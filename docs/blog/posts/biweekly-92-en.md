@@ -55,11 +55,13 @@ In terms of XiangShan development, the frontend has fixed ~~countless~~ BPU-rela
 - RTL new features
   - implementating the new design of V3 vector unit
 - Bug fixes
-  - Fix CSR wake-up related issues ([#5259](https://github.com/OpenXiangShan/XiangShan/pull/5259))
-  - Fix uncertain wake-up issues in floating-point division and square root during pipeline flush ([YunSuan #5131](https://github.com/OpenXiangShan/YunSuan/pull/192))
-  - Focusing on bugs with register file read arbitration and wake-up performance
-- Timing optimization
-  - Remove a clock gate in BypassNetwork ([#5291](https://github.com/OpenXiangShan/XiangShan/pull/5291/files))
+  - Fix backend TopDown interface connection issues ([#5340](https://github.com/OpenXiangShan/XiangShan/pull/5340))
+  - Modify the value of mvendorid ([#5367](https://github.com/OpenXiangShan/XiangShan/pull/5367))
+  - Fix Dispatch pipeline stall cycle counting issue ([#5398](https://github.com/OpenXiangShan/XiangShan/pull/5398))
+- Code optimizations
+  - Make the connection of srcLoadDependencyUpdate more readable ([#5404](https://
+- Others
+  - Update the list of backend code owners ([#5342](https://github.com/OpenXiangShan/XiangShan/pull/5342))
 
 ### MemBlock and Cache
 

@@ -55,11 +55,13 @@ categories:
 - RTL 新特性
   - 正在推进 V3 向量单元的新设计实现
 - Bug 修复
-  - 修复 CSR 唤醒的相关问题（[#5259](https://github.com/OpenXiangShan/XiangShan/pull/5259)）
-  - 修复浮点除法、开方在流水线冲刷时非确定唤醒的相关问题（[YunSuan #5131](https://github.com/OpenXiangShan/YunSuan/pull/192)）
-  - 进行寄存器堆读仲裁、唤醒性能 bug 等的修复
-- 时序优化
-  - 去除一处 BypassNetwork 内的门控（[#5291](https://github.com/OpenXiangShan/XiangShan/pull/5291/files)）
+  - 修复后端 TopDown 接口连接问题（[#5340](https://github.com/OpenXiangShan/XiangShan/pull/5340)）
+  - 修改 mvendorid 的值（[#5367](https://github.com/OpenXiangShan/XiangShan/pull/5367)）
+  - 修复 Dispatch 的流水线阻塞周期统计问题（[#5398](https://github.com/OpenXiangShan/XiangShan/pull/5398)）
+- 代码优化
+  - 让 srcLoadDependencyUpdate 的连接更易读（[#5404](https://github.com/OpenXiangShan/XiangShan/pull/5404)）
+- 其他
+  - 更新后端的代码维护者名单（[#5342](https://github.com/OpenXiangShan/XiangShan/pull/5342)）
 
 ### 访存与缓存
 

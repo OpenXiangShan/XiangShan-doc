@@ -30,37 +30,25 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 新增 UTAGE 预测器，作为 S1 预测器组的方向预测器，提供比 UBTB 和 ABTB 更精准的方向预测（[#5194](https://github.com/OpenXiangShan/XiangShan/pull/5194)）
-  - 支持 UBTB 和 ABTB 预测分支位置比较，选择靠前的预测结果（[#5243](https://github.com/OpenXiangShan/XiangShan/pull/5243)）
-  - 支持 MBTB 不训练 fallThrough 类型分支，减少容量浪费（[#5245](https://github.com/OpenXiangShan/XiangShan/pull/5245)）
-  - 支持 MBTB 纠正 indirect 类型分支目标（[#5226](https://github.com/OpenXiangShan/XiangShan/pull/5226)）
-  - 修改 MBTB replacer setIdx 选取位置（[#5260](https://github.com/OpenXiangShan/XiangShan/pull/5260)）
-  - 对齐 TAGE 参数与 GEM5 一致（[#5261](https://github.com/OpenXiangShan/XiangShan/pull/5261)）
-  - 修改 TAGE setIdx 和 bankIdx 选取位置（[#5294](https://github.com/OpenXiangShan/XiangShan/pull/5294)）
-  - 修改 PHR Shamt 参数（[#5315](https://github.com/OpenXiangShan/XiangShan/pull/5315)）
-  - 支持 commit 通路更新 RAS（[#5196](https://github.com/OpenXiangShan/XiangShan/pull/5196)）
+  - 减少 TAGE 计数器饱和时的 SRAM 写请求，从而减少 SRAM 端口冲突导致的阻塞（[#5309](https://github.com/OpenXiangShan/XiangShan/pull/5309)）
+  - 对齐 TAGE 预测生成逻辑和 GEM5 一致（[#5377](https://github.com/OpenXiangShan/XiangShan/pull/5377)）
+  - 实现 SC bias 表（[#5234](https://github.com/OpenXiangShan/XiangShan/pull/5234)）
+  - 实现 ITTAGE 预测 call 类型分支（[#5311](https://github.com/OpenXiangShan/XiangShan/pull/5311)）
 - Bug 修复
-  - 修复 ABTB 计数器更新逻辑（[#5266](https://github.com/OpenXiangShan/XiangShan/pull/5266)）
-  - 修复 MBTB internalBank 写/写冲突的问题（[#5255](https://github.com/OpenXiangShan/XiangShan/pull/5255)）
-  - 修复 MBTB replacer 更新逻辑错误的问题（[#5302](https://github.com/OpenXiangShan/XiangShan/pull/5302)）
-  - 修复 TAGE 计数器初值（[#5252](https://github.com/OpenXiangShan/XiangShan/pull/5252)）
-  - 修复 TAGE 分配逻辑（[#5254](https://github.com/OpenXiangShan/XiangShan/pull/5254)）
-  - 修复 ITTAGE 训练数据错拍的问题（[#5244](https://github.com/OpenXiangShan/XiangShan/pull/5244)）
-  - 修复 FTQ ResolveQueue 来自 BPU 和来自 Redirect 的冲刷互相冲突的问题（[#5273](https://github.com/OpenXiangShan/XiangShan/pull/5273)）
-  - 修复 SRAMTemplate 编译期 warning（[#5276](https://github.com/OpenXiangShan/XiangShan/pull/5276)）
+  - 修复 BPU 训练中，分支地址（cfiPc）和预测块地址（startPc）命名不明确导致的混用误用问题（[#5317](https://github.com/OpenXiangShan/XiangShan/pull/5317)）
+  - 修复 UBTB 训练流水级命中判断条件，避免错误更新 replacer（[#5326](https://github.com/OpenXiangShan/XiangShan/pull/5326)）
+  - 修复 TAGE 折叠历史信号的宽度笔误（[#5325](https://github.com/OpenXiangShan/XiangShan/pull/5325)）
+  - 修复 TAGE cfiPc 笔误（[#5345](https://github.com/OpenXiangShan/XiangShan/pull/5345)）
+  - 修复 RAS 一些笔误，启用 RAS（[#5321](https://github.com/OpenXiangShan/XiangShan/pull/5321)）
+  - 修复 FTQ resolveQueue bpu enqueue 冲刷逻辑错误的问题（[#5344](https://github.com/OpenXiangShan/XiangShan/pull/5344)）
 - 时序/面积优化
-  - （V2）寄存 iPMP 读结果以修复 PMP 项数增大后的时序问题（[#5242](https://github.com/OpenXiangShan/XiangShan/pull/5242)）
+  - 将 TAGE BaseTable 挪到 MBTB 中，使计数器的分配和 MBTB 项同步，减少冗余存储（[#5349](https://github.com/OpenXiangShan/XiangShan/pull/5349)）
 - 代码质量
-  - 移除 UBTB 冗余参数（[#5262](https://github.com/OpenXiangShan/XiangShan/pull/5262)）
-  - 重构 ICache Meta/DataArray，修复参数化支持不完整的问题（[#5232](https://github.com/OpenXiangShan/XiangShan/pull/5232)）
-  - 新增 AddrField 工具简化地址相关的索引计算逻辑，增加编译期日志便于调试，同时修复了 TAGE 一些 typo（[#5274](https://github.com/OpenXiangShan/XiangShan/pull/5274)，[#5295](https://github.com/OpenXiangShan/XiangShan/pull/5295)，[#5306](https://github.com/OpenXiangShan/XiangShan/pull/5306)）
+  - 统一 BPU 内 pc 相关信号的命名（[#5318](https://github.com/OpenXiangShan/XiangShan/pull/5318)）
+  - 新增一些 utility 方法以批量生成具有相似前缀的性能计数器（[#5298](https://github.com/OpenXiangShan/XiangShan/pull/5298)）
 - 调试工具
-  - 修复 TAGE condTrace 工具参数使用错误的问题（[#5251](https://github.com/OpenXiangShan/XiangShan/pull/5251)）
-  - 减少 TAGE condTrace 工具的冗余输出（[#5247](https://github.com/OpenXiangShan/XiangShan/pull/5247)）
-  - 新增 TAGE bank 冲突相关性能计数器（[#5303](https://github.com/OpenXiangShan/XiangShan/pull/5303)）
-  - 新增 WriteBuffer nameSuffix 参数，提高调试信息可读性（[#5277](https://github.com/OpenXiangShan/XiangShan/pull/5277)，[#5310](https://github.com/OpenXiangShan/XiangShan/pull/5310)）
-  - 修复 predictionSource 性能计数器寄存器使能信号 typo（[#5271](https://github.com/OpenXiangShan/XiangShan/pull/5271)）
-  - 新增 FTQ PerfQueue 用于分支预测性能分析（[#5304](https://github.com/OpenXiangShan/XiangShan/pull/5304)）
+  - 各模块新增和修复大量性能计数器（[#5320](https://github.com/OpenXiangShan/XiangShan/pull/5320)，[#5265](https://github.com/OpenXiangShan/XiangShan/pull/5265)，[#5319](https://github.com/OpenXiangShan/XiangShan/pull/5319)，[#5332](https://github.com/OpenXiangShan/XiangShan/pull/5332)，[#5339](https://github.com/OpenXiangShan/XiangShan/pull/5339)，[#5347](https://github.com/OpenXiangShan/XiangShan/pull/5347)，[#5353](https://github.com/OpenXiangShan/XiangShan/pull/5353)，[#5370](https://github.com/OpenXiangShan/XiangShan/pull/5370)，[#5383](https://github.com/OpenXiangShan/XiangShan/pull/5383)，[#5372](https://github.com/OpenXiangShan/XiangShan/pull/5372)）
+  - 优化 TAGE Trace 的分支实际地址计算逻辑，考虑压缩指令（[#5355](https://github.com/OpenXiangShan/XiangShan/pull/5355)）
 
 ### 后端
 

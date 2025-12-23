@@ -11,17 +11,17 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the 92nd issue of the biweekly report.
 
-The final performance regression of XiangShan V2 has been successfully completed! Unknowingly, we have completed a total of 46 biweekly performance regression tests. These 46 regressions not only record the performance evolution of XiangShan V2, but also serve as a strong testament to the vigorous development and continuous progress of the XiangShan processor.
+In the last issue of the biweekly report in 2025, we are excited to present the first performance evaluation results of the current Kunminghu V3 architecture on SPEC CPU2006! Since the performance regression of Kunminghu V3 began in August this year, a total of 11 performance regressions have been completed. Throughout these 11 performance regressions, the performance data has undergone tremendous changes. In the first performance regression, the SPEC 2006 INT score was only 3.717 points/GHz; however, in the latest performance regression, V3's performance has already surpassed that of V2.
 
-![Performance Regression Results for XiangShan V2](./figs/performance-regression.png)
+![Performance Regression Results for XiangShan V3](./figs/performance-regression-v3.png)
 
-Over the past four years, the XiangShan processor has gradually evolved from a campus course project into an industrial-grade processor. From the starting point "Yanqi Lake", to "Nanhu", which achieved industrial delivery for the first time and has been used in multiple projects, and then to "Kunming Lake V2", the current highest-performance open-source processor core - the evolution of these three generations of XiangShan not only embodies the efforts of every team member but also relies on the continuous attention and strong support from community partners. Here, we express our sincere gratitude to everyone!
+During this process, ~~the frontend undoubtedly took the biggest blame~~ the most significant change is the brand-new frontend of V3. The new frontend has greatly improved instruction bandwidth, now capable of predicting up to 8 branches and providing 32 instructions per cycle.
 
-Now, it is time to bid farewell to XiangShan V2 and welcome XiangShan V3! V3 will have more powerful performance than V2, which also means greater challenges. It is an uncharted territory for the XiangShan team, and every step we take is writing new history. However, we firmly believe that through the new concept and method of "open source", we can move forward together with the entire community and further enhance the performance benchmark of open-source processors.
+This rapid iterative development practice embodies XiangShan's agile development philosophy, which is supported by the XiangShan infrastructure. Through the new concept and method of "open source," we can move forward together with the entire community, further enhancing the performance benchmark of open-source processors.
 
-Thank you for your companionship and support for XiangShan, and we look forward to your continued attention to the subsequent progress of XiangShan V3!
+We appreciate your companionship and support for XiangShan, and we look forward to your continued attention to the subsequent progress of Kunminghu V3!
 
-In terms of XiangShan development, the frontend has fixed ~~countless~~ BPU-related performance bugs ~~performance is finally close to the pre-refactoring level~~, and added performance counters for better performance analysis. The backend and memory system have fixed several bugs in V2 and further optimized timing. In terms of V3, the backend continues to advance the design of the new vector unit, and the memory system has carried out module refactoring and testing, as well as prefetch performance exploration.
+In terms of XiangShan development, the frontend has fixed some BPU-related performance bugs and added numerous performance counters for better performance analysis. The backend continues to advance the design of the new vector unit. The memory subsystem has fixed several bugs in V2 and is continuing with V3 module refactoring and infrastructure construction.
 
 <!-- more -->
 
@@ -96,24 +96,24 @@ In terms of XiangShan development, the frontend has fixed ~~countless~~ BPU-rela
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 36.18  | 410.bwaves       | 66.73  |
-| 401.bzip2         | 25.46  | 416.gamess       | 40.99  |
-| 403.gcc           | 48.00  | 433.milc         | 45.12  |
-| 429.mcf           | 60.63  | 434.zeusmp       | 51.61  |
-| 445.gobmk         | 30.32  | 435.gromacs      | 33.60  |
-| 456.hmmer         | 41.62  | 436.cactusADM    | 46.19  |
-| 458.sjeng         | 30.24  | 437.leslie3d     | 47.97  |
-| 462.libquantum    | 122.43 | 444.namd         | 28.86  |
-| 464.h264ref       | 56.58  | 447.dealII       | 73.55  |
-| 471.omnetpp       | 41.77  | 450.soplex       | 52.50  |
-| 473.astar         | 29.19  | 453.povray       | 53.46  |
-| 483.xalancbmk     | 72.84  | 454.Calculix     | 16.37  |
-| GEOMEAN           | 44.66  | 459.GemsFDTD     | 38.60  |
-|                   |        | 465.tonto        | 36.66  |
-|                   |        | 470.lbm          | 91.94  |
-|                   |        | 481.wrf          | 40.70  |
-|                   |        | 482.sphinx3      | 49.13  |
-|                   |        | GEOMEAN          | 44.85  |
+| 400.perlbench     | 36.71  | 410.bwaves       | 73.92  |
+| 401.bzip2         | 27.45  | 416.gamess       | 54.70  |
+| 403.gcc           | 42.71  | 433.milc         | 45.12  |
+| 429.mcf           | 59.65  | 434.zeusmp       | 60.17  |
+| 445.gobmk         | 35.10  | 435.gromacs      | 38.47  |
+| 456.hmmer         | 44.18  | 436.cactusADM    | 54.20  |
+| 458.sjeng         | 32.30  | 437.leslie3d     | 52.85  |
+| 462.libquantum    | 107.84 | 444.namd         | 37.91  |
+| 464.h264ref       | 61.89  | 447.dealII       | 61.38  |
+| 471.omnetpp       | 43.56  | 450.soplex       | 54.62  |
+| 473.astar         | 30.43  | 453.povray       | 56.90  |
+| 483.xalancbmk     | 75.89  | 454.Calculix     | 19.18  |
+| GEOMEAN           | 45.85  | 459.GemsFDTD     | 44.14  |
+|                   |        | 465.tonto        | 36.35  |
+|                   |        | 470.lbm          | 93.88  |
+|                   |        | 481.wrf          | 48.77  |
+|                   |        | 482.sphinx3      | 56.20  |
+|                   |        | GEOMEAN          | 49.72  |
 
 We use SimPoint to sample programs and create checkpoints images based on our custom format. The coverage of SimPoint clustering reaches 100%. Note that the above scores are estimated based on program segments rather than a complete SPEC CPU2006 evaluation, which may deviate from the actual performance of real chips.
 
@@ -131,8 +131,8 @@ Processor and SoC parameters are as follows:
 
 |                |            |
 | -------------- | ---------- |
-| Commit         | f9daf7c15  |
-| Date           | 12/08/2025 |
+| Commit         | 64e7bff7f  |
+| Date           | 12/19/2025 |
 | L1 ICache      | 64KB       |
 | L1 DCache      | 64KB       |
 | L2 Cache       | 1MB        |

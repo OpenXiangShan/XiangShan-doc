@@ -13,7 +13,7 @@ categories:
 
 昆明湖 V2 最后一次性能回归顺利完成！不知不觉间，我们已经累计完成了 46 次双周性能回归测试。这 46 次回归不仅记录了昆明湖 V2 的性能演进，也是香山处理器蓬勃发展和持续进步的有力见证。
 
-![Performance Regression Results for XiangShan V2](./figs/performance-regression.png)
+![Performance Regression Results for XiangShan V2](./figs/performance-regression-v2.png)
 
 在过去四年里，香山处理器从一个校园课程项目逐步发展为工业级处理器。从一切开始的起点“雁栖湖”，到首次实现工业交付并已在多项目中投入使用的“南湖”，再到成为当前性能最高的开源处理器核“昆明湖 V2”——这三代香山的演进，不仅凝聚着每一位团队成员的努力，也离不开社区伙伴们的持续关注与大力支持。在此，向大家表示由衷的感谢！
 

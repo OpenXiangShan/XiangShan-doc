@@ -11,13 +11,13 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the 92nd issue of the biweekly report.
 
-In the last issue of the biweekly report in 2025, we are excited to present the first performance evaluation results of the current Kunminghu V3 architecture on SPEC CPU2006! Since the performance regression of Kunminghu V3 began in August this year, a total of 11 performance regressions have been completed. Throughout these 11 performance regressions, the performance data has undergone tremendous changes. In the first performance regression, the SPEC 2006 INT score was only 3.717 points/GHz; however, in the latest performance regression, V3's performance has already surpassed that of V2.
+In the last issue of the biweekly report in 2025, we are excited to announce the performance evaluation results of the Kunminghu V3 architecture on SPEC CPU2006 for the first time! Since the launch of performance regression for Kunminghu V3 in August this year, a total of 11 performance regressions have been completed. These 11 performance regressions witness the XiangShan team's concerted efforts in rapidly iterating the design. Now, Kunminghu V3 has achieved a score of 16.081 in the SPEC 2006 test, surpassing the score of V2, and V3 has replaced V2 as the new mainline of the XiangShan repository!
 
-![Performance Regression Results for XiangShan V3](./figs/performance-regression-v3.png)
+![Performance Regression Results for XiangShan Kunminghu](./figs/performance-regression.png)
 
 During this process, ~~the frontend undoubtedly took the biggest blame~~ the most significant change is the brand-new frontend of V3. The new frontend has greatly improved instruction bandwidth, now capable of predicting up to 8 branches and providing 32 instructions per cycle.
 
-This rapid iterative development practice embodies XiangShan's agile development philosophy, which is supported by the XiangShan infrastructure. Through the new concept and method of "open source," we can move forward together with the entire community, further enhancing the performance benchmark of open-source processors.
+This rapid iterative development practice embodies XiangShan's agile development philosophy, which is supported by the XiangShan infrastructure. We believe that through the new concept and method of "open source," we can move forward together with the entire community and further enhance the performance benchmark of open-source processors.
 
 We appreciate your companionship and support for XiangShan, and we look forward to your continued attention to the subsequent progress of Kunminghu V3!
 

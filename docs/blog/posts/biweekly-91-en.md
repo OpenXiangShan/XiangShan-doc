@@ -13,7 +13,7 @@ This is the 91st issue of the biweekly report.
 
 The final performance regression of XiangShan V2 has been successfully completed! Unknowingly, we have completed a total of 46 biweekly performance regression tests. These 46 regressions not only record the performance evolution of XiangShan V2, but also serve as a strong testament to the vigorous development and continuous progress of the XiangShan processor.
 
-![Performance Regression Results for XiangShan V2](./figs/performance-regression.png)
+![Performance Regression Results for XiangShan Kunminghu V2](./figs/performance-regression-v2.png)
 
 Over the past four years, the XiangShan processor has gradually evolved from a campus course project into an industrial-grade processor. From the starting point "Yanqi Lake", to "Nanhu", which achieved industrial delivery for the first time and has been used in multiple projects, and then to "Kunming Lake V2", the current highest-performance open-source processor core - the evolution of these three generations of XiangShan not only embodies the efforts of every team member but also relies on the continuous attention and strong support from community partners. Here, we express our sincere gratitude to everyone!
 

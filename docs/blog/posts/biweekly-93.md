@@ -30,25 +30,23 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 减少 TAGE 计数器饱和时的 SRAM 写请求，从而减少 SRAM 端口冲突导致的阻塞（[#5309](https://github.com/OpenXiangShan/XiangShan/pull/5309)）
-  - 对齐 TAGE 预测生成逻辑和 GEM5 一致（[#5377](https://github.com/OpenXiangShan/XiangShan/pull/5377)）
-  - 实现 SC bias 表（[#5234](https://github.com/OpenXiangShan/XiangShan/pull/5234)）
-  - 实现 ITTAGE 预测 call 类型分支（[#5311](https://github.com/OpenXiangShan/XiangShan/pull/5311)）
+  - 实现 MBTB replacer 仅 touch 预测结果为跳转的分支，使无用分支优先被替换出 MBTB（[#5414](https://github.com/OpenXiangShan/XiangShan/pull/5414)）
+  - 实现 ITTAGE SRAM 分 bank，减少读写冲突（[#5430](https://github.com/OpenXiangShan/XiangShan/pull/5430)）
+  - 实现 TAGE 将 provider 信息存入 metaQueue 减少更新时读，从而减少读写冲突（[#5400](https://github.com/OpenXiangShan/XiangShan/pull/5400)）
 - Bug 修复
-  - 修复 BPU 训练中，分支地址（cfiPc）和预测块地址（startPc）命名不明确导致的混用误用问题（[#5317](https://github.com/OpenXiangShan/XiangShan/pull/5317)）
-  - 修复 UBTB 训练流水级命中判断条件，避免错误更新 replacer（[#5326](https://github.com/OpenXiangShan/XiangShan/pull/5326)）
-  - 修复 TAGE 折叠历史信号的宽度笔误（[#5325](https://github.com/OpenXiangShan/XiangShan/pull/5325)）
-  - 修复 TAGE cfiPc 笔误（[#5345](https://github.com/OpenXiangShan/XiangShan/pull/5345)）
-  - 修复 RAS 一些笔误，启用 RAS（[#5321](https://github.com/OpenXiangShan/XiangShan/pull/5321)）
-  - 修复 FTQ resolveQueue bpu enqueue 冲刷逻辑错误的问题（[#5344](https://github.com/OpenXiangShan/XiangShan/pull/5344)）
+  - 修复 ITTAGE SRAM 读写冲突条件有误的问题（[#5392](https://github.com/OpenXiangShan/XiangShan/pull/5392)）
+  - 修复 TAGE 训练阻塞时其它预测器被重复训练的问题（[#5399](https://github.com/OpenXiangShan/XiangShan/pull/5399)）
 - 时序/面积优化
-  - 将 TAGE BaseTable 挪到 MBTB 中，使计数器的分配和 MBTB 项同步，减少冗余存储（[#5349](https://github.com/OpenXiangShan/XiangShan/pull/5349)）
+  - 修复 MBTB、TAGE 中 WriteBuffer 写端口的时序问题（[#5418](https://github.com/OpenXiangShan/XiangShan/pull/5418)，[#5433](https://github.com/OpenXiangShan/XiangShan/pull/5433)）
+  - 修复 ABTB SRAM 位宽过大、选型不佳导致的时序问题（[#5417](https://github.com/OpenXiangShan/XiangShan/pull/5417)）
 - 代码质量
-  - 统一 BPU 内 pc 相关信号的命名（[#5318](https://github.com/OpenXiangShan/XiangShan/pull/5318)）
-  - 新增一些 utility 方法以批量生成具有相似前缀的性能计数器（[#5298](https://github.com/OpenXiangShan/XiangShan/pull/5298)）
+  - 重写 Frontend 顶层模块中不符合 style guide 的部分代码，修复 IDE warning（[#5395](https://github.com/OpenXiangShan/XiangShan/pull/5395)）
+  - 使用 AddrField 类重写 ABTB、UBTB 的各索引选择逻辑（[#5397](https://github.com/OpenXiangShan/XiangShan/pull/5397)）
+  - 清理 ABTB 中无用代码（[#5456](https://github.com/OpenXiangShan/XiangShan/pull/5456)）
 - 调试工具
-  - 各模块新增和修复大量性能计数器（[#5320](https://github.com/OpenXiangShan/XiangShan/pull/5320)，[#5265](https://github.com/OpenXiangShan/XiangShan/pull/5265)，[#5319](https://github.com/OpenXiangShan/XiangShan/pull/5319)，[#5332](https://github.com/OpenXiangShan/XiangShan/pull/5332)，[#5339](https://github.com/OpenXiangShan/XiangShan/pull/5339)，[#5347](https://github.com/OpenXiangShan/XiangShan/pull/5347)，[#5353](https://github.com/OpenXiangShan/XiangShan/pull/5353)，[#5370](https://github.com/OpenXiangShan/XiangShan/pull/5370)，[#5383](https://github.com/OpenXiangShan/XiangShan/pull/5383)，[#5372](https://github.com/OpenXiangShan/XiangShan/pull/5372)）
-  - 优化 TAGE Trace 的分支实际地址计算逻辑，考虑压缩指令（[#5355](https://github.com/OpenXiangShan/XiangShan/pull/5355)）
+  - 新增 MicroTAGE Trace（[#5388](https://github.com/OpenXiangShan/XiangShan/pull/5388)）
+  - 新增 ICache Trace（[#5452](https://github.com/OpenXiangShan/XiangShan/pull/5452)）
+  - 新增大量性能计数器（[#5442](https://github.com/OpenXiangShan/XiangShan/pull/5442)，[#5443](https://github.com/OpenXiangShan/XiangShan/pull/5443)，[#5289](https://github.com/OpenXiangShan/XiangShan/pull/5289)）
 
 ### 后端
 

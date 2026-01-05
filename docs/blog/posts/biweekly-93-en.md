@@ -30,25 +30,23 @@ In terms of XiangShan development, the frontend has fixed some BPU-related perfo
 ### Frontend
 
 - RTL feature
-  - Reduce SRAM write requests when TAGE counters are saturated, thereby reducing stall caused by SRAM port conflicts ([#5309](https://github.com/OpenXiangShan/XiangShan/pull/5309))
-  - Align TAGE prediction selection logic with GEM5 ([#5377](https://github.com/OpenXiangShan/XiangShan/pull/5377))
-  - Implement SC bias table ([#5234](https://github.com/OpenXiangShan/XiangShan/pull/5234))
-  - Implement ITTAGE prediction for call-type branches ([#5311](https://github.com/OpenXiangShan/XiangShan/pull/5311))
+  - Implement MBTB replacer to only touch branches with taken prediction, allowing useless branches to be replaced from MBTB first ([#5414](https://github.com/OpenXiangShan/XiangShan/pull/5414))
+  - Implement banked ITTAGE SRAM to reduce read-write conflicts ([#5430](https://github.com/OpenXiangShan/XiangShan/pull/5430))
+  - Implement TAGE to store provider information into metaQueue to reduce reads during updates, thereby reducing read-write conflicts ([#5400](https://github.com/OpenXiangShan/XiangShan/pull/5400))
 - Bug Fix
-  - Fix the misuse issue caused by unclear naming between branch address (cfiPc) and prediction block address (startPc) in BPU training ([#5317](https://github.com/OpenXiangShan/XiangShan/pull/5317))
-  - Fix UBTB training pipeline hit condition to avoid incorrect replacer updates ([#5326](https://github.com/OpenXiangShan/XiangShan/pull/5326))
-  - Fix TAGE folded history signal width typo ([#5325](https://github.com/OpenXiangShan/XiangShan/pull/5325))
-  - Fix TAGE cfiPc typo ([#5345](https://github.com/OpenXiangShan/XiangShan/pull/5345))
-  - Fix some RAS typos and enable RAS ([#5321](https://github.com/OpenXiangShan/XiangShan/pull/5321))
-  - Fix FTQ resolveQueue bpu enqueue flush logic error issue ([#5344](https://github.com/OpenXiangShan/XiangShan/pull/5344))
+  - Fix issue of incorrect read-write conflict conditions in ITTAGE SRAM ([#5392](https://github.com/OpenXiangShan/XiangShan/pull/5392))
+  - Fix issue of other predictors being trained repeatedly when TAGE training is blocked ([#5399](https://github.com/OpenXiangShan/XiangShan/pull/5399))
 - Timing/Area optimization
-  - Move TAGE BaseTable into MBTB to synchronize counter allocation with MBTB entries, reducing redundant storage ([#5349](https://github.com/OpenXiangShan/XiangShan/pull/5349))
+  - Fix timing issues of WriteBuffer write ports in MBTB and TAGE ([#5418](https://github.com/OpenXiangShan/XiangShan/pull/5418), [#5433](https://github.com/OpenXiangShan/XiangShan/pull/5433))
+  - Fix timing issues caused by large bit-width and poor selection of ABTB SRAM ([#5417](https://github.com/OpenXiangShan/XiangShan/pull/5417))
 - Code quality improvements
-  - Unify the naming of pc-related signals within BPU ([#5318](https://github.com/OpenXiangShan/XiangShan/pull/5318))
-  - Add some utility methods to batch generate performance counters with similar prefixes ([#5298](https://github.com/OpenXiangShan/XiangShan/pull/5298))
+  - Rewrite parts of the Frontend top-level module that do not conform to the style guide and fix IDE warnings ([#5395](https://github.com/OpenXiangShan/XiangShan/pull/5395))
+  - Rewrite index selection logic of ABTB and UBTB using AddrField class ([#5397](https://github.com/OpenXiangShan/XiangShan/pull/5397))
+  - Clean up unused code in ABTB ([#5456](https://github.com/OpenXiangShan/XiangShan/pull/5456))
 - Debugging tools
-  - Add and fix a large number of performance counters in various modules ([#5320](https://github.com/OpenXiangShan/XiangShan/pull/5320), [#5265](https://github.com/OpenXiangShan/XiangShan/pull/5265), [#5319](https://github.com/OpenXiangShan/XiangShan/pull/5319), [#5332](https://github.com/OpenXiangShan/XiangShan/pull/5332), [#5339](https://github.com/OpenXiangShan/XiangShan/pull/5339), [#5347](https://github.com/OpenXiangShan/XiangShan/pull/5347), [#5353](https://github.com/OpenXiangShan/XiangShan/pull/5353), [#5370](https://github.com/OpenXiangShan/XiangShan/pull/5370), [#5383](https://github.com/OpenXiangShan/XiangShan/pull/5383), [#5372](https://github.com/OpenXiangShan/XiangShan/pull/5372))
-  - Optimize the branch real address calculation logic of TAGE Trace, considering compressed instructions ([#5355](https://github.com/OpenXiangShan/XiangShan/pull/5355))
+  - Add MicroTAGE Trace ([#5388](https://github.com/OpenXiangShan/XiangShan/pull/5388))
+  - Add ICache Trace ([#5452](https://github.com/OpenXiangShan/XiangShan/pull/5452))
+  - Add numerous performance counters ([#5442](https://github.com/OpenXiangShan/XiangShan/pull/5442), [#5443](https://github.com/OpenXiangShan/XiangShan/pull/5443), [#5289](https://github.com/OpenXiangShan/XiangShan/pull/5289))
 
 ### Backend
 

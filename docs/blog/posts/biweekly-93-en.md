@@ -86,31 +86,17 @@ In terms of XiangShan development, the frontend has fixed some BPU-related perfo
 ### MemBlock and Cache
 
 - RTL new features
-  - (V2) Support disabling ClockGate in CoupledL2 via parameters ([CoupledL2 #451](https://github.com/OpenXiangShan/CoupledL2/pull/451))
-  - (V2) Parameterize TIMERange in MMIOBridge of CoupledL2 ([CoupledL2 #453](https://github.com/OpenXiangShan/CoupledL2/pull/451))
   - The refactoring and testing of MMU, LoadUnit, StoreQueue, L2, etc. is ongoing
 - Bug fix
-  - (V2) Fix the incorrect wakeup of load requests in LoadQueueReplay ([#5327](https://github.com/OpenXiangShan/XiangShan/pull/5327))
-  - (V2) Fix the wlineflag not delayed one cycle in LoadQueueRAW ([#5352](https://github.com/OpenXiangShan/XiangShan/pull/5352))
-  - (V2) Fix the depth of L1StreamPrefetcher ([#5365](https://github.com/OpenXiangShan/XiangShan/pull/5365))
-  - (V2) Remove some RegNext(hartid) in L2Top and MemBlock ([#5408](https://github.com/OpenXiangShan/XiangShan/pull/5408))
-  - (V2) Fix the wrong DataCheck logic in TXDAT ([CoupledL2 #455](https://github.com/OpenXiangShan/CoupledL2/pull/455))
-  - (V2) Fix the compilation error of l2MissMatch IO ([CoupledL2 #456](https://github.com/OpenXiangShan/CoupledL2/pull/456))
-- Performance Optimizations
-  - (V2) Increase the capacity of uncachebuffer from 4 to 16 ([#5364](https://github.com/OpenXiangShan/XiangShan/pull/5364))
-  - Add PerfCCT support for LoadUnit ([#5286](https://github.com/OpenXiangShan/XiangShan/pull/5286))
-- Timing
-  - (V2) Adjust the arbtration sequence for s0 source in LoadUnit ([#5300](https://github.com/OpenXiangShan/XiangShan/pull/5300))
-  - (V2) Optimize the timing of VSegmentUnit and exceptionBuffer ([#5330](https://github.com/OpenXiangShan/XiangShan/pull/5330), [#5292](https://github.com/OpenXiangShan/XiangShan/pull/5292))
-  - (V2) Remove IO port for store prefetch in Sbuffer ([#5329](https://github.com/OpenXiangShan/XiangShan/pull/5329))
-  - (V2) Remove unnecessary Mux in MemBlock when generating paddr for TLB ([#5331](https://github.com/OpenXiangShan/XiangShan/pull/5331))
-  - (V2) Replace BitmapCache from register to SRAM ([#5346](https://github.com/OpenXiangShan/XiangShan/pull/5346))
+  - Modify the pipe parameter of Pipeline to true in PerfetcgWrapper ([#5275](https://github.com/OpenXiangShan/XiangShan/pull/5275/files))
+  - Fix the error of multi-writeback when storeMisalignBuffer is full ([#5415](https://github.com/OpenXiangShan/XiangShan/pull/5415))
+  - Remove redundant BEU range exclusion in L2 ([CoupledL2 #457](https://github.com/OpenXiangShan/CoupledL2/pull/457))
+  - Sync the pr in V2 to V3
+- Code refactoring
+  - Remove fdpMonitor and fix some statistics bugs ([#5272](https://github.com/OpenXiangShan/XiangShan/pull/5272))
 - Debugging tools
-  - Support outputting performance counters in tl-test-new ([tl-test-new #84](https://github.com/OpenXiangShan/tl-test-new/pull/84))
-  - Support outputting detailed information when check_paddr fails in NEMU ([NEMU #867](https://github.com/OpenXiangShan/NEMU/pull/867))
   - Continuous improvement of CHI infrastructure CHIron
   - Develop a verification tool CHI Test for the new version of L2 Cache. Continuous progressing
-  - Refine the prefetch statistics in L2 Topdown Monitor ([CoupledL2 #452](https://github.com/OpenXiangShan/CoupledL2/pull/452))
 
 ## Performance Evaluation
 

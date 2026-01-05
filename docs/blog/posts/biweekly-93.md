@@ -74,31 +74,17 @@ categories:
 ### 访存与缓存
 
 - RTL 新特性
-  - （V2）支持在 CoupledL2 中通过参数关闭 ClockGate（[CoupledL2 #451](https://github.com/OpenXiangShan/CoupledL2/pull/451)）
-  - （V2）将 CoupledL2 MMIOBridge 的 TIMERange 参数化（[CoupledL2 #453](https://github.com/OpenXiangShan/CoupledL2/pull/451)）
   - MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
 - Bug 修复
-  - （V2）修复了 LoadQueueReplay 中 load 请求无法被正确唤醒的问题（[#5327](https://github.com/OpenXiangShan/XiangShan/pull/5327)）
-  - （V2）修复了 LoadQueueRAW 中 storeIn.wlineflag 没有延迟一周期的问题（[#5352](https://github.com/OpenXiangShan/XiangShan/pull/5352)）
-  - （V2）修复了 L1StreamPrefetcher 的深度（[#5365](https://github.com/OpenXiangShan/XiangShan/pull/5365)）
-  - （V2）移除了 L2Top 与 MemBlock 中部分 RegNext(hartid)（[#5408](https://github.com/OpenXiangShan/XiangShan/pull/5408)）
-  - （V2）修复了 TXDAT 中错误的 DataCheck 逻辑（[CoupledL2 #455](https://github.com/OpenXiangShan/CoupledL2/pull/455)）
-  - （V2）修复了 l2MissMatch IO 的编译错误（[CoupledL2 #456](https://github.com/OpenXiangShan/CoupledL2/pull/456)）
-- 性能优化
-  - （V2）将 uncachebuffer 的容量从 4 增加至 16（[#5364](https://github.com/OpenXiangShan/XiangShan/pull/5364)）
-  - 为 LoadUnit 添加了 PerfCCT 支持（[#5286](https://github.com/OpenXiangShan/XiangShan/pull/5286)）
-- 时序
-  - （V2）调整了 LoadUnit 中 s0 source 的仲裁顺序（[#5300](https://github.com/OpenXiangShan/XiangShan/pull/5300)）
-  - （V2）优化了 VSegmentUnit、exceptionBuffer 的时序（[#5330](https://github.com/OpenXiangShan/XiangShan/pull/5330)，[#5292](https://github.com/OpenXiangShan/XiangShan/pull/5292)）
-  - （V2）移除了 Sbuffer 中 store 预取的 IO 端口（[#5329](https://github.com/OpenXiangShan/XiangShan/pull/5329)）
-  - （V2）移除了 MemBlock 中 TLB 生成 paddr 时非必要的 Mux（[#5331](https://github.com/OpenXiangShan/XiangShan/pull/5331)）
-  - （V2）将 BitmapCache 从寄存器替换为 SRAM（[#5346](https://github.com/OpenXiangShan/XiangShan/pull/5346)）
+  - 修改 PerfetcgWrapper 中 Pipeline 的 pipe 参数为 true（[#5275](https://github.com/OpenXiangShan/XiangShan/pull/5275/files)）
+  - 修复了 storeMisalignBuffer 满时多次写回的错误（[#5415](https://github.com/OpenXiangShan/XiangShan/pull/5415)）
+  - 移除L2中冗余的BEU范围排除（[CoupledL2 #457](https://github.com/OpenXiangShan/CoupledL2/pull/457)）
+  - 将其他 V2 上的 pr 同步到 V3 上
+- 代码重构
+  - 移除了 fdpMonitor 并修复了一些统计错误（[#5272](https://github.com/OpenXiangShan/XiangShan/pull/5272)）
 - 调试工具
-  - 在 tl-test-new 中支持输出性能计数器（[tl-test-new #84](https://github.com/OpenXiangShan/tl-test-new/pull/84)）
-  - 在 NEMU 中支持在 check_paddr 失败时输出详细信息（[NEMU #867](https://github.com/OpenXiangShan/NEMU/pull/867)）
   - 持续改进 CHI 基础设施 CHIron
   - 开发用于新版 L2 Cache 的验证工具 CHI Test。持续推进中
-  - 改进了 L2 Topdown Monitor 中统计的预取信息（[CoupledL2 #452](https://github.com/OpenXiangShan/CoupledL2/pull/452)）
 
 ## 性能评估
 

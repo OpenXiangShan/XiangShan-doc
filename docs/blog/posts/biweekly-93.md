@@ -54,14 +54,22 @@ categories:
 
 - RTL 新特性
   - 正在推进 V3 向量单元的新设计实现
+  - （V3）修改 mvendorid 的值（[#5427](https://github.com/OpenXiangShan/XiangShan/pull/5427)）
+  - （V3）重构 vimac64b 模块，实现 vimac 金模型并添加相应接口到 VecSimTop（[YunSuan #193](https://github.com/OpenXiangShan/YunSuan/pull/193)）
 - Bug 修复
-  - 修复后端 TopDown 接口连接问题（[#5340](https://github.com/OpenXiangShan/XiangShan/pull/5340)）
-  - 修改 mvendorid 的值（[#5367](https://github.com/OpenXiangShan/XiangShan/pull/5367)）
-  - 修复 Dispatch 的流水线阻塞周期统计问题（[#5398](https://github.com/OpenXiangShan/XiangShan/pull/5398)）
+  - （V3）修复提交时的 RAS 操作问题（[#5421](https://github.com/OpenXiangShan/XiangShan/pull/5421)）
+  - （V2/V3）修复 CSR 读指令读取 vl/vlenb 导致非法指令异常的优先级的问题（[#5420](https://github.com/OpenXiangShan/XiangShan/pull/5420)，[#5422](https://github.com/OpenXiangShan/XiangShan/pull/5422)）
+  - （V3）在 diffVl 的 debug 接口中使用 basicDebugEn 信号（[#5465](https://github.com/OpenXiangShan/XiangShan/pull/5465)）
+  - （V2）升级 NEMU config 以修复 vfredusum 问题（[#5434](https://github.com/OpenXiangShan/XiangShan/pull/5434)）
+- 时序
+  - （V3）减少 redirect 中的一周期延迟（[#5378](https://github.com/OpenXiangShan/XiangShan/pull/5378)）
+  - （V3）将 oldestExuRedirect 的选择从 ctrlblock 移动到 intRegion（[#5462](https://github.com/OpenXiangShan/XiangShan/pull/5462)）
+  - （V3）将 targetPc 分为 trap 和 xret 路径以优化时序，分别处理例外和 CSR FunctionUnit 的写回（[#5475](https://github.com/OpenXiangShan/XiangShan/pull/5475)）
 - 代码优化
-  - 让 srcLoadDependencyUpdate 的连接更易读（[#5404](https://github.com/OpenXiangShan/XiangShan/pull/5404)）
-- 其他
-  - 更新后端的代码维护者名单（[#5342](https://github.com/OpenXiangShan/XiangShan/pull/5342)）
+  - （V3）移除部分死代码（[#5405](https://github.com/OpenXiangShan/XiangShan/pull/5405)，[#5324](https://github.com/OpenXiangShan/XiangShan/pull/5324)）
+  - （V3）移除一些使用 0.U 宽度进行连接的代码（[#5413](https://github.com/OpenXiangShan/XiangShan/pull/5413)）
+  - （V3）转用 CSRs.scala 文件保持对 CSR 地址的跟踪（[#5440](https://github.com/OpenXiangShan/XiangShan/pull/5440)）
+  - （V3）在后端每个参数类中单独配置 vl src 以便于维护（[#5368](https://github.com/OpenXiangShan/XiangShan/pull/5368)）
 
 ### 访存与缓存
 

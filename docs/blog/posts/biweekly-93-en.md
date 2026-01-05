@@ -63,6 +63,26 @@ In terms of XiangShan development, the frontend has fixed some BPU-related perfo
 - Others
   - Update the list of backend code owners ([#5342](https://github.com/OpenXiangShan/XiangShan/pull/5342))
 
+- RTL new features
+  - Advancing the new design implementation of the V3 vector unit
+  - (V3) Modify the value of mvendorid ([#5427](https://github.com/OpenXiangShan/XiangShan/pull/5427))
+  - (V3) Refactor the vimac64b module, implement the vimac gold model, and add corresponding interfaces to VecSimTop ([YunSuan #193](https://github.com/OpenXiangShan/YunSuan/pull/193))
+- Bug fixes
+  - (V3) Fix RAS action issue during commit ([#5421](https://github.com/OpenXiangShan/XiangShan/pull/5421))
+  - (V2/V3) Fix priority issue causing illegal instruction exception when reading vl/vlenb in CSR read instructions ([#5420](https://github.com/OpenXiangShan/XiangShan/pull/5420), [#5422](https://github.com/OpenXiangShan/XiangShan/pull/5422))
+  - (V3) Use basicDebugEn signal in diffVl debug interface ([#5465](https://github.com/OpenXiangShan/XiangShan/pull/5465))
+  - (V2) Upgrade NEMU config to fix vfredusum issue ([#5434](https://github.com/OpenXiangShan/XiangShan/pull/5434))
+- Timing
+  - (V3) Reduce one-cycle delay in redirect ([#5378](https://github.com/OpenXiangShan/XiangShan/pull/5378))
+  - (V3) Move the selection of oldestExuRedirect from ctrlblock to intRegion ([#5462](https://github.com/OpenXiangShan/XiangShan/pull/5462))
+  - (V3) Separate targetPc into trap and xret paths to optimize timing, handling exceptions and CSR FunctionUnit writebacks respectively ([#5475](https://github.com/OpenXiangShan/XiangShan/pull/5475))
+- Code optimizations
+  - (V3) Remove some dead code ([#5405](https://github.com/OpenXiangShan/XiangShan/pull/5405), [#5324](https://github.com/OpenXiangShan/XiangShan/pull/5324))
+  - (V3) Remove some code connecting with 0.U width ([#5413](https://github.com/OpenXiangShan/XiangShan/pull/5413))
+  - (V3) Switch to using CSRs.scala file to keep track of CSR addresses ([#5440](https://github.com/OpenXiangShan/XiangShan/pull/5440))
+  - (V3) Configure vl src separately in each parameter class in backend for easier maintenance ([#5368](https://github.com/OpenXiangShan/XiangShan/pull/5368))
+- Others
+
 ### MemBlock and Cache
 
 - RTL new features

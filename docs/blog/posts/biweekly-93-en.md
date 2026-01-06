@@ -13,13 +13,15 @@ This is the first issue of the biweekly report in 2026! In the past year of 2025
 
 - First industrial application. The second-generation XiangShan Nanhu has been integrated as the main control CPU into the latest generation chips by Moore Threads and Chipown Technology, with Moore Threads shipping tens of thousands of units; the third-generation XiangShan Kunminghu has completed product-level delivery for the first batch of SoC chips, with two companies completing SoC chip tape-out in October and November respectively, and will have tape-in in Q1 2026.
 - Won the first Open Source Contribution Award from the CCF Architecture Committee of the China Computer Federation
-- Hosted community events such as RISC-V Hackathon and Documentation Bug Hunt, and had enthusiastic exchanges with friends around the world who care about the progress of XiangShan at the second XiangShan Open Source Community Conference
+- The "XiangShan" open-source processor core was selected as one of the representative scientific research achievements of the Chinese Academy of Sciences in 2025 and was included in the New Year message of CAS President Hou Jianguo
 - Presented tutorials at top conferences such as ISCA, HPCA, MICRO, introducing the latest progress of XiangShan to the world
+- Multiple tools have been developed and papers published at top international conferences, such as GSIM (DAC25), DiffTest-H (MICRO25), TraceRTL (HPCA26), UCAgent, etc.
+- Several papers based on XiangShan evaluations have been published in top international conferences
 - Verification work has been continuously improved, successfully passing multiple milestone tests such as 8-core consistency verification and booting GUI OpenEuler
+- Kunminghu V3 became the new default branch, with the latest performance surpassing Kunminghu V2
+- Hosted community events such as RISC-V Hackathon and Documentation Bug Hunt, and had enthusiastic exchanges with friends around the world who care about the progress of XiangShan at the second XiangShan Open Source Community Conference
 - XiangShan Compiler (XSCC) released, XiangShan now has its own compiler
 - The AI intelligent agent UCAgent from the "One Chip for All" team was released, successfully hosting the first open-source chip hackathon
-- Kunminghu V3 became the new default branch, with the latest performance surpassing Kunminghu V2
-- The "XiangShan" open-source processor core was selected as one of the representative scientific research achievements of the Chinese Academy of Sciences in 2025 and was included in the New Year message of CAS President Hou Jianguo
 
 A new year means a new beginning. In 2026, XiangShan will continue to implement the new concept of "open source", continuously promote the iterative development of Kunminghu V3 and the construction of the open source community. We sincerely thank everyone for their companionship and support for XiangShan!
 

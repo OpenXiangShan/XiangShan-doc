@@ -7,21 +7,23 @@ categories:
 
 # [XiangShan Biweekly 93] 20260105
 
-Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan.
+Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 93rd issue of the biweekly report.
 
-This is the 93rd issue of the biweekly report.
+This is the first issue of the biweekly report in 2026! In the past year of 2025, the XiangShan team has made solid progress and achieved multiple important milestones with high quality:
 
-In the last issue of the biweekly report in 2025, we are excited to announce the performance evaluation results of the current Kunminghu V3 architecture on SPEC CPU2006 for the first time! Since the performance regression of Kunminghu V3 started in August this year, a total of 11 performance regressions have been completed. These 11 performance regressions witness the process of the XiangShan team working together to rapidly develop and iterate on the design. The initial version of Kunminghu V3 scored only 3.717 points/GHz in the SPEC 2006 test. Now, in the latest performance regression, V3 has reached 16.081 points/GHz, surpassing the score of V2. V3 has also replaced V2 as the new mainline of the XiangShan repository!
+- First industrial application. The second-generation XiangShan Nanhu has been integrated as the main control CPU into the latest generation chips by Moore Threads and Chipown Technology, with Moore Threads shipping tens of thousands of units; the third-generation XiangShan Kunminghu has completed product-level delivery for the first batch of SoC chips, with two companies completing SoC chip tape-out in October and November respectively, and will have tape-in in Q1 2026.
+- Won the first Open Source Contribution Award from the CCF Architecture Committee of the China Computer Federation
+- Hosted community events such as RISC-V Hackathon and Documentation Bug Hunt, and had enthusiastic exchanges with friends around the world who care about the progress of XiangShan at the second XiangShan Open Source Community Conference
+- Presented tutorials at top conferences such as ISCA, HPCA, MICRO, introducing the latest progress of XiangShan to the world
+- Verification work has been continuously improved, successfully passing multiple milestone tests such as 8-core consistency verification and booting GUI OpenEuler
+- XiangShan Compiler (XSCC) released, XiangShan now has its own compiler
+- The AI intelligent agent UCAgent from the "One Chip for All" team was released, successfully hosting the first open-source chip hackathon
+- Kunminghu V3 became the new default branch, with the latest performance surpassing Kunminghu V2
+- The "XiangShan" open-source processor core was selected as one of the representative scientific research achievements of the Chinese Academy of Sciences in 2025 and was included in the New Year message of CAS President Hou Jianguo
 
-![Performance Regression Results for XiangShan Kunminghu](./figs/performance-regression.png)
+A new year means a new beginning. In 2026, XiangShan will continue to implement the new concept of "open source", continuously promote the iterative development of Kunminghu V3 and the construction of the open source community. We sincerely thank everyone for their companionship and support for XiangShan!
 
-During this process, ~~the frontend undoubtedly took the biggest blame~~ the most significant change is the brand-new frontend of V3. The new frontend has greatly improved instruction bandwidth, now capable of predicting up to 8 branches and providing 32 instructions per cycle. Meanwhile, the backend and memory subsystem have also increased their throughput capabilities, including increasing from 6 to 8 issue ports and adjusting the sizes of various queues.
-
-It is worth noting that the performance data curve of V3 vividly reflects the agile development philosophy of the XiangShan team. Unlike traditional waterfall development processes, the development of V3 is not a one-time delivery of all code, but rather a result of rapid iteration and continuous evolution based on the initial code. We believe that this new philosophy will bring a new development paradigm to the industry and will certainly help Kunminghu V3 reach new heights, further enhancing the performance benchmark of open-source processors.
-
-We appreciate your companionship and support for XiangShan, and we look forward to your continued attention to the subsequent progress of Kunminghu V3!
-
-In terms of XiangShan development, the frontend has fixed some BPU-related performance bugs and added numerous performance counters for better performance analysis. The backend continues to advance the design of the new vector unit. The memory subsystem has fixed several bugs in V2 and is continuing with V3 module refactoring and infrastructure construction.
+In terms of XiangShan development, the new front-end of 1-taken and 1-fetch has been basically completed; the back-end continues to advance the design and implementation of the new vector unit while refactoring existing code; the memory system continues to refactor modules such as MMU, LoadUnit, StoreQueue, L2, and fixes some bugs.
 
 <!-- more -->
 
@@ -100,30 +102,28 @@ In terms of XiangShan development, the frontend has fixed some BPU-related perfo
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 36.71  | 410.bwaves       | 73.92  |
-| 401.bzip2         | 27.45  | 416.gamess       | 54.70  |
-| 403.gcc           | 42.71  | 433.milc         | 45.12  |
-| 429.mcf           | 59.65  | 434.zeusmp       | 60.17  |
-| 445.gobmk         | 35.10  | 435.gromacs      | 38.47  |
-| 456.hmmer         | 44.18  | 436.cactusADM    | 54.20  |
-| 458.sjeng         | 32.30  | 437.leslie3d     | 52.85  |
-| 462.libquantum    | 107.84 | 444.namd         | 37.91  |
-| 464.h264ref       | 61.89  | 447.dealII       | 61.38  |
-| 471.omnetpp       | 43.56  | 450.soplex       | 54.62  |
-| 473.astar         | 30.43  | 453.povray       | 56.90  |
-| 483.xalancbmk     | 75.89  | 454.Calculix     | 19.18  |
-| GEOMEAN           | 45.85  | 459.GemsFDTD     | 44.14  |
-|                   |        | 465.tonto        | 36.35  |
-|                   |        | 470.lbm          | 93.88  |
-|                   |        | 481.wrf          | 48.77  |
-|                   |        | 482.sphinx3      | 56.20  |
-|                   |        | GEOMEAN          | 49.72  |
-
-We use SimPoint to sample programs and create checkpoints images based on our custom format. The coverage of SimPoint clustering reaches 100%. Note that the above scores are estimated based on program segments rather than a complete SPEC CPU2006 evaluation, which may deviate from the actual performance of real chips.
+| 400.perlbench     | 38.38  | 410.bwaves       | 73.28  |
+| 401.bzip2         | 27.53  | 416.gamess       | 55.10  |
+| 403.gcc           | 48.17  | 433.milc         | 46.08  |
+| 429.mcf           | 60.25  | 434.zeusmp       | 60.34  |
+| 445.gobmk         | 37.30  | 435.gromacs      | 38.58  |
+| 456.hmmer         | 44.20  | 436.cactusADM    | 54.30  |
+| 458.sjeng         | 34.49  | 437.leslie3d     | 53.87  |
+| 462.libquantum    | 127.76 | 444.namd         | 38.02  |
+| 464.h264ref       | 63.36  | 447.dealII       | 62.95  |
+| 471.omnetpp       | 43.19  | 450.soplex       | 54.69  |
+| 473.astar         | 30.68  | 453.povray       | 61.24  |
+| 483.xalancbmk     | 81.47  | 454.Calculix     | 19.40  |
+| GEOMEAN           | 48.07  | 459.GemsFDTD     | 44.60  |
+|                   |        | 465.tonto        | 36.34  |
+|                   |        | 470.lbm          | 104.91 |
+|                   |        | 481.wrf          | 48.88  |
+|                   |        | 482.sphinx3      | 56.16  |
+|                   |        | GEOMEAN          | 50.55  |
 
 Compilation parameters are as follows:
 
-|                    |          |
+| Parameters         | Options  |
 | ------------------ | -------- |
 | Compiler           | gcc12    |
 | Optimization level | O3       |
@@ -133,7 +133,7 @@ Compilation parameters are as follows:
 
 Processor and SoC parameters are as follows:
 
-|                |            |
+| Parameters     | Options    |
 | -------------- | ---------- |
 | Commit         | 64e7bff7f  |
 | Date           | 12/19/2025 |
@@ -144,6 +144,8 @@ Processor and SoC parameters are as follows:
 | LSU            | 3ld2st     |
 | Bus protocol   | TileLink   |
 | Memory latency | DDR4-3200  |
+
+Note: We use SimPoint to sample the programs and create checkpoint images based on our custom checkpoint format, with a SimPoint clustering coverage of 100%. The above scores are estimates based on program segments, not full SPEC CPU2006 evaluations, and may differ from actual chip performance.
 
 ## Related links
 

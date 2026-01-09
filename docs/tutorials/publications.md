@@ -57,6 +57,11 @@ This framework is open-sourced and deployed in the XiangShan verification flow, 
 
 [Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2025-DiffTestH.pdf) | [ACM Digital Library](https://dl.acm.org/doi/10.1145/3725843.3756108) | [BibTeX](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2025-DiffTestH.bib) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2025-DiffTestH-slides.pdf)
 
+## GSIM: Accelerating RTL Simulation for Large-Scale Designs
+
+Published at *the 62nd Annual ACM/IEEE Design Automation Conference(DAC 2025)*. DOI: [10.1109/DAC63849.2025.11133142](https://doi.org/10.1109/DAC63849.2025.11133142)
+
+[Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/dac2025-GSIM.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/document/11133142)
 
 ## Research on XiangShan
 
@@ -80,3 +85,7 @@ We appreciate their contributions to enhancing XiangShan and strengthening the c
 - [Asynchronous Memory Access Unit: Exploiting Massive Parallelism for Far Memory Access](https://dl.acm.org/doi/abs/10.1145/3663479), ICT-CAS, TACO
 
 - [Single-Address-Space FaaS with Jord](https://dl.acm.org/doi/10.1145/3695053.3731108), EPFL, ISCA'25
+
+- [FirePower: Towards a Foundation with Generalizable Knowledge for Architecture-Level Power Modeling](https://dl.acm.org/doi/10.1145/3658617.3697554), HKUST, ASPDAC'25
+
+- [CoroAMU: Unleashing Memory-Driven Coroutines through Latency-Aware Decoupled Operations](https://ieeexplore.ieee.org/document/11282944), ICT-CAS, PACT'25

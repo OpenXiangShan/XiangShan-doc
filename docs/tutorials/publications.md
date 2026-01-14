@@ -89,3 +89,4 @@ We appreciate their contributions to enhancing XiangShan and strengthening the c
 - [FirePower: Towards a Foundation with Generalizable Knowledge for Architecture-Level Power Modeling](https://dl.acm.org/doi/10.1145/3658617.3697554), HKUST, ASPDAC'25
 
 - [CoroAMU: Unleashing Memory-Driven Coroutines through Latency-Aware Decoupled Operations](https://ieeexplore.ieee.org/document/11282944), ICT-CAS, PACT'25
+

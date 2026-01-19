@@ -34,23 +34,25 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 实现 MBTB replacer 仅 touch 预测结果为跳转的分支，使无用分支优先被替换出 MBTB（[#5414](https://github.com/OpenXiangShan/XiangShan/pull/5414)）
-  - 实现 ITTAGE SRAM 分 bank，减少读写冲突（[#5430](https://github.com/OpenXiangShan/XiangShan/pull/5430)）
-  - 实现 TAGE 将 provider 信息存入 metaQueue 减少更新时读，从而减少读写冲突（[#5400](https://github.com/OpenXiangShan/XiangShan/pull/5400)）
+  - 完善 SC 预测器的 bias 和 path 表（[#5458](https://github.com/OpenXiangShan/XiangShan/pull/5458)）
+  - 在 TAGE 中使用 WriteBuffer 的计数器累加机制（[#5470](https://github.com/OpenXiangShan/XiangShan/pull/5470)）
+  - 将 ABTB 的 set 和 bank 索引存入元数据，移除 BPU 顶层额外保存的 s4 级 pc（[#5494](https://github.com/OpenXiangShan/XiangShan/pull/5494)）
+  - 支持开关 ICache parity 出错时自动重取的机制（[#5501](https://github.com/OpenXiangShan/XiangShan/pull/5501)）
 - Bug 修复
-  - 修复 ITTAGE SRAM 读写冲突条件有误的问题（[#5392](https://github.com/OpenXiangShan/XiangShan/pull/5392)）
-  - 修复 TAGE 训练阻塞时其它预测器被重复训练的问题（[#5399](https://github.com/OpenXiangShan/XiangShan/pull/5399)）
+  - 修复 MBTB replacer 一处笔误（[#5540](https://github.com/OpenXiangShan/XiangShan/pull/5540)）
+  - 修复 TAGE 使用元数据更新的条件（[#5461](https://github.com/OpenXiangShan/XiangShan/pull/5461)）
+  - 修复 GHR 在 FTQ 阻塞情况下丢失更新的问题（[#5469](https://github.com/OpenXiangShan/XiangShan/pull/5469)）
+  - 修复 RAS 在 FTQ 阻塞情况下错误更新元数据的问题（[#5481](https://github.com/OpenXiangShan/XiangShan/pull/5481)）
+  - 修复 WriteBuffer 在 setIdx 命中时的替换选择逻辑（[#5526](https://github.com/OpenXiangShan/XiangShan/pull/5526)）
+  - 修复 IFU 在 MMIO 空间推测取指的问题（[#5459](https://github.com/OpenXiangShan/XiangShan/pull/5459)）
 - 时序/面积优化
-  - 修复 MBTB、TAGE 中 WriteBuffer 写端口的时序问题（[#5418](https://github.com/OpenXiangShan/XiangShan/pull/5418)，[#5433](https://github.com/OpenXiangShan/XiangShan/pull/5433)）
-  - 修复 ABTB SRAM 位宽过大、选型不佳导致的时序问题（[#5417](https://github.com/OpenXiangShan/XiangShan/pull/5417)）
+  - 禁用 ICache parity 出错时自动重取的机制以优化时序（[#5501](https://github.com/OpenXiangShan/XiangShan/pull/5501)）
 - 代码质量
-  - 重写 Frontend 顶层模块中不符合 style guide 的部分代码，修复 IDE warning（[#5395](https://github.com/OpenXiangShan/XiangShan/pull/5395)）
-  - 使用 AddrField 类重写 ABTB、UBTB 的各索引选择逻辑（[#5397](https://github.com/OpenXiangShan/XiangShan/pull/5397)）
-  - 清理 ABTB 中无用代码（[#5456](https://github.com/OpenXiangShan/XiangShan/pull/5456)）
+  - 重构 SaturateCounter 工具类（[#5363](https://github.com/OpenXiangShan/XiangShan/pull/5363)）
+  - 重构 BPU 元数据类（[#5486](https://github.com/OpenXiangShan/XiangShan/pull/5486)）
+  - 解耦 ABTB 和 UTAGE（[#5500](https://github.com/OpenXiangShan/XiangShan/pull/5500)）
 - 调试工具
-  - 新增 MicroTAGE Trace（[#5388](https://github.com/OpenXiangShan/XiangShan/pull/5388)）
-  - 新增 ICache Trace（[#5452](https://github.com/OpenXiangShan/XiangShan/pull/5452)）
-  - 新增大量性能计数器（[#5442](https://github.com/OpenXiangShan/XiangShan/pull/5442)，[#5443](https://github.com/OpenXiangShan/XiangShan/pull/5443)，[#5289](https://github.com/OpenXiangShan/XiangShan/pull/5289)）
+  - 增加 MBTB trace（[#5466](https://github.com/OpenXiangShan/XiangShan/pull/5466)）
 
 ### 后端
 

@@ -34,23 +34,25 @@ In terms of XiangShan development, the new front-end of 1-taken and 1-fetch has 
 ### Frontend
 
 - RTL feature
-  - Implement MBTB replacer to only touch branches with taken prediction, allowing useless branches to be replaced from MBTB first ([#5414](https://github.com/OpenXiangShan/XiangShan/pull/5414))
-  - Implement banked ITTAGE SRAM to reduce read-write conflicts ([#5430](https://github.com/OpenXiangShan/XiangShan/pull/5430))
-  - Implement TAGE to store provider information into metaQueue to reduce reads during updates, thereby reducing read-write conflicts ([#5400](https://github.com/OpenXiangShan/XiangShan/pull/5400))
+  - Improve bias and path table of SC predictor ([#5458](https://github.com/OpenXiangShan/XiangShan/pull/5458))
+  - Use the counter accumulation mechanism of WriteBuffer in TAGE ([#5470](https://github.com/OpenXiangShan/XiangShan/pull/5470))
+  - Store set and bank index of ABTB into metadata, remove extra s4-level pc saved at the top level of BPU ([#5494](https://github.com/OpenXiangShan/XiangShan/pull/5494))
+  - Support enabling/disabling auto re-fetch on ICache parity error ([#5501](https://github.com/OpenXiangShan/XiangShan/pull/5501))
 - Bug Fix
-  - Fix issue of incorrect read-write conflict conditions in ITTAGE SRAM ([#5392](https://github.com/OpenXiangShan/XiangShan/pull/5392))
-  - Fix issue of other predictors being trained repeatedly when TAGE training is blocked ([#5399](https://github.com/OpenXiangShan/XiangShan/pull/5399))
+  - Fix a typo in MBTB replacer ([#5540](https://github.com/OpenXiangShan/XiangShan/pull/5540))
+  - Fix the condition for TAGE to update using metadata ([#5461](https://github.com/OpenXiangShan/XiangShan/pull/5461))
+  - Fix the issue of GHR losing updates when FTQ is stalled ([#5469](https://github.com/OpenXiangShan/XiangShan/pull/5469))
+  - Fix the issue of RAS incorrectly updating metadata when FTQ is stalled ([#5481](https://github.com/OpenXiangShan/XiangShan/pull/5481))
+  - Fix the replacement selection logic of WriteBuffer when setIdx hits ([#5526](https://github.com/OpenXiangShan/XiangShan/pull/5526))
+  - Fix the issue of IFU speculative fetch in MMIO space ([#5459](https://github.com/OpenXiangShan/XiangShan/pull/5459))
 - Timing/Area optimization
-  - Fix timing issues of WriteBuffer write ports in MBTB and TAGE ([#5418](https://github.com/OpenXiangShan/XiangShan/pull/5418), [#5433](https://github.com/OpenXiangShan/XiangShan/pull/5433))
-  - Fix timing issues caused by large bit-width and poor selection of ABTB SRAM ([#5417](https://github.com/OpenXiangShan/XiangShan/pull/5417))
+  - Disable the auto re-fetch mechanism on ICache parity error to optimize timing ([#5501](https://github.com/OpenXiangShan/XiangShan/pull/5501))
 - Code quality improvements
-  - Rewrite parts of the Frontend top-level module that do not conform to the style guide and fix IDE warnings ([#5395](https://github.com/OpenXiangShan/XiangShan/pull/5395))
-  - Rewrite index selection logic of ABTB and UBTB using AddrField class ([#5397](https://github.com/OpenXiangShan/XiangShan/pull/5397))
-  - Clean up unused code in ABTB ([#5456](https://github.com/OpenXiangShan/XiangShan/pull/5456))
+  - Refactor SaturateCounter utility class ([#5363](https://github.com/OpenXiangShan/XiangShan/pull/5363))
+  - Refactor BPU metadata classes ([#5486](https://github.com/OpenXiangShan/XiangShan/pull/5486))
+  - Decouple ABTB and UTAGE ([#5500](https://github.com/OpenXiangShan/XiangShan/pull/5500))
 - Debugging tools
-  - Add MicroTAGE Trace ([#5388](https://github.com/OpenXiangShan/XiangShan/pull/5388))
-  - Add ICache Trace ([#5452](https://github.com/OpenXiangShan/XiangShan/pull/5452))
-  - Add numerous performance counters ([#5442](https://github.com/OpenXiangShan/XiangShan/pull/5442), [#5443](https://github.com/OpenXiangShan/XiangShan/pull/5443), [#5289](https://github.com/OpenXiangShan/XiangShan/pull/5289))
+  - Add MBTB trace ([#5466](https://github.com/OpenXiangShan/XiangShan/pull/5466))
 
 ### Backend
 

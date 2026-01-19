@@ -78,14 +78,11 @@ categories:
 ### 访存与缓存
 
 - RTL 新特性
-  - MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
+  - MDP、MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
 - Bug 修复
-  - 修改 PerfetcgWrapper 中 Pipeline 的 pipe 参数为 true（[#5275](https://github.com/OpenXiangShan/XiangShan/pull/5275/files)）
-  - 修复了 storeMisalignBuffer 满时多次写回的错误（[#5415](https://github.com/OpenXiangShan/XiangShan/pull/5415)）
-  - 移除L2中冗余的BEU范围排除（[CoupledL2 #457](https://github.com/OpenXiangShan/CoupledL2/pull/457)）
-  - 将其他 V2 上的 pr 同步到 V3 上
-- 代码重构
-  - 移除了 fdpMonitor 并修复了一些统计错误（[#5272](https://github.com/OpenXiangShan/XiangShan/pull/5272)）
+  - （V2）修复了 exception buffer 入队逻辑中 lqIdx 与 sqIdx 未连线的问题（[#5512](https://github.com/OpenXiangShan/XiangShan/pull/5512)）
+  - （V2）修复了 SnpXFwd 中未考虑 SnpPreferUniqueFwd 的错误（[CoupledL2 #460](https://github.com/OpenXiangShan/CoupledL2/pull/460)）
+  - （V2）修复了 MainPipe 中 l2Error_s3 的生成逻辑（[CoupledL2 #463](https://github.com/OpenXiangShan/CoupledL2/pull/463)）
 - 调试工具
   - 持续改进 CHI 基础设施 CHIron
   - 开发用于新版 L2 Cache 的验证工具 CHI Test。持续推进中

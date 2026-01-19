@@ -57,23 +57,19 @@ categories:
 ### 后端
 
 - RTL 新特性
-  - 正在推进 V3 向量单元的新设计实现
-  - （V3）修改 mvendorid 的值（[#5427](https://github.com/OpenXiangShan/XiangShan/pull/5427)）
-  - （V3）重构 vimac64b 模块，实现 vimac 金模型并添加相应接口到 VecSimTop（[YunSuan #193](https://github.com/OpenXiangShan/YunSuan/pull/193)）
-- Bug 修复
-  - （V3）修复提交时的 RAS 操作问题（[#5421](https://github.com/OpenXiangShan/XiangShan/pull/5421)）
-  - （V2/V3）修复 CSR 读指令读取 vl/vlenb 导致非法指令异常的优先级的问题（[#5420](https://github.com/OpenXiangShan/XiangShan/pull/5420)，[#5422](https://github.com/OpenXiangShan/XiangShan/pull/5422)）
-  - （V3）在 diffVl 的 debug 接口中使用 basicDebugEn 信号（[#5465](https://github.com/OpenXiangShan/XiangShan/pull/5465)）
-  - （V2）升级 NEMU config 以修复 vfredusum 问题（[#5434](https://github.com/OpenXiangShan/XiangShan/pull/5434)）
-- 时序
-  - （V3）减少 redirect 中的一周期延迟（[#5378](https://github.com/OpenXiangShan/XiangShan/pull/5378)）
-  - （V3）将 oldestExuRedirect 的选择从 ctrlblock 移动到 intRegion（[#5462](https://github.com/OpenXiangShan/XiangShan/pull/5462)）
-  - （V3）将 targetPc 分为 trap 和 xret 路径以优化时序，分别处理例外和 CSR FunctionUnit 的写回（[#5475](https://github.com/OpenXiangShan/XiangShan/pull/5475)）
-- 代码优化
-  - （V3）移除部分死代码（[#5405](https://github.com/OpenXiangShan/XiangShan/pull/5405)，[#5324](https://github.com/OpenXiangShan/XiangShan/pull/5324)）
-  - （V3）移除一些使用 0.U 宽度进行连接的代码（[#5413](https://github.com/OpenXiangShan/XiangShan/pull/5413)）
-  - （V3）转用 CSRs.scala 文件保持对 CSR 地址的跟踪（[#5440](https://github.com/OpenXiangShan/XiangShan/pull/5440)）
-  - （V3）在后端每个参数类中单独配置 vl src 以便于维护（[#5368](https://github.com/OpenXiangShan/XiangShan/pull/5368)）
+  - 重构乘法单元（[#5514](https://github.com/OpenXiangShan/XiangShan/pull/5514)）
+  - 将整数 Regfile 分为 4 个 bank 以减少读冲突（[#5438](https://github.com/OpenXiangShan/XiangShan/pull/5438)）
+- 时序/面积优化
+  - 访存单元重定向不再通过 flushpipe 和 replayInst 写回 (slow redirect)，统一通过 memviolation 写回 (fast redirect)（[#5491](https://github.com/OpenXiangShan/XiangShan/pull/5491)）
+  - 调整 TopDown 的时序（[#5451](https://github.com/OpenXiangShan/XiangShan/pull/5451)）
+（[#5491](https://github.com/OpenXiangShan/XiangShan/pull/5491)）
+- 代码质量
+  - 删除无用代码 isXret（[#5483](https://github.com/OpenXiangShan/XiangShan/pull/5483)）
+  - 在立即数上改用样例类 Imm 进行配置，而非直接使用 UInt（[#5523](https://github.com/OpenXiangShan/XiangShan/pull/5523)）
+  - 删除部分 IssueQueue 相关的无用代码（[#5519](https://github.com/OpenXiangShan/XiangShan/pull/5519)）
+  - 删除 Regfile 中 assertion 外不必要的条件判断（[#5505](https://github.com/OpenXiangShan/XiangShan/pull/5505)）
+- 性能分析工具
+  - 添加后端 V2 配置参数 BackendV2Config 以用于性能对比（[#5476](https://github.com/OpenXiangShan/XiangShan/pull/5476)）
 
 ### 访存与缓存
 

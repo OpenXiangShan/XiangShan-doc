@@ -9,25 +9,20 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 94th issue of the biweekly report.
 
-This is the first issue of the biweekly report in 2026! In the past year of 2025, the XiangShan team has made solid progress and achieved multiple important milestones with high quality:
-
-- First industrial application. The second-generation XiangShan Nanhu has been integrated as the main control CPU into the latest generation chips by Moore Threads and Chipown Technology, with Moore Threads shipping tens of thousands of units; the third-generation XiangShan Kunminghu has completed product-level delivery for the first batch of SoC chips, with two companies completing SoC chip tape-out in October and November respectively, and will have tape-in in Q1 2026.
-- Won the first Open Source Contribution Award from the CCF Architecture Committee of the China Computer Federation
-- The "XiangShan" open-source processor core was selected as one of the representative scientific research achievements of the Chinese Academy of Sciences in 2025 and was included in the New Year message of CAS President Hou Jianguo
-- Presented tutorials at top conferences such as ISCA, HPCA, MICRO, introducing the latest progress of XiangShan to the world
-- Multiple tools have been developed and papers published at top international conferences, such as GSIM (DAC25), DiffTest-H (MICRO25), TraceRTL (HPCA26), UCAgent, etc.
-- Several papers based on XiangShan evaluations have been published in top international conferences
-- Verification work has been continuously improved, successfully passing multiple milestone tests such as 8-core consistency verification and booting GUI OpenEuler
-- Kunminghu V3 became the new default branch, with the latest performance surpassing Kunminghu V2
-- Hosted community events such as RISC-V Hackathon and Documentation Bug Hunt, and had enthusiastic exchanges with friends around the world who care about the progress of XiangShan at the second XiangShan Open Source Community Conference
-- XiangShan Compiler (XSCC) released, XiangShan now has its own compiler
-- The AI intelligent agent UCAgent from the "One Chip for All" team was released, successfully hosting the first open-source chip hackathon
-
-A new year means a new beginning. In 2026, XiangShan will continue to implement the new concept of "open source", continuously promote the iterative development of Kunminghu V3 and the construction of the open source community. We sincerely thank everyone for their companionship and support for XiangShan!
-
-In terms of XiangShan development, the new front-end of 1-taken and 1-fetch has been basically completed; the back-end continues to advance the design and implementation of the new vector unit while refactoring existing code; the memory system continues to refactor modules such as MMU, LoadUnit, StoreQueue, L2, and fixes some bugs.
+In terms of XiangShan development, the frontend team is wrapping up the 1-taken 1-fetch architecture while exploring the 2-taken 2-fetch architecture; the backend team continues to advance the design of the vector unit and refactor multiple modules; the memory access team has fixed several bugs and is continuing to explore prefetching and MDP.
 
 <!-- more -->
+
+## Accelerate! Accelerate!!
+As we all know, processor simulation is very computationally intensive. Currently, there are a total of 1169 checkpoints used for complete performance regression of XiangShan. When simulating with verilator, it is usually compiled into versions with 8 or 16 threads to improve simulation speed. Even so, some checkpoints still require tens of hours to run.
+
+With the increasing scale of V3, the simulation speed has dropped to about 1/3 of V2's speed, which exacerbates the already slow performance regression. More critically, V3 is currently undergoing rapid performance iterations, and optimizing performance without data is like driving blindfolded.
+
+To address the issue of simulation speed, we first identified the cause of the performance degradation in verilator simulation speed. It turns out that a significant portion of the slowdown in V3 simulation speed is due to the upgrade to Chisel 7. Simply put, Chisel 7 changed the way Mux1H is generated, leading verilator to generate lookup tables instead of array accesses. A detailed analysis can be found in this [issue](https://github.com/verilator/verilator/issues/6760). This fix can bring about a 100% speed improvement, and the related fixes have already been merged into the verilator mainline.
+
+However, even with a 100% speed increase, V3's simulation speed is still only 60% of V2's. To further improve simulation speed, we introduced [GSIM](https://github.com/OpenXiangShan/gsim), a simulator developed by the XiangShan team. To be precise, GSIM does not actually speed up simulation; the single-threaded GSIM simulation speed is slightly worse than 16-thread verilator and slightly better than 8-thread verilator. Although the speed has not improved, the parallelism has increased by 10 times, which means that we can now perform 10 times the number of performance regressions with the same computational resources.
+
+To further utilize existing servers, we recently developed a XiangShan-specific job scheduling system based on GitHub called [perf trigger](https://github.com/OpenXiangShan/XiangShan/actions/workflows/perf-trigger.yml). This youthful version of the lsf system can leverage all servers while managing simulation configurations and results uniformly. Perf trigger has successfully managed multiple performance regression jobs, although there are occasional instabilities~~caused by insufficient network bandwidth leading to Runner upgrade failures and automatic restarts at 4 am daily, server maintenance, etc.~~. However, we interviewed the authors of perf trigger, L and X, who claimed that it has been highly praised within the entire XiangShan team.
 
 ## Recent Developments
 

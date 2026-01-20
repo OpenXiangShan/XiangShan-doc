@@ -22,7 +22,7 @@ categories:
 
 可是，即使提高了 100% 的速度，V3 的仿真速度仍然只有 V2 的 60%。为了进一步提高仿真速度，我们引入了香山团队自己开发的仿真器 [GSIM](https://github.com/OpenXiangShan/gsim)。准确地说，GSIM 其实并没有加快仿真速度，单线程的 GSIM 仿真速度惜败于 16 线程的 verilator，小胜 8 线程的 verilator。虽然速度没有提高，但并行度却提高了 10 倍，这意味着我们现在能够以同样的计算资源，狠狠进行 10 倍数量的性能回归。
 
-为了进一步压榨现有服务器，香山团队的 L 和 X 同学最近还搓出了一个基于 GitHub 的香山特色作业调度系统 [perf trigger](https://github.com/OpenXiangShan/XiangShan/actions/workflows/perf-trigger.yml)。这一青春版的 lsf 系统可以利用上所有服务器，同时统一管理所有的仿真配置和结果。Perf trigger 已经成功管理了多个性能回归作业，虽然有时还会有一些不稳定的情况~~爱来每天凌晨 4 点自动重启的 GitHub Runner 、小水管专线和、服务器维护~~，不过 trigger 在整个香山团队内大受好评（来源请求：L 与 X）。
+为了进一步压榨现有服务器，香山团队的 L 和 X 同学最近还搓出了一个基于 GitHub 的香山特色作业调度系统 [perf trigger](https://github.com/OpenXiangShan/XiangShan/actions/workflows/perf-trigger.yml)。这一青春版的 lsf 系统可以利用上所有服务器，同时统一管理所有的仿真配置和结果。Perf trigger 已经成功管理了多个性能回归作业，虽然有时还会有一些不稳定的情况~~爱来每天凌晨 4 点自动重启的 GitHub Runner 、小水管专线和、服务器维护~~，不过 trigger 在整个香山团队内大受好评。
 
 ## 近期进展
 

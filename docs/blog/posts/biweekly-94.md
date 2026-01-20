@@ -14,15 +14,15 @@ categories:
 <!-- more -->
 
 ## 加速！加速！！
-众所周知，处理器的仿真非常花费计算资源。现在香山完整性能回归使用的 checkpoint 一共有 1169 个。使用 verilator 进行仿真时，通常会编译成 8 个或 16 个线程的版本以提升仿真速度。即便如此，一些 checkpoint 也需要运行数十个小时。
+众所周知，处理器的仿真非常花费计算资源。香山完整性能回归使用的 checkpoint 一共有 1169 个。使用 verilator 进行仿真时，我们通常会编译成 8 个或 16 个线程的版本以提升仿真速度。即便如此，一些 checkpoint 也需要运行数十个小时。
 
-随着 V3 规模的变大，仿真速度下降到了 V2 速度的约 1/3，这让本来就慢的性能回归雪上加霜。更关键的是，现在 V3 正在经历快速性能迭代，而没有数据就进行性能优化无异于闭眼开车。
+随着 V3 规模的变大，仿真速度下降到了 V2 速度的约 1/3，这让本来就慢的性能回归雪上加霜。更关键的是，现在 V3 正在经历快速性能迭代，性能回归的需求比以往更大，没有数据就进行性能优化无异于闭眼开车。
 
-为了解决仿真速度的问题，我们首先定位了 verilator 仿真速度性能下降的原因。原来，V3 仿真速度下降的锅竟然有很重要的一部分是由升级 Chisel 7 导致的。简单来说，Chisel 7 换了一种 Mux1H 的生成方法，导致 verilator 生成了查找表，而不是数组访问。详细的分析可以查看这个 [issue](https://github.com/verilator/verilator/issues/6760)。这一修复可以带来 100% 的速度提高，相关修复也已经进入了 verilator 主线。
+为了解决仿真速度的问题，我们首先定位了使用 verilator 时仿真速度性能下降的原因。经过前后对比分析，我们发现 V3 仿真速度下降的锅竟然有很重要的一部分要由升级 Chisel 7 来背。简单来说，Chisel 7 换了一种 Mux1H 的生成方法，导致 verilator 生成了查找表，而不是数组访问。详细的分析可以查看这个 [issue](https://github.com/verilator/verilator/issues/6760)。这一修复可以带来 100% 的速度提高，相关修复也已经进入了 verilator 主线。
 
-可是，即使提高了 100% 的速度，V3 的仿真速度仍然只有 V2 的 60%。为了进一步提高仿真速度，我们引入了香山团队自己开发的仿真器 [GSIM](https://github.com/OpenXiangShan/gsim)。准确地说，GSIM 其实并没有加快仿真速度，单线程的 GSIM 仿真速度惜败于 16 线程的 verilator，小胜 8 线程的 verilator。虽然速度没有提高，但并行度提高了 10 倍，这意味着我们现在能够以同样的计算资源，狠狠进行 10 倍数量的性能回归。
+可是，即使提高了 100% 的速度，V3 的仿真速度仍然只有 V2 的 60%。为了进一步提高仿真速度，我们引入了香山团队自己开发的仿真器 [GSIM](https://github.com/OpenXiangShan/gsim)。准确地说，GSIM 其实并没有加快仿真速度，单线程的 GSIM 仿真速度惜败于 16 线程的 verilator，小胜 8 线程的 verilator。虽然速度没有提高，但并行度却提高了 10 倍，这意味着我们现在能够以同样的计算资源，狠狠进行 10 倍数量的性能回归。
 
-为了进一步压榨现有服务器，我们最近还搓出了一个基于 GitHub 的香山特色作业调度系统 [perf trigger](https://github.com/OpenXiangShan/XiangShan/actions/workflows/perf-trigger.yml)。这一青春版的 lsf 系统可以利用上所有服务器，同时仿真配置和结果进行统一管理。Perf trigger 已经成功管理了多个性能回归作业，虽然有时还会有一些不稳定的情况~~爱来自网络带宽不足导致 Runner 升级失败后在每天凌晨 4 点自动重启、服务器维护等~~，不过我们采访了 perf trigger 的作者 L 与 X，他们声称在整个香山团队内大受好评。
+为了进一步压榨现有服务器，香山团队的 L 和 X 同学最近还搓出了一个基于 GitHub 的香山特色作业调度系统 [perf trigger](https://github.com/OpenXiangShan/XiangShan/actions/workflows/perf-trigger.yml)。这一青春版的 lsf 系统可以利用上所有服务器，同时统一管理所有的仿真配置和结果。Perf trigger 已经成功管理了多个性能回归作业，虽然有时还会有一些不稳定的情况~~爱来每天凌晨 4 点自动重启的 GitHub Runner 、小水管专线和、服务器维护~~，不过 trigger 在整个香山团队内大受好评（来源请求：L 与 X）。
 
 ## 近期进展
 
@@ -82,24 +82,24 @@ categories:
 
 | SPECint 2006 est. | @ 3GHz | SPECfp 2006 est. | @ 3GHz |
 | :---------------- | :----: | :--------------- | :----: |
-| 400.perlbench     | 38.38  | 410.bwaves       | 73.28  |
-| 401.bzip2         | 27.53  | 416.gamess       | 55.10  |
-| 403.gcc           | 48.17  | 433.milc         | 46.08  |
-| 429.mcf           | 60.25  | 434.zeusmp       | 60.34  |
-| 445.gobmk         | 37.30  | 435.gromacs      | 38.58  |
-| 456.hmmer         | 44.20  | 436.cactusADM    | 54.30  |
-| 458.sjeng         | 34.49  | 437.leslie3d     | 53.87  |
-| 462.libquantum    | 127.76 | 444.namd         | 38.02  |
-| 464.h264ref       | 63.36  | 447.dealII       | 62.95  |
-| 471.omnetpp       | 43.19  | 450.soplex       | 54.69  |
-| 473.astar         | 30.68  | 453.povray       | 61.24  |
-| 483.xalancbmk     | 81.47  | 454.Calculix     | 19.40  |
-| GEOMEAN           | 48.07  | 459.GemsFDTD     | 44.60  |
-|                   |        | 465.tonto        | 36.34  |
-|                   |        | 470.lbm          | 104.91 |
-|                   |        | 481.wrf          | 48.88  |
-|                   |        | 482.sphinx3      | 56.16  |
-|                   |        | GEOMEAN          | 50.55  |
+| 400.perlbench     | 38.59  | 410.bwaves       | 73.45  |
+| 401.bzip2         | 27.13  | 416.gamess       | 54.67  |
+| 403.gcc           | 47.59  | 433.milc         | 50.97  |
+| 429.mcf           | 58.76  | 434.zeusmp       | 60.65  |
+| 445.gobmk         | 37.31  | 435.gromacs      | 38.47  |
+| 456.hmmer         | 43.58  | 436.cactusADM    | 53.99  |
+| 458.sjeng         | 34.16  | 437.leslie3d     | 54.47  |
+| 462.libquantum    | 132.86 | 444.namd         | 37.28  |
+| 464.h264ref       | 62.77  | 447.dealII       | 64.50  |
+| 471.omnetpp       | 42.60  | 450.soplex       | 54.20  |
+| 473.astar         | 30.43  | 453.povray       | 61.69  |
+| 483.xalancbmk     | 80.75  | 454.Calculix     | 19.39  |
+| GEOMEAN           | 47.79  | 459.GemsFDTD     | 47.03  |
+|                   |        | 465.tonto        | 36.23  |
+|                   |        | 470.lbm          | 105.07 |
+|                   |        | 481.wrf          | 48.84  |
+|                   |        | 482.sphinx3      | 55.21  |
+|                   |        | GEOMEAN          | 50.97  |
 
 编译参数如下所示：
 
@@ -115,14 +115,14 @@ categories:
 
 | 参数      | 选项       |
 | --------- | ---------- |
-| commit    | 1a9a2f52c  |
-| 日期      | 2025/12/31 |
+| commit    | fd1e37f95  |
+| 日期      | 2026/01/16 |
 | L1 ICache | 64KB       |
 | L1 DCache | 64KB       |
 | L2 Cache  | 1MB        |
 | L3 Cache  | 16MB       |
 | 访存单元  | 3ld2st     |
-| 总线协议  | TileLink   |
+| 总线协议  | CHI        |
 | 内存延迟  | DDR4-3200  |
 
 注：我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，Simpoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。

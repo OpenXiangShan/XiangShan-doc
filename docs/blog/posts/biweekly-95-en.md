@@ -62,9 +62,7 @@ To further utilize existing servers, team members L and X recently developed a X
 - RTL new features
   - The refactoring and testing of MDP, MMU, LoadUnit, StoreQueue, L2, etc. is ongoing
 - Bug fix
-  - (v2) Fix the missing wire connections for lqIdx and sqIdx in the exception buffer enqueue logic ([#5512](https://github.com/OpenXiangShan/XiangShan/pull/5512))
-  - (V2) Fix missing consideration of SnpPreferUniqueFwd in SnpXFwd logic ([CoupledL2 #460](https://github.com/OpenXiangShan/CoupledL2/pull/460))
-  - (V2) Fix l2Error_s3 generation logic in MainPipe ([CoupledL2 #463](https://github.com/OpenXiangShan/CoupledL2/pull/463))
+  - Fixed the timeout judgment logic in Sbuffer, with the timeout threshold configured via SMBLOCKCTL in CSR (#5573: https://github.com/OpenXiangShan/XiangShan/pull/5573)
 - Debugging tools
   - Continuous improvement of CHI infrastructure CHIron
   - Develop a verification tool CHI Test for the new version of L2 Cache. Continuous progressing

@@ -63,9 +63,7 @@ categories:
 - RTL 新特性
   - MDP、MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
 - Bug 修复
-  - （V2）修复了 exception buffer 入队逻辑中 lqIdx 与 sqIdx 未连线的问题（[#5512](https://github.com/OpenXiangShan/XiangShan/pull/5512)）
-  - （V2）修复了 SnpXFwd 中未考虑 SnpPreferUniqueFwd 的错误（[CoupledL2 #460](https://github.com/OpenXiangShan/CoupledL2/pull/460)）
-  - （V2）修复了 MainPipe 中 l2Error_s3 的生成逻辑（[CoupledL2 #463](https://github.com/OpenXiangShan/CoupledL2/pull/463)）
+  - 修复了 Sbuffer 中的超时判断逻辑，通过 csr 中的 SMBLOCKCTL 配置超时阈值（[#5573](https://github.com/OpenXiangShan/XiangShan/pull/5573)）
 - 调试工具
   - 持续改进 CHI 基础设施 CHIron
   - 开发用于新版 L2 Cache 的验证工具 CHI Test。持续推进中

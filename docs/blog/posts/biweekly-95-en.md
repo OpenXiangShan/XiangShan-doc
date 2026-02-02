@@ -29,25 +29,17 @@ To further utilize existing servers, team members L and X recently developed a X
 ### Frontend
 
 - RTL feature
-  - Improve bias and path table of SC predictor ([#5458](https://github.com/OpenXiangShan/XiangShan/pull/5458))
-  - Use the counter accumulation mechanism of WriteBuffer in TAGE ([#5470](https://github.com/OpenXiangShan/XiangShan/pull/5470))
-  - Store set and bank index of ABTB into metadata, remove extra s4-level pc saved at the top level of BPU ([#5494](https://github.com/OpenXiangShan/XiangShan/pull/5494))
-  - Support enabling/disabling auto re-fetch on ICache parity error ([#5501](https://github.com/OpenXiangShan/XiangShan/pull/5501))
+  - Use LRU replacement algorithm for MBTB and update it with accurate prediction results from TAGE-SC to keep useful branches in MBTB as much as possible ([#5525](https://github.com/OpenXiangShan/XiangShan/pull/5525))
+  - Implement SC BW table ([#5528](https://github.com/OpenXiangShan/XiangShan/pull/5528))
+  - Support RAS to provide prediction results in S1 ([#5366](https://github.com/OpenXiangShan/XiangShan/pull/5366))
 - Bug Fix
-  - Fix a typo in MBTB replacer ([#5540](https://github.com/OpenXiangShan/XiangShan/pull/5540))
-  - Fix the condition for TAGE to update using metadata ([#5461](https://github.com/OpenXiangShan/XiangShan/pull/5461))
-  - Fix the issue of GHR losing updates when FTQ is stalled ([#5469](https://github.com/OpenXiangShan/XiangShan/pull/5469))
-  - Fix the issue of RAS incorrectly updating metadata when FTQ is stalled ([#5481](https://github.com/OpenXiangShan/XiangShan/pull/5481))
-  - Fix the replacement selection logic of WriteBuffer when setIdx hits ([#5526](https://github.com/OpenXiangShan/XiangShan/pull/5526))
-  - Fix the issue of IFU speculative fetch in MMIO space ([#5459](https://github.com/OpenXiangShan/XiangShan/pull/5459))
+  - Add reset for BPU training pipeline control signals to avoid X state ([#5539](https://github.com/OpenXiangShan/XiangShan/pull/5539))
+  - Fix the issue of signed saturating counter over/underflow ([#5545](https://github.com/OpenXiangShan/XiangShan/pull/5545))
+  - Fix the issue of signed saturating counter isWeakPositive method ([#5551](https://github.com/OpenXiangShan/XiangShan/pull/5551))
 - Timing/Area optimization
-  - Disable the auto re-fetch mechanism on ICache parity error to optimize timing ([#5501](https://github.com/OpenXiangShan/XiangShan/pull/5501))
-- Code quality improvements
-  - Refactor SaturateCounter utility class ([#5363](https://github.com/OpenXiangShan/XiangShan/pull/5363))
-  - Refactor BPU metadata classes ([#5486](https://github.com/OpenXiangShan/XiangShan/pull/5486))
-  - Decouple ABTB and UTAGE ([#5500](https://github.com/OpenXiangShan/XiangShan/pull/5500))
+  - Remove the restriction of not reading SRAM across pages in MBTB to avoid timing issues caused by read valid and write ready timing paths being chained together ([#5541](https://github.com/OpenXiangShan/XiangShan/pull/5541))
 - Debugging tools
-  - Add MBTB trace ([#5466](https://github.com/OpenXiangShan/XiangShan/pull/5466))
+  - Fix some performance counter conditions ([#5536](https://github.com/OpenXiangShan/XiangShan/pull/5536), [#5568](https://github.com/OpenXiangShan/XiangShan/pull/5568))
 
 ### Backend
 

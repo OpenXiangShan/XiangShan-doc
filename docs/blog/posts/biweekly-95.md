@@ -29,25 +29,17 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 完善 SC 预测器的 bias 和 path 表（[#5458](https://github.com/OpenXiangShan/XiangShan/pull/5458)）
-  - 在 TAGE 中使用 WriteBuffer 的计数器累加机制（[#5470](https://github.com/OpenXiangShan/XiangShan/pull/5470)）
-  - 将 ABTB 的 set 和 bank 索引存入元数据，移除 BPU 顶层额外保存的 s4 级 pc（[#5494](https://github.com/OpenXiangShan/XiangShan/pull/5494)）
-  - 支持开关 ICache parity 出错时自动重取的机制（[#5501](https://github.com/OpenXiangShan/XiangShan/pull/5501)）
+  - MBTB 使用 LRU 替换算法，并使用 TAGE-SC 的精确预测结果进行更新，尽可能使有用的分支留在 MBTB 中（[#5525](https://github.com/OpenXiangShan/XiangShan/pull/5525)）
+  - 实现 SC BW 表（[#5528](https://github.com/OpenXiangShan/XiangShan/pull/5528)）
+  - 支持 RAS 在 S1 提供预测结果（[#5366](https://github.com/OpenXiangShan/XiangShan/pull/5366)）
 - Bug 修复
-  - 修复 MBTB replacer 一处笔误（[#5540](https://github.com/OpenXiangShan/XiangShan/pull/5540)）
-  - 修复 TAGE 使用元数据更新的条件（[#5461](https://github.com/OpenXiangShan/XiangShan/pull/5461)）
-  - 修复 GHR 在 FTQ 阻塞情况下丢失更新的问题（[#5469](https://github.com/OpenXiangShan/XiangShan/pull/5469)）
-  - 修复 RAS 在 FTQ 阻塞情况下错误更新元数据的问题（[#5481](https://github.com/OpenXiangShan/XiangShan/pull/5481)）
-  - 修复 WriteBuffer 在 setIdx 命中时的替换选择逻辑（[#5526](https://github.com/OpenXiangShan/XiangShan/pull/5526)）
-  - 修复 IFU 在 MMIO 空间推测取指的问题（[#5459](https://github.com/OpenXiangShan/XiangShan/pull/5459)）
+  - 增加 BPU 训练流水控制信号的复位，避免 X 态（[#5539](https://github.com/OpenXiangShan/XiangShan/pull/5539)）
+  - 修复有符号饱和计数器错误溢出的问题（[#5545](https://github.com/OpenXiangShan/XiangShan/pull/5545)）
+  - 修复有符号饱和计数器 isWeakPositive 方法判断错误的问题（[#5551](https://github.com/OpenXiangShan/XiangShan/pull/5551)）
 - 时序/面积优化
-  - 禁用 ICache parity 出错时自动重取的机制以优化时序（[#5501](https://github.com/OpenXiangShan/XiangShan/pull/5501)）
-- 代码质量
-  - 重构 SaturateCounter 工具类（[#5363](https://github.com/OpenXiangShan/XiangShan/pull/5363)）
-  - 重构 BPU 元数据类（[#5486](https://github.com/OpenXiangShan/XiangShan/pull/5486)）
-  - 解耦 ABTB 和 UTAGE（[#5500](https://github.com/OpenXiangShan/XiangShan/pull/5500)）
+  - 移除 MBTB 跨页时不读 SRAM 的限制，避免读 valid 时序路径和写 ready 时序路径串在一起导致时序不好（[#5541](https://github.com/OpenXiangShan/XiangShan/pull/5541)）
 - 调试工具
-  - 增加 MBTB trace（[#5466](https://github.com/OpenXiangShan/XiangShan/pull/5466)）
+  - 修复一些性能计数器条件（[#5536](https://github.com/OpenXiangShan/XiangShan/pull/5536)，[#5568](https://github.com/OpenXiangShan/XiangShan/pull/5568)）
 
 ### 后端
 

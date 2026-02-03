@@ -44,19 +44,27 @@ categories:
 ### 后端
 
 - RTL 新特性
-  - 重构乘法单元（[#5514](https://github.com/OpenXiangShan/XiangShan/pull/5514)）
-  - 将整数 Regfile 分为 4 个 bank 以减少读冲突（[#5438](https://github.com/OpenXiangShan/XiangShan/pull/5438)）
+  - 添加 I2F FU 以支持 FMV 和 FCVT 的 i2f 类型（[#5557](https://github.com/OpenXiangShan/XiangShan/pull/5557), [#5577](https://github.com/OpenXiangShan/XiangShan/pull/5577)）
+  - 支持 Smcntrpmf 扩展（[#4286](https://github.com/OpenXiangShan/XiangShan/pull/4286)）
 - 时序/面积优化
-  - 访存单元重定向不再通过 flushpipe 和 replayInst 写回 (slow redirect)，统一通过 memviolation 写回 (fast redirect)（[#5491](https://github.com/OpenXiangShan/XiangShan/pull/5491)）
-  - 调整 TopDown 的时序（[#5451](https://github.com/OpenXiangShan/XiangShan/pull/5451)）
-（[#5491](https://github.com/OpenXiangShan/XiangShan/pull/5491)）
+  - 在 csrToDecode 与 Decode 之间增加一拍（[#5542](https://github.com/OpenXiangShan/XiangShan/pull/5542)）
+  - 将 ALU 的数据处理从 Bypass 阶段转移到 ALU 内部（[#5562](https://github.com/OpenXiangShan/XiangShan/pull/5562)）
+  - 对整数 IQ 添加 og1Payload，利用只在 OG1 中使用的信号以优化 IQ 选择时序。（[#5570](https://github.com/OpenXiangShan/XiangShan/pull/5570)）
+- Bug 修复
+  - 修复了来自功能单元写回的 redirect.valid 信号，以及 TopDown 中的 mis_pred 和 total flush 问题（[#5538](https://github.com/OpenXiangShan/XiangShan/pull/5538)）
+  - 修复了 NewCSR 中 RegNext 的重复使用问题（[#5441](https://github.com/OpenXiangShan/XiangShan/pull/5441)）
+  - 修复了 ROB 中 flushpipe 对 redirect.interrupt 的错误假设（[#5583](https://github.com/OpenXiangShan/XiangShan/pull/5583)）
 - 代码质量
-  - 删除无用代码 isXret（[#5483](https://github.com/OpenXiangShan/XiangShan/pull/5483)）
-  - 在立即数上改用样例类 Imm 进行配置，而非直接使用 UInt（[#5523](https://github.com/OpenXiangShan/XiangShan/pull/5523)）
-  - 删除部分 IssueQueue 相关的无用代码（[#5519](https://github.com/OpenXiangShan/XiangShan/pull/5519)）
-  - 删除 Regfile 中 assertion 外不必要的条件判断（[#5505](https://github.com/OpenXiangShan/XiangShan/pull/5505)）
-- 性能分析工具
-  - 添加后端 V2 配置参数 BackendV2Config 以用于性能对比（[#5476](https://github.com/OpenXiangShan/XiangShan/pull/5476)）
+  - 重构所有 resps 信号，简化代码逻辑（[#5537](https://github.com/OpenXiangShan/XiangShan/pull/5537)）
+  - 优化 resps 信号的代码质量（[#5550](http://github.com/OpenXiangShan/XiangShan/pull/5550)）
+  - 移除 IsssueQueue 中部分冗余代码，调整唤醒 pdest 宽度，添加 ROB bankNum 参数（[#5051](https://github.com/OpenXiangShan/XiangShan/pull/5051)）
+  - 重构 vialuf 以支持快速唤醒（[#5136](https://github.com/OpenXiangShan/XiangShan/pull/5136)）
+  - 删除 Datapath 中的无用代码（[#5567](https://github.com/OpenXiangShan/XiangShan/pull/5567)）
+  - 重构写回至 ROB 和 Regfile 的Bundle（[#5535](https://github.com/OpenXiangShan/XiangShan/pull/5535)）
+  - 整合信号，使用 EnqRObUop 代替 DynInst 以减去多余的信号（[#5560](http://github.com/OpenXiangShan/XiangShan/pull/5560)）
+  - 删除无用的 IntToFP 功能单元（[#5586](https://github.com/OpenXiangShan/XiangShan/pull/5586)）
+- 结构调整
+  - 删除 fudian 子模块，从现在起昆明湖 V3 将不再使用 fudian 仓库内容作为子模块（[#5585](https://github.com/OpenXiangShan/XiangShan/pull/5585)）
 
 ### 访存与缓存
 

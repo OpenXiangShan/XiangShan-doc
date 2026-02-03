@@ -44,18 +44,27 @@ To further utilize existing servers, team members L and X recently developed a X
 ### Backend
 
 - RTL new features
-  - Refactor the multiplier unit ([#5514](https://github.com/OpenXiangShan/XiangShan/pull/5514))
-  - Split int Regfile into 4 banks to reduce read conflicts ([#5438](https://github.com/OpenXiangShan/XiangShan/pull/5438))
+  - Add I2F FU to support i2f types of FMV and FCVT ([#5557](https://github.com/OpenXiangShan/XiangShan/pull/5557), [#5577](https://github.com/OpenXiangShan/XiangShan/pull/5577))
+  - Support Smcntrpmf extension ([#4286](https://github.com/OpenXiangShan/XiangShan/pull/4286))
 - Timing/Area optimization
-  - Memory unit redirection is no longer written back through flushpipe and replayInst (slow redirect), but unified through memviolation (fast redirect) ([#5491](https://github.com/OpenXiangShan/XiangShan/pull/5491))
-  - Adjust the timing of TopDown ([#5451](https://github.com/OpenXiangShan/XiangShan/pull/5451))
-- Code optimizations
-  - Remove dead code isXret ([#5483](https://github.com/OpenXiangShan/XiangShan/pull/5483))
-  - Use case class Imm for configuration on immediates instead of directly using UInt ([#5523](https://github.com/OpenXiangShan/XiangShan/pull/5523))
-  - Remove some useless code related to IssueQueue ([#5519](https://github.com/OpenXiangShan/XiangShan/pull/5519))
-  - Remove unnecessary conditional checks outside assertions in Regfile ([#5505](https://github.com/OpenXiangShan/XiangShan/pull/5505))
-- Performance analysis tools
-  - Add backend V2 configuration parameter BackendV2Config for performance comparison ([#5476](https://github.com/OpenXiangShan/XiangShan/pull/5476))
+  - Add one cycle between csrToDecode and Decode ([#5542](https://github.com/OpenXiangShan/XiangShan/pull/5542))
+  - Transfer ALU data processing from Bypass to ALU ([#5562](https://github.com/OpenXiangShan/XiangShan/pull/5562))
+  - Add og1Payload to integer IQ, selecting signals only used in OG1 to optimize IQ selection timing ([#5570](https://github.com/OpenXiangShan/XiangShan/pull/5570))
+- Bug Fix
+  - Fix the redirect.valid signal from functional unit writeback, and the mis_pred and total flush issues in TopDown ([#5538](https://github.com/OpenXiangShan/XiangShan/pull/5538))
+  - Fix the repeated use of RegNext in NewCSR ([#5441](https://github.com/OpenXiangShan/XiangShan/pull/5441))
+  - Fix the incorrect assumption of flushpipe on redirect.interrupt in ROB ([#5583](https://github.com/OpenXiangShan/XiangShan/pull/5583))
+- Code Quality
+  - Refactor all resps signals to simplify code logic ([#5537](https://github.com/OpenXiangShan/XiangShan/pull/5537))
+  - Optimize code quality of resps signals ([#5550](http://github.com/OpenXiangShan/XiangShan/pull/5550))
+  - Remove some redundant code in IsssueQueue, adjust wakeup pdest width, add ROB bankNum parameter ([#5051](https://github.com/OpenXiangShan/XiangShan/pull/5051))
+  - Refactor vialuf to support fast wakeup ([#5136](https://github.com/OpenXiangShan/XiangShan/pull/5136))
+  - Remove unused code in Datapath ([#5567](https://github.com/OpenXiangShan/XiangShan/pull/5567))
+  - Refactor Bundle for writeback to ROB and Regfile ([#5535](https://github.com/OpenXiangShan/XiangShan/pull/5535))
+  - Integrate signals, use EnqRObUop instead of DynInst to reduce redundant signals ([#5560](http://github.com/OpenXiangShan/XiangShan/pull/5560))
+  - Remove unused IntToFP functional unit ([#5586](https://github.com/OpenXiangShan/XiangShan/pull/5586))
+- Structural Adjustment
+  - Remove fudian submodule, Kunming Lake V3 will no longer use fudian repository content as a submodule ([#5585](https://github.com/OpenXiangShan/XiangShan/pull/5585))
 
 ### MemBlock and Cache
 

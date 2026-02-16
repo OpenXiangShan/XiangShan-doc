@@ -27,22 +27,50 @@ It can be seen that simply switching compilers can improve the overall score by 
 
 There is also an interesting phenomenon: XSCC shows about a 20% performance regression in the GCC sub-item. XSCC is based on LLVM, ~~it sounds surprisingly reasonable that LLVM is not good at optimizing GCC~~.
 
+## Tutorial @ HPCA 2026
+
+XiangShan successfully held a tutorial at HPCA 2026! We are very happy to meet everyone in Sydney, and we thank every participant and friend who cares about XiangShan's development! Please visit <https://tutorial.xiangshan.cc/hpca26/> to review the content of this tutorial and get the slides.
+
+![Group Photo](./figs/hpca2026-tutorial/group.jpg)
+
+We continuously optimize the tutorial content based on the hosting effect and everyone's feedback, hoping to provide new friends with a clearer, more comprehensive, and in-depth introduction while also bringing new gains to old friends. The highlights in this tutorial include:
+
+- The latest in-development KMH-V3 microarchitecture design philosophy, insights and design details.
+- A new, independent introduction to our MinJie (agile) development toolchain.
+- Invited talks from our partners, on:
+  - XSCC, a high-performance compiler optimized for RISC-V and XiangShan, and
+
+    ![XSCC on-site report](./figs/hpca2026-tutorial/xscc.jpg)
+  - Baiyang, a high-performance open-source DDR controller IP.
+
+    Unfortunately, the original speaker could not attend the event due to visa issues, so a member of the XiangShan team introduced it instead. We will continue to communicate with Baiyang team and look forward to inviting their member for a more in-depth introduction at the next tutorial!
+- A more thorough and easy-to-use hands-on part based on code-server and jupyter notebook. We encourage everyone to use the docker environment and precompiled assets provided in <https://github.com/OpenXiangShan/bootcamp>.
+
+![Agenda](./figs/hpca2026-tutorial/agenda.jpg)
+
+During the coffee break, we had in-depth communication with excellent scholars from all over the world. We cherish the opportunity to communicate with everyone face-to-face, which can help everyone better understand the design of XiangShan microarchitecture and the use of agile toolchain, and make XiangShan a better infrastructure for academic research and industrial applications; on the other hand, it can also help us better understand everyone's feedback and innovative ideas, and continuously improve our design and toolchain. Thanks to every friend who participated in the communication! For those who could not attend, please feel free to communicate with us through <all@xiangshan.cc> mailing list, Github Issues, technical discussion QQ group, etc.
+
+![Coffee Break](./figs/hpca2026-tutorial/chat.jpg)
+
+By the way, XiangShan's next tutorial will be held at the [ISCA 2026](https://iscaconf.org/isca2026/) conference in the United States in late June, looking forward to seeing everyone again!
+
 ## Recent Developments
 
 ### Frontend
 
-- RTL feature
-  - Use LRU replacement algorithm for MBTB and update it with accurate prediction results from TAGE-SC to keep useful branches in MBTB as much as possible ([#5525](https://github.com/OpenXiangShan/XiangShan/pull/5525))
-  - Implement SC BW table ([#5528](https://github.com/OpenXiangShan/XiangShan/pull/5528))
-  - Support RAS to provide prediction results in S1 ([#5366](https://github.com/OpenXiangShan/XiangShan/pull/5366))
-- Bug Fix
-  - Add reset for BPU training pipeline control signals to avoid X state ([#5539](https://github.com/OpenXiangShan/XiangShan/pull/5539))
-  - Fix the issue of signed saturating counter over/underflow ([#5545](https://github.com/OpenXiangShan/XiangShan/pull/5545))
-  - Fix the issue of signed saturating counter isWeakPositive method ([#5551](https://github.com/OpenXiangShan/XiangShan/pull/5551))
+In the past two weeks, due to several team members attending HPCA 2026 and the Spring Festival holiday, there are no new PRs merged into the mainline. The ongoing/awaiting review progress includes:
+
+- Bug fixes
+  - Fix the training condition of SC which does not check whether MBTB is hit, and leads to training with invalid data ([#5601](https://github.com/OpenXiangShan/XiangShan/pull/5601))
+  - Fix the issue that saturate counters in MBTB baseTable are not updated when the branch is correctly predicted ([#5602](https://github.com/OpenXiangShan/XiangShan/pull/5602))
 - Timing/Area optimization
-  - Remove the restriction of not reading SRAM across pages in MBTB to avoid timing issues caused by read valid and write ready timing paths being chained together ([#5541](https://github.com/OpenXiangShan/XiangShan/pull/5541))
-- Debugging tools
-  - Fix some performance counter conditions ([#5536](https://github.com/OpenXiangShan/XiangShan/pull/5536), [#5568](https://github.com/OpenXiangShan/XiangShan/pull/5568))
+  - In the early development of the V3 frontend, the main focus was on the functional implementation and performance tuning of the BPU rewrite to the region-BTB structure. As the functionality gradually stabilized in the recent month, intensive timing evaluation work was conducted. ~~As expected, it was a huge failure, with logic levels reaching three digits.~~ The issues were mainly concentrated on insufficient consideration of pipeline stage division and the use of inappropriate Scala magic for quick implementation, etc.. We have conducted multiple rounds of analysis and fixes for these issues. Some of the fixes for modules such as MBTB, TAGE, ICache were introduced in the previous two biweekly reports. The ongoing work in the past two weeks includes:
+    - Adjusting BPU s2 pipeline stage, with some information from MBTB given to TAGE earlier ([#5614](https://github.com/OpenXiangShan/XiangShan/pull/5614))
+    - Adjusting the pipeline stage of MBTB position comparison logic ([#5603](https://github.com/OpenXiangShan/XiangShan/pull/5603))
+    - Adjusting the pipeline stage of UTAGE history information ([#5517](https://github.com/OpenXiangShan/XiangShan/pull/5517))
+    - Fixing some serial logic inside SC (no PR for the moment)
+    - Adjusting the pipeline stage of ICache parity check logic (no PR for the moment)
+    - Further evaluation and fixes are ongoing
 
 ### Backend
 

@@ -27,22 +27,50 @@ categories:
 
 还有一个很有意思的现象，XSCC 在 GCC 这个子项上有约 20% 的性能倒退。XSCC 是基于 LLVM 的编译器，~~LLVM 不擅长优化 GCC 听起来意外地合理啊~~。
 
+## Tutorial @ HPCA 2026
+
+香山在 HPCA 2026 上成功举办 Tutorial！我们非常高兴能与大家在悉尼相见，感谢每一位参会的朋友和关心香山发展的伙伴们！欢迎大家访问 <https://tutorial.xiangshan.cc/hpca26/> 回顾本次 tutorial 的内容、获取 slides。
+
+![合影镇楼](./figs/hpca2026-tutorial/group.jpg)
+
+我们持续根据举办效果和大家的反馈对 tutorial 内容进行优化，希望在给新朋友们提供更清晰、全面和深度的介绍的同时，也能给老朋友们带来新的收获。本次 tutorial 的主要改进在于：
+
+- 分享了最新的正在开发中的昆明湖-V3 微架构的设计哲学、观察和实现细节。
+- 增加了对敏捷开发工具链的系统介绍和理念分享。
+- 很荣幸地邀请到了我们的合作伙伴关于 XSCC 和白杨内存控制器的介绍：
+  - XSCC：针对 RISC-V 优化的高性能编译器；
+
+    ![XSCC 做现场汇报](./figs/hpca2026-tutorial/xscc.jpg)
+  - 白杨内存控制器：高性能开源内存控制器 IP。
+
+    很遗憾的是，原定主讲人因签证问题没能来到现场，转而由香山团队成员代替介绍。我们会持续沟通，期待在下次 tutorial 上邀请到白杨团队的同学来进行更深入的介绍！
+- 持续对 bootcamp 上手环节进行更新，欢迎大家使用 <https://github.com/OpenXiangShan/bootcamp> 仓库提供的 docker 环境和预编译 assets 进行本地体验！
+
+![议程](./figs/hpca2026-tutorial/agenda.jpg)
+
+在现场的茶歇时间中，我们与来自世界各地的优秀学者进行了深入的交流。我们非常珍惜与大家面对面交流的机会，这一方面能让大家更好地了解香山微架构的设计和敏捷工具链的使用，让香山更好地成为学术研究和工业应用的基石；另一方面也能让我们更好地了解大家的反馈和创新想法，持续改进我们的设计和工具链。感谢每一位参与交流的朋友们！也欢迎未能到场的朋友们通过 <all@xiangshan.cc> 邮件列表、Github Issues、文末所列的技术讨论 QQ 群等渠道与我们交流。
+
+![茶歇交流](./figs/hpca2026-tutorial/chat.jpg)
+
+另外，香山的下一场 tutorial 将于 6 月下旬在美国举办的 [ISCA 2026](https://iscaconf.org/isca2026/) 会议上进行，期待与大家再次相见！
+
 ## 近期进展
 
 ### 前端
 
-- RTL 新特性
-  - MBTB 使用 LRU 替换算法，并使用 TAGE-SC 的精确预测结果进行更新，尽可能使有用的分支留在 MBTB 中（[#5525](https://github.com/OpenXiangShan/XiangShan/pull/5525)）
-  - 实现 SC BW 表（[#5528](https://github.com/OpenXiangShan/XiangShan/pull/5528)）
-  - 支持 RAS 在 S1 提供预测结果（[#5366](https://github.com/OpenXiangShan/XiangShan/pull/5366)）
+前端组近两周由于多位组员参加 HPCA 2026 及春节放假，暂无新合入主线的 PR，正在进行/等待 review 的进展包括：
+
 - Bug 修复
-  - 增加 BPU 训练流水控制信号的复位，避免 X 态（[#5539](https://github.com/OpenXiangShan/XiangShan/pull/5539)）
-  - 修复有符号饱和计数器错误溢出的问题（[#5545](https://github.com/OpenXiangShan/XiangShan/pull/5545)）
-  - 修复有符号饱和计数器 isWeakPositive 方法判断错误的问题（[#5551](https://github.com/OpenXiangShan/XiangShan/pull/5551)）
+  - 修复 SC 训练条件未判断 MBTB 是否命中，导致用无效数据训练的问题（[#5601](https://github.com/OpenXiangShan/XiangShan/pull/5601)）
+  - 修复 MBTB 中 baseTable 在正确预测时饱和计数器未更新的问题（[#5602](https://github.com/OpenXiangShan/XiangShan/pull/5602)）
 - 时序/面积优化
-  - 移除 MBTB 跨页时不读 SRAM 的限制，避免读 valid 时序路径和写 ready 时序路径串在一起导致时序不好（[#5541](https://github.com/OpenXiangShan/XiangShan/pull/5541)）
-- 调试工具
-  - 修复一些性能计数器条件（[#5536](https://github.com/OpenXiangShan/XiangShan/pull/5536)，[#5568](https://github.com/OpenXiangShan/XiangShan/pull/5568)）
+  - 在 V3 前端的前期开发中，主要以 BPU 重写为 region-BTB 结构的功能实现和性能调优为主。近一个月功能逐渐稳定，故进行了密集的时序评估工作。~~不出意料地大暴死了，什么叫逻辑级数直奔3位数。~~问题主要集中在流水级划分未仔细考虑、使用不合适的 Scala 魔法进行快速实现等。针对这些，我们进行了多轮分析和修复。前两次双周报已经介绍过一些 MBTB、TAGE、ICache 等模块的修复。近两周仍在继续的工作有：
+    - 调整 BPU s2 流水级，MBTB 部分信息提前给到 TAGE（[#5614](https://github.com/OpenXiangShan/XiangShan/pull/5614)）
+    - 调整 MBTB 位置比较逻辑流水级（[#5603](https://github.com/OpenXiangShan/XiangShan/pull/5603)）
+    - 调整 UTAGE 历史信息流水级（[#5517](https://github.com/OpenXiangShan/XiangShan/pull/5517)）
+    - 修复 SC 内部部分串行逻辑（暂未 PR）
+    - 调整 ICache parity 校验逻辑流水级（暂未 PR）
+    - 进一步评估和修复持续进行中
 
 ### 后端
 

@@ -1,0 +1,144 @@
+---
+slug: biweekly-96
+date: 2026-02-16
+categories:
+  - Biweekly
+---
+
+# 【香山双周报 96】20260216 期
+
+欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 96 期双周报。
+
+香山团队的高性能 DDR4 内存控制器 IP 白杨正式发布了！如果还没有看过，欢迎大家阅读我们的[白杨发布文章](https://mp.weixin.qq.com/s/ovHD6oHDHgMaVwybmnk_lw/)了解更多细节。在这里，我们与大家独家分享一个小故事。香山于 1 月 31 日在 HPCA 2026 上作 tutorial，其中有涉及到白杨的介绍。演讲的前一天晚上，白杨还在为开源作最后的准备，在第二天 tutorial 开始前才将仓库转为 public，~~果然 DDL 是第一生产力~~。
+
+在上周，我们引入了新的 GCC15 和 XSCC 编译器。这两个编译器相比现有的 GCC12 有着 10% 以上的性能提升，现在香山的 SPEC CPU2006 性能已经达到了 18.5 分/GHz。这一期双周报中，我们为不同编译器进行了对比分析。在之后的开发中，我们将逐渐切换到 GCC15 和 XSCC 编译器，同时更加注重编译器和硬件的协同优化。不同编译器的具体分数仍然在性能评估一节，欢迎大家持续关注！
+
+关于香山近期开发进展，前端方面，MBTB 引入了 LRU 替换算法，并使用 TAGE-SC 的精确预测结果进行更新，以提升分支预测的准确率。后端方面，添加了 I2F 功能单元以支持 FMV 和 FCVT 的 i2f 类型指令，并对整数 IQ 添加 og1Payload 以优化选择时序。访存与缓存方面，Sbuffer 中的超时判断逻辑得到了修复，并通过 csr 中的 SMBLOCKCTL 配置超时阈值。更多细节请见近期进展一节。
+
+<!-- more -->
+
+## 编译优化
+
+一直以来，双周报中性能评估采用的都是使用 GCC12 编译的祖传切片。这些切片对于性能相对较低的昆明湖 V2 时代已经足够了，但随着昆明湖 V3 性能的不断迭代和编译技术的发展，原有的切片已经无法充分展现香山的性能潜力。在上周，我们使用 GCC15 和 XSCC 两个编译器对 SPEC CPU2006 进行了重新编译，并对比了不同编译器和优化选项下的性能表现。结果如下图所示：
+
+![编译优化](./figs/complier-optimization.png)
+
+可以看到，仅仅是切换编译器，就能在总分上提高约 12%。其中，GCC15 在打开 -ffast-math 这一优化选项后，对浮点测试程序的提升更是能达到接近 20%。而对于 libquantum 子项，XSCC 可以实现惊人的约 110% 的提升，~~不愧是刷分专用子项~~。
+
+还有一个很有意思的现象，XSCC 在 GCC 这个子项上有约 20% 的性能倒退。XSCC 是基于 LLVM 的编译器，~~LLVM 不擅长优化 GCC 听起来意外地合理啊~~。
+
+## 近期进展
+
+### 前端
+
+- RTL 新特性
+  - MBTB 使用 LRU 替换算法，并使用 TAGE-SC 的精确预测结果进行更新，尽可能使有用的分支留在 MBTB 中（[#5525](https://github.com/OpenXiangShan/XiangShan/pull/5525)）
+  - 实现 SC BW 表（[#5528](https://github.com/OpenXiangShan/XiangShan/pull/5528)）
+  - 支持 RAS 在 S1 提供预测结果（[#5366](https://github.com/OpenXiangShan/XiangShan/pull/5366)）
+- Bug 修复
+  - 增加 BPU 训练流水控制信号的复位，避免 X 态（[#5539](https://github.com/OpenXiangShan/XiangShan/pull/5539)）
+  - 修复有符号饱和计数器错误溢出的问题（[#5545](https://github.com/OpenXiangShan/XiangShan/pull/5545)）
+  - 修复有符号饱和计数器 isWeakPositive 方法判断错误的问题（[#5551](https://github.com/OpenXiangShan/XiangShan/pull/5551)）
+- 时序/面积优化
+  - 移除 MBTB 跨页时不读 SRAM 的限制，避免读 valid 时序路径和写 ready 时序路径串在一起导致时序不好（[#5541](https://github.com/OpenXiangShan/XiangShan/pull/5541)）
+- 调试工具
+  - 修复一些性能计数器条件（[#5536](https://github.com/OpenXiangShan/XiangShan/pull/5536)，[#5568](https://github.com/OpenXiangShan/XiangShan/pull/5568)）
+
+### 后端
+
+- RTL 新特性
+  - 添加 I2F FU 以支持 FMV 和 FCVT 的 i2f 类型（[#5557](https://github.com/OpenXiangShan/XiangShan/pull/5557), [#5577](https://github.com/OpenXiangShan/XiangShan/pull/5577)）
+  - 支持 Smcntrpmf 扩展（[#4286](https://github.com/OpenXiangShan/XiangShan/pull/4286)）
+- 时序/面积优化
+  - 在 csrToDecode 与 Decode 之间增加一拍（[#5542](https://github.com/OpenXiangShan/XiangShan/pull/5542)）
+  - 将 ALU 的数据处理从 Bypass 阶段转移到 ALU 内部（[#5562](https://github.com/OpenXiangShan/XiangShan/pull/5562)）
+  - 对整数 IQ 添加 og1Payload，利用只在 OG1 中使用的信号以优化 IQ 选择时序。（[#5570](https://github.com/OpenXiangShan/XiangShan/pull/5570)）
+- Bug 修复
+  - 修复了来自功能单元写回的 redirect.valid 信号，以及 TopDown 中的 mis_pred 和 total flush 问题（[#5538](https://github.com/OpenXiangShan/XiangShan/pull/5538)）
+  - 修复了 NewCSR 中 RegNext 的重复使用问题（[#5441](https://github.com/OpenXiangShan/XiangShan/pull/5441)）
+  - 修复了 ROB 中 flushpipe 对 redirect.interrupt 的错误假设（[#5583](https://github.com/OpenXiangShan/XiangShan/pull/5583)）
+- 代码质量
+  - 重构所有 resps 信号，简化代码逻辑（[#5537](https://github.com/OpenXiangShan/XiangShan/pull/5537)）
+  - 优化 resps 信号的代码质量（[#5550](http://github.com/OpenXiangShan/XiangShan/pull/5550)）
+  - 移除 IsssueQueue 中部分冗余代码，调整唤醒 pdest 宽度，添加 ROB bankNum 参数（[#5051](https://github.com/OpenXiangShan/XiangShan/pull/5051)）
+  - 重构 vialuf 以支持快速唤醒（[#5136](https://github.com/OpenXiangShan/XiangShan/pull/5136)）
+  - 删除 Datapath 中的无用代码（[#5567](https://github.com/OpenXiangShan/XiangShan/pull/5567)）
+  - 重构写回至 ROB 和 Regfile 的Bundle（[#5535](https://github.com/OpenXiangShan/XiangShan/pull/5535)）
+  - 整合信号，使用 EnqRObUop 代替 DynInst 以减去多余的信号（[#5560](http://github.com/OpenXiangShan/XiangShan/pull/5560)）
+  - 删除无用的 IntToFP 功能单元（[#5586](https://github.com/OpenXiangShan/XiangShan/pull/5586)）
+- 结构调整
+  - 删除 fudian 子模块，从现在起昆明湖 V3 将不再使用 fudian 仓库内容作为子模块（[#5585](https://github.com/OpenXiangShan/XiangShan/pull/5585)）
+
+### 访存与缓存
+
+- RTL 新特性
+  - MDP、MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
+- Bug 修复
+  - 修复了 Sbuffer 中的超时判断逻辑，通过 csr 中的 SMBLOCKCTL 配置超时阈值（[#5573](https://github.com/OpenXiangShan/XiangShan/pull/5573)）
+- 调试工具
+  - 持续改进 CHI 基础设施 CHIron
+  - 开发用于新版 L2 Cache 的验证工具 CHI Test。持续推进中
+
+## 性能评估
+
+处理器及 SoC 参数如下所示：
+
+| 参数      | 选项       |
+| --------- | ---------- |
+| commit    | 4e78369f4  |
+| 日期      | 2026/01/29 |
+| L1 ICache | 64KB       |
+| L1 DCache | 64KB       |
+| L2 Cache  | 1MB        |
+| L3 Cache  | 16MB       |
+| 访存单元  | 3ld2st     |
+| 总线协议  | CHI        |
+| 内存延迟  | DDR4-3200  |
+
+性能数据如下所示：
+
+| SPECint 2006   | GCC12 @3GHz | GCC15 @3GHz | XSCC @3GHz | SPECfp 2006   | GCC12 @3GHz | GCC15 @3GHz | XSCC @3GHz |
+| :------------- | :---------: | :---------: | :--------: | :------------ | :---------: | :---------: | :--------: |
+| 400.perlbench  |    38.87    |    43.00    |   41.70    | 410.bwaves    |    72.14    |    80.98    |   90.75    |
+| 401.bzip2      |    27.05    |    26.74    |   27.75    | 416.gamess    |    54.49    |    55.54    |   51.90    |
+| 403.gcc        |    47.55    |    50.17    |   37.16    | 433.milc      |    49.10    |    64.58    |   63.76    |
+| 429.mcf        |    58.23    |    59.55    |   54.50    | 434.zeusmp    |    60.60    |    69.41    |   63.22    |
+| 445.gobmk      |    37.34    |    35.51    |   36.30    | 435.gromacs   |    38.34    |    36.19    |   34.00    |
+| 456.hmmer      |    43.11    |    53.10    |   63.26    | 436.cactusADM |    53.57    |    75.24    |   86.24    |
+| 458.sjeng      |    34.47    |    34.80    |   36.03    | 437.leslie3d  |    54.20    |    56.48    |   56.64    |
+| 462.libquantum |   132.83    |   135.28    |   282.43   | 444.namd      |    37.28    |    42.16    |   44.17    |
+| 464.h264ref    |    62.00    |    61.95    |   70.30    | 447.dealII    |    64.13    |    58.88    |   66.92    |
+| 471.omnetpp    |    42.63    |    39.60    |   39.03    | 450.soplex    |    52.43    |    49.25    |   59.39    |
+| 473.astar      |    30.37    |    31.22    |   30.31    | 453.povray    |    61.43    |    70.66    |   63.65    |
+| 483.xalancbmk  |    80.42    |    74.48    |   84.38    | 454.Calculix  |    19.37    |    43.84    |   39.05    |
+| GEOMEAN        |    47.69    |    48.61    |   51.93    | 459.GemsFDTD  |    46.59    |    64.51    |   64.40    |
+|                |             |             |            | 465.tonto     |    36.20    |    50.61    |   33.84    |
+|                |             |             |            | 470.lbm       |   104.99    |   126.71    |   132.13   |
+|                |             |             |            | 481.wrf       |    48.68    |    55.06    |   41.45    |
+|                |             |             |            | 482.sphinx3   |    55.06    |    58.58    |   60.80    |
+|                |             |             |            | GEOMEAN       |    50.56    |    59.73    |   58.16    |
+
+编译参数如下所示：
+
+| 参数             | GCC12    | GCC15       | XSCC                |
+| ---------------- | -------- | ----------- | ------------------- |
+| 编译器           | gcc12    | gcc15       | xscc                |
+| 编译优化         | O3       | O3          | O3                  |
+| 内存库           | jemalloc | jemalloc    | jemalloc            |
+| -march           | RV64GCB  | RV64GCB     | RV64GCB             |
+| -ffp-contraction | fast     | fast        | fast                |
+| 链接优化         | -        | -flto       | -flto               |
+| 浮点优化         | -        | -ffast-math | -ffast-math         |
+| -mcpu            | -        | -           | xiangshan-kunminghu |
+
+注：我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，Simpoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
+
+## 相关链接
+
+- 香山技术讨论 QQ 群：879550595
+- 香山技术讨论网站：<https://github.com/OpenXiangShan/XiangShan/discussions>
+- 香山文档：<https://xiangshan-doc.readthedocs.io/>
+- 香山用户手册：<https://docs.xiangshan.cc/projects/user-guide/>
+- 香山设计文档：<https://docs.xiangshan.cc/projects/design/>
+
+编辑：徐之皓、吉骏雄、陈卓、余俊杰、李衍君

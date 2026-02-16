@@ -100,11 +100,11 @@ categories:
 ### 访存与缓存
 
 - RTL 新特性
-  - MDP、MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
+  - MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
+  - 新版 StoreSet MDP 合入主线并修复若干错误（[#5576](https://github.com/OpenXiangShan/XiangShan/pull/5576)）
 - Bug 修复
-  - 修复了 Sbuffer 中的超时判断逻辑，通过 csr 中的 SMBLOCKCTL 配置超时阈值（[#5573](https://github.com/OpenXiangShan/XiangShan/pull/5573)）
+  - 修复了 CoupledL2 中禁用mbist时ICG无效的错误（[CoupledL2 #470](https://github.com/OpenXiangShan/CoupledL2/pull/470)）
 - 调试工具
-  - 持续改进 CHI 基础设施 CHIron
   - 开发用于新版 L2 Cache 的验证工具 CHI Test。持续推进中
 
 ## 性能评估

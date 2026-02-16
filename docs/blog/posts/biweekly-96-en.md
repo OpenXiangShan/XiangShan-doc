@@ -100,11 +100,11 @@ In the past two weeks, due to several team members attending HPCA 2026 and the S
 ### MemBlock and Cache
 
 - RTL new features
-  - The refactoring and testing of MDP, MMU, LoadUnit, StoreQueue, L2, etc. is ongoing
+  - The refactoring and testing of MMU, LoadUnit, StoreQueue, L2, etc. is ongoing
+  - Support MDP of StoreSet and fix some bugs ([#5576](https://github.com/OpenXiangShan/XiangShan/pull/5576))
 - Bug fix
-  - Fixed the timeout judgment logic in Sbuffer, with the timeout threshold configured via SMBLOCKCTL in CSR (#5573: https://github.com/OpenXiangShan/XiangShan/pull/5573)
+  - Fix bug that ICG is invalid when disable mbist in CoupledL2 ([CoupledL2 #470](https://github.com/OpenXiangShan/CoupledL2/pull/470))
 - Debugging tools
-  - Continuous improvement of CHI infrastructure CHIron
   - Develop a verification tool CHI Test for the new version of L2 Cache. Continuous progressing
 
 ## Performance Evaluation

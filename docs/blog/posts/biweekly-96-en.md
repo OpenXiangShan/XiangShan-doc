@@ -18,9 +18,9 @@ Happy Chinese New Year! Welcome to our biweekly column during the Spring Festiva
 - The cache hierarchy is as warm as spring, and every precious memory is within reach;
 - The bus bandwidth is like a thousand-mile horse, and the good luck signal arrives immediately at your side!
 
-We also share the wonderful review of the tutorial hosted by XiangShan team at HPCA 2026. Please visit <https://tutorial.xiangshan.cc/hpca26/> to review the content of this tutorial and get the slides. The next tutorial will be held at the [ISCA 2026](https://iscaconf.org/isca2026/) conference in the United States in late June, looking forward to seeing everyone again!
+We also shared the wonderful review of the tutorial hosted by XiangShan team at HPCA 2026. Please visit <https://tutorial.xiangshan.cc/hpca26/> to review the content of this tutorial and get the slides. The next tutorial will be held at ISCA 2026 in Raleigh, North Carolina, USA in late June, and we look forward to seeing you again!
 
-Regarding the recent development progress of XiangShan, ~~the XiangShan team is also having a happy spring.~~ For the limited details, please see the recent progress section.
+Regarding the recent development progress of XiangShan, ~~the XiangShan team is also having a happy Chinese New Year.~~ For the limited details, please see the recent progress section.
 
 <!-- more -->
 

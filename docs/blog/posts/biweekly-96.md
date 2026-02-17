@@ -18,9 +18,9 @@ categories:
 - 缓存层次温暖如春，每一份珍贵回忆都触手可及；
 - 总线带宽如千里骏马，好运信号即刻抵达身边！
 
-我们还为大家分享了香山团队在 HPCA 2026 上举办 tutorial 的精彩回顾，欢迎大家访问 <https://tutorial.xiangshan.cc/hpca26/> 回顾本次 tutorial 的内容、获取 slides。下一场 tutorial 将于 6 月下旬在美国举办的 [ISCA 2026](https://iscaconf.org/isca2026/) 会议上进行，非常期待与大家再次相见！
+我们还为大家分享了香山团队在 HPCA 2026 上举办 tutorial 的精彩回顾，欢迎大家访问 <https://tutorial.xiangshan.cc/hpca26/> 回顾本次 tutorial 的内容、获取 slides。下一场 tutorial 将于 6 月下旬在美国北卡罗莱纳州罗利市举办的 [ISCA 2026](https://iscaconf.org/isca2026/) 会议上进行，非常期待与大家再次相见！
 
-关于香山近期开发进展，~~香山的同学们也在度过快乐的春。~~不多的细节请见近期进展一节。
+关于香山近期开发进展，~~香山的同学们也在度过快乐的春节。~~不多的细节请见近期进展一节。
 
 <!-- more -->
 

@@ -67,6 +67,10 @@ In the past two weeks, due to several team members attending HPCA 2026 and the S
     - Adjusting the pipeline stage of ICache parity check logic (no PR for the moment)
     - Further evaluation and fixes are ongoing
 
+### Backend
+
+- No progress for the moment
+
 ### MemBlock and Cache
 
 - RTL new features

@@ -9,27 +9,24 @@ categories:
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 96 期双周报。
 
-香山团队的高性能 DDR4 内存控制器 IP 白杨正式发布了！如果还没有看过，欢迎大家阅读我们的[白杨发布文章](https://mp.weixin.qq.com/s/ovHD6oHDHgMaVwybmnk_lw/)了解更多细节。在这里，我们与大家独家分享一个小故事。香山于 1 月 31 日在 HPCA 2026 上作 tutorial，其中有涉及到白杨的介绍。演讲的前一天晚上，白杨还在为开源作最后的准备，在第二天 tutorial 开始前才将仓库转为 public，~~果然 DDL 是第一生产力~~。
+祝大家新春快乐！欢迎在新春佳节来到我们的双周报专栏，祝您在新的一年：
 
-在上周，我们引入了新的 GCC15 和 XSCC 编译器。这两个编译器相比现有的 GCC12 有着 10% 以上的性能提升，现在香山的 SPEC CPU2006 性能已经达到了 18.5 分/GHz。这一期双周报中，我们为不同编译器进行了对比分析。在之后的开发中，我们将逐渐切换到 GCC15 和 XSCC 编译器，同时更加注重编译器和硬件的协同优化。不同编译器的具体分数仍然在性能评估一节，欢迎大家持续关注！
+- 前端拥有天马行空般的精准预测，事业机遇从不误判；
+- 流水线奔腾如万马千军，万事顺遂并行不悖；
+- 存储子系统如龙马精神永葆活力，快乐数据取之不尽；
+- 访存通路如辽阔草原，幸福地址永远映射在心间；
+- 缓存层次温暖如春，每一份珍贵回忆都触手可及；
+- 总线带宽如千里骏马，好运信号即刻抵达身边！
 
-关于香山近期开发进展，前端方面，MBTB 引入了 LRU 替换算法，并使用 TAGE-SC 的精确预测结果进行更新，以提升分支预测的准确率。后端方面，添加了 I2F 功能单元以支持 FMV 和 FCVT 的 i2f 类型指令，并对整数 IQ 添加 og1Payload 以优化选择时序。访存与缓存方面，Sbuffer 中的超时判断逻辑得到了修复，并通过 csr 中的 SMBLOCKCTL 配置超时阈值。更多细节请见近期进展一节。
+我们还为大家分享了香山团队在 HPCA 2026 上举办 tutorial 的精彩回顾，欢迎大家访问 <https://tutorial.xiangshan.cc/hpca26/> 回顾本次 tutorial 的内容、获取 slides。下一场 tutorial 将于 6 月下旬在美国举办的 [ISCA 2026](https://iscaconf.org/isca2026/) 会议上进行，非常期待与大家再次相见！
+
+关于香山近期开发进展，~~香山的同学们也在度过快乐的春。~~不多的细节请见近期进展一节。
 
 <!-- more -->
 
-## 编译优化
-
-一直以来，双周报中性能评估采用的都是使用 GCC12 编译的祖传切片。这些切片对于性能相对较低的昆明湖 V2 时代已经足够了，但随着昆明湖 V3 性能的不断迭代和编译技术的发展，原有的切片已经无法充分展现香山的性能潜力。在上周，我们使用 GCC15 和 XSCC 两个编译器对 SPEC CPU2006 进行了重新编译，并对比了不同编译器和优化选项下的性能表现。结果如下图所示：
-
-![编译优化](./figs/complier-optimization.png)
-
-可以看到，仅仅是切换编译器，就能在总分上提高约 12%。其中，GCC15 在打开 -ffast-math 这一优化选项后，对浮点测试程序的提升更是能达到接近 20%。而对于 libquantum 子项，XSCC 可以实现惊人的约 110% 的提升，~~不愧是刷分专用子项~~。
-
-还有一个很有意思的现象，XSCC 在 GCC 这个子项上有约 20% 的性能倒退。XSCC 是基于 LLVM 的编译器，~~LLVM 不擅长优化 GCC 听起来意外地合理啊~~。
-
 ## Tutorial @ HPCA 2026
 
-香山在 HPCA 2026 上成功举办 Tutorial！我们非常高兴能与大家在悉尼相见，感谢每一位参会的朋友和关心香山发展的伙伴们！欢迎大家访问 <https://tutorial.xiangshan.cc/hpca26/> 回顾本次 tutorial 的内容、获取 slides。
+香山在 HPCA 2026 上成功举办 Tutorial！我们非常高兴能与大家在悉尼相见，感谢每一位参会的朋友和关心香山发展的伙伴们！
 
 ![合影镇楼](./figs/hpca2026-tutorial/group.jpg)
 
@@ -52,8 +49,6 @@ categories:
 
 ![茶歇交流](./figs/hpca2026-tutorial/chat.jpg)
 
-另外，香山的下一场 tutorial 将于 6 月下旬在美国举办的 [ISCA 2026](https://iscaconf.org/isca2026/) 会议上进行，期待与大家再次相见！
-
 ## 近期进展
 
 ### 前端
@@ -72,31 +67,6 @@ categories:
     - 调整 ICache parity 校验逻辑流水级（暂未 PR）
     - 进一步评估和修复持续进行中
 
-### 后端
-
-- RTL 新特性
-  - 添加 I2F FU 以支持 FMV 和 FCVT 的 i2f 类型（[#5557](https://github.com/OpenXiangShan/XiangShan/pull/5557), [#5577](https://github.com/OpenXiangShan/XiangShan/pull/5577)）
-  - 支持 Smcntrpmf 扩展（[#4286](https://github.com/OpenXiangShan/XiangShan/pull/4286)）
-- 时序/面积优化
-  - 在 csrToDecode 与 Decode 之间增加一拍（[#5542](https://github.com/OpenXiangShan/XiangShan/pull/5542)）
-  - 将 ALU 的数据处理从 Bypass 阶段转移到 ALU 内部（[#5562](https://github.com/OpenXiangShan/XiangShan/pull/5562)）
-  - 对整数 IQ 添加 og1Payload，利用只在 OG1 中使用的信号以优化 IQ 选择时序。（[#5570](https://github.com/OpenXiangShan/XiangShan/pull/5570)）
-- Bug 修复
-  - 修复了来自功能单元写回的 redirect.valid 信号，以及 TopDown 中的 mis_pred 和 total flush 问题（[#5538](https://github.com/OpenXiangShan/XiangShan/pull/5538)）
-  - 修复了 NewCSR 中 RegNext 的重复使用问题（[#5441](https://github.com/OpenXiangShan/XiangShan/pull/5441)）
-  - 修复了 ROB 中 flushpipe 对 redirect.interrupt 的错误假设（[#5583](https://github.com/OpenXiangShan/XiangShan/pull/5583)）
-- 代码质量
-  - 重构所有 resps 信号，简化代码逻辑（[#5537](https://github.com/OpenXiangShan/XiangShan/pull/5537)）
-  - 优化 resps 信号的代码质量（[#5550](http://github.com/OpenXiangShan/XiangShan/pull/5550)）
-  - 移除 IsssueQueue 中部分冗余代码，调整唤醒 pdest 宽度，添加 ROB bankNum 参数（[#5051](https://github.com/OpenXiangShan/XiangShan/pull/5051)）
-  - 重构 vialuf 以支持快速唤醒（[#5136](https://github.com/OpenXiangShan/XiangShan/pull/5136)）
-  - 删除 Datapath 中的无用代码（[#5567](https://github.com/OpenXiangShan/XiangShan/pull/5567)）
-  - 重构写回至 ROB 和 Regfile 的Bundle（[#5535](https://github.com/OpenXiangShan/XiangShan/pull/5535)）
-  - 整合信号，使用 EnqRObUop 代替 DynInst 以减去多余的信号（[#5560](http://github.com/OpenXiangShan/XiangShan/pull/5560)）
-  - 删除无用的 IntToFP 功能单元（[#5586](https://github.com/OpenXiangShan/XiangShan/pull/5586)）
-- 结构调整
-  - 删除 fudian 子模块，从现在起昆明湖 V3 将不再使用 fudian 仓库内容作为子模块（[#5585](https://github.com/OpenXiangShan/XiangShan/pull/5585)）
-
 ### 访存与缓存
 
 - RTL 新特性
@@ -113,8 +83,8 @@ categories:
 
 | 参数      | 选项       |
 | --------- | ---------- |
-| commit    | 4e78369f4  |
-| 日期      | 2026/01/29 |
+| commit    | 316946d28  |
+| 日期      | 2026/02/11 |
 | L1 ICache | 64KB       |
 | L1 DCache | 64KB       |
 | L2 Cache  | 1MB        |
@@ -125,26 +95,26 @@ categories:
 
 性能数据如下所示：
 
-| SPECint 2006   | GCC12 @3GHz | GCC15 @3GHz | XSCC @3GHz | SPECfp 2006   | GCC12 @3GHz | GCC15 @3GHz | XSCC @3GHz |
-| :------------- | :---------: | :---------: | :--------: | :------------ | :---------: | :---------: | :--------: |
-| 400.perlbench  |    38.87    |    43.00    |   41.70    | 410.bwaves    |    72.14    |    80.98    |   90.75    |
-| 401.bzip2      |    27.05    |    26.74    |   27.75    | 416.gamess    |    54.49    |    55.54    |   51.90    |
-| 403.gcc        |    47.55    |    50.17    |   37.16    | 433.milc      |    49.10    |    64.58    |   63.76    |
-| 429.mcf        |    58.23    |    59.55    |   54.50    | 434.zeusmp    |    60.60    |    69.41    |   63.22    |
-| 445.gobmk      |    37.34    |    35.51    |   36.30    | 435.gromacs   |    38.34    |    36.19    |   34.00    |
-| 456.hmmer      |    43.11    |    53.10    |   63.26    | 436.cactusADM |    53.57    |    75.24    |   86.24    |
-| 458.sjeng      |    34.47    |    34.80    |   36.03    | 437.leslie3d  |    54.20    |    56.48    |   56.64    |
-| 462.libquantum |   132.83    |   135.28    |   282.43   | 444.namd      |    37.28    |    42.16    |   44.17    |
-| 464.h264ref    |    62.00    |    61.95    |   70.30    | 447.dealII    |    64.13    |    58.88    |   66.92    |
-| 471.omnetpp    |    42.63    |    39.60    |   39.03    | 450.soplex    |    52.43    |    49.25    |   59.39    |
-| 473.astar      |    30.37    |    31.22    |   30.31    | 453.povray    |    61.43    |    70.66    |   63.65    |
-| 483.xalancbmk  |    80.42    |    74.48    |   84.38    | 454.Calculix  |    19.37    |    43.84    |   39.05    |
-| GEOMEAN        |    47.69    |    48.61    |   51.93    | 459.GemsFDTD  |    46.59    |    64.51    |   64.40    |
-|                |             |             |            | 465.tonto     |    36.20    |    50.61    |   33.84    |
-|                |             |             |            | 470.lbm       |   104.99    |   126.71    |   132.13   |
-|                |             |             |            | 481.wrf       |    48.68    |    55.06    |   41.45    |
-|                |             |             |            | 482.sphinx3   |    55.06    |    58.58    |   60.80    |
-|                |             |             |            | GEOMEAN       |    50.56    |    59.73    |   58.16    |
+| SPECint 2006 @ 3GHz | GCC15  |  XSCC  | GCC12  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  | GCC12  |
+| :------------------ | :----: | :----: | :----: | :----------------- | :----: | :----: | :----: |
+| 400.perlbench       | 47.31  | 46.45  | 43.61  | 410.bwaves         | 85.75  | 90.56  | 73.28  |
+| 401.bzip2           | 27.00  | 27.83  | 27.51  | 416.gamess         | 56.09  | 52.50  | 54.94  |
+| 403.gcc             | 50.77  | 37.33  | 51.30  | 433.milc           | 64.70  | 63.73  | 49.28  |
+| 429.mcf             | 59.77  | 54.36  | 60.69  | 434.zeusmp         | 69.45  | 63.50  | 60.37  |
+| 445.gobmk           | 35.62  | 36.59  | 37.44  | 435.gromacs        | 36.43  | 34.17  | 38.56  |
+| 456.hmmer           | 53.68  | 63.60  | 43.52  | 436.cactusADM      | 75.62  | 86.54  | 53.69  |
+| 458.sjeng           | 35.34  | 36.40  | 34.82  | 437.leslie3d       | 56.57  | 56.81  | 54.45  |
+| 462.libquantum      | 135.53 | 285.26 | 133.21 | 444.namd           | 42.06  | 44.19  | 37.42  |
+| 464.h264ref         | 62.41  | 71.27  | 63.01  | 447.dealII         | 63.32  | 67.16  | 64.28  |
+| 471.omnetpp         | 40.88  | 39.25  | 43.04  | 450.soplex         | 49.19  | 57.92  | 53.33  |
+| 473.astar           | 31.19  | 30.28  | 30.34  | 453.povray         | 72.39  | 66.59  | 61.60  |
+| 483.xalancbmk       | 74.54  | 84.92  | 80.96  | 454.Calculix       | 44.18  | 39.20  | 19.43  |
+| GEOMEAN             | 49.39  | 52.67  | 48.92  | 459.GemsFDTD       | 64.84  | 64.68  | 46.68  |
+|                     |        |        |        | 465.tonto          | 51.71  | 34.73  | 36.69  |
+|                     |        |        |        | 470.lbm            | 126.78 | 132.83 | 104.98 |
+|                     |        |        |        | 481.wrf            | 55.25  | 41.58  | 48.68  |
+|                     |        |        |        | 482.sphinx3        | 58.51  | 61.17  | 55.05  |
+|                     |        |        |        | GEOMEAN            | 60.48  | 58.50  | 50.80  |
 
 编译参数如下所示：
 

@@ -9,27 +9,24 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 96th issue of the biweekly report.
 
-The high-performance DDR4 memory controller IP, Baiyang, developed by the XiangShan team has been officially released! If you haven't read it yet, please check out our [Baiyang release article](https://mp.weixin.qq.com/s/ovHD6oHDHgMaVwybmnk_lw/) for more details. Here, we would like to share an exclusive story with you. On January 31st, XiangShan presented a tutorial at HPCA 2026, which included an introduction to Baiyang. The night before the presentation, Baiyang was still being prepared for open source, and the repository was made public just before the tutorial started the next day. ~~Deadlines are indeed the best productivity boosters~~.
+Happy Chinese New Year! Welcome to our biweekly column during the Spring Festival, and we wish you in the new year:
 
-Last week, we introduced new GCC15 and XSCC compilers. These two compilers offer more than 10% performance improvement compared to the existing GCC12. Now, XiangShan's SPEC CPU2006 performance has reached 18.5 points/GHz. In this issue of the biweekly report, we provide a comparative analysis of different compilers. In future development, we will gradually switch to GCC15 and XSCC compilers, while focusing more on compiler and hardware co-optimization. The specific scores for different compilers are still in the performance evaluation section, so stay tuned!
+- Frontend has the precise prediction like a unicorn, and career opportunities are never misjudged;
+- The pipeline runs like a thousand horses, everything goes smoothly and in parallel;
+- The memory subsystem is as vigorous as a dragon horse, and the happy data is inexhaustible;
+- The memory access path is like a vast grassland, and the happy address is always mapped in the heart;
+- The cache hierarchy is as warm as spring, and every precious memory is within reach;
+- The bus bandwidth is like a thousand-mile horse, and the good luck signal arrives immediately at your side!
 
-In terms of recent development progress, on the frontend side, MBTB has introduced the LRU replacement algorithm and uses accurate prediction results from TAGE-SC for updates to improve branch prediction accuracy. On the backend side, an I2F functional unit has been added to support i2f type instructions of FMV and FCVT, and og1Payload has been added to the integer IQ to optimize selection timing. In terms of memory access and cache, the timeout judgment logic in Sbuffer has been fixed, and the timeout threshold is configured through SMBLOCKCTL in CSR. For more details, please refer to the recent progress section.
+We also share the wonderful review of the tutorial hosted by XiangShan team at HPCA 2026. Please visit <https://tutorial.xiangshan.cc/hpca26/> to review the content of this tutorial and get the slides. The next tutorial will be held at the [ISCA 2026](https://iscaconf.org/isca2026/) conference in the United States in late June, looking forward to seeing everyone again!
+
+Regarding the recent development progress of XiangShan, ~~the XiangShan team is also having a happy spring.~~ For the limited details, please see the recent progress section.
 
 <!-- more -->
 
-## Compiler Optimization
-
-In the past, the performance evaluation in the biweekly report has always used the ancestral slices compiled with GCC12. These slices were sufficient for the relatively low-performance Kunming Lake V2 era, but as the performance of Kunming Lake V3 continues to iterate and compiler technology develops, the original slices can no longer fully demonstrate XiangShan's performance potential. Last week, we recompiled SPEC CPU2006 using GCC15 and XSCC compilers and compared the performance under different compilers and optimization options. The results are shown in the figure below:
-
-![Compiler Optimization](./figs/complier-optimization.png)
-
-It can be seen that simply switching compilers can improve the overall score by about 12%. Among them, GCC15, when the -ffast-math optimization option is enabled, can achieve nearly 20% improvement for floating-point test programs. For the libquantum sub-item, XSCC can achieve an astonishing improvement of about 110%, ~~truly a score-boosting sub-item~~.
-
-There is also an interesting phenomenon: XSCC shows about a 20% performance regression in the GCC sub-item. XSCC is based on LLVM, ~~it sounds surprisingly reasonable that LLVM is not good at optimizing GCC~~.
-
 ## Tutorial @ HPCA 2026
 
-XiangShan successfully held a tutorial at HPCA 2026! We are very happy to meet everyone in Sydney, and we thank every participant and friend who cares about XiangShan's development! Please visit <https://tutorial.xiangshan.cc/hpca26/> to review the content of this tutorial and get the slides.
+XiangShan successfully held a tutorial at HPCA 2026! We are very happy to meet everyone in Sydney, and we thank every participant and friend who cares about XiangShan's development!
 
 ![Group Photo](./figs/hpca2026-tutorial/group.jpg)
 
@@ -52,8 +49,6 @@ During the coffee break, we had in-depth communication with excellent scholars f
 
 ![Coffee Break](./figs/hpca2026-tutorial/chat.jpg)
 
-By the way, XiangShan's next tutorial will be held at the [ISCA 2026](https://iscaconf.org/isca2026/) conference in the United States in late June, looking forward to seeing everyone again!
-
 ## Recent Developments
 
 ### Frontend
@@ -72,31 +67,6 @@ In the past two weeks, due to several team members attending HPCA 2026 and the S
     - Adjusting the pipeline stage of ICache parity check logic (no PR for the moment)
     - Further evaluation and fixes are ongoing
 
-### Backend
-
-- RTL new features
-  - Add I2F FU to support i2f types of FMV and FCVT ([#5557](https://github.com/OpenXiangShan/XiangShan/pull/5557), [#5577](https://github.com/OpenXiangShan/XiangShan/pull/5577))
-  - Support Smcntrpmf extension ([#4286](https://github.com/OpenXiangShan/XiangShan/pull/4286))
-- Timing/Area optimization
-  - Add one cycle between csrToDecode and Decode ([#5542](https://github.com/OpenXiangShan/XiangShan/pull/5542))
-  - Transfer ALU data processing from Bypass to ALU ([#5562](https://github.com/OpenXiangShan/XiangShan/pull/5562))
-  - Add og1Payload to integer IQ, selecting signals only used in OG1 to optimize IQ selection timing ([#5570](https://github.com/OpenXiangShan/XiangShan/pull/5570))
-- Bug Fix
-  - Fix the redirect.valid signal from functional unit writeback, and the mis_pred and total flush issues in TopDown ([#5538](https://github.com/OpenXiangShan/XiangShan/pull/5538))
-  - Fix the repeated use of RegNext in NewCSR ([#5441](https://github.com/OpenXiangShan/XiangShan/pull/5441))
-  - Fix the incorrect assumption of flushpipe on redirect.interrupt in ROB ([#5583](https://github.com/OpenXiangShan/XiangShan/pull/5583))
-- Code Quality
-  - Refactor all resps signals to simplify code logic ([#5537](https://github.com/OpenXiangShan/XiangShan/pull/5537))
-  - Optimize code quality of resps signals ([#5550](http://github.com/OpenXiangShan/XiangShan/pull/5550))
-  - Remove some redundant code in IsssueQueue, adjust wakeup pdest width, add ROB bankNum parameter ([#5051](https://github.com/OpenXiangShan/XiangShan/pull/5051))
-  - Refactor vialuf to support fast wakeup ([#5136](https://github.com/OpenXiangShan/XiangShan/pull/5136))
-  - Remove unused code in Datapath ([#5567](https://github.com/OpenXiangShan/XiangShan/pull/5567))
-  - Refactor Bundle for writeback to ROB and Regfile ([#5535](https://github.com/OpenXiangShan/XiangShan/pull/5535))
-  - Integrate signals, use EnqRObUop instead of DynInst to reduce redundant signals ([#5560](http://github.com/OpenXiangShan/XiangShan/pull/5560))
-  - Remove unused IntToFP functional unit ([#5586](https://github.com/OpenXiangShan/XiangShan/pull/5586))
-- Structural Adjustment
-  - Remove fudian submodule, Kunming Lake V3 will no longer use fudian repository content as a submodule ([#5585](https://github.com/OpenXiangShan/XiangShan/pull/5585))
-
 ### MemBlock and Cache
 
 - RTL new features
@@ -113,8 +83,8 @@ Processor and SoC parameters are as follows:
 
 | Parameters     | Options    |
 | -------------- | ---------- |
-| Commit         | fd1e37f95  |
-| Date           | 01/16/2026 |
+| Commit         | 316946d28  |
+| Date           | 02/11/2026 |
 | L1 ICache      | 64KB       |
 | L1 DCache      | 64KB       |
 | L2 Cache       | 1MB        |
@@ -125,26 +95,26 @@ Processor and SoC parameters are as follows:
 
 The SPEC CPU2006 scores are as follows:
 
-| SPECint 2006   | GCC12 @3GHz | GCC15 @3GHz | XSCC @3GHz | SPECfp 2006   | GCC12 @3GHz | GCC15 @3GHz | XSCC @3GHz |
-| :------------- | :---------: | :---------: | :--------: | :------------ | :---------: | :---------: | :--------: |
-| 400.perlbench  |    38.87    |    43.00    |   41.70    | 410.bwaves    |    72.14    |    80.98    |   90.75    |
-| 401.bzip2      |    27.05    |    26.74    |   27.75    | 416.gamess    |    54.49    |    55.54    |   51.90    |
-| 403.gcc        |    47.55    |    50.17    |   37.16    | 433.milc      |    49.10    |    64.58    |   63.76    |
-| 429.mcf        |    58.23    |    59.55    |   54.50    | 434.zeusmp    |    60.60    |    69.41    |   63.22    |
-| 445.gobmk      |    37.34    |    35.51    |   36.30    | 435.gromacs   |    38.34    |    36.19    |   34.00    |
-| 456.hmmer      |    43.11    |    53.10    |   63.26    | 436.cactusADM |    53.57    |    75.24    |   86.24    |
-| 458.sjeng      |    34.47    |    34.80    |   36.03    | 437.leslie3d  |    54.20    |    56.48    |   56.64    |
-| 462.libquantum |   132.83    |   135.28    |   282.43   | 444.namd      |    37.28    |    42.16    |   44.17    |
-| 464.h264ref    |    62.00    |    61.95    |   70.30    | 447.dealII    |    64.13    |    58.88    |   66.92    |
-| 471.omnetpp    |    42.63    |    39.60    |   39.03    | 450.soplex    |    52.43    |    49.25    |   59.39    |
-| 473.astar      |    30.37    |    31.22    |   30.31    | 453.povray    |    61.43    |    70.66    |   63.65    |
-| 483.xalancbmk  |    80.42    |    74.48    |   84.38    | 454.Calculix  |    19.37    |    43.84    |   39.05    |
-| GEOMEAN        |    47.69    |    48.61    |   51.93    | 459.GemsFDTD  |    46.59    |    64.51    |   64.40    |
-|                |             |             |            | 465.tonto     |    36.20    |    50.61    |   33.84    |
-|                |             |             |            | 470.lbm       |   104.99    |   126.71    |   132.13   |
-|                |             |             |            | 481.wrf       |    48.68    |    55.06    |   41.45    |
-|                |             |             |            | 482.sphinx3   |    55.06    |    58.58    |   60.80    |
-|                |             |             |            | GEOMEAN       |    50.56    |    59.73    |   58.16    |
+| SPECint 2006 @ 3GHz | GCC15  |  XSCC  | GCC12  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  | GCC12  |
+| :------------------ | :----: | :----: | :----: | :----------------- | :----: | :----: | :----: |
+| 400.perlbench       | 47.31  | 46.45  | 43.61  | 410.bwaves         | 85.75  | 90.56  | 73.28  |
+| 401.bzip2           | 27.00  | 27.83  | 27.51  | 416.gamess         | 56.09  | 52.50  | 54.94  |
+| 403.gcc             | 50.77  | 37.33  | 51.30  | 433.milc           | 64.70  | 63.73  | 49.28  |
+| 429.mcf             | 59.77  | 54.36  | 60.69  | 434.zeusmp         | 69.45  | 63.50  | 60.37  |
+| 445.gobmk           | 35.62  | 36.59  | 37.44  | 435.gromacs        | 36.43  | 34.17  | 38.56  |
+| 456.hmmer           | 53.68  | 63.60  | 43.52  | 436.cactusADM      | 75.62  | 86.54  | 53.69  |
+| 458.sjeng           | 35.34  | 36.40  | 34.82  | 437.leslie3d       | 56.57  | 56.81  | 54.45  |
+| 462.libquantum      | 135.53 | 285.26 | 133.21 | 444.namd           | 42.06  | 44.19  | 37.42  |
+| 464.h264ref         | 62.41  | 71.27  | 63.01  | 447.dealII         | 63.32  | 67.16  | 64.28  |
+| 471.omnetpp         | 40.88  | 39.25  | 43.04  | 450.soplex         | 49.19  | 57.92  | 53.33  |
+| 473.astar           | 31.19  | 30.28  | 30.34  | 453.povray         | 72.39  | 66.59  | 61.60  |
+| 483.xalancbmk       | 74.54  | 84.92  | 80.96  | 454.Calculix       | 44.18  | 39.20  | 19.43  |
+| GEOMEAN             | 49.39  | 52.67  | 48.92  | 459.GemsFDTD       | 64.84  | 64.68  | 46.68  |
+|                     |        |        |        | 465.tonto          | 51.71  | 34.73  | 36.69  |
+|                     |        |        |        | 470.lbm            | 126.78 | 132.83 | 104.98 |
+|                     |        |        |        | 481.wrf            | 55.25  | 41.58  | 48.68  |
+|                     |        |        |        | 482.sphinx3        | 58.51  | 61.17  | 55.05  |
+|                     |        |        |        | GEOMEAN            | 60.48  | 58.50  | 50.80  |
 
 
 Compilation parameters are as follows:

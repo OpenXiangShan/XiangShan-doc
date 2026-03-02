@@ -83,7 +83,13 @@ categories:
 
 ### 后端
 
-- 暂无进展
+- RTL 新特性
+  - 当 ldu 不能接收 uop 时为其提供缓存（[#5604](https://github.com/OpenXiangShan/XiangShan/pull/5604)）
+- 代码质量
+  - 拆分 Og0InUop 和 Og1Uop 用于后续时序优化（[#5575](https://github.com/OpenXiangShan/XiangShan/pull/5575)）
+  - 将 fusion 指令的 imm32 生成从 rename 移动到 fusionDecoder（[#5606](https://github.com/OpenXiangShan/XiangShan/pull/5606)）
+- Bug 修复
+  - 将部分信号从 IQPayload 移动到 og1Payload（[#5595](https://github.com/OpenXiangShan/XiangShan/pull/5595)）
 
 ### 访存与缓存
 

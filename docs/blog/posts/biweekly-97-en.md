@@ -81,7 +81,14 @@ Due to the Chinese New Year holiday, we don't have much progress. Some of the fo
 
 ### Backend
 
-- No progress for the moment
+- RTL new features
+  - Provide a buffer for a uop when LDU cannot receive it ([#5604](https://github.com/OpenXiangShan/XiangShan/pull/5604))
+- Code quality
+  - Split Og0InUop and Og1Uop for subsequent timing optimization ([#5575](https://github.com/OpenXiangShan/XiangShan/pull/5575))
+  - Move the generation of imm32 for fusion instructions from rename to fusionDecoder ([#5606](https://github.com/OpenXiangShan/XiangShan/pull/5606))
+- Bug fixes
+  - Move some signals from IQPayload to og1Payload ([#5595](https://github.com/OpenXiangShan/XiangShan/pull/5595))
+
 
 ### MemBlock and Cache
 

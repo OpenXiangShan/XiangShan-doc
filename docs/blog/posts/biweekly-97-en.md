@@ -53,19 +53,31 @@ During the coffee break, we had in-depth communication with excellent scholars f
 
 ### Frontend
 
-In the past two weeks, due to several team members attending HPCA 2026 and the Spring Festival holiday, there are no new PRs merged into the mainline. The ongoing/awaiting review progress includes:
+Due to the Chinese New Year holiday, we don't have much progress. Some of the following progress has been mentioned in the 96th biweekly report, here we will supplement some of the state changes.
 
-- Bug fixes
-  - Fix the training condition of SC which does not check whether MBTB is hit, and leads to training with invalid data ([#5601](https://github.com/OpenXiangShan/XiangShan/pull/5601))
-  - Fix the issue that saturate counters in MBTB baseTable are not updated when the branch is correctly predicted ([#5602](https://github.com/OpenXiangShan/XiangShan/pull/5602))
-- Timing/Area optimization
-  - In the early development of the V3 frontend, the main focus was on the functional implementation and performance tuning of the BPU rewrite to the region-BTB structure. As the functionality gradually stabilized in the recent month, intensive timing evaluation work was conducted. ~~As expected, it was a huge failure, with logic levels reaching three digits.~~ The issues were mainly concentrated on insufficient consideration of pipeline stage division and the use of inappropriate Scala magic for quick implementation, etc.. We have conducted multiple rounds of analysis and fixes for these issues. Some of the fixes for modules such as MBTB, TAGE, ICache were introduced in the previous two biweekly reports. The ongoing work in the past two weeks includes:
+- Mentioned in the last report, now merged
+  - Bug fixes
+    - Fix the training condition of SC which does not check whether MBTB is hit, and leads to training with invalid data ([#5601](https://github.com/OpenXiangShan/XiangShan/pull/5601))
+  - Timing/Area optimization
     - Adjusting BPU s2 pipeline stage, with some information from MBTB given to TAGE earlier ([#5614](https://github.com/OpenXiangShan/XiangShan/pull/5614))
+- Newly merged
+  - Bug fixes
+    - Fix BPU s1 prediction selection logic, use utage as long as it is hit ([#5611](https://github.com/OpenXiangShan/XiangShan/pull/5611))
+- In progress
+  - RTL features
+    - Support branch-level prediction in UTAGE ([#5513](https://github.com/OpenXiangShan/XiangShan/pull/5513))
+    - Support configurable threshold range ([#5632](https://github.com/OpenXiangShan/XiangShan/pull/5632))
+  - Bug fixes
+    - Fix the issue that saturate counters in MBTB baseTable are not updated when the branch is correctly predicted ([#5602](https://github.com/OpenXiangShan/XiangShan/pull/5602))
+    - Fix history restore logic on s3 override ([#5625](https://github.com/OpenXiangShan/XiangShan/pull/5625))
+  - Timing/Area optimization
     - Adjusting the pipeline stage of MBTB position comparison logic ([#5603](https://github.com/OpenXiangShan/XiangShan/pull/5603))
     - Adjusting the pipeline stage of UTAGE history information ([#5517](https://github.com/OpenXiangShan/XiangShan/pull/5517))
     - Fixing some serial logic inside SC (no PR for the moment)
     - Adjusting the pipeline stage of ICache parity check logic (no PR for the moment)
     - Further evaluation and fixes are ongoing
+  - Code quality
+    - Fix MBTB compile-time warning ([#5543](https://github.com/OpenXiangShan/XiangShan/pull/5543))
 
 ### Backend
 

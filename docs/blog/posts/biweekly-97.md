@@ -53,19 +53,33 @@ categories:
 
 ### 前端
 
-前端组近两周由于多位组员参加 HPCA 2026 及春节放假，暂无新合入主线的 PR，正在进行/等待 review 的进展包括：
+因春节放假，进展较少。部分进展已经在 96 期双周报提到，本期对状态变化的部分进行补充介绍。
 
-- Bug 修复
-  - 修复 SC 训练条件未判断 MBTB 是否命中，导致用无效数据训练的问题（[#5601](https://github.com/OpenXiangShan/XiangShan/pull/5601)）
-  - 修复 MBTB 中 baseTable 在正确预测时饱和计数器未更新的问题（[#5602](https://github.com/OpenXiangShan/XiangShan/pull/5602)）
-- 时序/面积优化
-  - 在 V3 前端的前期开发中，主要以 BPU 重写为 region-BTB 结构的功能实现和性能调优为主。近一个月功能逐渐稳定，故进行了密集的时序评估工作。~~不出意料地大暴死了，什么叫逻辑级数直奔3位数。~~问题主要集中在流水级划分未仔细考虑、使用不合适的 Scala 魔法进行快速实现等。针对这些，我们进行了多轮分析和修复。前两次双周报已经介绍过一些 MBTB、TAGE、ICache 等模块的修复。近两周仍在继续的工作有：
+- 上期提到，目前已合入
+  - Bug 修复
+    - 修复 SC 训练条件未判断 MBTB 是否命中，导致用无效数据训练的问题（[#5601](https://github.com/OpenXiangShan/XiangShan/pull/5601)）
+  - 时序/面积优化
     - 调整 BPU s2 流水级，MBTB 部分信息提前给到 TAGE（[#5614](https://github.com/OpenXiangShan/XiangShan/pull/5614)）
+- 新合入
+  - Bug 修复
+    - 修改 BPU s1 级预测生成逻辑，只要 utage 命中就全部使用 utage 修正后的预测（[#5611](https://github.com/OpenXiangShan/XiangShan/pull/5611)）
+- 进行中
+  - RTL 新特性
+    - 支持 UTAGE 以分支粒度进行预测（[#5513](https://github.com/OpenXiangShan/XiangShan/pull/5513)）
+    - 支持设置 SC 阈值范围（[#5632](https://github.com/OpenXiangShan/XiangShan/pull/5632)）
+  - Bug 修复
+    - 修复 MBTB 中 baseTable 在正确预测时饱和计数器未更新的问题（[#5602](https://github.com/OpenXiangShan/XiangShan/pull/5602)）
+    - 修复历史信息寄存器在遇到 s3 override 的处理逻辑（[#5625](https://github.com/OpenXiangShan/XiangShan/pull/5625)）
+  - 时序/面积优化
     - 调整 MBTB 位置比较逻辑流水级（[#5603](https://github.com/OpenXiangShan/XiangShan/pull/5603)）
     - 调整 UTAGE 历史信息流水级（[#5517](https://github.com/OpenXiangShan/XiangShan/pull/5517)）
     - 修复 SC 内部部分串行逻辑（暂未 PR）
     - 调整 ICache parity 校验逻辑流水级（暂未 PR）
     - 进一步评估和修复持续进行中
+  - 代码质量
+    - 修复 MBTB 编译期 warning（[#5543](https://github.com/OpenXiangShan/XiangShan/pull/5543)）
+
+从下期开始将回归仅介绍已合入 PR 的方式。
 
 ### 后端
 

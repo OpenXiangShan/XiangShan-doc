@@ -95,9 +95,8 @@ categories:
 
 - RTL 新特性
   - MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
-  - 新版 StoreSet MDP 合入主线并修复若干错误（[#5576](https://github.com/OpenXiangShan/XiangShan/pull/5576)）
-- Bug 修复
-  - 修复了 CoupledL2 中禁用mbist时ICG无效的错误（[CoupledL2 #470](https://github.com/OpenXiangShan/CoupledL2/pull/470)）
+- 代码重构
+  - （V2）对向量 store 的 difftest 进行了重构（[#5587](https://github.com/OpenXiangShan/XiangShan/pull/5587)）
 - 调试工具
   - 开发用于新版 L2 Cache 的验证工具 CHI Test。持续推进中
 

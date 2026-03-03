@@ -9,45 +9,23 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 97th issue of the biweekly report.
 
-Happy Chinese New Year! Welcome to our biweekly column during the Spring Festival, and we wish you in the new year:
-
-- Frontend has the precise prediction like a unicorn, and career opportunities are never misjudged;
-- The pipeline runs like a thousand horses, everything goes smoothly and in parallel;
-- The memory subsystem is as vigorous as a dragon horse, and the happy data is inexhaustible;
-- The memory access path is like a vast grassland, and the happy address is always mapped in the heart;
-- The cache hierarchy is as warm as spring, and every precious memory is within reach;
-- The bus bandwidth is like a thousand-mile horse, and the good luck signal arrives immediately at your side!
-
-We also shared the wonderful review of the tutorial hosted by XiangShan team at HPCA 2026. Please visit <https://tutorial.xiangshan.cc/hpca26/> to review the content of this tutorial and get the slides. The next tutorial will be held at ISCA 2026 in Raleigh, North Carolina, USA in late June, and we look forward to seeing you again!
-
-Regarding the recent development progress of XiangShan, ~~the XiangShan team is also having a happy Chinese New Year.~~ For the limited details, please see the recent progress section.
+Regarding the recent development progress of XiangShan, ~~the XiangShan team had a happy Chinese New Year holiday.~~ For more details, please refer to the Recent Developments section. ~~But it's not all for nothing,~~ we also prepared a little fun fact about the development of XiangShan for everyone.
 
 <!-- more -->
 
-## Tutorial @ HPCA 2026
+## A week of fighting with verilator
 
-XiangShan successfully held a tutorial at HPCA 2026! We are very happy to meet everyone in Sydney, and we thank every participant and friend who cares about XiangShan's development!
+In the development of XiangShan, simulators are very important infrastructure. To implement the open-source philosophy, we have been using the open-source simulator verilator in the development and part of the verification work of XiangShan. Even now that we have our own simulator gsim, verilator still plays an irreplaceable role in functional verification, ~~because gsim does not support waveform dumping yet~~. In addition, during the development of gsim, verilator has always been an important reference platform to help us verify the correctness and performance of gsim.
 
-![Group Photo](./figs/hpca2026-tutorial/group.jpg)
+On an ordinary day, L was suddenly asked to take the blame for an assertion triggered in the frontend FTQ module. This would not be a big deal, ~~if this assert was not triggered on the master branch that has already been frozen for delivery~~. L happily opened the error waveform and after looking at it for a while, he felt something was wrong because the signal `commitStateQueueReg_42_5` miraculously did not change, which caused FTQ to make wrong judgment on commit state.
 
-We continuously optimize the tutorial content based on the hosting effect and everyone's feedback, hoping to provide new friends with a clearer, more comprehensive, and in-depth introduction while also bringing new gains to old friends. The highlights in this tutorial include:
+L thought it must be an illusion caused by taking too much blame. He pulled X to manually execute the verilog code together with him. Due to the great optimization of chisel, many signals are optimized into intermediate signals like `_GEN_350234`, and these underscore signals are optimized away in verilator and will not appear in the waveform, which makes the whole process very difficult. However, unfortunately, X had the same illusion as him, and it seemed that according to the logic of the verilog code, `commitStateQueueReg_42_5` should change from `1` to `2` after the dashed line.
 
-- The latest in-development KMH-V3 microarchitecture design philosophy, insights and design details.
-- A new, independent introduction to our MinJie (agile) development toolchain.
-- Invited talks from our partners, on:
-  - XSCC, a high-performance compiler optimized for RISC-V and XiangShan, and
+At this time, L and X judged that it must be a bug in verilator, but another X insisted that even if it is a bug in verilator, we should confirm it again, ~~otherwise how can we believe the verification so far is correct~~. So L tried to replace all the signals like `_GEN_350234` in the FTQ module with `GEN_350234`, so that they could be seen in the waveform. When he generated the waveform again, he found that `commitStateQueueReg_42_5` miraculously changed again, from `1` to `2` at the dashed line.
 
-    ![XSCC on-site report](./figs/hpca2026-tutorial/xscc.jpg)
-  - Baiyang, a high-performance open-source DDR controller IP.
+L was a bit embarrassed, and he did not want to look at the C++ code generated by verilator. At this time, L suddenly remembered that there is a magical parameter in verilator that can keep the underscore signals in the waveform. So he added this parameter when generating the waveform, and as a result, he found that `commitStateQueueReg_42_5` also changed correctly.
 
-    Unfortunately, the original speaker could not attend the event due to visa issues, so a member of the XiangShan team introduced it instead. We will continue to communicate with Baiyang team and look forward to inviting their member for a more in-depth introduction at the next tutorial!
-- A more thorough and easy-to-use hands-on part based on code-server and jupyter notebook. We encourage everyone to use the docker environment and precompiled assets provided in <https://github.com/OpenXiangShan/bootcamp>.
-
-![Agenda](./figs/hpca2026-tutorial/agenda.jpg)
-
-During the coffee break, we had in-depth communication with excellent scholars from all over the world. We cherish the opportunity to communicate with everyone face-to-face, which can help everyone better understand the design of XiangShan microarchitecture and the use of agile toolchain, and make XiangShan a better infrastructure for academic research and industrial applications; on the other hand, it can also help us better understand everyone's feedback and innovative ideas, and continuously improve our design and toolchain. Thanks to every friend who participated in the communication! For those who could not attend, please feel free to communicate with us through <all@xiangshan.cc> mailing list, Github Issues, technical discussion QQ group, etc.
-
-![Coffee Break](./figs/hpca2026-tutorial/chat.jpg)
+L was completely embarrassed and felt that this blame should not continue to be on him. He threw this problem to the verilator community and updated the verilator version. This problem did disappear, but whether it really disappeared or quietly hid deeper, we will see next time we encounter it, L just felt that staring at the waveform for a week made his eyes almost blind.
 
 ## Recent Developments
 
@@ -119,24 +97,24 @@ The SPEC CPU2006 scores are as follows:
 
 | SPECint 2006 @ 3GHz | GCC15  |  XSCC  | GCC12  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  | GCC12  |
 | :------------------ | :----: | :----: | :----: | :----------------- | :----: | :----: | :----: |
-| 400.perlbench       | 47.31  | 46.45  | 43.61  | 410.bwaves         | 85.75  | 90.56  | 73.28  |
-| 401.bzip2           | 27.00  | 27.83  | 27.51  | 416.gamess         | 56.09  | 52.50  | 54.94  |
-| 403.gcc             | 50.77  | 37.33  | 51.30  | 433.milc           | 64.70  | 63.73  | 49.28  |
-| 429.mcf             | 59.77  | 54.36  | 60.69  | 434.zeusmp         | 69.45  | 63.50  | 60.37  |
-| 445.gobmk           | 35.62  | 36.59  | 37.44  | 435.gromacs        | 36.43  | 34.17  | 38.56  |
-| 456.hmmer           | 53.68  | 63.60  | 43.52  | 436.cactusADM      | 75.62  | 86.54  | 53.69  |
-| 458.sjeng           | 35.34  | 36.40  | 34.82  | 437.leslie3d       | 56.57  | 56.81  | 54.45  |
-| 462.libquantum      | 135.53 | 285.26 | 133.21 | 444.namd           | 42.06  | 44.19  | 37.42  |
-| 464.h264ref         | 62.41  | 71.27  | 63.01  | 447.dealII         | 63.32  | 67.16  | 64.28  |
-| 471.omnetpp         | 40.88  | 39.25  | 43.04  | 450.soplex         | 49.19  | 57.92  | 53.33  |
-| 473.astar           | 31.19  | 30.28  | 30.34  | 453.povray         | 72.39  | 66.59  | 61.60  |
-| 483.xalancbmk       | 74.54  | 84.92  | 80.96  | 454.Calculix       | 44.18  | 39.20  | 19.43  |
-| GEOMEAN             | 49.39  | 52.67  | 48.92  | 459.GemsFDTD       | 64.84  | 64.68  | 46.68  |
-|                     |        |        |        | 465.tonto          | 51.71  | 34.73  | 36.69  |
+| 400.perlbench       | 47.47  | 46.45  | 43.61  | 410.bwaves         | 85.75  | 90.56  | 73.28  |
+| 401.bzip2           | 27.12  | 27.83  | 27.51  | 416.gamess         | 56.30  | 52.50  | 54.94  |
+| 403.gcc             | 50.86  | 37.33  | 51.30  | 433.milc           | 64.92  | 63.73  | 49.28  |
+| 429.mcf             | 59.70  | 54.36  | 60.69  | 434.zeusmp         | 69.45  | 63.50  | 60.37  |
+| 445.gobmk           | 35.66  | 36.59  | 37.44  | 435.gromacs        | 36.47  | 34.17  | 38.56  |
+| 456.hmmer           | 53.69  | 63.60  | 43.52  | 436.cactusADM      | 75.62  | 86.54  | 53.69  |
+| 458.sjeng           | 35.56  | 36.40  | 34.82  | 437.leslie3d       | 56.60  | 56.81  | 54.45  |
+| 462.libquantum      | 135.55 | 285.26 | 133.21 | 444.namd           | 42.30  | 44.19  | 37.42  |
+| 464.h264ref         | 62.47  | 71.27  | 63.01  | 447.dealII         | 63.89  | 67.16  | 64.28  |
+| 471.omnetpp         | 40.89  | 39.25  | 43.04  | 450.soplex         | 49.21  | 57.92  | 53.33  |
+| 473.astar           | 31.75  | 30.28  | 30.34  | 453.povray         | 72.35  | 66.59  | 61.60  |
+| 483.xalancbmk       | 74.63  | 84.92  | 80.96  | 454.Calculix       | 44.24  | 39.20  | 19.43  |
+| GEOMEAN             | 49.54  | 52.67  | 48.92  | 459.GemsFDTD       | 64.85  | 64.68  | 46.68  |
+|                     |        |        |        | 465.tonto          | 51.73  | 34.73  | 36.69  |
 |                     |        |        |        | 470.lbm            | 126.78 | 132.83 | 104.98 |
-|                     |        |        |        | 481.wrf            | 55.25  | 41.58  | 48.68  |
-|                     |        |        |        | 482.sphinx3        | 58.51  | 61.17  | 55.05  |
-|                     |        |        |        | GEOMEAN            | 60.48  | 58.50  | 50.80  |
+|                     |        |        |        | 481.wrf            | 55.26  | 41.58  | 48.68  |
+|                     |        |        |        | 482.sphinx3        | 58.58  | 61.17  | 55.05  |
+|                     |        |        |        | GEOMEAN            | 60.58  | 58.50  | 50.80  |
 
 
 Compilation parameters are as follows:

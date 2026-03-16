@@ -39,31 +39,21 @@ L was completely frustrated. He did not want to look at the C++ code generated b
 
 ### Frontend
 
-Due to the Chinese New Year holiday, we don't have much progress. Some of the following progress has been mentioned in the 96th biweekly report, here we will supplement some of the state changes.
-
-- Mentioned in the last report, now merged
-  - Bug fixes
-    - Fix the training condition of SC which does not check whether MBTB is hit, and leads to training with invalid data ([#5601](https://github.com/OpenXiangShan/XiangShan/pull/5601))
-  - Timing/Area optimization
-    - Adjusting BPU s2 pipeline stage, with some information from MBTB given to TAGE earlier ([#5614](https://github.com/OpenXiangShan/XiangShan/pull/5614))
-- Newly merged
-  - Bug fixes
-    - Fix BPU s1 prediction selection logic, use utage as long as it is hit ([#5611](https://github.com/OpenXiangShan/XiangShan/pull/5611))
-- In progress
-  - RTL features
-    - Support branch-level prediction in UTAGE ([#5513](https://github.com/OpenXiangShan/XiangShan/pull/5513))
-    - Support configurable threshold range ([#5632](https://github.com/OpenXiangShan/XiangShan/pull/5632))
-  - Bug fixes
-    - Fix the issue that saturate counters in MBTB baseTable are not updated when the branch is correctly predicted ([#5602](https://github.com/OpenXiangShan/XiangShan/pull/5602))
-    - Fix history restore logic on s3 override ([#5625](https://github.com/OpenXiangShan/XiangShan/pull/5625))
-  - Timing/Area optimization
-    - Adjusting the pipeline stage of MBTB position comparison logic ([#5603](https://github.com/OpenXiangShan/XiangShan/pull/5603))
-    - Adjusting the pipeline stage of UTAGE history information ([#5517](https://github.com/OpenXiangShan/XiangShan/pull/5517))
-    - Fixing some serial logic inside SC (no PR for the moment)
-    - Adjusting the pipeline stage of ICache parity check logic (no PR for the moment)
-    - Further evaluation and fixes are ongoing
-  - Code quality
-    - Fix MBTB compile-time warning ([#5543](https://github.com/OpenXiangShan/XiangShan/pull/5543))
+- RTL features
+  - Support branch-level prediction in UTAGE ([#5513](https://github.com/OpenXiangShan/XiangShan/pull/5513))
+  - Support configurable threshold range ([#5632](https://github.com/OpenXiangShan/XiangShan/pull/5632))
+  - Implement SC IMLI table ([#5671](https://github.com/OpenXiangShan/XiangShan/pull/5671))
+- Bug fixes
+  - Fix the issue that saturate counters in MBTB baseTable are not updated when the branch is correctly predicted ([#5602](https://github.com/OpenXiangShan/XiangShan/pull/5602))
+  - Fix history restore logic on s3 override ([#5625](https://github.com/OpenXiangShan/XiangShan/pull/5625))
+  - Fix the bug in TAGE entry allocation logic, which causes the allocation failure rate to soar after running for a while ([#5677](https://github.com/OpenXiangShan/XiangShan/pull/5677))
+- Timing/Area optimization
+  - Fix the timing of SC training logic ([#5648](https://github.com/OpenXiangShan/XiangShan/pull/5648))
+- Code quality
+  - Fix the issue of incorrect bit width display of cfiPosition in MBTB compile-time logs, which does not affect the actual RTL functionality ([#5638](https://github.com/OpenXiangShan/XiangShan/pull/5638))
+  - Fix MBTB compile-time warning ([#5543](https://github.com/OpenXiangShan/XiangShan/pull/5543))
+- Debugging tools
+  - Refactor the performance counters for prediction sources ([#5639](https://github.com/OpenXiangShan/XiangShan/pull/5639))
 
 ### Backend
 

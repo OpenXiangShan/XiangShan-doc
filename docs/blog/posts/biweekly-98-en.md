@@ -58,13 +58,14 @@ L was completely frustrated. He did not want to look at the C++ code generated b
 ### Backend
 
 - RTL new features
-  - Provide a buffer for a uop when LDU cannot receive it ([#5604](https://github.com/OpenXiangShan/XiangShan/pull/5604))
+  - (V2) Add hartIDDmodeWidth to select readable mhartid bits under debug mode ([#5627](https://github.com/OpenXiangShan/XiangShan/pull/5627))
+- Bug fixes
+  - Fix the data output of v0 in vldMergeUnit ([#5675](https://github.com/OpenXiangShan/XiangShan/pull/5675))
+- Timing optimization
+  - Reduce bju IssueQueue's size, fix IssueQueue's ready timing, fix timing of interrupt selection ([#5636](https://github.com/OpenXiangShan/XiangShan/pull/5636))
+  - Move RatWrapper to Rename to check Rename timing ([#5637](https://github.com/OpenXiangShan/XiangShan/pull/5637))
 - Code quality
-  - Split Og0InUop and Og1Uop for subsequent timing optimization ([#5575](https://github.com/OpenXiangShan/XiangShan/pull/5575))
-  - Move the generation of imm32 for fusion instructions from rename to fusionDecoder ([#5606](https://github.com/OpenXiangShan/XiangShan/pull/5606))
-- Timing fixes
-  - Move some signals from IQPayload to og1Payload ([#5595](https://github.com/OpenXiangShan/XiangShan/pull/5595))
-
+  - Improve multiple code quality issues including the Issue section ([#5652](https://github.com/OpenXiangShan/XiangShan/pull/5652))
 
 ### MemBlock and Cache
 

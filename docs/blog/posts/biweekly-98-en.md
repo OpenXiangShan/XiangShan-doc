@@ -70,10 +70,14 @@ L was completely frustrated. He did not want to look at the C++ code generated b
 
 - RTL new features
   - The refactoring and testing of MMU, LoadUnit, StoreQueue, L2, etc. is ongoing
-- Code refactoring
-  - (V2) Refactor difftest for vector store ([#5587](https://github.com/OpenXiangShan/XiangShan/pull/5587))
-- Debugging tools
-  - Develop a verification tool CHI Test for the new version of L2 Cache. Continuous progressing
+  - Increase mmioBridgeSize to 16 for better NC perf ([CoupledL2 #475](https://github.com/OpenXiangShan/CoupledL2/pull/475))
+- Bug fixes
+  - Sync V2 changes to V3
+  - Hold LikelyShared on retried writes in CoupledL2 ([CoupledL2 #474](https://github.com/OpenXiangShan/CoupledL2/pull/474))
+- Timing fixes
+  - Generate gpaddr by bitwise-Or instead of adder ([#5644](https://github.com/OpenXiangShan/XiangShan/pull/5644))
+- Performance fixes refactoring
+  - Restore performance considering async depth is 4 ([CoupledL2 #472](https://github.com/OpenXiangShan/CoupledL2/pull/472))
 
 ## Performance Evaluation
 

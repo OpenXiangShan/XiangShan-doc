@@ -13,8 +13,11 @@ Kunminghu V2 has been taped out! We are currently conducting intensive testing, 
 
 Regarding the recent development progress of XiangShan, the frontend has fixed some performance bugs in BPU, the backend has optimized the timing of some modules, and the memory subsystem continues to undergo refactoring and testing.
 
+<!-- more -->
+
 ## Frontend TAGE allocation bug localization and fix
-Not long ago, a mysterious team that has been following XiangShan's progress reported a performance bug to us. They found that when running Kunminghu V3 on FPGA, the performance of V3 was even worse than V2. After a simple investigation, we found that in the libquantum test program, the branch prediction accuracy of V3 significantly decreased as the runtime increased, leading to a drop in IPC.
+
+Recently, a team that has been closely following XiangShan's progress reported a performance bug to us. Although they prefer not to disclose their name, their feedback has been invaluable. They observed that when running Kunminghu V3 on FPGA, the performance of V3 was even worse than V2. After a brief investigation, we found that in the libquantum test program, the branch prediction accuracy of V3 significantly decreased as the runtime increased, leading to a drop in IPC.
 
 After receiving this feedback, we immediately started reproducing and locating the issue. ~~Actually, we initially suspected it was an environment issue, since V3 performed well in our slice performance evaluation process, but it turned out that all configurations were correct~~. This phenomenon only became significant after running for about 30 minutes on FPGA, but debugging on FPGA is limited. However, to reproduce it in a simulation environment would require at least a month. Therefore, we ultimately decided to reproduce it on Palladium, which would take about a day.
 
@@ -33,8 +36,6 @@ After localization, we found that there was a bug in the TAGE allocation conditi
 ![allocate_failure](./figs/biweekly-98/after_allocate.png)
 
 What a beautiful pair of curves! We are very grateful for the continuous attention and active feedback from this mysterious team, and we also welcome more friends who are interested in XiangShan to join us in making XiangShan better and better.
-
-<!-- more -->
 
 ## Recent Developments
 
@@ -119,7 +120,6 @@ The SPEC CPU2006 scores are as follows:
 |                     |        |        |        | 481.wrf            | 55.19  | 41.29  | 48.79  |
 |                     |        |        |        | 482.sphinx3        | 58.53  | 60.81  | 55.06  |
 |                     |        |        |        | GEOMEAN            | 60.46  | 58.46  | 50.81  |
-
 
 Compilation parameters are as follows:
 

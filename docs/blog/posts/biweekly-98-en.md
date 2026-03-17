@@ -20,17 +20,17 @@ After receiving this feedback, we immediately started reproducing and locating t
 
 After a day, we successfully reproduced the issue. The following figure shows the IPC curve over time in the libquantum test program, where we can see a significant drop in IPC after running for a while.
 
-![IPC](./figs/before_ipc.png)
+![IPC](./figs/biweekly-98/before_ipc.png)
 
 Among the various performance counters, we found that the allocate_failure counter had a trend that was highly correlated with the IPC trend! This counter counts the number of times TAGE entry allocation failed, which should not be so high according to design expectations.
 
-![allocate_failure](./figs/before_allocate.png)
+![allocate_failure](./figs/biweekly-98/before_allocate.png)
 
 After localization, we found that there was a bug in the TAGE allocation condition, which caused existing entries to not be replaced, leading to new branches not being trained into TAGE. The specific code modification can be referred to in this [PR](https://github.com/OpenXiangShan/XiangShan/pull/5677). The IPC and allocate_failure trends after the fix are shown in the following figures.
 
-![IPC](./figs/after_ipc.png)
+![IPC](./figs/biweekly-98/after_ipc.png)
 
-![allocate_failure](./figs/after_allocate.png)
+![allocate_failure](./figs/biweekly-98/after_allocate.png)
 
 What a beautiful pair of curves! We are very grateful for the continuous attention and active feedback from this mysterious team, and we also welcome more friends who are interested in XiangShan to join us in making XiangShan better and better.
 

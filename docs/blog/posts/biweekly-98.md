@@ -22,17 +22,17 @@ categories:
 
 一天后，我们成功复现了这个问题，下图是 libquantum 测试程序中 IPC 随时间的变化曲线，可以看到 IPC 在运行一段时间后有明显的下降。
 
-![IPC](./figs/before_ipc.png)
+![IPC](./figs/biweekly-98/before_ipc.png)
 
 而在众多性能计数器中，我们发现了 allocate_failure 这个计数器，它的变化趋势竟然与 IPC 的变化趋势高度相关！这个计数器统计了TAGE表项分配失败的次数，按照设计预期不应当有这么多。
 
-![allocate_failure](./figs/before_allocate.png)
+![allocate_failure](./figs/biweekly-98/before_allocate.png)
 
 经过定位，我们发现TAGE的分配条件有误，会导致已有表项无法被替换，从而导致新的分支训练不进TAGE。具体代码修改可以参考这个 [PR](https://github.com/OpenXiangShan/XiangShan/pull/5677)。修改后的 IPC 与 allocate_failure 的趋势如下图所示。
 
-![IPC](./figs/after_ipc.png)
+![IPC](./figs/biweekly-98/after_ipc.png)
 
-![allocate_failure](./figs/after_allocate.png)
+![allocate_failure](./figs/biweekly-98/after_allocate.png)
 
 多么漂亮的两个曲线！我们非常感谢这个神秘团队的持续关注与积极反馈，也欢迎更多关注香山的朋友与我们一起将香山越做越好。
 

@@ -9,31 +9,32 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 98th issue of the biweekly report.
 
-Regarding the recent development progress of XiangShan, ~~the XiangShan team had a happy Chinese New Year holiday~~. For more details, please refer to the Recent Developments section. ~~But it's not all for nothing~~, we also prepared a little fun fact about the development of XiangShan for everyone.
+Kunminghu V2 has been taped out! We are currently conducting intensive testing, and more information will be disclosed in the future. Stay tuned!
+
+Regarding the recent development progress of XiangShan, the frontend has fixed some performance bugs in BPU, the backend has optimized the timing of some modules, and the memory subsystem continues to undergo refactoring and testing.
+
+## Frontend TAGE allocation bug localization and fix
+Not long ago, a mysterious team that has been following XiangShan's progress reported a performance bug to us. They found that when running Kunminghu V3 on FPGA, the performance of V3 was even worse than V2. After a simple investigation, we found that in the libquantum test program, the branch prediction accuracy of V3 significantly decreased as the runtime increased, leading to a drop in IPC.
+
+After receiving this feedback, we immediately started reproducing and locating the issue. ~~Actually, we initially suspected it was an environment issue, since V3 performed well in our slice performance evaluation process, but it turned out that all configurations were correct~~. This phenomenon only became significant after running for about 30 minutes on FPGA, but debugging on FPGA is limited. However, to reproduce it in a simulation environment would require at least a month. Therefore, we ultimately decided to reproduce it on Palladium, which would take about a day.
+
+After a day, we successfully reproduced the issue. The following figure shows the IPC curve over time in the libquantum test program, where we can see a significant drop in IPC after running for a while.
+
+![IPC](./figs/before_ipc.png)
+
+Among the various performance counters, we found that the allocate_failure counter had a trend that was highly correlated with the IPC trend! This counter counts the number of times TAGE entry allocation failed, which should not be so high according to design expectations.
+
+![allocate_failure](./figs/before_allocate.png)
+
+After localization, we found that there was a bug in the TAGE allocation condition, which caused existing entries to not be replaced, leading to new branches not being trained into TAGE. The specific code modification can be referred to in this [PR](https://github.com/OpenXiangShan/XiangShan/pull/5677). The IPC and allocate_failure trends after the fix are shown in the following figures.
+
+![IPC](./figs/after_ipc.png)
+
+![allocate_failure](./figs/after_allocate.png)
+
+What a beautiful pair of curves! We are very grateful for the continuous attention and active feedback from this mysterious team, and we also welcome more friends who are interested in XiangShan to join us in making XiangShan better and better.
 
 <!-- more -->
-
-## A week of fighting with verilator
-
-In the development of XiangShan, simulators are very important infrastructure. To implement the open-source philosophy, we have been using the open-source simulator verilator in the development and part of the verification work of XiangShan. Even now that we have our own simulator gsim, verilator still plays an irreplaceable role in functional verification, ~~because gsim does not support waveform dumping yet~~. In addition, during the development of gsim, verilator has always been an important reference platform to help us verify the correctness and performance of gsim.
-
-On an ordinary day, L was suddenly asked to take the blame for an assertion triggered in the frontend FTQ module. This would not be a big deal, ~~if this assert was not triggered on the master branch that has already been frozen for delivery~~. L happily opened the error waveform and after looking at it for a while, he felt something was wrong because the signal `commitStateQueueReg_42_5` miraculously did not change, which caused FTQ to make wrong judgment on commit state.
-
-![](./figs/verilator-1.png)
-
-L thought it must be the hallucination caused by taking too much blame. He pulled X to manually execute the verilog code together with him. However, unfortunately, X had the same hallucination as him, and it seemed that according to the logic of the verilog code, `commitStateQueueReg_42_5` should change from `1` to `2` after the dashed line.
-
-At this time, L and X judged that it must be a bug in verilator, but another X insisted that even if it is a bug in verilator, we should confirm it again, ~~otherwise how can we believe the verification so far is correct~~.
-
-Since XiangShan is set with the `--trace` option, verilator will not print signals that start with an underscore, such as `_GEN_350234`, in the waveform. L decided to first replace all signals like `_GEN_350234` in the FTQ module with `GEN_350234`, so that they can be seen in the waveform. After he generated the waveform again, he found that `commitStateQueueReg_42_5` miraculously changed again, from `1` to `2` at the dashed line.
-
-![](./figs/verilator-2.png)
-
-L was a bit frustrated. He replaced the `--trace` option with `--trace-underscore`, and without changing the code, printed all the underscore signals in the waveform, and found that `commitStateQueueReg_42_5` also changed correctly.
-
-![](./figs/verilator-3.png)
-
-L was completely frustrated. He did not want to look at the C++ code generated by verilator, and felt that this pot should not continue to be taken by him. He threw this problem to the verilator community and updated the verilator version. This problem did disappear, but whether it really disappeared or quietly hid deeper, let's wait until the next time we encounter it. L just felt that staring at the waveform for a week made his eyes almost blind.
 
 ## Recent Developments
 
@@ -100,24 +101,24 @@ The SPEC CPU2006 scores are as follows:
 
 | SPECint 2006 @ 3GHz | GCC15  |  XSCC  | GCC12  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  | GCC12  |
 | :------------------ | :----: | :----: | :----: | :----------------- | :----: | :----: | :----: |
-| 400.perlbench       | 47.47  | 46.45  | 43.61  | 410.bwaves         | 85.75  | 90.56  | 73.28  |
-| 401.bzip2           | 27.12  | 27.83  | 27.51  | 416.gamess         | 56.30  | 52.50  | 54.94  |
-| 403.gcc             | 50.86  | 37.33  | 51.30  | 433.milc           | 64.92  | 63.73  | 49.28  |
-| 429.mcf             | 59.70  | 54.36  | 60.69  | 434.zeusmp         | 69.45  | 63.50  | 60.37  |
-| 445.gobmk           | 35.66  | 36.59  | 37.44  | 435.gromacs        | 36.47  | 34.17  | 38.56  |
-| 456.hmmer           | 53.69  | 63.60  | 43.52  | 436.cactusADM      | 75.62  | 86.54  | 53.69  |
-| 458.sjeng           | 35.56  | 36.40  | 34.82  | 437.leslie3d       | 56.60  | 56.81  | 54.45  |
-| 462.libquantum      | 135.55 | 285.26 | 133.21 | 444.namd           | 42.30  | 44.19  | 37.42  |
-| 464.h264ref         | 62.47  | 71.27  | 63.01  | 447.dealII         | 63.89  | 67.16  | 64.28  |
-| 471.omnetpp         | 40.89  | 39.25  | 43.04  | 450.soplex         | 49.21  | 57.92  | 53.33  |
-| 473.astar           | 31.75  | 30.28  | 30.34  | 453.povray         | 72.35  | 66.59  | 61.60  |
-| 483.xalancbmk       | 74.63  | 84.92  | 80.96  | 454.Calculix       | 44.24  | 39.20  | 19.43  |
-| GEOMEAN             | 49.54  | 52.67  | 48.92  | 459.GemsFDTD       | 64.85  | 64.68  | 46.68  |
-|                     |        |        |        | 465.tonto          | 51.73  | 34.73  | 36.69  |
-|                     |        |        |        | 470.lbm            | 126.78 | 132.83 | 104.98 |
-|                     |        |        |        | 481.wrf            | 55.26  | 41.58  | 48.68  |
-|                     |        |        |        | 482.sphinx3        | 58.58  | 61.17  | 55.05  |
-|                     |        |        |        | GEOMEAN            | 60.58  | 58.50  | 50.80  |
+| 400.perlbench       | 47.62  | 46.95  | 43.70  | 410.bwaves         | 85.89  | 90.63  | 73.26  |
+| 401.bzip2           | 27.11  | 27.84  | 27.45  | 416.gamess         | 56.09  | 52.32  | 55.07  |
+| 403.gcc             | 51.16  | 37.45  | 48.58  | 433.milc           | 64.67  | 63.51  | 49.06  |
+| 429.mcf             | 59.41  | 53.82  | 58.20  | 434.zeusmp         | 69.51  | 63.50  | 60.53  |
+| 445.gobmk           | 35.73  | 36.86  | 37.72  | 435.gromacs        | 36.26  | 34.10  | 38.51  |
+| 456.hmmer           | 52.74  | 62.74  | 42.84  | 436.cactusADM      | 75.29  | 86.48  | 53.73  |
+| 458.sjeng           | 36.53  | 37.26  | 35.81  | 437.leslie3d       | 56.49  | 56.52  | 54.49  |
+| 462.libquantum      | 135.14 | 293.38 | 133.96 | 444.namd           | 42.50  | 44.39  | 37.52  |
+| 464.h264ref         | 62.14  | 70.50  | 62.67  | 447.dealII         | 63.78  | 68.00  | 65.01  |
+| 471.omnetpp         | 40.96  | 39.01  | 43.05  | 450.soplex         | 48.91  | 57.65  | 52.82  |
+| 473.astar           | 30.86  | 29.89  | 30.11  | 453.povray         | 72.61  | 66.92  | 61.73  |
+| 483.xalancbmk       | 74.28  | 83.06  | 79.61  | 454.Calculix       | 44.12  | 39.19  | 19.43  |
+| GEOMEAN             | 49.43  | 52.66  | 48.51  | 459.GemsFDTD       | 64.03  | 64.56  | 46.22  |
+|                     |        |        |        | 465.tonto          | 51.74  | 34.81  | 36.76  |
+|                     |        |        |        | 470.lbm            | 126.79 | 132.72 | 105.02 |
+|                     |        |        |        | 481.wrf            | 55.19  | 41.29  | 48.79  |
+|                     |        |        |        | 482.sphinx3        | 58.53  | 60.81  | 55.06  |
+|                     |        |        |        | GEOMEAN            | 60.46  | 58.46  | 50.81  |
 
 
 Compilation parameters are as follows:

@@ -19,29 +19,29 @@ This paper is awarded all three available badges for artifacts evaluation.
 This paper has been selected as an IEEE Micro Top Pick from the 2022 Computer Architecture Conferences.
 The updated article is published at *IEEE Micro*'s annual special issue in July/August 2023. DOI: [10.1109/MM.2023.3273562](https://doi.org/10.1109/MM.2023.3273562).
 
-![Artifacts Available](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/artifacts_available_dl.jpg)
-![Artifacts Evaluated — Functional](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/artifacts_evaluated_functional_dl.jpg)
-![Results Reproduced](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/results_reproduced_dl.jpg)
+![Artifacts Available](../figs/artifacts_available_dl.jpg)
+![Artifacts Evaluated — Functional](../figs/artifacts_evaluated_functional_dl.jpg)
+![Results Reproduced](../figs/results_reproduced_dl.jpg)
 
-[Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2022-xiangshan.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/abstract/document/9923860) | [BibTeX](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2022-xiangshan.bib) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2022-xiangshan-slides.pdf) | [Presentation Video](https://www.bilibili.com/video/BV1FB4y1j7Jy) | [IEEE Micro Top Pick](https://ieeexplore.ieee.org/document/10122479)
+[Paper PDF](https://talks-pubs.xiangshan.cc/publications/micro2022-xiangshan.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/abstract/document/9923860) | [BibTeX](https://talks-pubs.xiangshan.cc/publications/micro2022-xiangshan.bib) | [Presentation Slides](https://talks-pubs.xiangshan.cc/publications/micro2022-xiangshan-slides.pdf) | [Presentation Video](https://www.bilibili.com/video/BV1FB4y1j7Jy) | [IEEE Micro Top Pick](https://ieeexplore.ieee.org/document/10122479)
 
 ## XiangShan Open-Source High Performance RISC-V Processor Design and Implementation
 
 Published at *Journal of Computer Research and Development*, 2023, 60(3): 476-493 (in Chinese). DOI: [10.7544/issn1000-1239.202221036](https://doi.org/10.7544/issn1000-1239.202221036).
 
-[Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/jcrad2023-xiangshan.pdf) | [J-CRAD Online](https://crad.ict.ac.cn/en/article/doi/10.7544/issn1000-1239.202221036) | [Presentation Video (in Chinese)](https://crad.ict.ac.cn/news/sydt/405.htm) | [Research Highlight (in Chinese) by Jianlin Gao](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/jcrad2023-xiangshan-highlight.pdf)
+[Paper PDF](https://talks-pubs.xiangshan.cc/publications/jcrad2023-xiangshan.pdf) | [J-CRAD Online](https://crad.ict.ac.cn/en/article/doi/10.7544/issn1000-1239.202221036) | [Presentation Video (in Chinese)](https://crad.ict.ac.cn/news/sydt/405.htm) | [Research Highlight (in Chinese) by Jianlin Gao](https://talks-pubs.xiangshan.cc/publications/jcrad2023-xiangshan-highlight.pdf)
 
 ## Functional Verification for Agile Processor Development: A Case for Workflow Integration
 
 Published as a Cover Article at *Journal of Computer Science and Technology*, 2023, 38(4): 737−754. DOI: [10.1007/s11390-023-3285-8](https://doi.org/10.1007/s11390-023-3285-8).
 
-[Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/jcst2023-workflow-integration.pdf) | [JCST Website](https://jcst.ict.ac.cn/en/article/doi/10.1007/s11390-023-3285-8) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/jcst2023-workflow-integration-slides.pdf) | [Presentation Video](https://jcst.ict.ac.cn/fileJCST/attachments/mp4/ebec6bbb-e71f-4fea-b523-d09faddb2ad5.mp4) | [Perspective by Babak Falsafi](https://jcst.ict.ac.cn/en/article/doi/10.1007/s11390-023-0005-3)
+[Paper PDF](https://talks-pubs.xiangshan.cc/publications/jcst2023-workflow-integration.pdf) | [JCST Website](https://jcst.ict.ac.cn/en/article/doi/10.1007/s11390-023-3285-8) | [Presentation Slides](https://talks-pubs.xiangshan.cc/publications/jcst2023-workflow-integration-slides.pdf) | [Presentation Video](https://jcst.ict.ac.cn/fileJCST/attachments/mp4/ebec6bbb-e71f-4fea-b523-d09faddb2ad5.mp4) | [Perspective by Babak Falsafi](https://jcst.ict.ac.cn/en/article/doi/10.1007/s11390-023-0005-3)
 
 ## Structured DFT Development Approach for Chisel-Based High Performance RISC-V Processors
 
 Published at *2023 IEEE International Test Conference in Asia (ITC-Asia)*. DOI: [10.1109/ITC-Asia58802.2023.10301174](https://doi.org/10.1109/ITC-Asia58802.2023.10301174).
 
-[Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/itcasia2023-chiseldft.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/document/10301174) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/itcasia2023-chiseldft-slides.pdf)
+[Paper PDF](https://talks-pubs.xiangshan.cc/publications/itcasia2023-chiseldft.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/document/10301174) | [Presentation Slides](https://talks-pubs.xiangshan.cc/publications/itcasia2023-chiseldft-slides.pdf)
 
 ## DiffTest-H: Toward Semantic-Aware Communication in Hardware-Accelerated Processor Verification
 
@@ -51,17 +51,17 @@ Our paper introduces DiffTest-H, a hardware-accelerated co-simulation framework 
 It covers several optimizations to minimize communication overhead while preserving instruction-level debuggability.
 This framework is open-sourced and deployed in the XiangShan verification flow, receiving all three available badges for artifact evaluation.
 
-![Artifacts Available](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/artifacts_available_dl.jpg)
-![Artifacts Evaluated — Functional](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/artifacts_evaluated_functional_dl.jpg)
-![Results Reproduced](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/results_reproduced_dl.jpg)
+![Artifacts Available](https://talks-pubs.xiangshan.cc/publications/images/artifacts_available_dl.jpg)
+![Artifacts Evaluated — Functional](https://talks-pubs.xiangshan.cc/publications/images/artifacts_evaluated_functional_dl.jpg)
+![Results Reproduced](https://talks-pubs.xiangshan.cc/publications/images/results_reproduced_dl.jpg)
 
-[Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2025-DiffTestH.pdf) | [ACM Digital Library](https://dl.acm.org/doi/10.1145/3725843.3756108) | [BibTeX](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2025-DiffTestH.bib) | [Presentation Slides](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2025-DiffTestH-slides.pdf)
+[Paper PDF](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH.pdf) | [ACM Digital Library](https://dl.acm.org/doi/10.1145/3725843.3756108) | [BibTeX](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH.bib) | [Presentation Slides](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH-slides.pdf)
 
 ## GSIM: Accelerating RTL Simulation for Large-Scale Designs
 
 Published at *the 62nd Annual ACM/IEEE Design Automation Conference(DAC 2025)*. DOI: [10.1109/DAC63849.2025.11133142](https://doi.org/10.1109/DAC63849.2025.11133142)
 
-[Paper PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/dac2025-GSIM.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/document/11133142)
+[Paper PDF](https://talks-pubs.xiangshan.cc/publications/dac2025-GSIM.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/document/11133142)
 
 ## Research on XiangShan
 

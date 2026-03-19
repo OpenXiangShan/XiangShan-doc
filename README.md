@@ -1,20 +1,24 @@
 # XiangShan-doc
-Documentation for XiangShan
 
-这是香山的官方文档仓库。
+This is the repository of [XiangShan Document Site docs.xiangshan.cc](https://docs.xiangshan.cc).
 
-* 香山微结构文档已托管到 ReadTheDocs 平台，欢迎访问 https://xiangshan-doc.readthedocs.io
+这是 [香山文档网站 docs.xiangshan.cc](https://docs.xiangshan.cc) 的源码仓库。
 
-* slides 目录下存放了我们的技术汇报，包括 2021 RISC-V 中国峰会的报告等内容
+**NOTE: Our technical report has been moved to the [Talks-and-Publications](https://github.com/OpenXiangShan/Talks-and-Publications) repository.**
 
+**提示：我们的技术报告已迁移到 [Talks-and-Publications](https://github.com/OpenXiangShan/Talks-and-Publications) 仓库。**
 
+## 参与贡献 Contribution
+
+Please refer to our [Documentation Contribution Guidelines](https://docs.xiangshan.cc/zh-cn/latest/contribution/documentation/).
+
+请参阅我们的 [文档贡献指南](https://docs.xiangshan.cc/zh-cn/latest/contribution/documentation/)。
 
 ## 联系我们 Contact us
 
 邮件列表：xiangshan-all AT ict DOT ac DOT cn
 
 Mailing list: xiangshan-all AT ict DOT ac DOT cn
-
 
 
 ## 关注我们
@@ -28,22 +32,9 @@ Mailing list: xiangshan-all AT ict DOT ac DOT cn
 - **微博：[香山开源处理器](https://weibo.com/u/7706264932)**
 
 
-
-## Translations needed
-
-We need to translate most of the documentations to English and other languages. Contributions welcomed!
-
-
-
-## 实习生计划 Interns
-
-欢迎加入开源英才实习生计划（长期有效），具体内容请点击此[链接](articles/开源英才实习生计划.pdf)。
-
-
-
 ## 香山是什么？
 
-2019 年，在中国科学院支持下，**由[中国科学院计算技术研究所](http://www.ict.ac.cn/)牵头发起“香山”高性能开源 RISC-V 处理器项目**，研发出目前国际上性能最高的开源高性能RISC-V处理器核“香山”，在全球最大的开源项目托管平台 GitHub 上获得超过 2500 个星标（Star），形成超过 277 个分支（Fork），成为国际上最受关注的开源硬件项目之一，得到国内外企业的积极支持——16 家企业联合发起开源芯片创新联合体，围绕“香山”进一步联合开发，形成示范应用，加速 RISC-V 生态建设。
+2019 年，在中国科学院支持下，**由[中国科学院计算技术研究所](http://www.ict.ac.cn/)牵头发起“香山”高性能开源 RISC-V 处理器项目**，研发出目前国际上性能最高的开源高性能 RISC-V 处理器核“香山”，在全球最大的开源项目托管平台 GitHub 上获得超过 2500 个星标（Star），形成超过 277 个分支（Fork），成为国际上最受关注的开源硬件项目之一，得到国内外企业的积极支持——16 家企业联合发起开源芯片创新联合体，围绕“香山”进一步联合开发，形成示范应用，加速 RISC-V 生态建设。
 
 我们的目标是成为**面向世界的体系结构创新开源平台**，服务于工业界、学术界、个人爱好者等的体系结构研究需求。此外，我们希望在香山的开发过程中，**探索高性能处理器的敏捷开发流程**，建立一套基于开源工具的高性能处理器设计、实现、验证流程，大幅提高处理器开发效率、降低处理器开发门槛。
 

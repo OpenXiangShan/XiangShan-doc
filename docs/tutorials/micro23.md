@@ -12,10 +12,10 @@ We have uploaded the tutorial slides. Thank all the attendees and see you next y
 
 | Time | Topic | Slides |
 | ---- | ----- | ------ |
-| 1:00 PM - 1:25 PM | Introduction of the XiangShan Project | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20231028-MICRO23-1-Introduction-XiangShan.pdf) |
-| 1:25 PM - 1:35 PM | Tutorial Overview and Highlights | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20231028-MICRO23-2-Tutorial-Overview.pdf) |
-| 1:35 PM - 2:00 PM | Microarchitecture Design and Implementation | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20231028-MICRO23-3-Microarchitecture.pdf) |
-| 2:30 PM - 3:00 PM | Hands-on Development & Discussions | [PDF](https://github.com/OpenXiangShan/XiangShan-doc/raw/main/tutorial/20231028-MICRO23-4-Dev-Tools.pdf) |
+| 1:00 PM - 1:25 PM | Introduction of the XiangShan Project | [PDF](https://talks-pubs.xiangshan.cc/tutorial/20231028-MICRO23-1-Introduction-XiangShan.pdf) |
+| 1:25 PM - 1:35 PM | Tutorial Overview and Highlights | [PDF](https://talks-pubs.xiangshan.cc/tutorial/20231028-MICRO23-2-Tutorial-Overview.pdf) |
+| 1:35 PM - 2:00 PM | Microarchitecture Design and Implementation | [PDF](https://talks-pubs.xiangshan.cc/tutorial/20231028-MICRO23-3-Microarchitecture.pdf) |
+| 2:30 PM - 3:00 PM | Hands-on Development & Discussions | [PDF](https://talks-pubs.xiangshan.cc/tutorial/20231028-MICRO23-4-Dev-Tools.pdf) |
 | | Coffee Break | |
 | 3:30 PM - 4:00 PM | Hands-on Development & Discussions (Cont.) | |
 

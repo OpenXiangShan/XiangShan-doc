@@ -9,7 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 98th issue of the biweekly report.
 
-Kunminghu V2 has been taped out! We are currently conducting intensive testing, and more information will be disclosed in the future. Stay tuned!
+Kunminghu V2 has been returned from the fab! We are currently conducting intensive testing, and more information will be disclosed in the future. Stay tuned!
 
 Regarding the recent development progress of XiangShan, the frontend has fixed some performance bugs in BPU, the backend has optimized the timing of some modules, and the memory subsystem continues to undergo refactoring and testing.
 

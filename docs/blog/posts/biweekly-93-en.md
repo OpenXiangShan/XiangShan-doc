@@ -11,7 +11,7 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 This is the first issue of the biweekly report in 2026! In the past year of 2025, the XiangShan team has made solid progress and achieved multiple important milestones with high quality:
 
-- First industrial application. The second-generation XiangShan Nanhu has been integrated as the main control CPU into the latest generation chips by Moore Threads and Chipown Technology, with Moore Threads shipping tens of thousands of units; the third-generation XiangShan Kunminghu has completed product-level delivery for the first batch of SoC chips, with two companies completing SoC chip tape-out in October and November respectively, and will have tape-in in Q1 2026.
+- First industrial application. The second-generation XiangShan Nanhu has been integrated as the main control CPU into the latest generation chips by Moore Threads and Chipown Technology, with Moore Threads shipping tens of thousands of units; the third-generation XiangShan Kunminghu has completed product-level delivery for the first batch of SoC chips, with two companies completing SoC chip tape-out in October and November respectively, and will receive in Q1 2026.
 - Won the first Open Source Contribution Award from the CCF Architecture Committee of the China Computer Federation
 - The "XiangShan" open-source processor core was selected as one of the representative scientific research achievements of the Chinese Academy of Sciences in 2025 and was included in the New Year message of CAS President Hou Jianguo
 - Presented tutorials at top conferences such as ISCA, HPCA, MICRO, introducing the latest progress of XiangShan to the world

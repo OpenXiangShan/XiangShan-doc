@@ -42,20 +42,13 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 支持 UTAGE 以分支粒度进行预测（[#5513](https://github.com/OpenXiangShan/XiangShan/pull/5513)）
-  - 支持设置 SC 阈值范围（[#5632](https://github.com/OpenXiangShan/XiangShan/pull/5632)）
-  - 实现 SC IMLI 表（[#5671](https://github.com/OpenXiangShan/XiangShan/pull/5671)）
+  - 实现 SC Backward 表（[#5528](https://github.com/OpenXiangShan/XiangShan/pull/5528)）
 - Bug 修复
-  - 修复 MBTB 中 baseTable 在正确预测时饱和计数器未更新的问题（[#5602](https://github.com/OpenXiangShan/XiangShan/pull/5602)）
-  - 修复历史信息寄存器在遇到 s3 override 的处理逻辑（[#5625](https://github.com/OpenXiangShan/XiangShan/pull/5625)）
-  - 修复 TAGE 表项分配逻辑，解决持续运行一段时间后分配失败率飙升的问题（[#5677](https://github.com/OpenXiangShan/XiangShan/pull/5677)）
-- 时序/面积优化
-  - 修复 SC 训练逻辑时序（[#5648](https://github.com/OpenXiangShan/XiangShan/pull/5648)）
+  - （V2）修复 IFU 处理 MMIO 空间取指，取指地址+32B 跨过页边界，仅后一页出现异常时，向后端发送全0指令的问题（[#5687](https://github.com/OpenXiangShan/XiangShan/pull/5687)）
 - 代码质量
-  - 修复 MBTB 编译期日志 cfiPosition 位宽显示错误的问题，不影响实际 RTL 功能（[#5638](https://github.com/OpenXiangShan/XiangShan/pull/5638)）
-  - 修复 MBTB 编译期 warning（[#5543](https://github.com/OpenXiangShan/XiangShan/pull/5543)）
+  - 重构分支历史寄存器（[#5528](https://github.com/OpenXiangShan/XiangShan/pull/5528)）
 - 调试工具
-  - 重构预测来源性能计数器（[#5639](https://github.com/OpenXiangShan/XiangShan/pull/5639)）
+  - 修复 Utility 中性能计数器编译问题（[#5740](https://github.com/OpenXiangShan/XiangShan/pull/5740)）
 
 ### 后端
 

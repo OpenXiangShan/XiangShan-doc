@@ -59,15 +59,12 @@ categories:
 
 ### 后端
 
-- RTL 新特性
-  - (V2) 添加 hartIDDmodeWidth 以选择 debug mode 可读的 mhartid 位数（[#5627](https://github.com/OpenXiangShan/XiangShan/pull/5627)）
 - Bug 修复
-  - 修复 v0 在 vldMergeUnit 中的数据输出问题（[#5675](https://github.com/OpenXiangShan/XiangShan/pull/5675)）
+  - 修复 commitInstrBranch 并添加 branch_jump 性能计数器（[#5705](https://github.com/OpenXiangShan/XiangShan/pull/#5705)）
 - 时序优化
-  - 减少 BJU IssueQueue 的大小，修复 IssueQueue 的 ready 时序，修复 interrupt 选择的时序（[#5636](https://github.com/OpenXiangShan/XiangShan/pull/5636)）
-  - 将 RatWrapper 从 RegRename 中移到 Rename 中以检查 Rename 时序（[#5637](https://github.com/OpenXiangShan/XiangShan/pull/5637)）
+  - 移除从 commonOutBundle 引出的的 dataSource 信号，去除冗余依赖（[#5704](https://github.com/OpenXiangShan/XiangShan/pull/#5704)）
 - 代码质量
-  - 改善包含 Issue 部分在内的多处代码质量问题（[#5652](https://github.com/OpenXiangShan/XiangShan/pull/5652)）
+  - 移除 CSR 单元内的无用寄存器（[#5681](https://github.com/OpenXiangShan/XiangShan/pull/#5681)）
 
 ### 访存与缓存
 

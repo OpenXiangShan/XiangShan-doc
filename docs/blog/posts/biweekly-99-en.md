@@ -61,13 +61,18 @@ What a beautiful pair of curves! We are very grateful for the continuous attenti
 
 - RTL new features
   - (V2) Add hartIDDmodeWidth to select readable mhartid bits under debug mode ([#5627](https://github.com/OpenXiangShan/XiangShan/pull/5627))
-- Bug fixes
   - Fix the data output of v0 in vldMergeUnit ([#5675](https://github.com/OpenXiangShan/XiangShan/pull/5675))
-- Timing optimization
   - Reduce bju IssueQueue's size, fix IssueQueue's ready timing, fix timing of interrupt selection ([#5636](https://github.com/OpenXiangShan/XiangShan/pull/5636))
   - Move RatWrapper to Rename to check Rename timing ([#5637](https://github.com/OpenXiangShan/XiangShan/pull/5637))
 - Code quality
   - Improve multiple code quality issues including the Issue section ([#5652](https://github.com/OpenXiangShan/XiangShan/pull/5652))
+
+- Bug fixes
+  - Fix commitInstrBranch and add branch_jump performance counter（[#5705](https://github.com/OpenXiangShan/XiangShan/pull/#5705)）
+- Timing optimization
+  - Remove dataSource signal from commonOutBundle toRremove redundant dependencies（[#5704](https://github.com/OpenXiangShan/XiangShan/pull/#5704)）
+- Code quality
+  - Remove useless registers inside CSR（[#5681](https://github.com/OpenXiangShan/XiangShan/pull/#5681)）
 
 ### MemBlock and Cache
 

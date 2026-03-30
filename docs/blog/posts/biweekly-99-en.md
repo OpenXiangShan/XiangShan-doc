@@ -77,15 +77,16 @@ What a beautiful pair of curves! We are very grateful for the continuous attenti
 ### MemBlock and Cache
 
 - RTL new features
-  - The refactoring and testing of MMU, LoadUnit, StoreQueue, L2, etc. is ongoing
-  - Increase mmioBridgeSize to 16 for better NC perf ([CoupledL2 #475](https://github.com/OpenXiangShan/CoupledL2/pull/475))
+  - Refactoring and testing of MMU, L2, and other modules are continuously progressing
+  - Merge the new LoadUnit and StoreQueue into mainline and fix several related issues ([#5548](https://github.com/OpenXiangShan/XiangShan/pull/5548))
 - Bug fixes
-  - Sync V2 changes to V3
-  - Hold LikelyShared on retried writes in CoupledL2 ([CoupledL2 #474](https://github.com/OpenXiangShan/CoupledL2/pull/474))
+  - (V2) Fix the issue where Store MMIO does not mark ROB ([#5640](https://github.com/OpenXiangShan/XiangShan/pull/5640))
+  - (V2) Fix the revoke logic of MisalignBuffer ([#5674](https://github.com/OpenXiangShan/XiangShan/pull/5674))
+  - (V2) Fix the forward order hazard in Uncache module when mem_acquire is not fired ([#5630](https://github.com/OpenXiangShan/XiangShan/pull/5630))
+  - (V2) Use a separate signal in L1Prefetcher to RegEnable PC ([#5720](https://github.com/OpenXiangShan/XiangShan/pull/5720))
+  - Fix the exception type raised for misaligned accesses to MMIO regions ([#5700](https://github.com/OpenXiangShan/XiangShan/pull/5700))
 - Timing fixes
-  - Generate gpaddr by bitwise-Or instead of adder ([#5644](https://github.com/OpenXiangShan/XiangShan/pull/5644))
-- Performance fixes refactoring
-  - Restore performance considering async depth is 4 ([CoupledL2 #472](https://github.com/OpenXiangShan/CoupledL2/pull/472))
+  - Fix several MemBlock timing issues ([#5697](https://github.com/OpenXiangShan/XiangShan/pull/5697))
 
 ## Performance Evaluation
 

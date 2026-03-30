@@ -69,15 +69,16 @@ categories:
 ### 访存与缓存
 
 - RTL 新特性
-  - MMU、LoadUnit、StoreQueue、L2 等模块重构与测试持续推进中
-  - 将 mmioBridgeSize 调整到 16 以提升 NC 性能（[CoupledL2 #475](https://github.com/OpenXiangShan/CoupledL2/pull/475)）
+  - MMU、L2 等模块重构与测试持续推进中
+  - 新版 LoadUnit 与 StoreQueue 合入主线并修复若干相关的问题（[#5548](https://github.com/OpenXiangShan/XiangShan/pull/5548)）
 - Bug 修复
-  - 将部分 V2 的改动同步到 V3
-  - CoupledL2 在重新写回时保持 LikelyShared（[CoupledL2 #474](https://github.com/OpenXiangShan/CoupledL2/pull/474)）
+  - （V2）修复了 Store MMIO 没有标记 Rob 的问题（[#5640](https://github.com/OpenXiangShan/XiangShan/pull/5640)）
+  - （V2）修复了 MisalignBuffer 的撤销逻辑（[#5674](https://github.com/OpenXiangShan/XiangShan/pull/5674)）
+  - （V2）修复了 Uncache 模块中 mem_acquire 未触发时的前递顺序冒险问题（[#5630](https://github.com/OpenXiangShan/XiangShan/pull/5630)）
+  - （V2）在 L1Prefetcher 中使用单独的信号来控制 RegEnable PC（[#5720](https://github.com/OpenXiangShan/XiangShan/pull/5720)）
+  - 修复了非对齐访问 MMIO 区域时发出的异常类型（[#5700](https://github.com/OpenXiangShan/XiangShan/pull/5700)）
 - 时序修复
-  - 通过或操作而非加法生成 gpaddr（[#5644](https://github.com/OpenXiangShan/XiangShan/pull/5644)）
-- 性能修复
-  - 修复异步桥深度为 4 时的性能（[CoupledL2 #472](https://github.com/OpenXiangShan/CoupledL2/pull/472)）
+  - 修复了 MemBlock 若干时序问题（[#5697](https://github.com/OpenXiangShan/XiangShan/pull/5697)）
 
 ## 性能评估
 

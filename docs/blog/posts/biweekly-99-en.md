@@ -21,6 +21,10 @@ In addition, the next-generation "KunMingHu" joint development plan was official
 
 ![Group photo of the launch of the joint development plan](./figs/biweekly-99/collab.jpg)
 
+We also prepared an exclusive benefit for readers of the biweekly report, showing the V100 installed in a server~
+
+![V100 Server](./figs/biweekly-99/server.jpg)
+
 Regarding the recent development progress of XiangShan, the frontend has fixed some performance bugs in BPU, the backend has optimized the timing of some modules, and the memory subsystem continues to refactor and test modules.
 
 <!-- more -->

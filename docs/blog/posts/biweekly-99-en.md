@@ -13,7 +13,7 @@ On March 26th, "XiangShan" + "Ruyi" were officially released at the ZGC Forum An
 
 ![Ruyi ecosystem diagram, provided by ISCAS](./figs/biweekly-99/ruyi.jpg)
 
-In terms of XiangShan, this release includes the "KunMingHu" processor core, the world's first open-source on-chip interconnect network for data centers "WenYuHe", and the first terminal open-source on-chip interconnect IP "ZhuJiang". The V100 server chip based on the "KunMingHu" processor core, which was exhibited at the conference, was designed and taped out by our partner SpacemiT. The measured single-core performance reaches a score of 16/GHz in SPEC2006, making it the world's first open-source processor core that fully supports the RVA23 profile and has the highest single-core performance.
+In terms of XiangShan, this release includes the "KunMingHu" processor core, the world's first open-source on-chip interconnect network for data centers "WenYuHe", and the first terminal open-source on-chip interconnect IP "ZhuJiang". The V100 server chip based on the "KunMingHu" processor core, which was exhibited at the conference, was designed and taped out by our partner SpacemiT. The measured single-core performance reaches a score of 16.5/GHz in SPEC2006, making it the world's first open-source processor core that fully supports the RVA23 profile and has the highest single-core performance.
 
 ![The V100 processor exhibited on site, photo by XianDong Zhu](./figs/biweekly-99/v100.jpg)
 

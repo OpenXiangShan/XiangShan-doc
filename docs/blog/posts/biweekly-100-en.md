@@ -9,23 +9,9 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 100th issue of the biweekly report.
 
-On March 26th, "XiangShan" + "Ruyi" were officially released at the ZGC Forum Annual Conference! Readers of the biweekly report are probably already familiar with XiangShan, so we won't go into details here. Ruyi (openRuyi) is a RISC-V native operating system jointly developed by the Institute of Software, Chinese Academy of Sciences and the Ruyi community. During the development process, it closely collaborates with the XiangShan team to achieve deep adaptation and optimization for XiangShan's open-source high-performance RISC-V processors. This kind of software-hardware co-design is a key step in building the RISC-V ecosystem and is one of the core competitive advantages of the "XiangShan + Ruyi" open-source community. We hope to work together with the entire community to promote software-hardware co-innovation and build an open, inclusive, and prosperous RISC-V ecosystem.
+Starting with this issue, the biweekly will also report on progress for [XiangShan AI (XSAI)](https://github.com/OpenXiangShan/XSAI). XSAI is a unified general-purpose-and-inference AI processor implemented on the open-source, high-performance RISC-V XiangShan processor; the approach was presented at the 2025 RISC-V China Summit. XSAI is the XiangShan team’s exploration of unified general-purpose-and-inference AI chips on top of its existing RISC-V CPU ecosystem, and a practical application of XiangShan’s agile development methodology. The Beijing Institute of Open Source Chip, together with the Microprocessor Research Center and the Advanced Computer Systems Research Center at the Institute of Computing Technology, Chinese Academy of Sciences, jointly participate in XSAI development. In 2026, XSAI will gradually release instruction extension manuals, architecture documentation, and user manuals, open-source the development toolchain, and add material on the XSAI unified general-and-inference processor to the XiangShan tutorial series.
 
-![Ruyi ecosystem diagram, provided by ISCAS](./figs/biweekly-99/ruyi.jpg)
-
-In terms of XiangShan, this release includes the "KunMingHu" processor core, the world's first open-source on-chip interconnect network for data centers "WenYuHe", and the first terminal open-source on-chip interconnect IP "ZhuJiang". The V100 server chip based on the "KunMingHu" processor core, which was exhibited at the conference, was designed and taped out by our partner SpacemiT. The measured single-core performance reaches a score of 16.5/GHz in SPEC2006, making it the world's first open-source processor core that fully supports the RVA23 profile and has the highest single-core performance.
-
-![The V100 processor exhibited on site, photo by XianDong Zhu](./figs/biweekly-99/v100.jpg)
-
-In addition, the next-generation "KunMingHu" joint development plan was officially launched at the conference. We will work together with the Institute of Computing Technology, Institute of Software, Institute of Information Engineering, CAS, as well as industry and research units such as SpacemiT, ESWIN Computing, Tencent, Lirui Microelectronics, China Mobile, China Telecom, Alibaba DAMO Academy, Moore Threads, SOPHGO, and Lanxin Computing to promote the industrialization of XiangShan's core technologies and further enhance the competitiveness of the XiangShan series in the high-performance computing field. We strive to build an innovative base for high-performance RISC-V chips to support enterprises in developing more competitive products.
-
-![Group photo of the launch of the joint development plan](./figs/biweekly-99/collab.jpg)
-
-We also prepared an exclusive benefit for readers of the biweekly report, showing the V100 installed in a server~
-
-![V100 Server](./figs/biweekly-99/server.jpg)
-
-Regarding the recent development progress of XiangShan, the frontend has fixed some performance bugs in BPU, the backend has optimized the timing of some modules, and the memory subsystem continues to refactor and test modules.
+XSAI is currently developed on Kunming Lake V2R2, under the name Kunming Lake V2R2A. The final V2R2A will add bf16/fp8 vector extensions and bf16/fp8/int8 matrix extensions on top of V2R2, together with high-bandwidth L2 cache, for demonstration purposes. The XSAI group has recently run preliminary tests aimed at validating XSAI’s general-purpose and AI compute capabilities. This issue reports those test results to readers of the biweekly.
 
 <!-- more -->
 
@@ -76,6 +62,41 @@ Regarding the recent development progress of XiangShan, the frontend has fixed s
   - Fix the exception type raised for misaligned accesses to MMIO regions ([#5700](https://github.com/OpenXiangShan/XiangShan/pull/5700))
 - Timing fixes
   - Fix several MemBlock timing issues ([#5697](https://github.com/OpenXiangShan/XiangShan/pull/5697))
+
+### XSAI
+
+We used SPEC CPU 2006 to evaluate XSAI’s general-purpose compute capability. The checkpoints, processor parameters, and SoC parameters for this run match those in XiangShan Biweekly 91.
+
+| SPECint 2006 est. | V2R2A@3GHz | V2R2@3GHz | SPECfp 2006 est. | V2R2A@3GHz | V2R2@3GHz |
+| :---------------- | :--------: | :-------: | :--------------- | :--------: | :-------: |
+| 400.perlbench     |   36.03    |   36.18   | 410.bwaves       |   67.35    |   66.73   |
+| 401.bzip2         |   25.75    |   25.46   | 416.gamess       |   40.61    |   40.99   |
+| 403.gcc           |   48.15    |   48.00   | 433.milc         |   44.38    |   45.12   |
+| 429.mcf           |   63.26    |   60.63   | 434.zeusmp       |   51.65    |   51.61   |
+| 445.gobmk         |   30.30    |   30.32   | 435.gromacs      |   33.50    |   33.60   |
+| 456.hmmer         |   41.35    |   41.62   | 436.cactusADM    |   46.06    |   46.19   |
+| 458.sjeng         |   30.25    |   30.24   | 437.leslie3d     |   48.31    |   47.97   |
+| 462.libquantum    |   126.54   |  122.43   | 444.namd         |   28.82    |   28.86   |
+| 464.h264ref       |   56.49    |   56.58   | 447.dealII       |   73.37    |   73.55   |
+| 471.omnetpp       |   42.32    |   41.77   | 450.soplex       |   52.85    |   52.50   |
+| 473.astar         |   29.23    |   29.19   | 453.povray       |   53.05    |   53.46   |
+| 483.xalancbmk     |   71.39    |   72.84   | 454.Calculix     |   16.35    |   16.37   |
+| GEOMEAN           |   44.92    |   44.66   | 459.GemsFDTD     |   38.31    |   38.60   |
+|                   |            |           | 465.tonto        |   36.65    |   36.66   |
+|                   |            |           | 470.lbm          |   91.30    |   91.94   |
+|                   |            |           | 481.wrf          |   40.25    |   40.70   |
+|                   |            |           | 482.sphinx3      |   48.88    |   49.13   |
+|                   |            |           | GEOMEAN          |   44.72    |   44.85   |
+
+Note: We use SimPoint to sample the programs and create checkpoint images based on our custom checkpoint format, with a SimPoint clustering coverage of 100%. The above scores are estimates based on program segments, not full SPEC CPU2006 evaluations, and may differ from actual chip performance.
+
+> **Takeaway:** The 3GHz V2R2A frequency is only a simulation setting, chosen to match V2R2 simulation and check that XSAI changes do not cause large performance regressions. We expect XSAI silicon to run below 3GHz. For general-purpose workloads, differences mainly come from the high-bandwidth L2 design and changes to the cache replacement policy. Overall, these results suggest XSAI’s changes do not materially affect XiangShan’s baseline general-purpose behavior or performance.
+
+For AI inference, we ran Llama-2 15M on an XCVU19p FPGA using a trimmed V2R2A. XSAI ran at 50MHz, matrix int8 throughput is 4 TOPS/GHz, memory DDR4-2400 MHz. Measured Prefill and Decode throughput were 343.61 tok/s and 36.24 tok/s respectively; outputs matched expectations.
+
+![XSAI FPGA test](./figs/biweekly-100/XSAI-fpga.png)
+
+> **Takeaway:** Memory frequency is close to what we expect post-silicon, but the XSAI clock is far below silicon targets—so in that sense the results are optimistic. Conversely, V2R2A was heavily trimmed to fit XCVU19p, which hurts performance—so in that sense the results are pessimistic. Treat this as a functional prototype only: it shows XSAI can support large-model inference in principle.
 
 ## Performance Evaluation
 

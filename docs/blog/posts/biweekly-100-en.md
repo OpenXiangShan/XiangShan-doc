@@ -51,17 +51,20 @@ XSAI is currently developed on Kunming Lake V2R2, under the name Kunming Lake V2
 
 ### MemBlock and Cache
 
-- RTL new features
+- RTL New Features
   - Refactoring and testing of MMU, L2, and other modules are continuously progressing
-  - Merge the new LoadUnit and StoreQueue into mainline and fix several related issues ([#5548](https://github.com/OpenXiangShan/XiangShan/pull/5548))
-- Bug fixes
-  - (V2) Fix the issue where Store MMIO does not mark ROB ([#5640](https://github.com/OpenXiangShan/XiangShan/pull/5640))
-  - (V2) Fix the revoke logic of MisalignBuffer ([#5674](https://github.com/OpenXiangShan/XiangShan/pull/5674))
-  - (V2) Fix the forward order hazard in Uncache module when mem_acquire is not fired ([#5630](https://github.com/OpenXiangShan/XiangShan/pull/5630))
-  - (V2) Use a separate signal in L1Prefetcher to RegEnable PC ([#5720](https://github.com/OpenXiangShan/XiangShan/pull/5720))
-  - Fix the exception type raised for misaligned accesses to MMIO regions ([#5700](https://github.com/OpenXiangShan/XiangShan/pull/5700))
-- Timing fixes
-  - Fix several MemBlock timing issues ([#5697](https://github.com/OpenXiangShan/XiangShan/pull/5697))
+  - Optimize the Stream prefetcher by enabling decr mode and improving the training strategy ([#5691](https://github.com/OpenXiangShan/XiangShan/pull/5691))
+  - Modify the interface of the TL2CHICoupledL2 top-level module by changing io_cpu_halt to io_cpu_wfi ([CoupledL2 #482](https://github.com/OpenXiangShan/CoupledL2/pull/482))
+  - Add NextLine prefetcher ([CoupledL2 #477](https://github.com/OpenXiangShan/CoupledL2/pull/477))
+- Bug Fixes
+  - Fix the issue of deqPtr moving too early in the StoreQueue ([#5748](https://github.com/OpenXiangShan/XiangShan/pull/5748))
+  - Fix the issue with pbmt and hypervisor accessing device regions ([#5751](https://github.com/OpenXiangShan/XiangShan/pull/5751))
+  - Fix the issue of unalignedHead getting stuck during replay ([#5783](https://github.com/OpenXiangShan/XiangShan/pull/5783))
+- Code quality
+  - Refactor the related Bundles of storeEvent ([#5763](https://github.com/OpenXiangShan/XiangShan/pull/5763))
+  - Refactor the dependency relationship between CoupledL2, OpenLLC, and HuanCun repositories. In progress
+- Timing Fixes
+  - Fix the timing issue of StoreQueue ([#5698](https://github.com/OpenXiangShan/XiangShan/pull/5698))
 
 ### XSAI
 

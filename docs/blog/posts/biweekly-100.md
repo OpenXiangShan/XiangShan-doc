@@ -53,15 +53,18 @@ categories:
 
 - RTL 新特性
   - MMU、L2 等模块重构与测试持续推进中
-  - 新版 LoadUnit 与 StoreQueue 合入主线并修复若干相关的问题（[#5548](https://github.com/OpenXiangShan/XiangShan/pull/5548)）
+  - 优化了 Stream 预取器，启用了 decr 模式并优化了训练策略（[#5691](https://github.com/OpenXiangShan/XiangShan/pull/5691)）
+  - 修改了 TL2CHICoupledL2 顶层模块的接口，将 io_cpu_halt 改为 io_cpu_wfi（[CoupledL2 #482](https://github.com/OpenXiangShan/CoupledL2/pull/482)）
+  - 新增了 NextLine 预取器（[CoupledL2 #477](https://github.com/OpenXiangShan/CoupledL2/pull/477)）
 - Bug 修复
-  - （V2）修复了 Store MMIO 没有标记 Rob 的问题（[#5640](https://github.com/OpenXiangShan/XiangShan/pull/5640)）
-  - （V2）修复了 MisalignBuffer 的撤销逻辑（[#5674](https://github.com/OpenXiangShan/XiangShan/pull/5674)）
-  - （V2）修复了 Uncache 模块中 mem_acquire 未触发时的前递顺序冒险问题（[#5630](https://github.com/OpenXiangShan/XiangShan/pull/5630)）
-  - （V2）在 L1Prefetcher 中使用单独的信号来控制 RegEnable PC（[#5720](https://github.com/OpenXiangShan/XiangShan/pull/5720)）
-  - 修复了非对齐访问 MMIO 区域时发出的异常类型（[#5700](https://github.com/OpenXiangShan/XiangShan/pull/5700)）
+  - 修复了 StoreQueue 中 deqPtr 过早移动的问题（[#5748](https://github.com/OpenXiangShan/XiangShan/pull/5748)）
+  - 修复了 pbmt 与 hypervisor 访问设备区域时的一些问题（[#5751](https://github.com/OpenXiangShan/XiangShan/pull/5751)）
+  - 修复了 unalignedHead 重发时卡死的问题（[#5783](https://github.com/OpenXiangShan/XiangShan/pull/5783)）
+- 代码质量
+  - 重构了 storeEvent 的相关 Bundle（[#5763](https://github.com/OpenXiangShan/XiangShan/pull/5763)）
+  - 重构 CoupledL2，OpenLLC，HuanCun 仓库之间的依赖关系。进行中
 - 时序修复
-  - 修复了 MemBlock 若干时序问题（[#5697](https://github.com/OpenXiangShan/XiangShan/pull/5697)）
+  - 修复了 StoreQueue 的时序问题（[#5698](https://github.com/OpenXiangShan/XiangShan/pull/5698)）
 
 ### XSAI
 

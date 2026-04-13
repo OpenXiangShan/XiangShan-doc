@@ -50,18 +50,18 @@ Regarding the recent development progress of XiangShan, the frontend has fixed s
 ### Backend
 
 - RTL New Features
-- Increased the size of the integer RegCache to 24 to support a 6-ALU configuration ([#5613](https://github.com/OpenXiangShan/XiangShan/pull/#5613))
-- Modified `vsetvl x0, x0` to ensure that reserved cases behave consistently with Spike ([#5744](https://github.com/OpenXiangShan/XiangShan/pull/#5744))
+- Increased the size of the integer RegCache to 24 to support a 6-ALU configuration ([#5613](https://github.com/OpenXiangShan/XiangShan/pull/5613))
+- Modified `vsetvl x0, x0` to ensure that reserved cases behave consistently with Spike ([#5744](https://github.com/OpenXiangShan/XiangShan/pull/5744))
 - Bug Fixes
-- Preserved `dpc` during debug re-entry following a critical error ([#5730](https://github.com/OpenXiangShan/XiangShan/pull/#5730))
-- Synchronized fixes for debug-related bugs in V2 ([#5754](https://github.com/OpenXiangShan/XiangShan/pull/#5754))
-- Fixed issues related to `Mcontrol6`/`Tdata1` ([#5722](https://github.com/OpenXiangShan/XiangShan/pull/#5722))
-- Fixed `mis_pred` and `total_flush` metrics within the TopDown analysis ([#5762](https://github.com/OpenXiangShan/XiangShan/pull/#5762))
-- Fixed the driver for `psrcVl` in the Bypass stage, changing it to `pdestVl` ([#5743](https://github.com/OpenXiangShan/XiangShan/pull/#5743))
+- Preserved `dpc` during debug re-entry following a critical error ([#5730](https://github.com/OpenXiangShan/XiangShan/pull/5730))
+- Synchronized fixes for debug-related bugs in V2 ([#5754](https://github.com/OpenXiangShan/XiangShan/pull/5754))
+- Fixed issues related to `Mcontrol6`/`Tdata1` ([#5722](https://github.com/OpenXiangShan/XiangShan/pull/5722))
+- Fixed `mis_pred` and `total_flush` metrics within the TopDown analysis ([#5762](https://github.com/OpenXiangShan/XiangShan/pull/5762))
+- Fixed the driver for `psrcVl` in the Bypass stage, changing it to `pdestVl` ([#5743](https://github.com/OpenXiangShan/XiangShan/pull/5743))
 - Timing Optimizations
-- Optimized timing for the Rename stage ([#5685](https://github.com/OpenXiangShan/XiangShan/pull/#5685))
+- Optimized timing for the Rename stage ([#5685](https://github.com/OpenXiangShan/XiangShan/pull/5685))
 - Code Quality
-- Renamed `halt` to `wfi` ([#4512](https://github.com/OpenXiangShan/XiangShan/pull/#4512))
+- Renamed `halt` to `wfi` ([#4512](https://github.com/OpenXiangShan/XiangShan/pull/4512))
 
 ### MemBlock and Cache
 

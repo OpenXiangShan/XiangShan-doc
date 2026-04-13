@@ -34,13 +34,18 @@ Regarding the recent development progress of XiangShan, the frontend has fixed s
 ### Frontend
 
 - RTL features
-  - Implemented SC Backward table ([#5528](https://github.com/OpenXiangShan/XiangShan/pull/5528))
+  - Use more precise sumAboveThreshold logic for SC ([#5716](https://github.com/OpenXiangShan/XiangShan/pull/5716))
+  - Enable SC Global table ([#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756))
 - Bug fixes
-  - (V2) Fixed a bug in IFU MMIO fetch, which would send all-zero instruction data to the backend when the fetch address +32B crosses a page boundary and only the latter page has an exception ([#5687](https://github.com/OpenXiangShan/XiangShan/pull/5687))
+  - Fix the issue where metadata of the history register is updated incorrectly when an override from the advanced predictor occurs ([#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756))
+- PPA optimizations
+  - Expose SRAMTemplate resetState to the interface, allowing BPU to determine if SRAM is ready to receive requests ([#5735](https://github.com/OpenXiangShan/XiangShan/pull/5735)，[Utility#141](https://github.com/OpenXiangShan/Utility/pull/141))
+  - More timing fixes are under evaluation
 - Code quality
-  - Refactored branch history registers ([#5528](https://github.com/OpenXiangShan/XiangShan/pull/5528))
+  - Refactor the parameter related to SC table indexing ([#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756))
 - Debugging tools
-  - Fixed a compilation issue with performance counters in Utility ([#5740](https://github.com/OpenXiangShan/XiangShan/pull/5740))
+  - Make Topdown Accurate Again! Collaboratively rewrite the Top-Down performance counters with the backend team ([#5564](https://github.com/OpenXiangShan/XiangShan/pull/5564))
+  - Fix the issue where the condition for the BPU top-level `train_stall` counter is always false ([#5734](https://github.com/OpenXiangShan/XiangShan/pull/5734))
 
 ### Backend
 

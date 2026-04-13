@@ -34,13 +34,18 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 实现 SC Backward 表（[#5528](https://github.com/OpenXiangShan/XiangShan/pull/5528)）
+  - 实现 SC 更精确的预测阈值逻辑（[#5716](https://github.com/OpenXiangShan/XiangShan/pull/5716)）
+  - 启用 SC Global 表（[#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756)）
 - Bug 修复
-  - （V2）修复 IFU 处理 MMIO 空间取指，取指地址+32B 跨过页边界，仅后一页出现异常时，向后端发送全0指令的问题（[#5687](https://github.com/OpenXiangShan/XiangShan/pull/5687)）
+  - 修复历史寄存器在发生高级预测器 Override 时元数据更新错误的问题（[#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756)）
+- 面积/时序优化
+  - 将 SRAMTemplate resetState 暴露到接口上，BPU 使用该接口判断 SRAM 是否准备好接收请求（[#5735](https://github.com/OpenXiangShan/XiangShan/pull/5735)，[Utility#141](https://github.com/OpenXiangShan/Utility/pull/141)）
+  - 更多时序修复正在评估中
 - 代码质量
-  - 重构分支历史寄存器（[#5528](https://github.com/OpenXiangShan/XiangShan/pull/5528)）
+  - 重构 SC 表索引相关参数传递机制（[#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756)）
 - 调试工具
-  - 修复 Utility 中性能计数器编译问题（[#5740](https://github.com/OpenXiangShan/XiangShan/pull/5740)）
+  - Make Topdown Accurate Again！协同后端组重写 Top-Down 性能计数器（[#5564](https://github.com/OpenXiangShan/XiangShan/pull/5564)）
+  - 修复 BPU 顶层 `train_stall` 计数器条件永远为假的问题（[#5734](https://github.com/OpenXiangShan/XiangShan/pull/5734)）
 
 ### 后端
 

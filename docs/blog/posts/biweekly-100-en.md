@@ -9,9 +9,17 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 100th issue of the biweekly report.
 
-Starting with this issue, the biweekly will also report on progress for [XiangShan AI (XSAI)](https://github.com/OpenXiangShan/XSAI). XSAI is a unified general-purpose-and-inference AI processor implemented on the open-source, high-performance RISC-V XiangShan processor; the approach was presented at the 2025 RISC-V China Summit. XSAI is the XiangShan team’s exploration of unified general-purpose-and-inference AI chips on top of its existing RISC-V CPU ecosystem, and a practical application of XiangShan’s agile development methodology. The Beijing Institute of Open Source Chip, together with the Microprocessor Research Center and the Advanced Computer Systems Research Center at the Institute of Computing Technology, Chinese Academy of Sciences, jointly participate in XSAI development. In 2026, XSAI will gradually release instruction extension manuals, architecture documentation, and user manuals, open-source the development toolchain, and add material on the XSAI unified general-and-inference processor to the XiangShan tutorial series.
+Starting with this issue, the biweekly will also report on progress for [XiangShan AI (XSAI)](https://github.com/OpenXiangShan/XSAI). XSAI is a unified general-purpose-and-inference AI processor implemented on the open-source, high-performance RISC-V XiangShan processor; the approach was presented at the 2025 RISC-V China Summit ([XSAI(ξ): Hardware Support for Modern LLM Kernels in a CPU Paradigm](https://github.com/OpenXiangShan/Talks-and-Publications/blob/master/slides/20250716%260718-RVSC-XSAI%EF%BC%9A%E4%BB%A5CPU%E7%9A%84%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F%E6%94%AF%E6%8C%81%E7%8E%B0%E4%BB%A3LLM%E6%A0%B8%E5%87%BD%E6%95%B0.pdf)). XSAI is the XiangShan team’s exploration of unified general-purpose-and-inference AI chips on top of its existing RISC-V CPU ecosystem, and a practical application of XiangShan’s agile development methodology. The Beijing Institute of Open Source Chip, together with the Microprocessor Technology Research Center and the Center for Advanced Computer Systems at the Institute of Computing Technology, Chinese Academy of Sciences, jointly participate in XSAI development. In 2026, XSAI will gradually release instruction extension manuals, architecture documentation, and user manuals, open-source the development toolchain, and add material on the XSAI unified general-and-inference processor to the XiangShan tutorial.
 
-XSAI is currently developed on Kunming Lake V2R2, under the name Kunming Lake V2R2A. The final V2R2A will add bf16/fp8 vector extensions and bf16/fp8/int8 matrix extensions on top of V2R2, together with high-bandwidth L2 cache, for demonstration purposes. The XSAI group has recently run preliminary tests aimed at validating XSAI’s general-purpose and AI compute capabilities. This issue reports those test results to readers of the biweekly.
+![XSAI architecture](./figs/biweekly-100/XSAI.png)
+
+XSAI is currently developed on Kunming Lake V2R2, under the name Kunming Lake V2R2A. Compared with Kunming Lake V2R2, Kunming Lake V2R2A introduces the following features:
+
+- Vector: The XSAI vector unit will support low-precision data types and special functions commonly used in AI workloads. V2R2A plans to support bf16 and fp8 data types, and also supports exp2 to accelerate softmax in LLMs.
+- Matrix: The XSAI matrix unit is controlled by the Kunminghu core and directly interacts with the L2 cache to load/store matrix data. The V2R2A matrix unit is still under iteration and is expected to finally support bf16/fp8/int8 matrix multiply-accumulate operations. Future XSAI versions will also support data types such as mxfp8/mxfp4. Most matrix instructions are asynchronous and can execute in parallel with vector operations in the Kunminghu core, improving compute utilization.
+- Cache: For matrix-compute and high-performance CPU co-execution scenarios, XSAI introduces a high-bandwidth L2 cache (HBL2). The HBL2 target parameters are 1-2MB capacity and 256-512 Bytes/cycle bandwidth. To reduce coherence overhead when coherent cache and GEMM run in parallel, XSAI further adopts access semantics and permission policies that better match matrix dataflow, thereby improving bandwidth utilization.
+
+The XSAI group has recently run preliminary tests aimed at validating XSAI’s general-purpose and AI compute capabilities. This issue reports those test results to readers of the biweekly.
 
 <!-- more -->
 
@@ -163,4 +171,4 @@ Note: We use SimPoint to sample the programs and create checkpoint images based 
 - XiangShan User Guide: <https://docs.xiangshan.cc/projects/user-guide/>
 - XiangShan Design Doc: <https://docs.xiangshan.cc/projects/design/>
 
-Editors: Zhihao Xu, Junxiong Ji, Zhuo Chen, Junjie Yu, Yanjun Li
+Editors: Zhihao Xu, Junxiong Ji, Zhuo Chen, Junjie Yu, Jiru Sun, Yanjun Li

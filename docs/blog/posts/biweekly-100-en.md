@@ -13,7 +13,7 @@ Before we knew it, XiangShan Biweekly has reached its 100th issue. At this speci
 
 XSAI is the XiangShan team’s exploration of unified general-purpose-and-inference AI chips on top of its existing RISC-V CPU ecosystem, and a practical application of XiangShan’s agile development methodology. The Beijing Institute of Open Source Chip, together with the Microprocessor Technology Research Center and the Center for Advanced Computer Systems at the Institute of Computing Technology, Chinese Academy of Sciences, jointly participate in XSAI development. Like XiangShan, XSAI is also a fully open-source project, and its repository is available at <https://github.com/OpenXiangShan/XSAI>. In 2026, we will gradually release instruction extension manuals, architecture documentation, and user manuals, and open-source our development toolchain.
 
-In addition, here is an early heads-up: the XiangShan tutorial at ISCA 2026 (late June) will include XSAI unified general-and-inference processor content for the first time. Welcome to join us!
+In addition, we would like to give you a sneak peek that the XiangShan tutorial at ISCA 2026 in Raleigh, USA at the end of June will also include content on the XSAI unified general-purpose-and-inference processor for the first time. We look forward to seeing you there!
 
 As for recent XiangShan core development, the frontend optimized branch predictor timing, while backend and memory teams fixed bugs and continued module refactoring and testing.
 
@@ -58,11 +58,11 @@ We used SPEC CPU 2006 to evaluate XSAI’s general-purpose compute capability. T
 
 > **Takeaway:** The 3GHz V2R2A frequency is only a simulation setting, chosen to match V2R2 simulation and check that XSAI changes do not cause large performance regressions. We expect XSAI silicon to run below 3GHz. For general-purpose workloads, differences mainly come from the high-bandwidth L2 design and changes to the cache replacement policy. Overall, these results suggest XSAI’s changes do not materially affect XiangShan’s baseline general-purpose behavior or performance.
 
-For AI inference, we ran Llama-2 15M on an XCVU19p FPGA using a trimmed V2R2A. XSAI ran at 50MHz, matrix int8 throughput is 4 TOPS/GHz, memory DDR4-2400 MHz. Measured Prefill and Decode throughput were 343.61 tok/s and 36.24 tok/s respectively; outputs matched expectations.
+For AI inference, we ran Llama-2 15M on an XCVU19p FPGA using a trimmed V2R2A. XSAI ran at 50MHz, matrix int8 throughput is 4 TOPS/GHz, memory DDR4-2400. Measured Prefill and Decode throughput were 343.61 tok/s and 36.24 tok/s respectively; outputs matched expectations.
 
 ![XSAI FPGA test](./figs/biweekly-100/XSAI-fpga.png)
 
-> **Takeaway:** Memory frequency is close to what we expect post-silicon, but the XSAI clock is far below silicon targets, so in that sense the results are optimistic. Conversely, V2R2A was heavily trimmed to fit XCVU19p, which hurts performance, so in that sense the results are pessimistic. Treat this as a functional prototype only: it shows XSAI can support large-model inference in principle.
+> **Takeaway:** The memory frequency used in the test is 2400MT/s, while XSAI’s frequency is 50MHz, so extrapolating data at 50MHz to 2GHz would lead to an overly optimistic effective memory frequency. However, V2R2A has been heavily trimmed to fit on the XCVU19p, which hurts performance, making the results pessimistic. Therefore, this test serves only as a functional prototype test, demonstrating that XSAI supports LLM inference in terms of functionality.
 
 ## Recent Developments
 

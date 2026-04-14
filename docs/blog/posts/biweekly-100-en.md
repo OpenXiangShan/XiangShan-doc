@@ -119,17 +119,17 @@ For AI inference, we ran Llama-2 15M on an XCVU19p FPGA using a trimmed V2R2A. X
 
 Processor and SoC parameters are as follows:
 
-| Parameters     | Options    |
-| -------------- | ---------- |
-| Commit         | 87d03b2cc  |
-| Date           | 2026/03/24 |
-| L1 ICache      | 64KB       |
-| L1 DCache      | 64KB       |
-| L2 Cache       | 1MB        |
-| L3 Cache       | 16MB       |
-| LSU            | 3ld2st     |
-| Bus protocol   | CHI        |
-| Memory latency | DDR4-3200  |
+| Parameters           | Options    |
+| -------------------- | ---------- |
+| Commit               | 87d03b2cc  |
+| Date                 | 2026/03/24 |
+| L1 ICache            | 64KB       |
+| L1 DCache            | 64KB       |
+| L2 Cache             | 1MB        |
+| L3 Cache             | 16MB       |
+| LSU                  | 3ld2st     |
+| Bus protocol         | CHI        |
+| Memory configuration | DDR4-3200  |
 
 The SPEC CPU2006 scores are as follows:
 

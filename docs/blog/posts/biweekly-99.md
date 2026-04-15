@@ -45,11 +45,11 @@ categories:
 ### 后端
 
 - Bug 修复
-  - 修复 commitInstrBranch 并添加 branch_jump 性能计数器（[#5705](https://github.com/OpenXiangShan/XiangShan/pull/#5705)）
+  - 修复 commitInstrBranch 并添加 branch_jump 性能计数器（[#5705](https://github.com/OpenXiangShan/XiangShan/pull/5705)）
 - 时序优化
-  - 移除从 commonOutBundle 引出的的 dataSource 信号，去除冗余依赖（[#5704](https://github.com/OpenXiangShan/XiangShan/pull/#5704)）
+  - 移除从 commonOutBundle 引出的的 dataSource 信号，去除冗余依赖（[#5704](https://github.com/OpenXiangShan/XiangShan/pull/5704)）
 - 代码质量
-  - 移除 CSR 单元内的无用寄存器（[#5681](https://github.com/OpenXiangShan/XiangShan/pull/#5681)）
+  - 移除 CSR 单元内的无用寄存器（[#5681](https://github.com/OpenXiangShan/XiangShan/pull/5681)）
 
 ### 访存与缓存
 

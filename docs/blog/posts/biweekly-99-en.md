@@ -45,11 +45,11 @@ Regarding the recent development progress of XiangShan, the frontend has fixed s
 ### Backend
 
 - Bug fixes
-  - Fix commitInstrBranch and add branch_jump performance counter（[#5705](https://github.com/OpenXiangShan/XiangShan/pull/#5705)）
+  - Fix commitInstrBranch and add branch_jump performance counter（[#5705](https://github.com/OpenXiangShan/XiangShan/pull/5705)）
 - Timing optimization
-  - Remove dataSource signal from commonOutBundle toRremove redundant dependencies（[#5704](https://github.com/OpenXiangShan/XiangShan/pull/#5704)）
+  - Remove dataSource signal from commonOutBundle toRremove redundant dependencies（[#5704](https://github.com/OpenXiangShan/XiangShan/pull/5704)）
 - Code quality
-  - Remove useless registers inside CSR（[#5681](https://github.com/OpenXiangShan/XiangShan/pull/#5681)）
+  - Remove useless registers inside CSR（[#5681](https://github.com/OpenXiangShan/XiangShan/pull/5681)）
 
 ### MemBlock and Cache
 

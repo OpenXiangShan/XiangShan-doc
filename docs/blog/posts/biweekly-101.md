@@ -115,6 +115,18 @@ XSAI 组近期进行了一些初步测试，这些测试意在验证 XSAI 的通
 - 时序修复
   - 修复了 StoreQueue 的时序问题（[#5698](https://github.com/OpenXiangShan/XiangShan/pull/5698)）
 
+### XSAI
+
+- RTL 新特性
+  - 正在测试矩阵模块的 FP8 精度支持
+  - 正在评估矩阵模块的 8 通道访存
+  - 正在与后端组配合实现 BF16 标量与向量
+- 代码质量
+  - 优化了 XSAI 的参数系统（[XSAI #59](https://github.com/OpenXiangShan/XSAI/pull/59)）
+- 调试工具
+  - NEMU 新增 BF16 扩展支持（[NEMU #995](https://github.com/OpenXiangShan/NEMU/pull/995)）
+  - HBL2 测试兼容多核环境
+
 ## 性能评估
 
 处理器及 SoC 参数如下所示：

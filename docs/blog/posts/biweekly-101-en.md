@@ -115,6 +115,18 @@ For AI inference, we ran Llama-2 15M on an XCVU19p FPGA using a trimmed V2R2A. X
 - Timing Fixes
   - Fix the timing issue of StoreQueue ([#5698](https://github.com/OpenXiangShan/XiangShan/pull/5698))
 
+### XSAI
+
+- RTL New features
+  - Testing FP8 precision support in the matrix unit
+  - Evaluating 8-channel cache access for the matrix unit
+  - Co-developing BF16 scalar and vector support with the backend team
+- Code quality
+  - Optimized the XSAI parameter system ([XSAI #59](https://github.com/OpenXiangShan/XSAI/pull/59))
+- Debugging tools
+  - Added BF16 extension support in NEMU ([NEMU #995](https://github.com/OpenXiangShan/NEMU/pull/995))
+  - HBL2 tests are now compatible with multi-core environments
+
 ## Performance Evaluation
 
 Processor and SoC parameters are as follows:

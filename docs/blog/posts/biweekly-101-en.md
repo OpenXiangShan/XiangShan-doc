@@ -69,18 +69,17 @@ For AI inference, we ran Llama-2 15M on an XCVU19p FPGA using a trimmed V2R2A. X
 ### Frontend
 
 - RTL features
-  - Use more precise sumAboveThreshold logic for SC ([#5716](https://github.com/OpenXiangShan/XiangShan/pull/5716))
-  - Enable SC Global table ([#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756))
+  - Enable SC Backward Table ([#5796](https://github.com/OpenXiangShan/XiangShan/pull/5796))
 - Bug fixes
-  - Fix the issue where metadata of the history register is updated incorrectly when an override from the advanced predictor occurs ([#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756))
+  - Fix S1 RAS stack top address issue during S3 override ([#5680](https://github.com/OpenXiangShan/XiangShan/pull/5680))
 - PPA optimizations
-  - Expose SRAMTemplate resetState to the interface, allowing BPU to determine if SRAM is ready to receive requests ([#5735](https://github.com/OpenXiangShan/XiangShan/pull/5735)，[Utility#141](https://github.com/OpenXiangShan/Utility/pull/141))
-  - More timing fixes are under evaluation
+  - Remove SC training metadata stored in FTQ, read on update instead, to save area ([#5819](https://github.com/OpenXiangShan/XiangShan/pull/5819))
+  - Decouple the write of TAGE taken counter and useful counter to save power ([#5782](https://github.com/OpenXiangShan/XiangShan/pull/5782))
+  - Fix BPU S3 timing paths ([#5797](https://github.com/OpenXiangShan/XiangShan/pull/5797))
+  - Fix SC prediction timing paths ([#5843](https://github.com/OpenXiangShan/XiangShan/pull/5843))
+  - Fix FTQ redirect and branch resolve timing paths ([#5835](https://github.com/OpenXiangShan/XiangShan/pull/5835))
 - Code quality
-  - Refactor the parameter related to SC table indexing ([#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756))
-- Debugging tools
-  - Make Topdown Accurate Again! Collaboratively rewrite the Top-Down performance counters with the backend team ([#5564](https://github.com/OpenXiangShan/XiangShan/pull/5564))
-  - Fix the issue where the condition for the BPU top-level `train_stall` counter is always false ([#5734](https://github.com/OpenXiangShan/XiangShan/pull/5734))
+  - Remove unused V2 utility classes ([#5821](https://github.com/OpenXiangShan/XiangShan/pull/5821))
 
 ### Backend
 

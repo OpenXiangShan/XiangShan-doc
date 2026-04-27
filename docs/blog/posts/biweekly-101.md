@@ -69,18 +69,17 @@ XSAI 组近期进行了一些初步测试，这些测试意在验证 XSAI 的通
 ### 前端
 
 - RTL 新特性
-  - 实现 SC 更精确的预测阈值逻辑（[#5716](https://github.com/OpenXiangShan/XiangShan/pull/5716)）
-  - 启用 SC Global 表（[#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756)）
+  - 启用 SC Backward 表（[#5796](https://github.com/OpenXiangShan/XiangShan/pull/5796)）
 - Bug 修复
-  - 修复历史寄存器在发生高级预测器 Override 时元数据更新错误的问题（[#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756)）
-- 面积/时序优化
-  - 将 SRAMTemplate resetState 暴露到接口上，BPU 使用该接口判断 SRAM 是否准备好接收请求（[#5735](https://github.com/OpenXiangShan/XiangShan/pull/5735)，[Utility#141](https://github.com/OpenXiangShan/Utility/pull/141)）
-  - 更多时序修复正在评估中
+  - 修复 S1 级 RAS 在 S3 override 时栈顶地址用错的问题（[#5680](https://github.com/OpenXiangShan/XiangShan/pull/5680)）
+- PPA 优化
+  - 去除存储在 FTQ 的 SC 训练元数据，改为更新时读，节省面积（[#5819](https://github.com/OpenXiangShan/XiangShan/pull/5819)）
+  - 解耦 TAGE 跳转计数器和 useful 计数器的写入，节省功耗（[#5782](https://github.com/OpenXiangShan/XiangShan/pull/5782)）
+  - 修复 BPU S3 多条时序路径（[#5797](https://github.com/OpenXiangShan/XiangShan/pull/5797)）
+  - 修复 SC 预测时序路径（[#5843](https://github.com/OpenXiangShan/XiangShan/pull/5843)）
+  - 修复 FTQ 重定向及分支 resolve 时序路径（[#5835](https://github.com/OpenXiangShan/XiangShan/pull/5835)）
 - 代码质量
-  - 重构 SC 表索引相关参数传递机制（[#5756](https://github.com/OpenXiangShan/XiangShan/pull/5756)）
-- 调试工具
-  - Make Topdown Accurate Again！协同后端组重写 Top-Down 性能计数器（[#5564](https://github.com/OpenXiangShan/XiangShan/pull/5564)）
-  - 修复 BPU 顶层 `train_stall` 计数器条件永远为假的问题（[#5734](https://github.com/OpenXiangShan/XiangShan/pull/5734)）
+  - 删除未使用的 V2 工具类（[#5821](https://github.com/OpenXiangShan/XiangShan/pull/5821)）
 
 ### 后端
 

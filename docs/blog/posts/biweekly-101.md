@@ -100,19 +100,11 @@ XSAI 组近期进行了一些初步测试，这些测试意在验证 XSAI 的通
 ### 访存与缓存
 
 - RTL 新特性
-  - MMU、L2 等模块重构与测试持续推进中
-  - 优化了 Stream 预取器，启用了 decr 模式并优化了训练策略（[#5691](https://github.com/OpenXiangShan/XiangShan/pull/5691)）
-  - 修改了 TL2CHICoupledL2 顶层模块的接口，将 io_cpu_halt 改为 io_cpu_wfi（[CoupledL2 #482](https://github.com/OpenXiangShan/CoupledL2/pull/482)）
-  - 新增了 NextLine 预取器（[CoupledL2 #477](https://github.com/OpenXiangShan/CoupledL2/pull/477)）
+  - 完成新版 StoreUnit 设计（[#5760](https://github.com/OpenXiangShan/XiangShan/pull/5760)）
+  - 持续推进新版 L2 设计
 - Bug 修复
-  - 修复了 StoreQueue 中 deqPtr 过早移动的问题（[#5748](https://github.com/OpenXiangShan/XiangShan/pull/5748)）
-  - 修复了 pbmt 与 hypervisor 访问设备区域时的一些问题（[#5751](https://github.com/OpenXiangShan/XiangShan/pull/5751)）
-  - 修复了 unalignedHead 重发时卡死的问题（[#5783](https://github.com/OpenXiangShan/XiangShan/pull/5783)）
-- 代码质量
-  - 重构了 storeEvent 的相关 Bundle（[#5763](https://github.com/OpenXiangShan/XiangShan/pull/5763)）
-  - 重构 CoupledL2，OpenLLC，HuanCun 仓库之间的依赖关系。进行中
-- 时序修复
-  - 修复了 StoreQueue 的时序问题（[#5698](https://github.com/OpenXiangShan/XiangShan/pull/5698)）
+  - 修复了 StoreUnit 跨 16 字节前递时 OverLapMask 的问题（[#5814](https://github.com/OpenXiangShan/XiangShan/pull/5814)）
+  - CoupledL2 在本地 Flush All 时跳过全局 CleanInvalid（[CoupledL2 #499](https://github.com/OpenXiangShan/CoupledL2/pull/499)）
 
 ### XSAI
 

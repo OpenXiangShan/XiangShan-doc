@@ -84,18 +84,13 @@ XSAI 组近期进行了一些初步测试，这些测试意在验证 XSAI 的通
 ### 后端
 
 - RTL 新特性
-  - 将整型 RegCache 的大小增加到 24 以支持 6 alu 的配置（[#5613](https://github.com/OpenXiangShan/XiangShan/pull/5613)）
-  - 修改 vsetvl x0, x0 使得 reserved 情况表现与 Spike 一致（[#5744](https://github.com/OpenXiangShan/XiangShan/pull/5744)）
+  - (V2) 允许通过 CSR 配置“提交停滞”（commit stuck）关键错误检查 ([#5806](https://github.com/OpenXiangShan/XiangShan/pull/5806))
+  - 新增开关，用于禁用分派负载均衡优化 ([#5815](https://github.com/OpenXiangShan/XiangShan/pull/5815))
+  - 解决因主流水线资源不足导致的误报问题 ([#5803](https://github.com/OpenXiangShan/XiangShan/pull/5803))
+- PPA 优化
+  - 优化分派策略以提升性能 ([#5801](https://github.com/OpenXiangShan/XiangShan/pull/5801))
 - Bug 修复
-  - 在 critical-error 的 debug 重入口维持 dpc（[#5730](https://github.com/OpenXiangShan/XiangShan/pull/5730)）
-  - 同步修复 V2 的 debug 相关 bug（[#5754](https://github.com/OpenXiangShan/XiangShan/pull/5754)）
-  - 修复 Mcontrol6/Tdata1 相关问题（[#5722](https://github.com/OpenXiangShan/XiangShan/pull/5722)）
-  - 修复 TopDown 当中的 mis_pred 和 total_flush（[#5762](https://github.com/OpenXiangShan/XiangShan/pull/5762)）
-  - 修复 Bypass 中 psrcVl 的驱动为 pdestVl（[#5743](https://github.com/OpenXiangShan/XiangShan/pull/5743)）
-- 时序优化
-  - 优化 Rename 的时序（[#5685](https://github.com/OpenXiangShan/XiangShan/pull/5685)）
-- 代码质量
-  - 重命名 halt 为 wfi（[#4512](https://github.com/OpenXiangShan/XiangShan/pull/4512)）
+  - 修复间接 CSR RegOut 问题 ([(V2) #5823](https://github.com/OpenXiangShan/XiangShan/pull/5823), [5833](https://github.com/OpenXiangShan/XiangShan/pull/5833))
 
 ### 访存与缓存
 

@@ -84,18 +84,13 @@ For AI inference, we ran Llama-2 15M on an XCVU19p FPGA using a trimmed V2R2A. X
 ### Backend
 
 - RTL New Features
-- Increased the size of the integer RegCache to 24 to support a 6-ALU configuration ([#5613](https://github.com/OpenXiangShan/XiangShan/pull/5613))
-- Modified `vsetvl x0, x0` to ensure that reserved cases behave consistently with Spike ([#5744](https://github.com/OpenXiangShan/XiangShan/pull/5744))
-- Bug Fixes
-- Preserved `dpc` during debug re-entry following a critical error ([#5730](https://github.com/OpenXiangShan/XiangShan/pull/5730))
-- Synchronized fixes for debug-related bugs in V2 ([#5754](https://github.com/OpenXiangShan/XiangShan/pull/5754))
-- Fixed issues related to `Mcontrol6`/`Tdata1` ([#5722](https://github.com/OpenXiangShan/XiangShan/pull/5722))
-- Fixed `mis_pred` and `total_flush` metrics within the TopDown analysis ([#5762](https://github.com/OpenXiangShan/XiangShan/pull/5762))
-- Fixed the driver for `psrcVl` in the Bypass stage, changing it to `pdestVl` ([#5743](https://github.com/OpenXiangShan/XiangShan/pull/5743))
-- Timing Optimizations
-- Optimized timing for the Rename stage ([#5685](https://github.com/OpenXiangShan/XiangShan/pull/5685))
-- Code Quality
-- Renamed `halt` to `wfi` ([#4512](https://github.com/OpenXiangShan/XiangShan/pull/4512))
+  - (V2) Make commit stuck critical error check configurable by CSR ([#5806](https://github.com/OpenXiangShan/XiangShan/pull/5806))
+  - Add switch to disable dispatch balance opt ([#5815](https://github.com/OpenXiangShan/XiangShan/pull/5815))
+  - Resolve the false positive issue caused by insufficient main pipeline resources ([#5803](https://github.com/OpenXiangShan/XiangShan/pull/5803))
+- PPA optimizations
+  - Optimize dispatch policy to improve performance ([#5801](https://github.com/OpenXiangShan/XiangShan/pull/5801))
+- Bug fixes
+  - fix indirect csr RegOut ([(V2) #5823](https://github.com/OpenXiangShan/XiangShan/pull/5823), [5833](https://github.com/OpenXiangShan/XiangShan/pull/5833))
 
 ### MemBlock and Cache
 

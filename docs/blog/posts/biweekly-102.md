@@ -20,17 +20,15 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 启用 SC Backward 表（[#5796](https://github.com/OpenXiangShan/XiangShan/pull/5796)）
+  - 实现初版 2-prefetch 方案（[#5775](https://github.com/OpenXiangShan/XiangShan/pull/5775)）
 - Bug 修复
-  - 修复 S1 级 RAS 在 S3 override 时栈顶地址用错的问题（[#5680](https://github.com/OpenXiangShan/XiangShan/pull/5680)）
+  - （V2）协同后端组修复 satp 更新后出现异常时 xepc 和 xtval 寄存器更新错误的问题（[#5860](https://github.com/OpenXiangShan/XiangShan/pull/5860)）
+  - 修复 IFU 处理跨页指令引起的异常时标记错误的问题（[#5874](https://github.com/OpenXiangShan/XiangShan/pull/5874)）
 - PPA 优化
-  - 去除存储在 FTQ 的 SC 训练元数据，改为更新时读，节省面积（[#5819](https://github.com/OpenXiangShan/XiangShan/pull/5819)）
-  - 解耦 TAGE 跳转计数器和 useful 计数器的写入，节省功耗（[#5782](https://github.com/OpenXiangShan/XiangShan/pull/5782)）
-  - 修复 BPU S3 多条时序路径（[#5797](https://github.com/OpenXiangShan/XiangShan/pull/5797)）
-  - 修复 SC 预测时序路径（[#5843](https://github.com/OpenXiangShan/XiangShan/pull/5843)）
-  - 修复 FTQ 重定向及分支 resolve 时序路径（[#5835](https://github.com/OpenXiangShan/XiangShan/pull/5835)）
+  - 使用 SRAM 保存 TAGE useful counter 以节省面积（[#5852](https://github.com/OpenXiangShan/XiangShan/pull/5852)）
+  - 调整 BPU 顶层处理 mbtb attribute 的流水级划分以提升时序（[#5842](https://github.com/OpenXiangShan/XiangShan/pull/5842)）
 - 代码质量
-  - 删除未使用的 V2 工具类（[#5821](https://github.com/OpenXiangShan/XiangShan/pull/5821)）
+  - 移除 MBTB 中一个可能引起误解的参数（[#5891](https://github.com/OpenXiangShan/XiangShan/pull/5891)）
 
 ### 后端
 

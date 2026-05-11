@@ -20,17 +20,15 @@ As for recent XiangShan core development, the frontend optimized branch predicto
 ### Frontend
 
 - RTL features
-  - Enable SC Backward Table ([#5796](https://github.com/OpenXiangShan/XiangShan/pull/5796))
+  - Implemented the initial version of 2-prefetch ([#5775](https://github.com/OpenXiangShan/XiangShan/pull/5775))
 - Bug fixes
-  - Fix S1 RAS stack top address issue during S3 override ([#5680](https://github.com/OpenXiangShan/XiangShan/pull/5680))
+  - (V2) Collaborated with the backend team to fix the issue of incorrect xepc and xtval register updates when an exception occurs after satp update ([#5860](https://github.com/OpenXiangShan/XiangShan/pull/5860))
+  - Fixed the issue of incorrect exception tagging when IFU handles cross-page instructions ([#5874](https://github.com/OpenXiangShan/XiangShan/pull/5874))
 - PPA optimizations
-  - Remove SC training metadata stored in FTQ, read on update instead, to save area ([#5819](https://github.com/OpenXiangShan/XiangShan/pull/5819))
-  - Decouple the write of TAGE taken counter and useful counter to save power ([#5782](https://github.com/OpenXiangShan/XiangShan/pull/5782))
-  - Fix BPU S3 timing paths ([#5797](https://github.com/OpenXiangShan/XiangShan/pull/5797))
-  - Fix SC prediction timing paths ([#5843](https://github.com/OpenXiangShan/XiangShan/pull/5843))
-  - Fix FTQ redirect and branch resolve timing paths ([#5835](https://github.com/OpenXiangShan/XiangShan/pull/5835))
+  - Used SRAM to save TAGE useful counter to save area ([#5852](https://github.com/OpenXiangShan/XiangShan/pull/5852))
+  - Adjusted the pipeline stages of BPU handling mbtb attribute to improve timing ([#5842](https://github.com/OpenXiangShan/XiangShan/pull/5842))
 - Code quality
-  - Remove unused V2 utility classes ([#5821](https://github.com/OpenXiangShan/XiangShan/pull/5821))
+  - Removed a potentially misleading parameter in MBTB ([#5891](https://github.com/OpenXiangShan/XiangShan/pull/5891))
 
 ### Backend
 

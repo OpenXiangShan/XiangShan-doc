@@ -32,14 +32,10 @@ categories:
 
 ### 后端
 
-- RTL 新特性
-  - (V2) 允许通过 CSR 配置“提交停滞”（commit stuck）关键错误检查 ([#5806](https://github.com/OpenXiangShan/XiangShan/pull/5806))
-  - 新增开关，用于禁用分派负载均衡优化 ([#5815](https://github.com/OpenXiangShan/XiangShan/pull/5815))
-  - 解决因主流水线资源不足导致的误报问题 ([#5803](https://github.com/OpenXiangShan/XiangShan/pull/5803))
-- PPA 优化
-  - 优化分派策略以提升性能 ([#5801](https://github.com/OpenXiangShan/XiangShan/pull/5801))
 - Bug 修复
-  - 修复间接 CSR RegOut 问题 ([(V2) #5823](https://github.com/OpenXiangShan/XiangShan/pull/5823), [5833](https://github.com/OpenXiangShan/XiangShan/pull/5833))
+  - （V2）前端组协同下修复 satp 更新后出现异常时 xepc 和 xtval 寄存器更新错误的问题（[#5860](https://github.com/OpenXiangShan/XiangShan/pull/5860)）
+  - （V2）修复每条 jump 指令执行时都会触发的 redirect 的问题（[#5867](https://github.com/OpenXiangShan/XiangShan/pull/5867)）
+  - （V2）为 mtvec 添加初始化值（[#5862](https://github.com/OpenXiangShan/XiangShan/pull/5862)）
 
 ### 访存与缓存
 

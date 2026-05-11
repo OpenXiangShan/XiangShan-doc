@@ -52,15 +52,17 @@ As for recent XiangShan core development, the frontend optimized branch predicto
 
 ### XSAI
 
-- RTL New features
-  - Testing FP8 precision support in the matrix unit
+- RTL New Features
+  - The matrix unit supports FP8 precision ([XSAI #61](https://github.com/OpenXiangShan/XSAI/pull/61))
   - Evaluating 8-channel cache access for the matrix unit
   - Co-developing BF16 scalar and vector support with the backend team
-- Code quality
-  - Optimized the XSAI parameter system ([XSAI #59](https://github.com/OpenXiangShan/XSAI/pull/59))
-- Debugging tools
-  - Added BF16 extension support in NEMU ([NEMU #995](https://github.com/OpenXiangShan/NEMU/pull/995))
-  - HBL2 tests are now compatible with multi-core environments
+- Bug Fixes
+  - Fixed a scheduling error in CUTE ([XSAI #62](https://github.com/OpenXiangShan/XSAI/pull/62))
+- Code Quality
+  - Added Makefile tracking for CUTE code changes ([XSAI #63](https://github.com/OpenXiangShan/XSAI/pull/63))
+  - Accelerated firmware compilation ([xsai-env #4](https://github.com/OurCompArchGroup/xsai-env/pull/4))
+- Evaluation Tools
+  - Parallel checkpoint simulation ([xsai-env #11](https://github.com/OurCompArchGroup/xsai-env/pull/11))
 
 ## Performance Evaluation
 

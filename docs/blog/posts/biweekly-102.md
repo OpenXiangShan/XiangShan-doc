@@ -53,14 +53,16 @@ categories:
 ### XSAI
 
 - RTL 新特性
-  - 正在测试矩阵模块的 FP8 精度支持
+  - 矩阵模块支持 FP8 精度（[XSAI #61](https://github.com/OpenXiangShan/XSAI/pull/61)）
   - 正在评估矩阵模块的 8 通道访存
   - 正在与后端组配合实现 BF16 标量与向量
+- Bug 修复
+  - 修复 CUTE 的一处调度错误（[XSAI #62](https://github.com/OpenXiangShan/XSAI/pull/62)）
 - 代码质量
-  - 优化了 XSAI 的参数系统（[XSAI #59](https://github.com/OpenXiangShan/XSAI/pull/59)）
-- 调试工具
-  - NEMU 新增 BF16 扩展支持（[NEMU #995](https://github.com/OpenXiangShan/NEMU/pull/995)）
-  - HBL2 测试兼容多核环境
+  - 添加 Makefile 对 CUTE 代码更改的跟踪（[XSAI #63](https://github.com/OpenXiangShan/XSAI/pull/63)）
+  - firmware 编译加速（[xsai-env #4](https://github.com/OurCompArchGroup/xsai-env/pull/4)）
+- 评估工具
+  - checkpoint 并行仿真 [xsai-env #11](https://github.com/OurCompArchGroup/xsai-env/pull/11)
 
 ## 性能评估
 

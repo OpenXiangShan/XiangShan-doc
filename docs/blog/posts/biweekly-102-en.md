@@ -44,11 +44,11 @@ As for recent XiangShan core development, the frontend optimized branch predicto
 ### MemBlock and Cache
 
 - RTL New Features
-  - Finish the design of the new StoreUnit ([#5760](https://github.com/OpenXiangShan/XiangShan/pull/5760))
+  - Implemented store-load forwarding in DCache mshr ([#5870](https://github.com/OpenXiangShan/XiangShan/pull/5870))
   - Refactoring of L2 is continuously progressing
 - Bug Fixes
-  - Fix OverlapMask for cross16B forward in StoreUnit ([#5814](https://github.com/OpenXiangShan/XiangShan/pull/5814))
-  - Skip global CleanInvalid during local Flush All in CoupledL2 ([CoupledL2 #499](https://github.com/OpenXiangShan/CoupledL2/pull/499))
+  - Fix the issue of incorrect use of PPN truncation bit to index cfs in L2TLB ([#5858](https://github.com/OpenXiangShan/XiangShan/pull/5858))
+  - Fix the behavior of StoreQueue when handling cross 16-byte accesses ([#5855](https://github.com/OpenXiangShan/XiangShan/pull/5855))
 
 ### XSAI
 

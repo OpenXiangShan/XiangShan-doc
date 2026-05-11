@@ -44,11 +44,11 @@ categories:
 ### 访存与缓存
 
 - RTL 新特性
-  - 完成新版 StoreUnit 设计（[#5760](https://github.com/OpenXiangShan/XiangShan/pull/5760)）
+  - 实现了 DCache mshr 的 store-load 前递（[#5870](https://github.com/OpenXiangShan/XiangShan/pull/5870)）
   - 持续推进新版 L2 设计
 - Bug 修复
-  - 修复了 StoreUnit 跨 16 字节前递时 OverLapMask 的问题（[#5814](https://github.com/OpenXiangShan/XiangShan/pull/5814)）
-  - CoupledL2 在本地 Flush All 时跳过全局 CleanInvalid（[CoupledL2 #499](https://github.com/OpenXiangShan/CoupledL2/pull/499)）
+  - 修复了 L2TLB 中错误使用 PPN 截断位来索引 cfs 的问题（[#5858](https://github.com/OpenXiangShan/XiangShan/pull/5858)）
+  - 修复了 StoreQueue 处理跨 16 字节访存时的行为（[#5855](https://github.com/OpenXiangShan/XiangShan/pull/5855)）
 
 ### XSAI
 

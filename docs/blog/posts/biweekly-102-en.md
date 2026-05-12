@@ -9,9 +9,11 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 102nd issue of the biweekly report.
 
-The design document of Kunming Lake V3 has been gradually released, and we welcome everyone to read and discuss it with us! Currently, the new design document includes two modules: ICache and BPU. The design documents for other modules will be released as development progresses. The design document is still available at <https://docs.xiangshan.cc/projects/design/zh-cn/>. If you are interested in the design document of Kunming Lake V2, you can switch branches at the bottom right corner of the webpage to view it.
+The development of X200, SpacemiT's third-generation high-performance RISC-V processor core based on XiangShan Kunming Lake V2, has been completed. Built on a traditional cloud computing processor core, X200 has been specifically optimized for cloud-side Agent applications and flagship end-side Agent applications. Its SPECint 2006 performance reaches 16.0 points/GHz, and the single-core frequency can reach 3.3GHz. Compared with X100, its per-core performance has improved by more than 100%, reaching 50 SPECint 2006 points/Core.
 
-As for recent XiangShan core development, the frontend optimized branch predictor timing, while backend and memory teams fixed bugs and continued module refactoring and testing.
+Even more encouraging than the reuse of Kunming Lake V2 is that the full XiangShan open-source infrastructure was used throughout the X200 research and development process. This is the part below the surface that supports X200 on its path toward production readiness. These open-source toolchains greatly accelerated the efficiency of X200 derivative development and provided strong assurance for its quality.
+
+As for recent XiangShan development, the frontend is implementing 2-fetch while optimizing timing; the backend and memory teams fixed several functional bugs and continued advancing the new L2 design; XSAI added FP8 support for the matrix unit while also improving code quality and evaluation tools.
 
 <!-- more -->
 
@@ -70,8 +72,8 @@ Processor and SoC parameters are as follows:
 
 | Parameters           | Options    |
 | -------------------- | ---------- |
-| Commit               | 82d2669b2  |
-| Date                 | 2026/04/23 |
+| Commit               | f65a4e6c3  |
+| Date                 | 2026/05/07 |
 | L1 ICache            | 64KB       |
 | L1 DCache            | 64KB       |
 | L2 Cache             | 1MB        |
@@ -84,24 +86,24 @@ The SPEC CPU2006 scores are as follows:
 
 | SPECint 2006 @ 3GHz | GCC15  |  XSCC  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  |
 | :------------------ | :----: | :----: | :----------------- | :----: | :----: |
-| 400.perlbench       | 48.55  | 47.58  | 410.bwaves         | 85.31  | 90.03  |
-| 401.bzip2           | 27.44  | 28.26  | 416.gamess         | 57.05  | 53.20  |
-| 403.gcc             | 55.18  | 39.57  | 433.milc           | 64.74  | 64.04  |
-| 429.mcf             | 61.07  | 55.44  | 434.zeusmp         | 71.39  | 64.13  |
-| 445.gobmk           | 38.93  | 40.08  | 435.gromacs        | 37.20  | 34.38  |
-| 456.hmmer           | 54.39  | 64.70  | 436.cactusADM      | 76.02  | 87.74  |
-| 458.sjeng           | 38.89  | 39.43  | 437.leslie3d       | 56.29  | 56.46  |
-| 462.libquantum      | 136.76 | 294.79 | 444.namd           | 43.21  | 45.23  |
-| 464.h264ref         | 63.44  | 72.03  | 447.dealII         | 64.12  | 68.46  |
-| 471.omnetpp         | 41.05  | 39.51  | 450.soplex         | 52.08  | 64.00  |
-| 473.astar           | 30.46  | 29.66  | 453.povray         | 73.34  | 66.37  |
-| 483.xalancbmk       | 75.80  | 84.53  | 454.Calculix       | 43.80  | 39.68  |
-| GEOMEAN             | 50.92  | 54.14  | 459.GemsFDTD       | 63.55  | 64.27  |
-|                     |        |        | 465.tonto          | 52.57  | 35.04  |
-|                     |        |        | 470.lbm            | 125.76 | 133.04 |
-|                     |        |        | 481.wrf            | 54.94  | 41.59  |
-|                     |        |        | 482.sphinx3        | 59.37  | 62.42  |
-|                     |        |        | GEOMEAN            | 61.05  | 59.23  |
+| 400.perlbench       | 48.42  | 47.53  | 410.bwaves         | 85.27  | 89.88  |
+| 401.bzip2           | 27.43  | 28.28  | 416.gamess         | 57.05  | 53.23  |
+| 403.gcc             | 55.26  | 38.88  | 433.milc           | 64.93  | 64.04  |
+| 429.mcf             | 61.00  | 55.47  | 434.zeusmp         | 71.27  | 64.66  |
+| 445.gobmk           | 38.94  | 40.10  | 435.gromacs        | 37.20  | 34.38  |
+| 456.hmmer           | 54.38  | 64.72  | 436.cactusADM      | 76.13  | 87.68  |
+| 458.sjeng           | 38.87  | 39.48  | 437.leslie3d       | 56.26  | 56.36  |
+| 462.libquantum      | 136.67 | 294.84 | 444.namd           | 43.23  | 45.23  |
+| 464.h264ref         | 63.46  | 71.99  | 447.dealII         | 64.25  | 68.39  |
+| 471.omnetpp         | 41.07  | 39.47  | 450.soplex         | 52.12  | 63.93  |
+| 473.astar           | 30.42  | 29.63  | 453.povray         | 73.34  | 65.77  |
+| 483.xalancbmk       | 75.83  | 84.61  | 454.Calculix       | 43.74  | 39.61  |
+| GEOMEAN             | 50.90  | 54.07  | 459.GemsFDTD       | 63.50  | 63.95  |
+|                     |        |        | 465.tonto          | 52.59  | 35.01  |
+|                     |        |        | 470.lbm            | 125.82 | 133.04 |
+|                     |        |        | 481.wrf            | 54.96  | 41.58  |
+|                     |        |        | 482.sphinx3        | 59.39  | 62.42  |
+|                     |        |        | GEOMEAN            | 61.07  | 59.18  |
 
 Compilation parameters are as follows:
 
@@ -122,7 +124,7 @@ Note: We use SimPoint to sample the programs and create checkpoint images based 
 
 - XiangShan technical discussion QQ group: 879550595
 - XiangShan technical discussion website: <https://github.com/OpenXiangShan/XiangShan/discussions>
-- XiangShan Documentation: <https://xiangshan-doc.readthedocs.io/>
+- XiangShan Documentation: <https://docs.xiangshan.cc/>
 - XiangShan User Guide: <https://docs.xiangshan.cc/projects/user-guide/>
 - XiangShan Design Doc: <https://docs.xiangshan.cc/projects/design/>
 

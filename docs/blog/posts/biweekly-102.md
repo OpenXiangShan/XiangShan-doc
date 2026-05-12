@@ -9,9 +9,11 @@ categories:
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 102 期双周报。
 
-昆明湖 V3 的设计文档已经逐步公开，欢迎大家阅读并与我们讨论！目前，新版设计文档包含 ICache 和 BPU 两个模块，其他模块的设计文档将随着开发的进行陆续发布。设计文档仍然在 <https://docs.xiangshan.cc/projects/design/zh-cn/>，如果大家对昆明湖 V2 的设计文档感兴趣，可以通过网页右下角切换分支来查看。
+基于香山昆明湖 V2 二次开发的进迭时空第三代高性能 RISC-V 处理器核 X200 研发完成！X200 在传统云计算处理器核的基础上，面向云端 Agent 应用与旗舰级终端 Agent 应用进行了针对性优化，SPECInt 2006 性能达到 16.0 分/GHz，单核频率可达 3.3GHz；相比 X100，单位性能提升 100% 以上，达到 SPECint 2006 50 分/Core。
 
-关于香山核近期开发进展，前端着重优化了 BPU 的时序，后端和访存实现了多个新特性，并且修复了一些功能 bug。
+相比使用了昆明湖 V2，更让我们高兴的是 X200 的研究过程中使用了全套的香山开源基础设施，这是支撑 X200 走向可量产状态的冰山水面下部分。这些开源工具链极大加速了 X200 二次开发的效率，为 X200 的质量提供了有力保障。
+
+关于香山近期开发进展，前端在优化时序的同时进行 2-fetch 实现；后端和访存修复了一些功能 bug，并继续推进新版 L2 的设计；XSAI 为矩阵模块添加了 FP8 支持，同时优化了代码质量和评估工具。
 
 <!-- more -->
 
@@ -58,7 +60,7 @@ categories:
   - 添加 Makefile 对 CUTE 代码更改的跟踪（[XSAI #63](https://github.com/OpenXiangShan/XSAI/pull/63)）
   - firmware 编译加速（[xsai-env #4](https://github.com/OurCompArchGroup/xsai-env/pull/4)）
 - 评估工具
-  - checkpoint 并行仿真 [xsai-env #11](https://github.com/OurCompArchGroup/xsai-env/pull/11)
+  - checkpoint 并行仿真（[xsai-env #11](https://github.com/OurCompArchGroup/xsai-env/pull/11)）
 
 ## 性能评估
 
@@ -66,8 +68,8 @@ categories:
 
 | 参数      | 选项       |
 | --------- | ---------- |
-| commit    | 82d2669b2  |
-| 日期      | 2026/04/23 |
+| commit    | f65a4e6c3  |
+| 日期      | 2026/05/07 |
 | L1 ICache | 64KB       |
 | L1 DCache | 64KB       |
 | L2 Cache  | 1MB        |
@@ -80,24 +82,24 @@ categories:
 
 | SPECint 2006 @ 3GHz | GCC15  |  XSCC  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  |
 | :------------------ | :----: | :----: | :----------------- | :----: | :----: |
-| 400.perlbench       | 48.55  | 47.58  | 410.bwaves         | 85.31  | 90.03  |
-| 401.bzip2           | 27.44  | 28.26  | 416.gamess         | 57.05  | 53.20  |
-| 403.gcc             | 55.18  | 39.57  | 433.milc           | 64.74  | 64.04  |
-| 429.mcf             | 61.07  | 55.44  | 434.zeusmp         | 71.39  | 64.13  |
-| 445.gobmk           | 38.93  | 40.08  | 435.gromacs        | 37.20  | 34.38  |
-| 456.hmmer           | 54.39  | 64.70  | 436.cactusADM      | 76.02  | 87.74  |
-| 458.sjeng           | 38.89  | 39.43  | 437.leslie3d       | 56.29  | 56.46  |
-| 462.libquantum      | 136.76 | 294.79 | 444.namd           | 43.21  | 45.23  |
-| 464.h264ref         | 63.44  | 72.03  | 447.dealII         | 64.12  | 68.46  |
-| 471.omnetpp         | 41.05  | 39.51  | 450.soplex         | 52.08  | 64.00  |
-| 473.astar           | 30.46  | 29.66  | 453.povray         | 73.34  | 66.37  |
-| 483.xalancbmk       | 75.80  | 84.53  | 454.Calculix       | 43.80  | 39.68  |
-| GEOMEAN             | 50.92  | 54.14  | 459.GemsFDTD       | 63.55  | 64.27  |
-|                     |        |        | 465.tonto          | 52.57  | 35.04  |
-|                     |        |        | 470.lbm            | 125.76 | 133.04 |
-|                     |        |        | 481.wrf            | 54.94  | 41.59  |
-|                     |        |        | 482.sphinx3        | 59.37  | 62.42  |
-|                     |        |        | GEOMEAN            | 61.05  | 59.23  |
+| 400.perlbench       | 48.42  | 47.53  | 410.bwaves         | 85.27  | 89.88  |
+| 401.bzip2           | 27.43  | 28.28  | 416.gamess         | 57.05  | 53.23  |
+| 403.gcc             | 55.26  | 38.88  | 433.milc           | 64.93  | 64.04  |
+| 429.mcf             | 61.00  | 55.47  | 434.zeusmp         | 71.27  | 64.66  |
+| 445.gobmk           | 38.94  | 40.10  | 435.gromacs        | 37.20  | 34.38  |
+| 456.hmmer           | 54.38  | 64.72  | 436.cactusADM      | 76.13  | 87.68  |
+| 458.sjeng           | 38.87  | 39.48  | 437.leslie3d       | 56.26  | 56.36  |
+| 462.libquantum      | 136.67 | 294.84 | 444.namd           | 43.23  | 45.23  |
+| 464.h264ref         | 63.46  | 71.99  | 447.dealII         | 64.25  | 68.39  |
+| 471.omnetpp         | 41.07  | 39.47  | 450.soplex         | 52.12  | 63.93  |
+| 473.astar           | 30.42  | 29.63  | 453.povray         | 73.34  | 65.77  |
+| 483.xalancbmk       | 75.83  | 84.61  | 454.Calculix       | 43.74  | 39.61  |
+| GEOMEAN             | 50.90  | 54.07  | 459.GemsFDTD       | 63.50  | 63.95  |
+|                     |        |        | 465.tonto          | 52.59  | 35.01  |
+|                     |        |        | 470.lbm            | 125.82 | 133.04 |
+|                     |        |        | 481.wrf            | 54.96  | 41.58  |
+|                     |        |        | 482.sphinx3        | 59.39  | 62.42  |
+|                     |        |        | GEOMEAN            | 61.07  | 59.18  |
 
 编译参数如下所示：
 
@@ -118,7 +120,7 @@ categories:
 
 - 香山技术讨论 QQ 群：879550595
 - 香山技术讨论网站：<https://github.com/OpenXiangShan/XiangShan/discussions>
-- 香山文档：<https://xiangshan-doc.readthedocs.io/>
+- 香山文档：<https://docs.xiangshan.cc/>
 - 香山用户手册：<https://docs.xiangshan.cc/projects/user-guide/>
 - 香山设计文档：<https://docs.xiangshan.cc/projects/design/>
 

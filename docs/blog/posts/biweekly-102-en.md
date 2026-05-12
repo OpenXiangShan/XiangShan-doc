@@ -9,9 +9,9 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 102nd issue of the biweekly report.
 
-The development of X200, SpacemiT's third-generation high-performance RISC-V processor core based on XiangShan Kunming Lake V2, has been completed. Built on a traditional cloud computing processor core, X200 has been specifically optimized for cloud-side Agent applications and flagship end-side Agent applications. Its SPECint 2006 performance reaches 16.0 points/GHz, and the single-core frequency can reach 3.3GHz. Compared with X100, its per-core performance has improved by more than 100%, reaching 50 SPECint 2006 points/Core.
+The development of X200, SpacemiT's third-generation high-performance RISC-V processor core derived from XiangShan Kunming Lake V2, has been completed. Based on a conventional cloud-computing processor core, X200 has been specifically optimized for cloud-side Agent applications and flagship end-device Agent applications. Its SPECint 2006 performance reaches 16.0 points/GHz, and its single-core frequency can reach 3.3GHz. Compared with X100, its performance per core has improved by more than 100%, reaching 50 SPECint 2006 points/Core.
 
-Even more encouraging than the reuse of Kunming Lake V2 is that the full XiangShan open-source infrastructure was used throughout the X200 research and development process. This is the part below the surface that supports X200 on its path toward production readiness. These open-source toolchains greatly accelerated the efficiency of X200 derivative development and provided strong assurance for its quality.
+Even more encouraging than the fact that X200 builds on Kunming Lake V2 is that the full XiangShan open-source infrastructure was used throughout X200's development. This is the part below the surface that supports X200 on its path toward production readiness. These open-source toolchains greatly accelerated X200's development on top of XiangShan and provided strong assurance for its quality.
 
 As for recent XiangShan development, the frontend is implementing 2-fetch while optimizing timing; the backend and memory teams fixed several functional bugs and continued advancing the new L2 design; XSAI added FP8 support for the matrix unit while also improving code quality and evaluation tools.
 
@@ -22,48 +22,44 @@ As for recent XiangShan development, the frontend is implementing 2-fetch while 
 ### Frontend
 
 - RTL features
-  - Implemented the initial version of 2-prefetch ([#5775](https://github.com/OpenXiangShan/XiangShan/pull/5775))
+  - Implemented an initial 2-prefetch scheme ([#5775](https://github.com/OpenXiangShan/XiangShan/pull/5775))
 - Bug fixes
-  - (V2) Collaborated with the backend team to fix the issue of incorrect xepc and xtval register updates when an exception occurs after satp update ([#5860](https://github.com/OpenXiangShan/XiangShan/pull/5860))
-  - Fixed the issue of incorrect exception tagging when IFU handles cross-page instructions ([#5874](https://github.com/OpenXiangShan/XiangShan/pull/5874))
+  - (V2) Collaborated with the backend team to fix incorrect updates to the `xepc` and `xtval` registers when an exception occurs after `satp` is updated ([#5860](https://github.com/OpenXiangShan/XiangShan/pull/5860))
+  - Fixed incorrect exception tagging when the IFU handles exceptions caused by cross-page instructions ([#5874](https://github.com/OpenXiangShan/XiangShan/pull/5874))
 - PPA optimizations
-  - Used SRAM to save TAGE useful counter to save area ([#5852](https://github.com/OpenXiangShan/XiangShan/pull/5852))
-  - Adjusted the pipeline stages of BPU handling mbtb attribute to improve timing ([#5842](https://github.com/OpenXiangShan/XiangShan/pull/5842))
+  - Used SRAM to store the TAGE useful counters to save area ([#5852](https://github.com/OpenXiangShan/XiangShan/pull/5852))
+  - Adjusted the pipeline stage partitioning for MBTB attribute handling at the top level of the BPU to improve timing ([#5842](https://github.com/OpenXiangShan/XiangShan/pull/5842))
 - Code quality
   - Removed a potentially misleading parameter in MBTB ([#5891](https://github.com/OpenXiangShan/XiangShan/pull/5891))
 
 ### Backend
 
-- RTL New Features
-  - (V2) Make commit stuck critical error check configurable by CSR ([#5806](https://github.com/OpenXiangShan/XiangShan/pull/5806))
-  - Add switch to disable dispatch balance opt ([#5815](https://github.com/OpenXiangShan/XiangShan/pull/5815))
-  - Resolve the false positive issue caused by insufficient main pipeline resources ([#5803](https://github.com/OpenXiangShan/XiangShan/pull/5803))
-- PPA optimizations
-  - Optimize dispatch policy to improve performance ([#5801](https://github.com/OpenXiangShan/XiangShan/pull/5801))
 - Bug fixes
-  - fix indirect csr RegOut ([(V2) #5823](https://github.com/OpenXiangShan/XiangShan/pull/5823), [5833](https://github.com/OpenXiangShan/XiangShan/pull/5833))
+  - (V2) Collaborated with the frontend team to fix incorrect updates to the `xepc` and `xtval` registers when an exception occurs after `satp` is updated ([#5860](https://github.com/OpenXiangShan/XiangShan/pull/5860))
+  - (V2) Fixed the issue where every jump instruction execution would trigger a redirect ([#5867](https://github.com/OpenXiangShan/XiangShan/pull/5867))
+  - (V2) Added an initial value for `mtvec` ([#5862](https://github.com/OpenXiangShan/XiangShan/pull/5862))
 
 ### MemBlock and Cache
 
-- RTL New Features
-  - Implemented store-load forwarding in DCache mshr ([#5870](https://github.com/OpenXiangShan/XiangShan/pull/5870))
-  - Refactoring of L2 is continuously progressing
-- Bug Fixes
-  - Fix the issue of incorrect use of PPN truncation bit to index cfs in L2TLB ([#5858](https://github.com/OpenXiangShan/XiangShan/pull/5858))
-  - Fix the behavior of StoreQueue when handling cross 16-byte accesses ([#5855](https://github.com/OpenXiangShan/XiangShan/pull/5855))
+- RTL features
+  - Implemented store-load forwarding in the DCache MSHR ([#5870](https://github.com/OpenXiangShan/XiangShan/pull/5870))
+  - Continued advancing the new L2 design
+- Bug fixes
+  - Fixed the issue where the PPN truncation bits were incorrectly used to index CFS in L2TLB ([#5858](https://github.com/OpenXiangShan/XiangShan/pull/5858))
+  - Fixed StoreQueue behavior when handling memory accesses that cross 16-byte boundaries ([#5855](https://github.com/OpenXiangShan/XiangShan/pull/5855))
 
 ### XSAI
 
-- RTL New Features
+- RTL features
   - The matrix unit supports FP8 precision ([XSAI #61](https://github.com/OpenXiangShan/XSAI/pull/61))
-  - Evaluating 8-channel cache access for the matrix unit
-  - Co-developing BF16 scalar and vector support with the backend team
-- Bug Fixes
+  - Evaluating 8-channel memory access for the matrix unit
+  - Working with the backend team to implement BF16 scalar and vector support
+- Bug fixes
   - Fixed a scheduling error in CUTE ([XSAI #62](https://github.com/OpenXiangShan/XSAI/pull/62))
-- Code Quality
-  - Added Makefile tracking for CUTE code changes ([XSAI #63](https://github.com/OpenXiangShan/XSAI/pull/63))
+- Code quality
+  - Added Makefile tracking for changes in CUTE code ([XSAI #63](https://github.com/OpenXiangShan/XSAI/pull/63))
   - Accelerated firmware compilation ([xsai-env #4](https://github.com/OurCompArchGroup/xsai-env/pull/4))
-- Evaluation Tools
+- Evaluation tools
   - Parallel checkpoint simulation ([xsai-env #11](https://github.com/OurCompArchGroup/xsai-env/pull/11))
 
 ## Performance Evaluation

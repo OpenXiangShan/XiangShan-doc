@@ -51,16 +51,12 @@ As for recent XiangShan development, the frontend is implementing 2-fetch while 
 ### XSAI
 
 - RTL features
-  - The matrix unit supports FP8 precision ([XSAI #61](https://github.com/OpenXiangShan/XSAI/pull/61))
-  - Evaluating 8-channel memory access for the matrix unit
-  - Working with the backend team to implement BF16 scalar and vector support
+  - Split load and store in the C matrix memory access module so that the two instruction types can overlap ([CUTE #11](https://github.com/OpenXiangShan/CUTE/pull/11))
 - Bug fixes
-  - Fixed a scheduling error in CUTE ([XSAI #62](https://github.com/OpenXiangShan/XSAI/pull/62))
+  - Fixed an incorrect constant passed from XSAI to XSAI DiffTest ([XSAI #65](https://github.com/OpenXiangShan/XSAI/pull/65))
+  - Fixed the issue where HBL2 A-channel Put Matrix was interrupted by the C channel ([XSAI #64](https://github.com/OpenXiangShan/XSAI/pull/64))
 - Code quality
-  - Added Makefile tracking for changes in CUTE code ([XSAI #63](https://github.com/OpenXiangShan/XSAI/pull/63))
-  - Accelerated firmware compilation ([xsai-env #4](https://github.com/OurCompArchGroup/xsai-env/pull/4))
-- Evaluation tools
-  - Parallel checkpoint simulation ([xsai-env #11](https://github.com/OurCompArchGroup/xsai-env/pull/11))
+  - Accelerated XSAI FIR elaboration, making XSAI Verilog generation 4.75x faster than before ([CUTE #12](https://github.com/OpenXiangShan/CUTE/pull/12))
 
 ## Performance Evaluation
 

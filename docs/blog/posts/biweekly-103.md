@@ -51,16 +51,12 @@ categories:
 ### XSAI
 
 - RTL 新特性
-  - 矩阵模块支持 FP8 精度（[XSAI #61](https://github.com/OpenXiangShan/XSAI/pull/61)）
-  - 正在评估矩阵模块的 8 通道访存
-  - 正在与后端组配合实现 BF16 标量与向量
+  - 拆分 C 矩阵访存模块的 load 与 store，使两种指令能够重叠执行（[CUTE #11](https://github.com/OpenXiangShan/CUTE/pull/11)）
 - Bug 修复
-  - 修复 CUTE 的一处调度错误（[XSAI #62](https://github.com/OpenXiangShan/XSAI/pull/62)）
+  - 修复 XSAI 向 XSAI DiffTest 传递的错误常量（[XSAI #65](https://github.com/OpenXiangShan/XSAI/pull/65)）
+  - 修复 HBL2 的 A 通道 Put Matrix 被 C 通道打断的错误（[XSAI #64](https://github.com/OpenXiangShan/XSAI/pull/64)）
 - 代码质量
-  - 添加 Makefile 对 CUTE 代码更改的跟踪（[XSAI #63](https://github.com/OpenXiangShan/XSAI/pull/63)）
-  - firmware 编译加速（[xsai-env #4](https://github.com/OurCompArchGroup/xsai-env/pull/4)）
-- 评估工具
-  - checkpoint 并行仿真（[xsai-env #11](https://github.com/OurCompArchGroup/xsai-env/pull/11)）
+  - 加速 XSAI FIR elaboration，使 XSAI 生成 Verilog 的速度提高到原来的 4.75 倍（[CUTE #12](https://github.com/OpenXiangShan/CUTE/pull/12)）
 
 ## 性能评估
 

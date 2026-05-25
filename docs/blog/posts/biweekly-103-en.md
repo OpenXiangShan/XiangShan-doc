@@ -34,10 +34,12 @@ As for recent XiangShan development, the frontend is implementing 2-fetch while 
 
 ### Backend
 
+- RTL features
+  - Supported smcdeleg/ssccfg extensions ([#5841](https://github.com/OpenXiangShan/XiangShan/pull/5841))
 - Bug fixes
-  - (V2) Collaborated with the frontend team to fix incorrect updates to the `xepc` and `xtval` registers when an exception occurs after `satp` is updated ([#5860](https://github.com/OpenXiangShan/XiangShan/pull/5860))
-  - (V2) Fixed the issue where every jump instruction execution would trigger a redirect ([#5867](https://github.com/OpenXiangShan/XiangShan/pull/5867))
-  - (V2) Added an initial value for `mtvec` ([#5862](https://github.com/OpenXiangShan/XiangShan/pull/5862))
+  - Export empty state to FTQ when backend drains ([#5787](https://github.com/OpenXiangShan/XiangShan/pull/5787))
+  - Fix CSR to support debug spec 1.0 ([#5952](https://github.com/OpenXiangShan/XiangShan/pull/5952))
+  - (V2) Stepie should control hvictl interrupt injection ([#5926](https://github.com/OpenXiangShan/XiangShan/pull/5926))
 
 ### MemBlock and Cache
 

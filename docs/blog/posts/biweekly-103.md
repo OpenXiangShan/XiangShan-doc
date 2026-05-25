@@ -34,10 +34,12 @@ categories:
 
 ### 后端
 
+- RTL 新特性
+  - 支持 smcdeleg/ssccfg 扩展（[#5841](https://github.com/OpenXiangShan/XiangShan/pull/5841)）
 - Bug 修复
-  - （V2）前端组协同下修复 satp 更新后出现异常时 xepc 和 xtval 寄存器更新错误的问题（[#5860](https://github.com/OpenXiangShan/XiangShan/pull/5860)）
-  - （V2）修复每条 jump 指令执行时都会触发的 redirect 的问题（[#5867](https://github.com/OpenXiangShan/XiangShan/pull/5867)）
-  - （V2）为 mtvec 添加初始化值（[#5862](https://github.com/OpenXiangShan/XiangShan/pull/5862)）
+  - 当后端排空时，返回空状态到 FTQ（[#5787](https://github.com/OpenXiangShan/XiangShan/pull/5787)）
+  - 修改 CSR 以支持 debug spec 1.0（[#5952](https://github.com/OpenXiangShan/XiangShan/pull/5952)）
+  - （V2）stepie 应该控制 hvictl 注入中断（[#5926](https://github.com/OpenXiangShan/XiangShan/pull/5926)）
 
 ### 访存与缓存
 

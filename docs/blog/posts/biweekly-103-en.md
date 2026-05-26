@@ -17,6 +17,46 @@ As for recent XiangShan development, the frontend is implementing 2-fetch while 
 
 <!-- more -->
 
+## Development Stories
+
+Recently, we have receved an [issue #5910](https://github.com/OpenXiangShan/XiangShan/issues/5910), ~~(actually we have received many, but the analysis process of this one is particularly interesting)~~. The issue pointed out that when an RVI instruction crosses a page boundary, and both pages are in MMIO space, with the former page being executable and the latter page being non-executable, difftest reports an error.
+
+```plaintext
+RTL : mtval=0x1dfaf000, mepc=0x1dfaf000, mcause=0x1 (instruction access fault)
+NEMU: mtval=0x1dfadffe, mepc=0x1dfadffe, mcause=0x1 (instruction access fault)
+```
+
+At first glance, this issue seems to be a simple difftest failure caused by a mis-alignment between NEMU and RTL, as described in the instruction set manual: the `mtval` of an IAF exception is the virtual address of the portion of the memory accesses that caused the fault. In this case, since the bus requires aligned access, IFU splits an instruction fetch into two memory accesses, with the first access at `0x1dfadffe-0x1dfadfff` being in an executable region and causing no exception, while the second access at `0x1dfaf000` being in a non-executable region and causing an IAF exception, thus `mtval` should be the starting address of the second access `0x1dfaf000`, which is inconsistent with NEMU's behavior. Therefore, we forwarded this issue to the NEMU team for analysis.
+
+Simultaneously, we carefully checked the waveforms and noticed that IFU actually read `0x0` when reading `0x1dfadffe-0x1dfadfff`, which is an illegal RVC instruction rather than the expected half of a legal RVI instruction. This may be caused by a cache consistency issue due to the workload enabling PMP at an inappropriate time, since NEMU does not have a cache model, it is expected that difftest reports an error in this case. In fact, the behavior of RTL is: it detects an illegal RVC instruction at `0x1dfadffe`, while NEMU triggers an IAF.
+
+-- But in this case, RTL should report `mtval=0x0, mepc=0x1dfadffe, mcause=0x2 (illegal instruction)`, which is also inconsistent with the actual behavior, indicating that there is another issue.
+
+When we were confused, our internal verification team reported a very similar bug: RVC instructions close to page boundaries were skipped for execution. This was caused by a communication issue: the InstrUncache unit only checks the low bits of the address to determine if it crosses a page boundary, without considering the instruction length. Therefore, when an RVC instruction starts at the last instruction before a page boundary, InstrUncache marks it as `incomplete`. The intention is to reuse the existing pre-decoding unit in IFU, and if IFU's pre-decoding finds that the instruction is actually complete (an RVC instruction), it should ignore InstrUncache's marking and send it to the backend for normal execution. However, due to communication issues, IFU directly treated InstrUncache's `incomplete` flag as an indication of actual instruction incompleteness, leading to the above problem. This issue was fixed in [#5959](https://github.com/OpenXiangShan/XiangShan/pull/5959).
+
+Applying the situation of #5910 to the analysis of the new bug, although RTL detects an illegal RVC instruction at `0x1dfadffe`, it does not correctly send it to the backend, so the processor tries to execute the next instruction at `0x1dfaf000`, finds an IAF exception, and thus gets the observed `mtval` and `mepc` values.
+
+At this point, we thought the bug was completely fixed. Since the provided workload has cache consistency issues and cannot be used, we constructed a test case ourselves to verify the effectiveness of the fix. However, the responsible colleague was not very familiar with the PMP configuration process, so they used the mechanism provided by the Svpbmt extension to control `MMIO`/`X` attributes through page table entries. In theory, except for access fault (physical address without execute permission) becoming page fault (virtual address without execute permission), the processing flow and phenomena should be consistent.
+
+-- However, the actual situation was surprising. When configuring the first page as `Pbmt=IO, X=1` and the second page as `Pbmt=IO, X=0`, RTL correctly reported an exception with `mtval=0x1dfaf000, mepc=0x1dfadffe, mcause=0x1`, passing the difftest check, as if the previous two bugs never existed.
+
+So we checked the waveforms again and found that although we configured `Pbmt=IO`, RTL still treated it as a cacheable space, with IFU's related paths completely inactive and ICache providing the correct response instead. After checking the Pbmt-related paths, we found that the bit width of the `Pbmt.PMA` constant was not explicitly specified, which led to an incorrect bit width of the `s1_itlbPbmt` register inferred by Chisel, causing `Pbmt=IO (2'b10)` to be stored as `1'b0` and thus treated as `Pbmt=PMA (2'b00)`. This bug originated from a refactoring a year ago, when the responsible colleague thought that `RegInit(..., init=Pbmt.PMA)` looked better than `RegInit(..., init=0.U(Pbmt.width.W))`, so they changed it without realizing that it would introduce such a subtle bug. This also exposed the insufficient coverage of our test suite for new features introduced in RVA23 (specifically referring to the Svpbmt extension here). This issue was fixed in [#5962](https://github.com/OpenXiangShan/XiangShan/pull/5962), and we will continue to improve the quality of our test suite in the future.
+
+At this point, we thought the bug was completely fixed ~~again~~, but when we reran the newly constructed test case, it still reported a difftest error:
+
+```plaintext
+RTL : mtval=0x1dfaf000, mepc=0x1dfaf000, mcause=0xc (instruction page fault)
+NEMU: mtval=0x1dfaf000, mepc=0x1dfadffe, mcause=0xc (instruction page fault)
+```
+
+-- ~~Why on earth is the mepc still wrong~~
+
+Anyway, we checked the waveforms AGAIN and found that IFU ignores its MMIO marking when handling exceptions (which is expected, since the PMP/ITLB checks done by ICache have already failed, it makes no sense to further distinguish whether it's MMIO or not, just pass it to the backend for handling), so for such instructions with exception on latter half, the data path in IFU will handle it with logic similar to instruction concatenation and metadata selection for instructions crossing MMIO-cacheable boundaries. However, unfortunately, this logic was newly added in V3 and was designed with some issues without much consideration for verification. Therefore, IFU actually discarded the metadata of the previous page and directly processed it according to the metadata of the latter page, thus IFU actually thought it was processing an instruction at `0x1dfaf000` when it encountered the exception, rather than at `0x1dfadffe`, ultimately leading to an incorrect `mepc` calculated by the backend. This issue was fixed in [#5985](https://github.com/OpenXiangShan/XiangShan/pull/5985).
+
+At this point, we thought the bug was completely fixed ~~AGAIN~~, and this time we really passed the test case. We also verified that other combinations of different attributes (for example, both pages are executable but with inconsistent MMIO attributes: first page `Pbmt=PMA, X=1`, second page `Pbmt=IO, X=1`) can also get correct results.
+
+We think the analysis process of this series of bugs is very interesting, so we are sharing it in the biweekly report. We also want to thank the issue provider (not only this issue, but all contributors who cares about XiangShan development) for their careful observation and patient cooperation. TODO：升华
+
 ## Recent Developments
 
 ### Frontend
@@ -25,7 +65,7 @@ As for recent XiangShan development, the frontend is implementing 2-fetch while 
   - Support dropping resolve requests when BPU has long-term correct predictions, reducing BPU read conflicts and power consumption at the same time ([#5759](https://github.com/OpenXiangShan/XiangShan/pull/5759))
 - Bug fixes
   - Get empty state directly from backend, fixing the issue of MMIO fetch getting stuck in specific scenarios ([#5787](https://github.com/OpenXiangShan/XiangShan/pull/5787))
-  - Fix the issue where IFU failed to send exceptions other than illegal instruction to backend when handling RVC instructions that are close to page boundaries ([#5959](https://github.com/OpenXiangShan/XiangShan/pull/5959))
+  - Fix the issue where IFU failed to send instructions to backend when handling RVC instructions that are close to page boundaries ([#5959](https://github.com/OpenXiangShan/XiangShan/pull/5959))
   - Fix the issue where ICache `s1_itlbPbmt` register has incorrect bit width ([#5962](https://github.com/OpenXiangShan/XiangShan/pull/5962))
   - Fix the issue where IFU had incorrect instruction concatenation and metadata selection when handling RVI instructions that cross MMIO-cacheable boundaries ([#5985](https://github.com/OpenXiangShan/XiangShan/pull/5985))
 - PPA optimizations

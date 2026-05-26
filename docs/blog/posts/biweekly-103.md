@@ -17,6 +17,46 @@ categories:
 
 <!-- more -->
 
+## 开发花絮
+
+近期我们在 GitHub 上收到了一个 [issue #5910](https://github.com/OpenXiangShan/XiangShan/issues/5910)，~~（其实我们收到了很多，但是这个的分析过程格外有趣）~~。TA 指出，在一条 RVI 指令跨过页边界，两页都位于 MMIO 空间，前一页可执行，后一页不可执行时，difftest 会报错。
+
+```plaintext
+RTL : mtval=0x1dfaf000, mepc=0x1dfaf000, mcause=0x1 (instruction access fault)
+NEMU: mtval=0x1dfadffe, mepc=0x1dfadffe, mcause=0x1 (instruction access fault)
+```
+
+起初我们怀疑这是一个 NEMU 和 RTL 未对齐产生的问题，因为如指令集手册所述：IAF 异常的 `mtval` 是引起异常的访存片段的虚拟地址。在此例中，由于总线的对齐访问要求，IFU 将一次取指拆分为两次访存，第一次访存的 `0x1dfadffe-0x1dfadfff` 两字节处于可执行区域，无异常；第二次访存的 `0x1dfaf000` 两字节处于不可执行区域，产生 IAF 异常，因此 `mtval` 应该是第二次访存的起始地址 `0x1dfaf000`，这与 NEMU 的行为不一致。因此将该 issue 转交给了 NEMU 团队进行分析。
+
+与此同时，我们仔细检查了波形，注意到 IFU 在读取 `0x1dfadffe-0x1dfadfff` 时实际上读到了 `0x0`，这是一条非法的 RVC 指令，而不是预期中的半条合法的 RVI 指令，这可能是 workload 使能 PMP 的时机有误引起的缓存一致性问题，因为 NEMU 不具有 cache 模型，在这种情况下的 difftest 报错是符合预期的。实际上 RTL 的行为是：在 `0x1dfadffe` 处检查到了一条非法 RVC 指令，而 NEMU 则触发到了一个 IAF。
+
+——但这样看，RTL 应该报告 `mtval=0x0, mepc=0x1dfadffe, mcause=0x2 (illegal instruction)`，与实际行为不一致，也就是还存在别的问题。
+
+在我们感到困惑时，我们内部的验证团队反馈了一个很相似的 bug：紧贴页边界的 RVC 指令被跳过执行了。这是一次沟通不畅导致的问题：InstrUncache 单元在设计时仅检查了地址的低位来判断是否跨页，并不会判断指令长度，因此当 RVC 指令的起始地址位于页边界前的最后一条指令时，InstrUncache 会将其标注为 `incomplete`，这样做的目的是希望复用 IFU 内已有的预译码单元，如果 IFU 预译码发现指令实际已经完整（是 RVC 指令），就应该忽略 InstrUncache 的标注，正常发送到后端执行。但由于沟通问题，IFU 在设计时直接将 InstrUncache 的 `incomplete` 标志作为事实上的指令不完整来处理，导致了上述问题的发生。于 [#5959](https://github.com/OpenXiangShan/XiangShan/pull/5959) 修复了这个问题。
+
+将 #5910 的情况代入新 bug 的分析，RTL 虽然在 `0x1dfadffe` 处检查到了一条非法 RVC 指令，但没有正确将其发送到后端，因此处理器尝试执行下一条，也就是 `0x1dfaf000` 处的指令，发现了 IAF 异常，进而得到了我们观察到的 mtval 和 mepc 值。
+
+至此，我们觉得 bug 已经完全修复了，由于 issue 中提供的 workload 存在缓存一致性问题无法使用，我们自行构造了一个测试用例来验证修复的有效性。但负责的同学不是很熟悉 PMP 的配置流程，~~偷了个懒~~使用 Svpbmt 扩展提供的机制利用页表项来控制 `MMIO`/`X` 属性。在理论上来讲，除了 access fault（物理地址无执行权限）变成 page fault（虚拟地址无执行权限）以外，两者的处理流程和现象应该是一致的。
+
+——然而实际情况让人大跌眼镜，用 Pbmt 配置了第一页 `Pbmt=IO, X=1`，第二页 `Pbmt=IO, X=0` 时，RTL 正确的报告了 `mtval=0x1dfaf000, mepc=0x1dfadffe, mcause=0x1` 的异常，通过了 difftest 检查，前面两个 bug 仿佛从没存在过。
+
+于是我们再次检查了波形，发现尽管将 Pbmt 配置为 IO，RTL 上还是将其作为 cacheable 空间进行了处理，IFU 相关通路完全没有工作，而是由 ICache 提供了正确的响应。检查了 Pbmt 相关通路后，我们发现 Pbmt.PMA 常量的位宽未被显式指定，进而导致 Chisel 自动推断得到的 `s1_itlbPbmt` 寄存器位宽不正确，导致了 `Pbmt=IO`（`2'b10`）被存储为了 `1'b0`，从而作为 `Pbmt=PMA`（`2'b00`）处理了。这个 bug 源自于一年前的一次重构，彼时负责同学觉得 `RegInit(..., init=Pbmt.PMA)` 相比 `RegInit(..., init=0.U(Pbmt.width.W))` 更好看，于是顺手就改了，没想到竟然引入了一个如此隐蔽的 bug。这也暴露出我们的测试套件对于 RVA23 引入的新功能（此处特指 Svpbmt 扩展）的覆盖存在不足。于 [#5962](https://github.com/OpenXiangShan/XiangShan/pull/5962) 修复了这个问题，后续我们也会继续提高测试套件质量。
+
+至此，我们~~再次~~觉得 bug 已经完全修复了，但重新运行新构造的测试用例时仍然报告了一个 difftest 错误：
+
+```plaintext
+RTL : mtval=0x1dfaf000, mepc=0x1dfaf000, mcause=0xc (instruction page fault)
+NEMU: mtval=0x1dfaf000, mepc=0x1dfadffe, mcause=0xc (instruction page fault)
+```
+
+——~~这 mepc 怎么还是不对啊~~
+
+总之我们再再次检查了波形，发现 IFU 在处理异常时会忽略其 MMIO 标记（这是符合预期的，反正 ICache 做的 PMP/ITLB 检查已经挂了，直接丢给后端处理就好了，再区分是否 MMIO 没什么意义），因此对于这种一半异常的指令，IFU 内的数据通路会用类似于跨 MMIO-cacheable 边界的指令拼接和元数据选择逻辑来处理。然而不幸的是，这些逻辑是 V3 新加的，设计有点问题且从来没有想过验证过。因此 IFU 实际上丢弃了前一页的元数据，直接按后一页的元数据进行了处理，因此 IFU 实际上认为自己在处理 `0x1dfaf000` 处的指令时遇到了异常，而不是 `0x1dfadffe` 处的指令，最终导致后端计算得到的 mepc 有误。于 [#5985](https://github.com/OpenXiangShan/XiangShan/pull/5985) 修复了这个问题。
+
+至此，我们~~再再次~~觉得 bug 已经完全修复了，这次终于真正通过了测试用例。我们也验证了其余不同属性的组合（例如，两页都可以执行，但 MMIO 属性不一致：第一页 `Pbmt=PMA, X=1`，第二页 `Pbmt=IO, X=1`）都能得到正确的结果。
+
+我们觉得这一系列 bug 的分析过程非常有意思，因此将它在双周报中分享给大家。也在此感谢 issue 提供者（不仅是这一个 issue，我们感谢所有关注 XiangShan 开发的贡献者）的细心观察和耐心配合。TODO：升华
+
 ## 近期进展
 
 ### 前端
@@ -25,7 +65,7 @@ categories:
   - 支持当 BPU 长期预测正确时，丢弃 resolve 请求，从而在降低 BPU 读冲突的同时减少功耗（[#5759](https://github.com/OpenXiangShan/XiangShan/pull/5759)）
 - Bug 修复
   - 从后端直接获得排空状态，修复特定情况下 MMIO 取指卡死的问题（[#5787](https://github.com/OpenXiangShan/XiangShan/pull/5787)）
-  - 修复 IFU 处理紧贴页边界的 RVC 指令，出现非法指令以外的异常时未正确发送到后端的问题（[#5959](https://github.com/OpenXiangShan/XiangShan/pull/5959)）
+  - 修复 IFU 处理紧贴页边界的 RVC 指令时未正确发送到后端的问题（[#5959](https://github.com/OpenXiangShan/XiangShan/pull/5959)）
   - 修复 ICache `s1_itlbPbmt` 寄存器位宽不正确的问题（[#5962](https://github.com/OpenXiangShan/XiangShan/pull/5962)）
   - 修复 IFU 在处理跨过 MMIO-cacheable 边界的 RVI 指令时，指令拼接及元数据选择有误的问题（[#5985](https://github.com/OpenXiangShan/XiangShan/pull/5985)）
 - PPA 优化

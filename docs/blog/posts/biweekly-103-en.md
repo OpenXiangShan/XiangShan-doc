@@ -22,15 +22,23 @@ As for recent XiangShan development, the frontend is implementing 2-fetch while 
 ### Frontend
 
 - RTL features
-  - Implemented an initial 2-prefetch scheme ([#5775](https://github.com/OpenXiangShan/XiangShan/pull/5775))
+  - Support dropping resolve requests when BPU has long-term correct predictions, reducing BPU read conflicts and power consumption at the same time ([#5759](https://github.com/OpenXiangShan/XiangShan/pull/5759))
 - Bug fixes
-  - (V2) Collaborated with the backend team to fix incorrect updates to the `xepc` and `xtval` registers when an exception occurs after `satp` is updated ([#5860](https://github.com/OpenXiangShan/XiangShan/pull/5860))
-  - Fixed incorrect exception tagging when the IFU handles exceptions caused by cross-page instructions ([#5874](https://github.com/OpenXiangShan/XiangShan/pull/5874))
+  - Get empty state directly from backend, fixing the issue of MMIO fetch getting stuck in specific scenarios ([#5787](https://github.com/OpenXiangShan/XiangShan/pull/5787))
+  - Fix the issue where IFU failed to send exceptions other than illegal instruction to backend when handling RVC instructions that are close to page boundaries ([#5959](https://github.com/OpenXiangShan/XiangShan/pull/5959))
+  - Fix the issue where ICache `s1_itlbPbmt` register has incorrect bit width ([#5962](https://github.com/OpenXiangShan/XiangShan/pull/5962))
+  - Fix the issue where IFU had incorrect instruction concatenation and metadata selection when handling RVI instructions that cross MMIO-cacheable boundaries ([#5985](https://github.com/OpenXiangShan/XiangShan/pull/5985))
 - PPA optimizations
-  - Used SRAM to store the TAGE useful counters to save area ([#5852](https://github.com/OpenXiangShan/XiangShan/pull/5852))
-  - Adjusted the pipeline stage partitioning for MBTB attribute handling at the top level of the BPU to improve timing ([#5842](https://github.com/OpenXiangShan/XiangShan/pull/5842))
+  - Adjust the tag comparison, register read, and related logic in UBTB, ABTB, and UTAGE prediction pipelines to optimize timing ([#5686](https://github.com/OpenXiangShan/XiangShan/pull/5686))
+  - Adjust the replacer-related logic in MBTB training pipeline to optimize timing ([#5897](https://github.com/OpenXiangShan/XiangShan/pull/5897), [#5944](https://github.com/OpenXiangShan/XiangShan/pull/5944))
+  - Adjust the TAGE training pipeline to optimize timing ([#5890](https://github.com/OpenXiangShan/XiangShan/pull/5890))
+  - Adjust the SC prediction pipeline's counter and related logic to optimize timing ([#5911](https://github.com/OpenXiangShan/XiangShan/pull/5911))
+  - Adjust the SC training pipeline's write-back enable calculation logic to optimize timing ([#5923](https://github.com/OpenXiangShan/XiangShan/pull/5923))
+  - Adjust the CommonHR's fold history calculation logic during redirection to optimize timing ([#5975](https://github.com/OpenXiangShan/XiangShan/pull/5975))
+  - Adjust the PHR S1 pipeline's fold history calculation logic to optimize timing ([#5892](https://github.com/OpenXiangShan/XiangShan/pull/5892))
+  - Replace priority encoder with parallel OR logic in IFU to optimize timing ([#5937](https://github.com/OpenXiangShan/XiangShan/pull/5937))
 - Code quality
-  - Removed a potentially misleading parameter in MBTB ([#5891](https://github.com/OpenXiangShan/XiangShan/pull/5891))
+  - Use implicit parameters to simplify parameter passing for ITTAGE tables ([#5924](https://github.com/OpenXiangShan/XiangShan/pull/5924))
 
 ### Backend
 

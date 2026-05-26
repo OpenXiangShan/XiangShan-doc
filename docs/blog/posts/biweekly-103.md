@@ -22,15 +22,23 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 实现初版 2-prefetch 方案（[#5775](https://github.com/OpenXiangShan/XiangShan/pull/5775)）
+  - 支持当 BPU 长期预测正确时，丢弃 resolve 请求，从而在降低 BPU 读冲突的同时减少功耗（[#5759](https://github.com/OpenXiangShan/XiangShan/pull/5759)）
 - Bug 修复
-  - （V2）协同后端组修复 satp 更新后出现异常时 xepc 和 xtval 寄存器更新错误的问题（[#5860](https://github.com/OpenXiangShan/XiangShan/pull/5860)）
-  - 修复 IFU 处理跨页指令引起的异常时标记错误的问题（[#5874](https://github.com/OpenXiangShan/XiangShan/pull/5874)）
+  - 从后端直接获得排空状态，修复特定情况下 MMIO 取指卡死的问题（[#5787](https://github.com/OpenXiangShan/XiangShan/pull/5787)）
+  - 修复 IFU 处理紧贴页边界的 RVC 指令，出现非法指令以外的异常时未正确发送到后端的问题（[#5959](https://github.com/OpenXiangShan/XiangShan/pull/5959)）
+  - 修复 ICache `s1_itlbPbmt` 寄存器位宽不正确的问题（[#5962](https://github.com/OpenXiangShan/XiangShan/pull/5962)）
+  - 修复 IFU 在处理跨过 MMIO-cacheable 边界的 RVI 指令时，指令拼接及元数据选择有误的问题（[#5985](https://github.com/OpenXiangShan/XiangShan/pull/5985)）
 - PPA 优化
-  - 使用 SRAM 保存 TAGE useful counter 以节省面积（[#5852](https://github.com/OpenXiangShan/XiangShan/pull/5852)）
-  - 调整 BPU 顶层处理 mbtb attribute 的流水级划分以提升时序（[#5842](https://github.com/OpenXiangShan/XiangShan/pull/5842)）
+  - 调整 UBTB、ABTB、UTAGE 预测流水中 tag 比较、寄存器读等相关逻辑，优化时序（[#5686](https://github.com/OpenXiangShan/XiangShan/pull/5686)）
+  - 调整 MBTB 训练流水中 replacer 相关逻辑，优化时序（[#5897](https://github.com/OpenXiangShan/XiangShan/pull/5897)，[#5944](https://github.com/OpenXiangShan/XiangShan/pull/5944)）
+  - 调整 TAGE 训练流水，优化时序（[#5890](https://github.com/OpenXiangShan/XiangShan/pull/5890)）
+  - 调整 SC 预测流水中计数器和的计算逻辑，优化时序（[#5911](https://github.com/OpenXiangShan/XiangShan/pull/5911)）
+  - 调整 SC 训练流水中写回使能计算逻辑，优化时序（[#5923](https://github.com/OpenXiangShan/XiangShan/pull/5923)）
+  - 调整 CommonHR 在重定向时计算折叠历史相关逻辑，优化时序（[#5975](https://github.com/OpenXiangShan/XiangShan/pull/5975)）
+  - 调整 PHR S1 流水级中计算折叠历史相关逻辑，优化时序（[#5892](https://github.com/OpenXiangShan/XiangShan/pull/5892)）
+  - 在 IFU 中使用并行或逻辑代替优先编码器，优化时序（[#5937](https://github.com/OpenXiangShan/XiangShan/pull/5937)）
 - 代码质量
-  - 移除 MBTB 中一个可能引起误解的参数（[#5891](https://github.com/OpenXiangShan/XiangShan/pull/5891)）
+  - 使用隐式传参简化 ITTAGE 表的参数传递（[#5924](https://github.com/OpenXiangShan/XiangShan/pull/5924)）
 
 ### 后端
 

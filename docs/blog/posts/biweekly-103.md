@@ -174,4 +174,4 @@ NEMU: mtval=0x1dfaf000, mepc=0x1dfadffe, mcause=0xc (instruction page fault)
 - 香山用户手册：<https://docs.xiangshan.cc/projects/user-guide/>
 - 香山设计文档：<https://docs.xiangshan.cc/projects/design/>
 
-编辑：徐之皓、吉骏雄、陈卓、余俊杰、孙际儒、李衍君
+编辑：徐之皓、吉骏雄、陈卓、孙际儒、李衍君

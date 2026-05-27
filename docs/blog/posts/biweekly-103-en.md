@@ -174,4 +174,4 @@ Note: We use SimPoint to sample the programs and create checkpoint images based 
 - XiangShan User Guide: <https://docs.xiangshan.cc/projects/user-guide/>
 - XiangShan Design Doc: <https://docs.xiangshan.cc/projects/design/>
 
-Editors: Zhihao Xu, Junxiong Ji, Zhuo Chen, Junjie Yu, Jiru Sun, Yanjun Li
+Editors: Zhihao Xu, Junxiong Ji, Zhuo Chen, Jiru Sun, Yanjun Li

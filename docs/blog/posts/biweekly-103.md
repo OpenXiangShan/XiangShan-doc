@@ -118,8 +118,8 @@ NEMU: mtval=0x1dfaf000, mepc=0x1dfadffe, mcause=0xc (instruction page fault)
 
 | 参数      | 选项       |
 | --------- | ---------- |
-| commit    | f65a4e6c3  |
-| 日期      | 2026/05/07 |
+| commit    | dcc1d2689  |
+| 日期      | 2026/05/21 |
 | L1 ICache | 64KB       |
 | L1 DCache | 64KB       |
 | L2 Cache  | 2MB        |

@@ -118,8 +118,8 @@ Processor and SoC parameters are as follows:
 
 | Parameters           | Options    |
 | -------------------- | ---------- |
-| Commit               | f65a4e6c3  |
-| Date                 | 2026/05/07 |
+| Commit               | dcc1d2689  |
+| Date                 | 2026/05/21 |
 | L1 ICache            | 64KB       |
 | L1 DCache            | 64KB       |
 | L2 Cache             | 2MB        |

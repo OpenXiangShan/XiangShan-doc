@@ -9,11 +9,9 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 103rd issue of the biweekly report.
 
-The development of X200, SpacemiT's third-generation high-performance RISC-V processor core derived from XiangShan Kunming Lake V2, has been completed. Based on a conventional cloud-computing processor core, X200 has been specifically optimized for cloud-side Agent applications and flagship end-device Agent applications. Its SPECint 2006 performance reaches 16.0 points/GHz, and its single-core frequency can reach 3.3GHz. Compared with X100, its performance per core has improved by more than 100%, reaching 50 SPECint 2006 points/Core.
+We recently received many issues on GitHub! We welcome every developer who is interested in XiangShan to communicate and provide feedback with us. Whether it's bug reports, feature suggestions, or questions about using XiangShan, we will respond in a timely manner. In this biweekly report, we share a very interesting issue with you, through which we fixed four bugs.
 
-Even more encouraging than the fact that X200 builds on Kunming Lake V2 is that the full XiangShan open-source infrastructure was used throughout X200's development. This is the part below the surface that supports X200 on its path toward production readiness. These open-source toolchains greatly accelerated X200's development on top of XiangShan and provided strong assurance for its quality.
-
-As for recent XiangShan development, the frontend is implementing 2-fetch while optimizing timing; the backend and memory teams fixed several functional bugs and continued advancing the new L2 design; XSAI added FP8 support for the matrix unit while also improving code quality and evaluation tools.
+As for the recent development of XiangShan, the frontend fixed some bugs while continuing to optimize timing; the backend implemented new extensions and fixed some bugs; the memory subsystem expanded L2 to 2MB while optimizing PPA and code style; XSAI implemented overlapping execution of the C matrix memory access module and fixed some bugs.
 
 <!-- more -->
 
@@ -49,13 +47,11 @@ RTL : mtval=0x1dfaf000, mepc=0x1dfaf000, mcause=0xc (instruction page fault)
 NEMU: mtval=0x1dfaf000, mepc=0x1dfadffe, mcause=0xc (instruction page fault)
 ```
 
--- ~~Why on earth is the mepc still wrong~~
+-- ~~Why on earth is the mepc still wrong😡~~
 
 Anyway, we checked the waveforms AGAIN and found that IFU ignores its MMIO marking when handling exceptions (which is expected, since the PMP/ITLB checks done by ICache have already failed, it makes no sense to further distinguish whether it's MMIO or not, just pass it to the backend for handling), so for such instructions with exception on latter half, the data path in IFU will handle it with logic similar to instruction concatenation and metadata selection for instructions crossing MMIO-cacheable boundaries. However, unfortunately, this logic was newly added in V3 and was designed with some issues without much consideration for verification. Therefore, IFU actually discarded the metadata of the previous page and directly processed it according to the metadata of the latter page, thus IFU actually thought it was processing an instruction at `0x1dfaf000` when it encountered the exception, rather than at `0x1dfadffe`, ultimately leading to an incorrect `mepc` calculated by the backend. This issue was fixed in [#5985](https://github.com/OpenXiangShan/XiangShan/pull/5985).
 
 At this point, we thought the bug was completely fixed ~~AGAIN~~, and this time we really passed the test case. We also verified that other combinations of different attributes (for example, both pages are executable but with inconsistent MMIO attributes: first page `Pbmt=PMA, X=1`, second page `Pbmt=IO, X=1`) can also get correct results.
-
-We think the analysis process of this series of bugs is very interesting, so we are sharing it in the biweekly report. We also want to thank the issue provider (not only this issue, but all contributors who cares about XiangShan development) for their careful observation and patient cooperation. TODO：升华
 
 ## Recent Developments
 
@@ -126,7 +122,7 @@ Processor and SoC parameters are as follows:
 | Date                 | 2026/05/07 |
 | L1 ICache            | 64KB       |
 | L1 DCache            | 64KB       |
-| L2 Cache             | 1MB        |
+| L2 Cache             | 2MB        |
 | L3 Cache             | 16MB       |
 | LSU                  | 3ld2st     |
 | Bus protocol         | CHI        |

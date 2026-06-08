@@ -79,11 +79,8 @@ NEMU: mtval=0x1dfaf000, mepc=0x1dfadffe, mcause=0xc (instruction page fault)
 ### 后端
 
 - RTL 新特性
-  - 支持 smcdeleg/ssccfg 扩展（[#5841](https://github.com/OpenXiangShan/XiangShan/pull/5841)）
-- Bug 修复
-  - 当后端排空时，返回空状态到 FTQ（[#5787](https://github.com/OpenXiangShan/XiangShan/pull/5787)）
-  - 修改 CSR 以支持 debug spec 1.0（[#5952](https://github.com/OpenXiangShan/XiangShan/pull/5952)）
-  - （V2）stepie 应该控制 hvictl 注入中断（[#5926](https://github.com/OpenXiangShan/XiangShan/pull/5926)）
+  - 使用稀疏向量（SparseVec）作为异常向量的存储结构 ([#5738](https://github.com/OpenXiangShan/XiangShan/pull/5738))
+  - Sdtrig 扩展支持 tdata3 ([#5983](https://github.com/OpenXiangShan/XiangShan/pull/5983))
 
 ### 访存与缓存
 

@@ -79,11 +79,8 @@ At this point, we thought the bug was completely fixed ~~AGAIN~~, and this time 
 ### Backend
 
 - RTL features
-  - Supported smcdeleg/ssccfg extensions ([#5841](https://github.com/OpenXiangShan/XiangShan/pull/5841))
-- Bug fixes
-  - Export empty state to FTQ when backend drains ([#5787](https://github.com/OpenXiangShan/XiangShan/pull/5787))
-  - Fix CSR to support debug spec 1.0 ([#5952](https://github.com/OpenXiangShan/XiangShan/pull/5952))
-  - (V2) Stepie should control hvictl interrupt injection ([#5926](https://github.com/OpenXiangShan/XiangShan/pull/5926))
+  - Use sparse vector (SparseVec) for the structure of exception vector ([#5738](https://github.com/OpenXiangShan/XiangShan/pull/5738))
+  - Sdtrig extension support tdata3 ([#5983](https://github.com/OpenXiangShan/XiangShan/pull/5983))
 
 ### MemBlock and Cache
 

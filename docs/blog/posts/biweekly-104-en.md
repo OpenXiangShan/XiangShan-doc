@@ -105,12 +105,14 @@ At this point, we thought the bug was completely fixed ~~AGAIN~~, and this time 
 ### XSAI
 
 - RTL features
-  - Split load and store in the C matrix memory access module so that the two instruction types can overlap ([CUTE #11](https://github.com/OpenXiangShan/CUTE/pull/11))
+  - Add an option to disable data types with scaling factors, such as mxfp8. When these data types are disabled, modules that handle scaling factors will not be instantiated ([CUTE #13](https://github.com/OpenXiangShan/CUTE/pull/13))
+  - Add a set of matrix performance events for CUTE ([CUTE #18](https://github.com/OpenXiangShan/CUTE/pull/18))
+  - Continue advancing HBL2 support for the CHI bus protocol
 - Bug fixes
-  - Fixed an incorrect constant passed from XSAI to XSAI DiffTest ([XSAI #65](https://github.com/OpenXiangShan/XSAI/pull/65))
-  - Fixed the issue where HBL2 A-channel Put Matrix was interrupted by the C channel ([XSAI #64](https://github.com/OpenXiangShan/XSAI/pull/64))
-- Code quality
-  - Accelerated XSAI FIR elaboration, making XSAI Verilog generation 4.75x faster than before ([CUTE #12](https://github.com/OpenXiangShan/CUTE/pull/12))
+  - Fix the performance event numbers of XSAI V2R2A and align them with the event numbers of Kunminghu V2R2 ([XSAI #70](https://github.com/OpenXiangShan/XSAI/pull/70))
+  - Fix the issue where matrix functional unit exceptions were not handled by ROB ([XSAI #71](https://github.com/OpenXiangShan/XSAI/pull/71))
+- Code refactoring
+  - Refactor CUTE scheduling ([CUTE #14](https://github.com/OpenXiangShan/CUTE/pull/14))
 
 ## Performance Evaluation
 

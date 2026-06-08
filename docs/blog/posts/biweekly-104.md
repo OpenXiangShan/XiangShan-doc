@@ -105,12 +105,14 @@ NEMU: mtval=0x1dfaf000, mepc=0x1dfadffe, mcause=0xc (instruction page fault)
 ### XSAI
 
 - RTL 新特性
-  - 拆分 C 矩阵访存模块的 load 与 store，使两种指令能够重叠执行（[CUTE #11](https://github.com/OpenXiangShan/CUTE/pull/11)）
+  - 添加用于关闭 mxfp8 等带缩放因子数据类型的选项，在关闭这些数据类型后，处理缩放因子的模块将不会被实例化（[CUTE #13](https://github.com/OpenXiangShan/CUTE/pull/13)）
+  - 为 CUTE 添加一系列矩阵性能事件（[CUTE #18](https://github.com/OpenXiangShan/CUTE/pull/18)）
+  - 正在推进 HBL2 对 CHI 总线协议的支持
 - Bug 修复
-  - 修复 XSAI 向 XSAI DiffTest 传递的错误常量（[XSAI #65](https://github.com/OpenXiangShan/XSAI/pull/65)）
-  - 修复 HBL2 的 A 通道 Put Matrix 被 C 通道打断的错误（[XSAI #64](https://github.com/OpenXiangShan/XSAI/pull/64)）
-- 代码质量
-  - 加速 XSAI FIR elaboration，使 XSAI 生成 Verilog 的速度提高到原来的 4.75 倍（[CUTE #12](https://github.com/OpenXiangShan/CUTE/pull/12)）
+  - 修复 XSAI V2R2A 的性能事件编号，与昆明湖 V2R2 的事件编号对齐（[XSAI #70](https://github.com/OpenXiangShan/XSAI/pull/70)）
+  - 修复矩阵功能单元异常未被 ROB 处理的问题（[XSAI #71](https://github.com/OpenXiangShan/XSAI/pull/71)）
+- 代码重构
+  - 重构 CUTE 调度（[CUTE #14](https://github.com/OpenXiangShan/CUTE/pull/14)）
 
 ## 性能评估
 

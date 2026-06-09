@@ -9,9 +9,11 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 104th issue of the biweekly report.
 
-We recently received many issues on GitHub! We welcome every developer who is interested in XiangShan to communicate and provide feedback with us. Whether it's bug reports, feature suggestions, or questions about using XiangShan, we will respond in a timely manner. In this biweekly report, we share a very interesting issue with you, through which we fixed four bugs.
+RISC-V Summit Europe is happening! The XiangShan team has multiple talks at the summit, including the new Verilog intermediate representation Wolvrix and the synthesizable reference model. We also held the "Unity Chip" workshop for the first time, sharing our exploration and practice in agile verification and AI verification.
 
-As for the recent development of XiangShan, the frontend fixed some bugs while continuing to optimize timing; the backend implemented new extensions and fixed some bugs; the memory subsystem expanded L2 to 2MB while optimizing PPA and code style; XSAI implemented overlapping execution of the C matrix memory access module and fixed some bugs.
+![Unity Chip workshop](./figs/biweekly-104/unity_chip.jpg)
+
+Regarding the recent development progress of XiangShan, the frontend continues to optimize timing while reducing redirect latency; the backend implements some new features and instruction set extensions; the memory subsystem fixes some bugs while optimizing L2 timing; XSAI optimizes code structure while advancing HBL2 support for CHI.
 
 <!-- more -->
 

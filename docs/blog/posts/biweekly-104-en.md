@@ -16,7 +16,19 @@ You can get more information through the following links:
 - RuyiSDK official website: https://ruyisdk.org/
 - RuyiSDK developer community: https://ruyisdk.cn/
 
-RISC-V Summit Europe is happening! The XiangShan team has multiple talks at the summit, including the new Verilog intermediate representation Wolvrix and the synthesizable reference model. We also held the "Unity Chip" workshop for the first time, sharing our exploration and practice in agile verification and AI verification.
+RISC-V European Summit is ongoing! The XiangShan team has multiple talks and posters at the summit, and the detailed schedule can be found [here](https://mp.weixin.qq.com/s/gNpOxypE4UKLWLr2H103Yg).
+
+In the opening report of the RISC-V Foundation, CEO Andrea Gallo introduced the application of XiangShan in high-performance server scenarios.
+
+![Andrea Gallo introducing the application of XiangShan in high-performance server scenarios](./figs/biweekly-104/riscv-foundation.jpg)
+
+Deputy Director of the Institute of Computing Technology, Chinese Academy of Sciences, and Chief Scientist of Beijing Open Source Chip Research Institute, Researcher Bao Yungang gave a report titled "XiangShan Practice: The Path to Industrial Deployment of Open-Source High-Performance RISC-V Processor", introducing the industrial deployment path of XiangShan.
+
+![Researcher Bao Yungang introducing the industrial deployment path of XiangShan](./figs/biweekly-104/xiangshan-1.jpg)
+
+![XiangShan family](./figs/biweekly-104/xiangshan-2.jpg)
+
+We also held the tutorial of Unity Chip for the first time, sharing with everyone the exploration and practice of software-native open-source chip intelligent crowdsourcing verification.
 
 ![Unity Chip workshop](./figs/biweekly-104/unity_chip.jpg)
 

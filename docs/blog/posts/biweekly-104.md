@@ -58,23 +58,11 @@ NEMU: mtval=0x1dfaf000, mepc=0x1dfadffe, mcause=0xc (instruction page fault)
 ### 前端
 
 - RTL 新特性
-  - 支持当 BPU 长期预测正确时，丢弃 resolve 请求，从而在降低 BPU 读冲突的同时减少功耗（[#5759](https://github.com/OpenXiangShan/XiangShan/pull/5759)）
+  - 提前读取重定向请求对应的 FTQ 项，优化时序的同时降低重定向延迟（[#5990](https://github.com/OpenXiangShan/XiangShan/pull/5990)）
 - Bug 修复
-  - 从后端直接获得排空状态，修复特定情况下 MMIO 取指卡死的问题（[#5787](https://github.com/OpenXiangShan/XiangShan/pull/5787)）
-  - 修复 IFU 处理紧贴页边界的 RVC 指令时未正确发送到后端的问题（[#5959](https://github.com/OpenXiangShan/XiangShan/pull/5959)）
-  - 修复 ICache `s1_itlbPbmt` 寄存器位宽不正确的问题（[#5962](https://github.com/OpenXiangShan/XiangShan/pull/5962)）
-  - 修复 IFU 在处理跨过 MMIO-cacheable 边界的 RVI 指令时，指令拼接及元数据选择有误的问题（[#5985](https://github.com/OpenXiangShan/XiangShan/pull/5985)）
+  - 修复 UBTB 优化时序过程中引入的、将被覆盖的项作为命中项导致预测错误的问题（[#6009](https://github.com/OpenXiangShan/XiangShan/pull/6009)）
 - PPA 优化
-  - 调整 UBTB、ABTB、UTAGE 预测流水中 tag 比较、寄存器读等相关逻辑，优化时序（[#5686](https://github.com/OpenXiangShan/XiangShan/pull/5686)）
-  - 调整 MBTB 训练流水中 replacer 相关逻辑，优化时序（[#5897](https://github.com/OpenXiangShan/XiangShan/pull/5897)，[#5944](https://github.com/OpenXiangShan/XiangShan/pull/5944)）
-  - 调整 TAGE 训练流水，优化时序（[#5890](https://github.com/OpenXiangShan/XiangShan/pull/5890)）
-  - 调整 SC 预测流水中计数器和的计算逻辑，优化时序（[#5911](https://github.com/OpenXiangShan/XiangShan/pull/5911)）
-  - 调整 SC 训练流水中写回使能计算逻辑，优化时序（[#5923](https://github.com/OpenXiangShan/XiangShan/pull/5923)）
-  - 调整 CommonHR 在重定向时计算折叠历史相关逻辑，优化时序（[#5975](https://github.com/OpenXiangShan/XiangShan/pull/5975)）
-  - 调整 PHR S1 流水级中计算折叠历史相关逻辑，优化时序（[#5892](https://github.com/OpenXiangShan/XiangShan/pull/5892)）
-  - 在 IFU 中使用并行或逻辑代替优先编码器，优化时序（[#5937](https://github.com/OpenXiangShan/XiangShan/pull/5937)）
-- 代码质量
-  - 使用隐式传参简化 ITTAGE 表的参数传递（[#5924](https://github.com/OpenXiangShan/XiangShan/pull/5924)）
+  - 优化 IBuffer 入队逻辑时序（[#5946](https://github.com/OpenXiangShan/XiangShan/pull/5946)）
 
 ### 后端
 

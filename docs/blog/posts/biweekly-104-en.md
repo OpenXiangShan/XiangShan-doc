@@ -58,23 +58,11 @@ At this point, we thought the bug was completely fixed ~~AGAIN~~, and this time 
 ### Frontend
 
 - RTL features
-  - Support dropping resolve requests when BPU has long-term correct predictions, reducing BPU read conflicts and power consumption at the same time ([#5759](https://github.com/OpenXiangShan/XiangShan/pull/5759))
+  - Read the corresponding FTQ entry of a redirect request in advance, optimizing timing and reducing redirect latency ([#5990](https://github.com/OpenXiangShan/XiangShan/pull/5990))
 - Bug fixes
-  - Get empty state directly from backend, fixing the issue of MMIO fetch getting stuck in specific scenarios ([#5787](https://github.com/OpenXiangShan/XiangShan/pull/5787))
-  - Fix the issue where IFU failed to send instructions to backend when handling RVC instructions that are close to page boundaries ([#5959](https://github.com/OpenXiangShan/XiangShan/pull/5959))
-  - Fix the issue where ICache `s1_itlbPbmt` register has incorrect bit width ([#5962](https://github.com/OpenXiangShan/XiangShan/pull/5962))
-  - Fix the issue where IFU had incorrect instruction concatenation and metadata selection when handling RVI instructions that cross MMIO-cacheable boundaries ([#5985](https://github.com/OpenXiangShan/XiangShan/pull/5985))
+  - Fix the issue introduced by UBTB timing optimization, which treats overwritten entries as hits and causes incorrect predictions ([#6009](https://github.com/OpenXiangShan/XiangShan/pull/6009))
 - PPA optimizations
-  - Adjust the tag comparison, register read, and related logic in UBTB, ABTB, and UTAGE prediction pipelines to optimize timing ([#5686](https://github.com/OpenXiangShan/XiangShan/pull/5686))
-  - Adjust the replacer-related logic in MBTB training pipeline to optimize timing ([#5897](https://github.com/OpenXiangShan/XiangShan/pull/5897), [#5944](https://github.com/OpenXiangShan/XiangShan/pull/5944))
-  - Adjust the TAGE training pipeline to optimize timing ([#5890](https://github.com/OpenXiangShan/XiangShan/pull/5890))
-  - Adjust the SC prediction pipeline's counter and related logic to optimize timing ([#5911](https://github.com/OpenXiangShan/XiangShan/pull/5911))
-  - Adjust the SC training pipeline's write-back enable calculation logic to optimize timing ([#5923](https://github.com/OpenXiangShan/XiangShan/pull/5923))
-  - Adjust the CommonHR's fold history calculation logic during redirection to optimize timing ([#5975](https://github.com/OpenXiangShan/XiangShan/pull/5975))
-  - Adjust the PHR S1 pipeline's fold history calculation logic to optimize timing ([#5892](https://github.com/OpenXiangShan/XiangShan/pull/5892))
-  - Replace priority encoder with parallel OR logic in IFU to optimize timing ([#5937](https://github.com/OpenXiangShan/XiangShan/pull/5937))
-- Code quality
-  - Use implicit parameters to simplify parameter passing for ITTAGE tables ([#5924](https://github.com/OpenXiangShan/XiangShan/pull/5924))
+  - Optimize the timing of IBuffer enqueue logic ([#5946](https://github.com/OpenXiangShan/XiangShan/pull/5946))
 
 ### Backend
 

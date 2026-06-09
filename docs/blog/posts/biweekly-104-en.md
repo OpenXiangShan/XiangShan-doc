@@ -72,20 +72,12 @@ At this point, we thought the bug was completely fixed ~~AGAIN~~, and this time 
 
 ### MemBlock and Cache
 
-- RTL features
-  - Increase the capacity of CoupledL2 to 2MB ([#5969](https://github.com/OpenXiangShan/XiangShan/pull/5969))
 - Bug fixes
-  - Fix the issue where unalignQueue failed to clear queue entries after cross-page store operations ([#5913](https://github.com/OpenXiangShan/XiangShan/pull/5913))
-  - Add handshake signals for prefetch requests sent to L2 to prevent loss for no reason ([#5989](https://github.com/OpenXiangShan/XiangShan/pull/5989))
+  - Fix bug of fullOverlap when store is cross16B ([#6003](https://github.com/OpenXiangShan/XiangShan/pull/6003))
 - PPA optimizations
-  - Only read data during DCache refill when the replacement block is dirty, instead of reading data every time ([#5956](https://github.com/OpenXiangShan/XiangShan/pull/5956))
-  - Optimize the timing of CoupledL2, reducing timing violations from -130 ps to -40 ps and maximum logic levels from 44 to 24 at 2MB capacity ([XSCache #4](https://github.com/OpenXiangShan/XSCache/pull/4))
-  - Fix the accuracy of early wakeup signals from CoupledL2 to MemBlock and add performance counters to track the accuracy ([XSCache #5](https://github.com/OpenXiangShan/XSCache/pull/5), [#5993](https://github.com/OpenXiangShan/XiangShan/pull/5993))
+  - Split L2 prefetch request queue by slices, reducing blocking between different slices ([XSCache #13](https://github.com/OpenXiangShan/XSCache/pull/13))
 - Code refactoring
-  - Create a new XSCache repository and migrated code from the original CoupledL2 and OpenLLC repositories to resolve circular dependencies and code duplication ([#5938](https://github.com/OpenXiangShan/XiangShan/pull/5938))
-  - Removed support for the Tilelink bus protocol between L2 and L3 in XSCache, retaining only support for the CHI bus protocol ([XSCache #6](https://github.com/OpenXiangShan/XSCache/pull/6))
-- Debugging tools
-  - Add pfLateHitType and Berti monitors ([#5964](https://github.com/OpenXiangShan/XiangShan/pull/5964))
+  - Move prefetch from loadUnit to mainPipe ([#5997](https://github.com/OpenXiangShan/XiangShan/pull/5997))
 
 ### XSAI
 

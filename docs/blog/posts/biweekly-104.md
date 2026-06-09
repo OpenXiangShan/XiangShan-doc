@@ -72,20 +72,12 @@ NEMU: mtval=0x1dfaf000, mepc=0x1dfadffe, mcause=0xc (instruction page fault)
 
 ### 访存与缓存
 
-- RTL 新特性
-  - 将 CoupledL2 的容量增大到 2MB（[#5969](https://github.com/OpenXiangShan/XiangShan/pull/5969)）
 - Bug 修复
-  - 修复了 unalignQueue 在跨页存储操作出队后未能正确清除队列条目的问题（[#5913](https://github.com/OpenXiangShan/XiangShan/pull/5913)）
-  - 为发往 L2 的预取请求添加握手信号以避免无故丢失预取请求（[#5989](https://github.com/OpenXiangShan/XiangShan/pull/5989)）
+  - 修复了跨 16 字节 store 时与 fullOverlap 有关的问题（[#6003](https://github.com/OpenXiangShan/XiangShan/pull/6003)）
 - PPA 优化
-  - 在 DCache 重填过程中仅在替换块为脏时才读取数据，而不是每次都读取数据（[#5956](https://github.com/OpenXiangShan/XiangShan/pull/5956)）
-  - 优化了 CoupledL2 的时序，2MB 容量下时序违例从 -130 ps 优化至 -40 ps，最大逻辑级数从 44 级优化至 24 级（[XSCache #4](https://github.com/OpenXiangShan/XSCache/pull/4)）
-  - 修复了 CoupledL2 发往 MemBlock 的提前唤醒信号的准确性，并添加了统计准确性的性能计数器（[XSCache #5](https://github.com/OpenXiangShan/XSCache/pull/5), [#5993](https://github.com/OpenXiangShan/XiangShan/pull/5993)）
+  - 将 L2 的预取请求队列按 slice 拆分，减少不同 slice 间的阻塞（[XSCache #13](https://github.com/OpenXiangShan/XSCache/pull/13)）
 - 代码重构
-  - 新建 XSCache 仓库，并将原 CoupledL2 与 OpenLLC 仓库的代码迁移到 XSCache 仓库中，以解决循环依赖和代码重复等问题（[#5938](https://github.com/OpenXiangShan/XiangShan/pull/5938)，[XSCache #7](https://github.com/OpenXiangShan/XSCache/pull/7)）
-  - 移除了 XSCache 对 L2 与 L3 之间 Tilelink 总线协议的支持，仅保留对 CHI 总线协议的支持（[XSCache #6](https://github.com/OpenXiangShan/XSCache/pull/6)）
-- 调试工具
-  - 添加 pfLateHitType 和 Berti 监控器（[#5964](https://github.com/OpenXiangShan/XiangShan/pull/5964)）
+  - 将预取从 loadUnit 移动到 mainPipe（[#5997](https://github.com/OpenXiangShan/XiangShan/pull/5997)）
 
 ### XSAI
 

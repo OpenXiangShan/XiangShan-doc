@@ -80,8 +80,8 @@ Processor and SoC parameters are as follows:
 
 | Parameters           | Options    |
 | -------------------- | ---------- |
-| Commit               | dcc1d2689  |
-| Date                 | 2026/05/21 |
+| Commit               | 9443d04bd  |
+| Date                 | 2026/06/05 |
 | L1 ICache            | 64KB       |
 | L1 DCache            | 64KB       |
 | L2 Cache             | 2MB        |

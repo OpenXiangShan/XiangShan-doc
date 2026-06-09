@@ -9,6 +9,13 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 104th issue of the biweekly report.
 
+We are very excited to share with you an important component in the "XiangShan" + "Ruyi" ecosystem: RuyiSDK! This is a one-stop development resource management platform for RISC-V architecture, which integrates toolchains, simulators, runtime environments, and debugging tools based on the ruyi package manager and IDE plugin system, providing full-process development support. The platform has built a comprehensive matrix of RISC-V development boards and operating system support, providing developers with a more convenient operating experience and serving as an important infrastructure for promoting RISC-V development and ecosystem construction.
+
+You can get more information through the following links:
+
+- RuyiSDK official website: https://ruyisdk.org/
+- RuyiSDK developer community: https://ruyisdk.cn/
+
 RISC-V Summit Europe is happening! The XiangShan team has multiple talks at the summit, including the new Verilog intermediate representation Wolvrix and the synthesizable reference model. We also held the "Unity Chip" workshop for the first time, sharing our exploration and practice in agile verification and AI verification.
 
 ![Unity Chip workshop](./figs/biweekly-104/unity_chip.jpg)

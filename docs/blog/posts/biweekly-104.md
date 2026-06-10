@@ -13,24 +13,24 @@ categories:
 
 大家可以通过以下链接获取更多信息：
 
-- RuyiSDK官网：https://ruyisdk.org/
-- RuyiSDK开发者社区：https://ruyisdk.cn/
+- RuyiSDK 官网：<https://ruyisdk.org/>
+- RuyiSDK 开发者社区：<https://ruyisdk.cn/>
 
 RISC-V 欧洲峰会正在举行！香山团队在峰会上有多个 talk 和 poster，详细日程见[这里](https://mp.weixin.qq.com/s/gNpOxypE4UKLWLr2H103Yg)。
 
-在 RISC-V 基金会的开场报告中，CEO Andrea Gallo 介绍了香山在高性能服务器场景的应用。
+在 RISC-V 国际协会的开场报告中，CEO Andrea Gallo 介绍了香山在高性能服务器场景的应用。
 
-![Andrea Gallo 介绍香山在高性能服务器场景的应用](./figs/biweekly-104/riscv-foundation.jpg)
+![Andrea Gallo 介绍香山在高性能服务器场景的应用](./figs/biweekly-104/riscv-international.jpg)
 
 中国科学院计算技术研究所副所长、北京开源芯片研究院首席科学家包云岗研究员作了题为 XiangShan Practice: The Path to Industrial Deployment of Open-Source High-Performance RISC-V Processor 的报告，介绍了香山的产业部署之路。
 
-![包云岗研究员介绍香山的工业部署之路](./figs/biweekly-104/xiangshan-1.jpg)
+![包云岗研究员介绍香山的产业部署之路](./figs/biweekly-104/xiangshan-1.jpg)
 
 ![香山家族](./figs/biweekly-104/xiangshan-2.jpg)
 
 我们还首次举办了万众一芯的 workshop，与大家分享软件原生的开源芯片智能众包验证探索与实践。
 
-![万众一心 workshop](./figs/biweekly-104/unity_chip.jpg)
+![万众一芯 workshop](./figs/biweekly-104/unity_chip.jpg)
 
 关于香山近期开发进展，前端继续优化时序，同时降低了重定向延迟；后端实现了一些新特性与指令集扩展；访存修复了一些 bug，同时优化了 L2 的时序；XSAI 优化了代码结构，同时推进了 HBL2 对 CHI 的支持。
 

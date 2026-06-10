@@ -22,13 +22,13 @@ RISC-V 欧洲峰会正在举行！香山团队在峰会上有多个 talk 和 pos
 
 ![Andrea Gallo 介绍香山在高性能服务器场景的应用](./figs/biweekly-104/riscv-foundation.jpg)
 
-中国科学院计算技术研究所副所长、北京开源芯片研究院首席科学家包云岗研究院作了题为 XiangShan Practice: The Path to Industrial Deployment of Open-Source High-Performance RISC-V Processor 的报告，介绍了香山的工业部署之路。
+中国科学院计算技术研究所副所长、北京开源芯片研究院首席科学家包云岗研究员作了题为 XiangShan Practice: The Path to Industrial Deployment of Open-Source High-Performance RISC-V Processor 的报告，介绍了香山的产业部署之路。
 
-![包云岗研究院介绍香山的工业部署之路](./figs/biweekly-104/xiangshan-1.jpg)
+![包云岗研究员介绍香山的工业部署之路](./figs/biweekly-104/xiangshan-1.jpg)
 
 ![香山家族](./figs/biweekly-104/xiangshan-2.jpg)
 
-我们还首次举办了万众一芯的 tutorial，与大家分享软件原生的开源芯片智能众包验证探索与实践。
+我们还首次举办了万众一芯的 workshop，与大家分享软件原生的开源芯片智能众包验证探索与实践。
 
 ![万众一心 workshop](./figs/biweekly-104/unity_chip.jpg)
 

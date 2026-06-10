@@ -28,7 +28,7 @@ Deputy Director of the Institute of Computing Technology, Chinese Academy of Sci
 
 ![XiangShan family](./figs/biweekly-104/xiangshan-2.jpg)
 
-We also held the tutorial of Unity Chip for the first time, sharing with everyone the exploration and practice of software-native open-source chip intelligent crowdsourcing verification.
+We also held the workshop of Unity Chip for the first time, sharing with everyone the exploration and practice of software-native open-source chip intelligent crowdsourcing verification.
 
 ![Unity Chip workshop](./figs/biweekly-104/unity_chip.jpg)
 

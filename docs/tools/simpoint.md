@@ -1,6 +1,83 @@
 Checkpoint 的生成和运行
 =====================
-## 使用 NEMU 生成 Simpoint Checkpoint
+
+## 推荐流程：使用 workload-builder 和 checkpoint scripts 脚本
+
+目前推荐将 checkpoint 生成拆成两个阶段：
+
+1. 使用 [workload-builder](https://github.com/OpenXiangShan/workload-builder) 生成可直接被 NEMU 加载的 GCPT workload
+2. 使用 [minjie-playground 中的 checkpoint scripts](https://github.com/OpenXiangShan/minjie-playground/blob/master/docs/checkpoint/README.md) 对单个 workload 或 workload 目录执行 profiling、cluster、checkpoint 和 metadata 生成
+
+### 1. 构建 workload
+
+`workload-builder` 会统一构建 Linux kernel、OpenSBI、LibCheckpointAlpha、设备树和 workload，对于 Linux workload，可以使用：
+
+```bash
+git clone https://github.com/OpenXiangShan/workload-builder.git
+cd workload-builder
+make linux/<workload_name>
+```
+
+生成结果位于：
+
+```text
+build/linux-workloads/<workload_name>/fw_payload.bin
+```
+
+这个 `fw_payload.bin` 已经包含 checkpoint 所需的 GCPT、OpenSBI、Linux kernel、设备树和 initramfs workload，可以直接用来打 Checkpoint
+
+更多 workload 类型、构建依赖和自定义 workload 方法，详见 [workload-builder 仓库 README](https://github.com/OpenXiangShan/workload-builder#readme)
+
+### 2. 生成 checkpoint
+
+Checkpoint Scripts 的主入口是 `scripts/checkpoint/generate_checkpoint.py`，本地运行时需要先准备可用的 NEMU 环境，至少保证：
+
+- `NEMU_HOME` 已设置
+- `$NEMU_HOME/build/riscv64-nemu-interpreter` 已存在
+- `$NEMU_HOME/resource/simpoint/simpoint_repo/bin/simpoint` 已存在
+
+单个 workload 示例：
+
+```bash
+git clone https://github.com/OpenXiangShan/minjie-playground.git
+cd minjie-playground
+
+python3 scripts/checkpoint/generate_checkpoint.py \
+  --input-path /path/to/fw_payload.bin \
+  --name <workload_name> \
+  --archive-id <archive_name>
+```
+
+多个 workload 示例：
+
+```bash
+python3 scripts/checkpoint/generate_checkpoint.py \
+  --input-path /path/to/bin-directory \
+  --interval 20000000 \
+  --max-workers 3
+```
+
+如果使用仓库自带的 GitHub Action，推荐直接使用 `Checkpoint` workflow，并通过 `input_path` 指定单个 bin 或 bin 目录
+
+更多参数、GitHub Action 输入和 resume 规则，详见 [minjie-playground checkpoint README](https://github.com/OpenXiangShan/minjie-playground/blob/master/docs/checkpoint/README.md)
+
+### 3. 查看输出
+
+Checkpoint Scripts 默认会在 archive 目录下生成：
+
+- `profiling/`：SimPoint profiling 结果
+- `cluster/`：SimPoint 聚类结果
+- `checkpoint/`：生成的 checkpoint
+- `logs/`：各阶段日志
+- `metadata/`：请求和批量运行记录
+- `json/`：每个 workload 的 checkpoint JSON，以及 `checkpoints_all.json`、`checkpoints_cov0.3.json`
+- `checkpoint/checkpoint.lst`：汇总后的 checkpoint list
+
+### 与旧流程的区别
+
+旧流程需要用户手工准备 Linux/OpenSBI/rootfs/gcpt、手工执行 NEMU profiling、手工调用 SimPoint 聚类，再手工执行 checkpoint；新流程中，`workload-builder` 负责 workload 构建和 GCPT 镜像组织，Checkpoint Scripts 负责 checkpoint 生成流水线和 metadata 汇总；下面的手工流程仍可用于理解底层机制、调试 NEMU 参数或生成特殊类型的 checkpoint，但不再是普通用户的推荐入口
+
+## 旧版手工流程：使用 NEMU 生成 Simpoint Checkpoint
 
 !!! note
     Checkpoint 相关的功能目前使用 NEMU 的 master 分支。之前使用的 tracing 和 cpt-bk 分支虽然也支持simpoint profiling和checkpoint，但是我们不再进行维护、修复bug或提供任何支持。

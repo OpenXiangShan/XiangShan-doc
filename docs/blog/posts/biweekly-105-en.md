@@ -60,12 +60,15 @@ Regarding the recent development progress of XiangShan, the frontend continues t
 
 ### MemBlock and Cache
 
-- Bug fixes
-  - Fix bug of fullOverlap when store is cross16B ([#6003](https://github.com/OpenXiangShan/XiangShan/pull/6003))
-- PPA optimizations
-  - Split L2 prefetch request queue by slices, reducing blocking between different slices ([XSCache #13](https://github.com/OpenXiangShan/XSCache/pull/13))
-- Code refactoring
-  - Move prefetch from loadUnit to mainPipe ([#5997](https://github.com/OpenXiangShan/XiangShan/pull/5997))
+- Bug Fixes
+  - Fix the issue where cbo executes before instruction commit ([#6081](https://github.com/OpenXiangShan/XiangShan/pull/6081))
+  - Fix the performance counters of loadUnit ([#5939](https://github.com/OpenXiangShan/XiangShan/pull/5939))
+  - Add pointer exceed assert ([#5795](https://github.com/OpenXiangShan/XiangShan/pull/5795))
+- Performance Optimizations
+  - Implemente parallel enqueue for DCache MissQueue, allowing up to 4 miss_req per cycle ([#5887](https://github.com/OpenXiangShan/XiangShan/pull/5887))
+  - Optimize Sbuffer request merging logic ([#6117](https://github.com/OpenXiangShan/XiangShan/pull/6117))
+- Timing Optimizations
+  - Fix the timing of Memblock ([#5963](https://github.com/OpenXiangShan/XiangShan/pull/5963))
 
 ### XSAI
 

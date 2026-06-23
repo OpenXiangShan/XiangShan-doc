@@ -61,11 +61,14 @@ RISC-V 欧洲峰会正在举行！香山团队在峰会上有多个 talk 和 pos
 ### 访存与缓存
 
 - Bug 修复
-  - 修复了跨 16 字节 store 时与 fullOverlap 有关的问题（[#6003](https://github.com/OpenXiangShan/XiangShan/pull/6003)）
-- PPA 优化
-  - 将 L2 的预取请求队列按 slice 拆分，减少不同 slice 间的阻塞（[XSCache #13](https://github.com/OpenXiangShan/XSCache/pull/13)）
-- 代码重构
-  - 将预取从 loadUnit 移动到 mainPipe（[#5997](https://github.com/OpenXiangShan/XiangShan/pull/5997)）
+  - 修复了 cbo 执行早于指令提交的问题（[#6081](https://github.com/OpenXiangShan/XiangShan/pull/6081)）
+  - 修复了 loadUnit 的性能计数器（[#5939](https://github.com/OpenXiangShan/XiangShan/pull/5939)）
+  - 添加指针越界断言（[#5795](https://github.com/OpenXiangShan/XiangShan/pull/5795)）
+- 性能优化
+  - 实现了 DCache MissQueue 的并行入队，同一周期允许最多 4 个 miss_req（[#5887](https://github.com/OpenXiangShan/XiangShan/pull/5887)）
+  - 优化了 Sbuffer 的请求合并逻辑（[#6117](https://github.com/OpenXiangShan/XiangShan/pull/6117)）
+- 时序优化
+  - 修复了 Memblock 的时序（[#5963](https://github.com/OpenXiangShan/XiangShan/pull/5963)）
 
 ### XSAI
 

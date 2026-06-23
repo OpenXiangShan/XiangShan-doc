@@ -65,14 +65,9 @@ RISC-V 欧洲峰会正在举行！香山团队在峰会上有多个 talk 和 pos
 ### XSAI
 
 - RTL 新特性
-  - 添加用于关闭 mxfp8 等带缩放因子数据类型的选项，在关闭这些数据类型后，处理缩放因子的模块将不会被实例化（[CUTE #13](https://github.com/OpenXiangShan/CUTE/pull/13)）
-  - 为 CUTE 添加一系列矩阵性能事件（[CUTE #18](https://github.com/OpenXiangShan/CUTE/pull/18)）
-  - 正在推进 HBL2 对 CHI 总线协议的支持
-- Bug 修复
-  - 修复 XSAI V2R2A 的性能事件编号，与昆明湖 V2R2 的事件编号对齐（[XSAI #70](https://github.com/OpenXiangShan/XSAI/pull/70)）
-  - 修复矩阵功能单元异常未被 ROB 处理的问题（[XSAI #71](https://github.com/OpenXiangShan/XSAI/pull/71)）
-- 代码重构
-  - 重构 CUTE 调度（[CUTE #14](https://github.com/OpenXiangShan/CUTE/pull/14)）
+  - 支持 RISC-V BF16 扩展（[XSAI #72](https://github.com/OpenXiangShan/XSAI/pull/72)）
+  - 缩放因子存储改用香山的 SRAMTemplate，与香山统一（[CUTE #20](https://github.com/OpenXiangShan/CUTE/pull/20)）
+  - 实现 TL-TL 与 TL-CHI 的 PutFullData（[HBL2 #3](https://github.com/OpenXiangShan/HBL2/pull/3)）
 
 ## 性能评估
 

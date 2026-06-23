@@ -54,9 +54,18 @@ Regarding the recent development progress of XiangShan, the frontend continues t
 
 ### Backend
 
-- RTL features
-  - Use sparse vector (SparseVec) for the structure of exception vector ([#5738](https://github.com/OpenXiangShan/XiangShan/pull/5738))
-  - Sdtrig extension support tdata3 ([#5983](https://github.com/OpenXiangShan/XiangShan/pull/5983))
+- Bug fixes
+  - Fixed the SEI priority number when an SEI is injected from M-level, setting it to S-level priority 256 according to the AIA spec ([#6010](https://github.com/OpenXiangShan/XiangShan/pull/6010))
+  - Fixed the issue where `vsstatus.SDT` was not cleared when `mret` enters VU mode ([#6074](https://github.com/OpenXiangShan/XiangShan/pull/6074))
+  - Fixed the `vstopi` Candidate3 enable condition and the iid selection when Candidate3 and Candidate5 are both enabled ([#6030](https://github.com/OpenXiangShan/XiangShan/pull/6030), [#6031](https://github.com/OpenXiangShan/XiangShan/pull/6031), [#6086](https://github.com/OpenXiangShan/XiangShan/pull/6086))
+  - Fixed `fence` instruction opcode matching ([#6096](https://github.com/OpenXiangShan/XiangShan/pull/6096))
+  - Fixed X-state propagation for `commit_w` in ROB ([#6070](https://github.com/OpenXiangShan/XiangShan/pull/6070))
+  - Fixed incorrect `mtval2` generation during IGPF ([#6058](https://github.com/OpenXiangShan/XiangShan/pull/6058))
+  - Fixed `MNret` handling of `mnstatus.MNPP/MNPV` ([#6075](https://github.com/OpenXiangShan/XiangShan/pull/6075))
+  - Gated VS `hvictl` interrupt-cause generation by trap type and refined pending-interrupt handling for WFI resume ([#6067](https://github.com/OpenXiangShan/XiangShan/pull/6067))
+  - Fixed temporary `trapInstInfo` generation to avoid missing an older CSR trap instruction when flush and redirect arrive in the same cycle ([#6084](https://github.com/OpenXiangShan/XiangShan/pull/6084))
+  - Marked HLV/HLVX/HSV memory exceptions as virtual memory traps to correctly update `htval`/`mtval` ([#6071](https://github.com/OpenXiangShan/XiangShan/pull/6071))
+  - Fixed the read-modify-write base value for PMP/PMA in `CSRRS`/`CSRRC` operations ([#6051](https://github.com/OpenXiangShan/XiangShan/pull/6051))
 
 ### MemBlock and Cache
 

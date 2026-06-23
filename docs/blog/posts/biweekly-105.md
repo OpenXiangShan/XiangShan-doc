@@ -54,9 +54,19 @@ RISC-V 欧洲峰会正在举行！香山团队在峰会上有多个 talk 和 pos
 
 ### 后端
 
-- RTL 新特性
-  - 使用稀疏向量（SparseVec）作为异常向量的存储结构 ([#5738](https://github.com/OpenXiangShan/XiangShan/pull/5738))
-  - Sdtrig 扩展支持 tdata3 ([#5983](https://github.com/OpenXiangShan/XiangShan/pull/5983))
+- Bug 修复
+  - （V2）修复 M 态注入 SEI 时的优先级编号，按 AIA 规范将其设为 S 级优先级 256（[#6010](https://github.com/OpenXiangShan/XiangShan/pull/6010)）
+  - （V2）修复 `mret` 进入 VU 模式时 `vsstatus.SDT` 未被清除的问题（[#6074](https://github.com/OpenXiangShan/XiangShan/pull/6074)）
+  - （V2/V3）修复 `vstopi` Candidate3 使能条件（[#6030](https://github.com/OpenXiangShan/XiangShan/pull/6030)、[#6031](https://github.com/OpenXiangShan/XiangShan/pull/6031)）
+  - （V2）修复 Candidate3 与 Candidate5 同时使能时的 iid 选择（[#6086](https://github.com/OpenXiangShan/XiangShan/pull/6086)）
+  - （V2）修复 `fence` 指令 opcode 匹配（[#6096](https://github.com/OpenXiangShan/XiangShan/pull/6096)）
+  - （V2）修复 ROB 中 `commit_w` 的 X-state 传播（[#6070](https://github.com/OpenXiangShan/XiangShan/pull/6070)）
+  - （V2）修复 IGPF 过程中 `mtval2` 生成错误的问题（[#6058](https://github.com/OpenXiangShan/XiangShan/pull/6058)）
+  - （V2）修复 `MNret` 对 `mnstatus.MNPP/MNPV` 的处理（[#6075](https://github.com/OpenXiangShan/XiangShan/pull/6075)）
+  - （V2）按陷入类型约束 VS `hvictl` 中断原因的生成，并完善 WFI 唤醒相关的中断 pending 判断（[#6067](https://github.com/OpenXiangShan/XiangShan/pull/6067)）
+  - （V2）修复 `trapInstInfo` 暂存逻辑，避免 flush 与更老 CSR trap 同周期到达时遗漏陷入指令信息（[#6084](https://github.com/OpenXiangShan/XiangShan/pull/6084)）
+  - （V2）将 HLV/HLVX/HSV 访存异常标记为虚拟访存陷入，以正确更新 `htval`/`mtval`（[#6071](https://github.com/OpenXiangShan/XiangShan/pull/6071)）
+  - （V2）修复 PMP/PMA 在 `CSRRS`/`CSRRC` 读-改-写时的基值选择（[#6051](https://github.com/OpenXiangShan/XiangShan/pull/6051)）
 
 ### 访存与缓存
 

@@ -40,12 +40,17 @@ Regarding the recent development progress of XiangShan, the frontend continues t
 
 ### Frontend
 
-- RTL features
-  - Read the corresponding FTQ entry of a redirect request in advance, optimizing timing and reducing redirect latency ([#5990](https://github.com/OpenXiangShan/XiangShan/pull/5990))
-- Bug fixes
-  - Fix the issue introduced by UBTB timing optimization, which treats overwritten entries as hits and causes incorrect predictions ([#6009](https://github.com/OpenXiangShan/XiangShan/pull/6009))
 - PPA optimizations
-  - Optimize the timing of IBuffer enqueue logic ([#5946](https://github.com/OpenXiangShan/XiangShan/pull/5946))
+  - Optimize UTAGE training and prediction timing ([#5517](https://github.com/OpenXiangShan/XiangShan/pull/5517))
+  - Optimize SC counter accumulation timing ([#5999](https://github.com/OpenXiangShan/XiangShan/pull/5999))
+  - Optimize history register timing ([#6076](https://github.com/OpenXiangShan/XiangShan/pull/6076))
+  - Optimize BPU pc-related path timing ([#5945](https://github.com/OpenXiangShan/XiangShan/pull/5945))
+  - Optimize IBuffer enqueue logic timing ([#6047](https://github.com/OpenXiangShan/XiangShan/pull/6047))
+- Code quality
+  - Refactor BPU Replacer to simplify redundant logic ([#6008](https://github.com/OpenXiangShan/XiangShan/pull/6008))
+  - Refactor MBTB TargetFix to be parameterized and switchable, aligning it with UBTB/ABTB ([#6007](https://github.com/OpenXiangShan/XiangShan/pull/6007))
+- Debugging tools
+  - Fix FTQ perfQueue-related performance counter logic ([#6101](https://github.com/OpenXiangShan/XiangShan/pull/6101))
 
 ### Backend
 
@@ -123,7 +128,7 @@ Compilation parameters are as follows:
 
 Note: We use SimPoint to sample the programs and create checkpoint images based on our custom checkpoint format, with a SimPoint clustering coverage of 100%. The above scores are estimates based on program segments, not full SPEC CPU2006 evaluations, and may differ from actual chip performance.
 
-## Related links
+## Related Links
 
 - XiangShan technical discussion QQ group: 879550595
 - XiangShan technical discussion website: <https://github.com/OpenXiangShan/XiangShan/discussions>

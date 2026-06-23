@@ -40,12 +40,17 @@ RISC-V 欧洲峰会正在举行！香山团队在峰会上有多个 talk 和 pos
 
 ### 前端
 
-- RTL 新特性
-  - 提前读取重定向请求对应的 FTQ 项，优化时序的同时降低重定向延迟（[#5990](https://github.com/OpenXiangShan/XiangShan/pull/5990)）
-- Bug 修复
-  - 修复 UBTB 优化时序过程中引入的、将被覆盖的项作为命中项导致预测错误的问题（[#6009](https://github.com/OpenXiangShan/XiangShan/pull/6009)）
 - PPA 优化
-  - 优化 IBuffer 入队逻辑时序（[#5946](https://github.com/OpenXiangShan/XiangShan/pull/5946)）
+  - 优化 UTAGE 训练及预测时序（[#5517](https://github.com/OpenXiangShan/XiangShan/pull/5517)）
+  - 优化 SC 计数器累加时序（[#5999](https://github.com/OpenXiangShan/XiangShan/pull/5999)）
+  - 优化历史寄存器时序（[#6076](https://github.com/OpenXiangShan/XiangShan/pull/6076))
+  - 优化 BPU pc 相关路径时序（[#5945](https://github.com/OpenXiangShan/XiangShan/pull/5945))
+  - 优化 IBuffer 入队逻辑时序（[#6047](https://github.com/OpenXiangShan/XiangShan/pull/6047))
+- 代码质量
+  - 重构 BPU Replacer，简化冗余逻辑（[#6008](https://github.com/OpenXiangShan/XiangShan/pull/6008))
+  - 重构 MBTB TargetFix，参数化可开关，与 UBTB/ABTB 对齐（[#6007](https://github.com/OpenXiangShan/XiangShan/pull/6007))
+- 调试工具
+  - 修复 FTQ perfQueue 相关性能计数器逻辑（[#6101](https://github.com/OpenXiangShan/XiangShan/pull/6101))
 
 ### 后端
 

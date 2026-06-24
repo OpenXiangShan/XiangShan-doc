@@ -9,30 +9,9 @@ categories:
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 105 期双周报。
 
-我们非常高兴地与大家分享“香山”+“如意”生态中的重要组成部分 RuyiSDK！这是一个面向 RISC-V 架构的一站式开发资源管理平台，依托 ruyi 包管理器与 IDE 插件体系，整合工具链、模拟器、运行时环境及调试工具，提供全流程开发支持。平台构建了完善的 RISC-V 开发板与操作系统支持矩阵，为开发者提供更便捷的操作体验，是推动 RISC-V 开发与生态建设的重要基础设施。
+RISC-V 欧洲峰会圆满落幕！中国科学院计算技术研究所副所长、北京开源芯片研究院首席科学家包云岗研究员与大家分享了他的[参会感受](https://mp.weixin.qq.com/s/sqesKwSbE1oDy3cL0ei1ZQ)，以及对 RISC-V 发展前景的展望，欢迎大家与我们交流讨论！
 
-大家可以通过以下链接获取更多信息：
-
-- RuyiSDK 官网：<https://ruyisdk.org/>
-- RuyiSDK 开发者社区：<https://ruyisdk.cn/>
-
-RISC-V 欧洲峰会正在举行！香山团队在峰会上有多个 talk 和 poster，详细日程见[这里](https://mp.weixin.qq.com/s/gNpOxypE4UKLWLr2H103Yg)。
-
-在 RISC-V 国际协会的开场报告中，CEO Andrea Gallo 介绍了香山在高性能服务器场景的应用。
-
-![Andrea Gallo 介绍香山在高性能服务器场景的应用](./figs/biweekly-104/riscv-international.jpg)
-
-中国科学院计算技术研究所副所长、北京开源芯片研究院首席科学家包云岗研究员作了题为 XiangShan Practice: The Path to Industrial Deployment of Open-Source High-Performance RISC-V Processor 的报告，介绍了香山的产业部署之路。
-
-![包云岗研究员介绍香山的产业部署之路](./figs/biweekly-104/xiangshan-1.jpg)
-
-![香山家族](./figs/biweekly-104/xiangshan-2.jpg)
-
-我们还首次举办了万众一芯的 workshop，与大家分享软件原生的开源芯片智能众包验证探索与实践。
-
-![万众一芯 workshop](./figs/biweekly-104/unity_chip.jpg)
-
-关于香山近期开发进展，前端继续优化时序，同时降低了重定向延迟；后端实现了一些新特性与指令集扩展；访存修复了一些 bug，同时优化了 L2 的时序；XSAI 优化了代码结构，同时推进了 HBL2 对 CHI 的支持。
+关于香山近期开发进展，前端继续优化时序；后端和访存修复了一些功能 bug，同时优化了 DCache 与 Sbuffer 性能；XSAI 支持了 BF16 扩展，HBL2 实现了 TL-TL 与 TL-CHI 的 PutFullData。
 
 <!-- more -->
 
@@ -43,14 +22,14 @@ RISC-V 欧洲峰会正在举行！香山团队在峰会上有多个 talk 和 pos
 - PPA 优化
   - 优化 UTAGE 训练及预测时序（[#5517](https://github.com/OpenXiangShan/XiangShan/pull/5517)）
   - 优化 SC 计数器累加时序（[#5999](https://github.com/OpenXiangShan/XiangShan/pull/5999)）
-  - 优化历史寄存器时序（[#6076](https://github.com/OpenXiangShan/XiangShan/pull/6076))
-  - 优化 BPU pc 相关路径时序（[#5945](https://github.com/OpenXiangShan/XiangShan/pull/5945))
-  - 优化 IBuffer 入队逻辑时序（[#6047](https://github.com/OpenXiangShan/XiangShan/pull/6047))
+  - 优化历史寄存器时序（[#6076](https://github.com/OpenXiangShan/XiangShan/pull/6076)）
+  - 优化 BPU pc 相关路径时序（[#5945](https://github.com/OpenXiangShan/XiangShan/pull/5945)）
+  - 优化 IBuffer 入队逻辑时序（[#6047](https://github.com/OpenXiangShan/XiangShan/pull/6047)）
 - 代码质量
-  - 重构 BPU Replacer，简化冗余逻辑（[#6008](https://github.com/OpenXiangShan/XiangShan/pull/6008))
-  - 重构 MBTB TargetFix，参数化可开关，与 UBTB/ABTB 对齐（[#6007](https://github.com/OpenXiangShan/XiangShan/pull/6007))
+  - 重构 BPU Replacer，简化冗余逻辑（[#6008](https://github.com/OpenXiangShan/XiangShan/pull/6008)）
+  - 重构 MBTB TargetFix，参数化可开关，与 UBTB/ABTB 对齐（[#6007](https://github.com/OpenXiangShan/XiangShan/pull/6007)）
 - 调试工具
-  - 修复 FTQ perfQueue 相关性能计数器逻辑（[#6101](https://github.com/OpenXiangShan/XiangShan/pull/6101))
+  - 修复 FTQ perfQueue 相关性能计数器逻辑（[#6101](https://github.com/OpenXiangShan/XiangShan/pull/6101)）
 
 ### 后端
 

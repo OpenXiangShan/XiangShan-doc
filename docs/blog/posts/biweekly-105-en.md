@@ -9,30 +9,9 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 105th issue of the biweekly report.
 
-We are very excited to share with you an important component in the "XiangShan" + "Ruyi" ecosystem: RuyiSDK! This is a one-stop development resource management platform for RISC-V architecture, which integrates toolchains, simulators, runtime environments, and debugging tools based on the ruyi package manager and IDE plugin system, providing full-process development support. The platform has built a comprehensive matrix of RISC-V development boards and operating system support, providing developers with a more convenient operating experience and serving as an important infrastructure for promoting RISC-V development and ecosystem construction.
+The RISC-V Summit Europe has successfully concluded! Professor Bao Yungang, Deputy Director of the Institute of Computing Technology, Chinese Academy of Sciences, and Chief Scientist of the Beijing Open Source Chip Research Institute, shared his [experience](https://mp.weixin.qq.com/s/sqesKwSbE1oDy3cL0ei1ZQ) at the summit and provided insights into the future prospects of RISC-V development. We welcome everyone to engage in discussions with us!
 
-You can get more information through the following links:
-
-- RuyiSDK official website: <https://ruyisdk.org/>
-- RuyiSDK developer community: <https://ruyisdk.cn/>
-
-RISC-V European Summit is ongoing! The XiangShan team has multiple talks and posters at the summit, and the detailed schedule can be found [here](https://mp.weixin.qq.com/s/gNpOxypE4UKLWLr2H103Yg).
-
-In the opening report of the RISC-V International, CEO Andrea Gallo introduced the application of XiangShan in high-performance server scenarios.
-
-![Andrea Gallo introducing the application of XiangShan in high-performance server scenarios](./figs/biweekly-104/riscv-international.jpg)
-
-Deputy Director of the Institute of Computing Technology, Chinese Academy of Sciences, and Chief Scientist of Beijing Open Source Chip Research Institute, Researcher Bao Yungang gave a report titled "XiangShan Practice: The Path to Industrial Deployment of Open-Source High-Performance RISC-V Processor", introducing the industrial deployment path of XiangShan.
-
-![Researcher Bao Yungang introducing the industrial deployment path of XiangShan](./figs/biweekly-104/xiangshan-1.jpg)
-
-![XiangShan family](./figs/biweekly-104/xiangshan-2.jpg)
-
-We also held the workshop of Unity Chip for the first time, sharing with everyone the exploration and practice of software-native open-source chip intelligent crowdsourcing verification.
-
-![Unity Chip workshop](./figs/biweekly-104/unity_chip.jpg)
-
-Regarding the recent development progress of XiangShan, the frontend continues to optimize timing while reducing redirect latency; the backend implements some new features and instruction set extensions; the memory subsystem fixes some bugs while optimizing L2 timing; XSAI optimizes code structure while advancing HBL2 support for CHI.
+Regarding the recent development progress of XiangShan, the frontend continues to optimize timing; the backend and memory access have fixed some functional bugs while optimizing DCache and Sbuffer performance; XSAI has supported the BF16 extension, and HBL2 has implemented PutFullData for TL-TL and TL-CHI.
 
 <!-- more -->
 

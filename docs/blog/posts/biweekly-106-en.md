@@ -60,10 +60,15 @@ Regarding the recent development progress of XiangShan, the frontend continues t
 
 ### XSAI
 
+- Bug fixes
+  - Fixed the issue where MMA instructions missed illegal-instruction exceptions when `mtilen` was too large ([XSAI #79](https://github.com/OpenXiangShan/XSAI/pull/79))
 - RTL features
-  - Support the RISC-V BF16 extension ([XSAI #72](https://github.com/OpenXiangShan/XSAI/pull/72))
-  - Switch scaling factor storage to XiangShan's SRAMTemplate for consistency with XiangShan ([CUTE #20](https://github.com/OpenXiangShan/CUTE/pull/20))
-  - Implement PutFullData for TL-TL and TL-CHI ([HBL2 #3](https://github.com/OpenXiangShan/HBL2/pull/3))
+  - Support fine-grained matrix memory access and transposed memory access for 8-bit elements ([CUTE #19](https://github.com/OpenXiangShan/CUTE/pull/19))
+  - Update the instruction extension to XSAI proposal 12 ([XSAI #68](https://github.com/OpenXiangShan/XSAI/pull/68))
+- Code quality
+  - Refactor CUTE FPE code, split files, and remove symbolic links ([XSAI #81](https://github.com/OpenXiangShan/XSAI/pull/81))
+- Debugging tools
+  - Revert C++17 constructs in DiffTest to C++11 to improve compatibility ([XSAI #75](https://github.com/OpenXiangShan/XSAI/pull/75))
 
 ## Performance Evaluation
 

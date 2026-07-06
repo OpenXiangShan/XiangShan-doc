@@ -43,15 +43,20 @@ Regarding the recent development progress of XiangShan, the frontend continues t
 
 ### MemBlock and Cache
 
-- Bug Fixes
-  - Fix the issue where cbo executes before instruction commit ([#6081](https://github.com/OpenXiangShan/XiangShan/pull/6081))
-  - Fix the performance counters of loadUnit ([#5939](https://github.com/OpenXiangShan/XiangShan/pull/5939))
-  - Add pointer exceed assert ([#5795](https://github.com/OpenXiangShan/XiangShan/pull/5795))
-- Performance Optimizations
-  - Implemente parallel enqueue for DCache MissQueue, allowing up to 4 miss_req per cycle ([#5887](https://github.com/OpenXiangShan/XiangShan/pull/5887))
-  - Optimize Sbuffer request merging logic ([#6117](https://github.com/OpenXiangShan/XiangShan/pull/6117))
-- Timing Optimizations
-  - Fix the timing of Memblock ([#5963](https://github.com/OpenXiangShan/XiangShan/pull/5963))
+- RTL features
+  - Split the data SRAM of DCache into 32x2B ([#6118](https://github.com/OpenXiangShan/XiangShan/pull/6118))
+  - Optimize the addressing of DCache through hash function ([#6166](https://github.com/OpenXiangShan/XiangShan/pull/6166))
+- Bug fixes
+  - Fix the set dueling logic error in the CoupledL2 drrip replacement algorithm ([XSCache #20](https://github.com/OpenXiangShan/XSCache/pull/20))
+- Performance optimizations
+  - Optimized the request merging logic of Sbuffer ([#6117](https://github.com/OpenXiangShan/XiangShan/pull/6117))
+  - Optimized l1 prefetcher training ([#5544](https://github.com/OpenXiangShan/XiangShan/pull/5544))
+  - Limit prefetch requests based on the pressure of CoupledL2 MSHR ([XSCache #21](https://github.com/OpenXiangShan/XSCache/pull/21))
+- Timing optimizations
+  - Defer the update of sent_vec in l1 prefetcher to pf fire ([#6102](https://github.com/OpenXiangShan/XiangShan/pull/6102))
+  - Use age matrix in loadQueueRAW to select the oldest entry ([#6120](https://github.com/OpenXiangShan/XiangShan/pull/6120))
+- Code quality
+  - Move the parameterized configuration related to the prefetcher to Parameter.scala ([#5382](https://github.com/OpenXiangShan/XiangShan/pull/5382))
 
 ### XSAI
 

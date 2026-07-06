@@ -24,7 +24,7 @@ make linux/<workload_name>
 build/linux-workloads/<workload_name>/fw_payload.bin
 ```
 
-这个 `fw_payload.bin` 已经包含 checkpoint 所需的 GCPT、OpenSBI、Linux kernel、设备树和 initramfs workload，可以直接用来打 Checkpoint
+这个 `fw_payload.bin` 已经包含生成 checkpoint 所需的 GCPT、OpenSBI、Linux kernel、设备树和 initramfs workload，可以直接用于生成 checkpoint。对于 SPEC workload，可以使用 `make spec2006-images` 自动编译并导出镜像，结果位于 `build/images/<spec20xx>`，具体用法见 `workloads/linux/<spec20xx>`
 
 更多 workload 类型、构建依赖和自定义 workload 方法，详见 [workload-builder 仓库 README](https://github.com/OpenXiangShan/workload-builder#readme)
 
@@ -73,14 +73,17 @@ Checkpoint Scripts 默认会在 archive 目录下生成：
 - `json/`：每个 workload 的 checkpoint JSON，以及 `checkpoints_all.json`、`checkpoints_cov0.3.json`
 - `checkpoint/checkpoint.lst`：汇总后的 checkpoint list
 
-### 与旧流程的区别
+### 4. 导出完整 Checkpoint 包
 
-旧流程需要用户手工准备 Linux/OpenSBI/rootfs/gcpt、手工执行 NEMU profiling、手工调用 SimPoint 聚类，再手工执行 checkpoint；新流程中，`workload-builder` 负责 workload 构建和 GCPT 镜像组织，Checkpoint Scripts 负责 checkpoint 生成流水线和 metadata 汇总；下面的手工流程仍可用于理解底层机制、调试 NEMU 参数或生成特殊类型的 checkpoint，但不再是普通用户的推荐入口
+将 workload-builder 和 checkpoint-scripts 的产物放在同一目录，即可得到完整的 Checkpoint 包，用于仿真和性能回归等场景。
+
+
 
 ## 旧版手工流程：使用 NEMU 生成 Simpoint Checkpoint
 
 !!! note
     Checkpoint 相关的功能目前使用 NEMU 的 master 分支。之前使用的 tracing 和 cpt-bk 分支虽然也支持simpoint profiling和checkpoint，但是我们不再进行维护、修复bug或提供任何支持。
+    旧流程需要手工准备和执行多个步骤，生成结果也不够稳定。建议优先使用上面的新流程；旧流程不再提供支持。下面的手工步骤仅用于理解底层机制、调试 NEMU 参数，或生成特殊类型的 checkpoint。
 
 ### 背景介绍
 

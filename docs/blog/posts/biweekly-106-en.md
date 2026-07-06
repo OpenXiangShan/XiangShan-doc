@@ -19,17 +19,12 @@ Regarding the recent development progress of XiangShan, the frontend continues t
 
 ### Frontend
 
-- PPA optimizations
-  - Optimize UTAGE training and prediction timing ([#5517](https://github.com/OpenXiangShan/XiangShan/pull/5517))
-  - Optimize SC counter accumulation timing ([#5999](https://github.com/OpenXiangShan/XiangShan/pull/5999))
-  - Optimize history register timing ([#6076](https://github.com/OpenXiangShan/XiangShan/pull/6076))
-  - Optimize BPU pc-related path timing ([#5945](https://github.com/OpenXiangShan/XiangShan/pull/5945))
-  - Optimize IBuffer enqueue logic timing ([#6047](https://github.com/OpenXiangShan/XiangShan/pull/6047))
-- Code quality
-  - Refactor BPU Replacer to simplify redundant logic ([#6008](https://github.com/OpenXiangShan/XiangShan/pull/6008))
-  - Refactor MBTB TargetFix to be parameterized and switchable, aligning it with UBTB/ABTB ([#6007](https://github.com/OpenXiangShan/XiangShan/pull/6007))
-- Debugging tools
-  - Fix FTQ perfQueue-related performance counter logic ([#6101](https://github.com/OpenXiangShan/XiangShan/pull/6101))
+- RTL features
+  - Support IFU predecode training for BPU ([#6112](https://github.com/OpenXiangShan/XiangShan/pull/6112))
+  - Preliminary support for 2-fetch (processing two fetch blocks in a single cycle) ([#5996](https://github.com/OpenXiangShan/XiangShan/pull/5996))
+- Bug fixes
+  - Fix the FTQ trainCache flush condition ([#6147](https://github.com/OpenXiangShan/XiangShan/pull/6147))
+  - Fix the issue where IFU UncacheUnit handling instruction fetches in PBMT.IO regions did not wait for instruction commit, leading to speculative instruction fetches ([#6144](https://github.com/OpenXiangShan/XiangShan/pull/6144))
 
 ### Backend
 

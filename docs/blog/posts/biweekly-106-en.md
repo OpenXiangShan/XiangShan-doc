@@ -9,11 +9,21 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 106th issue of the biweekly report.
 
-The RISC-V Summit Europe has successfully concluded! Professor Bao Yungang, Deputy Director of the Institute of Computing Technology, Chinese Academy of Sciences, and Chief Scientist of the Beijing Open Source Chip Research Institute, shared his [experience](https://mp.weixin.qq.com/s/sqesKwSbE1oDy3cL0ei1ZQ) at the summit and provided insights into the future prospects of RISC-V development. We welcome everyone to engage in discussions with us!
+The XiangShan tutorial at ISCA 2026 was held ~~not so~~ smoothly! Although some students could not present on site due to visa issues, we quickly arranged backup speakers and ultimately ensured that the tutorial was completed with high quality. Special thanks to everyone who follows XiangShan's development!
 
-Regarding the recent development progress of XiangShan, the frontend continues to optimize timing; the backend and memory access have fixed some functional bugs while optimizing DCache and Sbuffer performance; XSAI has supported the BF16 extension, and HBL2 has implemented PutFullData for TL-TL and TL-CHI.
+Regarding the recent development progress of XiangShan, the frontend added support for the 2-fetch feature; the memory subsystem optimized DCache, Sbuffer, and the prefetchers; XSAI supported new matrix memory access modes and updated the instruction extension.
 
 <!-- more -->
+
+## Tutorial and Conference Highlights
+
+- A group photo to kick things off. Only the lucky person on the far left received their visa two days before the conference started; the other faculty members and students attended using existing visas.
+  ![Group photo](./figs/biweekly-106/group.jpg)
+- XSAI made its debut in a tutorial and attracted broad attention.
+  ![XSAI talk](./figs/biweekly-106/xsai.jpg)
+  ![Q&A discussion](./figs/biweekly-106/qa.jpg)
+- Unity Chip paper presentation
+  ![Unity Chip paper](./figs/biweekly-106/uc.jpg)
 
 ## Recent Developments
 
@@ -40,7 +50,7 @@ Regarding the recent development progress of XiangShan, the frontend continues t
   - Fix the set dueling logic error in the CoupledL2 drrip replacement algorithm ([XSCache #20](https://github.com/OpenXiangShan/XSCache/pull/20))
 - Performance optimizations
   - Optimized the request merging logic of Sbuffer ([#6117](https://github.com/OpenXiangShan/XiangShan/pull/6117))
-  - Optimized l1 prefetcher training ([#5544](https://github.com/OpenXiangShan/XiangShan/pull/5544))
+  - Optimized l1 prefetcher training ([#5544](https://github.com/OpenXiangShan/XiangShan/pull/5544), [XSCache #18](https://github.com/OpenXiangShan/XSCache/pull/18))
   - Limit prefetch requests based on the pressure of CoupledL2 MSHR ([XSCache #21](https://github.com/OpenXiangShan/XSCache/pull/21))
 - Timing optimizations
   - Defer the update of sent_vec in l1 prefetcher to pf fire ([#6102](https://github.com/OpenXiangShan/XiangShan/pull/6102))
@@ -66,8 +76,8 @@ Processor and SoC parameters are as follows:
 
 | Parameters           | Options    |
 | -------------------- | ---------- |
-| Commit               | 8c4daa743  |
-| Date                 | 2026/06/18 |
+| Commit               | 59ef4ea7d  |
+| Date                 | 2026/07/03 |
 | L1 ICache            | 64KB       |
 | L1 DCache            | 64KB       |
 | L2 Cache             | 2MB        |
@@ -80,24 +90,24 @@ The SPEC CPU2006 scores are as follows:
 
 | SPECint 2006 @ 3GHz | GCC15  |  XSCC  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  |
 | :------------------ | :----: | :----: | :----------------- | :----: | :----: |
-| 400.perlbench       | 50.55  | 49.66  | 410.bwaves         | 104.21 | 95.87  |
-| 401.bzip2           | 28.61  | 29.56  | 416.gamess         | 57.76  | 54.82  |
-| 403.gcc             | 57.06  | 40.22  | 433.milc           | 69.94  | 68.81  |
-| 429.mcf             | 71.47  | 62.54  | 434.zeusmp         | 74.95  | 67.02  |
-| 445.gobmk           | 39.90  | 40.89  | 435.gromacs        | 37.90  | 34.82  |
-| 456.hmmer           | 54.84  | 65.42  | 436.cactusADM      | 80.64  | 91.86  |
-| 458.sjeng           | 39.36  | 40.48  | 437.leslie3d       | 59.90  | 59.70  |
-| 462.libquantum      | 141.89 | 312.28 | 444.namd           | 43.55  | 45.46  |
-| 464.h264ref         | 66.56  | 72.86  | 447.dealII         | 69.14  | 74.72  |
-| 471.omnetpp         | 43.55  | 42.80  | 450.soplex         | 58.74  | 69.98  |
-| 473.astar           | 32.92  | 32.64  | 453.povray         | 76.71  | 70.42  |
-| 483.xalancbmk       | 81.13  | 92.62  | 454.Calculix       | 44.54  | 40.60  |
-| GEOMEAN             | 53.57  | 57.00  | 459.GemsFDTD       | 69.93  | 70.40  |
-|                     |        |        | 465.tonto          | 54.49  | 37.22  |
-|                     |        |        | 470.lbm            | 128.45 | 148.55 |
-|                     |        |        | 481.wrf            | 56.39  | 42.33  |
-|                     |        |        | 482.sphinx3        | 60.94  | 63.63  |
-|                     |        |        | GEOMEAN            | 64.55  | 62.40  |
+| 400.perlbench       | 51.19  | 50.90  | 410.bwaves         | 116.08 | 104.81 |
+| 401.bzip2           | 29.85  | 30.51  | 416.gamess         | 58.05  | 55.30  |
+| 403.gcc             | 56.10  | 40.67  | 433.milc           | 70.32  | 69.31  |
+| 429.mcf             | 70.05  | 62.69  | 434.zeusmp         | 77.83  | 67.38  |
+| 445.gobmk           | 40.11  | 41.89  | 435.gromacs        | 38.20  | 34.94  |
+| 456.hmmer           | 55.33  | 67.72  | 436.cactusADM      | 80.45  | 92.49  |
+| 458.sjeng           | 40.66  | 41.54  | 437.leslie3d       | 60.27  | 60.78  |
+| 462.libquantum      | 138.14 | 307.82 | 444.namd           | 43.31  | 45.56  |
+| 464.h264ref         | 70.11  | 75.34  | 447.dealII         | 74.19  | 74.80  |
+| 471.omnetpp         | 43.74  | 43.17  | 450.soplex         | 59.17  | 71.65  |
+| 473.astar           | 33.73  | 33.05  | 453.povray         | 76.48  | 69.48  |
+| 483.xalancbmk       | 83.35  | 92.95  | 454.Calculix       | 42.84  | 40.82  |
+| GEOMEAN             | 54.22  | 57.95  | 459.GemsFDTD       | 68.28  | 65.83  |
+|                     |        |        | 465.tonto          | 53.95  | 37.31  |
+|                     |        |        | 470.lbm            | 128.22 | 146.35 |
+|                     |        |        | 481.wrf            | 61.43  | 44.92  |
+|                     |        |        | 482.sphinx3        | 61.15  | 63.82  |
+|                     |        |        | GEOMEAN            | 65.52  | 62.92  |
 
 Compilation parameters are as follows:
 

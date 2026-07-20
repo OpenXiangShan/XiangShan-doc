@@ -52,19 +52,15 @@ Regarding the recent development progress of XiangShan, the frontend added suppo
 ### MemBlock and Cache
 
 - RTL features
-  - Split the data SRAM of DCache into 32x2B ([#6118](https://github.com/OpenXiangShan/XiangShan/pull/6118))
-  - Optimize the addressing of DCache through hash function ([#6166](https://github.com/OpenXiangShan/XiangShan/pull/6166))
+  - Add support for pre-allocated StoreQueue entries ([#5834](https://github.com/OpenXiangShan/XiangShan/pull/5834))
+  - Add fast wakeup support in LoadQueueReplay for C_MA and C_FF ([#6092](https://github.com/OpenXiangShan/XiangShan/pull/6092))
+  - Change the L1-L2 TileLink bus to dual-port to reduce blocking between the two cache levels ([XSCache #16](https://github.com/OpenXiangShan/XSCache/pull/16))
 - Bug fixes
-  - Fix the set dueling logic error in the CoupledL2 drrip replacement algorithm ([XSCache #20](https://github.com/OpenXiangShan/XSCache/pull/20))
-- Performance optimizations
-  - Optimized the request merging logic of Sbuffer ([#6117](https://github.com/OpenXiangShan/XiangShan/pull/6117))
-  - Optimized l1 prefetcher training ([#5544](https://github.com/OpenXiangShan/XiangShan/pull/5544), [XSCache #18](https://github.com/OpenXiangShan/XSCache/pull/18))
-  - Limit prefetch requests based on the pressure of CoupledL2 MSHR ([XSCache #21](https://github.com/OpenXiangShan/XSCache/pull/21))
-- Timing optimizations
-  - Defer the update of sent_vec in l1 prefetcher to pf fire ([#6102](https://github.com/OpenXiangShan/XiangShan/pull/6102))
-  - Use age matrix in loadQueueRAW to select the oldest entry ([#6120](https://github.com/OpenXiangShan/XiangShan/pull/6120))
-- Code quality
-  - Move the parameterized configuration related to the prefetcher to Parameter.scala ([#5382](https://github.com/OpenXiangShan/XiangShan/pull/5382))
+  - Fix incorrect s3 hit-metadata updates when LoadPipe is killed in s2 ([#6185](https://github.com/OpenXiangShan/XiangShan/pull/6185))
+  - Fix the empty-check logic for Sbuffer CMO drain ([#6183](https://github.com/OpenXiangShan/XiangShan/pull/6183))
+  - Fix the `nMaxPrefetchEntry` logic in MissQueue ([#6197](https://github.com/OpenXiangShan/XiangShan/pull/6197))
+  - Fix `cbo.zero` writes to Sbuffer ([#6228](https://github.com/OpenXiangShan/XiangShan/pull/6228))
+  - Remove an incorrect XSError from MissQueue ([#6241](https://github.com/OpenXiangShan/XiangShan/pull/6241))
 
 ### XSAI
 

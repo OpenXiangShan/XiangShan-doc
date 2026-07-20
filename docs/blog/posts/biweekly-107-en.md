@@ -39,7 +39,15 @@ Regarding the recent development progress of XiangShan, the frontend added suppo
 ### Backend
 
 - Bug fixes
-  - (V2) Fix PMP bug: non-dmode can't access memory of debug ([#6095](https://github.com/OpenXiangShan/XiangShan/pull/6095))
+  - (V2) Fix the reset values of `mstatus.MDT` and `mnstatus.NMIE`, the behavior of writes of 0 to `mnstatus.NMIE`, and the `m/siprios` mask logic ([#6100](https://github.com/OpenXiangShan/XiangShan/pull/6100))
+  - (V3) Sync the fixes related to `mstatus.MDT` and `mnstatus.NMIE` ([#6223](https://github.com/OpenXiangShan/XiangShan/pull/6223))
+  - (V2) Fix CSR behavior for RISC-V Debug Spec 1.0, including the trigger version, `dcsr.NMIP` updates, and `dcsr.CAUSE` priority ([#6104](https://github.com/OpenXiangShan/XiangShan/pull/6104))
+  - (V2) Fix the VSEI priority-index mapping in `vstopi` ([#6131](https://github.com/OpenXiangShan/XiangShan/pull/6131))
+- Debugging tools
+  - (V2) Add `cpu_cycle` and `ref_cpu_cycle` performance events, and add async bridging for the system-counter path ([#6180](https://github.com/OpenXiangShan/XiangShan/pull/6180))
+  - (V2) Fix the accounting condition for the `frontend_stall_cycle` performance event and add `backend_stall_cycle` accounting ([#6121](https://github.com/OpenXiangShan/XiangShan/pull/6121))
+- Code synchronization
+  - (V3) Cherry-pick recent V2 backend fixes to V3, including CSR, interrupt, PMP/PMA, debug-mode, and performance-event fixes ([#6243](https://github.com/OpenXiangShan/XiangShan/pull/6243))
 
 ### MemBlock and Cache
 

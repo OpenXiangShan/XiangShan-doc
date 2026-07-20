@@ -29,12 +29,16 @@ Regarding the recent development progress of XiangShan, the frontend added suppo
 
 ### Frontend
 
-- RTL features
-  - Support IFU predecode training for BPU ([#6112](https://github.com/OpenXiangShan/XiangShan/pull/6112))
-  - Preliminary support for 2-fetch (processing two fetch blocks in a single cycle) ([#5996](https://github.com/OpenXiangShan/XiangShan/pull/5996))
 - Bug fixes
-  - Fix the FTQ trainCache flush condition ([#6147](https://github.com/OpenXiangShan/XiangShan/pull/6147))
-  - Fix the issue where IFU UncacheUnit handling instruction fetches in PBMT.IO regions did not wait for instruction commit, leading to speculative instruction fetches ([#6144](https://github.com/OpenXiangShan/XiangShan/pull/6144))
+  - Fix the issue where the ITTAGE predictor used the alternative prediction target when the alternative prediction was invalid, leading to incorrect counter updates ([#6167](https://github.com/OpenXiangShan/XiangShan/pull/6167))
+  - Fix the issue where FTQ did not correctly handle backendExceptionPtr when cleaning up V2 legacy code, causing exceptions to not be reported correctly when jumping to virtual addresses that violate the Sv39/48 specification ([#6235](https://github.com/OpenXiangShan/XiangShan/pull/6235))
+  - Fix the issue where IFU incorrectly calculated the offset and redirect target when handling a single RVI instruction crossing a page boundary in an MMIO region, leading to incorrect xtval/xepc values and fetching skipping part of the instruction data ([#6213](https://github.com/OpenXiangShan/XiangShan/pull/6213))
+- PPA optimizations
+  - Decouple the FTQ resolveQueue enqueue logic from the redirect flush logic to avoid an overly long timing path caused by chaining the two ([#6239](https://github.com/OpenXiangShan/XiangShan/pull/6239))
+  - Remove the ICache wayLookup bypass logic to avoid the SRAM2SRAM timing path from metaArray to dataArray ([#6044](https://github.com/OpenXiangShan/XiangShan/pull/6044))
+  - Postpone the ICache parity check logic to avoid an overly long timing path caused by performing the check immediately after the dataArray SRAM output ([#5733](https://github.com/OpenXiangShan/XiangShan/pull/5733))
+- Debugging tools
+  - Add several rolling counters to analyze how performance metrics change over time ([#6193](https://github.com/OpenXiangShan/XiangShan/pull/6193))
 
 ### Backend
 

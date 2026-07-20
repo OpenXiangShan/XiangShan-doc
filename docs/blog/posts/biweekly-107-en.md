@@ -61,14 +61,14 @@ Regarding the recent development progress of XiangShan, the frontend added suppo
 ### XSAI
 
 - Bug fixes
-  - Fixed the issue where MMA instructions missed illegal-instruction exceptions when `mtilen` was too large ([XSAI #79](https://github.com/OpenXiangShan/XSAI/pull/79))
+  - Fix the control signals for load/store whole C instructions ([XSAI #86](https://github.com/OpenXiangShan/XSAI/pull/86))
 - RTL features
-  - Support fine-grained matrix memory access and transposed memory access for 8-bit elements ([CUTE #19](https://github.com/OpenXiangShan/CUTE/pull/19))
-  - Update the instruction extension to XSAI proposal 12 ([XSAI #68](https://github.com/OpenXiangShan/XSAI/pull/68))
+  - Support configurable multi-channel memory access in CUTE ([XSAI #83](https://github.com/OpenXiangShan/XSAI/pull/83))
+  - Replace coupledL2/huancun/openLLC with the XSAICache repository for the cache system ([XSAI #85](https://github.com/OpenXiangShan/XSAI/pull/85))
 - Code quality
-  - Refactor CUTE FPE code, split files, and remove symbolic links ([XSAI #81](https://github.com/OpenXiangShan/XSAI/pull/81))
+  - Add switches to control recently added debug output in CUTE ([CUTE #24](https://github.com/OpenXiangShan/CUTE/pull/24), [CUTE #27](https://github.com/OpenXiangShan/CUTE/pull/27))
 - Debugging tools
-  - Revert C++17 constructs in DiffTest to C++11 to improve compatibility ([XSAI #75](https://github.com/OpenXiangShan/XSAI/pull/75))
+  - Analyze the lifecycle of a uop using traces ([XSAI #84](https://github.com/OpenXiangShan/XSAI/pull/84))
 
 ## Performance Evaluation
 

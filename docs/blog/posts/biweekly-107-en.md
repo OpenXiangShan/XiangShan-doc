@@ -9,21 +9,9 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 107th issue of the biweekly report.
 
-The XiangShan tutorial at ISCA 2026 was held ~~not so~~ smoothly! Although some students could not present on site due to visa issues, we quickly arranged backup speakers and ultimately ensured that the tutorial was completed with high quality. Special thanks to everyone who follows XiangShan's development!
-
-Regarding the recent development progress of XiangShan, the frontend added support for the 2-fetch feature; the memory subsystem optimized DCache, Sbuffer, and the prefetchers; XSAI supported new matrix memory access modes and updated the instruction extension.
+Regarding the recent development progress of XiangShan, the frontend has fixed timing issues in multiple modules and resolved some bugs reported by the community; the backend has fixed several bugs related to CSR, debug mode, and performance events, and synchronized V2 fixes to V3; in terms of memory access and caching, support for pre-allocated StoreQueue, LoadQueueReplay fast wakeup, and dual-port L1-L2 TileLink bus has been added, along with multiple bug fixes; XSAI has fixed control signals for load/store whole C instructions and added support for configurable multi-channel memory access in CUTE.
 
 <!-- more -->
-
-## Tutorial and Conference Highlights
-
-- A group photo to kick things off. Only the lucky person on the far left received their visa two days before the conference started; the other faculty members and students attended using existing visas.
-  ![Group photo](./figs/biweekly-106/group.jpg)
-- XSAI made its debut in a tutorial and attracted broad attention.
-  ![XSAI talk](./figs/biweekly-106/xsai.jpg)
-  ![Q&A discussion](./figs/biweekly-106/qa.jpg)
-- Unity Chip paper presentation
-  ![Unity Chip paper](./figs/biweekly-106/uc.jpg)
 
 ## Recent Developments
 
@@ -84,8 +72,8 @@ Processor and SoC parameters are as follows:
 
 | Parameters           | Options    |
 | -------------------- | ---------- |
-| Commit               | 59ef4ea7d  |
-| Date                 | 2026/07/03 |
+| Commit               | 538ef487c  |
+| Date                 | 2026/07/16 |
 | L1 ICache            | 64KB       |
 | L1 DCache            | 64KB       |
 | L2 Cache             | 2MB        |
@@ -98,24 +86,24 @@ The SPEC CPU2006 scores are as follows:
 
 | SPECint 2006 @ 3GHz | GCC15  |  XSCC  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  |
 | :------------------ | :----: | :----: | :----------------- | :----: | :----: |
-| 400.perlbench       | 51.19  | 50.90  | 410.bwaves         | 116.08 | 104.81 |
-| 401.bzip2           | 29.85  | 30.51  | 416.gamess         | 58.05  | 55.30  |
-| 403.gcc             | 56.10  | 40.67  | 433.milc           | 70.32  | 69.31  |
-| 429.mcf             | 70.05  | 62.69  | 434.zeusmp         | 77.83  | 67.38  |
-| 445.gobmk           | 40.11  | 41.89  | 435.gromacs        | 38.20  | 34.94  |
-| 456.hmmer           | 55.33  | 67.72  | 436.cactusADM      | 80.45  | 92.49  |
-| 458.sjeng           | 40.66  | 41.54  | 437.leslie3d       | 60.27  | 60.78  |
-| 462.libquantum      | 138.14 | 307.82 | 444.namd           | 43.31  | 45.56  |
-| 464.h264ref         | 70.11  | 75.34  | 447.dealII         | 74.19  | 74.80  |
-| 471.omnetpp         | 43.74  | 43.17  | 450.soplex         | 59.17  | 71.65  |
-| 473.astar           | 33.73  | 33.05  | 453.povray         | 76.48  | 69.48  |
-| 483.xalancbmk       | 83.35  | 92.95  | 454.Calculix       | 42.84  | 40.82  |
-| GEOMEAN             | 54.22  | 57.95  | 459.GemsFDTD       | 68.28  | 65.83  |
-|                     |        |        | 465.tonto          | 53.95  | 37.31  |
-|                     |        |        | 470.lbm            | 128.22 | 146.35 |
-|                     |        |        | 481.wrf            | 61.43  | 44.92  |
-|                     |        |        | 482.sphinx3        | 61.15  | 63.82  |
-|                     |        |        | GEOMEAN            | 65.52  | 62.92  |
+| 400.perlbench       | 51.60  | 50.69  | 410.bwaves         | 117.89 | 105.06 |
+| 401.bzip2           | 29.70  | 30.32  | 416.gamess         | 58.32  | 55.79  |
+| 403.gcc             | 56.22  | 40.24  | 433.milc           | 70.45  | 68.03  |
+| 429.mcf             | 69.66  | 62.60  | 434.zeusmp         | 77.94  | 68.08  |
+| 445.gobmk           | 39.88  | 40.41  | 435.gromacs        | 38.26  | 35.16  |
+| 456.hmmer           | 55.26  | 66.99  | 436.cactusADM      | 80.28  | 92.71  |
+| 458.sjeng           | 39.49  | 40.79  | 437.leslie3d       | 60.26  | 60.56  |
+| 462.libquantum      | 138.31 | 308.74 | 444.namd           | 42.98  | 45.22  |
+| 464.h264ref         | 69.77  | 75.31  | 447.dealII         | 73.92  | 73.54  |
+| 471.omnetpp         | 43.46  | 42.85  | 450.soplex         | 59.74  | 70.99  |
+| 473.astar           | 32.60  | 32.11  | 453.povray         | 76.38  | 70.16  |
+| 483.xalancbmk       | 83.46  | 93.14  | 454.Calculix       | 42.71  | 40.68  |
+| GEOMEAN             | 53.86  | 57.38  | 459.GemsFDTD       | 74.24  | 78.50  |
+|                     |        |        | 465.tonto          | 54.03  | 37.61  |
+|                     |        |        | 470.lbm            | 128.16 | 146.27 |
+|                     |        |        | 481.wrf            | 62.22  | 44.89  |
+|                     |        |        | 482.sphinx3        | 60.91  | 63.62  |
+|                     |        |        | GEOMEAN            | 65.94  | 63.51  |
 
 Compilation parameters are as follows:
 

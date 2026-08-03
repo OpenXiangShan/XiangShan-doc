@@ -17,16 +17,10 @@ Regarding the recent development progress of XiangShan, the frontend has fixed t
 
 ### Frontend
 
-- Bug fixes
-  - Fix the issue where the ITTAGE predictor used the alternative prediction target when the alternative prediction was invalid, leading to incorrect counter updates ([#6167](https://github.com/OpenXiangShan/XiangShan/pull/6167))
-  - Fix the issue where FTQ did not correctly handle backendExceptionPtr when cleaning up V2 legacy code, causing exceptions to not be reported correctly when jumping to virtual addresses that violate the Sv39/48 specification ([#6235](https://github.com/OpenXiangShan/XiangShan/pull/6235))
-  - Fix the issue where IFU incorrectly calculated the offset and redirect target when handling a single RVI instruction crossing a page boundary in an MMIO region, leading to incorrect xtval/xepc values and fetching skipping part of the instruction data ([#6213](https://github.com/OpenXiangShan/XiangShan/pull/6213))
 - PPA optimizations
-  - Decouple the FTQ resolveQueue enqueue logic from the redirect flush logic to avoid an overly long timing path caused by chaining the two ([#6239](https://github.com/OpenXiangShan/XiangShan/pull/6239))
-  - Remove the ICache wayLookup bypass logic to avoid the SRAM2SRAM timing path from metaArray to dataArray ([#6044](https://github.com/OpenXiangShan/XiangShan/pull/6044))
-  - Postpone the ICache parity check logic to avoid an overly long timing path caused by performing the check immediately after the dataArray SRAM output ([#5733](https://github.com/OpenXiangShan/XiangShan/pull/5733))
-- Debugging tools
-  - Add several rolling counters to analyze how performance metrics change over time ([#6193](https://github.com/OpenXiangShan/XiangShan/pull/6193))
+  - Optimize the timing of signals related to the ICache DataArray read enable ([#6221](https://github.com/OpenXiangShan/XiangShan/pull/6221))
+  - Optimize the IFU instruction-boundary calculation logic and the timing of the ICache miss path ([#6219](https://github.com/OpenXiangShan/XiangShan/pull/6219))
+  - Use the positions of control-flow instructions (branches and jumps) instead of their offsets to reduce unnecessary additions and subtractions on the critical path ([#6253](https://github.com/OpenXiangShan/XiangShan/pull/6253))
 
 ### Backend
 

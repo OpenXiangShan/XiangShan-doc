@@ -17,16 +17,10 @@ categories:
 
 ### 前端
 
-- Bug 修复
-  - 修复 ITTAGE 预测器在备选预测无效时使用备选预测目标，导致计数器更新错误的问题（[#6167](https://github.com/OpenXiangShan/XiangShan/pull/6167)）
-  - 修复 FTQ 清理 V2 遗留代码时未正确处理 backendExceptionPtr，导致跳转到违反 Sv39/48 规范的虚拟地址时，未正确报告异常的问题（[#6235](https://github.com/OpenXiangShan/XiangShan/pull/6235)）
-  - 修复 IFU 处理 MMIO 区域内单条跨过页边界的 RVI 指令时，offset 及重定向目标计算有误，导致 xtval/xepc 计算错误、取指跳过部分指令数据的问题（[#6213](https://github.com/OpenXiangShan/XiangShan/pull/6213)）
 - PPA 优化
-  - 解耦 FTQ resolveQueue 入队逻辑和 redirect 冲刷逻辑，避免两者串联导致的时序路径过长（[#6239](https://github.com/OpenXiangShan/XiangShan/pull/6239)）
-  - 移除 ICache wayLookup bypass 逻辑，避免 metaArray 到 dataArray 的 SRAM2SRAM 时序路径（[#6044](https://github.com/OpenXiangShan/XiangShan/pull/6044)）
-  - 后移 ICache parity 校验逻辑，避免 dataArray SRAM 直出后立刻做校验导致的时序路径过长（[#5733](https://github.com/OpenXiangShan/XiangShan/pull/5733)）
-- 调试工具
-  - 新增一些 rolling 计数器，用于分析性能指标随时间变化（[#6193](https://github.com/OpenXiangShan/XiangShan/pull/6193)）
+  - 优化 ICache DataArray 读使能相关信号时序（[#6221](https://github.com/OpenXiangShan/XiangShan/pull/6221)）
+  - 优化 IFU 指令边界计算逻辑及 ICache miss 路径时序（[#6219](https://github.com/OpenXiangShan/XiangShan/pull/6219)）
+  - 使用控制流指令（分支、跳转）的 position 代替其 offset，减少关键路径上无谓的加减法运算（[#6253](https://github.com/OpenXiangShan/XiangShan/pull/6253)）
 
 ### 后端
 

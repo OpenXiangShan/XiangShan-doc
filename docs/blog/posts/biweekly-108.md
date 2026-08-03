@@ -50,15 +50,18 @@ categories:
 
 ### XSAI
 
-- Bug 修复
-  - 修复了 load/store whole C 指令的控制信号（[XSAI #86](https://github.com/OpenXiangShan/XSAI/pull/86)）
 - RTL 新特性
-  - 可配置的 CUTE 多通道访存（[XSAI #83](https://github.com/OpenXiangShan/XSAI/pull/83)）
-  - 缓存系统使用 XSAICache 仓库替代原有的 coupledL2/huancun/openLLC（[XSAI #85](https://github.com/OpenXiangShan/XSAI/pull/85)）
+  - AME 版本更新至 XSAI AME proposal 14（[XSAI #77](https://github.com/OpenXiangShan/XSAI/pull/77)）
+  - ZhuJiang LLC 的集成支持（[XSAI #91](https://github.com/OpenXiangShan/XSAI/pull/91)）
+- Bug 修复
+  - 修复了 mcsr 的别名 CSR 读写错误（[XSAI #98](https://github.com/OpenXiangShan/XSAI/pull/98)）
+  - 修复 AmuCtrlBuffer 的 redirect 逻辑，与 ROB 对齐（[XSAI #99](https://github.com/OpenXiangShan/XSAI/pull/99)）
+  - 修复 AmuCtrlBuffer 内部 PriorityEncoder 的未定义行为（[XSAI #100](https://github.com/OpenXiangShan/XSAI/pull/100)）
+  - 修复 LSQ 对于缓冲溢出的过于严格的断言检查（[XSAI #101](https://github.com/OpenXiangShan/XSAI/pull/101)）
+  - 修复 mfence 指令未阻塞后续指令导致的死锁（[XSAI #102](https://github.com/OpenXiangShan/XSAI/pull/102)）
 - 代码质量
-  - 对近期 CUTE 新增的调试输出添加控制开关（[CUTE #24](https://github.com/OpenXiangShan/CUTE/pull/24)、[CUTE #27](https://github.com/OpenXiangShan/CUTE/pull/27)）
-- 调试工具
-  - uop 的生命周期 trace 分析（[XSAI #84](https://github.com/OpenXiangShan/XSAI/pull/84)）
+  - CUTE 提供 msync 数量配置接口（[XSAI #95](https://github.com/OpenXiangShan/XSAI/pull/95)）（[CUTE #34](https://github.com/OpenXiangShan/CUTE/pull/34)）
+  - 移除冗余的 mtilem/n/k 重置逻辑（[XSAI #97](https://github.com/OpenXiangShan/XSAI/pull/97)）
 
 ## 性能评估
 

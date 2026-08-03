@@ -50,15 +50,18 @@ Regarding the recent development progress of XiangShan, the frontend has fixed t
 
 ### XSAI
 
-- Bug fixes
-  - Fix the control signals for load/store whole C instructions ([XSAI #86](https://github.com/OpenXiangShan/XSAI/pull/86))
 - RTL features
-  - Support configurable multi-channel memory access in CUTE ([XSAI #83](https://github.com/OpenXiangShan/XSAI/pull/83))
-  - Replace coupledL2/huancun/openLLC with the XSAICache repository for the cache system ([XSAI #85](https://github.com/OpenXiangShan/XSAI/pull/85))
+  - Update the AME version to XSAI AME proposal 14 ([XSAI #77](https://github.com/OpenXiangShan/XSAI/pull/77))
+  - Integrate ZhuJiang LLC ([XSAI #91](https://github.com/OpenXiangShan/XSAI/pull/91))
+- Bug fixes
+  - Fix read and write errors for mcsr alias CSRs ([XSAI #98](https://github.com/OpenXiangShan/XSAI/pull/98))
+  - Fix the redirect logic in AmuCtrlBuffer to align with the ROB ([XSAI #99](https://github.com/OpenXiangShan/XSAI/pull/99))
+  - Fix undefined behavior of the PriorityEncoder inside AmuCtrlBuffer ([XSAI #100](https://github.com/OpenXiangShan/XSAI/pull/100))
+  - Relax overly strict assertion checks for buffer overflow in the LSQ ([XSAI #101](https://github.com/OpenXiangShan/XSAI/pull/101))
+  - Fix a deadlock caused by `mfence` not blocking subsequent instructions ([XSAI #102](https://github.com/OpenXiangShan/XSAI/pull/102))
 - Code quality
-  - Add switches to control recently added debug output in CUTE ([CUTE #24](https://github.com/OpenXiangShan/CUTE/pull/24), [CUTE #27](https://github.com/OpenXiangShan/CUTE/pull/27))
-- Debugging tools
-  - Analyze the lifecycle of a uop using traces ([XSAI #84](https://github.com/OpenXiangShan/XSAI/pull/84))
+  - Provide a configurable msync count interface in CUTE ([XSAI #95](https://github.com/OpenXiangShan/XSAI/pull/95), [CUTE #34](https://github.com/OpenXiangShan/CUTE/pull/34))
+  - Remove redundant mtilem/n/k reset logic ([XSAI #97](https://github.com/OpenXiangShan/XSAI/pull/97))
 
 ## Performance Evaluation
 

@@ -38,15 +38,13 @@ categories:
 ### 访存与缓存
 
 - RTL 新特性
-  - 支持预分配 StoreQueue，便于提前建立存储请求（[#5834](https://github.com/OpenXiangShan/XiangShan/pull/5834)）
-  - 为 C_MA 与 C_FF 增加 LoadQueueReplay 快速唤醒支持（[#6092](https://github.com/OpenXiangShan/XiangShan/pull/6092)）
-  - 将 L1-L2 TileLink 总线改为双端口，减少两级缓存之间的访问阻塞（[XSCache #16](https://github.com/OpenXiangShan/XSCache/pull/16)）
+  - 新增一个 DCache 节点以实现双通道的 TileLink 总线（[#6178](https://github.com/OpenXiangShan/XiangShan/pull/6178)）
+  - 实现了 Zabha 扩展（[#6248](https://github.com/OpenXiangShan/XiangShan/pull/6248)）
 - Bug 修复
-  - 修复 LoadPipe 在 s2 被 kill 时错误更新 s3 命中 meta 的问题（[#6185](https://github.com/OpenXiangShan/XiangShan/pull/6185)）
-  - 修复 Sbuffer CMO drain 的空检查逻辑（[#6183](https://github.com/OpenXiangShan/XiangShan/pull/6183)）
-  - 修复 MissQueue 的 `nMaxPrefetchEntry` 逻辑（[#6197](https://github.com/OpenXiangShan/XiangShan/pull/6197)）
-  - 修复 `cbo.zero` 写入 Sbuffer 的问题（[#6228](https://github.com/OpenXiangShan/XiangShan/pull/6228)）
-  - 移除 MissQueue 中错误的 XSError（[#6241](https://github.com/OpenXiangShan/XiangShan/pull/6241)）
+  - 拒绝无效的 TLB 更新以及非物理地址 store 的唤醒操作（[#6275](https://github.com/OpenXiangShan/XiangShan/pull/6275)）
+- 性能优化
+  - 优化了严格 StoreSet 预测（[#6286](https://github.com/OpenXiangShan/XiangShan/pull/6286)）
+  - 在 loadUnit 中添加对 RRBankConflict 仲裁器的支持（[#6242](https://github.com/OpenXiangShan/XiangShan/pull/6242)）
 
 ### XSAI
 

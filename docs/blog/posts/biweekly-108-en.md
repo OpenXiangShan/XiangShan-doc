@@ -38,15 +38,13 @@ Regarding the recent development progress of XiangShan, the frontend has fixed t
 ### MemBlock and Cache
 
 - RTL features
-  - Add support for pre-allocated StoreQueue entries ([#5834](https://github.com/OpenXiangShan/XiangShan/pull/5834))
-  - Add fast wakeup support in LoadQueueReplay for C_MA and C_FF ([#6092](https://github.com/OpenXiangShan/XiangShan/pull/6092))
-  - Change the L1-L2 TileLink bus to dual-port to reduce blocking between the two cache levels ([XSCache #16](https://github.com/OpenXiangShan/XSCache/pull/16))
+  - Add one more dcache node to support two buses of TileLink ([#6178](https://github.com/OpenXiangShan/XiangShan/pull/6178))
+  - Add support for Zabha extension ([#6248](https://github.com/OpenXiangShan/XiangShan/pull/6248))
 - Bug fixes
-  - Fix incorrect s3 hit-metadata updates when LoadPipe is killed in s2 ([#6185](https://github.com/OpenXiangShan/XiangShan/pull/6185))
-  - Fix the empty-check logic for Sbuffer CMO drain ([#6183](https://github.com/OpenXiangShan/XiangShan/pull/6183))
-  - Fix the `nMaxPrefetchEntry` logic in MissQueue ([#6197](https://github.com/OpenXiangShan/XiangShan/pull/6197))
-  - Fix `cbo.zero` writes to Sbuffer ([#6228](https://github.com/OpenXiangShan/XiangShan/pull/6228))
-  - Remove an incorrect XSError from MissQueue ([#6241](https://github.com/OpenXiangShan/XiangShan/pull/6241))
+  - Reject stale TLB updates and nonphysical store wakeups ([#6275](https://github.com/OpenXiangShan/XiangShan/pull/6275))
+- Performance optimizations
+  - Refine strict StoreSet prediction ([#6286](https://github.com/OpenXiangShan/XiangShan/pull/6286))
+  - Add support of RRBankConflict arbiter in loadUnit ([#6242](https://github.com/OpenXiangShan/XiangShan/pull/6242))
 
 ### XSAI
 

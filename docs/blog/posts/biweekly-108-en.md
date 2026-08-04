@@ -24,16 +24,15 @@ Regarding the recent development progress of XiangShan, the frontend has fixed t
 
 ### Backend
 
-- Bug fixes
-  - (V2) Fix the reset values of `mstatus.MDT` and `mnstatus.NMIE`, the behavior of writes of 0 to `mnstatus.NMIE`, and the `m/siprios` mask logic ([#6100](https://github.com/OpenXiangShan/XiangShan/pull/6100))
-  - (V3) Sync the fixes related to `mstatus.MDT` and `mnstatus.NMIE` ([#6223](https://github.com/OpenXiangShan/XiangShan/pull/6223))
-  - (V2) Fix CSR behavior for RISC-V Debug Spec 1.0, including the trigger version, `dcsr.NMIP` updates, and `dcsr.CAUSE` priority ([#6104](https://github.com/OpenXiangShan/XiangShan/pull/6104))
-  - (V2) Fix the VSEI priority-index mapping in `vstopi` ([#6131](https://github.com/OpenXiangShan/XiangShan/pull/6131))
-- Debugging tools
-  - (V2) Add `cpu_cycle` and `ref_cpu_cycle` performance events, and add async bridging for the system-counter path ([#6180](https://github.com/OpenXiangShan/XiangShan/pull/6180))
-  - (V2) Fix the accounting condition for the `frontend_stall_cycle` performance event and add `backend_stall_cycle` accounting ([#6121](https://github.com/OpenXiangShan/XiangShan/pull/6121))
-- Code synchronization
-  - (V3) Cherry-pick recent V2 backend fixes to V3, including CSR, interrupt, PMP/PMA, debug-mode, and performance-event fixes ([#6243](https://github.com/OpenXiangShan/XiangShan/pull/6243))
+- Verification and dependency updates (V2)
+  - Update the NEMU reference in ready-to-run to synchronize recent verification support ([#6252](https://github.com/OpenXiangShan/XiangShan/pull/6252), [#6266](https://github.com/OpenXiangShan/XiangShan/pull/6266))
+- Bug fixes (V2)
+  - Prevent double traps from triggering `criticalError` in debug mode ([#6224](https://github.com/OpenXiangShan/XiangShan/pull/6224))
+  - Fix `s_EX_DT` to be controlled by `sstatus.SDT` ([#6256](https://github.com/OpenXiangShan/XiangShan/pull/6256))
+  - Reset the trace pipeline with the synchronized CPU reset signal ([#6257](https://github.com/OpenXiangShan/XiangShan/pull/6257))
+  - Fix incorrect trapping to HS/VS events when an NMI and an exception occur simultaneously ([#6258](https://github.com/OpenXiangShan/XiangShan/pull/6258))
+- Performance analysis (V2)
+  - Correct memory-stall attribution in TopDown analysis by distinguishing load and store stalls using concrete memory-pressure signals ([#6179](https://github.com/OpenXiangShan/XiangShan/pull/6179))
 
 ### MemBlock and Cache
 

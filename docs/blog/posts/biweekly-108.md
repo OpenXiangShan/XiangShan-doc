@@ -24,16 +24,15 @@ categories:
 
 ### 后端
 
-- Bug 修复
-  - （V2）修复 `mstatus.MDT` 与 `mnstatus.NMIE` 复位值、`mnstatus.NMIE` 写 0 行为，以及 `m/siprios` 掩码逻辑（[#6100](https://github.com/OpenXiangShan/XiangShan/pull/6100)）
-  - （V3）同步 `mstatus.MDT` 与 `mnstatus.NMIE` 相关修复（[#6223](https://github.com/OpenXiangShan/XiangShan/pull/6223)）
-  - （V2）修复 RISC-V Debug Spec 1.0 相关 CSR 行为，包括 trigger 版本、`dcsr.NMIP` 更新与 `dcsr.CAUSE` 优先级（[#6104](https://github.com/OpenXiangShan/XiangShan/pull/6104)）
-  - （V2）修复 `vstopi` 中 VSEI 优先级索引映射错误的问题（[#6131](https://github.com/OpenXiangShan/XiangShan/pull/6131)）
-- 调试工具
-  - （V2）新增 `cpu_cycle` 与 `ref_cpu_cycle` 性能计数事件，并为系统计数器路径加入异步桥接（[#6180](https://github.com/OpenXiangShan/XiangShan/pull/6180)）
-  - （V2）修复 `frontend_stall_cycle` 性能事件统计条件，并补充 `backend_stall_cycle` 统计（[#6121](https://github.com/OpenXiangShan/XiangShan/pull/6121)）
-- 代码同步
-  - （V3）将近期 V2 后端修复同步到 V3，包括 CSR、中断、PMP/PMA、调试模式和性能事件相关修复（[#6243](https://github.com/OpenXiangShan/XiangShan/pull/6243)）
+- 功能验证与依赖更新（V2）
+  - 更新 ready-to-run 中的 NEMU 引用，以同步近期的验证支持（[#6252](https://github.com/OpenXiangShan/XiangShan/pull/6252)、[#6266](https://github.com/OpenXiangShan/XiangShan/pull/6266)）
+- Bug 修复（V2）
+  - 修复调试模式下双重陷阱不应触发 `criticalError` 的问题（[#6224](https://github.com/OpenXiangShan/XiangShan/pull/6224)）
+  - 修复 `s_EX_DT` 应由 `sstatus.SDT` 控制的问题（[#6256](https://github.com/OpenXiangShan/XiangShan/pull/6256)）
+  - 使用同步后的 CPU 复位信号复位 trace 流水线（[#6257](https://github.com/OpenXiangShan/XiangShan/pull/6257)）
+  - 修复 NMI 与异常同时发生时错误陷入 HS/VS 事件的问题（[#6258](https://github.com/OpenXiangShan/XiangShan/pull/6258)）
+- 性能分析（V2）
+  - 校正 TopDown 分析中内存停顿的归因：根据具体的内存压力信号区分 load 与 store 停顿（[#6179](https://github.com/OpenXiangShan/XiangShan/pull/6179)）
 
 ### 访存与缓存
 

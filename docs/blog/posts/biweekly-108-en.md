@@ -9,7 +9,7 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 108th issue of the biweekly report.
 
-Regarding the recent development progress of XiangShan, the frontend has fixed timing issues in multiple modules and resolved some bugs reported by the community; the backend has fixed several bugs related to CSR, debug mode, and performance events, and synchronized V2 fixes to V3; in terms of memory access and caching, support for pre-allocated StoreQueue, LoadQueueReplay fast wakeup, and dual-port L1-L2 TileLink bus has been added, along with multiple bug fixes; XSAI has fixed control signals for load/store whole C instructions and added support for configurable multi-channel memory access in CUTE.
+Regarding the recent development progress of XiangShan, the frontend continues to optimize timing; the backend fixes some bugs in V2 and calibrates the topdown counter; the memory and cache implement a dual-channel TileLink bus and optimize the LSU; XSAI updates the AME version and fixes several bugs.
 
 <!-- more -->
 
@@ -66,8 +66,8 @@ Processor and SoC parameters are as follows:
 
 | Parameters           | Options    |
 | -------------------- | ---------- |
-| Commit               | 538ef487c  |
-| Date                 | 2026/07/16 |
+| Commit               | a97570144  |
+| Date                 | 2026/07/30 |
 | L1 ICache            | 64KB       |
 | L1 DCache            | 64KB       |
 | L2 Cache             | 2MB        |
@@ -80,24 +80,24 @@ The SPEC CPU2006 scores are as follows:
 
 | SPECint 2006 @ 3GHz | GCC15  |  XSCC  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  |
 | :------------------ | :----: | :----: | :----------------- | :----: | :----: |
-| 400.perlbench       | 51.60  | 50.69  | 410.bwaves         | 117.89 | 105.06 |
-| 401.bzip2           | 29.70  | 30.32  | 416.gamess         | 58.32  | 55.79  |
-| 403.gcc             | 56.22  | 40.24  | 433.milc           | 70.45  | 68.03  |
-| 429.mcf             | 69.66  | 62.60  | 434.zeusmp         | 77.94  | 68.08  |
-| 445.gobmk           | 39.88  | 40.41  | 435.gromacs        | 38.26  | 35.16  |
-| 456.hmmer           | 55.26  | 66.99  | 436.cactusADM      | 80.28  | 92.71  |
-| 458.sjeng           | 39.49  | 40.79  | 437.leslie3d       | 60.26  | 60.56  |
-| 462.libquantum      | 138.31 | 308.74 | 444.namd           | 42.98  | 45.22  |
-| 464.h264ref         | 69.77  | 75.31  | 447.dealII         | 73.92  | 73.54  |
-| 471.omnetpp         | 43.46  | 42.85  | 450.soplex         | 59.74  | 70.99  |
-| 473.astar           | 32.60  | 32.11  | 453.povray         | 76.38  | 70.16  |
-| 483.xalancbmk       | 83.46  | 93.14  | 454.Calculix       | 42.71  | 40.68  |
-| GEOMEAN             | 53.86  | 57.38  | 459.GemsFDTD       | 74.24  | 78.50  |
-|                     |        |        | 465.tonto          | 54.03  | 37.61  |
-|                     |        |        | 470.lbm            | 128.16 | 146.27 |
-|                     |        |        | 481.wrf            | 62.22  | 44.89  |
-|                     |        |        | 482.sphinx3        | 60.91  | 63.62  |
-|                     |        |        | GEOMEAN            | 65.94  | 63.51  |
+| 400.perlbench       | 51.92  | 52.22  | 410.bwaves         | 121.09 | 105.65 |
+| 401.bzip2           | 30.04  | 30.58  | 416.gamess         | 58.30  | 55.84  |
+| 403.gcc             | 56.24  | 39.91  | 433.milc           | 71.21  | 68.92  |
+| 429.mcf             | 71.32  | 63.98  | 434.zeusmp         | 78.07  | 67.87  |
+| 445.gobmk           | 39.95  | 40.49  | 435.gromacs        | 38.27  | 35.16  |
+| 456.hmmer           | 55.24  | 67.00  | 436.cactusADM      | 80.70  | 93.11  |
+| 458.sjeng           | 39.44  | 40.73  | 437.leslie3d       | 60.88  | 61.17  |
+| 462.libquantum      | 138.63 | 305.37 | 444.namd           | 43.07  | 45.22  |
+| 464.h264ref         | 69.80  | 74.93  | 447.dealII         | 74.36  | 74.52  |
+| 471.omnetpp         | 43.60  | 42.84  | 450.soplex         | 60.07  | 71.35  |
+| 473.astar           | 32.74  | 32.28  | 453.povray         | 76.41  | 72.29  |
+| 483.xalancbmk       | 83.75  | 93.51  | 454.Calculix       | 42.73  | 40.73  |
+| GEOMEAN             | 54.11  | 57.60  | 459.GemsFDTD       | 72.22  | 73.41  |
+|                     |        |        | 465.tonto          | 54.18  | 37.50  |
+|                     |        |        | 470.lbm            | 128.82 | 146.74 |
+|                     |        |        | 481.wrf            | 61.76  | 45.03  |
+|                     |        |        | 482.sphinx3        | 61.01  | 63.57  |
+|                     |        |        | GEOMEAN            | 66.11  | 63.57  |
 
 Compilation parameters are as follows:
 

@@ -9,6 +9,14 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 108th issue of the biweekly report.
 
+On July 21, renowned computer expert Mao Decao visited BOSC and gave a lecture titled "Artificial Intelligence and Processor Chips."
+
+![Mao Decao's lecture](./figs/biweekly-108/talk.jpg)
+
+Mao's connection with XiangShan goes beyond this visit. He also wrote *RISC-V CPU Chip Design: XiangShan Source Code Annotated*. He began writing the book in 2021 at the age of 76, working alone for nearly 10 hours a day at times. It took him 3.5 years to complete, by which time he was 79 years old.
+
+The core XiangShan team also had an in-depth discussion with Mao, listening to the valuable experience and profound insights into the industry that he has accumulated over the years. We are deeply honored that Mao agrees with XiangShan's design philosophy. We will continue striving to improve XiangShan and make it a benchmark in the open-source processor field.
+
 Regarding the recent development progress of XiangShan, the frontend continues to optimize timing; the backend fixes some bugs in V2 and calibrates the topdown counter; the memory and cache implement a dual-channel TileLink bus and optimize the LSU; XSAI updates the AME version and fixes several bugs.
 
 <!-- more -->

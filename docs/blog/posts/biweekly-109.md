@@ -18,8 +18,15 @@ categories:
 ### 前端
 
 - Bug 修复
+  - 修复异常发生时 IFU 计算指令数出错的问题（[#6301](https://github.com/OpenXiangShan/XiangShan/pull/6301)）
+  - 修复 write buffer 中读写冲突优先级的问题（[#6315](https://github.com/OpenXiangShan/XiangShan/pull/6315)）
+  - 使用没有 taken 的分支训练相关计数器（[#6305](https://github.com/OpenXiangShan/XiangShan/pull/6305)）
 - PPA 优化
-- 调试工具
+  - 在 main BTB 中使用 `attribute` 替代 `valid`（[#6350](https://github.com/OpenXiangShan/XiangShan/pull/6350)）
+  - 优化 FTQ 和 ICache 在 2-fetch 接口处的时序（[#6281](https://github.com/OpenXiangShan/XiangShan/pull/6281)）
+  - 修复 PHR S1 和 S3 流水的更新时序（[#6263](https://github.com/OpenXiangShan/XiangShan/pull/6263)）
+  - 优化 ABTB 的更新时序（[#6326](https://github.com/OpenXiangShan/XiangShan/pull/6326)）
+  - 优化 BPU S3 计算最终 taken 分支的时序（[#6324](https://github.com/OpenXiangShan/XiangShan/pull/6324)）
 
 ### 后端
 
@@ -62,26 +69,26 @@ categories:
 
 性能数据如下所示：
 
-| SPECint 2006 @ 3GHz | GCC15  |  XSCC  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  |
-| :------------------ | :----: | :----: | :----------------- | :----: | :----: |
-| 400.perlbench       | 52.73  |        | 410.bwaves         | 120.79 |        |
-| 401.bzip2           | 30.01  |        | 416.gamess         | 58.36  |        |
-| 403.gcc             | 57.23  |        | 433.milc           | 71.04  |        |
-| 429.mcf             | 73.02  |        | 434.zeusmp         | 78.12  |        |
-| 445.gobmk           | 39.94  |        | 435.gromacs        | 38.27  |        |
-| 456.hmmer           | 55.34  |        | 436.cactusADM      | 80.63  |        |
-| 458.sjeng           | 39.49  |        | 437.leslie3d       | 60.95  |        |
-| 462.libquantum      | 138.67 |        | 444.namd           | 42.98  |        |
-| 464.h264ref         | 70.17  |        | 447.dealII         | 74.57  |        |
-| 471.omnetpp         | 48.87  |        | 450.soplex         | 60.27  |        |
-| 473.astar           | 32.78  |        | 453.povray         | 76.58  |        |
-| 483.xalancbmk       | 83.08  |        | 454.Calculix       | 42.77  |        |
-| GEOMEAN             | 54.89  |        | 459.GemsFDTD       | 71.73  |        |
-|                     |        |        | 465.tonto          | 54.23  |        |
-|                     |        |        | 470.lbm            | 128.82 |        |
-|                     |        |        | 481.wrf            | 61.79  |        |
-|                     |        |        | 482.sphinx3        | 61.20  |        |
-|                     |        |        | GEOMEAN            | 66.12  |        |
+| SPECint 2006 @ 3GHz | GCC15  | XSCC  | SPECfp 2006 @ 3GHz | GCC15  | XSCC  |
+| :------------------ | :----: | :---: | :----------------- | :----: | :---: |
+| 400.perlbench       | 52.73  |       | 410.bwaves         | 120.79 |       |
+| 401.bzip2           | 30.01  |       | 416.gamess         | 58.36  |       |
+| 403.gcc             | 57.23  |       | 433.milc           | 71.04  |       |
+| 429.mcf             | 73.02  |       | 434.zeusmp         | 78.12  |       |
+| 445.gobmk           | 39.94  |       | 435.gromacs        | 38.27  |       |
+| 456.hmmer           | 55.34  |       | 436.cactusADM      | 80.63  |       |
+| 458.sjeng           | 39.49  |       | 437.leslie3d       | 60.95  |       |
+| 462.libquantum      | 138.67 |       | 444.namd           | 42.98  |       |
+| 464.h264ref         | 70.17  |       | 447.dealII         | 74.57  |       |
+| 471.omnetpp         | 48.87  |       | 450.soplex         | 60.27  |       |
+| 473.astar           | 32.78  |       | 453.povray         | 76.58  |       |
+| 483.xalancbmk       | 83.08  |       | 454.Calculix       | 42.77  |       |
+| GEOMEAN             | 54.89  |       | 459.GemsFDTD       | 71.73  |       |
+|                     |        |       | 465.tonto          | 54.23  |       |
+|                     |        |       | 470.lbm            | 128.82 |       |
+|                     |        |       | 481.wrf            | 61.79  |       |
+|                     |        |       | 482.sphinx3        | 61.20  |       |
+|                     |        |       | GEOMEAN            | 66.12  |       |
 
 编译参数如下所示：
 

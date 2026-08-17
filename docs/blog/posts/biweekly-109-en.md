@@ -18,8 +18,15 @@ Regarding the recent development progress of XiangShan, the frontend; the backen
 ### Frontend
 
 - Bug fixes
+  - Fix incorrect IFU instruction counting when an exception occurs ([#6301](https://github.com/OpenXiangShan/XiangShan/pull/6301))
+  - Fix the priority of read-write conflicts in the write buffer ([#6315](https://github.com/OpenXiangShan/XiangShan/pull/6315))
+  - Use not-taken branches to train the corresponding counters ([#6305](https://github.com/OpenXiangShan/XiangShan/pull/6305))
 - PPA optimizations
-- Debugging tools
+  - Use `attribute` instead of `valid` in the main BTB ([#6350](https://github.com/OpenXiangShan/XiangShan/pull/6350))
+  - Optimize timing at the 2-fetch interface between FTQ and ICache ([#6281](https://github.com/OpenXiangShan/XiangShan/pull/6281))
+  - Fix the update timing of the PHR S1 and S3 pipelines ([#6263](https://github.com/OpenXiangShan/XiangShan/pull/6263))
+  - Optimize ABTB update timing ([#6326](https://github.com/OpenXiangShan/XiangShan/pull/6326))
+  - Optimize the timing of final taken-branch computation in BPU S3 ([#6324](https://github.com/OpenXiangShan/XiangShan/pull/6324))
 
 ### Backend
 

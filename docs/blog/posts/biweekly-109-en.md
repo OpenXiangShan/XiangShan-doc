@@ -30,9 +30,12 @@ Regarding the recent development progress of XiangShan, the frontend; the backen
 
 ### Backend
 
+- RTL features
+  - (V2) Allow writes to `PMM` fields in `mseccfg`, `xenvcfg`, and `hstatus`, and allow configuration of `xenvcfg.CBIE`, enabling the Smmpm, Smnpm, and Ssnpm pointer-masking extensions and `cbo.inval` behavior ([#6269](https://github.com/OpenXiangShan/XiangShan/pull/6269))
 - Bug fixes
+  - (V3) Fix a `vl` rename free-list leak: a `vl`-writing instruction that survives a redirect could exhaust physical registers and permanently stall Rename ([#6246](https://github.com/OpenXiangShan/XiangShan/pull/6246))
 - Debugging tools
-- Code synchronization
+  - (V3) Extend TopDown analysis with ROB-head-based out-of-order-window bottleneck attribution across execution readiness, issue delay/cancellation, not-issued, memory, and resource bottlenecks ([#6173](https://github.com/OpenXiangShan/XiangShan/pull/6173))
 
 ### MemBlock and Cache
 

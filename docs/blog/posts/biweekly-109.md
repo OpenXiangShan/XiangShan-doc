@@ -30,9 +30,12 @@ categories:
 
 ### 后端
 
+- RTL 新特性
+  - （V2）支持写入 `mseccfg`、`xenvcfg` 和 `hstatus` 中的 `PMM` 字段，并允许配置 `xenvcfg.CBIE`，以支持 Smmpm、Smnpm、Ssnpm 指针掩码扩展及 `cbo.inval` 行为（[#6269](https://github.com/OpenXiangShan/XiangShan/pull/6269)）
 - Bug 修复
+  - （V3）修复 `vl` 重命名空闲列表泄漏：重定向后仍在飞行的写 `vl` 指令可能耗尽物理寄存器，使 Rename 永久停顿（[#6246](https://github.com/OpenXiangShan/XiangShan/pull/6246)）
 - 调试工具
-- 代码同步
+  - （V3）扩展 TopDown 分析：以 ROB 头部最老的在飞行指令为观察点，对乱序窗口中的执行未就绪、发射延迟/取消、未发射、访存和资源瓶颈进行归因（[#6173](https://github.com/OpenXiangShan/XiangShan/pull/6173)）
 
 ### 访存与缓存
 

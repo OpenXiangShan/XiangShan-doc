@@ -37,7 +37,20 @@ categories:
 ### 访存与缓存
 
 - RTL 新特性
+  - 实现并集成 L2 CDP 预取器（[XSCache #15](https://github.com/OpenXiangShan/XSCache/pull/15)、[XiangShan #6341](https://github.com/OpenXiangShan/XiangShan/pull/6341)）
 - Bug 修复
+  - 修复 DCache latency flag 的索引计算（[XiangShan #6339](https://github.com/OpenXiangShan/XiangShan/pull/6339)）
+  - 修复跨页非对齐 store 的 TLB miss 处理（[XiangShan #6332](https://github.com/OpenXiangShan/XiangShan/pull/6332)）
+  - 修复非对齐 store 的发射重放问题（[XiangShan #6322](https://github.com/OpenXiangShan/XiangShan/pull/6322)）
+  - [V2] 修复 StoreQueue 读指针乱序更新（[XiangShan #6353](https://github.com/OpenXiangShan/XiangShan/pull/6353)）
+  - [V2] 修复 coupledL2 的请求丢弃和 Directory MultiHit 错误上报（[CoupledL2 #523](https://github.com/OpenXiangShan/CoupledL2/pull/523)、[XiangShan #6345](https://github.com/OpenXiangShan/XiangShan/pull/6345)）
+  - [V2] 补充 vector load 的非叶 PTE 元数据传递（[XiangShan #6344](https://github.com/OpenXiangShan/XiangShan/pull/6344)）
+  - [V2] 修复预取过滤器无效状态导致的 X 传播（[XiangShan #6342](https://github.com/OpenXiangShan/XiangShan/pull/6342)）
+  - [V2] 修复 vector store replay 元数据丢失（[XiangShan #6338](https://github.com/OpenXiangShan/XiangShan/pull/6338)）
+  - [V2] 修复跨页非对齐 vector store 卡死（[XiangShan #6337](https://github.com/OpenXiangShan/XiangShan/pull/6337)）
+  - [V2] 修复 TLB miss 时 StoreQueue 地址状态误更新（[XiangShan #6334](https://github.com/OpenXiangShan/XiangShan/pull/6334)）
+  - [V2] 修复同一 uop 内非对齐 vector element 的执行顺序（[XiangShan #6323](https://github.com/OpenXiangShan/XiangShan/pull/6323)）
+  - [V2] 将 CHI 异步桥队列深度从 4 调整为 8（[XiangShan #6306](https://github.com/OpenXiangShan/XiangShan/pull/6306)）
 
 ### XSAI
 

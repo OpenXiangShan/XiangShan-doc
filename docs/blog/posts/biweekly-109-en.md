@@ -37,7 +37,20 @@ Regarding the recent development progress of XiangShan, the frontend; the backen
 ### MemBlock and Cache
 
 - RTL features
+  - Implement and integrate the L2 CDP prefetcher ([XSCache #15](https://github.com/OpenXiangShan/XSCache/pull/15), [XiangShan #6341](https://github.com/OpenXiangShan/XiangShan/pull/6341))
 - Bug fixes
+  - Fix the DCache latency-flag index calculation ([XiangShan #6339](https://github.com/OpenXiangShan/XiangShan/pull/6339))
+  - Fix TLB-miss handling for cross-page unaligned stores ([XiangShan #6332](https://github.com/OpenXiangShan/XiangShan/pull/6332))
+  - Fix illegal issue replay feedback for unaligned stores ([XiangShan #6322](https://github.com/OpenXiangShan/XiangShan/pull/6322))
+  - [V2] Fix out-of-order StoreQueue read-pointer updates ([XiangShan #6353](https://github.com/OpenXiangShan/XiangShan/pull/6353))
+  - [V2] Fix dropped-request and Directory MultiHit error reporting in coupledL2 ([CoupledL2 #523](https://github.com/OpenXiangShan/CoupledL2/pull/523), [XiangShan #6345](https://github.com/OpenXiangShan/XiangShan/pull/6345))
+  - [V2] Propagate non-leaf-PTE metadata for vector loads ([XiangShan #6344](https://github.com/OpenXiangShan/XiangShan/pull/6344))
+  - [V2] Fix X propagation from invalid prefetch-filter state ([XiangShan #6342](https://github.com/OpenXiangShan/XiangShan/pull/6342))
+  - [V2] Preserve vector-store replay metadata ([XiangShan #6338](https://github.com/OpenXiangShan/XiangShan/pull/6338))
+  - [V2] Fix hangs in cross-page unaligned vector stores ([XiangShan #6337](https://github.com/OpenXiangShan/XiangShan/pull/6337))
+  - [V2] Fix StoreQueue address-state updates on TLB misses ([XiangShan #6334](https://github.com/OpenXiangShan/XiangShan/pull/6334))
+  - [V2] Fix ordering of unaligned vector elements within one uop ([XiangShan #6323](https://github.com/OpenXiangShan/XiangShan/pull/6323))
+  - [V2] Increase the CHI async-bridge queue depth from 4 to 8 ([XiangShan #6306](https://github.com/OpenXiangShan/XiangShan/pull/6306))
 
 ### XSAI
 

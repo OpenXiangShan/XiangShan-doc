@@ -5,7 +5,7 @@ categories:
   - Biweekly
 ---
 
-# 【香山双周报 51】20240513期
+# 【香山双周报 51】20240513 期
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 51 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
@@ -17,7 +17,7 @@ categories:
 ### 前端
 - 完成部分 clock gating efficiency 优化（[#2981](https://github.com/OpenXiangShan/XiangShan/pull/2981)、[#2979](https://github.com/OpenXiangShan/XiangShan/pull/2979)）
 - 前端面积功耗优化合并主线（[#2957](https://github.com/OpenXiangShan/XiangShan/pull/2957)、[#2956](https://github.com/OpenXiangShan/XiangShan/pull/2956)）
-- 完成 ITTAGE低功耗优化，在没有间接跳转时关闭ITTAGE 
+- 完成 ITTAGE 低功耗优化，在没有间接跳转时关闭 ITTAGE 
 - 初步完成 ICache DataArray 细粒度划分
 
 ### 后端流水线
@@ -29,7 +29,7 @@ categories:
     - 搭建新版 TLTest 框架，可同时支持 Verilator 与 VCS 仿真
     - 修复 MCP2 相关的若干 bug；在 VCS + DiffTest 框架下迭代 CI 测试，目前通过 185/204
     - 修复 4 核 TLTest 压力测试下的死锁
-- H扩展
+- H 扩展
     - 修复系列 gpa 相关 bug，正逐步合入主线（[#2967](https://github.com/OpenXiangShan/XiangShan/pull/2967)）
 - 向量访存
     - 修复大量 VSegmentUnit 模块的 bug，跑通第一个 segment 指令的 riscv-vector-test 测试

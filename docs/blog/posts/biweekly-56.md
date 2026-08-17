@@ -5,7 +5,7 @@ categories:
   - Biweekly
 ---
 
-# 【香山双周报 56】20240722期
+# 【香山双周报 56】20240722 期
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 56 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
@@ -16,15 +16,15 @@ categories:
 
 ### 前端
 - 功能
-    - 实现 RVA23 Zcb 拓展 （[#3257](https://github.com/OpenXiangShan/XiangShan/pull/3257)）
-    - 修复在 guest 态从 mmio 空间取指发生 guest page fault 时 ， 相关的信息没有正确传到 ibuffer  的潜在问题 （[#3182](https://github.com/OpenXiangShan/XiangShan/pull/3182)）
-    - 修复 ITTAGE 的 ready 信号复位行为不符合预期问题 （[#3198](https://github.com/OpenXiangShan/XiangShan/pull/3198)）
-    - 修复训练 SC 时 totalSum 与 scSum + tagePvdr 不相符的问题 （[#3178](https://github.com/OpenXiangShan/XiangShan/pull/3178)）
-    - 修复传给后端的 newest target 错误问题 （[#3269](https://github.com/OpenXiangShan/XiangShan/pull/3269)）
+    - 实现 RVA23 Zcb 拓展（[#3257](https://github.com/OpenXiangShan/XiangShan/pull/3257)）
+    - 修复在 guest 态从 mmio 空间取指发生 guest page fault 时，相关的信息没有正确传到 ibuffer 的潜在问题（[#3182](https://github.com/OpenXiangShan/XiangShan/pull/3182)）
+    - 修复 ITTAGE 的 ready 信号复位行为不符合预期问题（[#3198](https://github.com/OpenXiangShan/XiangShan/pull/3198)）
+    - 修复训练 SC 时 totalSum 与 scSum + tagePvdr 不相符的问题（[#3178](https://github.com/OpenXiangShan/XiangShan/pull/3178)）
+    - 修复传给后端的 newest target 错误问题（[#3269](https://github.com/OpenXiangShan/XiangShan/pull/3269)）
     - 修复 IPrefetch s2_miss(1) 条件错误 bug（[#3239](https://github.com/OpenXiangShan/XiangShan/pull/3239)）
     - 修复 tageTaken 和 tageTarget 的选择条件导致错误的输出 bug（[#3241](https://github.com/OpenXiangShan/XiangShan/pull/3241)）
 - 性能
-    - 完成 ITTAGE useful 移入 sram 方案 （[#3247](https://github.com/OpenXiangShan/XiangShan/pull/3247)）
+    - 完成 ITTAGE useful 移入 sram 方案（[#3247](https://github.com/OpenXiangShan/XiangShan/pull/3247)）
     - 修复多个 RAS 相关性能 bug（[#3194](https://github.com/OpenXiangShan/XiangShan/pull/3194)、[#3237](https://github.com/OpenXiangShan/XiangShan/pull/3237)）
 
 ### 后端流水线
@@ -56,7 +56,7 @@ categories:
     - 设计 RVA23 CMO 指令支持的实现方案并开始代码实现
 - 性能
     - 多端口 DCache MSHR 入队修复多个 bug，目前已经成功跑通 linux-hello
-    - TP meta on L2 基于最新 master 测试模拟拆分，测试结果不达预期 ；分析发现 TP meta 与 L2 数据在访存敏感程序上存在负面竞争，正在进行优化，保留有效 TP Trigger
+    - TP meta on L2 基于最新 master 测试模拟拆分，测试结果不达预期；分析发现 TP meta 与 L2 数据在访存敏感程序上存在负面竞争，正在进行优化，保留有效 TP Trigger
     - 在 L3 上实现 CHROME 替换算法，单元测试框架随机激励下命中率接近 roofline，但 SPEC 测试性能不佳，观察到有效训练请求过少，进行 Q-Table 训练加速以及增加预取请求进行训练的优化
 - 时序
     - MemBlock：内部违例 -48ps，Backend-MemBlock 端口违例修复正在评估

@@ -5,7 +5,7 @@ categories:
   - Biweekly
 ---
 
-# 【香山双周报 52】20240527期
+# 【香山双周报 52】20240527 期
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 52 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
@@ -32,7 +32,7 @@ categories:
 
 * CHI 总线
     * 发布新版 Cache 子模块验证框架 tl-test-new，支持自动化端口对齐，支持更大压力的多核测试激励（[OpenXiangShan/tl-test-new](https://github.com/OpenXiangShan/tl-test-new)）
-    * 修复L2 && L3 双核场景的bug，以及L2 SinkC DataBuf相关的bug
+    * 修复 L2 && L3 双核场景的 bug，以及 L2 SinkC DataBuf 相关的 bug
 * H 扩展
     * 在 NEMU 上补充 CSR 寄存器，实现 Zicntr、Zihpm 等扩展
     * 修复 NEMU H 扩展 CSR 权限检查的 bug
@@ -40,14 +40,14 @@ categories:
     * 开发分支 vlsu-240315 跑通全部 riscv-vector-test 和 rvv-bench 测试用例
 * 性能优化
     * 实现 MSHR 多端口优化
-    * TP meta 和 L2 data空间硬划分对性能提升较小，尝试采用 DRRIP 对 TP meta 的替换进行调优
+    * TP meta 和 L2 data 空间硬划分对性能提升较小，尝试采用 DRRIP 对 TP meta 的替换进行调优
     * 在 L2 上实现 TUBINS 替换算法，相较 DRRIP 性能提升 0.1%
     * 在 L2 RTL 上实现 Hawkeye 替换，正在测试性能并修复性能 bug
 * 功耗优化
     * 完成 LoadQueueRAR / RAW 有关的模块级门控
 
 ## 评估
-我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC06 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPEC06FP 的 `-ffp-contraction` 选项为 `fast`，指令集为 RV64GCB。我们使用 **5月23日 2b16f0c2c 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld3st 流水线**），在仿真环境下运行了 SPEC06 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPECCPU 2006 的分数估计情况：
+我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC06 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPEC06FP 的 `-ffp-contraction` 选项为 `fast`，指令集为 RV64GCB。我们使用 **5 月 23 日 2b16f0c2c 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld3st 流水线**），在仿真环境下运行了 SPEC06 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPECCPU 2006 的分数估计情况：
 
 | SPECint 2006   | @ 3GHz | SPECfp 2006   | @ 3GHz |
 | :------------- | :----: | :------------ | :----: |

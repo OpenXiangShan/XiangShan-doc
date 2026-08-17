@@ -5,7 +5,7 @@ categories:
   - Biweekly
 ---
 
-# 【香山双周报 54】20240624期
+# 【香山双周报 54】20240624 期
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 54 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
@@ -18,7 +18,7 @@ categories:
 
 ### 前端
 
-* 修复 load replay redirect 请求导致前端FTQ死锁bug（[#3086](https://github.com/OpenXiangShan/XiangShan/pull/3086)）
+* 修复 load replay redirect 请求导致前端 FTQ 死锁 bug（[#3086](https://github.com/OpenXiangShan/XiangShan/pull/3086)）
 * 初步完成 ittage 新方案的短期改进，降低功耗和面积（[#3092](https://github.com/OpenXiangShan/XiangShan/pull/3092)）
 * 修复 ICache 的 X 态问题（[#3051](https://github.com/OpenXiangShan/XiangShan/pull/3051)、[#3079](https://github.com/OpenXiangShan/XiangShan/pull/3079)）
 
@@ -59,7 +59,7 @@ categories:
     * MemBlock 门控修改合入主线（[#3017](https://github.com/OpenXiangShan/XiangShan/pull/3017)）
 
 ## 评估
-我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC06 使用 gcc 12 进行编译，开启 O3 优化，采用jemalloc内存库，设置SPEC06FP的-ffp-contraction选项为fast，指令集为RV64GCB。我们使用 **6 月 14 日 87c5d21d6 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld3st 流水线**），在仿真环境下运行了 SPEC06 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPECCPU 2006 的分数估计情况：
+我们采用 SimPoint 对程序进行采样，基于我们自定义的 Checkpoint 格式制作检查点镜像，**Simpoint 聚类的覆盖率为 100%**。SPEC06 使用 gcc 12 进行编译，开启 O3 优化，采用 jemalloc 内存库，设置 SPEC06FP 的-ffp-contraction 选项为 fast，指令集为 RV64GCB。我们使用 **6 月 14 日 87c5d21d6 版本**的香山处理器（**缓存大小配置为 64KB L1 ICache + 64KB L1 DCache + 1MB L2 + 16MB L3，访存单元为 3ld3st 流水线**），在仿真环境下运行了 SPEC06 片段，使用 DRAMsim3 模拟 CPU 在 3GHz 情况下 DDR4-3200 内存的延迟。以下为 SPECCPU 2006 的分数估计情况：
 
 | SPECint 2006   | @ 3GHz | SPECfp 2006   | @ 3GHz |
 | :------------- | :----: | :------------ | :----: |

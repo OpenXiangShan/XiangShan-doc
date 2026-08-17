@@ -1,0 +1,106 @@
+---
+slug: biweekly-109-en
+date: 2026-08-18
+categories:
+  - Biweekly-en
+---
+
+# [XiangShan Biweekly 109] 20260818
+
+Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 109th issue of the biweekly report.
+
+Regarding the recent development progress of XiangShan, the frontend; the backend; in terms of memory access and caching, ; XSAI.
+
+<!-- more -->
+
+## Recent Developments
+
+### Frontend
+
+- Bug fixes
+- PPA optimizations
+- Debugging tools
+
+### Backend
+
+- Bug fixes
+- Debugging tools
+- Code synchronization
+
+### MemBlock and Cache
+
+- RTL features
+- Bug fixes
+
+### XSAI
+
+- Bug fixes
+- RTL features
+- Code quality
+- Debugging tools
+
+### Basic Design
+
+## Performance Evaluation
+
+Processor and SoC parameters are as follows:
+
+| Parameters           | Options    |
+| -------------------- | ---------- |
+| Commit               | ff4720da4  |
+| Date                 | 2026/08/17 |
+| L1 ICache            | 64KB       |
+| L1 DCache            | 64KB       |
+| L2 Cache             | 2MB        |
+| L3 Cache             | 16MB       |
+| LSU                  | 3ld2st     |
+| Bus protocol         | CHI        |
+| Memory configuration | DDR4-3200  |
+
+The SPEC CPU2006 scores are as follows:
+
+| SPECint 2006 @ 3GHz | GCC15  |  XSCC  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  |
+| :------------------ | :----: | :----: | :----------------- | :----: | :----: |
+| 400.perlbench       | 52.73  |        | 410.bwaves         | 120.79 |        |
+| 401.bzip2           | 30.01  |        | 416.gamess         | 58.36  |        |
+| 403.gcc             | 57.23  |        | 433.milc           | 71.04  |        |
+| 429.mcf             | 73.02  |        | 434.zeusmp         | 78.12  |        |
+| 445.gobmk           | 39.94  |        | 435.gromacs        | 38.27  |        |
+| 456.hmmer           | 55.34  |        | 436.cactusADM      | 80.63  |        |
+| 458.sjeng           | 39.49  |        | 437.leslie3d       | 60.95  |        |
+| 462.libquantum      | 138.67 |        | 444.namd           | 42.98  |        |
+| 464.h264ref         | 70.17  |        | 447.dealII         | 74.57  |        |
+| 471.omnetpp         | 48.87  |        | 450.soplex         | 60.27  |        |
+| 473.astar           | 32.78  |        | 453.povray         | 76.58  |        |
+| 483.xalancbmk       | 83.08  |        | 454.Calculix       | 42.77  |        |
+| GEOMEAN             | 54.89  |        | 459.GemsFDTD       | 71.73  |        |
+|                     |        |        | 465.tonto          | 54.23  |        |
+|                     |        |        | 470.lbm            | 128.82 |        |
+|                     |        |        | 481.wrf            | 61.79  |        |
+|                     |        |        | 482.sphinx3        | 61.20  |        |
+|                     |        |        | GEOMEAN            | 66.12  |        |
+
+Compilation parameters are as follows:
+
+| Parameters                  | GCC15       | XSCC                |
+| --------------------------- | ----------- | ------------------- |
+| Compiler                    | gcc15       | xscc                |
+| Optimization level          | O3          | O3                  |
+| Memory library              | jemalloc    | jemalloc            |
+| -march                      | RV64GCB     | RV64GCB             |
+| -ffp-contraction            | fast        | fast                |
+| Linker optimization         | -flto       | -flto               |
+| Floating-point optimization | -ffast-math | -ffast-math         |
+| -mcpu                       | -           | xiangshan-kunminghu |
+
+Note: We use SimPoint to sample the programs and create checkpoint images based on our custom checkpoint format, with a SimPoint clustering coverage of 100%. The above scores are estimates based on program segments, not full SPEC CPU2006 evaluations, and may differ from actual chip performance.
+
+## Related Links
+
+- XiangShan technical discussion QQ group: 879550595
+- XiangShan technical discussion website: <https://github.com/OpenXiangShan/XiangShan/discussions>
+- XiangShan Documentation: <https://docs.xiangshan.cc/>
+- XiangShan User Guide: <https://docs.xiangshan.cc/projects/user-guide/>
+- XiangShan Design Doc: <https://docs.xiangshan.cc/projects/design/>
+
+Editors: Yanjun Li, Jinhong Zeng, Zechen Yang, Hanle Zhang, Kunlin You, Yiming Yan

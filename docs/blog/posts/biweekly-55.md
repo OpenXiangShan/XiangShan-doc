@@ -5,7 +5,7 @@ categories:
   - Biweekly
 ---
 
-# 【香山双周报 55】20240708期
+# 【香山双周报 55】20240708 期
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 55 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
@@ -42,7 +42,7 @@ categories:
     * 移植联想提供的向量性能测例（向量乘法和 softmax）到 AM 上
     * 性能分析发现 dispatch 拥塞严重，并修复 csrr 读取只读寄存器清空流水的问题
 * 功能
-    * MMU Sv48 有关的RTL修改基本完成，已通过 AM 的简单测试样例
+    * MMU Sv48 有关的 RTL 修改基本完成，已通过 AM 的简单测试样例
 * 性能
     * 修复 MSHR 多端口入队有关的 bug
     * 着手 Berti 硬件实现
@@ -50,7 +50,7 @@ categories:
     * 新版 TP meta on L2 尝试优化 metaTable 的替换算法，用 BRRIP/DRRIP 代替 random 算法，有一定正向提升，但 GemsFDTD 下降严重；新增动态开关功能，相较于无动态开关，总体性能有 0.1% 的提升
     * L2-tubins 在 kunminghu 分支上对性能提升 0.11% ，正在迁移到 master 进行测试
     * CHROME 框架完成实现，在性能测试程序中，除了 libquantum 分数有明显提升，其他多数程序有下降，有待进一步调试。
-    * 发现 DRRIP 中关于 set dueling 采样的 bug ，修复后对 mcf 有 3% 的性能提升
+    * 发现 DRRIP 中关于 set dueling 采样的 bug，修复后对 mcf 有 3% 的性能提升
 * 时序
     * 修复 BOP Mem2cgt 引入的关键路径及 L2 其它关键路径，违例 -150ps 优化到 -50ps 左右
 

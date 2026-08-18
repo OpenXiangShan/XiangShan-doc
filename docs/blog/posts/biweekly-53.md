@@ -5,7 +5,7 @@ categories:
   - Biweekly
 ---
 
-# 【香山双周报 53】20240612期
+# 【香山双周报 53】20240612 期
 
 欢迎来到我们的双周报专栏，本次是香山双周报专栏的第 53 期。我们将通过这一专栏，定期介绍香山的开源进展，希望与大家共同学习、一起进步。
 
@@ -32,7 +32,7 @@ categories:
 * CHI 总线
     * 正在实现新版 CHI-L3 基础框架，建立 GitHub 仓库（[OpenXiangShan/OpenLLC](https://github.com/OpenXiangShan/OpenLLC)）
     * 完成 CoupledL2-OpenLLC 缓存子系统的 TL-test 测试环境搭建（[OpenXiangShan/tl-test-new](https://github.com/OpenXiangShan/tl-test-new)）
-* H扩展
+* H 扩展
     * 为 NEMU 添加 Zicntr、Zihpm 支持（[NEMU#350](https://github.com/OpenXiangShan/NEMU/pull/350)）
 * 向量访存
     * 继续优化时序，目前时序违例从 -160ps 收敛到 -86ps
@@ -40,7 +40,7 @@ categories:
     * 初步性能测试中，向量化 hmmer 分数从 13.04/GHz 提升到 15.33/GHz，向量化 libquantum 出现显著性能下降，正在进一步确认和测试。
 * 性能优化
     * 利用 Trace TL-Test 微观分析 TP meta on L2 实现，修复若干 bug，利用 RRIP 进行替换管理，目前测试结果发现 TP 预取并没有充分发挥性能作用，正在继续优化
-    * 通过对软件模拟- RTL 仿真的替换路选择结果进行对比，定位到多个 Hawkeye 替换相关的 bug
+    * 通过对软件模拟 - RTL 仿真的替换路选择结果进行对比，定位到多个 Hawkeye 替换相关的 bug
     * Tubins 替换经测试，在 L2 中 SPEC 性能比 PLRU 高 0.03%，在 L3 中比 PLRU 高 0.3%
 * 功耗优化
     * LSQ 门控修改合入主线

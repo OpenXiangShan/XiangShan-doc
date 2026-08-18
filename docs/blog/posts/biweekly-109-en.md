@@ -13,6 +13,36 @@ Regarding the recent development progress of XiangShan, the frontend; the backen
 
 <!-- more -->
 
+## Infrastructure: Agile Chip Development Platform
+
+The XiangShan team proposes an “iceberg model” for open-source chip R&D. Instead of treating PPA (Performance, Power, Area) as the sole design objective, the team has developed a methodology that jointly considers PPA and agility (time, cost, and complexity). This approach values both the chip results above the waterline and the development infrastructure beneath it. The team builds the agile platform around three pillars—hardware description language (HDL), functional verification, and performance exploration—to shorten the cycle of design simulation and debugging.
+
+![aPPA](./figs/biweekly-109/aPPA.png)
+
+On HDL, XiangShan uses the Chisel hardware construction language to describe processor designs. To address the multicore dedup problem in elaboration, long compile times, and missing intermediate signals, the team works on the Chisel compilation path, exploring multicore RTL reuse, faster compilation, and intermediate-signal retention to improve construction speed, usability, and reliability.
+
+On functional verification, the team built DiffTest, a differential-testing framework that compares the design under test (XiangShan) with a reference model (NEMU). By comparing architectural state instruction by instruction, DiffTest quickly finds and localizes functional bugs. Recent work includes:
+
+- FPGA-accelerated verification: FPGA acceleration of DUT simulation, differentially tested against a software reference model. The team has delivered an FPGA DiffTest solution for Kunminghu v2 System-level test (ST), supporting complex workloads such as Linux and SPECCPU. It can capture waveforms for millions of cycles before the failing instruction, currently runs at 5–10 MHz, and is more than 1,000× faster than software simulation.
+- Multicore verification algorithms: To reduce false positives in existing multicore DiffTest, the team refined checking of multicore memory-access events and supports fine-grained checks based on the RVWMO memory model. The work has been adapted to Yanqihu and is being brought onto the Kunminghu v3 mainline.
+
+On performance exploration, the team evaluates performance with workloads such as SPECCPU. These workloads are long-running and usually require lengthy boot and warmup, so simulating from scratch is expensive. The team therefore optimizes sampling/checkpointing and simulation tools:
+
+- NEMU ISA simulator: a software reference implementation of the RVA23 Profile. It supports workload execution, sampling and checkpointing, and differential testing, and continues functional alignment and performance work around hypervisor, vector, and AIA.
+- XSGEM5 architectural simulator: an open-source, industrial-grade architectural simulator with full RVA23 support. Performance versus XiangShan on SPEC 06/17 is under 5%. It supports architecture exploration and evaluation of optimization strategies.
+- SimPoint sampling and checkpoint: supports saving architectural state at sample points so simulation can jump quickly into the target phase. The team has established checkpoint generation, state restore, and result-validation flows for both single-core and multicore, covering SPEC CPU2006/2017/2026, RVA23, vector, and hypervisor.
+- GSIM simulator: a FIRRTL-based RTL simulator that fully supports XiangShan’s verification tools, including DiffTest. Single-threaded GSIM is substantially faster than single-threaded Verilator and comparable to multi-threaded Verilator while using far fewer server resources. Process-level parallelism enables fast, checkpoint-based performance evaluation.
+
+Related code is open source:
+
+- MINJIE development platform: <https://github.com/OpenXiangShan/minjie-playground>
+- DiffTest simulation framework: <https://github.com/OpenXiangShan/difftest>
+- FPGA platform scripts: <https://github.com/OpenXiangShan/env-scripts>
+- NEMU ISA simulator: <https://github.com/OpenXiangShan/NEMU>
+- XSGEM5 architectural simulator: <https://github.com/OpenXiangShan/GEM5>
+- Workload build framework: <https://github.com/OpenXiangShan/workload-builder>
+- GSIM simulator: <https://github.com/OpenXiangShan/gsim>
+
 ## Recent Developments
 
 ### Frontend
@@ -65,7 +95,32 @@ Regarding the recent development progress of XiangShan, the frontend; the backen
   - Implement MMA batching in DiffTest to reduce kernel launches ([difftest #920](https://github.com/OpenXiangShan/difftest/pull/920))
   - Implement backpressure to prevent unbounded queue growth when the MMA backend has insufficient throughput ([difftest #923](https://github.com/OpenXiangShan/difftest/pull/923))
 
-### Basic Design
+- Chisel HDL
+  - Cache CDE parameter queries for XSTile, reducing Chisel-to-Verilog compile time by 33% ([#6336](https://github.com/OpenXiangShan/XiangShan/pull/6336))
+- FPGA DiffTest
+  - Support specific FPGA platforms and adapt partitioning, ILA, and related flows ([env-scripts #150](https://github.com/OpenXiangShan/env-scripts/pull/150))
+  - Automatically capture and upload waveforms via ILA at the failing instruction on FPGA ([difftest #932](https://github.com/OpenXiangShan/difftest/pull/932))
+  - Support cross-machine UART control for FPGA ([env-scripts #153](https://github.com/OpenXiangShan/env-scripts/pull/153), [difftest #933](https://github.com/OpenXiangShan/difftest/pull/933))
+- NEMU Reference Model
+  - Fix CLINT `mtime` write detection ([NEMU #1141](https://github.com/OpenXiangShan/NEMU/pull/1141))
+  - Fix time correction for consecutive `mtime` writes ([NEMU #1143](https://github.com/OpenXiangShan/NEMU/pull/1143))
+  - Fix `mstatus.MPRV` address calculation ([NEMU #1144](https://github.com/OpenXiangShan/NEMU/pull/1144))
+  - Add RVH CI performance-regression tests ([NEMU #1148](https://github.com/OpenXiangShan/NEMU/pull/1148))
+  - Fix external-interrupt handling in REF mode ([NEMU #1148](https://github.com/OpenXiangShan/NEMU/pull/1148))
+  - Improve Spike DiffTest configuration ([NEMU #1152](https://github.com/OpenXiangShan/NEMU/pull/1152))
+- Multicore Checkpoints
+  - Enhance the multicore checkpoint flow ([minjie-playground #23](https://github.com/OpenXiangShan/minjie-playground/pull/23))
+  - Complete multicore ISA configuration ([workload-builder #45](https://github.com/OpenXiangShan/workload-builder/pull/45))
+  - Support dual-core SPEC2017 memory configuration ([workload-builder #46](https://github.com/OpenXiangShan/workload-builder/pull/46))
+  - Align NEMU/OpenSBI configuration ([workload-builder #49](https://github.com/OpenXiangShan/workload-builder/pull/49))
+- GSIM Simulator
+  - Fix node-name conflicts when the same extmodule definition has multiple instances ([gsim #112](https://github.com/OpenXiangShan/gsim/pull/112))
+  - Fix scheduling and propagation order of extmodule async-reset outputs ([gsim #113](https://github.com/OpenXiangShan/gsim/pull/113))
+  - Fix `OP_ADD` operand-slice out-of-bounds ([gsim #114](https://github.com/OpenXiangShan/gsim/pull/114))
+  - Upgrade NixOS to 26.05 and switch to the default LLVM version ([gsim #115](https://github.com/OpenXiangShan/gsim/pull/115))
+  - Auto-detect and link allocators such as jemalloc, with manual selection via `MALLOC` ([gsim #116](https://github.com/OpenXiangShan/gsim/pull/116))
+  - Add PGO support for GSIM itself ([gsim #117](https://github.com/OpenXiangShan/gsim/pull/117))
+  - Add a portable `gsim-static` static-build target ([gsim #118](https://github.com/OpenXiangShan/gsim/pull/118))
 
 ## Performance Evaluation
 

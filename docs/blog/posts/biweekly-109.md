@@ -13,6 +13,36 @@ categories:
 
 <!-- more -->
 
+## 基础设施：敏捷芯片开发平台
+
+香山团队提出开源芯片研发的“冰山模型”理念，改变传统以性能表现（PPA：频率、功耗、面积）为核心导向的芯片设计方法，发展形成一套兼顾性能与敏捷度（agile：时间、成本、复杂度）的设计新方法，既关注水面之上的芯片研发成果，也重视水面以下的芯片开发基础设施。团队围绕电路描述语言、功能验证、性能探索三个方面建设敏捷开发平台，缩短从设计实现、负载运行到问题定位的周期。
+
+![aPPA](./figs/biweekly-109/aPPA.png)
+
+电路描述语言方面，香山团队采用 Chisel 硬件构建语言描述处理器芯片设计。针对多核设计中重复构建、编译耗时较长和中间信号难以保留等问题，团队从 Chisel 编译链路入手，探索多核 RTL 复用、编译流程加速和中间信号保留等能力，提升电路构建的速度、易用性和可靠性。
+
+功能验证方面，香山团队建立待测设计（XiangShan）与参考模型（NEMU）对比的差分测试框架（DiffTest），通过逐指令的体系结构状态对比，快速发现并定位处理器功能缺陷。近期工作包含：
+
+- FPGA 验证加速：基于 FPGA 加速待测设计电路仿真，并与软件侧参考模型进行差分测试。已形成支持昆明湖 v2 系统级验证的 FPGA DiffTest 方案，支持 Linux、SPECCPU 等复杂测试负载。支持捕获出错指令前数百万周期波形，当前运行速度 5~10 MHz，相较软件仿真实现 1000 倍以上的速度提升。
+- 多核验证算法：针对既有多核 DiffTest 出现的部分假阳性问题，完善多核访存事件的检查算法，支持基于 RVWMO 内存模型的细粒度检查。当前已适配雁栖湖，正在推进昆明湖 v3 主线适配。
+
+性能探索方面，香山团队基于 SPECCPU 等负载进行性能评测。此类负载周期长，且通常需要经历较长的系统启动和预热过程，从头仿真的成本较高。团队围绕切片采样和仿真工具开展优化：
+
+- NEMU 指令模拟器：RVA23 指令集手册的软件参考实现，支持负载运行、采样切片、仿真验证，围绕虚拟化、向量和 AIA 等场景，持续开展功能对齐与性能优化。
+- XSGEM5 架构模拟器：开源工业级架构模拟器，完整支持 RVA23，SPEC 06/17 实测与香山性能误差小于 5%，支持架构探索及优化策略评估。
+- SimPoint 采样及切片：支持保存采样点处的体系结构状态，使仿真能够快速进入目标阶段。当前已建立覆盖单核和多核的 Checkpoint 生成、状态恢复与结果验证流程，支持 SPEC CPU2006/2017/2026、RVA23、向量及虚拟化等场景。
+- GSIM 仿真器：基于 FIRRTL 的 RTL 仿真器，完整支持香山包含 DiffTest 在内的各种验证工具。单线程 GSIM 相比单线程 Verilator 显著加速，与多线程 Verilator 性能相近的同时显著减少服务器资源占用，可通过进程并行实现基于切片的性能快速评估。
+
+相关代码均已开源：
+
+- MINJIE 开发平台：<https://github.com/OpenXiangShan/minjie-playground>
+- DiffTest 仿真框架：<https://github.com/OpenXiangShan/difftest>
+- FPGA 平台脚本：<https://github.com/OpenXiangShan/env-scripts>
+- NEMU 指令模拟器：<https://github.com/OpenXiangShan/NEMU>
+- XSGEM5 架构模拟器：<https://github.com/OpenXiangShan/GEM5>
+- 负载编译框架：<https://github.com/OpenXiangShan/workload-builder>
+- GSIM 仿真器：<https://github.com/OpenXiangShan/gsim>
+
 ## 近期进展
 
 ### 前端
@@ -65,7 +95,32 @@ categories:
   - 在 DiffTest 中实现 MMA batching，减少 kernel launch 次数（[difftest #920](https://github.com/OpenXiangShan/difftest/pull/920)）
   - 实现反压，避免 MMA backend 吞吐不足时队列无限增长（[difftest #923](https://github.com/OpenXiangShan/difftest/pull/923)）
 
-### 基础设计
+- Chisel 描述语言
+  - 缓存 XSTile 的 CDE 参数查询，将 Chisel -> Verilog 编译时间缩短 33%（[#6336](https://github.com/OpenXiangShan/XiangShan/pull/6336)）
+- FPGA DiffTest
+  - 支持特定型号 FPGA 平台，适配划片、ILA 等流程（[env-scripts #150](https://github.com/OpenXiangShan/env-scripts/pull/150)）
+  - 支持 FPGA 在出错时刻自动通过 ILA 抓取并上传波形（[difftest #932](https://github.com/OpenXiangShan/difftest/pull/932)）
+  - 支持 FPGA 跨机器串口控制（[env-scripts #153](https://github.com/OpenXiangShan/env-scripts/pull/153)、[difftest #933](https://github.com/OpenXiangShan/difftest/pull/933)）
+- NEMU 参考模型
+  - 修复 CLINT mtime 写入判定（[NEMU #1141](https://github.com/OpenXiangShan/NEMU/pull/1141)）
+  - 修复连续写入 mtime 的时间修正（[NEMU #1143](https://github.com/OpenXiangShan/NEMU/pull/1143)）
+  - 修复 mstatus.MPRV 地址计算（[NEMU #1144](https://github.com/OpenXiangShan/NEMU/pull/1144)）
+  - 增加 RVH CI 性能回归测试（[NEMU #1148](https://github.com/OpenXiangShan/NEMU/pull/1148)）
+  - 修复 REF 模式下外部中断处理（[NEMU #1148](https://github.com/OpenXiangShan/NEMU/pull/1148)）
+  - 完善 Spike DiffTest 配置（[NEMU #1152](https://github.com/OpenXiangShan/NEMU/pull/1152)）
+- 多核切片
+  - 增强多核 Checkpoint 主流程（[minjie-playground #23](https://github.com/OpenXiangShan/minjie-playground/pull/23)）
+  - 补全多核 ISA 配置（[workload-builder #45](https://github.com/OpenXiangShan/workload-builder/pull/45)）
+  - 支持双核 SPEC2017 内存配置（[workload-builder #46](https://github.com/OpenXiangShan/workload-builder/pull/46)）
+  - 对齐 NEMU/OpenSBI 配置（[workload-builder #49](https://github.com/OpenXiangShan/workload-builder/pull/49)）
+- GSIM 仿真器
+  - 修复同一 extmodule 定义多实例时的节点命名冲突（[gsim #112](https://github.com/OpenXiangShan/gsim/pull/112)）
+  - 修复 extmodule 异步复位输出的调度与传播顺序（[gsim #113](https://github.com/OpenXiangShan/gsim/pull/113)）
+  - 修复 OP_ADD 操作数切片越界问题（[gsim #114](https://github.com/OpenXiangShan/gsim/pull/114)）
+  - 升级 NixOS 至 26.05，并改用默认 LLVM 版本（[gsim #115](https://github.com/OpenXiangShan/gsim/pull/115)）
+  - 自动探测并链接 jemalloc 等内存分配器，支持通过 MALLOC 手动选择（[gsim #116](https://github.com/OpenXiangShan/gsim/pull/116)）
+  - 新增 GSIM 本身的 PGO 支持（[gsim #117](https://github.com/OpenXiangShan/gsim/pull/117)）
+  - 新增 gsim-static 可移植静态构建目标（[gsim #118](https://github.com/OpenXiangShan/gsim/pull/118)）
 
 ## 性能评估
 

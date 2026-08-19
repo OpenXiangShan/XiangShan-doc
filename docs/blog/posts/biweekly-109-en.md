@@ -1,15 +1,17 @@
 ---
 slug: biweekly-109-en
-date: 2026-08-18
+date: 2026-08-19
 categories:
   - Biweekly-en
 ---
 
-# [XiangShan Biweekly 109] 20260818
+# [XiangShan Biweekly 109] Infrastructure Special: Agile Chip Development Platform
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 109th issue of the biweekly report.
 
-Regarding the recent development progress of XiangShan, the frontend; the backend; in terms of memory access and caching, ; XSAI.
+This issue features a special on infrastructure, focusing on the agile chip development platform built by the XiangShan team around hardware description languages, functional verification, and performance exploration. Starting with this issue, the biweekly report will also include updates on infrastructure development.
+
+Regarding the recent development progress of XiangShan, the frontend continues to fix bugs and optimize critical-path timing; the backend adds features such as pointer-masking extensions and expands TopDown analysis; the memory and cache subsystem integrates the L2 CDP prefetcher and fixes several bugs; XSAI supports multi-precision transposed loads and improves multi-channel DiffTest and MMA debugging capabilities.
 
 <!-- more -->
 
@@ -70,20 +72,20 @@ Related code is open source:
 ### MemBlock and Cache
 
 - RTL features
-  - Implement and integrate the L2 CDP prefetcher ([XSCache #15](https://github.com/OpenXiangShan/XSCache/pull/15), [XiangShan #6341](https://github.com/OpenXiangShan/XiangShan/pull/6341))
+  - (V3) Implement and integrate the L2 CDP prefetcher ([XSCache #15](https://github.com/OpenXiangShan/XSCache/pull/15), [#6341](https://github.com/OpenXiangShan/XiangShan/pull/6341))
 - Bug fixes
-  - Fix the DCache latency-flag index calculation ([XiangShan #6339](https://github.com/OpenXiangShan/XiangShan/pull/6339))
-  - Fix TLB-miss handling for cross-page unaligned stores ([XiangShan #6332](https://github.com/OpenXiangShan/XiangShan/pull/6332))
-  - Fix illegal issue replay feedback for unaligned stores ([XiangShan #6322](https://github.com/OpenXiangShan/XiangShan/pull/6322))
-  - [V2] Fix out-of-order StoreQueue read-pointer updates ([XiangShan #6353](https://github.com/OpenXiangShan/XiangShan/pull/6353))
-  - [V2] Fix dropped-request and Directory MultiHit error reporting in coupledL2 ([CoupledL2 #523](https://github.com/OpenXiangShan/CoupledL2/pull/523), [XiangShan #6345](https://github.com/OpenXiangShan/XiangShan/pull/6345))
-  - [V2] Propagate non-leaf-PTE metadata for vector loads ([XiangShan #6344](https://github.com/OpenXiangShan/XiangShan/pull/6344))
-  - [V2] Fix X propagation from invalid prefetch-filter state ([XiangShan #6342](https://github.com/OpenXiangShan/XiangShan/pull/6342))
-  - [V2] Preserve vector-store replay metadata ([XiangShan #6338](https://github.com/OpenXiangShan/XiangShan/pull/6338))
-  - [V2] Fix hangs in cross-page unaligned vector stores ([XiangShan #6337](https://github.com/OpenXiangShan/XiangShan/pull/6337))
-  - [V2] Fix StoreQueue address-state updates on TLB misses ([XiangShan #6334](https://github.com/OpenXiangShan/XiangShan/pull/6334))
-  - [V2] Fix ordering of unaligned vector elements within one uop ([XiangShan #6323](https://github.com/OpenXiangShan/XiangShan/pull/6323))
-  - [V2] Increase the CHI async-bridge queue depth from 4 to 8 ([XiangShan #6306](https://github.com/OpenXiangShan/XiangShan/pull/6306))
+  - (V3) Fix the DCache latency-flag index calculation ([#6339](https://github.com/OpenXiangShan/XiangShan/pull/6339))
+  - (V3) Fix TLB-miss handling for cross-page unaligned stores ([#6332](https://github.com/OpenXiangShan/XiangShan/pull/6332))
+  - (V3) Fix illegal issue replay feedback for unaligned stores ([#6322](https://github.com/OpenXiangShan/XiangShan/pull/6322))
+  - (V2) Fix out-of-order StoreQueue read-pointer updates ([#6353](https://github.com/OpenXiangShan/XiangShan/pull/6353))
+  - (V2) Fix dropped-request and Directory MultiHit error reporting in coupledL2 ([CoupledL2 #523](https://github.com/OpenXiangShan/CoupledL2/pull/523), [#6345](https://github.com/OpenXiangShan/XiangShan/pull/6345))
+  - (V2) Propagate non-leaf-PTE metadata for vector loads ([#6344](https://github.com/OpenXiangShan/XiangShan/pull/6344))
+  - (V2) Fix X propagation from invalid prefetch-filter state ([#6342](https://github.com/OpenXiangShan/XiangShan/pull/6342))
+  - (V2) Preserve vector-store replay metadata ([#6338](https://github.com/OpenXiangShan/XiangShan/pull/6338))
+  - (V2) Fix hangs in cross-page unaligned vector stores ([#6337](https://github.com/OpenXiangShan/XiangShan/pull/6337))
+  - (V2) Fix StoreQueue address-state updates on TLB misses ([#6334](https://github.com/OpenXiangShan/XiangShan/pull/6334))
+  - (V2) Fix ordering of unaligned vector elements within one uop ([#6323](https://github.com/OpenXiangShan/XiangShan/pull/6323))
+  - (V2) Increase the CHI async-bridge queue depth from 4 to 8 ([#6306](https://github.com/OpenXiangShan/XiangShan/pull/6306))
 
 ### XSAI
 
@@ -144,24 +146,24 @@ The SPEC CPU2006 scores are as follows:
 
 | SPECint 2006 @ 3GHz | GCC15  |  XSCC  | SPECfp 2006 @ 3GHz | GCC15  |  XSCC  |
 | :------------------ | :----: | :----: | :----------------- | :----: | :----: |
-| 400.perlbench       | 52.73  |        | 410.bwaves         | 120.79 |        |
-| 401.bzip2           | 30.01  |        | 416.gamess         | 58.36  |        |
-| 403.gcc             | 57.23  |        | 433.milc           | 71.04  |        |
-| 429.mcf             | 73.02  |        | 434.zeusmp         | 78.12  |        |
-| 445.gobmk           | 39.94  |        | 435.gromacs        | 38.27  |        |
-| 456.hmmer           | 55.34  |        | 436.cactusADM      | 80.63  |        |
-| 458.sjeng           | 39.49  |        | 437.leslie3d       | 60.95  |        |
-| 462.libquantum      | 138.67 |        | 444.namd           | 42.98  |        |
-| 464.h264ref         | 70.17  |        | 447.dealII         | 74.57  |        |
-| 471.omnetpp         | 48.87  |        | 450.soplex         | 60.27  |        |
-| 473.astar           | 32.78  |        | 453.povray         | 76.58  |        |
-| 483.xalancbmk       | 83.08  |        | 454.Calculix       | 42.77  |        |
-| GEOMEAN             | 54.89  |        | 459.GemsFDTD       | 71.73  |        |
-|                     |        |        | 465.tonto          | 54.23  |        |
-|                     |        |        | 470.lbm            | 128.82 |        |
-|                     |        |        | 481.wrf            | 61.79  |        |
-|                     |        |        | 482.sphinx3        | 61.20  |        |
-|                     |        |        | GEOMEAN            | 66.12  |        |
+| 400.perlbench       | 52.73  | 53.14  | 410.bwaves         | 120.79 | 106.04 |
+| 401.bzip2           | 30.01  | 30.58  | 416.gamess         | 58.36  | 55.82  |
+| 403.gcc             | 57.23  | 41.40  | 433.milc           | 71.04  | 68.89  |
+| 429.mcf             | 73.02  | 62.64  | 434.zeusmp         | 78.12  | 68.21  |
+| 445.gobmk           | 39.94  | 40.43  | 435.gromacs        | 38.27  | 35.15  |
+| 456.hmmer           | 55.34  | 67.13  | 436.cactusADM      | 80.63  | 93.32  |
+| 458.sjeng           | 39.49  | 40.78  | 437.leslie3d       | 60.95  | 61.11  |
+| 462.libquantum      | 138.67 | 305.56 | 444.namd           | 42.98  | 45.25  |
+| 464.h264ref         | 70.17  | 75.21  | 447.dealII         | 74.57  | 74.85  |
+| 471.omnetpp         | 48.87  | 47.57  | 450.soplex         | 60.27  | 72.04  |
+| 473.astar           | 32.78  | 32.44  | 453.povray         | 76.58  | 69.26  |
+| 483.xalancbmk       | 83.08  | 101.98 | 454.Calculix       | 42.77  | 40.73  |
+| GEOMEAN             | 54.89  | 58.74  | 459.GemsFDTD       | 71.73  | 73.38  |
+|                     |        |        | 465.tonto          | 54.23  | 37.83  |
+|                     |        |        | 470.lbm            | 128.82 | 146.69 |
+|                     |        |        | 481.wrf            | 61.79  | 45.04  |
+|                     |        |        | 482.sphinx3        | 61.20  | 63.66  |
+|                     |        |        | GEOMEAN            | 66.12  | 63.53  |
 
 Compilation parameters are as follows:
 

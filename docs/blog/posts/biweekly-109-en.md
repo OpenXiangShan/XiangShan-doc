@@ -5,11 +5,11 @@ categories:
   - Biweekly-en
 ---
 
-# [XiangShan Biweekly 109] Infrastructure Special: Agile Chip Development Platform
+# [XiangShan Biweekly 109] Infrastructure Joins the XiangShan Biweekly!
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 109th issue of the biweekly report.
 
-This issue features a special on infrastructure, focusing on the agile chip development platform built by the XiangShan team around hardware description languages, functional verification, and performance exploration. Starting with this issue, the biweekly report will also include updates on infrastructure development.
+This issue features a special section on infrastructure, focusing on the agile chip development platform built by the XiangShan team around hardware description languages, functional verification, and performance exploration. Starting with this issue, the biweekly report will also include updates on infrastructure development.
 
 Regarding the recent development progress of XiangShan, the frontend continues to fix bugs and optimize critical-path timing; the backend adds features such as pointer-masking extensions and expands TopDown analysis; the memory and cache subsystem integrates the L2 CDP prefetcher and fixes several bugs; XSAI supports multi-precision transposed loads and improves multi-channel DiffTest and MMA debugging capabilities.
 
@@ -121,7 +121,7 @@ Related code is open source:
   - Fix node-name conflicts when the same extmodule definition has multiple instances ([gsim #112](https://github.com/OpenXiangShan/gsim/pull/112))
   - Fix scheduling and propagation order of extmodule async-reset outputs ([gsim #113](https://github.com/OpenXiangShan/gsim/pull/113))
   - Fix `OP_ADD` operand-slice out-of-bounds ([gsim #114](https://github.com/OpenXiangShan/gsim/pull/114))
-  - Upgrade NixOS to 26.05 and switch to the default LLVM version ([gsim #115](https://github.com/OpenXiangShan/gsim/pull/115))
+  - Upgrade nixpkgs to nixos-26.05 and switch to the default LLVM version ([gsim #115](https://github.com/OpenXiangShan/gsim/pull/115))
   - Auto-detect and link allocators such as jemalloc, with manual selection via `MALLOC` ([gsim #116](https://github.com/OpenXiangShan/gsim/pull/116))
   - Add PGO support for GSIM itself ([gsim #117](https://github.com/OpenXiangShan/gsim/pull/117))
   - Add a portable `gsim-static` static-build target ([gsim #118](https://github.com/OpenXiangShan/gsim/pull/118))

@@ -5,13 +5,13 @@ categories:
   - Biweekly
 ---
 
-# 【香山双周报 109】基础设施专题：敏捷芯片开发平台
+# 【香山双周报 109】基础设施加入双周报！
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 109 期双周报。
 
 本期双周报特别推出基础设施专题，重点介绍香山团队围绕电路描述语言、功能验证和性能探索建设的敏捷芯片开发平台。同时从本期开始，双周报将包含基础设施方面的工作进展。
 
-关于香山近期开发进展：前端持续修复问题并优化关键路径时序；后端新增指针掩码扩展等特性，并扩展了 TopDown 分析；访存与缓存集成了 L2 CDP 预取器，同时修复了若干 bug；XSAI 支持多精度转置 load，并完善多通道 DiffTest 与 MMA 调试能力。
+关于香山近期开发进展：前端持续修复问题并优化关键路径时序；后端新增指针掩码扩展等特性，并扩展了 TopDown 分析；访存与缓存集成了 L2 CDP 预取器，同时修复了若干 bug；XSAI 支持了多精度转置 load，并完善了多通道 DiffTest 与 MMA 调试能力。
 
 <!-- more -->
 
@@ -121,7 +121,7 @@ categories:
   - 修复同一 extmodule 定义多实例时的节点命名冲突（[gsim #112](https://github.com/OpenXiangShan/gsim/pull/112)）
   - 修复 extmodule 异步复位输出的调度与传播顺序（[gsim #113](https://github.com/OpenXiangShan/gsim/pull/113)）
   - 修复 OP_ADD 操作数切片越界问题（[gsim #114](https://github.com/OpenXiangShan/gsim/pull/114)）
-  - 升级 NixOS 至 26.05，并改用默认 LLVM 版本（[gsim #115](https://github.com/OpenXiangShan/gsim/pull/115)）
+  - 升级 nixpkgs 至 nixos-26.05，并改用默认 LLVM 版本（[gsim #115](https://github.com/OpenXiangShan/gsim/pull/115)）
   - 自动探测并链接 jemalloc 等内存分配器，支持通过 MALLOC 手动选择（[gsim #116](https://github.com/OpenXiangShan/gsim/pull/116)）
   - 新增 GSIM 本身的 PGO 支持（[gsim #117](https://github.com/OpenXiangShan/gsim/pull/117)）
   - 新增 gsim-static 可移植静态构建目标（[gsim #118](https://github.com/OpenXiangShan/gsim/pull/118)）

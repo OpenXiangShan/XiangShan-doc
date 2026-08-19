@@ -29,17 +29,17 @@ On functional verification, the team built DiffTest, a differential-testing fram
 On performance exploration, the team evaluates performance with workloads such as SPECCPU. These workloads are long-running and usually require lengthy boot and warmup, so simulating from scratch is expensive. The team therefore optimizes sampling/checkpointing and simulation tools:
 
 - NEMU ISA simulator: a software reference implementation of the RVA23 Profile. It supports workload execution, sampling and checkpointing, and differential testing, and continues functional alignment and performance work around hypervisor, vector, and AIA.
-- XSGEM5 architectural simulator: an open-source, industrial-grade architectural simulator with full RVA23 support. Performance versus XiangShan on SPEC 06/17 is under 5%. It supports architecture exploration and evaluation of optimization strategies.
-- SimPoint sampling and checkpoint: supports saving architectural state at sample points so simulation can jump quickly into the target phase. The team has established checkpoint generation, state restore, and result-validation flows for both single-core and multicore, covering SPEC CPU2006/2017/2026, RVA23, vector, and hypervisor.
+- XS-GEM5 architectural simulator: an open-source, industrial-grade architectural simulator with full RVA23 support. Performance versus XiangShan on SPEC 06/17 is under 5%. It supports architecture exploration and evaluation of optimization strategies.
+- Sampling and checkpointing: supports saving architectural state at SimPoint sample points so simulation can jump quickly into the target phase. The team has established checkpoint generation, state restore, and result-validation flows for both single-core and multicore, covering SPEC CPU2006/2017/2026, RVA23, vector, and hypervisor.
 - GSIM simulator: a FIRRTL-based RTL simulator that fully supports XiangShan’s verification tools, including DiffTest. Single-threaded GSIM is substantially faster than single-threaded Verilator and comparable to multi-threaded Verilator while using far fewer server resources. Process-level parallelism enables fast, checkpoint-based performance evaluation.
 
 Related code is open source:
 
-- MINJIE development platform: <https://github.com/OpenXiangShan/minjie-playground>
+- MinJie development platform: <https://github.com/OpenXiangShan/minjie-playground>
 - DiffTest simulation framework: <https://github.com/OpenXiangShan/difftest>
 - FPGA platform scripts: <https://github.com/OpenXiangShan/env-scripts>
 - NEMU ISA simulator: <https://github.com/OpenXiangShan/NEMU>
-- XSGEM5 architectural simulator: <https://github.com/OpenXiangShan/GEM5>
+- XS-GEM5 architectural simulator: <https://github.com/OpenXiangShan/GEM5>
 - Workload build framework: <https://github.com/OpenXiangShan/workload-builder>
 - GSIM simulator: <https://github.com/OpenXiangShan/gsim>
 
@@ -94,6 +94,8 @@ Related code is open source:
 - Debugging tools
   - Implement MMA batching in DiffTest to reduce kernel launches ([difftest #920](https://github.com/OpenXiangShan/difftest/pull/920))
   - Implement backpressure to prevent unbounded queue growth when the MMA backend has insufficient throughput ([difftest #923](https://github.com/OpenXiangShan/difftest/pull/923))
+
+### Infra
 
 - Chisel HDL
   - Cache CDE parameter queries for XSTile, reducing Chisel-to-Verilog compile time by 33% ([#6336](https://github.com/OpenXiangShan/XiangShan/pull/6336))

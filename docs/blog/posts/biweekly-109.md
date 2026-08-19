@@ -29,17 +29,17 @@ categories:
 性能探索方面，香山团队基于 SPECCPU 等负载进行性能评测。此类负载周期长，且通常需要经历较长的系统启动和预热过程，从头仿真的成本较高。团队围绕切片采样和仿真工具开展优化：
 
 - NEMU 指令模拟器：RVA23 指令集手册的软件参考实现，支持负载运行、采样切片、仿真验证，围绕虚拟化、向量和 AIA 等场景，持续开展功能对齐与性能优化。
-- XSGEM5 架构模拟器：开源工业级架构模拟器，完整支持 RVA23，SPEC 06/17 实测与香山性能误差小于 5%，支持架构探索及优化策略评估。
-- SimPoint 采样及切片：支持保存采样点处的体系结构状态，使仿真能够快速进入目标阶段。当前已建立覆盖单核和多核的 Checkpoint 生成、状态恢复与结果验证流程，支持 SPEC CPU2006/2017/2026、RVA23、向量及虚拟化等场景。
+- XS-GEM5 架构模拟器：开源工业级架构模拟器，完整支持 RVA23，SPEC 06/17 实测与香山性能误差小于 5%，支持架构探索及优化策略评估。
+- 采样及切片：支持保存 SimPoint 采样点处的体系结构状态，使仿真能够快速进入目标阶段。当前已建立覆盖单核和多核的 Checkpoint 生成、状态恢复与结果验证流程，支持 SPEC CPU2006/2017/2026、RVA23、向量及虚拟化等场景。
 - GSIM 仿真器：基于 FIRRTL 的 RTL 仿真器，完整支持香山包含 DiffTest 在内的各种验证工具。单线程 GSIM 相比单线程 Verilator 显著加速，与多线程 Verilator 性能相近的同时显著减少服务器资源占用，可通过进程并行实现基于切片的性能快速评估。
 
 相关代码均已开源：
 
-- MINJIE 开发平台：<https://github.com/OpenXiangShan/minjie-playground>
+- MinJie 开发平台：<https://github.com/OpenXiangShan/minjie-playground>
 - DiffTest 仿真框架：<https://github.com/OpenXiangShan/difftest>
 - FPGA 平台脚本：<https://github.com/OpenXiangShan/env-scripts>
 - NEMU 指令模拟器：<https://github.com/OpenXiangShan/NEMU>
-- XSGEM5 架构模拟器：<https://github.com/OpenXiangShan/GEM5>
+- XS-GEM5 架构模拟器：<https://github.com/OpenXiangShan/GEM5>
 - 负载编译框架：<https://github.com/OpenXiangShan/workload-builder>
 - GSIM 仿真器：<https://github.com/OpenXiangShan/gsim>
 
@@ -94,6 +94,8 @@ categories:
 - 调试工具
   - 在 DiffTest 中实现 MMA batching，减少 kernel launch 次数（[difftest #920](https://github.com/OpenXiangShan/difftest/pull/920)）
   - 实现反压，避免 MMA backend 吞吐不足时队列无限增长（[difftest #923](https://github.com/OpenXiangShan/difftest/pull/923)）
+
+### 基础设施
 
 - Chisel 描述语言
   - 缓存 XSTile 的 CDE 参数查询，将 Chisel -> Verilog 编译时间缩短 33%（[#6336](https://github.com/OpenXiangShan/XiangShan/pull/6336)）

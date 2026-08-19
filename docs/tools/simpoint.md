@@ -26,6 +26,17 @@ build/linux-workloads/<workload_name>/fw_payload.bin
 
 这个 `fw_payload.bin` 已经包含生成 checkpoint 所需的 GCPT、OpenSBI、Linux kernel、设备树和 initramfs workload，可以直接用于生成 checkpoint。对于 SPEC workload，可以使用 `make spec2006-images` 自动编译并导出镜像，结果位于 `build/images/<spec20xx>`，具体用法见 `workloads/linux/<spec20xx>`
 
+`workload-builder` 也支持构建多核 workload。构建时需要指定 `MULTIHART=1 HARTS=N`，其中 `N` 为 hart 数，当前支持 2～128 个 hart。例如，构建一个双核 SPEC CPU2006 workload：
+
+```bash
+make linux/spec2006 BENCH=astar INPUT=biglakes \
+  SPEC2006_ISO=/path/to/cpu2006.iso \
+  MULTIHART=1 HARTS=2 \
+  DEFAULT_DTB=xiangshan-fpga-noAIA-2hart-mem8g -jN
+```
+
+启用 `MULTIHART=1` 后，还需要通过 `DEFAULT_DTB` 指定完整的 DTS 模板名（不包含 `.dts.in` 后缀）。`HARTS`、DTB 中启用的 CPU 数和后续生成 checkpoint 时使用的 `--copies` 必须一致，同时应确保 DTB 声明的内存容量足以运行 workload。
+
 更多 workload 类型、构建依赖和自定义 workload 方法，详见 [workload-builder 仓库 README](https://github.com/OpenXiangShan/workload-builder#readme)
 
 ### 2. 生成 checkpoint
@@ -57,7 +68,35 @@ python3 scripts/checkpoint/generate_checkpoint.py \
   --max-workers 3
 ```
 
-如果使用仓库自带的 GitHub Action，推荐直接使用 `Checkpoint` workflow，并通过 `input_path` 指定单个 bin 或 bin 目录
+多核 workload 的 profiling 和 checkpoint 生成阶段使用 [XiangShan QEMU](https://github.com/OpenXiangShan/qemu)，聚类阶段仍使用 `NEMU_HOME` 中的 SimPoint。可以使用以下命令编译 QEMU：
+
+```bash
+git clone https://github.com/OpenXiangShan/qemu.git /path/to/qemu
+export QEMU_HOME=/path/to/qemu
+mkdir -p "$QEMU_HOME/build"
+cd "$QEMU_HOME/build"
+../configure --target-list=riscv64-softmmu --enable-debug --enable-zstd --enable-plugins
+make -j
+```
+
+编译完成后，确认以下文件存在：
+
+- `$QEMU_HOME/build/qemu-system-riscv64`
+- `$QEMU_HOME/build/contrib/plugins/libprofilingv2.so`
+
+然后在 `minjie-playground` 目录下生成多核 checkpoint：
+
+```bash
+python3 scripts/checkpoint/generate_checkpoint.py \
+  --input-path /path/to/bin-directory \
+  --interval 20000000 \
+  --copies 2 \
+  --max-workers 3
+```
+
+`--copies` 表示 GCPT workload 中编码的 hart 数，并作为 QEMU 的 CPU 数。它必须与构建 workload 时的 `HARTS` 以及内嵌 DTB 中启用的 CPU 数一致；目录模式下，每个输入文件都必须满足这一约束。
+
+仓库自带的 `Checkpoint` GitHub Action 当前仅支持单核 checkpoint。对于单核 workload，可以通过 `input_path` 指定单个 bin 或 bin 目录；多核 workload 请使用上述本地流程。
 
 更多参数、GitHub Action 输入和 resume 规则，详见 [minjie-playground checkpoint README](https://github.com/OpenXiangShan/minjie-playground/blob/master/docs/checkpoint/README.md)
 

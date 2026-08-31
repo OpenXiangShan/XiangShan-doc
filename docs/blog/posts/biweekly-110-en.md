@@ -15,6 +15,23 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Frontend
 
+- Bug fixes
+  - Fix canonical-address checks for frontend PCs and add related simulation tests ([#6340](https://github.com/OpenXiangShan/XiangShan/pull/6340))
+  - Add the `notCfiTaken` signal to the IFU redirect `canTrain` condition ([#6398](https://github.com/OpenXiangShan/XiangShan/pull/6398))
+  - Flush pending write requests when resetting TAGE useful counters to prevent stale requests from overwriting the reset results ([#6377](https://github.com/OpenXiangShan/XiangShan/pull/6377))
+  - Prevent TAGE from rereading the prediction table when using the base prediction ([#6356](https://github.com/OpenXiangShan/XiangShan/pull/6356))
+  - Prevent a spurious `s3_override` when both BPU S1 and S3 predict not taken ([#6417](https://github.com/OpenXiangShan/XiangShan/pull/6417))
+  - Update BTB replacement state on training accesses instead of prediction accesses ([#6348](https://github.com/OpenXiangShan/XiangShan/pull/6348))
+- Performance optimizations
+  - Maintain `UseAltOnNa` based on predictor-table training state to reduce branch aliasing and register overhead ([#6328](https://github.com/OpenXiangShan/XiangShan/pull/6328))
+  - Train the uBTB through both the resolve and fast-train paths to reduce extra bubbles after a misprediction redirect ([#6237](https://github.com/OpenXiangShan/XiangShan/pull/6237))
+- PPA optimizations
+  - Precompute `t0_firstMispredictMask` to improve the timing of the FTQ-to-BPU train-cache write path ([#6375](https://github.com/OpenXiangShan/XiangShan/pull/6375))
+  - Move the pre-decode and `maybeRvc` logic and register ICache data to improve the timing of the IFU/ICache instruction-alignment path ([#6220](https://github.com/OpenXiangShan/XiangShan/pull/6220))
+- Code refactoring
+  - Move `vtype` generation from Decode to the IBuffer so each instruction carries its corresponding `vtype` and `specvtype` ([#6376](https://github.com/OpenXiangShan/XiangShan/pull/6376))
+  - Use a PNR pointer to determine 2-prefetch and 2-fetch eligibility instead of a fixed distance from the BPU pointer ([#6378](https://github.com/OpenXiangShan/XiangShan/pull/6378))
+
 ### Backend
 
 ### MemBlock and Cache

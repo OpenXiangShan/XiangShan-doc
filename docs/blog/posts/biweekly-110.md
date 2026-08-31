@@ -15,6 +15,23 @@ categories:
 
 ### 前端
 
+- Bug 修复
+  - 修复前端对 canonical PC 地址的检查，并增加相关仿真测试（[#6340](https://github.com/OpenXiangShan/XiangShan/pull/6340)）
+  - 在 IFU redirect 的 `canTrain` 条件中补充 `notCfiTaken` 信号（[#6398](https://github.com/OpenXiangShan/XiangShan/pull/6398)）
+  - 在 TAGE 重置 useful counter 时清空待处理的写请求，避免旧请求覆盖重置结果（[#6377](https://github.com/OpenXiangShan/XiangShan/pull/6377)）
+  - 修复 TAGE 使用 base prediction 时重复读取预测表的问题（[#6356](https://github.com/OpenXiangShan/XiangShan/pull/6356)）
+  - 修复 BPU S1 和 S3 均预测 not taken 时可能误触发 `s3_override` 的问题（[#6417](https://github.com/OpenXiangShan/XiangShan/pull/6417)）
+  - 使用训练访问而非预测访问更新 BTB 替换状态（[#6348](https://github.com/OpenXiangShan/XiangShan/pull/6348)）
+- 性能优化
+  - 按预测表的训练状态维护 `UseAltOnNa`，降低分支别名干扰和寄存器开销（[#6328](https://github.com/OpenXiangShan/XiangShan/pull/6328)）
+  - 同时使用 resolve 和 fast train 路径训练 uBTB，减少错误预测重定向后的额外气泡（[#6237](https://github.com/OpenXiangShan/XiangShan/pull/6237)）
+- PPA 优化
+  - 提前计算 `t0_firstMispredictMask`，优化 FTQ 到 BPU train cache 的写入时序（[#6375](https://github.com/OpenXiangShan/XiangShan/pull/6375)）
+  - 移动 pre-decode 和 `maybeRvc` 逻辑并寄存 ICache 数据，优化 IFU/ICache 指令对齐路径时序（[#6220](https://github.com/OpenXiangShan/XiangShan/pull/6220)）
+- 代码重构
+  - 将 `vtype` 生成逻辑从 Decode 移至 IBuffer，使每条指令携带对应的 `vtype` 和 `specvtype`（[#6376](https://github.com/OpenXiangShan/XiangShan/pull/6376)）
+  - 使用 PNR 指针判断 2-prefetch 和 2-fetch 条件，替代与 BPU 指针间的固定距离判断（[#6378](https://github.com/OpenXiangShan/XiangShan/pull/6378)）
+
 ### 后端
 
 ### 访存与缓存

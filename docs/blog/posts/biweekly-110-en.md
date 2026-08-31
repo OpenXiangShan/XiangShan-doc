@@ -36,6 +36,21 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### MemBlock and Cache
 
+- RTL features
+  - Increase the configured openLLC capacity to 32 MB ([#6401](https://github.com/OpenXiangShan/XiangShan/pull/6401))
+  - Implement and integrate a dedicated L3 stash prefetch path, including the L1-side bridge, CHI StashOnceShared requests, and openLLC stash-refill handling ([XSCache #25](https://github.com/OpenXiangShan/XSCache/pull/25), [#6274](https://github.com/OpenXiangShan/XiangShan/pull/6274))
+  - Add performance counters for TLBs, request filters, page-table walkers, and L2TLB completion paths, and correct the PageCache hit conditions ([#6383](https://github.com/OpenXiangShan/XiangShan/pull/6383))
+  - Add an F-POP L2 prefetch feedback controller that adjusts prefetchers using hit, latency, pollution, and contention feedback ([XSCache #24](https://github.com/OpenXiangShan/XSCache/pull/24))
+- Bug fixes
+  - Align the CSR-change TLB flush latency between the frontend and MemBlock to prevent old-epoch PTW requests from crossing the flush boundary ([#6421](https://github.com/OpenXiangShan/XiangShan/pull/6421))
+  - Fix the L3 prefetch receive-port generation condition and check normal MSHR TxnIDs against the stash-reserved space before encoding ([XSCache #28](https://github.com/OpenXiangShan/XSCache/pull/28))
+  - Fix a deadlock in which a non-oldest cross-page unaligned store injects a tail request and continuously blocks the oldest request ([#6382](https://github.com/OpenXiangShan/XiangShan/pull/6382))
+  - Complete the prefetch request-enable vector so request enables remain synchronized across six prefetchers ([XSCache #27](https://github.com/OpenXiangShan/XSCache/pull/27))
+  - Allow secondary-miss merging only when the MissEntry request is valid ([#6308](https://github.com/OpenXiangShan/XiangShan/pull/6308))
+  - (V2) Kill an unfinished hardware-prefetch request when VSegment takes over DCache load port 0 ([#6389](https://github.com/OpenXiangShan/XiangShan/pull/6389))
+- Timing Optimizations
+  - Change DCache WritebackQueue release arbitration from round-robin to lowest-index-first ([#6379](https://github.com/OpenXiangShan/XiangShan/pull/6379))
+
 ### XSAI
 
 - Bug fixes

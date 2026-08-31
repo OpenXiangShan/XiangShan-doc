@@ -36,6 +36,21 @@ categories:
 
 ### 访存与缓存
 
+- RTL 新特性
+  - 将 openLLC 容量配置扩大到 32 MB（[#6401](https://github.com/OpenXiangShan/XiangShan/pull/6401)）
+  - 实现并集成独立的 L3 stash 预取路径，包括 L1 侧桥接、CHI StashOnceShared 请求及 openLLC stash refill 处理（[XSCache #25](https://github.com/OpenXiangShan/XSCache/pull/25)、[#6274](https://github.com/OpenXiangShan/XiangShan/pull/6274)）
+  - 新增 TLB、请求过滤器、PTW 和 L2TLB 完成路径的性能计数器，并修正 PageCache 命中统计条件（[#6383](https://github.com/OpenXiangShan/XiangShan/pull/6383)）
+  - 新增 F-POP L2 预取反馈控制器，根据命中、延迟、污染和竞争反馈调节各类预取器（[XSCache #24](https://github.com/OpenXiangShan/XSCache/pull/24)）
+- Bug 修复
+  - 对齐前端与 MemBlock 的 CSR 变更 TLB flush 延迟，避免旧 epoch 的 PTW 请求跨越 flush 边界（[#6421](https://github.com/OpenXiangShan/XiangShan/pull/6421)）
+  - 修复 L3 预取接收端口的生成条件，并在编码前检查普通 MSHR TxnID 是否侵入 stash 预留空间（[XSCache #28](https://github.com/OpenXiangShan/XSCache/pull/28)）
+  - 修复非最老的跨页非对齐 store 注入 tail 请求后持续阻塞最老请求所导致的死锁（[#6382](https://github.com/OpenXiangShan/XiangShan/pull/6382)）
+  - 补齐预取请求使能向量，使六个预取器的请求使能保持同步（[XSCache #27](https://github.com/OpenXiangShan/XSCache/pull/27)）
+  - 仅在 MissEntry 请求有效时允许 secondary miss 合并（[#6308](https://github.com/OpenXiangShan/XiangShan/pull/6308)）
+  - （V2）在 VSegment 接管 DCache load port 0 时终止尚未完成的硬件预取请求（[#6389](https://github.com/OpenXiangShan/XiangShan/pull/6389)）
+- 时序优化
+  - 将 DCache WritebackQueue 的 release 仲裁从轮询策略改为最低索引优先策略（[#6379](https://github.com/OpenXiangShan/XiangShan/pull/6379)）
+
 ### XSAI
 
 - Bug 修复

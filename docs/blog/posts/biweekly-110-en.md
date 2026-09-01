@@ -68,6 +68,27 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Infra
 
+- FPGA DiffTest
+  - Support runtime configuration of CPU AXI channel delays ([difftest #950](https://github.com/OpenXiangShan/difftest/pull/950))
+  - Fix repeated handshakes in the DiffTest Squash data path ([difftest #946](https://github.com/OpenXiangShan/difftest/pull/946))
+  - Allow FPGA builds to filter verification signals with low debugging value and high area overhead ([difftest #948](https://github.com/OpenXiangShan/difftest/pull/948))
+  - Extend FPGA partition constraints for OpenLLC and update the Kunminghu flash initialization firmware ([env-scripts #162](https://github.com/OpenXiangShan/env-scripts/pull/162))
+  - Fix inter-FPGA and asynchronous-path timing constraints, and support runtime clock adjustment at a fixed CPU/RTC ratio ([env-scripts #159](https://github.com/OpenXiangShan/env-scripts/pull/159), [env-scripts #161](https://github.com/OpenXiangShan/env-scripts/pull/161))
+- NEMU Reference Model
+  - Add nexus-am RVH bare-metal regression tests to CI ([NEMU #1162](https://github.com/OpenXiangShan/NEMU/pull/1162))
+  - Fix the final RVH TLB to restore the MBMC page-table level on hits ([NEMU #1171](https://github.com/OpenXiangShan/NEMU/pull/1171))
+  - Fix incomplete invalidation of HostTLB entries derived from superpages when Linux THP issues an address-specific `SFENCE.VMA` ([NEMU #1175](https://github.com/OpenXiangShan/NEMU/pull/1175))
+- Sampling and Checkpointing
+  - Enable Linux Transparent Huge Pages to improve performance for selected workloads ([workload-builder #54](https://github.com/OpenXiangShan/workload-builder/pull/54))
+  - Add UART16550 support to QEMU and align its serial address and parameters with the XiangShan platform ([qemu #17](https://github.com/OpenXiangShan/qemu/pull/17))
+  - Make the serial port address configurable in libcheckpoint ([LibCheckpoint #27](https://github.com/OpenXiangShan/LibCheckpoint/pull/27))
+  - Improve the QEMU profilingv2 plugin by explicitly starting profiling via `nemu_trap`, speeding it up by 23% ([qemu #16](https://github.com/OpenXiangShan/qemu/pull/16))
+  - Optimize the NEMU SimPoint profiling hot path, speeding it up by about 20% ([NEMU #1178](https://github.com/OpenXiangShan/NEMU/pull/1178))
+- GSIM Simulator
+  - Add a `--threads` option to control the FIRRTL parser worker count and cap it according to the CPUs available to the process ([gsim #119](https://github.com/OpenXiangShan/gsim/pull/119))
+  - Improve CI and release workflows with Dependabot, unified dependency installation, multiple LLVM versions, and ARM64 builds ([gsim #121](https://github.com/OpenXiangShan/gsim/pull/121))
+  - Optimize code generation for one-dimensional array assignments by using `memcpy` instead of element-wise copies when applicable, significantly reducing generated-code compilation time ([gsim #125](https://github.com/OpenXiangShan/gsim/pull/125))
+
 ## Performance Evaluation
 
 Processor and SoC parameters are as follows:

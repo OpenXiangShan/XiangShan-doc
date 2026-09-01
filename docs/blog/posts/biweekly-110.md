@@ -68,6 +68,27 @@ categories:
 
 ### 基础设施
 
+- FPGA DiffTest
+  - 支持运行时动态配置 CPU AXI 各通道延迟（[difftest #950](https://github.com/OpenXiangShan/difftest/pull/950)）
+  - 修复 DiffTest Squash 数据通路重复握手问题（[difftest #946](https://github.com/OpenXiangShan/difftest/pull/946)）
+  - 支持 FPGA 过滤调试价值低、面积开销大的验证信号（[difftest #948](https://github.com/OpenXiangShan/difftest/pull/948)）
+  - FPGA 划片约束支持 OpenLLC，并更新昆明湖 flash 初始化固件（[env-scripts #162](https://github.com/OpenXiangShan/env-scripts/pull/162)）
+  - 修复 FPGA 跨片路径及时钟异步路径约束，支持按固定 CPU/RTC 比例调整运行时钟频率（[env-scripts #159](https://github.com/OpenXiangShan/env-scripts/pull/159)、[env-scripts #161](https://github.com/OpenXiangShan/env-scripts/pull/161)）
+- NEMU 参考模型
+  - 在 CI 中增加 nexus-am RVH 裸机回归测试（[NEMU #1162](https://github.com/OpenXiangShan/NEMU/pull/1162)）
+  - 修复 RVH final TLB 命中时未恢复 MBMC 页表层级的问题（[NEMU #1171](https://github.com/OpenXiangShan/NEMU/pull/1171)）
+  - 修复 Linux 开启 THP 时，按地址执行 `SFENCE.VMA` 未完整失效大页对应 HostTLB 条目的问题（[NEMU #1175](https://github.com/OpenXiangShan/NEMU/pull/1175)）
+- 切片
+  - 开启 Linux THP 透明大页模式，提升部分 workload 的性能（[workload-builder #54](https://github.com/OpenXiangShan/workload-builder/pull/54)）
+  - QEMU 支持 UART16550 串口，并与香山平台的串口地址及参数对齐（[qemu #17](https://github.com/OpenXiangShan/qemu/pull/17)）
+  - libcheckpoint 支持配置串口地址（[LibCheckpoint #27](https://github.com/OpenXiangShan/LibCheckpoint/pull/27)）
+  - 改进 QEMU profilingv2 插件，通过 `nemu_trap` 显式启动 profiling，提速 23%（[qemu #16](https://github.com/OpenXiangShan/qemu/pull/16)）
+  - 优化 NEMU SimPoint profiling 热路径，提速约 20%（[NEMU #1178](https://github.com/OpenXiangShan/NEMU/pull/1178)）
+- GSIM 仿真器
+  - 新增 `--threads` 参数控制 FIRRTL 解析器工作线程数，并根据进程可用 CPU 数量限制线程上限（[gsim #119](https://github.com/OpenXiangShan/gsim/pull/119)）
+  - 完善 CI 与发布流程，引入 Dependabot、统一依赖安装，并支持多 LLVM 版本及 ARM64 构建（[gsim #121](https://github.com/OpenXiangShan/gsim/pull/121)）
+  - 优化一维数组赋值的代码生成，在满足条件时使用 `memcpy` 替代逐元素复制，显著降低生成代码的编译耗时（[gsim #125](https://github.com/OpenXiangShan/gsim/pull/125)）
+
 ## 性能评估
 
 处理器及 SoC 参数如下所示：

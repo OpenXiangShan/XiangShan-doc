@@ -1,13 +1,19 @@
 ---
 slug: biweekly-110
-date: 2026-09-01
+date: 2026-09-02
 categories:
   - Biweekly
 ---
 
-# 【香山双周报 110】20260901 期
+# 【香山双周报 110】20260902 期
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 110 期双周报。
+
+关于香山近期开发进展，前端修复了多个分支预测与取指问题，并优化了 uBTB 训练及 IFU/ICache 时序；后端围绕 V3 的 banked regfile 与 `vtype` 传递进行了重构；访存与缓存方面，扩展了 openLLC 容量，集成了 L3 stash 预取与 F-POP 反馈控制器，并修复了 TLB flush、跨页非对齐 store 等问题；XSAI 修复了矩阵译码、访存和操作数唤醒问题，并完善了 DiffTest 与 CI；基础设施方面，增强了 FPGA DiffTest、NEMU/QEMU checkpoint 以及 GSIM 构建和仿真能力，并持续推进 XS-GEM5 模型对齐和性能探索。
+
+特别感谢社区贡献者 [muke101](https://github.com/muke101)：他通过 GitHub Issue 向我们介绍 PHAST 内存依赖预测算法，并提供了[基于 gem5 的开源实现](https://gitlab.com/muke101/gem5-phast)；XS-GEM5 在此基础上进行了进一步的重构与优化。
+
+同时向大家预告一则消息，香山团队将于 10 月 31 日在希腊举办的 MICRO 2026 会议期间组织题为 *Agile Development and Verification for Chips* 的专题研讨会（workshop），现面向社区公开征集投稿。欢迎访问[投稿网站](https://workshop.xiangshan.cc)了解详情并提交稿件，期待届时与大家相聚希腊，共同交流与探讨！
 
 <!-- more -->
 
@@ -115,53 +121,53 @@ categories:
 
 处理器及 SoC 参数如下所示：
 
-| 参数      | 选项 |
-| --------- | ---- |
-| commit    |      |
-| 日期      |      |
-| L1 ICache |      |
-| L1 DCache |      |
-| L2 Cache  |      |
-| L3 Cache  |      |
-| 访存单元  |      |
-| 总线协议  |      |
-| 内存配置  |      |
+| 参数      | 选项       |
+| --------- | ---------- |
+| commit    | 53a957667  |
+| 日期      | 2026/08/21 |
+| L1 ICache | 64KB       |
+| L1 DCache | 64KB       |
+| L2 Cache  | 2MB        |
+| L3 Cache  | 16MB       |
+| 访存单元  | 3ld2st     |
+| 总线协议  | CHI        |
+| 内存配置  | DDR4-3200  |
 
 性能数据如下所示：
 
-| SPECint 2006 @ 3GHz | GCC15 | XSCC | SPECfp 2006 @ 3GHz | GCC15 | XSCC |
-| :------------------ | :---: | :--: | :----------------- | :---: | :--: |
-| 400.perlbench       |       |      | 410.bwaves         |       |      |
-| 401.bzip2           |       |      | 416.gamess         |       |      |
-| 403.gcc             |       |      | 433.milc           |       |      |
-| 429.mcf             |       |      | 434.zeusmp         |       |      |
-| 445.gobmk           |       |      | 435.gromacs        |       |      |
-| 456.hmmer           |       |      | 436.cactusADM      |       |      |
-| 458.sjeng           |       |      | 437.leslie3d       |       |      |
-| 462.libquantum      |       |      | 444.namd           |       |      |
-| 464.h264ref         |       |      | 447.dealII         |       |      |
-| 471.omnetpp         |       |      | 450.soplex         |       |      |
-| 473.astar           |       |      | 453.povray         |       |      |
-| 483.xalancbmk       |       |      | 454.Calculix       |       |      |
-| GEOMEAN             |       |      | 459.GemsFDTD       |       |      |
-|                     |       |      | 465.tonto          |       |      |
-|                     |       |      | 470.lbm            |       |      |
-|                     |       |      | 481.wrf            |       |      |
-|                     |       |      | 482.sphinx3        |       |      |
-|                     |       |      | GEOMEAN            |       |      |
+| SPECint 2006 @ 3GHz | GCC16  |  XSCC  | SPECfp 2006 @ 3GHz | GCC16  |  XSCC  |
+| :------------------ | :----: | :----: | :----------------- | :----: | :----: |
+| 400.perlbench       | 55.02  | 53.33  | 410.bwaves         | 123.07 | 105.77 |
+| 401.bzip2           | 29.89  | 30.60  | 416.gamess         | 58.70  | 55.81  |
+| 403.gcc             | 58.27  | 41.61  | 433.milc           | 71.84  | 68.77  |
+| 429.mcf             | 72.01  | 62.81  | 434.zeusmp         | 77.33  | 67.78  |
+| 445.gobmk           | 43.70  | 42.34  | 435.gromacs        | 40.04  | 35.10  |
+| 456.hmmer           | 54.59  | 67.12  | 436.cactusADM      | 85.01  | 93.51  |
+| 458.sjeng           | 41.66  | 41.74  | 437.leslie3d       | 61.20  | 61.31  |
+| 462.libquantum      | 138.17 | 305.05 | 444.namd           | 44.25  | 45.26  |
+| 464.h264ref         | 69.92  | 75.51  | 447.dealII         | 64.71  | 79.14  |
+| 471.omnetpp         | 48.18  | 47.76  | 450.soplex         | 59.78  | 72.28  |
+| 473.astar           | 33.06  | 32.50  | 453.povray         | 78.25  | 73.65  |
+| 483.xalancbmk       | 85.35  | 92.62  | 454.Calculix       | 41.80  | 40.77  |
+| GEOMEAN             | 55.75  | 58.70  | 459.GemsFDTD       | 74.41  | 73.41  |
+|                     |        |        | 465.tonto          | 55.70  | 37.80  |
+|                     |        |        | 470.lbm            | 127.10 | 146.69 |
+|                     |        |        | 481.wrf            | 58.65  | 44.97  |
+|                     |        |        | 482.sphinx3        | 61.39  | 64.02  |
+|                     |        |        | GEOMEAN            | 66.14  | 63.98  |
 
 编译参数如下所示：
 
-| 参数             | GCC15 | XSCC |
-| ---------------- | ----- | ---- |
-| 编译器           |       |      |
-| 编译优化         |       |      |
-| 内存库           |       |      |
-| -march           |       |      |
-| -ffp-contraction |       |      |
-| 链接优化         |       |      |
-| 浮点优化         |       |      |
-| -mcpu            |       |      |
+| 参数             | GCC16       | XSCC                |
+| ---------------- | ----------- | ------------------- |
+| 编译器           | gcc16       | xscc                |
+| 编译优化         | O3          | O3                  |
+| 内存库           | jemalloc    | jemalloc            |
+| -march           | RV64GCB     | RV64GCB             |
+| -ffp-contraction | fast        | fast                |
+| 链接优化         | -flto       | -flto               |
+| 浮点优化         | -ffast-math | -ffast-math         |
+| -mcpu            | -           | xiangshan-kunminghu |
 
 注：我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，Simpoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
 

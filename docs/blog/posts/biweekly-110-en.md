@@ -34,6 +34,10 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Backend
 
+- Code refactoring
+  - (V3) Use the lower bits of the physical-register index as the bank index in the banked register file to balance entries across banks and avoid compilation failures when the last bank is empty ([#6357](https://github.com/OpenXiangShan/XiangShan/pull/6357))
+  - (V3) Move `vtype` generation from Decode to the IBuffer so each instruction carries its corresponding `vtype` and `specvtype` into the backend ([#6376](https://github.com/OpenXiangShan/XiangShan/pull/6376))
+
 ### MemBlock and Cache
 
 - RTL features

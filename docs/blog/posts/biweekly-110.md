@@ -34,6 +34,10 @@ categories:
 
 ### 后端
 
+- 代码重构
+  - （V3）使用物理寄存器索引的低位作为 banked regfile 的 bank index，均衡各 bank 的条目分配，并避免末个 bank 为空时编译失败（[#6357](https://github.com/OpenXiangShan/XiangShan/pull/6357)）
+  - （V3）将 `vtype` 生成逻辑从 Decode 移至 IBuffer，使每条指令携带对应的 `vtype` 和 `specvtype` 进入后端（[#6376](https://github.com/OpenXiangShan/XiangShan/pull/6376)）
+
 ### 访存与缓存
 
 - RTL 新特性

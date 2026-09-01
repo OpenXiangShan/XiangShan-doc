@@ -89,6 +89,24 @@ categories:
   - 完善 CI 与发布流程，引入 Dependabot、统一依赖安装，并支持多 LLVM 版本及 ARM64 构建（[gsim #121](https://github.com/OpenXiangShan/gsim/pull/121)）
   - 优化一维数组赋值的代码生成，在满足条件时使用 `memcpy` 替代逐元素复制，显著降低生成代码的编译耗时（[gsim #125](https://github.com/OpenXiangShan/gsim/pull/125)）
 
+### XS-GEM5
+- 模拟器对齐
+  - CDP预取配置对齐 （[XS-GEM5 #1060](https://github.com/OpenXiangShan/GEM5/commit/ce755f54cb3fc7c93ab4b82143e9d0f54d04a2c9)）
+  - BPU S1行为对齐（[XS-GEM5 #980](https://github.com/OpenXiangShan/GEM5/pull/980)）
+  - 2fetch对齐 （[XS-GEM5 #1072](https://github.com/OpenXiangShan/GEM5/pull/1072)）
+  - Virtual StoreQueue对齐实现 ([XS-GEM5 #991](https://github.com/OpenXiangShan/GEM5/pull/991))
+  - LSU可参数化配置代码重构 ([XS-GEM5 #1042](https://github.com/OpenXiangShan/GEM5/pull/1042))
+- 新特性探索
+  - MDP算法PHAST ([XS-GEM5 #1008](https://github.com/OpenXiangShan/GEM5/pull/1008))
+  - SMT：一拍同时预测两个线程的fetch_block ([XS-GEM5 #1052](https://github.com/OpenXiangShan/GEM5/pull/1052))
+  - PairTAGE的实现（2Taken） ([XS-GEM5 #830](https://github.com/OpenXiangShan/GEM5/pull/830))
+- 基础设施
+  - 优化预取调度，提升模拟器速度 ([XS-GEM5 #1071](https://github.com/OpenXiangShan/GEM5/pull/1071))
+  - 优化ROB及FTQ代码，提升模拟器速度 ([XS-GEM5 #1067](https://github.com/OpenXiangShan/GEM5/pull/1067))
+  - CI维护，更新至GCC16相关切片 ([XS-GEM5 #1064](https://github.com/OpenXiangShan/GEM5/pull/1064))
+  - CI维护，新增ASan 及 UBSan的冒烟测试 ([XS-GEM5 #1073](https://github.com/OpenXiangShan/GEM5/pull/1073))
+
+
 ## 性能评估
 
 处理器及 SoC 参数如下所示：

@@ -89,6 +89,24 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
   - Improve CI and release workflows with Dependabot, unified dependency installation, multiple LLVM versions, and ARM64 builds ([gsim #121](https://github.com/OpenXiangShan/gsim/pull/121))
   - Optimize code generation for one-dimensional array assignments by using `memcpy` instead of element-wise copies when applicable, significantly reducing generated-code compilation time ([gsim #125](https://github.com/OpenXiangShan/gsim/pull/125))
 
+
+### XS-GEM5
+- Model Calibration
+  - CDP prefetcher configuration calibration （[XS-GEM5 #1060](https://github.com/OpenXiangShan/GEM5/commit/ce755f54cb3fc7c93ab4b82143e9d0f54d04a2c9)）
+  - BPU S1 behavior calibration （[XS-GEM5 #980](https://github.com/OpenXiangShan/GEM5/pull/980)）
+  - 2-fetch calibration （[XS-GEM5 #1072](https://github.com/OpenXiangShan/GEM5/pull/1072)）
+  - Virtual StoreQueue calibration implementation ([XS-GEM5 #991](https://github.com/OpenXiangShan/GEM5/pull/991))
+  - LSU parameterized configuration refactoring  ([XS-GEM5 #1042](https://github.com/OpenXiangShan/GEM5/pull/1042))
+- New Feature Exploration
+  - PHAST MDP algorithm （[XS-GEM5 #1008](https://github.com/OpenXiangShan/GEM5/pull/1008)
+  - SMT: predicting fetch blocks for two threads in the same cycle ([XS-GEM5 #1052](https://github.com/OpenXiangShan/GEM5/pull/1052))
+  - PairTAGE implementation（2Taken）([XS-GEM5 #830]([https://github.com/OpenXiangShan/GEM5/pull/830))
+-Infrastructure
+  - Optimized prefetch scheduling to improve simulation speed ([XS-GEM5 #1071]([https://github.com/OpenXiangShan/GEM5/pull/1071))
+  - Optimized ROB and FTQ code to improve simulation speed ([XS-GEM5 #1067]([https://github.com/OpenXiangShan/GEM5/pull/1067))
+  - CI maintenance: updated slices for GCC 16 ([XS-GEM5 #1064]([https://github.com/OpenXiangShan/GEM5/pull/1064))
+  - CI maintenance: added ASan and UBSan smoke tests ([XS-GEM5 #1073]([https://github.com/OpenXiangShan/GEM5/pull/1073))
+
 ## Performance Evaluation
 
 Processor and SoC parameters are as follows:

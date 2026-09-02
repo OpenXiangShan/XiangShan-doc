@@ -9,11 +9,11 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 110th issue of the biweekly report.
 
-Regarding the recent development progress of XiangShan, the frontend has fixed several branch-prediction and instruction-fetch issues and optimized uBTB training and IFU/ICache timing; the backend has refactored the V3 banked register file and `vtype` propagation; in terms of memory access and caching, the openLLC capacity has been expanded, L3 stash prefetching and the F-POP feedback controller have been integrated, and issues involving TLB flushes and cross-page unaligned stores have been fixed; XSAI has fixed matrix decoding, memory-access, and operand-wakeup issues and improved DiffTest and CI; in terms of infrastructure, FPGA DiffTest, NEMU/QEMU checkpointing, and GSIM build and simulation capabilities have been enhanced, while XS-GEM5 model calibration and performance exploration have continued.
+Regarding the recent development progress of XiangShan, the frontend has fixed several branch-prediction and instruction-fetch issues and optimized uBTB training and IFU/ICache timing; the backend has advanced V3 register-file refactoring; the memory and cache subsystem has fixed several issues while continuing V3 development; XSAI has fixed matrix decoding, memory-access, and operand-wakeup issues and improved DiffTest and CI; in terms of infrastructure, FPGA DiffTest, NEMU/QEMU checkpointing, and GSIM build and simulation capabilities have been enhanced, while XS-GEM5 model calibration and performance exploration have continued.
 
-Special thanks to community contributor [muke101](https://github.com/muke101), who first introduced the PHAST memory-dependence prediction algorithm to us through a GitHub issue and shared an [open-source gem5 implementation](https://gitlab.com/muke101/gem5-phast); XS-GEM5 builds on this work with further refactoring and optimization.
+Special thanks to community contributor [muke101](https://github.com/muke101) for providing an [open-source gem5 implementation of the PHAST memory-dependence prediction algorithm](https://gitlab.com/muke101/gem5-phast) through a GitHub issue. XS-GEM5 further refactored and optimized this implementation.
 
-We are also pleased to announce that the XiangShan team will host a workshop entitled *Agile Development and Verification for Chips* at MICRO 2026 in Greece on October 31. The call for submissions is now open; please visit the [submission website](https://workshop.xiangshan.cc) for details and to submit your work. We look forward to meeting you in Greece for an engaging exchange of ideas!
+We are also pleased to announce that the XiangShan team and Professor Trevor E. Carlson of the National University of Singapore will jointly host a workshop entitled *Agile Development and Verification for Chips* during MICRO 2026 in Greece. Scheduled for October 31, the workshop is now accepting submissions from the community. Please visit the [submission website](https://workshop.xiangshan.cc) for details and to submit your work. We look forward to meeting you in Greece for an engaging exchange of ideas!
 
 <!-- more -->
 
@@ -41,8 +41,8 @@ We are also pleased to announce that the XiangShan team will host a workshop ent
 ### Backend
 
 - Code refactoring
-  - (V3) Use the lower bits of the physical-register index as the bank index in the banked register file to balance entries across banks and avoid compilation failures when the last bank is empty ([#6357](https://github.com/OpenXiangShan/XiangShan/pull/6357))
-  - (V3) Move `vtype` generation from Decode to the IBuffer so each instruction carries its corresponding `vtype` and `specvtype` into the backend ([#6376](https://github.com/OpenXiangShan/XiangShan/pull/6376))
+  - Use the lower bits of the physical-register index as the bank index in the banked register file to balance entries across banks and avoid compilation failures when the last bank is empty ([#6357](https://github.com/OpenXiangShan/XiangShan/pull/6357))
+  - Move `vtype` generation from Decode to the IBuffer so each instruction carries its corresponding `vtype` and `specvtype` into the backend ([#6376](https://github.com/OpenXiangShan/XiangShan/pull/6376))
 
 ### MemBlock and Cache
 
@@ -99,23 +99,23 @@ We are also pleased to announce that the XiangShan team will host a workshop ent
   - Improve CI and release workflows with Dependabot, unified dependency installation, multiple LLVM versions, and ARM64 builds ([gsim #121](https://github.com/OpenXiangShan/gsim/pull/121))
   - Optimize code generation for one-dimensional array assignments by using `memcpy` instead of element-wise copies when applicable, significantly reducing generated-code compilation time ([gsim #125](https://github.com/OpenXiangShan/gsim/pull/125))
 
-
 ### XS-GEM5
-- Model Calibration
-  - CDP prefetcher configuration calibration （[XS-GEM5 #1060](https://github.com/OpenXiangShan/GEM5/commit/ce755f54cb3fc7c93ab4b82143e9d0f54d04a2c9)）
-  - BPU S1 behavior calibration （[XS-GEM5 #980](https://github.com/OpenXiangShan/GEM5/pull/980)）
-  - 2-fetch calibration （[XS-GEM5 #1072](https://github.com/OpenXiangShan/GEM5/pull/1072)）
-  - Virtual StoreQueue calibration implementation ([XS-GEM5 #991](https://github.com/OpenXiangShan/GEM5/pull/991))
-  - LSU parameterized configuration refactoring  ([XS-GEM5 #1042](https://github.com/OpenXiangShan/GEM5/pull/1042))
-- New Feature Exploration
-  - PHAST MDP algorithm （[XS-GEM5 #1008](https://github.com/OpenXiangShan/GEM5/pull/1008)
-  - SMT: predicting fetch blocks for two threads in the same cycle ([XS-GEM5 #1052](https://github.com/OpenXiangShan/GEM5/pull/1052))
-  - PairTAGE implementation（2Taken）([XS-GEM5 #830]([https://github.com/OpenXiangShan/GEM5/pull/830))
--Infrastructure
-  - Optimized prefetch scheduling to improve simulation speed ([XS-GEM5 #1071]([https://github.com/OpenXiangShan/GEM5/pull/1071))
-  - Optimized ROB and FTQ code to improve simulation speed ([XS-GEM5 #1067]([https://github.com/OpenXiangShan/GEM5/pull/1067))
-  - CI maintenance: updated slices for GCC 16 ([XS-GEM5 #1064]([https://github.com/OpenXiangShan/GEM5/pull/1064))
-  - CI maintenance: added ASan and UBSan smoke tests ([XS-GEM5 #1073]([https://github.com/OpenXiangShan/GEM5/pull/1073))
+
+- Model calibration
+  - Calibrate the CDP prefetcher configuration ([XS-GEM5 #1060](https://github.com/OpenXiangShan/GEM5/commit/ce755f54cb3fc7c93ab4b82143e9d0f54d04a2c9))
+  - Calibrate BPU S1 behavior ([XS-GEM5 #980](https://github.com/OpenXiangShan/GEM5/pull/980))
+  - Calibrate 2-fetch behavior ([XS-GEM5 #1072](https://github.com/OpenXiangShan/GEM5/pull/1072))
+  - Implement Virtual StoreQueue calibration ([XS-GEM5 #991](https://github.com/OpenXiangShan/GEM5/pull/991))
+  - Refactor the parameterized LSU configuration ([XS-GEM5 #1042](https://github.com/OpenXiangShan/GEM5/pull/1042))
+- New feature exploration
+  - Implement the PHAST MDP algorithm ([XS-GEM5 #1008](https://github.com/OpenXiangShan/GEM5/pull/1008))
+  - Support predicting fetch blocks for two SMT threads in the same cycle ([XS-GEM5 #1052](https://github.com/OpenXiangShan/GEM5/pull/1052))
+  - Implement PairTAGE (2Taken) ([XS-GEM5 #830](https://github.com/OpenXiangShan/GEM5/pull/830))
+- Infrastructure
+  - Optimize prefetch scheduling to improve simulation speed ([XS-GEM5 #1071](https://github.com/OpenXiangShan/GEM5/pull/1071))
+  - Optimize ROB and FTQ code to improve simulation speed ([XS-GEM5 #1067](https://github.com/OpenXiangShan/GEM5/pull/1067))
+  - Update CI slices for GCC 16 ([XS-GEM5 #1064](https://github.com/OpenXiangShan/GEM5/pull/1064))
+  - Add ASan and UBSan smoke tests to CI ([XS-GEM5 #1073](https://github.com/OpenXiangShan/GEM5/pull/1073))
 
 ## Performance Evaluation
 
@@ -158,16 +158,16 @@ The SPEC CPU2006 scores are as follows:
 
 Compilation parameters are as follows:
 
-| Parameters                  | GCC16       | XSCC                |
-| --------------------------- | ----------- | ------------------- |
-| Compiler                    | gcc16       | xscc                |
-| Optimization level          | O3          | O3                  |
-| Memory library              | jemalloc    | jemalloc            |
-| -march                      | RV64GCB     | RV64GCB             |
-| -ffp-contraction            | fast        | fast                |
-| Linker optimization         | -flto       | -flto               |
-| Floating-point optimization | -ffast-math | -ffast-math         |
-| -mcpu                       | -           | xiangshan-kunminghu |
+| Parameters                  | GCC16                         | XSCC                |
+| --------------------------- | ----------------------------- | ------------------- |
+| Compiler                    | gcc16                         | xscc                |
+| Optimization level          | O3                            | O3                  |
+| Memory library              | jemalloc                      | jemalloc            |
+| ISA configuration           | RVA23-based (vector disabled) | RV64GCB             |
+| -ffp-contraction            | fast                          | fast                |
+| Linker optimization         | -flto                         | -flto               |
+| Floating-point optimization | -ffast-math                   | -ffast-math         |
+| -mcpu                       | -                             | xiangshan-kunminghu |
 
 Note: We use SimPoint to sample the programs and create checkpoint images based on our custom checkpoint format, with a SimPoint clustering coverage of 100%. The above scores are estimates based on program segments, not full SPEC CPU2006 evaluations, and may differ from actual chip performance.
 
@@ -179,4 +179,4 @@ Note: We use SimPoint to sample the programs and create checkpoint images based 
 - XiangShan User Guide: <https://docs.xiangshan.cc/projects/user-guide/>
 - XiangShan Design Doc: <https://docs.xiangshan.cc/projects/design/>
 
-Editors: Yanjun Li, Jinhong Zeng, Zechen Yang, Hanle Zhang, Kunlin You, Yiming Yan
+Editors: Yanjun Li, Jinhong Zeng, Zechen Yang, Hanle Zhang, Kunlin You, Hao Zhen, Yiming Yan

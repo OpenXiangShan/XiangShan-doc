@@ -9,11 +9,11 @@ categories:
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 110 期双周报。
 
-关于香山近期开发进展，前端修复了多个分支预测与取指问题，并优化了 uBTB 训练及 IFU/ICache 时序；后端围绕 V3 的 banked regfile 与 `vtype` 传递进行了重构；访存与缓存方面，扩展了 openLLC 容量，集成了 L3 stash 预取与 F-POP 反馈控制器，并修复了 TLB flush、跨页非对齐 store 等问题；XSAI 修复了矩阵译码、访存和操作数唤醒问题，并完善了 DiffTest 与 CI；基础设施方面，增强了 FPGA DiffTest、NEMU/QEMU checkpoint 以及 GSIM 构建和仿真能力，并持续推进 XS-GEM5 模型对齐和性能探索。
+关于香山近期开发进展，前端修复了多个分支预测与取指问题，并优化了 uBTB 训练及 IFU/ICache 时序；后端推进了 V3 寄存器堆相关重构；访存与缓存修复了多个问题，并继续推进 V3 开发；XSAI 修复了矩阵译码、访存和操作数唤醒问题，并完善了 DiffTest 与 CI；基础设施方面，增强了 FPGA DiffTest、NEMU/QEMU checkpoint 以及 GSIM 构建和仿真能力，并持续推进 XS-GEM5 模型对齐和性能探索。
 
-特别感谢社区贡献者 [muke101](https://github.com/muke101)：他通过 GitHub Issue 向我们介绍 PHAST 内存依赖预测算法，并提供了[基于 gem5 的开源实现](https://gitlab.com/muke101/gem5-phast)；XS-GEM5 在此基础上进行了进一步的重构与优化。
+社区贡献者 [muke101](https://github.com/muke101) 通过 GitHub Issue 向我们提供了 PHAST 内存依赖预测算法的[gem5 开源实现](https://gitlab.com/muke101/gem5-phast)，在此特别致谢。XS-GEM5 在该实现基础上进行了进一步的重构与优化。
 
-同时向大家预告一则消息，香山团队将于 10 月 31 日在希腊举办的 MICRO 2026 会议期间组织题为 *Agile Development and Verification for Chips* 的专题研讨会（workshop），现面向社区公开征集投稿。欢迎访问[投稿网站](https://workshop.xiangshan.cc)了解详情并提交稿件，期待届时与大家相聚希腊，共同交流与探讨！
+同时向大家预告一则消息：香山团队将联合新加坡国立大学的 Trevor E. Carlson 教授，在希腊举行的 MICRO 2026 会议期间举办题为 *Agile Development and Verification for Chips* 的专题研讨会（workshop）。研讨会定于 10 月 31 日举行，现面向社区公开征稿。欢迎访问[投稿网站](https://workshop.xiangshan.cc)（https://workshop.xiangshan.cc）了解详情并投稿，期待届时与大家相聚希腊，共同交流与探讨！
 
 <!-- more -->
 
@@ -41,8 +41,8 @@ categories:
 ### 后端
 
 - 代码重构
-  - （V3）使用物理寄存器索引的低位作为 banked regfile 的 bank index，均衡各 bank 的条目分配，并避免末个 bank 为空时编译失败（[#6357](https://github.com/OpenXiangShan/XiangShan/pull/6357)）
-  - （V3）将 `vtype` 生成逻辑从 Decode 移至 IBuffer，使每条指令携带对应的 `vtype` 和 `specvtype` 进入后端（[#6376](https://github.com/OpenXiangShan/XiangShan/pull/6376)）
+  - 使用物理寄存器索引的低位作为 banked regfile 的 bank index，均衡各 bank 的条目分配，并避免末个 bank 为空时编译失败（[#6357](https://github.com/OpenXiangShan/XiangShan/pull/6357)）
+  - 将 `vtype` 生成逻辑从 Decode 移至 IBuffer，使每条指令携带对应的 `vtype` 和 `specvtype` 进入后端（[#6376](https://github.com/OpenXiangShan/XiangShan/pull/6376)）
 
 ### 访存与缓存
 
@@ -100,22 +100,22 @@ categories:
   - 优化一维数组赋值的代码生成，在满足条件时使用 `memcpy` 替代逐元素复制，显著降低生成代码的编译耗时（[gsim #125](https://github.com/OpenXiangShan/gsim/pull/125)）
 
 ### XS-GEM5
-- 模拟器对齐
-  - CDP预取配置对齐 （[XS-GEM5 #1060](https://github.com/OpenXiangShan/GEM5/commit/ce755f54cb3fc7c93ab4b82143e9d0f54d04a2c9)）
-  - BPU S1行为对齐（[XS-GEM5 #980](https://github.com/OpenXiangShan/GEM5/pull/980)）
-  - 2fetch对齐 （[XS-GEM5 #1072](https://github.com/OpenXiangShan/GEM5/pull/1072)）
-  - Virtual StoreQueue对齐实现 ([XS-GEM5 #991](https://github.com/OpenXiangShan/GEM5/pull/991))
-  - LSU可参数化配置代码重构 ([XS-GEM5 #1042](https://github.com/OpenXiangShan/GEM5/pull/1042))
-- 新特性探索
-  - MDP算法PHAST ([XS-GEM5 #1008](https://github.com/OpenXiangShan/GEM5/pull/1008))
-  - SMT：一拍同时预测两个线程的fetch_block ([XS-GEM5 #1052](https://github.com/OpenXiangShan/GEM5/pull/1052))
-  - PairTAGE的实现（2Taken） ([XS-GEM5 #830](https://github.com/OpenXiangShan/GEM5/pull/830))
-- 基础设施
-  - 优化预取调度，提升模拟器速度 ([XS-GEM5 #1071](https://github.com/OpenXiangShan/GEM5/pull/1071))
-  - 优化ROB及FTQ代码，提升模拟器速度 ([XS-GEM5 #1067](https://github.com/OpenXiangShan/GEM5/pull/1067))
-  - CI维护，更新至GCC16相关切片 ([XS-GEM5 #1064](https://github.com/OpenXiangShan/GEM5/pull/1064))
-  - CI维护，新增ASan 及 UBSan的冒烟测试 ([XS-GEM5 #1073](https://github.com/OpenXiangShan/GEM5/pull/1073))
 
+- 模拟器对齐
+  - CDP 预取配置对齐（[XS-GEM5 #1060](https://github.com/OpenXiangShan/GEM5/commit/ce755f54cb3fc7c93ab4b82143e9d0f54d04a2c9)）
+  - BPU S1 行为对齐（[XS-GEM5 #980](https://github.com/OpenXiangShan/GEM5/pull/980)）
+  - 2-fetch 对齐（[XS-GEM5 #1072](https://github.com/OpenXiangShan/GEM5/pull/1072)）
+  - Virtual StoreQueue 对齐实现（[XS-GEM5 #991](https://github.com/OpenXiangShan/GEM5/pull/991)）
+  - LSU 可参数化配置代码重构（[XS-GEM5 #1042](https://github.com/OpenXiangShan/GEM5/pull/1042)）
+- 新特性探索
+  - MDP 算法 PHAST（[XS-GEM5 #1008](https://github.com/OpenXiangShan/GEM5/pull/1008)）
+  - SMT：一拍同时预测两个线程的 fetch_block（[XS-GEM5 #1052](https://github.com/OpenXiangShan/GEM5/pull/1052)）
+  - PairTAGE（2Taken）实现（[XS-GEM5 #830](https://github.com/OpenXiangShan/GEM5/pull/830)）
+- 基础设施
+  - 优化预取调度，提升模拟器速度（[XS-GEM5 #1071](https://github.com/OpenXiangShan/GEM5/pull/1071)）
+  - 优化 ROB 及 FTQ 代码，提升模拟器速度（[XS-GEM5 #1067](https://github.com/OpenXiangShan/GEM5/pull/1067)）
+  - CI 维护，更新至 GCC16 相关切片（[XS-GEM5 #1064](https://github.com/OpenXiangShan/GEM5/pull/1064)）
+  - CI 维护，新增 ASan 及 UBSan 的冒烟测试（[XS-GEM5 #1073](https://github.com/OpenXiangShan/GEM5/pull/1073)）
 
 ## 性能评估
 
@@ -158,16 +158,16 @@ categories:
 
 编译参数如下所示：
 
-| 参数             | GCC16       | XSCC                |
-| ---------------- | ----------- | ------------------- |
-| 编译器           | gcc16       | xscc                |
-| 编译优化         | O3          | O3                  |
-| 内存库           | jemalloc    | jemalloc            |
-| -march           | RV64GCB     | RV64GCB             |
-| -ffp-contraction | fast        | fast                |
-| 链接优化         | -flto       | -flto               |
-| 浮点优化         | -ffast-math | -ffast-math         |
-| -mcpu            | -           | xiangshan-kunminghu |
+| 参数             | GCC16                       | XSCC                |
+| ---------------- | --------------------------- | ------------------- |
+| 编译器           | gcc16                       | xscc                |
+| 编译优化         | O3                          | O3                  |
+| 内存库           | jemalloc                    | jemalloc            |
+| 指令集配置       | 基于 RVA23（禁用向量扩展） | RV64GCB             |
+| -ffp-contraction | fast                        | fast                |
+| 链接优化         | -flto                       | -flto               |
+| 浮点优化         | -ffast-math                 | -ffast-math         |
+| -mcpu            | -                           | xiangshan-kunminghu |
 
 注：我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，Simpoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
 
@@ -179,4 +179,4 @@ categories:
 - 香山用户手册：<https://docs.xiangshan.cc/projects/user-guide/>
 - 香山设计文档：<https://docs.xiangshan.cc/projects/design/>
 
-编辑：李衍君、曾锦鸿、杨泽辰、张韩乐、游昆霖、燕翼鸣
+编辑：李衍君、曾锦鸿、杨泽辰、张韩乐、游昆霖、甄好、燕翼鸣

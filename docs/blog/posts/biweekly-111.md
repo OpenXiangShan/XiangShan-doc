@@ -64,6 +64,21 @@ categories:
 
 ### 访存与缓存
 
+- RTL 新特性
+  - 新增基于延迟的 LoadQueueReplay 提前唤醒机制（[#6510](https://github.com/OpenXiangShan/XiangShan/pull/6510)）
+  - 将 F-POP L2 预取器集成到香山（[XSCache #24](https://github.com/OpenXiangShan/XSCache/pull/24)、[#6255](https://github.com/OpenXiangShan/XiangShan/pull/6255)）
+  - 师生结构 BOP 预取器（[XSCache #29](https://github.com/OpenXiangShan/XSCache/pull/29)、[#6435](https://github.com/OpenXiangShan/XiangShan/pull/6435)）
+- Bug 修复
+  - 修复 LoadQueueReplay 在非对齐队头 replay 中延迟唤醒处理错误（[#6480](https://github.com/OpenXiangShan/XiangShan/pull/6480)）
+  - 修复向量 inactive element 导致 StoreQueue 错误触发 uncacheMove 的问题（[#6474](https://github.com/OpenXiangShan/XiangShan/pull/6474)）
+  - 修复非对齐 replay 时 LoadUnit 未保留队头 TLB 元数据的问题（[#6457](https://github.com/OpenXiangShan/XiangShan/pull/6457)）
+  - 修复 AtomicsUnit 的异常生成逻辑（[#6316](https://github.com/OpenXiangShan/XiangShan/pull/6316)）
+  - （V2）使用 PMM 归一化后的虚拟地址处理 LoadUnit 和 StoreUnit trigger（[#6311](https://github.com/OpenXiangShan/XiangShan/pull/6311)）
+  - （V2）支持 unit-stride store 的 partial replay（[#6434](https://github.com/OpenXiangShan/XiangShan/pull/6434)）
+  - （V2）将向量访存异常的 `gpaddr` 扩展至 XLEN 宽度（[#6432](https://github.com/OpenXiangShan/XiangShan/pull/6432)）
+- 时序优化
+  - 将 LoadQueueReplay 流水线由三级缩短为两级，并优化 DCache、Uncache、TLB hint 和 replay 仲裁路径（[#6422](https://github.com/OpenXiangShan/XiangShan/pull/6422)）
+
 ### XSAI
 
 ### 基础设施

@@ -64,6 +64,21 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### MemBlock and Cache
 
+- RTL features
+  - Add latency-based early wakeup for LoadQueueReplay ([#6510](https://github.com/OpenXiangShan/XiangShan/pull/6510))
+  - Integrate F-POP L2-prefetcher into XiangShan ([XSCache #24](https://github.com/OpenXiangShan/XSCache/pull/24), [#6255](https://github.com/OpenXiangShan/XiangShan/pull/6255))
+  - Add a student coverage learner to the BOP prefetcher ([XSCache #29](https://github.com/OpenXiangShan/XSCache/pull/29), [#6435](https://github.com/OpenXiangShan/XiangShan/pull/6435))
+- Bug fixes
+  - Fix delayed-wakeup handling for unaligned head replays in LoadQueueReplay ([#6480](https://github.com/OpenXiangShan/XiangShan/pull/6480))
+  - Fix an unexpected `uncacheMove` caused by inactive vector elements in StoreQueue ([#6474](https://github.com/OpenXiangShan/XiangShan/pull/6474))
+  - Preserve head TLB metadata during unaligned LoadUnit replays ([#6457](https://github.com/OpenXiangShan/XiangShan/pull/6457))
+  - Fix exception generation in AtomicsUnit ([#6316](https://github.com/OpenXiangShan/XiangShan/pull/6316))
+  - (V2) Use PMM-normalized virtual addresses for LoadUnit and StoreUnit triggers ([#6311](https://github.com/OpenXiangShan/XiangShan/pull/6311))
+  - (V2) Support partial replay for unit-stride stores ([#6434](https://github.com/OpenXiangShan/XiangShan/pull/6434))
+  - (V2) Widen the vector-memory exception `gpaddr` to XLEN ([#6432](https://github.com/OpenXiangShan/XiangShan/pull/6432))
+- Timing Optimizations
+  - Shorten the LoadQueueReplay pipeline from three stages to two, and optimize DCache, Uncache, TLB-hint, and replay-arbitration paths ([#6422](https://github.com/OpenXiangShan/XiangShan/pull/6422))
+
 ### XSAI
 
 ### Infra

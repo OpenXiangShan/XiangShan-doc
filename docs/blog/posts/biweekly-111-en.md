@@ -17,6 +17,51 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Backend
 
+- RTL features
+  - Execute scalar Zfa `fli.h`, `fli.s`, and `fli.d` through the I2F unit, with scalar NaN boxing for the results ([#6441](https://github.com/OpenXiangShan/XiangShan/pull/6441))
+  - Decode `vsetvli`, `vsetivli`, and `vsetvl` as illegal instructions when `mstatus.VS` is disabled ([#6459](https://github.com/OpenXiangShan/XiangShan/pull/6459))
+  - Introduce initial support for the new VCVTWrapper ([#6473](https://github.com/OpenXiangShan/XiangShan/pull/6473))
+  - Support vector integer widening and narrowing instructions, including the Exu, MGU, and VIAlu data paths ([#6490](https://github.com/OpenXiangShan/XiangShan/pull/6490))
+  - Support widening and 2-to-1 narrowing vector conversions; narrowing instructions can read two source registers and write one complete register ([#6493](https://github.com/OpenXiangShan/XiangShan/pull/6493))
+  - Add a VFMA unit to the new vector backend and complete its pipeline metadata and registers ([#6503](https://github.com/OpenXiangShan/XiangShan/pull/6503))
+  - Support vector integer division (VIDiv) with latency-based early wakeup ([#6510](https://github.com/OpenXiangShan/XiangShan/pull/6510))
+  - Restore conditional support for the Smmtt extension and its `mfence` instruction decoding ([#6538](https://github.com/OpenXiangShan/XiangShan/pull/6538))
+  - Support vector floating-point division and square root, including non-fixed-latency issue, wakeup, and writeback paths ([#6552](https://github.com/OpenXiangShan/XiangShan/pull/6552))
+- Bug fixes
+  - Use the dedicated `pdestVl` when updating the VL RAT in DiffTest, avoiding an incorrect generic destination register index ([#6440](https://github.com/OpenXiangShan/XiangShan/pull/6440))
+  - Add `is0FlushNext` to correctly clear an is0 entry pending flush in IssuePipe ([#6458](https://github.com/OpenXiangShan/XiangShan/pull/6458))
+  - Fix illegal `vtype` handling so that `vtype[10]` is not incorrectly passed to `vl` when the instruction is treated as `vsetivli` ([#6465](https://github.com/OpenXiangShan/XiangShan/pull/6465))
+  - Sign-extend the immediates of `VMSGTU.VI`, `VMSLEU.VI`, and `VSADDU.VI` ([#6469](https://github.com/OpenXiangShan/XiangShan/pull/6469))
+  - Fix vector Exu source selection so that bypass data is used only in stage 0 ([#6470](https://github.com/OpenXiangShan/XiangShan/pull/6470))
+  - Use VF opcodes instead of FP opcodes for vector floating-point instructions ([#6491](https://github.com/OpenXiangShan/XiangShan/pull/6491))
+  - Add the `vmax` source VecDataSplit at ex1 ([#6492](https://github.com/OpenXiangShan/XiangShan/pull/6492))
+  - Allow `vfwcvt` to execute with SEW=8 by adding the corresponding FP16 conversion opcode ([#6494](https://github.com/OpenXiangShan/XiangShan/pull/6494))
+  - Fix the VMove mask when `vm` is 1 and write complete results for whole-register moves ([#6495](https://github.com/OpenXiangShan/XiangShan/pull/6495))
+  - Fix JAL/JALR link and jump uop decoding, rename dependencies, and jump-type tracking ([#6496](https://github.com/OpenXiangShan/XiangShan/pull/6496))
+  - Add `VFREC7.V` and `VFRSQRT7.V` to the fflags write-enable table ([#6506](https://github.com/OpenXiangShan/XiangShan/pull/6506))
+  - Fix bypass handling for ready and non-register sources ([#6508](https://github.com/OpenXiangShan/XiangShan/pull/6508))
+  - Align the ROD encoding ([#6509](https://github.com/OpenXiangShan/XiangShan/pull/6509))
+  - Fix the fflags output of the I2F unit ([#6519](https://github.com/OpenXiangShan/XiangShan/pull/6519))
+  - Hold and prioritize LCOFIP during CSR read-modify-write to prevent local counter-overflow requests from being lost ([#6522](https://github.com/OpenXiangShan/XiangShan/pull/6522), [#6551](https://github.com/OpenXiangShan/XiangShan/pull/6551))
+  - Correct NaN-boxing checks for FMA addends ([#6532](https://github.com/OpenXiangShan/XiangShan/pull/6532))
+  - Add proper FP boxing for VMove floating-point results ([#6564](https://github.com/OpenXiangShan/XiangShan/pull/6564))
+- Timing optimization
+  - Register uop fire, exception, and uopBits in DecodeStage to shorten the decode critical path ([#6466](https://github.com/OpenXiangShan/XiangShan/pull/6466))
+- Refactoring and cleanup
+  - Unify LatDecoder opcode inputs, adding support for VMove and Stu opcodes as well as uncertain latency configurations ([#6445](https://github.com/OpenXiangShan/XiangShan/pull/6445))
+  - Initialize new VIMac support, remove the old VIMacU, and use `splitToVecN` consistently ([#6471](https://github.com/OpenXiangShan/XiangShan/pull/6471))
+  - Remove FusionDecoder's dependency on DecodeUnit and the redundant `instructions.scala` ([#6477](https://github.com/OpenXiangShan/XiangShan/pull/6477))
+  - Remove unused vector ALU code and rename vialuf to vialu ([#6478](https://github.com/OpenXiangShan/XiangShan/pull/6478))
+  - Clean up outdated vector and memory code and correct `vecInactive` handling for continuous stores ([#6479](https://github.com/OpenXiangShan/XiangShan/pull/6479))
+  - Remove the old VFMA/VFAlu wrappers and set the corresponding configuration `fuGen` fields to null ([#6530](https://github.com/OpenXiangShan/XiangShan/pull/6530))
+  - Remove the unused VPUCtrlSignals ([#6531](https://github.com/OpenXiangShan/XiangShan/pull/6531))
+  - Pass the extension list to decode fields so decode tables are generated for the enabled ISA extensions ([#6537](https://github.com/OpenXiangShan/XiangShan/pull/6537))
+  - Remove unused classes and methods from the vector backend ([#6562](https://github.com/OpenXiangShan/XiangShan/pull/6562))
+  - Remove the obsolete nonzero state and related interfaces from the VL busy table ([#6563](https://github.com/OpenXiangShan/XiangShan/pull/6563))
+  - Move vector source-operand swapping to after register reads and handle it uniformly in Exu ([#6565](https://github.com/OpenXiangShan/XiangShan/pull/6565))
+- Tool update
+  - Update the NEMU reference used by ready-to-run, including the RV64 `mstatus` initialization and SimPoint profiling fixes and optimizations ([#6472](https://github.com/OpenXiangShan/XiangShan/pull/6472))
+
 ### MemBlock and Cache
 
 ### XSAI

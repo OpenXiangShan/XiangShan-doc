@@ -15,6 +15,16 @@ categories:
 
 ### 前端
 
+- RTL 新特性
+  - 新增 BPU S2 override，使用 MainBTB 和 TAGE provider 的快速预测结果提前修正 S1 预测，并重构 AheadBTB 以支持该流程（[#6423](https://github.com/OpenXiangShan/XiangShan/pull/6423)）
+- Bug 修复
+  - 为 ICache 替换策略增加第二组访问更新端口，修复 2-fetch 时第二个取指块未更新 PLRU 状态的问题（[#6416](https://github.com/OpenXiangShan/XiangShan/pull/6416)）
+- 性能优化
+  - 统一 BPU 超前距离与 ICache WayLookup 深度，默认将超前距离由 8 扩大至 32，使预取流水线能够充分填充 WayLookup（[#6425](https://github.com/OpenXiangShan/XiangShan/pull/6425)）
+- PPA 优化
+  - 缩小 MainBTB WriteBuffer 在 `hitWritten` 时检查表项变化的比较范围，减少比较逻辑（[#5898](https://github.com/OpenXiangShan/XiangShan/pull/5898)）
+  - 比较 MainBTB 与 S1 预测的跳转目标时，仅比较必要的目标地址低位，减少冗余比较逻辑（[#6431](https://github.com/OpenXiangShan/XiangShan/pull/6431)）
+
 ### 后端
 
 - RTL 新特性

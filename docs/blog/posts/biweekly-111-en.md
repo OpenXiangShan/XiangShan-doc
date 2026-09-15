@@ -15,6 +15,16 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Frontend
 
+- RTL features
+  - Add BPU S2 override to correct S1 predictions earlier using fast results from MainBTB and the TAGE provider, and refactor AheadBTB to support this flow ([#6423](https://github.com/OpenXiangShan/XiangShan/pull/6423))
+- Bug fixes
+  - Add a second set of touch ports to the ICache replacement logic, fixing missing PLRU state updates for the second fetch block in 2-fetch mode ([#6416](https://github.com/OpenXiangShan/XiangShan/pull/6416))
+- Performance optimizations
+  - Unify the BPU runahead distance and ICache WayLookup depth, increasing the default runahead distance from 8 to 32 so the prefetch pipeline can fully populate WayLookup ([#6425](https://github.com/OpenXiangShan/XiangShan/pull/6425))
+- PPA optimizations
+  - Limit comparisons for entry changes on `hitWritten` in the MainBTB WriteBuffer to the relevant bits, reducing comparison logic ([#5898](https://github.com/OpenXiangShan/XiangShan/pull/5898))
+  - Compare only the necessary lower address bits when checking MainBTB targets against the S1 prediction, reducing redundant comparison logic ([#6431](https://github.com/OpenXiangShan/XiangShan/pull/6431))
+
 ### Backend
 
 - RTL features

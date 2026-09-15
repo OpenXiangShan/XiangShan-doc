@@ -105,6 +105,33 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Infra
 
+- FPGA DiffTest
+  - Harden the FPGA run workflow with cross-host command coordination between Runtime and Host, and improve device-state checks and cleanup after each run ([env-scripts #167](https://github.com/OpenXiangShan/env-scripts/pull/167), [env-scripts #168](https://github.com/OpenXiangShan/env-scripts/pull/168), [minjie-playground #31](https://github.com/OpenXiangShan/minjie-playground/pull/31))
+  - Add probes for XiangShan DiffTrapEvent and restore DiffTest signal naming so designated signals can be captured by ILA through XMR paths ([env-scripts #165](https://github.com/OpenXiangShan/env-scripts/pull/165), [difftest #959](https://github.com/OpenXiangShan/difftest/pull/959))
+  - Add asynchronous CDC constraints between the XDMA pre-PERST clock and the PCIe reference clock ([env-scripts #169](https://github.com/OpenXiangShan/env-scripts/pull/169))
+  - Fix shallow copying of DiffState during Replay snapshot restoration, avoiding copies of queues, sets, and other transient state with separate ownership ([difftest #957](https://github.com/OpenXiangShan/difftest/pull/957))
+- NEMU reference model
+  - Avoid unnecessary `v0` reads in unmasked vector memory operations ([NEMU #1155](https://github.com/OpenXiangShan/NEMU/pull/1155))
+  - Trim the execution boundary for single-instruction shared REF runs and skip redundant CSR shadow preparation when CSR state is unchanged ([NEMU #1136](https://github.com/OpenXiangShan/NEMU/pull/1136), [NEMU #1027](https://github.com/OpenXiangShan/NEMU/pull/1027))
+  - Cache identity effective-address state and streamline PTE reads in shared REF page-table walks while preserving permission and exception checks ([NEMU #1011](https://github.com/OpenXiangShan/NEMU/pull/1011), [NEMU #1138](https://github.com/OpenXiangShan/NEMU/pull/1138))
+  - Skip repeated basic-block boundary polling when profiling and checkpointing are inactive ([NEMU #1137](https://github.com/OpenXiangShan/NEMU/pull/1137))
+- Sampling and Checkpointing
+  - Add seven RVA23 Linux RocksDB workloads covering mixed reads and writes, random transactions, and time-series operations ([workload-builder #66](https://github.com/OpenXiangShan/workload-builder/pull/66))
+  - Support offline Geekbench 5/6 Preview runs ([workload-builder #62](https://github.com/OpenXiangShan/workload-builder/pull/62))
+  - Prevent the Linux `hello` message address from being incorrectly relaxed to a `gp`-relative address, and report output failures correctly ([workload-builder #67](https://github.com/OpenXiangShan/workload-builder/pull/67))
+  - Integrate jemalloc into SPEC CPU2017/2026, fix the SPEC2017 multi-command run scripts, and consistently use jemalloc across SPEC workloads ([workload-builder #56](https://github.com/OpenXiangShan/workload-builder/pull/56), [workload-builder #68](https://github.com/OpenXiangShan/workload-builder/pull/68))
+  - Consolidate workload build and run support for QEMU's `nemu` machine, including its DTS, firmware output, and run scripts ([workload-builder #60](https://github.com/OpenXiangShan/workload-builder/pull/60))
+  - Derive single-hart firmware, kernel, and checkpoint addresses from the selected DTS's DRAM base and CLINT address to produce images matching the target platform ([workload-builder #55](https://github.com/OpenXiangShan/workload-builder/pull/55))
+  - Trace profiling instruction-count variation to the DTS random seed; fixing `rng-seed` across profiles stabilizes the sampled instruction counts ([workload-builder #57](https://github.com/OpenXiangShan/workload-builder/pull/57))
+  - Align workload-builder DTS ISA declarations with the XiangShan platform and update the core's ISA extension parameters ([workload-builder #59](https://github.com/OpenXiangShan/workload-builder/pull/59), [XiangShan #6463](https://github.com/OpenXiangShan/XiangShan/pull/6463))
+  - Dynamically generate matching DTS files at build time from the `nemu_board` configuration, unifying FPGA, QEMU, and NEMU device-tree profiles ([workload-builder #71](https://github.com/OpenXiangShan/workload-builder/pull/71))
+- GSIM simulator
+  - Define dynamic right-shift overshifts: unsigned values return zero and signed values receive sign fill, avoiding C++ undefined behavior that caused DiffTest failures ([gsim #128](https://github.com/OpenXiangShan/gsim/pull/128))
+  - Fix signed right-shift constant propagation using the destination instead of the source operand, which incorrectly folded negative shifts to zero ([gsim #129](https://github.com/OpenXiangShan/gsim/pull/129))
+  - Fix signed constant slicing during node splitting: use floor division to preserve sign extension for negative arithmetic shifts and reinterpret bit selections as unsigned ([gsim #130](https://github.com/OpenXiangShan/gsim/pull/130))
+  - Correct an off-by-one upper-slice boundary in concatenated-constant equality optimization, slicing according to the concatenation layout ([gsim #131](https://github.com/OpenXiangShan/gsim/pull/131))
+  - Guard dynamic vector indices so out-of-range reads return deterministic zero and out-of-range writes become no-ops, eliminating undefined memory access ([gsim #132](https://github.com/OpenXiangShan/gsim/pull/132))
+
 ### XS-GEM5
 
 ## Performance Evaluation

@@ -105,6 +105,33 @@ categories:
 
 ### 基础设施
 
+- FPGA DiffTest
+  - 整理 FPGA 运行流程，支持 Runtime/Host 跨主机命令协同，完善设备状态检查及运行结束后的清理流程（[env-scripts #167](https://github.com/OpenXiangShan/env-scripts/pull/167)、[env-scripts #168](https://github.com/OpenXiangShan/env-scripts/pull/168)、[minjie-playground #31](https://github.com/OpenXiangShan/minjie-playground/pull/31)）
+  - 新增香山 DiffTrapEvent 探针，并修复 DiffTest 信号命名，使指定信号能够通过 XMR 路径进行 ILA 采集（[env-scripts #165](https://github.com/OpenXiangShan/env-scripts/pull/165)、[difftest #959](https://github.com/OpenXiangShan/difftest/pull/959)）
+  - 补充 XDMA pre-PERST 时钟与 PCIe 参考时钟之间的异步 CDC 约束（[env-scripts #169](https://github.com/OpenXiangShan/env-scripts/pull/169)）
+  - 修复 Replay 中浅拷贝 DiffState 所引起的状态所有权错误，避免在恢复快照时复制队列和集合等临时状态（[difftest #957](https://github.com/OpenXiangShan/difftest/pull/957)）
+- NEMU 参考模型
+  - 优化未使用掩码的向量访存路径，避免无须执行的 `v0` 读取（[NEMU #1155](https://github.com/OpenXiangShan/NEMU/pull/1155)）
+  - 精简单指令共享 REF 的执行边界，并在 CSR 状态未发生变化时跳过重复的 CSR 镜像准备（[NEMU #1136](https://github.com/OpenXiangShan/NEMU/pull/1136)、[NEMU #1027](https://github.com/OpenXiangShan/NEMU/pull/1027)）
+  - 缓存有效地址无需转换的状态，简化共享 REF 页表遍历中的 PTE 读取路径，同时保持原有权限与异常检查语义（[NEMU #1011](https://github.com/OpenXiangShan/NEMU/pull/1011)、[NEMU #1138](https://github.com/OpenXiangShan/NEMU/pull/1138)）
+  - 在未启用 profiling 或 checkpointing 时，跳过基本块边界上的重复轮询（[NEMU #1137](https://github.com/OpenXiangShan/NEMU/pull/1137)）
+- 采样切片
+  - 新增七类 RVA23 Linux RocksDB 测试负载，覆盖读写混合、随机事务及时间序列等场景（[workload-builder #66](https://github.com/OpenXiangShan/workload-builder/pull/66)）
+  - 支持 Geekbench 5/6 Preview 离线运行（[workload-builder #62](https://github.com/OpenXiangShan/workload-builder/pull/62)）
+  - 修复 Linux `hello` 中消息地址被错误松弛为 `gp` 相对寻址的问题，并在输出失败时正确报告运行结果（[workload-builder #67](https://github.com/OpenXiangShan/workload-builder/pull/67)）
+  - 为 SPEC CPU2017/2026 适配 jemalloc，修复 SPEC2017 多命令运行脚本，并统一 SPEC 负载的 jemalloc 配置（[workload-builder #56](https://github.com/OpenXiangShan/workload-builder/pull/56)、[workload-builder #68](https://github.com/OpenXiangShan/workload-builder/pull/68)）
+  - 整理 QEMU `nemu` 机器的 workload 构建与运行支持，包括平台 DTS、固件输出及运行脚本（[workload-builder #60](https://github.com/OpenXiangShan/workload-builder/pull/60)）
+  - 根据选定 DTS 中的 DRAM 基址和 CLINT 地址，自动配置单核固件、内核及 checkpoint 的地址布局，生成与目标平台配置匹配的镜像（[workload-builder #55](https://github.com/OpenXiangShan/workload-builder/pull/55)）
+  - 确认 profiling 指令数波动源于 DTS 随机种子；统一固定 `rng-seed` 后，采样指令数保持稳定（[workload-builder #57](https://github.com/OpenXiangShan/workload-builder/pull/57)）
+  - 对齐 workload-builder DTS 与香山平台的 ISA 扩展声明，并更新香山核心的 ISA 扩展参数（[workload-builder #59](https://github.com/OpenXiangShan/workload-builder/pull/59)、[XiangShan #6463](https://github.com/OpenXiangShan/XiangShan/pull/6463)）
+  - 支持依据 `nemu_board` 配置，在构建时动态生成匹配的 DTS，统一 FPGA、QEMU 和 NEMU 的设备树配置（[workload-builder #71](https://github.com/OpenXiangShan/workload-builder/pull/71)）
+- GSIM 仿真器
+  - 修复动态右移超移时的未定义行为，超移后无符号值返回零、有符号值按符号填充，避免 difftest 失败（[gsim #128](https://github.com/OpenXiangShan/gsim/pull/128)）
+  - 修复常量传播中有符号右移误将目的操作数作为输入，导致负数右移被错误折叠为零的问题（[gsim #129](https://github.com/OpenXiangShan/gsim/pull/129)）
+  - 修复节点拆分中有符号常量切片语义，负数算术右移改用 floor 除法保留符号扩展，位选择先转为无符号表示（[gsim #130](https://github.com/OpenXiangShan/gsim/pull/130)）
+  - 修复拼接常量等值比较优化中高位切片边界差一的错误，按拼接实际布局精确切片，避免比较结果出错（[gsim #131](https://github.com/OpenXiangShan/gsim/pull/131)）
+  - 为动态向量索引添加边界保护，越界读返回确定零值、越界写变为空操作，消除越界读写的未定义行为（[gsim #132](https://github.com/OpenXiangShan/gsim/pull/132)）
+
 ### XS-GEM5
 
 ## 性能评估

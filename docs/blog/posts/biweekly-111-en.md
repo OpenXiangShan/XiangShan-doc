@@ -133,6 +133,21 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
   - Guard dynamic vector indices so out-of-range reads return deterministic zero and out-of-range writes become no-ops, eliminating undefined memory access ([gsim #132](https://github.com/OpenXiangShan/gsim/pull/132))
 
 ### XS-GEM5
+- Simulator alignment
+  - Sbuffer behavior alignment ([XS-GEM5 #1140](https://github.com/OpenXiangShan/GEM5/pull/1140))
+  - Vector instruction writeback behavior alignment ([XS-GEM5 #1113](https://github.com/OpenXiangShan/GEM5/pull/1113))
+  - IQ alignment ([XS-GEM5 #11270](https://github.com/OpenXiangShan/GEM5/pull/1127))
+  - Floating-point division behavior alignment ([XS-GEM5 #1116](https://github.com/OpenXiangShan/GEM5/pull/1116))
+  - BPU behavior alignment ([XS-GEM5 #1122](https://github.com/OpenXiangShan/GEM5/pull/1122))
+- Code quality
+  - Vector code cleanup ([XS-GEM5 #1075](https://github.com/OpenXiangShan/GEM5/pull/1075))
+-New feature exploration
+  - SMT: Fetch blocking and pipeline flush policy optimization ([XS-GEM5 #1124](https://github.com/OpenXiangShan/GEM5/pull/1124))[Thanks to our colleague Alibaba for the contribution]
+  - SMT: Optimize LSQ contention logic under SMT ([XS-GEM5 #1094](https://github.com/OpenXiangShan/GEM5/pull/1094))[Thanks to our colleagues from ZTE for their contribution]
+- Infrastructure
+  - AMO instruction bug fix ([XS-GEM5 #1098](https://github.com/OpenXiangShan/GEM5/pull/1098))[Thanks to our colleague Alibaba for the contribution]
+  - New instruction implementation ([XS-GEM5 #1118](https://github.com/OpenXiangShan/GEM5/pull/1118))[Thanks to our colleague Alibaba for the contribution]
+  - CI maintenance: standardize the NEMU version used ([XS-GEM5 #1105](https://github.com/OpenXiangShan/GEM5/pull/1105))
 
 ## Performance Evaluation
 

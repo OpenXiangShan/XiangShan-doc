@@ -133,6 +133,22 @@ categories:
   - 为动态向量索引添加边界保护，越界读返回确定零值、越界写变为空操作，消除越界读写的未定义行为（[gsim #132](https://github.com/OpenXiangShan/gsim/pull/132)）
 
 ### XS-GEM5
+- 模拟器对齐
+  - Sbuffer行为对齐([XS-GEM5 #1140](https://github.com/OpenXiangShan/GEM5/pull/1140))
+  - 向量指令写回行为对齐([XS-GEM5 #1113](https://github.com/OpenXiangShan/GEM5/pull/1113))
+  - IQ 对齐([XS-GEM5 #11270](https://github.com/OpenXiangShan/GEM5/pull/1127))
+  - 浮点除法行为对齐([XS-GEM5 #1116](https://github.com/OpenXiangShan/GEM5/pull/1116))
+  - BPU行为对齐([XS-GEM5 #1122](https://github.com/OpenXiangShan/GEM5/pull/1122))
+- 代码质量
+  - 向量代码整理([XS-GEM5 #1075](https://github.com/OpenXiangShan/GEM5/pull/1075))
+-新特性探索
+  - SMT: 取指阻塞与流水线冲刷策略优化([XS-GEM5 #1124](https://github.com/OpenXiangShan/GEM5/pull/1124))[感谢来自阿里同事的贡献]
+  - SMT: 优化SMT情况下LSQ的竞争逻辑([XS-GEM5 #1094](https://github.com/OpenXiangShan/GEM5/pull/1094))[感谢来自中兴同事的贡献]
+- 基础设施
+  - AMO指令BUG修复([XS-GEM5 #1098](https://github.com/OpenXiangShan/GEM5/pull/1098))[感谢来自阿里同事的贡献]
+  - 新指令实现([XS-GEM5 #1118](https://github.com/OpenXiangShan/GEM5/pull/1118))[感谢来自阿里同事的贡献]
+  - CI维护，统一使用的NEMU版本([XS-GEM5 #1105](https://github.com/OpenXiangShan/GEM5/pull/1105))
+
 
 ## 性能评估
 

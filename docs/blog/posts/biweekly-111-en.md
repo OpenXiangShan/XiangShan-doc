@@ -7,7 +7,9 @@ categories:
 
 # [XiangShan Biweekly 111] 20260916
 
-Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 111th issue of the biweekly report.
+Welcome to the XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 111th issue of the biweekly report.
+
+Regarding the recent development progress of XiangShan, the frontend added BPU S2 override, increased its runahead distance, and fixed an ICache replacement-policy bug; the backend expanded support for vector widening, narrowing, multiply-add, and division, and fixed decoding, bypass, and floating-point bugs; in memory access and caching, F-POP and teacher-student BOP prefetchers were integrated, while LoadQueueReplay gained early wakeup and pipeline optimizations; XSAI added matrix prefetch descriptors to CUTE memory requests, fixed a prefetch livelock, and improved AME DiffTest checks; infrastructure updates improved FPGA DiffTest workflows, optimized the NEMU reference model, expanded test workloads, and fixed GSIM simulation bugs; XS-GEM5 continued aligning Sbuffer, vector writeback, and BPU behavior, and optimized SMT pipeline policies and LSQ contention logic.
 
 <!-- more -->
 
@@ -76,7 +78,7 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 - RTL features
   - Add latency-based early wakeup for LoadQueueReplay ([#6510](https://github.com/OpenXiangShan/XiangShan/pull/6510))
-  - Integrate F-POP L2-prefetcher into XiangShan ([XSCache #24](https://github.com/OpenXiangShan/XSCache/pull/24), [#6255](https://github.com/OpenXiangShan/XiangShan/pull/6255))
+  - Integrate the F-POP L2 prefetcher into XiangShan ([XSCache #24](https://github.com/OpenXiangShan/XSCache/pull/24), [#6255](https://github.com/OpenXiangShan/XiangShan/pull/6255))
   - Add a student coverage learner to the BOP prefetcher ([XSCache #29](https://github.com/OpenXiangShan/XSCache/pull/29), [#6435](https://github.com/OpenXiangShan/XiangShan/pull/6435))
 - Bug fixes
   - Fix delayed-wakeup handling for unaligned head replays in LoadQueueReplay ([#6480](https://github.com/OpenXiangShan/XiangShan/pull/6480))
@@ -86,7 +88,7 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
   - (V2) Use PMM-normalized virtual addresses for LoadUnit and StoreUnit triggers ([#6311](https://github.com/OpenXiangShan/XiangShan/pull/6311))
   - (V2) Support partial replay for unit-stride stores ([#6434](https://github.com/OpenXiangShan/XiangShan/pull/6434))
   - (V2) Widen the vector-memory exception `gpaddr` to XLEN ([#6432](https://github.com/OpenXiangShan/XiangShan/pull/6432))
-- Timing Optimizations
+- Timing optimization
   - Shorten the LoadQueueReplay pipeline from three stages to two, and optimize DCache, Uncache, TLB-hint, and replay-arbitration paths ([#6422](https://github.com/OpenXiangShan/XiangShan/pull/6422))
 
 ### XSAI
@@ -127,26 +129,27 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
   - Dynamically generate matching DTS files at build time from the `nemu_board` configuration, unifying FPGA, QEMU, and NEMU device-tree profiles ([workload-builder #71](https://github.com/OpenXiangShan/workload-builder/pull/71))
 - GSIM simulator
   - Define dynamic right-shift overshifts: unsigned values return zero and signed values receive sign fill, avoiding C++ undefined behavior that caused DiffTest failures ([gsim #128](https://github.com/OpenXiangShan/gsim/pull/128))
-  - Fix signed right-shift constant propagation using the destination instead of the source operand, which incorrectly folded negative shifts to zero ([gsim #129](https://github.com/OpenXiangShan/gsim/pull/129))
+  - Fix signed right-shift constant propagation using the destination instead of the source operand, which incorrectly folded right shifts of negative values to zero ([gsim #129](https://github.com/OpenXiangShan/gsim/pull/129))
   - Fix signed constant slicing during node splitting: use floor division to preserve sign extension for negative arithmetic shifts and reinterpret bit selections as unsigned ([gsim #130](https://github.com/OpenXiangShan/gsim/pull/130))
   - Correct an off-by-one upper-slice boundary in concatenated-constant equality optimization, slicing according to the concatenation layout ([gsim #131](https://github.com/OpenXiangShan/gsim/pull/131))
   - Guard dynamic vector indices so out-of-range reads return deterministic zero and out-of-range writes become no-ops, eliminating undefined memory access ([gsim #132](https://github.com/OpenXiangShan/gsim/pull/132))
 
 ### XS-GEM5
+
 - Simulator alignment
   - Sbuffer behavior alignment ([XS-GEM5 #1140](https://github.com/OpenXiangShan/GEM5/pull/1140))
   - Vector instruction writeback behavior alignment ([XS-GEM5 #1113](https://github.com/OpenXiangShan/GEM5/pull/1113))
-  - IQ alignment ([XS-GEM5 #11270](https://github.com/OpenXiangShan/GEM5/pull/1127))
+  - IQ alignment ([XS-GEM5 #1127](https://github.com/OpenXiangShan/GEM5/pull/1127))
   - Floating-point division behavior alignment ([XS-GEM5 #1116](https://github.com/OpenXiangShan/GEM5/pull/1116))
   - BPU behavior alignment ([XS-GEM5 #1122](https://github.com/OpenXiangShan/GEM5/pull/1122))
 - Code quality
   - Vector code cleanup ([XS-GEM5 #1075](https://github.com/OpenXiangShan/GEM5/pull/1075))
--New feature exploration
-  - SMT: Fetch blocking and pipeline flush policy optimization ([XS-GEM5 #1124](https://github.com/OpenXiangShan/GEM5/pull/1124))[Thanks to our colleague Alibaba for the contribution]
-  - SMT: Optimize LSQ contention logic under SMT ([XS-GEM5 #1094](https://github.com/OpenXiangShan/GEM5/pull/1094))[Thanks to our colleagues from ZTE for their contribution]
+- New feature exploration
+  - SMT: Fetch blocking and pipeline flush policy optimization ([XS-GEM5 #1124](https://github.com/OpenXiangShan/GEM5/pull/1124)) [Thanks to our colleagues from Alibaba for their contribution]
+  - SMT: Optimize LSQ contention logic under SMT ([XS-GEM5 #1094](https://github.com/OpenXiangShan/GEM5/pull/1094)) [Thanks to our colleagues from ZTE for their contribution]
 - Infrastructure
-  - AMO instruction bug fix ([XS-GEM5 #1098](https://github.com/OpenXiangShan/GEM5/pull/1098))[Thanks to our colleague Alibaba for the contribution]
-  - New instruction implementation ([XS-GEM5 #1118](https://github.com/OpenXiangShan/GEM5/pull/1118))[Thanks to our colleague Alibaba for the contribution]
+  - AMO instruction bug fix ([XS-GEM5 #1098](https://github.com/OpenXiangShan/GEM5/pull/1098)) [Thanks to our colleagues from Alibaba for their contribution]
+  - New instruction implementation ([XS-GEM5 #1118](https://github.com/OpenXiangShan/GEM5/pull/1118)) [Thanks to our colleagues from Alibaba for their contribution]
   - CI maintenance: standardize the NEMU version used ([XS-GEM5 #1105](https://github.com/OpenXiangShan/GEM5/pull/1105))
 
 ## Performance Evaluation
@@ -155,38 +158,38 @@ Processor and SoC parameters are as follows:
 
 | Parameters           | Options    |
 | -------------------- | ---------- |
-| Commit               | 53a957667  |
-| Date                 | 2026/08/21 |
-| L1 ICache            | 64KB       |
-| L1 DCache            | 64KB       |
-| L2 Cache             | 2MB        |
-| L3 Cache             | 16MB       |
+| Commit               | 0eea07ed9  |
+| Date                 | 2026/09/11 |
+| L1 ICache            | 64 KB      |
+| L1 DCache            | 64 KB      |
+| L2 Cache             | 2 MB       |
+| L3 Cache             | 32 MB      |
 | LSU                  | 3ld2st     |
 | Bus protocol         | CHI        |
 | Memory configuration | DDR4-3200  |
 
 The SPEC CPU2006 scores are as follows:
 
-| SPECint 2006 @ 3GHz | GCC16  |  XSCC  | SPECfp 2006 @ 3GHz | GCC16  |  XSCC  |
-| :------------------ | :----: | :----: | :----------------- | :----: | :----: |
-| 400.perlbench       | 55.02  | 53.33  | 410.bwaves         | 123.07 | 105.77 |
-| 401.bzip2           | 29.89  | 30.60  | 416.gamess         | 58.70  | 55.81  |
-| 403.gcc             | 58.27  | 41.61  | 433.milc           | 71.84  | 68.77  |
-| 429.mcf             | 72.01  | 62.81  | 434.zeusmp         | 77.33  | 67.78  |
-| 445.gobmk           | 43.70  | 42.34  | 435.gromacs        | 40.04  | 35.10  |
-| 456.hmmer           | 54.59  | 67.12  | 436.cactusADM      | 85.01  | 93.51  |
-| 458.sjeng           | 41.66  | 41.74  | 437.leslie3d       | 61.20  | 61.31  |
-| 462.libquantum      | 138.17 | 305.05 | 444.namd           | 44.25  | 45.26  |
-| 464.h264ref         | 69.92  | 75.51  | 447.dealII         | 64.71  | 79.14  |
-| 471.omnetpp         | 48.18  | 47.76  | 450.soplex         | 59.78  | 72.28  |
-| 473.astar           | 33.06  | 32.50  | 453.povray         | 78.25  | 73.65  |
-| 483.xalancbmk       | 85.35  | 92.62  | 454.Calculix       | 41.80  | 40.77  |
-| GEOMEAN             | 55.75  | 58.70  | 459.GemsFDTD       | 74.41  | 73.41  |
-|                     |        |        | 465.tonto          | 55.70  | 37.80  |
-|                     |        |        | 470.lbm            | 127.10 | 146.69 |
-|                     |        |        | 481.wrf            | 58.65  | 44.97  |
-|                     |        |        | 482.sphinx3        | 61.39  | 64.02  |
-|                     |        |        | GEOMEAN            | 66.14  | 63.98  |
+| SPECint 2006 @ 3 GHz | GCC16  | XSCC   | SPECfp 2006 @ 3 GHz | GCC16  | XSCC   |
+| :------------------- | :----: | :----: | :------------------ | :----: | :----: |
+| 400.perlbench        | 56.40  | 54.24  | 410.bwaves          | 126.11 | 112.18 |
+| 401.bzip2            | 30.49  | 31.20  | 416.gamess          | 59.54  | 56.55  |
+| 403.gcc              | 61.93  | 42.58  | 433.milc            | 76.56  | 73.10  |
+| 429.mcf              | 77.90  | 64.10  | 434.zeusmp          | 79.58  | 70.77  |
+| 445.gobmk            | 44.90  | 44.46  | 435.gromacs         | 41.68  | 36.92  |
+| 456.hmmer            | 54.74  | 67.53  | 436.cactusADM       | 86.33  | 94.33  |
+| 458.sjeng            | 43.73  | 43.69  | 437.leslie3d        | 66.56  | 64.63  |
+| 462.libquantum       | 164.48 | 382.99 | 444.namd            | 44.46  | 45.48  |
+| 464.h264ref          | 69.46  | 76.01  | 447.dealII          | 66.08  | 81.12  |
+| 471.omnetpp          | 56.40  | 56.29  | 450.soplex          | 65.94  | 79.40  |
+| 473.astar            | 34.28  | 33.67  | 453.povray          | 79.62  | 74.37  |
+| 483.xalancbmk        | 89.19  | 107.78 | 454.calculix        | 42.15  | 41.17  |
+| GEOMEAN              | 58.94  | 62.57  | 459.GemsFDTD        | 80.02  | 76.96  |
+|                      |        |        | 465.tonto           | 55.04  | 37.92  |
+|                      |        |        | 470.lbm             | 128.56 | 149.77 |
+|                      |        |        | 481.wrf             | 59.50  | 45.14  |
+|                      |        |        | 482.sphinx3         | 62.02  | 64.63  |
+|                      |        |        | GEOMEAN             | 68.19  | 65.95  |
 
 Compilation parameters are as follows:
 
@@ -196,7 +199,7 @@ Compilation parameters are as follows:
 | Optimization level          | O3                            | O3                  |
 | Memory library              | jemalloc                      | jemalloc            |
 | ISA configuration           | RVA23-based (vector disabled) | RV64GCB             |
-| -ffp-contraction            | fast                          | fast                |
+| -ffp-contract               | fast                          | fast                |
 | Linker optimization         | -flto                         | -flto               |
 | Floating-point optimization | -ffast-math                   | -ffast-math         |
 | -mcpu                       | -                             | xiangshan-kunminghu |

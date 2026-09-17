@@ -9,6 +9,8 @@ categories:
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 111 期双周报。
 
+关于香山近期开发进展，前端新增 BPU S2 override 并扩大超前距离，修复了 ICache 替换策略相关 bug；后端完善了向量宽化、窄化、乘加及除法支持，并修复了多项解码、旁路和浮点处理相关 bug；访存与缓存方面，集成了 F-POP 和师生结构 BOP 预取器，新增 LoadQueueReplay 提前唤醒并优化其流水线；XSAI 支持在 CUTE 访存请求中传递矩阵预取描述信息，修复了预取活锁，并完善了 AME DiffTest 检查；基础设施完善了 FPGA DiffTest 流程，优化 NEMU 参考模型，扩展测试负载并修复 GSIM 仿真问题；XS-GEM5 持续对齐 Sbuffer、向量写回和 BPU 等行为，并优化 SMT 流水线与 LSQ 竞争逻辑。
+
 <!-- more -->
 
 ## 近期进展
@@ -46,7 +48,7 @@ categories:
   - 修正向量浮点指令使用 VF opcode 而非 FP opcode（[#6491](https://github.com/OpenXiangShan/XiangShan/pull/6491)）
   - 在 ex1 阶段补充 `vmax` 的 VecDataSplit 源数据（[#6492](https://github.com/OpenXiangShan/XiangShan/pull/6492)）
   - 允许 `vfwcvt` 在 SEW=8 时执行，补充对应的 FP16 转换 opcode（[#6494](https://github.com/OpenXiangShan/XiangShan/pull/6494)）
-  - 修复 `vm` 为 1 时 VMove 掩码未全 1 的问题，并使 whole-register move 写回完整寄存器结果（[#6495](https://github.com/OpenXiangShan/XiangShan/pull/6495)）
+  - 修复 `vm` 为 1 时 VMove 掩码未全部置 1 的问题，并使 whole-register move 写回完整寄存器结果（[#6495](https://github.com/OpenXiangShan/XiangShan/pull/6495)）
   - 修复 JAL/JALR 链接与跳转 uop 的解码、重命名依赖和跳转类型跟踪（[#6496](https://github.com/OpenXiangShan/XiangShan/pull/6496)）
   - 将 `VFREC7.V` 和 `VFRSQRT7.V` 加入 fflags 写使能表（[#6506](https://github.com/OpenXiangShan/XiangShan/pull/6506)）
   - 修复旁路网络对 ready 源和非寄存器源的处理（[#6508](https://github.com/OpenXiangShan/XiangShan/pull/6508)）
@@ -99,7 +101,7 @@ categories:
 - 代码质量
   - 更新 nightly 回归 checkpoint 池并固定 matrix jobs 使用 node runner（[XSAI #120](https://github.com/OpenXiangShan/XSAI/pull/120)、[XSAI #122](https://github.com/OpenXiangShan/XSAI/pull/122)）
 - 调试工具
-  - 完善 AME DiffTest 的 `mrelease` 退休与旧 `mstore` 顺序检查（[XSAI #121](https://github.com/OpenXiangShan/XSAI/pull/121)、[difftest #953](https://github.com/OpenXiangShan/difftest/pull/953)、[XSAI #128](https://github.com/OpenXiangShan/XSAI/pull/128)、[difftest #958](https://github.com/OpenXiangShan/difftest/pull/958)）
+  - 完善 AME DiffTest 的 `mrelease` 退役与旧 `mstore` 顺序检查（[XSAI #121](https://github.com/OpenXiangShan/XSAI/pull/121)、[difftest #953](https://github.com/OpenXiangShan/difftest/pull/953)、[XSAI #128](https://github.com/OpenXiangShan/XSAI/pull/128)、[difftest #958](https://github.com/OpenXiangShan/difftest/pull/958)）
   - 为 AME 错误路径记录正确的指令 PC（[XSAI #121](https://github.com/OpenXiangShan/XSAI/pull/121)、[difftest #955](https://github.com/OpenXiangShan/difftest/pull/955)）
   - 优化 NEMU 浮点 MMACC，并完善指令语义检查（[NEMU #1189](https://github.com/OpenXiangShan/NEMU/pull/1189)、[NEMU #1197](https://github.com/OpenXiangShan/NEMU/pull/1197)、[NEMU #1200](https://github.com/OpenXiangShan/NEMU/pull/1200)）
 
@@ -126,29 +128,29 @@ categories:
   - 对齐 workload-builder DTS 与香山平台的 ISA 扩展声明，并更新香山核心的 ISA 扩展参数（[workload-builder #59](https://github.com/OpenXiangShan/workload-builder/pull/59)、[XiangShan #6463](https://github.com/OpenXiangShan/XiangShan/pull/6463)）
   - 支持依据 `nemu_board` 配置，在构建时动态生成匹配的 DTS，统一 FPGA、QEMU 和 NEMU 的设备树配置（[workload-builder #71](https://github.com/OpenXiangShan/workload-builder/pull/71)）
 - GSIM 仿真器
-  - 修复动态右移超移时的未定义行为，超移后无符号值返回零、有符号值按符号填充，避免 difftest 失败（[gsim #128](https://github.com/OpenXiangShan/gsim/pull/128)）
+  - 修复动态右移超移时的未定义行为，超移后无符号值返回零、有符号值按符号填充，避免 DiffTest 失败（[gsim #128](https://github.com/OpenXiangShan/gsim/pull/128)）
   - 修复常量传播中有符号右移误将目的操作数作为输入，导致负数右移被错误折叠为零的问题（[gsim #129](https://github.com/OpenXiangShan/gsim/pull/129)）
   - 修复节点拆分中有符号常量切片语义，负数算术右移改用 floor 除法保留符号扩展，位选择先转为无符号表示（[gsim #130](https://github.com/OpenXiangShan/gsim/pull/130)）
   - 修复拼接常量等值比较优化中高位切片边界差一的错误，按拼接实际布局精确切片，避免比较结果出错（[gsim #131](https://github.com/OpenXiangShan/gsim/pull/131)）
   - 为动态向量索引添加边界保护，越界读返回确定零值、越界写变为空操作，消除越界读写的未定义行为（[gsim #132](https://github.com/OpenXiangShan/gsim/pull/132)）
 
 ### XS-GEM5
-- 模拟器对齐
-  - Sbuffer行为对齐([XS-GEM5 #1140](https://github.com/OpenXiangShan/GEM5/pull/1140))
-  - 向量指令写回行为对齐([XS-GEM5 #1113](https://github.com/OpenXiangShan/GEM5/pull/1113))
-  - IQ 对齐([XS-GEM5 #11270](https://github.com/OpenXiangShan/GEM5/pull/1127))
-  - 浮点除法行为对齐([XS-GEM5 #1116](https://github.com/OpenXiangShan/GEM5/pull/1116))
-  - BPU行为对齐([XS-GEM5 #1122](https://github.com/OpenXiangShan/GEM5/pull/1122))
-- 代码质量
-  - 向量代码整理([XS-GEM5 #1075](https://github.com/OpenXiangShan/GEM5/pull/1075))
--新特性探索
-  - SMT: 取指阻塞与流水线冲刷策略优化([XS-GEM5 #1124](https://github.com/OpenXiangShan/GEM5/pull/1124))[感谢来自阿里同事的贡献]
-  - SMT: 优化SMT情况下LSQ的竞争逻辑([XS-GEM5 #1094](https://github.com/OpenXiangShan/GEM5/pull/1094))[感谢来自中兴同事的贡献]
-- 基础设施
-  - AMO指令BUG修复([XS-GEM5 #1098](https://github.com/OpenXiangShan/GEM5/pull/1098))[感谢来自阿里同事的贡献]
-  - 新指令实现([XS-GEM5 #1118](https://github.com/OpenXiangShan/GEM5/pull/1118))[感谢来自阿里同事的贡献]
-  - CI维护，统一使用的NEMU版本([XS-GEM5 #1105](https://github.com/OpenXiangShan/GEM5/pull/1105))
 
+- 模拟器对齐
+  - Sbuffer 行为对齐（[XS-GEM5 #1140](https://github.com/OpenXiangShan/GEM5/pull/1140)）
+  - 向量指令写回行为对齐（[XS-GEM5 #1113](https://github.com/OpenXiangShan/GEM5/pull/1113)）
+  - IQ 对齐（[XS-GEM5 #1127](https://github.com/OpenXiangShan/GEM5/pull/1127)）
+  - 浮点除法行为对齐（[XS-GEM5 #1116](https://github.com/OpenXiangShan/GEM5/pull/1116)）
+  - BPU 行为对齐（[XS-GEM5 #1122](https://github.com/OpenXiangShan/GEM5/pull/1122)）
+- 代码质量
+  - 向量代码整理（[XS-GEM5 #1075](https://github.com/OpenXiangShan/GEM5/pull/1075)）
+- 新特性探索
+  - SMT：取指阻塞与流水线冲刷策略优化（[XS-GEM5 #1124](https://github.com/OpenXiangShan/GEM5/pull/1124)）（感谢来自阿里同事的贡献）
+  - SMT：优化 SMT 情况下 LSQ 的竞争逻辑（[XS-GEM5 #1094](https://github.com/OpenXiangShan/GEM5/pull/1094)）（感谢来自中兴同事的贡献）
+- 基础设施
+  - AMO 指令 bug 修复（[XS-GEM5 #1098](https://github.com/OpenXiangShan/GEM5/pull/1098)）（感谢来自阿里同事的贡献）
+  - 新指令实现（[XS-GEM5 #1118](https://github.com/OpenXiangShan/GEM5/pull/1118)）（感谢来自阿里同事的贡献）
+  - CI 维护，统一使用的 NEMU 版本（[XS-GEM5 #1105](https://github.com/OpenXiangShan/GEM5/pull/1105)）
 
 ## 性能评估
 
@@ -156,53 +158,53 @@ categories:
 
 | 参数      | 选项       |
 | --------- | ---------- |
-| commit    | 53a957667  |
-| 日期      | 2026/08/21 |
-| L1 ICache | 64KB       |
-| L1 DCache | 64KB       |
-| L2 Cache  | 2MB        |
-| L3 Cache  | 16MB       |
+| commit    | 0eea07ed9  |
+| 日期      | 2026/09/11 |
+| L1 ICache | 64 KB      |
+| L1 DCache | 64 KB      |
+| L2 Cache  | 2 MB       |
+| L3 Cache  | 32 MB      |
 | 访存单元  | 3ld2st     |
 | 总线协议  | CHI        |
 | 内存配置  | DDR4-3200  |
 
 性能数据如下所示：
 
-| SPECint 2006 @ 3GHz | GCC16  |  XSCC  | SPECfp 2006 @ 3GHz | GCC16  |  XSCC  |
-| :------------------ | :----: | :----: | :----------------- | :----: | :----: |
-| 400.perlbench       | 55.02  | 53.33  | 410.bwaves         | 123.07 | 105.77 |
-| 401.bzip2           | 29.89  | 30.60  | 416.gamess         | 58.70  | 55.81  |
-| 403.gcc             | 58.27  | 41.61  | 433.milc           | 71.84  | 68.77  |
-| 429.mcf             | 72.01  | 62.81  | 434.zeusmp         | 77.33  | 67.78  |
-| 445.gobmk           | 43.70  | 42.34  | 435.gromacs        | 40.04  | 35.10  |
-| 456.hmmer           | 54.59  | 67.12  | 436.cactusADM      | 85.01  | 93.51  |
-| 458.sjeng           | 41.66  | 41.74  | 437.leslie3d       | 61.20  | 61.31  |
-| 462.libquantum      | 138.17 | 305.05 | 444.namd           | 44.25  | 45.26  |
-| 464.h264ref         | 69.92  | 75.51  | 447.dealII         | 64.71  | 79.14  |
-| 471.omnetpp         | 48.18  | 47.76  | 450.soplex         | 59.78  | 72.28  |
-| 473.astar           | 33.06  | 32.50  | 453.povray         | 78.25  | 73.65  |
-| 483.xalancbmk       | 85.35  | 92.62  | 454.Calculix       | 41.80  | 40.77  |
-| GEOMEAN             | 55.75  | 58.70  | 459.GemsFDTD       | 74.41  | 73.41  |
-|                     |        |        | 465.tonto          | 55.70  | 37.80  |
-|                     |        |        | 470.lbm            | 127.10 | 146.69 |
-|                     |        |        | 481.wrf            | 58.65  | 44.97  |
-|                     |        |        | 482.sphinx3        | 61.39  | 64.02  |
-|                     |        |        | GEOMEAN            | 66.14  | 63.98  |
+| SPECint 2006 @ 3 GHz | GCC16  | XSCC   | SPECfp 2006 @ 3 GHz | GCC16  | XSCC   |
+| :------------------- | :----: | :----: | :------------------ | :----: | :----: |
+| 400.perlbench        | 56.40  | 54.24  | 410.bwaves          | 126.11 | 112.18 |
+| 401.bzip2            | 30.49  | 31.20  | 416.gamess          | 59.54  | 56.55  |
+| 403.gcc              | 61.93  | 42.58  | 433.milc            | 76.56  | 73.10  |
+| 429.mcf              | 77.90  | 64.10  | 434.zeusmp          | 79.58  | 70.77  |
+| 445.gobmk            | 44.90  | 44.46  | 435.gromacs         | 41.68  | 36.92  |
+| 456.hmmer            | 54.74  | 67.53  | 436.cactusADM       | 86.33  | 94.33  |
+| 458.sjeng            | 43.73  | 43.69  | 437.leslie3d        | 66.56  | 64.63  |
+| 462.libquantum       | 164.48 | 382.99 | 444.namd            | 44.46  | 45.48  |
+| 464.h264ref          | 69.46  | 76.01  | 447.dealII          | 66.08  | 81.12  |
+| 471.omnetpp          | 56.40  | 56.29  | 450.soplex          | 65.94  | 79.40  |
+| 473.astar            | 34.28  | 33.67  | 453.povray          | 79.62  | 74.37  |
+| 483.xalancbmk        | 89.19  | 107.78 | 454.calculix        | 42.15  | 41.17  |
+| GEOMEAN              | 58.94  | 62.57  | 459.GemsFDTD        | 80.02  | 76.96  |
+|                      |        |        | 465.tonto           | 55.04  | 37.92  |
+|                      |        |        | 470.lbm             | 128.56 | 149.77 |
+|                      |        |        | 481.wrf             | 59.50  | 45.14  |
+|                      |        |        | 482.sphinx3         | 62.02  | 64.63  |
+|                      |        |        | GEOMEAN             | 68.19  | 65.95  |
 
 编译参数如下所示：
 
-| 参数             | GCC16                       | XSCC                |
-| ---------------- | --------------------------- | ------------------- |
-| 编译器           | gcc16                       | xscc                |
-| 编译优化         | O3                          | O3                  |
-| 内存库           | jemalloc                    | jemalloc            |
-| 指令集配置       | 基于 RVA23（禁用向量扩展） | RV64GCB             |
-| -ffp-contraction | fast                        | fast                |
-| 链接优化         | -flto                       | -flto               |
-| 浮点优化         | -ffast-math                 | -ffast-math         |
-| -mcpu            | -                           | xiangshan-kunminghu |
+| 参数          | GCC16                      | XSCC                |
+| ------------- | -------------------------- | ------------------- |
+| 编译器        | gcc16                      | xscc                |
+| 编译优化      | O3                         | O3                  |
+| 内存库        | jemalloc                   | jemalloc            |
+| 指令集配置    | 基于 RVA23（禁用向量扩展） | RV64GCB             |
+| -ffp-contract | fast                       | fast                |
+| 链接优化      | -flto                      | -flto               |
+| 浮点优化      | -ffast-math                | -ffast-math         |
+| -mcpu         | -                          | xiangshan-kunminghu |
 
-注：我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，Simpoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
+注：我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，SimPoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
 
 ## 相关链接
 

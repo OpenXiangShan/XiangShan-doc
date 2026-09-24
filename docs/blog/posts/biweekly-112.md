@@ -25,6 +25,22 @@ categories:
 
 ### XS-GEM5
 
+- 模拟器对齐
+  - 向量访存的写回增加 3 周期延迟 ([XS-GEM5 #1155](https://github.com/OpenXiangShan/GEM5/pull/1155))
+  - 对齐 pre-decode ([XS-GEM5 #1150](https://github.com/OpenXiangShan/GEM5/pull/1150))
+  - vset 指令 ibuffer 旁路行为对齐 ([XS-GEM5 #1135](https://github.com/OpenXiangShan/GEM5/pull/1135))
+  - cache hit under block 支持 ([XS-GEM5 #1164](https://github.com/OpenXiangShan/GEM5/pull/1164))
+  - 浮点除法延迟对齐 ([XS-GEM5 #1167](https://github.com/OpenXiangShan/GEM5/pull/1167))
+  - 向量 IQ 配置对齐 ([XS-GEM5 #1179](https://github.com/OpenXiangShan/GEM5/pull/1179))
+- 新特性探索
+  - 新指针预取算法 LLDP ([XS-GEM5 #1158](https://github.com/OpenXiangShan/GEM5/pull/1158))
+  - tage 预测从 s3->s2 ([XS-GEM5 #1165](https://github.com/OpenXiangShan/GEM5/pull/1165))
+  - safe-iq watermark ([XS-GEM5 #1175](https://github.com/OpenXiangShan/GEM5/pull/1175))
+- 基础设施
+  - cbo.zero 指令的实现 ([XS-GEM5 #1153](https://github.com/OpenXiangShan/GEM5/pull/1153))
+  - se 模式的改进与文档完善 ([XS-GEM5 #1154](https://github.com/OpenXiangShan/GEM5/pull/1154))
+  - 支持更多 se 模式的 workload ([XS-GEM5 #1156](https://github.com/OpenXiangShan/GEM5/pull/1156))
+
 ## 性能评估
 
 处理器及 SoC 参数如下所示：

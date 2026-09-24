@@ -25,6 +25,22 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### XS-GEM5
 
+- Simulator alignment
+  - Add 3-cycle delay to vector memory writeback ([XS-GEM5 #1155](https://github.com/OpenXiangShan/GEM5/pull/1155))
+  - Align pre-decode ([XS-GEM5 #1150](https://github.com/OpenXiangShan/GEM5/pull/1150))
+  - Align ibuffer bypass behavior for vset instructions ([XS-GEM5 #1135](https://github.com/OpenXiangShan/GEM5/pull/1135))
+  - Support cache hit under block ([XS-GEM5 #1164](https://github.com/OpenXiangShan/GEM5/pull/1164))
+  - Align floating-point division latency ([XS-GEM5 #1167](https://github.com/OpenXiangShan/GEM5/pull/1167))
+  - Align vector IQ configuration ([XS-GEM5 #1179](https://github.com/OpenXiangShan/GEM5/pull/1179))
+- New feature exploration
+  - New pointer prefetch algorithm LLDP ([XS-GEM5 #1158](https://github.com/OpenXiangShan/GEM5/pull/1158))
+  - Move tage prediction from s3 to s2 ([XS-GEM5 #1165](https://github.com/OpenXiangShan/GEM5/pull/1165))
+  - safe-iq watermark ([XS-GEM5 #1175](https://github.com/OpenXiangShan/GEM5/pull/1175))
+- Infrastructure
+  - Implementation of the cbo.zero instruction ([XS-GEM5 #1153](https://github.com/OpenXiangShan/GEM5/pull/1153))
+  - Improvements and documentation for se mode ([XS-GEM5 #1154](https://github.com/OpenXiangShan/GEM5/pull/1154))
+  - Support more se-mode workloads ([XS-GEM5 #1156](https://github.com/OpenXiangShan/GEM5/pull/1156))
+
 ## Performance Evaluation
 
 Processor and SoC parameters are as follows:

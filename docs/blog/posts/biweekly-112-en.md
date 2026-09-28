@@ -18,6 +18,26 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 ### Backend
 
 ### MemBlock and Cache
+- RTL Features
+  - Integrate ZhuJiang NoC into XiangShan ([XSCache #14](https://github.com/OpenXiangShan/XSCache/pull/14), [#6122](https://github.com/OpenXiangShan/XiangShan/pull/6122))
+- Bug Fixes
+  - Prioritize the ROB-head request after detecting a stall to fix replay deadlocks caused by DCache/TLB replacement ping-pong during cross-16B loads and stores ([#6590](https://github.com/OpenXiangShan/XiangShan/pull/6590))
+  - Correct the two-writeback count for CBO instructions and the StoreQueue stall conditions for following stores ([#6583](https://github.com/OpenXiangShan/XiangShan/pull/6583))
+  - Update the L2 Directory DRRIP policy-selection counter PSEL only when the refill does not require a retry ([XSCache #35](https://github.com/OpenXiangShan/XSCache/pull/35))
+  - (V2)Include delayed S3 DCache errors in the final vector-load exception state to prevent lost exceptions and incorrect replays ([#6633](https://github.com/OpenXiangShan/XiangShan/pull/6633))
+  - (V2)Initialize the Sbuffer forwarding tag-match registers to prevent unknown values from propagating on the first forward after reset ([#6579](https://github.com/OpenXiangShan/XiangShan/pull/6579))
+  - (V2)Buffer concurrent L2 ECC errors and bump the submodule to integrate this fix together with MSHR/MMIOBridge error-response propagation fixes ([CoupledL2 #529](https://github.com/OpenXiangShan/CoupledL2/pull/529), [#6578](https://github.com/OpenXiangShan/XiangShan/pull/6578))
+  - (V2)Validate full virtual addresses for both the first and last accessed bytes, report the correct fault address, and separate it from the memory-trigger match address ([#6558](https://github.com/OpenXiangShan/XiangShan/pull/6558))
+  - (V2)Pass the correct vector-store access size to the TLB so full virtual-address checks cover the accessed bytes ([#6559](https://github.com/OpenXiangShan/XiangShan/pull/6559))
+  - (V2)Preserve access faults and hardware errors carried through the LoadUnit pipeline after an NC load returns ([#6521](https://github.com/OpenXiangShan/XiangShan/pull/6521))
+  - (V2)Generate the appropriate exceptions for `denied/corrupt` errors when StoreQueue receives a CMO response ([#6554](https://github.com/OpenXiangShan/XiangShan/pull/6554))
+  - (V2)Use separate flush levels for queue recovery and exception buffers on vector-memory exceptions, preserving stores that must drain while clearing stale fault addresses ([#6548](https://github.com/OpenXiangShan/XiangShan/pull/6548))
+  - (V2)Prevent VMergeBuffer from incorrectly adding the unit-stride offset to `gpaddr` on G-stage faults during VS page-table walks ([#6514](https://github.com/OpenXiangShan/XiangShan/pull/6514))
+  - (V2)Align VSegmentUnit trigger results with the latched address to prevent missed triggers or matches based on stale addresses ([#6513](https://github.com/OpenXiangShan/XiangShan/pull/6513))
+  - (V2)Prevent scalar stores requiring replay from writing back or updating StoreQueue prematurely, and avoid advancing the read pointer twice for the same split store ([#6507](https://github.com/OpenXiangShan/XiangShan/pull/6507))
+  - (V2)Complete NC/MMIO `cbo.zero` through the StoreQueue MMIO state machine to fix ROB hangs ([#6485](https://github.com/OpenXiangShan/XiangShan/pull/6485))
+- Timing Optimizations
+  - Refactor memory-dependence tracking around SQ pointers, pipeline LSQ/VSQ dequeue and recovery logic, and optimize Load/Store, PTW, and prefetch-arbitration paths ([#6556](https://github.com/OpenXiangShan/XiangShan/pull/6556))
 
 ### XSAI
 

@@ -19,6 +19,28 @@ categories:
 
 ### 访存与缓存
 
+- RTL 新特性
+  - 集成 ZhuJiang NoC 到 XiangShan 环境（[XSCache #14](https://github.com/OpenXiangShan/XSCache/pull/14)， [#6122](https://github.com/OpenXiangShan/XiangShan/pull/6122)）
+
+- Bug 修复
+  - 在检测到阻塞后优先推进 ROB 队头请求，修复跨 16B Load/Store 因 DCache/TLB 反复替换造成的 Replay 死锁（[#6590](https://github.com/OpenXiangShan/XiangShan/pull/6590)）
+  - 修正 CBO 指令的双写回计数及 StoreQueue 中后续 store 的阻塞条件（[#6583](https://github.com/OpenXiangShan/XiangShan/pull/6583)）
+  - 仅在 refill 无需重试时更新 L2 Directory 的 DRRIP 策略选择计数器 PSEL（[XSCache #35](https://github.com/OpenXiangShan/XSCache/pull/35)）
+  - （V2）将 S3 延迟返回的 DCache 错误纳入向量 load 的最终异常状态，避免异常丢失及错误重放（[#6633](https://github.com/OpenXiangShan/XiangShan/pull/6633)）
+  - （V2）初始化 Sbuffer 转发路径的 tag 匹配寄存器，避免复位后首次转发传播不定值（[#6579](https://github.com/OpenXiangShan/XiangShan/pull/6579)）
+  - （V2）缓冲并发 L2 ECC 错误，并更新子模块集成该修复及 MSHR/MMIOBridge 的错误响应传播修复（[CoupledL2 #529](https://github.com/OpenXiangShan/CoupledL2/pull/529)、[#6578](https://github.com/OpenXiangShan/XiangShan/pull/6578)）
+  - （V2）补齐访存首尾字节的完整虚拟地址检查及异常地址上报，并将异常地址与访存 trigger 匹配地址分离（[#6558](https://github.com/OpenXiangShan/XiangShan/pull/6558)）
+  - （V2）为向量 store 向 TLB 传递正确的访问宽度，使完整虚拟地址检查覆盖实际访问字节（[#6559](https://github.com/OpenXiangShan/XiangShan/pull/6559)）
+  - （V2）保留 NC load 返回后在 LoadUnit 流水线中携带的访问异常和硬件错误（[#6521](https://github.com/OpenXiangShan/XiangShan/pull/6521)）
+  - （V2）在 StoreQueue 接收 CMO 响应时正确生成 `denied/corrupt` 对应的异常（[#6554](https://github.com/OpenXiangShan/XiangShan/pull/6554)）
+  - （V2）为向量访存异常分别设置队列恢复与异常缓冲的 flush 级别，保留待排空的 store 并清除旧异常地址（[#6548](https://github.com/OpenXiangShan/XiangShan/pull/6548)）
+  - （V2）修复 VMergeBuffer 在 VS 页表遍历发生 G-stage fault 时错误地为 `gpaddr` 叠加 unit-stride 偏移的问题（[#6514](https://github.com/OpenXiangShan/XiangShan/pull/6514)）
+  - （V2）对齐 VSegmentUnit 的 trigger 结果与锁存地址，避免漏报或使用旧地址的匹配结果（[#6513](https://github.com/OpenXiangShan/XiangShan/pull/6513)）
+  - （V2）阻止需要重放的标量 store 提前写回或更新 StoreQueue，并避免同一拆分 store 重复推进读指针（[#6507](https://github.com/OpenXiangShan/XiangShan/pull/6507)）
+  - （V2）使 NC/MMIO `cbo.zero` 经 StoreQueue 的 MMIO 状态机完成，修复其阻塞 ROB 的问题（[#6485](https://github.com/OpenXiangShan/XiangShan/pull/6485)）
+- 时序优化
+  - 重构基于 SQ 指针的访存依赖跟踪，流水化 LSQ/VSQ 的出队与恢复逻辑，并优化 Load/Store、PTW 和预取仲裁路径（[#6556](https://github.com/OpenXiangShan/XiangShan/pull/6556)）
+
 ### XSAI
 
 - 代码质量

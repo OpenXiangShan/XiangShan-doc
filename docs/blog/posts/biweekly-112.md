@@ -23,6 +23,17 @@ categories:
 
 ### 后端
 
+- RTL 新特性
+  - （V3）将 VFALU 与 VFMul 合并为统一的 VFMac 功能单元，支持向量浮点加减、乘法和融合乘加/减法，并统一对应的配置与延迟解码（[#6573](https://github.com/OpenXiangShan/XiangShan/pull/6573)）
+  - （V3）支持向量浮点指令使用标量浮点源操作数，打通 VecRegion 与 FltRegion 的寄存器读取、旁路、唤醒和重放路径（[#6615](https://github.com/OpenXiangShan/XiangShan/pull/6615)）
+- Bug 修复
+  - （V2）修复 vector store helper uop 错误置 `mstatus.VS` 和 `mstatus.SD` 为 Dirty 的问题，并根据 `vstart` 保留必要的状态更新（[#6570](https://github.com/OpenXiangShan/XiangShan/pull/6570)）
+  - （V3）将 CBO 指令的 `numWb` 修正为 2，使解码结果匹配 StdUnit 与 StoreQueue 的双写回路径（[#6583](https://github.com/OpenXiangShan/XiangShan/pull/6583)）
+  - （V3）改从 Rename 侧物理寄存器状态获取 DiffTest 的 VL，移除 CSR ROB commit 中仅供 DiffTest 使用的冗余 VL 通路，并仅在基础调试配置下连接（[#6591](https://github.com/OpenXiangShan/XiangShan/pull/6591)）
+  - （V2）写入非零 `vstart` 时刷新流水线，确保后续向量指令不会使用过期状态执行（[#6613](https://github.com/OpenXiangShan/XiangShan/pull/6613)）
+- 代码重构
+  - （V3）使用 StdFreeList 替换整数 Rename 的 MEFreeList，保留初始物理寄存器映射，并关闭不适用于寄存器移动消除场景的 arch free list 完整性检查（[#6593](https://github.com/OpenXiangShan/XiangShan/pull/6593)）
+
 ### 访存与缓存
 
 - RTL 新特性

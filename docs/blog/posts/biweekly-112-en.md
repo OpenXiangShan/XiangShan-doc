@@ -23,6 +23,17 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Backend
 
+- RTL Features
+  - (V3) Merge VFALU and VFMul into a unified VFMac functional unit supporting vector floating-point add/subtract, multiply, and fused multiply-add/subtract, with unified configuration and latency decoding ([#6573](https://github.com/OpenXiangShan/XiangShan/pull/6573))
+  - (V3) Support scalar floating-point source operands for vector floating-point instructions by connecting the VecRegion and FltRegion register-read, bypass, wakeup, and replay paths ([#6615](https://github.com/OpenXiangShan/XiangShan/pull/6615))
+- Bug Fixes
+  - (V2) Fix vector store helper uops incorrectly marking `mstatus.VS` and `mstatus.SD` Dirty, while preserving the required state update for nonzero `vstart` ([#6570](https://github.com/OpenXiangShan/XiangShan/pull/6570))
+  - (V3) Set the decoded `numWb` of CBO instructions to 2 so it matches the two writeback paths through StdUnit and StoreQueue ([#6583](https://github.com/OpenXiangShan/XiangShan/pull/6583))
+  - (V3) Source the DiffTest VL from rename-side physical-register state, remove the DiffTest-only VL path from the CSR ROB commit bundle, and connect it only in basic-debug configurations ([#6591](https://github.com/OpenXiangShan/XiangShan/pull/6591))
+  - (V2) Flush the pipeline whenever a nonzero `vstart` value is written, preventing subsequent vector instructions from using stale state ([#6613](https://github.com/OpenXiangShan/XiangShan/pull/6613))
+- Code Refactoring
+  - (V3) Replace the integer Rename MEFreeList with StdFreeList, preserve the initial physical-register mapping, and disable the arch-free-list completeness check that does not apply with move elimination ([#6593](https://github.com/OpenXiangShan/XiangShan/pull/6593))
+
 ### MemBlock and Cache
 - RTL Features
   - Integrate ZhuJiang NoC into XiangShan ([XSCache #14](https://github.com/OpenXiangShan/XSCache/pull/14), [#6122](https://github.com/OpenXiangShan/XiangShan/pull/6122))

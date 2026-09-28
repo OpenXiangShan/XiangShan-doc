@@ -72,6 +72,22 @@ categories:
 
 ### 基础设施
 
+- FPGA DiffTest
+  - 支持 FPGA 平台特定传输机制，用于替代 XDMA，完善 FPGA 端适配、主机运行库接入及构建流程，并修复该配置下 XDMA endpoint 的错误实例化（[env-scripts #163](https://github.com/OpenXiangShan/env-scripts/pull/163)、[env-scripts #177](https://github.com/OpenXiangShan/env-scripts/pull/177)）
+  - 修复 IOTrace 的 Zstd 解压在文件末尾丢弃最后一个不完整读取块的问题，并仅保留实际解压生成的数据，避免回放提前耗尽记录（[difftest #972](https://github.com/OpenXiangShan/difftest/pull/972)）
+- NEMU 参考模型
+  - 修复未启用异常注入时跳过 RVH final TLB 填充的问题，恢复普通执行路径的翻译缓存，减少重复的 G-stage 地址转换（[NEMU #1218](https://github.com/OpenXiangShan/NEMU/pull/1218)）
+  - 优化 GCC/x86-64 下共享参考模型的寄存器导出，使用更高效的 `memmove` 路径降低状态复制开销（[NEMU #1219](https://github.com/OpenXiangShan/NEMU/pull/1219)）
+  - 同步香山 Spike 参考模型至新版上游实现，对齐 NEMU 的 ISA 扩展、PMP 布局及复位状态，并新增独立可执行版本的构建支持（[riscv-isa-sim #97](https://github.com/OpenXiangShan/riscv-isa-sim/pull/97)、[riscv-isa-sim #99](https://github.com/OpenXiangShan/riscv-isa-sim/pull/99)、[riscv-isa-sim #101](https://github.com/OpenXiangShan/riscv-isa-sim/pull/101)）
+- 测试负载及采样切片
+  - 扩展性能回归流程，支持按镜像列表运行测试负载，并配置预热指令数、最大指令数及最大周期数（[env-scripts #172](https://github.com/OpenXiangShan/env-scripts/pull/172)、[XiangShan #6600](https://github.com/OpenXiangShan/XiangShan/pull/6600)）
+  - 修复虚拟化采样时 `nemu_trap` 错误关闭 Host 定时器中断的问题，仅关闭 Guest 的虚拟 supervisor 定时器中断，保留 Host 调度能力（[NEMU #1230](https://github.com/OpenXiangShan/NEMU/pull/1230)）
+  - 将 NEMU 采样切片配置的内存范围扩大至 8 TiB 地址空间，与香山默认配置保持一致（[NEMU #1234](https://github.com/OpenXiangShan/NEMU/pull/1234)）
+- GSIM 仿真器
+  - 修复聚合数组赋值代码生成中的元素位宽处理，按目标位宽逐元素转换并限制 `memcpy` 条件，避免窄位元素被错误保留高位（[gsim #134](https://github.com/OpenXiangShan/gsim/pull/134)）
+  - 放宽编译器版本约束，构建系统改为接受 Clang 19 及以上版本，并优化 `clang++` 选择与版本检查提示（[gsim #136](https://github.com/OpenXiangShan/gsim/pull/136)）
+  - 修复多项代码生成宽度与有符号算术问题：聚合扩宽保留成员语义、定义有符号减法回绕行为、规范窄化输入端口写入，并规避有符号 `% -1` 的未定义行为（[gsim #137](https://github.com/OpenXiangShan/gsim/pull/137)）
+
 ### XS-GEM5
 
 - 模拟器对齐

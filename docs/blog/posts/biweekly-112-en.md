@@ -70,6 +70,22 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Infra
 
+- FPGA DiffTest
+  - Support an FPGA platform-specific transport mechanism as an alternative to XDMA, improve FPGA-side integration, host runtime integration, and the build flow, and fix incorrect XDMA endpoint instantiation in this configuration ([env-scripts #163](https://github.com/OpenXiangShan/env-scripts/pull/163), [env-scripts #177](https://github.com/OpenXiangShan/env-scripts/pull/177))
+  - Fix IOTrace Zstd decompression dropping the last partially read chunk at EOF, and retain only the bytes actually produced by decompression to prevent replay from exhausting records prematurely ([difftest #972](https://github.com/OpenXiangShan/difftest/pull/972))
+- NEMU Reference Model
+  - Fix skipped RVH final TLB fills when exception injection is disabled, restoring the translation cache for normal execution and reducing repeated G-stage address translations ([NEMU #1218](https://github.com/OpenXiangShan/NEMU/pull/1218))
+  - Optimize register export from the shared reference model under GCC/x86-64 by using a more efficient `memmove` path to reduce state-copying overhead ([NEMU #1219](https://github.com/OpenXiangShan/NEMU/pull/1219))
+  - Update the XiangShan Spike reference model to a newer upstream implementation, align its ISA extensions, PMP layout, and reset state with NEMU, and add support for building a standalone executable ([riscv-isa-sim #97](https://github.com/OpenXiangShan/riscv-isa-sim/pull/97), [riscv-isa-sim #99](https://github.com/OpenXiangShan/riscv-isa-sim/pull/99), [riscv-isa-sim #101](https://github.com/OpenXiangShan/riscv-isa-sim/pull/101))
+- Test Workloads, Sampling and Checkpointing
+  - Extend performance regression flows to run workloads from image lists and configure warmup instruction counts, maximum instruction counts, and maximum cycle counts ([env-scripts #172](https://github.com/OpenXiangShan/env-scripts/pull/172), [XiangShan #6600](https://github.com/OpenXiangShan/XiangShan/pull/6600))
+  - Fix `nemu_trap` incorrectly disabling Host timer interrupts during virtualized profiling by disabling only the Guest virtual supervisor timer interrupt, preserving Host scheduling ([NEMU #1230](https://github.com/OpenXiangShan/NEMU/pull/1230))
+  - Extend the memory range in NEMU's sampling and checkpointing configuration to the 8 TiB address space, aligning it with the default XiangShan configuration ([NEMU #1234](https://github.com/OpenXiangShan/NEMU/pull/1234))
+- GSIM Simulator
+  - Fix element-width handling in code generation for aggregate array assignments by converting each element to the destination width and restricting when `memcpy` can be used, preventing narrow elements from incorrectly retaining high bits ([gsim #134](https://github.com/OpenXiangShan/gsim/pull/134))
+  - Relax compiler version requirements to accept Clang 19 and newer, and improve `clang++` selection and version-check diagnostics ([gsim #136](https://github.com/OpenXiangShan/gsim/pull/136))
+  - Fix code generation issues involving widths and signed arithmetic: preserve member semantics when widening aggregates, define signed subtraction wraparound, normalize input-port writes that require narrowing, and avoid undefined behavior in signed `% -1` operations ([gsim #137](https://github.com/OpenXiangShan/gsim/pull/137))
+
 ### XS-GEM5
 
 - Simulator alignment

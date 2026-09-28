@@ -15,6 +15,12 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Frontend
 
+- Bug fixes
+  - Fix the issue where history generated after a redirect could not participate in CommonHR prediction, allowing the first CommonHR prediction after a redirect to use the newly generated history ([#6617](https://github.com/OpenXiangShan/XiangShan/pull/6617))
+  - Fix canonical PC checks in the frontend and extend the high-bit and exception handling paths for instruction-fetch addresses, covering Sv39 and Sv48 address modes ([#6272](https://github.com/OpenXiangShan/XiangShan/pull/6272))
+- Timing optimizations
+  - Move the uBTB hit check to T1 and remove the T1-to-T0 forwarding path to shorten the critical BPU path ([#6489](https://github.com/OpenXiangShan/XiangShan/pull/6489))
+
 ### Backend
 
 ### MemBlock and Cache

@@ -15,6 +15,12 @@ categories:
 
 ### 前端
 
+- Bug 修复
+  - 修复重定向后 CommonHR 生成的历史无法参与预测的问题，使重定向后的首次 CommonHR 预测能够使用新生成的历史（[#6617](https://github.com/OpenXiangShan/XiangShan/pull/6617)）
+  - 修复前端 PC canonical 地址检查，补充取指相关地址的高位传递和异常处理，覆盖 Sv39、Sv48 等地址模式（[#6272](https://github.com/OpenXiangShan/XiangShan/pull/6272)）
+- 时序优化
+  - 将 uBTB 命中检查移至 T1 阶段，移除 T1 到 T0 的前递，缩短 BPU 关键路径（[#6489](https://github.com/OpenXiangShan/XiangShan/pull/6489)）
+
 ### 后端
 
 ### 访存与缓存

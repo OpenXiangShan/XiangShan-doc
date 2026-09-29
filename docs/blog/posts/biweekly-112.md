@@ -78,8 +78,14 @@ categories:
 - NEMU 参考模型
   - 修复未启用异常注入时跳过 RVH final TLB 填充的问题，恢复普通执行路径的翻译缓存，减少重复的 G-stage 地址转换（[NEMU #1218](https://github.com/OpenXiangShan/NEMU/pull/1218)）
   - 优化 GCC/x86-64 下共享参考模型的寄存器导出，使用更高效的 `memmove` 路径降低状态复制开销（[NEMU #1219](https://github.com/OpenXiangShan/NEMU/pull/1219)）
+  - 修复共享参考模型的 CSR 更新标记，确保 CSR 写入及 `mret`/`sret` 后正确刷新导出的 CSR 镜像（[NEMU #1220](https://github.com/OpenXiangShan/NEMU/pull/1220)）
+  - 对齐 NutShell 的 CSR 配置，支持按配置关闭 `mseccfg`，移除未实现的计数器与保护相关 CSR，并在禁用 Zicntr 时保留计数器使能位的可写性，支持 OpenSBI 模拟计时器访问（[NEMU #1221](https://github.com/OpenXiangShan/NEMU/pull/1221)、[NEMU #1222](https://github.com/OpenXiangShan/NEMU/pull/1222)、[NEMU #1223](https://github.com/OpenXiangShan/NEMU/pull/1223)）
+  - 修复 Clang 构建因部分主机 CPU 特性组合警告被 `-Werror` 升级为错误的问题（[NEMU #1227](https://github.com/OpenXiangShan/NEMU/pull/1227)）
   - 同步香山 Spike 参考模型至新版上游实现，对齐 NEMU 的 ISA 扩展、PMP 布局及复位状态，并新增独立可执行版本的构建支持（[riscv-isa-sim #97](https://github.com/OpenXiangShan/riscv-isa-sim/pull/97)、[riscv-isa-sim #99](https://github.com/OpenXiangShan/riscv-isa-sim/pull/99)、[riscv-isa-sim #101](https://github.com/OpenXiangShan/riscv-isa-sim/pull/101)）
 - 测试负载及采样切片
+  - 完善 NutShell RV64IMAC 测试负载支持，新增设备树与 SPEC CPU2006 编译配置，支持构建 Linux 镜像及匹配的 checkpoint 恢复程序（[workload-builder #76](https://github.com/OpenXiangShan/workload-builder/pull/76)、[workload-builder #77](https://github.com/OpenXiangShan/workload-builder/pull/77)、[workload-builder #78](https://github.com/OpenXiangShan/workload-builder/pull/78)、[LibCheckpointAlpha #14](https://github.com/OpenXiangShan/LibCheckpointAlpha/pull/14)）
+  - 修正 `nemu-trap`、`nemu-exec` 和 Linux `hello` 的自定义 trap 指令编码，使其通过 `a0` 正确传递控制码及退出状态（[workload-builder #75](https://github.com/OpenXiangShan/workload-builder/pull/75)）
+  - 对齐 SPEC CPU2006 与 CPU2017 的单核采样控制流程，支持通过 `PROFILING=0` 关闭采样启动标记，并保留负载退出状态上报（[workload-builder #79](https://github.com/OpenXiangShan/workload-builder/pull/79)）
   - 扩展性能回归流程，支持按镜像列表运行测试负载，并配置预热指令数、最大指令数及最大周期数（[env-scripts #172](https://github.com/OpenXiangShan/env-scripts/pull/172)、[XiangShan #6600](https://github.com/OpenXiangShan/XiangShan/pull/6600)）
   - 修复虚拟化采样时 `nemu_trap` 错误关闭 Host 定时器中断的问题，仅关闭 Guest 的虚拟 supervisor 定时器中断，保留 Host 调度能力（[NEMU #1230](https://github.com/OpenXiangShan/NEMU/pull/1230)）
   - 将 NEMU 采样切片配置的内存范围扩大至 8 TiB 地址空间，与香山默认配置保持一致（[NEMU #1234](https://github.com/OpenXiangShan/NEMU/pull/1234)）

@@ -9,6 +9,10 @@ categories:
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 112 期双周报。
 
+关于香山近期开发进展，前端修复了 CommonHR 历史、取指地址检查等问题并优化了 uBTB 时序；后端新增统一的向量浮点功能单元和标量浮点源操作数支持，并修复了多项向量状态、CBO 和 DiffTest 相关问题；访存与缓存集成了 ZhuJiang NoC，修复了多项向量访存、StoreQueue、异常处理和一致性相关问题，并优化了访存依赖跟踪及时序；XSAI 完善了 CUTE、NEMU 和 DiffTest 的矩阵调试能力；基础设施增强了 FPGA DiffTest、NEMU 参考模型、测试负载、采样切片和 GSIM；XS-GEM5 持续推进向量访存、预取、分支预测和执行队列等功能的模型对齐与探索。
+
+同时向大家预告一则消息：2026 RISC-V 中国峰会将于 2026 年 10 月 18 日至 20 日在深圳会展中心（福田）举行。香山团队将在峰会上介绍最新的微架构进展，并举办香山 tutorial，期待与大家在深圳相见！
+
 <!-- more -->
 
 ## 近期进展
@@ -73,7 +77,7 @@ categories:
 ### 基础设施
 
 - FPGA DiffTest
-  - 支持 FPGA 平台特定传输机制，用于替代 XDMA，完善 FPGA 端适配、主机运行库接入及构建流程，并修复该配置下 XDMA endpoint 的错误实例化（[env-scripts #163](https://github.com/OpenXiangShan/env-scripts/pull/163)、[env-scripts #177](https://github.com/OpenXiangShan/env-scripts/pull/177)）
+  - 为 FPGA DiffTest 增加可选的 GBus 传输支持，完善 FPGA 端适配、主机运行库接入及构建流程，并修复 GBus 配置下 XDMA endpoint 的错误实例化（[env-scripts #163](https://github.com/OpenXiangShan/env-scripts/pull/163)、[env-scripts #177](https://github.com/OpenXiangShan/env-scripts/pull/177)）
   - 修复 IOTrace 的 Zstd 解压在文件末尾丢弃最后一个不完整读取块的问题，并仅保留实际解压生成的数据，避免回放提前耗尽记录（[difftest #972](https://github.com/OpenXiangShan/difftest/pull/972)）
 - NEMU 参考模型
   - 修复未启用异常注入时跳过 RVH final TLB 填充的问题，恢复普通执行路径的翻译缓存，减少重复的 G-stage 地址转换（[NEMU #1218](https://github.com/OpenXiangShan/NEMU/pull/1218)）
@@ -97,7 +101,7 @@ categories:
 ### XS-GEM5
 
 - 模拟器对齐
-  - 向量访存的写回增加 3 周期延迟 ([XS-GEM5 #1155](https://github.com/OpenXiangShan/GEM5/pull/1155))
+  - 将向量访存完成到 IEW 写回的延迟设为 3 个周期 ([XS-GEM5 #1155](https://github.com/OpenXiangShan/GEM5/pull/1155))
   - 对齐 pre-decode ([XS-GEM5 #1150](https://github.com/OpenXiangShan/GEM5/pull/1150))
   - vset 指令 ibuffer 旁路行为对齐 ([XS-GEM5 #1135](https://github.com/OpenXiangShan/GEM5/pull/1135))
   - cache hit under block 支持 ([XS-GEM5 #1164](https://github.com/OpenXiangShan/GEM5/pull/1164))
@@ -105,12 +109,12 @@ categories:
   - 向量 IQ 配置对齐 ([XS-GEM5 #1179](https://github.com/OpenXiangShan/GEM5/pull/1179))
 - 新特性探索
   - 新指针预取算法 LLDP ([XS-GEM5 #1158](https://github.com/OpenXiangShan/GEM5/pull/1158))
-  - tage 预测从 s3->s2 ([XS-GEM5 #1165](https://github.com/OpenXiangShan/GEM5/pull/1165))
-  - safe-iq watermark ([XS-GEM5 #1175](https://github.com/OpenXiangShan/GEM5/pull/1175))
+  - 将 MBTB 和 TAGE 预测结果的可用阶段从 S3 提前到 S2 ([XS-GEM5 #1165](https://github.com/OpenXiangShan/GEM5/pull/1165))
+  - 为 SMT 发射队列增加按线程保留容量的 watermark 策略 ([XS-GEM5 #1175](https://github.com/OpenXiangShan/GEM5/pull/1175))
 - 基础设施
-  - cbo.zero 指令的实现 ([XS-GEM5 #1153](https://github.com/OpenXiangShan/GEM5/pull/1153))
-  - se 模式的改进与文档完善 ([XS-GEM5 #1154](https://github.com/OpenXiangShan/GEM5/pull/1154))
-  - 支持更多 se 模式的 workload ([XS-GEM5 #1156](https://github.com/OpenXiangShan/GEM5/pull/1156))
+  - 实现 `cbo.zero` 指令 ([XS-GEM5 #1153](https://github.com/OpenXiangShan/GEM5/pull/1153))
+  - 改进 SE 模式并完善文档 ([XS-GEM5 #1154](https://github.com/OpenXiangShan/GEM5/pull/1154))
+  - 支持更多 SE 模式的 workload ([XS-GEM5 #1156](https://github.com/OpenXiangShan/GEM5/pull/1156))
 
 ## 性能评估
 
@@ -118,8 +122,8 @@ categories:
 
 | 参数      | 选项       |
 | --------- | ---------- |
-| commit    | 0eea07ed9  |
-| 日期      | 2026/09/11 |
+| commit    | aa6b52033  |
+| 日期      | 2026/09/24 |
 | L1 ICache | 64 KB      |
 | L1 DCache | 64 KB      |
 | L2 Cache  | 2 MB       |
@@ -132,24 +136,24 @@ categories:
 
 | SPECint 2006 @ 3 GHz | GCC16  | XSCC   | SPECfp 2006 @ 3 GHz | GCC16  | XSCC   |
 | :------------------- | :----: | :----: | :------------------ | :----: | :----: |
-| 400.perlbench        | 56.40  | 54.24  | 410.bwaves          | 126.11 | 112.18 |
-| 401.bzip2            | 30.49  | 31.20  | 416.gamess          | 59.54  | 56.55  |
-| 403.gcc              | 61.93  | 42.58  | 433.milc            | 76.56  | 73.10  |
-| 429.mcf              | 77.90  | 64.10  | 434.zeusmp          | 79.58  | 70.77  |
-| 445.gobmk            | 44.90  | 44.46  | 435.gromacs         | 41.68  | 36.92  |
-| 456.hmmer            | 54.74  | 67.53  | 436.cactusADM       | 86.33  | 94.33  |
-| 458.sjeng            | 43.73  | 43.69  | 437.leslie3d        | 66.56  | 64.63  |
-| 462.libquantum       | 164.48 | 382.99 | 444.namd            | 44.46  | 45.48  |
-| 464.h264ref          | 69.46  | 76.01  | 447.dealII          | 66.08  | 81.12  |
-| 471.omnetpp          | 56.40  | 56.29  | 450.soplex          | 65.94  | 79.40  |
-| 473.astar            | 34.28  | 33.67  | 453.povray          | 79.62  | 74.37  |
-| 483.xalancbmk        | 89.19  | 107.78 | 454.calculix        | 42.15  | 41.17  |
-| GEOMEAN              | 58.94  | 62.57  | 459.GemsFDTD        | 80.02  | 76.96  |
-|                      |        |        | 465.tonto           | 55.04  | 37.92  |
-|                      |        |        | 470.lbm             | 128.56 | 149.77 |
-|                      |        |        | 481.wrf             | 59.50  | 45.14  |
-|                      |        |        | 482.sphinx3         | 62.02  | 64.63  |
-|                      |        |        | GEOMEAN             | 68.19  | 65.95  |
+| 400.perlbench        | 57.27  | 59.16  | 410.bwaves          | 124.81 | 136.74 |
+| 401.bzip2            | 30.50  | 32.49  | 416.gamess          | 60.13  | 56.82  |
+| 403.gcc              | 62.21  | 44.57  | 433.milc            | 76.13  | 85.77  |
+| 429.mcf              | 78.05  | 70.32  | 434.zeusmp          | 77.92  | 79.49  |
+| 445.gobmk            | 45.44  | 44.31  | 435.gromacs         | 41.91  | 38.34  |
+| 456.hmmer            | 54.81  | 68.30  | 436.cactusADM       | 86.71  | 90.97  |
+| 458.sjeng            | 43.17  | 46.14  | 437.leslie3d        | 66.54  | 67.58  |
+| 462.libquantum       | 168.06 | 380.90 | 444.namd            | 44.70  | 45.82  |
+| 464.h264ref          | 69.48  | 73.54  | 447.dealII          | 65.07  | 97.13  |
+| 471.omnetpp          | 56.13  | 56.73  | 450.soplex          | 66.57  | 80.45  |
+| 473.astar            | 34.26  | 33.91  | 453.povray          | 79.31  | 72.48  |
+| 483.xalancbmk        | 88.29  | 118.65 | 454.calculix        | 41.90  | 37.91  |
+| GEOMEAN              | 59.08  | 64.70  | 459.GemsFDTD        | 80.37  | 82.58  |
+|                      |        |        | 465.tonto           | 55.67  | 44.40  |
+|                      |        |        | 470.lbm             | 126.33 | 153.29 |
+|                      |        |        | 481.wrf             | 60.76  | 63.23  |
+|                      |        |        | 482.sphinx3         | 61.06  | 63.76  |
+|                      |        |        | GEOMEAN             | 68.09  | 70.74  |
 
 编译参数如下所示：
 
@@ -174,4 +178,4 @@ categories:
 - 香山用户手册：<https://docs.xiangshan.cc/projects/user-guide/>
 - 香山设计文档：<https://docs.xiangshan.cc/projects/design/>
 
-编辑：李衍君、曾锦鸿、杨泽辰、张韩乐、游昆霖、甄好、燕翼鸣
+编辑：李衍君、曾锦鸿、杨泽辰、张韩乐、游昆霖、李昕、燕翼鸣

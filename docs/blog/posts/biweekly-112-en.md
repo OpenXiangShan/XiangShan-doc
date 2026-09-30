@@ -9,6 +9,10 @@ categories:
 
 Welcome to XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 112th issue of the biweekly report.
 
+Regarding the recent development progress of XiangShan, the frontend fixed issues in CommonHR history and instruction-fetch address checks and optimized uBTB timing; the backend added a unified vector floating-point functional unit and scalar floating-point source operands, while fixing issues related to vector state, CBO, and DiffTest; the memory and cache subsystem integrated ZhuJiang NoC, fixed multiple vector-memory, StoreQueue, exception-handling, and coherence issues, and optimized memory-dependence tracking and timing; XSAI improved matrix debugging support across CUTE, NEMU, and DiffTest; infrastructure updates enhanced FPGA DiffTest, the NEMU reference model, test workloads, sampling and checkpointing, and GSIM; XS-GEM5 continued model alignment and exploration for vector memory access, prefetching, branch prediction, and execution queues.
+
+RISC-V Summit China 2026 will take place from October 18 to 20, 2026, at the Shenzhen Convention and Exhibition Center (Futian). The XiangShan team will present the latest microarchitecture developments and host a XiangShan tutorial at the summit. We look forward to seeing you in Shenzhen!
+
 <!-- more -->
 
 ## Recent Developments
@@ -35,24 +39,25 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
   - (V3) Replace the integer Rename MEFreeList with StdFreeList, preserve the initial physical-register mapping, and disable the arch-free-list completeness check that does not apply with move elimination ([#6593](https://github.com/OpenXiangShan/XiangShan/pull/6593))
 
 ### MemBlock and Cache
+
 - RTL Features
   - Integrate ZhuJiang NoC into XiangShan ([XSCache #14](https://github.com/OpenXiangShan/XSCache/pull/14), [#6122](https://github.com/OpenXiangShan/XiangShan/pull/6122))
 - Bug Fixes
   - Prioritize the ROB-head request after detecting a stall to fix replay deadlocks caused by DCache/TLB replacement ping-pong during cross-16B loads and stores ([#6590](https://github.com/OpenXiangShan/XiangShan/pull/6590))
   - Correct the two-writeback count for CBO instructions and the StoreQueue stall conditions for following stores ([#6583](https://github.com/OpenXiangShan/XiangShan/pull/6583))
   - Update the L2 Directory DRRIP policy-selection counter PSEL only when the refill does not require a retry ([XSCache #35](https://github.com/OpenXiangShan/XSCache/pull/35))
-  - (V2)Include delayed S3 DCache errors in the final vector-load exception state to prevent lost exceptions and incorrect replays ([#6633](https://github.com/OpenXiangShan/XiangShan/pull/6633))
-  - (V2)Initialize the Sbuffer forwarding tag-match registers to prevent unknown values from propagating on the first forward after reset ([#6579](https://github.com/OpenXiangShan/XiangShan/pull/6579))
-  - (V2)Buffer concurrent L2 ECC errors and bump the submodule to integrate this fix together with MSHR/MMIOBridge error-response propagation fixes ([CoupledL2 #529](https://github.com/OpenXiangShan/CoupledL2/pull/529), [#6578](https://github.com/OpenXiangShan/XiangShan/pull/6578))
-  - (V2)Validate full virtual addresses for both the first and last accessed bytes, report the correct fault address, and separate it from the memory-trigger match address ([#6558](https://github.com/OpenXiangShan/XiangShan/pull/6558))
-  - (V2)Pass the correct vector-store access size to the TLB so full virtual-address checks cover the accessed bytes ([#6559](https://github.com/OpenXiangShan/XiangShan/pull/6559))
-  - (V2)Preserve access faults and hardware errors carried through the LoadUnit pipeline after an NC load returns ([#6521](https://github.com/OpenXiangShan/XiangShan/pull/6521))
-  - (V2)Generate the appropriate exceptions for `denied/corrupt` errors when StoreQueue receives a CMO response ([#6554](https://github.com/OpenXiangShan/XiangShan/pull/6554))
-  - (V2)Use separate flush levels for queue recovery and exception buffers on vector-memory exceptions, preserving stores that must drain while clearing stale fault addresses ([#6548](https://github.com/OpenXiangShan/XiangShan/pull/6548))
-  - (V2)Prevent VMergeBuffer from incorrectly adding the unit-stride offset to `gpaddr` on G-stage faults during VS page-table walks ([#6514](https://github.com/OpenXiangShan/XiangShan/pull/6514))
-  - (V2)Align VSegmentUnit trigger results with the latched address to prevent missed triggers or matches based on stale addresses ([#6513](https://github.com/OpenXiangShan/XiangShan/pull/6513))
-  - (V2)Prevent scalar stores requiring replay from writing back or updating StoreQueue prematurely, and avoid advancing the read pointer twice for the same split store ([#6507](https://github.com/OpenXiangShan/XiangShan/pull/6507))
-  - (V2)Complete NC/MMIO `cbo.zero` through the StoreQueue MMIO state machine to fix ROB hangs ([#6485](https://github.com/OpenXiangShan/XiangShan/pull/6485))
+  - (V2) Include delayed S3 DCache errors in the final vector-load exception state to prevent lost exceptions and incorrect replays ([#6633](https://github.com/OpenXiangShan/XiangShan/pull/6633))
+  - (V2) Initialize the Sbuffer forwarding tag-match registers to prevent unknown values from propagating on the first forward after reset ([#6579](https://github.com/OpenXiangShan/XiangShan/pull/6579))
+  - (V2) Buffer concurrent L2 ECC errors and bump the submodule to integrate this fix together with MSHR/MMIOBridge error-response propagation fixes ([CoupledL2 #529](https://github.com/OpenXiangShan/CoupledL2/pull/529), [#6578](https://github.com/OpenXiangShan/XiangShan/pull/6578))
+  - (V2) Validate full virtual addresses for both the first and last accessed bytes, report the correct fault address, and separate it from the memory-trigger match address ([#6558](https://github.com/OpenXiangShan/XiangShan/pull/6558))
+  - (V2) Pass the correct vector-store access size to the TLB so full virtual-address checks cover the accessed bytes ([#6559](https://github.com/OpenXiangShan/XiangShan/pull/6559))
+  - (V2) Preserve access faults and hardware errors carried through the LoadUnit pipeline after an NC load returns ([#6521](https://github.com/OpenXiangShan/XiangShan/pull/6521))
+  - (V2) Generate the appropriate exceptions for `denied/corrupt` errors when StoreQueue receives a CMO response ([#6554](https://github.com/OpenXiangShan/XiangShan/pull/6554))
+  - (V2) Use separate flush levels for queue recovery and exception buffers on vector-memory exceptions, preserving stores that must drain while clearing stale fault addresses ([#6548](https://github.com/OpenXiangShan/XiangShan/pull/6548))
+  - (V2) Prevent VMergeBuffer from incorrectly adding the unit-stride offset to `gpaddr` on G-stage faults during VS page-table walks ([#6514](https://github.com/OpenXiangShan/XiangShan/pull/6514))
+  - (V2) Align VSegmentUnit trigger results with the latched address to prevent missed triggers or matches based on stale addresses ([#6513](https://github.com/OpenXiangShan/XiangShan/pull/6513))
+  - (V2) Prevent scalar stores requiring replay from writing back or updating StoreQueue prematurely, and avoid advancing the read pointer twice for the same split store ([#6507](https://github.com/OpenXiangShan/XiangShan/pull/6507))
+  - (V2) Complete NC/MMIO `cbo.zero` through the StoreQueue MMIO state machine to fix ROB hangs ([#6485](https://github.com/OpenXiangShan/XiangShan/pull/6485))
 - Timing Optimizations
   - Refactor memory-dependence tracking around SQ pointers, pipeline LSQ/VSQ dequeue and recovery logic, and optimize Load/Store, PTW, and prefetch-arbitration paths ([#6556](https://github.com/OpenXiangShan/XiangShan/pull/6556))
 
@@ -71,7 +76,7 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 ### Infra
 
 - FPGA DiffTest
-  - Support an FPGA platform-specific transport mechanism as an alternative to XDMA, improve FPGA-side integration, host runtime integration, and the build flow, and fix incorrect XDMA endpoint instantiation in this configuration ([env-scripts #163](https://github.com/OpenXiangShan/env-scripts/pull/163), [env-scripts #177](https://github.com/OpenXiangShan/env-scripts/pull/177))
+  - Add optional GBus transport support to FPGA DiffTest, improve FPGA-side integration, host runtime integration, and the build flow, and fix incorrect XDMA endpoint instantiation in GBus configurations ([env-scripts #163](https://github.com/OpenXiangShan/env-scripts/pull/163), [env-scripts #177](https://github.com/OpenXiangShan/env-scripts/pull/177))
   - Fix IOTrace Zstd decompression dropping the last partially read chunk at EOF, and retain only the bytes actually produced by decompression to prevent replay from exhausting records prematurely ([difftest #972](https://github.com/OpenXiangShan/difftest/pull/972))
 - NEMU Reference Model
   - Fix skipped RVH final TLB fills when exception injection is disabled, restoring the translation cache for normal execution and reducing repeated G-stage address translations ([NEMU #1218](https://github.com/OpenXiangShan/NEMU/pull/1218))
@@ -95,7 +100,7 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 ### XS-GEM5
 
 - Simulator alignment
-  - Add 3-cycle delay to vector memory writeback ([XS-GEM5 #1155](https://github.com/OpenXiangShan/GEM5/pull/1155))
+  - Set the delay from vector memory completion to IEW writeback to 3 cycles ([XS-GEM5 #1155](https://github.com/OpenXiangShan/GEM5/pull/1155))
   - Align pre-decode ([XS-GEM5 #1150](https://github.com/OpenXiangShan/GEM5/pull/1150))
   - Align ibuffer bypass behavior for vset instructions ([XS-GEM5 #1135](https://github.com/OpenXiangShan/GEM5/pull/1135))
   - Support cache hit under block ([XS-GEM5 #1164](https://github.com/OpenXiangShan/GEM5/pull/1164))
@@ -103,12 +108,12 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
   - Align vector IQ configuration ([XS-GEM5 #1179](https://github.com/OpenXiangShan/GEM5/pull/1179))
 - New feature exploration
   - New pointer prefetch algorithm LLDP ([XS-GEM5 #1158](https://github.com/OpenXiangShan/GEM5/pull/1158))
-  - Move tage prediction from s3 to s2 ([XS-GEM5 #1165](https://github.com/OpenXiangShan/GEM5/pull/1165))
-  - safe-iq watermark ([XS-GEM5 #1175](https://github.com/OpenXiangShan/GEM5/pull/1175))
+  - Make MBTB and TAGE prediction results available in S2 instead of S3 ([XS-GEM5 #1165](https://github.com/OpenXiangShan/GEM5/pull/1165))
+  - Add a per-IQ watermark policy to reserve issue-queue capacity for each SMT thread ([XS-GEM5 #1175](https://github.com/OpenXiangShan/GEM5/pull/1175))
 - Infrastructure
-  - Implementation of the cbo.zero instruction ([XS-GEM5 #1153](https://github.com/OpenXiangShan/GEM5/pull/1153))
-  - Improvements and documentation for se mode ([XS-GEM5 #1154](https://github.com/OpenXiangShan/GEM5/pull/1154))
-  - Support more se-mode workloads ([XS-GEM5 #1156](https://github.com/OpenXiangShan/GEM5/pull/1156))
+  - Implement the `cbo.zero` instruction ([XS-GEM5 #1153](https://github.com/OpenXiangShan/GEM5/pull/1153))
+  - Improve SE mode and its documentation ([XS-GEM5 #1154](https://github.com/OpenXiangShan/GEM5/pull/1154))
+  - Support more SE-mode workloads ([XS-GEM5 #1156](https://github.com/OpenXiangShan/GEM5/pull/1156))
 
 ## Performance Evaluation
 
@@ -116,8 +121,8 @@ Processor and SoC parameters are as follows:
 
 | Parameters           | Options    |
 | -------------------- | ---------- |
-| Commit               | 0eea07ed9  |
-| Date                 | 2026/09/11 |
+| Commit               | aa6b52033  |
+| Date                 | 2026/09/24 |
 | L1 ICache            | 64 KB      |
 | L1 DCache            | 64 KB      |
 | L2 Cache             | 2 MB       |
@@ -130,24 +135,24 @@ The SPEC CPU2006 scores are as follows:
 
 | SPECint 2006 @ 3 GHz | GCC16  | XSCC   | SPECfp 2006 @ 3 GHz | GCC16  | XSCC   |
 | :------------------- | :----: | :----: | :------------------ | :----: | :----: |
-| 400.perlbench        | 56.40  | 54.24  | 410.bwaves          | 126.11 | 112.18 |
-| 401.bzip2            | 30.49  | 31.20  | 416.gamess          | 59.54  | 56.55  |
-| 403.gcc              | 61.93  | 42.58  | 433.milc            | 76.56  | 73.10  |
-| 429.mcf              | 77.90  | 64.10  | 434.zeusmp          | 79.58  | 70.77  |
-| 445.gobmk            | 44.90  | 44.46  | 435.gromacs         | 41.68  | 36.92  |
-| 456.hmmer            | 54.74  | 67.53  | 436.cactusADM       | 86.33  | 94.33  |
-| 458.sjeng            | 43.73  | 43.69  | 437.leslie3d        | 66.56  | 64.63  |
-| 462.libquantum       | 164.48 | 382.99 | 444.namd            | 44.46  | 45.48  |
-| 464.h264ref          | 69.46  | 76.01  | 447.dealII          | 66.08  | 81.12  |
-| 471.omnetpp          | 56.40  | 56.29  | 450.soplex          | 65.94  | 79.40  |
-| 473.astar            | 34.28  | 33.67  | 453.povray          | 79.62  | 74.37  |
-| 483.xalancbmk        | 89.19  | 107.78 | 454.calculix        | 42.15  | 41.17  |
-| GEOMEAN              | 58.94  | 62.57  | 459.GemsFDTD        | 80.02  | 76.96  |
-|                      |        |        | 465.tonto           | 55.04  | 37.92  |
-|                      |        |        | 470.lbm             | 128.56 | 149.77 |
-|                      |        |        | 481.wrf             | 59.50  | 45.14  |
-|                      |        |        | 482.sphinx3         | 62.02  | 64.63  |
-|                      |        |        | GEOMEAN             | 68.19  | 65.95  |
+| 400.perlbench        | 57.27  | 59.16  | 410.bwaves          | 124.81 | 136.74 |
+| 401.bzip2            | 30.50  | 32.49  | 416.gamess          | 60.13  | 56.82  |
+| 403.gcc              | 62.21  | 44.57  | 433.milc            | 76.13  | 85.77  |
+| 429.mcf              | 78.05  | 70.32  | 434.zeusmp          | 77.92  | 79.49  |
+| 445.gobmk            | 45.44  | 44.31  | 435.gromacs         | 41.91  | 38.34  |
+| 456.hmmer            | 54.81  | 68.30  | 436.cactusADM       | 86.71  | 90.97  |
+| 458.sjeng            | 43.17  | 46.14  | 437.leslie3d        | 66.54  | 67.58  |
+| 462.libquantum       | 168.06 | 380.90 | 444.namd            | 44.70  | 45.82  |
+| 464.h264ref          | 69.48  | 73.54  | 447.dealII          | 65.07  | 97.13  |
+| 471.omnetpp          | 56.13  | 56.73  | 450.soplex          | 66.57  | 80.45  |
+| 473.astar            | 34.26  | 33.91  | 453.povray          | 79.31  | 72.48  |
+| 483.xalancbmk        | 88.29  | 118.65 | 454.calculix        | 41.90  | 37.91  |
+| GEOMEAN              | 59.08  | 64.70  | 459.GemsFDTD        | 80.37  | 82.58  |
+|                      |        |        | 465.tonto           | 55.67  | 44.40  |
+|                      |        |        | 470.lbm             | 126.33 | 153.29 |
+|                      |        |        | 481.wrf             | 60.76  | 63.23  |
+|                      |        |        | 482.sphinx3         | 61.06  | 63.76  |
+|                      |        |        | GEOMEAN             | 68.09  | 70.74  |
 
 Compilation parameters are as follows:
 
@@ -172,4 +177,4 @@ Note: We use SimPoint to sample the programs and create checkpoint images based 
 - XiangShan User Guide: <https://docs.xiangshan.cc/projects/user-guide/>
 - XiangShan Design Doc: <https://docs.xiangshan.cc/projects/design/>
 
-Editors: Yanjun Li, Jinhong Zeng, Zechen Yang, Hanle Zhang, Kunlin You, Hao Zhen, Yiming Yan
+Editors: Yanjun Li, Jinhong Zeng, Zechen Yang, Hanle Zhang, Kunlin You, Xin Li, Yiming Yan

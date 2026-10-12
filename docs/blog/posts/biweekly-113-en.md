@@ -43,6 +43,17 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### XS-GEM5
 
+- Simulator alignment
+  - Align the configuration for offloading low-accuracy L2 prefetches ([XS-GEM5 #1183](https://github.com/OpenXiangShan/GEM5/pull/1183))
+  - Align same-cache-line SBuffer store-miss merging behavior ([XS-GEM5 #1171](https://github.com/OpenXiangShan/GEM5/pull/1171))
+- Bug fixes
+  - Fix vector load register overflow causing a rename panic ([XS-GEM5 #1185](https://github.com/OpenXiangShan/GEM5/pull/1185))
+  - Support 32-bit UARTLite MMIO accesses ([XS-GEM5 #1199](https://github.com/OpenXiangShan/GEM5/pull/1199))
+- Infrastructure
+  - Update the weekly performance regression configuration ([XS-GEM5 #1188](https://github.com/OpenXiangShan/GEM5/pull/1188))
+  - Add Clang `gem5.fast` build checks ([XS-GEM5 #1209](https://github.com/OpenXiangShan/GEM5/pull/1209))
+  - Improve the Chinese repository report generation flow ([XS-GEM5 #1204](https://github.com/OpenXiangShan/GEM5/pull/1204), [XS-GEM5 #1212](https://github.com/OpenXiangShan/GEM5/pull/1212))
+
 ## Performance Evaluation
 
 Processor and SoC parameters are as follows:

@@ -44,6 +44,17 @@ categories:
 
 ### XS-GEM5
 
+- 模拟器对齐
+  - L2 低准确率预取 offload 配置对齐 ([XS-GEM5 #1183](https://github.com/OpenXiangShan/GEM5/pull/1183))
+  - SBuffer 同 cache line store miss 合并行为对齐 ([XS-GEM5 #1171](https://github.com/OpenXiangShan/GEM5/pull/1171))
+- Bug 修复
+  - 修复向量 load 寄存器越界导致的 rename panic ([XS-GEM5 #1185](https://github.com/OpenXiangShan/GEM5/pull/1185))
+  - 支持 UARTLite 32-bit MMIO 访问 ([XS-GEM5 #1199](https://github.com/OpenXiangShan/GEM5/pull/1199))
+- 基础设施
+  - 更新每周性能回归配置 ([XS-GEM5 #1188](https://github.com/OpenXiangShan/GEM5/pull/1188))
+  - 增加 Clang `gem5.fast` 构建检查 ([XS-GEM5 #1209](https://github.com/OpenXiangShan/GEM5/pull/1209))
+  - 完善中文仓库日报生成流程 ([XS-GEM5 #1204](https://github.com/OpenXiangShan/GEM5/pull/1204), [XS-GEM5 #1212](https://github.com/OpenXiangShan/GEM5/pull/1212))
+
 ## 性能评估
 
 处理器及 SoC 参数如下所示：

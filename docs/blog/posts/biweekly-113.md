@@ -19,6 +19,14 @@ categories:
 
 ### 访存与缓存
 
+- RTL 新特性
+  - 新增基于 DPI-C PteHelper 的 `softTLB`/`softPTW` 仿真翻译路径，支持两阶段地址翻译，用于评估 MMU 翻译性能上限（[#6115](https://github.com/OpenXiangShan/XiangShan/pull/6115)）
+
+- Bug 修复
+  - 对 TLB 和页表缓存的全局属性增加 `PTE.V` 门控，修复无效 PTE 的页故障条目无法被 ASID 定向 `SFENCE.VMA` 清除及跨 ASID 错误匹配的问题（[#6695](https://github.com/OpenXiangShan/XiangShan/pull/6695)）
+  - （V2）在同一 load 同时触发 RAR/RAW 违规时优先选择会重新取指当前指令的 RAW 回滚，避免 RAR 回滚掩盖 RAW 违规并导致读取错误数据（[#6677](https://github.com/OpenXiangShan/XiangShan/pull/6677)）
+  
+
 ### XSAI
 
 ### 基础设施

@@ -19,6 +19,13 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### MemBlock and Cache
 
+- RTL Features
+  - Add DPI-C PteHelper-backed `softTLB`/`softPTW` simulation translation paths with two-stage address translation support for evaluating the MMU translation performance upper bound ([#6115](https://github.com/OpenXiangShan/XiangShan/pull/6115))
+
+- Bug Fixes
+  - Gate cached TLB and page-table global attributes with `PTE.V` to prevent invalid-PTE fault entries from surviving ASID-specific `SFENCE.VMA` or incorrectly matching other ASIDs ([#6695](https://github.com/OpenXiangShan/XiangShan/pull/6695))
+  - (V2) When the same load triggers concurrent RAR and RAW violations, prioritize the RAW rollback that re-fetches the current instruction to prevent the RAR rollback from masking the RAW violation and causing incorrect load data ([#6677](https://github.com/OpenXiangShan/XiangShan/pull/6677))
+
 ### XSAI
 
 ### Infra

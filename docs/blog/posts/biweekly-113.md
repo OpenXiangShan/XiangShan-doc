@@ -17,6 +17,19 @@ categories:
 
 ### 后端
 
+- RTL 新特性
+  - （V3）实现混合压缩 ROB（CROB），支持普通压缩和简单 ALU 指令的高密度压缩，并为双槽位 ROB 条目适配顺序提交及 DiffTest 的 StoreEvent/ArchEvent 处理（[#6648](https://github.com/OpenXiangShan/XiangShan/pull/6648)）
+- Bug 修复
+  - （V3）为目的寄存器为 `x0` 的浮点转换指令预留 FEX0 输出时隙，避免因不写寄存器而漏记资源占用（[#6649](https://github.com/OpenXiangShan/XiangShan/pull/6649)）
+  - （V3）在 `aes64ks1i` 的轮数立即数 `rnum > 10` 时触发非法指令异常，并清理相关无效译码逻辑（[#6687](https://github.com/OpenXiangShan/XiangShan/pull/6687)）
+  - （V3）更新 yunsuan，按目标浮点格式选择 CVT64Narrow 的移位偏置，修复 FP32 转 FP16 非规格化数的转换错误（[#6689](https://github.com/OpenXiangShan/XiangShan/pull/6689)）
+- 性能优化
+  - （V3）为 FMA 的第三源操作数 `src2` 增加来自 FMA、FMUL 和 load 的提前唤醒与旁路，使乘法阶段可提前执行，并完善 load 取消时的重放处理（[#6679](https://github.com/OpenXiangShan/XiangShan/pull/6679)）
+- 代码重构
+  - （V3）移除 FEX0 中未使用的 F2vCfg、向量写回端口及相关类型和写回统计逻辑（[#6651](https://github.com/OpenXiangShan/XiangShan/pull/6651)）
+- 工具更新
+  - （V2）更新 ready-to-run 中的 NEMU 参考模型版本（[#6620](https://github.com/OpenXiangShan/XiangShan/pull/6620)）
+
 ### 访存与缓存
 
 - RTL 新特性

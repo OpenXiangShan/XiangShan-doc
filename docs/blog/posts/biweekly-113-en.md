@@ -17,6 +17,19 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Backend
 
+- RTL Features
+  - (V3) Implement a hybrid compressed ROB (CROB) with ordinary compression and high-density compression for simple ALU instructions, adapting ordered retirement and DiffTest StoreEvent/ArchEvent handling to two-slot ROB entries ([#6648](https://github.com/OpenXiangShan/XiangShan/pull/6648))
+- Bug Fixes
+  - (V3) Reserve the FEX0 output slot for floating-point conversions targeting `x0`, ensuring resource occupancy is tracked even when no register is written ([#6649](https://github.com/OpenXiangShan/XiangShan/pull/6649))
+  - (V3) Raise an illegal-instruction exception for `aes64ks1i` when its round-number immediate `rnum > 10`, and remove related dead decode logic ([#6687](https://github.com/OpenXiangShan/XiangShan/pull/6687))
+  - (V3) Update yunsuan to select the CVT64Narrow shift bias by the destination floating-point format, fixing incorrect FP32-to-FP16 subnormal conversions ([#6689](https://github.com/OpenXiangShan/XiangShan/pull/6689))
+- Performance Optimizations
+  - (V3) Add early wakeup and bypass paths from FMA, FMUL, and loads to FMA's third source operand (`src2`), allowing multiplication to start before the addend is ready, with replay handling for canceled loads ([#6679](https://github.com/OpenXiangShan/XiangShan/pull/6679))
+- Code Refactoring
+  - (V3) Remove the unused F2vCfg, vector writeback ports, and related type definitions and writeback-counting logic from FEX0 ([#6651](https://github.com/OpenXiangShan/XiangShan/pull/6651))
+- Tool Updates
+  - (V2) Update the NEMU reference model version in ready-to-run ([#6620](https://github.com/OpenXiangShan/XiangShan/pull/6620))
+
 ### MemBlock and Cache
 
 - RTL Features

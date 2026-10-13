@@ -15,6 +15,9 @@ categories:
 
 ### 前端
 
+- RTL 新特性
+  - （V3）新增全相联 VictimBTB，保存 MainBTB 淘汰的分支表项并参与预测，支持表项原地训练和重复表项清理，并适配 SC 的预测与训练通路（[#6587](https://github.com/OpenXiangShan/XiangShan/pull/6587)）
+
 ### 后端
 
 - RTL 新特性

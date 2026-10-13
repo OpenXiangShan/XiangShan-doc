@@ -15,6 +15,9 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Frontend
 
+- RTL Features
+  - (V3) Add a fully associative VictimBTB to retain evicted MainBTB branch entries and use them for prediction, with in-place training and duplicate-entry invalidation, and adapt the SC prediction and training paths ([#6587](https://github.com/OpenXiangShan/XiangShan/pull/6587))
+
 ### Backend
 
 - RTL Features

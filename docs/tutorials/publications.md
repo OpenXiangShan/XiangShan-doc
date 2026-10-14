@@ -19,10 +19,6 @@ This paper is awarded all three available badges for artifacts evaluation.
 This paper has been selected as an IEEE Micro Top Pick from the 2022 Computer Architecture Conferences.
 The updated article is published at *IEEE Micro*'s annual special issue in July/August 2023. DOI: [10.1109/MM.2023.3273562](https://doi.org/10.1109/MM.2023.3273562).
 
-![Artifacts Available](../figs/artifacts_available_dl.jpg)
-![Artifacts Evaluated — Functional](../figs/artifacts_evaluated_functional_dl.jpg)
-![Results Reproduced](../figs/results_reproduced_dl.jpg)
-
 [Paper PDF](https://talks-pubs.xiangshan.cc/publications/micro2022-xiangshan.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/abstract/document/9923860) | [BibTeX](https://talks-pubs.xiangshan.cc/publications/micro2022-xiangshan.bib) | [Presentation Slides](https://talks-pubs.xiangshan.cc/publications/micro2022-xiangshan-slides.pdf) | [Presentation Video](https://www.bilibili.com/video/BV1FB4y1j7Jy) | [IEEE Micro Top Pick](https://ieeexplore.ieee.org/document/10122479)
 
 ## XiangShan Open-Source High Performance RISC-V Processor Design and Implementation
@@ -57,7 +53,7 @@ Published at *the 58th IEEE/ACM International Symposium on Microarchitecture (MI
 
 Our paper introduces DiffTest-H, a hardware-accelerated co-simulation framework for processor verification.
 It covers several optimizations to minimize communication overhead while preserving instruction-level debuggability.
-This framework is open-sourced and deployed in the XiangShan verification flow.
+This framework is open-sourced and deployed in the XiangShan verification flow, receiving all three available badges for artifact evaluation.
 
 [Paper PDF](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH.pdf) | [ACM Digital Library](https://dl.acm.org/doi/10.1145/3725843.3756108) | [BibTeX](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH.bib) | [Presentation Slides](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH-slides.pdf)
 

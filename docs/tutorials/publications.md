@@ -43,17 +43,21 @@ Published at *2023 IEEE International Test Conference in Asia (ITC-Asia)*. DOI: 
 
 [Paper PDF](https://talks-pubs.xiangshan.cc/publications/itcasia2023-chiseldft.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/document/10301174) | [Presentation Slides](https://talks-pubs.xiangshan.cc/publications/itcasia2023-chiseldft-slides.pdf)
 
+## GSIM: Accelerating RTL Simulation for Large-Scale Designs
+
+Published at *the 62nd ACM/IEEE Design Automation Conference (DAC 2025)*. DOI: [10.1109/DAC63849.2025.11133142](https://doi.org/10.1109/DAC63849.2025.11133142).
+
+GSIM analyzes the computation overhead of RTL simulation and proposes optimizations at the supernode, node, and bit levels. The resulting simulator successfully runs XiangShan; compared with Verilator, it achieves 7.34× speedup when booting Linux on XiangShan and 19.94× speedup when running CoreMark on Rocket.
+
+[Paper PDF](https://talks-pubs.xiangshan.cc/publications/dac2025-GSIM.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/document/11133142)
+
 ## DiffTest-H: Toward Semantic-Aware Communication in Hardware-Accelerated Processor Verification
 
 Published at *the 58th IEEE/ACM International Symposium on Microarchitecture (MICRO 2025)*. DOI: [10.1145/3725843.3756108](https://doi.org/10.1145/3725843.3756108).
 
 Our paper introduces DiffTest-H, a hardware-accelerated co-simulation framework for processor verification.
 It covers several optimizations to minimize communication overhead while preserving instruction-level debuggability.
-This framework is open-sourced and deployed in the XiangShan verification flow, receiving all three available badges for artifact evaluation.
-
-![Artifacts Available](https://talks-pubs.xiangshan.cc/publications/images/artifacts_available_dl.jpg)
-![Artifacts Evaluated — Functional](https://talks-pubs.xiangshan.cc/publications/images/artifacts_evaluated_functional_dl.jpg)
-![Results Reproduced](https://talks-pubs.xiangshan.cc/publications/images/results_reproduced_dl.jpg)
+This framework is open-sourced and deployed in the XiangShan verification flow.
 
 [Paper PDF](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH.pdf) | [ACM Digital Library](https://dl.acm.org/doi/10.1145/3725843.3756108) | [BibTeX](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH.bib) | [Presentation Slides](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH-slides.pdf)
 
@@ -72,12 +76,6 @@ Published at *the 2026 ACM/IEEE 53rd Annual International Symposium on Computer 
 This paper presents UnityChip Verification (UCV), a software-native verification platform that moves event scheduling and control into an explicit software event loop while treating simulators as pluggable backends. Evaluated on XiangShan and RocketChip, UCV delivers up to 25× faster runtime and 76% lower memory usage than Cocotb, and improves throughput by 16.6% when reusing existing verification components.
 
 [IEEE Xplore](https://ieeexplore.ieee.org/document/11617851)
-
-## GSIM: Accelerating RTL Simulation for Large-Scale Designs
-
-Published at *the 62nd Annual ACM/IEEE Design Automation Conference(DAC 2025)*. DOI: [10.1109/DAC63849.2025.11133142](https://doi.org/10.1109/DAC63849.2025.11133142)
-
-[Paper PDF](https://talks-pubs.xiangshan.cc/publications/dac2025-GSIM.pdf) | [IEEE Xplore](https://ieeexplore.ieee.org/document/11133142)
 
 ## Research on XiangShan
 

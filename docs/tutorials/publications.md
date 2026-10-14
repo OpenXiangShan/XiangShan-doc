@@ -57,6 +57,22 @@ This framework is open-sourced and deployed in the XiangShan verification flow, 
 
 [Paper PDF](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH.pdf) | [ACM Digital Library](https://dl.acm.org/doi/10.1145/3725843.3756108) | [BibTeX](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH.bib) | [Presentation Slides](https://talks-pubs.xiangshan.cc/publications/micro2025-DiffTestH-slides.pdf)
 
+## TraceRTL: Agile Performance Evaluation for Microarchitecture Exploration
+
+Published at *the 2026 IEEE International Symposium on High Performance Computer Architecture (HPCA 2026)*. DOI: [10.1109/HPCA68181.2026.11408626](https://doi.org/10.1109/HPCA68181.2026.11408626).
+
+TraceRTL is an agile, trace-driven methodology that decouples the functional and performance components of CPU RTL designs. It introduces TraceBridge for replaying traces across instruction-set formats and TraceDedup for eliminating redundant traces and accelerating simulation. Evaluated on XiangShan, TraceRTL achieves 99.87% and 99.86% accuracy on SPECint2017 and SPECfp2017, respectively, while TraceDedup accelerates simulation by 1.5×–1.8×.
+
+[IEEE Xplore](https://ieeexplore.ieee.org/document/11408626)
+
+## Democratizing and Accelerating Hardware Verification with Software-Native Optimization
+
+Published at *the 2026 ACM/IEEE 53rd Annual International Symposium on Computer Architecture (ISCA 2026)*. DOI: [10.1109/ISCA66397.2026.00154](https://doi.org/10.1109/ISCA66397.2026.00154).
+
+This paper presents UnityChip Verification (UCV), a software-native verification platform that moves event scheduling and control into an explicit software event loop while treating simulators as pluggable backends. Evaluated on XiangShan and RocketChip, UCV delivers up to 25× faster runtime and 76% lower memory usage than Cocotb, and improves throughput by 16.6% when reusing existing verification components.
+
+[IEEE Xplore](https://ieeexplore.ieee.org/document/11617851)
+
 ## GSIM: Accelerating RTL Simulation for Large-Scale Designs
 
 Published at *the 62nd Annual ACM/IEEE Design Automation Conference(DAC 2025)*. DOI: [10.1109/DAC63849.2025.11133142](https://doi.org/10.1109/DAC63849.2025.11133142)

@@ -57,6 +57,19 @@ Welcome to XiangShan biweekly column! Through this column, we will regularly sha
 
 ### Infra
 
+- FPGA DiffTest
+  - Add CRC-64 store hash checking for FPGA DiffTest, compressing store events into an ordered summary per core and Squash window and checking the corresponding store queue in NEMU to reduce verification data transfer ([difftest #973](https://github.com/OpenXiangShan/difftest/pull/973), [NEMU #1231](https://github.com/OpenXiangShan/NEMU/pull/1231))
+  - Add an optional host backend for FPGA platform-specific transport, supporting register access, workload loading, and DiffTest packet reception through a common transport interface shared with XDMA ([difftest #954](https://github.com/OpenXiangShan/difftest/pull/954))
+- NEMU Reference Model
+  - Fix duplicate writes during store-log restoration by rolling back only records whose instruction counts exceed the restore point, preventing incorrect boundary-record writes and duplicate store-checking events ([NEMU #1250](https://github.com/OpenXiangShan/NEMU/pull/1250))
+- Development and Debugging Tools
+  - Improve the Palladium (PLDM) build and release flow, fix issues with disabled DiffTest, clock gating, and DPI library linking, add the `pldm-lib` target for software-only library rebuilds, and document runtime and waveform debugging ([difftest #982](https://github.com/OpenXiangShan/difftest/pull/982))
+  - Improve the XiangShan AI-assisted debugging skill with single-case reproduction and evidence-driven root-cause analysis, add guidance for FSDB trimming, format conversion, and point-in-time waveform analysis, and standardize the documentation in English ([minjie-playground #39](https://github.com/OpenXiangShan/minjie-playground/pull/39), [minjie-playground #40](https://github.com/OpenXiangShan/minjie-playground/pull/40))
+  - Simplify the DiffTest AI development workflow documentation while retaining plan and progress-log requirements, removing prescribed file paths and the requirement to use a specific confirmation tool ([difftest #984](https://github.com/OpenXiangShan/difftest/pull/984))
+- GSIM Simulator
+  - Support dynamic-index writes when splitting one-dimensional arrays with up to 4096 elements, fix code generation instability caused by dependency construction and traversal order, and fix `DEBUG=1` builds ([gsim #138](https://github.com/OpenXiangShan/gsim/pull/138))
+  - Fix full-width `bits()` slices of signed values retaining C++ sign-extension bits by generating masks according to FIRRTL's unsigned-result semantics, preventing incorrect concatenation results, and add a regression covering all 32 five-bit input values ([gsim #141](https://github.com/OpenXiangShan/gsim/pull/141))
+
 ### XS-GEM5
 
 - Simulator alignment

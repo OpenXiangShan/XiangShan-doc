@@ -58,6 +58,19 @@ categories:
 
 ### 基础设施
 
+- FPGA DiffTest
+  - 支持基于 CRC-64 的 FPGA store hash 对比，将每核每个 Squash 窗口内的 store 事件压缩为有序摘要，由 NEMU 校验对应 store 队列，降低验证数据传输量（[difftest #973](https://github.com/OpenXiangShan/difftest/pull/973)、[NEMU #1231](https://github.com/OpenXiangShan/NEMU/pull/1231)）
+  - 为 FPGA 平台特定传输机制增加可选主机后端，支持寄存器访问、负载加载及 DiffTest 数据接收，并统一该后端与 XDMA 的传输接口（[difftest #954](https://github.com/OpenXiangShan/difftest/pull/954)）
+- NEMU 参考模型
+  - 修复 store-log 恢复中的重复写入，仅回滚指令数大于恢复点的记录，避免错误写回边界记录及产生重复的 store 对比事件（[NEMU #1250](https://github.com/OpenXiangShan/NEMU/pull/1250)）
+- 开发与调试工具
+  - 完善 Palladium（PLDM）构建与发布流程，修复关闭 DiffTest、时钟门控及 DPI 库链接问题，新增 `pldm-lib` 目标支持仅重编译软件库，并补充运行与波形调试文档（[difftest #982](https://github.com/OpenXiangShan/difftest/pull/982)）
+  - 完善香山 AI 辅助调试 skill，采用单用例复现与证据驱动的根因分析流程，补充 FSDB 裁剪、格式转换及定点波形分析指导，并统一英文文档（[minjie-playground #39](https://github.com/OpenXiangShan/minjie-playground/pull/39)、[minjie-playground #40](https://github.com/OpenXiangShan/minjie-playground/pull/40)）
+  - 简化 DiffTest 的 AI 开发流程文档，保留计划与进度记录要求，取消固定文件路径及特定确认工具的限制（[difftest #984](https://github.com/OpenXiangShan/difftest/pull/984)）
+- GSIM 仿真器
+  - 支持一维数组拆分时的动态索引写入（不超过 4096 个元素），修复依赖构建与遍历顺序造成的代码生成不稳定，并修复 `DEBUG=1` 构建（[gsim #138](https://github.com/OpenXiangShan/gsim/pull/138)）
+  - 修复有符号数全宽 `bits()` 切片保留 C++ 符号扩展高位的问题，按 FIRRTL 的无符号结果语义生成掩码，避免后续拼接结果错误，并新增覆盖全部 32 个 5 位输入值的回归测试（[gsim #141](https://github.com/OpenXiangShan/gsim/pull/141)）
+
 ### XS-GEM5
 
 - 模拟器对齐

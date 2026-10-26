@@ -17,7 +17,10 @@ categories:
 
 ### 前端
 
-- TODO
+- Bug 修复
+  - （V2）在 BPU、IFU 和 RAS 等通路中保留真实的 PC guard bit，修复 VS Bare / Sv48x4 地址被错误符号扩展导致的取指地址错误及 RAS 恢复后 `mepc` 被污染的问题（[#6720](https://github.com/OpenXiangShan/XiangShan/pull/6720)）
+  - 为 ICache 数据 ECC 检查传递真实的取指块结束偏移，修复误将请求有效信号作为偏移导致的 bank 选择错误（[#6635](https://github.com/OpenXiangShan/XiangShan/pull/6635)）
+  - 按取指请求分别传递 ICache 的 ITLB/PMP 和 TileLink 异常，修复第二个取指请求的异常传递，并按请求累积回填异常（[#6414](https://github.com/OpenXiangShan/XiangShan/pull/6414)）
 
 ### 后端
 

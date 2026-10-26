@@ -17,7 +17,10 @@ Welcome to the XiangShan biweekly column! Through this column, we will regularly
 
 ### Frontend
 
-- TODO
+- Bug fixes
+  - (V2) Preserve the true PC guard bit through the BPU, IFU, and RAS paths, fixing incorrect sign extension of VS Bare / Sv48x4 addresses that could produce invalid fetch addresses and corrupt `mepc` after RAS recovery ([#6720](https://github.com/OpenXiangShan/XiangShan/pull/6720))
+  - Pass the actual fetch-block end offset to ICache data ECC checks, fixing incorrect bank selection caused by using the request-valid signal as the offset ([#6635](https://github.com/OpenXiangShan/XiangShan/pull/6635))
+  - Propagate ICache ITLB/PMP and TileLink exceptions separately for each fetch request, fixing exception propagation for the second fetch request and accumulating refill exceptions per request ([#6414](https://github.com/OpenXiangShan/XiangShan/pull/6414))
 
 ### Backend
 

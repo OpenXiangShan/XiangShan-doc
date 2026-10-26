@@ -24,7 +24,10 @@ categories:
 
 ### 后端
 
-- TODO
+- Bug 修复
+  - （V3）补齐新译码单元对 Smrnmi 扩展的 `mnret` 和 Sdext 扩展的 `dret` 指令的译码及微操作映射（[#6692](https://github.com/OpenXiangShan/XiangShan/pull/6692)）
+- 性能优化
+  - （V3）将默认 ROB 容量从 144 项扩大至 160 项（[#6730](https://github.com/OpenXiangShan/XiangShan/pull/6730)）
 
 ### 访存与缓存
 

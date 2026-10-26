@@ -33,7 +33,13 @@ Welcome to the XiangShan biweekly column! Through this column, we will regularly
 
 ### Infra
 
-- TODO
+- FPGA DiffTest
+  - Add dynamically switchable FAST/SLOW reference execution modes and fork-based parallel checking for single-core XDMA configurations. SLOW workers fully check the DUT, validate results in segment order, and can take over when FAST execution diverges ([difftest #980](https://github.com/OpenXiangShan/difftest/pull/980), [NEMU #1247](https://github.com/OpenXiangShan/NEMU/pull/1247))
+  - Support recording and standalone replay of single-core REF-driving traces, capturing the DUT windows that drive the reference model in SLOW, FAST, and FORK modes, with plain and ZSTD-compressed storage ([difftest #981](https://github.com/OpenXiangShan/difftest/pull/981))
+- NEMU Reference Model
+  - Add mainline Kunminghu V2 configurations for single-core and dual-core REF/debug REF and standalone execution, integrate the reference models into CI builds and releases, separate V2/V3 behavior differences through individual feature options, and share fixes for HLVX permissions, LR atomic-access permissions, double traps, and vector-store state handling ([NEMU #1246](https://github.com/OpenXiangShan/NEMU/pull/1246))
+  - Fix lost first-page writes when non-segment, unit-stride vector stores fault across a page boundary, preserving completed partial writes and their DiffTest store records on both mainline and the Kunminghu V2 branch ([NEMU #1240](https://github.com/OpenXiangShan/NEMU/pull/1240), [NEMU #1241](https://github.com/OpenXiangShan/NEMU/pull/1241))
+  - Optimize StoreHash software CRC checking by replacing nibble-wise table lookups with 64-bit word folding, reducing per-record checking overhead ([NEMU #1252](https://github.com/OpenXiangShan/NEMU/pull/1252))
 
 ### XS-GEM5
 

@@ -29,7 +29,20 @@ categories:
 
 ### XSAI
 
-- TODO
+- RTL 新特性
+  - 支持 CUTE 独立异步时钟域（[CUTE #44](https://github.com/OpenXiangShan/CUTE/pull/44)、[XSAI #135](https://github.com/OpenXiangShan/XSAI/pull/135)）
+  - 优化 CUTE 多通道访存调度与矩阵寄存器写入，完善相应 DiffTest 支持（[CUTE #46](https://github.com/OpenXiangShan/CUTE/pull/46)、[difftest #991](https://github.com/OpenXiangShan/difftest/pull/991)、[XSAI #136](https://github.com/OpenXiangShan/XSAI/pull/136)）
+- Bug 修复
+  - 修复 XSAICache HintQueue 容量预留与重试处理问题，恢复矩阵预取总开关的控制作用（[XSAICache #10](https://github.com/OpenXiangShan/XSAICache/pull/10)）
+- 调试工具
+  - 加速 NEMU 矩阵寄存器 hash 计算（[NEMU #1248](https://github.com/OpenXiangShan/NEMU/pull/1248)）
+  - 为矩阵 CSR 和配置状态启用 DiffTest Delta 传输（[difftest #985](https://github.com/OpenXiangShan/difftest/pull/985)、[XSAI #134](https://github.com/OpenXiangShan/XSAI/pull/134)）
+  - 修复 NEMU 矩阵存储回滚时的内存恢复不完整问题（[NEMU #1251](https://github.com/OpenXiangShan/NEMU/pull/1251)）
+  - 修复 DiffTest Replay 在反压下重复记录和跳过事件的问题（[difftest #990](https://github.com/OpenXiangShan/difftest/pull/990)）
+  - 优化 DiffTest MMA 验证后端的内存管理、数据拷贝与计算内核（[difftest #994](https://github.com/OpenXiangShan/difftest/pull/994)、[difftest #996](https://github.com/OpenXiangShan/difftest/pull/996)、[difftest #999](https://github.com/OpenXiangShan/difftest/pull/999)、[difftest #1000](https://github.com/OpenXiangShan/difftest/pull/1000)、[difftest #1001](https://github.com/OpenXiangShan/difftest/pull/1001)、[difftest #1002](https://github.com/OpenXiangShan/difftest/pull/1002)）
+  - 完善 xsai-env 可选源码与测试依赖初始化（[xsai-env #1](https://github.com/OpenXiangShan/xsai-env/pull/1)、[xsai-env #2](https://github.com/OpenXiangShan/xsai-env/pull/2)）
+- 代码质量
+  - 重构 NEMU 矩阵访存接口，分离事件分发与物理内存访问（[NEMU #1249](https://github.com/OpenXiangShan/NEMU/pull/1249)）
 
 ### 基础设施
 

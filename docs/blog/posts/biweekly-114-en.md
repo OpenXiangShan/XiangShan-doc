@@ -29,7 +29,20 @@ Welcome to the XiangShan biweekly column! Through this column, we will regularly
 
 ### XSAI
 
-- TODO
+- RTL features
+  - Support an independent asynchronous clock domain for CUTE ([CUTE #44](https://github.com/OpenXiangShan/CUTE/pull/44), [XSAI #135](https://github.com/OpenXiangShan/XSAI/pull/135))
+  - Optimize CUTE multi-channel memory access scheduling and matrix register writes, with corresponding DiffTest updates ([CUTE #46](https://github.com/OpenXiangShan/CUTE/pull/46), [difftest #991](https://github.com/OpenXiangShan/difftest/pull/991), [XSAI #136](https://github.com/OpenXiangShan/XSAI/pull/136))
+- Bug fixes
+  - Fix HintQueue capacity reservation and retry handling in XSAICache, and restore the global enable control for matrix prefetching ([XSAICache #10](https://github.com/OpenXiangShan/XSAICache/pull/10))
+- Debugging tools
+  - Speed up NEMU matrix register hash computation ([NEMU #1248](https://github.com/OpenXiangShan/NEMU/pull/1248))
+  - Enable DiffTest Delta transfers for matrix CSR and configuration states ([difftest #985](https://github.com/OpenXiangShan/difftest/pull/985), [XSAI #134](https://github.com/OpenXiangShan/XSAI/pull/134))
+  - Fix incomplete memory restoration when rolling back NEMU matrix stores ([NEMU #1251](https://github.com/OpenXiangShan/NEMU/pull/1251))
+  - Fix duplicate event recording and skipped events under backpressure in DiffTest Replay ([difftest #990](https://github.com/OpenXiangShan/difftest/pull/990))
+  - Optimize memory management, data copying, and compute kernels in the DiffTest MMA verification backend ([difftest #994](https://github.com/OpenXiangShan/difftest/pull/994), [difftest #996](https://github.com/OpenXiangShan/difftest/pull/996), [difftest #999](https://github.com/OpenXiangShan/difftest/pull/999), [difftest #1000](https://github.com/OpenXiangShan/difftest/pull/1000), [difftest #1001](https://github.com/OpenXiangShan/difftest/pull/1001), [difftest #1002](https://github.com/OpenXiangShan/difftest/pull/1002))
+  - Improve initialization of optional source code and test dependencies in xsai-env ([xsai-env #1](https://github.com/OpenXiangShan/xsai-env/pull/1), [xsai-env #2](https://github.com/OpenXiangShan/xsai-env/pull/2))
+- Code quality
+  - Refactor NEMU matrix memory access interfaces to separate event dispatch from physical memory access ([NEMU #1249](https://github.com/OpenXiangShan/NEMU/pull/1249))
 
 ### Infra
 

@@ -28,7 +28,12 @@ categories:
 
 ### 访存与缓存
 
-- TODO
+- RTL 新特性
+  - 为 CoupledL2 增加按 set 分 bank 的 Directory/Data SRAM、hint 队列背压及预取准入限制，并更新集成至 XiangShan（[XSCache #36](https://github.com/OpenXiangShan/XSCache/pull/36)、[#6738](https://github.com/OpenXiangShan/XiangShan/pull/6738)）
+  - 以 CustomL1L2Fabric 替换通用 L1–L2 互连，并加入 miss 跟踪、资源预留和可取消的推测 A 通道缓冲，以缩短 DCache 到 L2 的请求路径（[#6713](https://github.com/OpenXiangShan/XiangShan/pull/6713)）
+- Bug 修复
+  - 在 StoreQueue 中比较同一候选域内的虚拟地址与物理地址匹配掩码，不一致时触发 replay，修复地址别名场景下 load 转发较旧 store 数据的问题（[#6693](https://github.com/OpenXiangShan/XiangShan/pull/6693)）
+  - 将 TLB 返回的指针屏蔽后地址传入 StoreUnit 后续流水级，使 store 和 CBO 异常在 `mtval`/`stval` 中报告正确地址（[#6742](https://github.com/OpenXiangShan/XiangShan/pull/6742)）
 
 ### XSAI
 

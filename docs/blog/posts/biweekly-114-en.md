@@ -28,7 +28,12 @@ Welcome to the XiangShan biweekly column! Through this column, we will regularly
 
 ### MemBlock and Cache
 
-- TODO
+- RTL features
+  - Add set-banked Directory/Data SRAMs, hint-queue backpressure, and prefetch-admission throttling to CoupledL2, and integrate them into XiangShan ([XSCache #36](https://github.com/OpenXiangShan/XSCache/pull/36), [#6738](https://github.com/OpenXiangShan/XiangShan/pull/6738))
+  - Replace the generic L1–L2 interconnect with CustomL1L2Fabric and add miss tracking, resource reservation, and a cancellable speculative A-channel buffer to shorten the DCache-to-L2 request path ([#6713](https://github.com/OpenXiangShan/XiangShan/pull/6713))
+- Bug fixes
+  - Compare virtual- and physical-address match masks over the same StoreQueue candidate domain and replay on disagreement, fixing loads forwarding stale store data under address aliasing ([#6693](https://github.com/OpenXiangShan/XiangShan/pull/6693))
+  - Carry the TLB's pointer-masked address through subsequent StoreUnit stages so store and CBO faults report the correct address in `mtval`/`stval` ([#6742](https://github.com/OpenXiangShan/XiangShan/pull/6742))
 
 ### XSAI
 

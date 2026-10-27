@@ -60,10 +60,21 @@ Welcome to the XiangShan biweekly column! Through this column, we will regularly
 - FPGA DiffTest
   - Add dynamically switchable FAST/SLOW reference execution modes and fork-based parallel checking for single-core XDMA configurations. SLOW workers fully check the DUT, validate results in segment order, and can take over when FAST execution diverges ([difftest #980](https://github.com/OpenXiangShan/difftest/pull/980), [NEMU #1247](https://github.com/OpenXiangShan/NEMU/pull/1247))
   - Support recording and standalone replay of single-core REF-driving traces, capturing the DUT windows that drive the reference model in SLOW, FAST, and FORK modes, with plain and ZSTD-compressed storage ([difftest #981](https://github.com/OpenXiangShan/difftest/pull/981))
+  - Add BOOM DiffTest configuration and FPGA board-interface support, adapt initial-commit comparison and timeout handling, share CPU-side AXI width definitions, and connect memory and MMIO interfaces to DDR and UART16550 respectively ([difftest #998](https://github.com/OpenXiangShan/difftest/pull/998), [env-scripts #192](https://github.com/OpenXiangShan/env-scripts/pull/192), [rocket-chip #46](https://github.com/OpenXiangShan/rocket-chip/pull/46))
 - NEMU Reference Model
   - Add mainline Kunminghu V2 configurations for single-core and dual-core REF/debug REF and standalone execution, integrate the reference models into CI builds and releases, separate V2/V3 behavior differences through individual feature options, and share fixes for HLVX permissions, LR atomic-access permissions, double traps, and vector-store state handling ([NEMU #1246](https://github.com/OpenXiangShan/NEMU/pull/1246))
   - Fix lost first-page writes when non-segment, unit-stride vector stores fault across a page boundary, preserving completed partial writes and their DiffTest store records on both mainline and the Kunminghu V2 branch ([NEMU #1240](https://github.com/OpenXiangShan/NEMU/pull/1240), [NEMU #1241](https://github.com/OpenXiangShan/NEMU/pull/1241))
   - Optimize StoreHash software CRC checking by replacing nibble-wise table lookups with 64-bit word folding, reducing per-record checking overhead ([NEMU #1252](https://github.com/OpenXiangShan/NEMU/pull/1252))
+  - Organize NEMU configurations into shared base, processor-version, and feature layers to reduce duplication, and add `make config-check` to validate composition, dependencies, and effective values ([NEMU #1259](https://github.com/OpenXiangShan/NEMU/pull/1259))
+  - Expand guest memory in the diff-spike configuration to 32 GiB and synchronize reference-model memory size during initialization, fixing SPEC checkpoint loading failures caused by images exceeding memory capacity ([NEMU #1267](https://github.com/OpenXiangShan/NEMU/pull/1267))
+- Test Workloads, Sampling and Checkpointing
+  - Add a BOOM v4 DiffTest platform device tree describing ISA, memory, and peripherals, with `DEFAULT_DTB=boom` selecting the platform for Linux workload builds ([workload-builder #81](https://github.com/OpenXiangShan/workload-builder/pull/81))
+- Development and Debugging Tools
+  - Carry descriptive metadata across module boundaries for HPM events, document TL/CHI L2 events, and provide an `hpm.csv` export utility ([Utility #157](https://github.com/OpenXiangShan/Utility/pull/157), [CoupledL2 #527](https://github.com/OpenXiangShan/CoupledL2/pull/527))
+  - Fix C++11 build compatibility in shared checkers and REF-driving trace recording code, restoring the existing `libdifftest.so` build flow ([difftest #1003](https://github.com/OpenXiangShan/difftest/pull/1003))
+- GSIM Simulator
+  - Add FST simulation waveform generation with controls for enabling dumps, output paths, array size limits, and next-state signal filtering to aid simulation debugging ([gsim #109](https://github.com/OpenXiangShan/gsim/pull/109))
+  - Support `%b` binary-format output, fixing assertion failures triggered by Chisel `Binary` formatting ([gsim #142](https://github.com/OpenXiangShan/gsim/pull/142))
 
 ### XS-GEM5
 

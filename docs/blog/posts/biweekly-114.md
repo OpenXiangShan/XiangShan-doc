@@ -60,10 +60,21 @@ categories:
 - FPGA DiffTest
   - 新增可动态切换的 FAST/SLOW 参考执行模式，并在单核 XDMA 配置下支持基于 fork 的并行检查，由 SLOW 进程完整检查 DUT、按段确认结果，并在 FAST 执行分歧时接替（[difftest #980](https://github.com/OpenXiangShan/difftest/pull/980)、[NEMU #1247](https://github.com/OpenXiangShan/NEMU/pull/1247)）
   - 支持单核 REF-driving trace 的录制与独立回放，记录 SLOW、FAST 和 FORK 模式下驱动参考模型的 DUT 窗口，支持普通及 ZSTD 压缩格式（[difftest #981](https://github.com/OpenXiangShan/difftest/pull/981)）
+  - 支持 BOOM 的 DiffTest 配置和 FPGA 板级接口，适配首条指令比较及启动超时，统一 CPU 侧 AXI 位宽，并将内存和 MMIO 接口分别连接至 DDR 与 UART16550（[difftest #998](https://github.com/OpenXiangShan/difftest/pull/998)、[env-scripts #192](https://github.com/OpenXiangShan/env-scripts/pull/192)、[rocket-chip #46](https://github.com/OpenXiangShan/rocket-chip/pull/46)）
 - NEMU 参考模型
   - 在主线新增昆明湖 V2 单核、双核 REF、调试 REF 及独立运行配置，将参考模型纳入 CI 构建与发布，并以独立功能配置区分 V2/V3 行为差异，同步 HLVX 权限、LR 原子访问权限、双重陷阱及向量存储状态等公共修复（[NEMU #1246](https://github.com/OpenXiangShan/NEMU/pull/1246)）
   - 修复非 segment、单位步长向量存储跨页遇到异常时首个页面写入丢失的问题，保留已完成的部分写入及对应 DiffTest 存储记录，并同步至主线和昆明湖 V2 分支（[NEMU #1240](https://github.com/OpenXiangShan/NEMU/pull/1240)、[NEMU #1241](https://github.com/OpenXiangShan/NEMU/pull/1241)）
   - 优化 StoreHash 的 CRC 软件校验，将逐半字节查表改为按 64 位字折叠计算，降低存储记录校验开销（[NEMU #1252](https://github.com/OpenXiangShan/NEMU/pull/1252)）
+  - 按基础配置、处理器版本和功能片段分层组织 NEMU 配置，减少公共设置重复，并新增 `make config-check` 检查配置组合、依赖及实际生效值（[NEMU #1259](https://github.com/OpenXiangShan/NEMU/pull/1259)）
+  - 将 diff-spike 配置的客户机内存扩展至 32 GiB，并在初始化时同步参考模型内存大小，修复 SPEC checkpoint 因镜像超过内存容量而加载失败的问题（[NEMU #1267](https://github.com/OpenXiangShan/NEMU/pull/1267)）
+- 测试负载及采样切片
+  - 新增 BOOM v4 DiffTest 平台设备树，描述 ISA、内存及外设配置，支持通过 `DEFAULT_DTB=boom` 选择 Linux 负载构建目标（[workload-builder #81](https://github.com/OpenXiangShan/workload-builder/pull/81)）
+- 开发与调试工具
+  - 为 HPM 事件增加跨模块传递的描述元数据，补充 TL/CHI L2 事件说明，并提供 `hpm.csv` 导出工具（[Utility #157](https://github.com/OpenXiangShan/Utility/pull/157)、[CoupledL2 #527](https://github.com/OpenXiangShan/CoupledL2/pull/527)）
+  - 修复共享检查器和 REF-driving trace 录制代码的 C++11 构建兼容性，恢复现有 `libdifftest.so` 构建流程（[difftest #1003](https://github.com/OpenXiangShan/difftest/pull/1003)）
+- GSIM 仿真器
+  - 支持生成 FST 仿真波形，提供波形开关、输出路径及数组规模和次态信号过滤选项，便于调试仿真行为（[gsim #109](https://github.com/OpenXiangShan/gsim/pull/109)）
+  - 支持 `%b` 二进制格式输出，修复 Chisel `Binary` 格式打印触发断言的问题（[gsim #142](https://github.com/OpenXiangShan/gsim/pull/142)）
 
 ### XS-GEM5
 

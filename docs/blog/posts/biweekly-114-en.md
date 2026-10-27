@@ -82,13 +82,13 @@ Welcome to the XiangShan biweekly column! Through this column, we will regularly
   - Align active-region qualification in the XsStream prefetcher ([XS-GEM5 #1223](https://github.com/OpenXiangShan/GEM5/pull/1223))
   - Enable per-thread MBTB victim caches and fix invalidation on shared MBTB writes ([XS-GEM5 #1235](https://github.com/OpenXiangShan/GEM5/pull/1235), [XS-GEM5 #1236](https://github.com/OpenXiangShan/GEM5/pull/1236))
 - New Feature Exploration
-  - Add MLP-aware SMT fetch policies and rework the BlockStall policy ([XS-GEM5 #1180](https://github.com/OpenXiangShan/GEM5/pull/1180))
-  - Add middle-end resource partitioning for SpMT ([XS-GEM5 #1231](https://github.com/OpenXiangShan/GEM5/pull/1231))
+  - Add MLP-aware SMT fetch policies and rework the BlockStall policy ([XS-GEM5 #1180](https://github.com/OpenXiangShan/GEM5/pull/1180)) [Thanks to our colleagues from Alibaba for their contribution]
+  - Add middle-end resource partitioning for SpMT ([XS-GEM5 #1231](https://github.com/OpenXiangShan/GEM5/pull/1231)) [Thanks to our colleagues from Alibaba for their contribution]
   - Add Hybrid CROB support ([XS-GEM5 #1189](https://github.com/OpenXiangShan/GEM5/pull/1189))
 - Bug Fixes
   - Fix uninitialized memory access sizes during delayed translation ([XS-GEM5 #1214](https://github.com/OpenXiangShan/GEM5/pull/1214))
-  - Fix load replay states incorrectly set on store/AMO send failures ([XS-GEM5 #1241](https://github.com/OpenXiangShan/GEM5/pull/1241))
-  - Fix SMT LSQ DynamicBorrowing donor detection ([XS-GEM5 #1257](https://github.com/OpenXiangShan/GEM5/pull/1257))
+  - Fix load replay states incorrectly set on store/AMO send failures ([XS-GEM5 #1241](https://github.com/OpenXiangShan/GEM5/pull/1241)) [Thanks to our colleagues from Alibaba for their contribution]
+  - Fix SMT LSQ DynamicBorrowing donor detection ([XS-GEM5 #1257](https://github.com/OpenXiangShan/GEM5/pull/1257)) [Thanks to our colleagues from Alibaba for their contribution]
   - Fix decode efficiency and L2 TLB L0 miss statistics ([XS-GEM5 #1215](https://github.com/OpenXiangShan/GEM5/pull/1215))
 - Infrastructure
   - Support RISC-V Zimop instructions ([XS-GEM5 #1224](https://github.com/OpenXiangShan/GEM5/pull/1224))

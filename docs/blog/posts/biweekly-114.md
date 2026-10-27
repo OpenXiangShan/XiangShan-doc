@@ -78,7 +78,23 @@ categories:
 
 ### XS-GEM5
 
-- TODO
+- 模拟器对齐
+  - 对齐 XsStream 预取器的活跃区域判断（[XS-GEM5 #1223](https://github.com/OpenXiangShan/GEM5/pull/1223)）
+  - 启用每线程 MBTB victim cache 并修复共享 MBTB 写入时的失效行为（[XS-GEM5 #1235](https://github.com/OpenXiangShan/GEM5/pull/1235)、[XS-GEM5 #1236](https://github.com/OpenXiangShan/GEM5/pull/1236)）
+- 新特性探索
+  - 增加 MLP-aware SMT 取指策略并重构 BlockStall 策略（[XS-GEM5 #1180](https://github.com/OpenXiangShan/GEM5/pull/1180)）
+  - 增加 SpMT 中端资源分区支持（[XS-GEM5 #1231](https://github.com/OpenXiangShan/GEM5/pull/1231)）
+  - 增加 Hybrid CROB 支持（[XS-GEM5 #1189](https://github.com/OpenXiangShan/GEM5/pull/1189)）
+- Bug 修复
+  - 修复延迟地址翻译时访存宽度未初始化的问题（[XS-GEM5 #1214](https://github.com/OpenXiangShan/GEM5/pull/1214)）
+  - 修复 store/AMO 发送失败时错误设置 load replay 状态的问题（[XS-GEM5 #1241](https://github.com/OpenXiangShan/GEM5/pull/1241)）
+  - 修复 SMT LSQ DynamicBorrowing donor 检测（[XS-GEM5 #1257](https://github.com/OpenXiangShan/GEM5/pull/1257)）
+  - 修复 decode efficiency 和 L2 TLB L0 miss 统计（[XS-GEM5 #1215](https://github.com/OpenXiangShan/GEM5/pull/1215)）
+- 基础设施
+  - 支持 RISC-V Zimop 指令（[XS-GEM5 #1224](https://github.com/OpenXiangShan/GEM5/pull/1224)）
+  - 完善 trace 模式回归与 TRACERTL/NEMU trace 支持（[XS-GEM5 #1210](https://github.com/OpenXiangShan/GEM5/pull/1210)、[XS-GEM5 #1211](https://github.com/OpenXiangShan/GEM5/pull/1211)、[XS-GEM5 #1227](https://github.com/OpenXiangShan/GEM5/pull/1227)）
+  - 恢复 macOS 构建并增加手动 smoke CI（[XS-GEM5 #1228](https://github.com/OpenXiangShan/GEM5/pull/1228)）
+  - 完善每周性能回归和 PR Quick Check（[XS-GEM5 #1233](https://github.com/OpenXiangShan/GEM5/pull/1233)、[XS-GEM5 #1237](https://github.com/OpenXiangShan/GEM5/pull/1237)）
 
 ## 性能评估
 

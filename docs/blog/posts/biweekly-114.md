@@ -9,7 +9,15 @@ categories:
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 114 期双周报。
 
-<!-- TODO: 补充本期开发进展概述。 -->
+2026 RISC-V 中国峰会已于 10 月 18 日至 20 日在深圳会展中心（福田）成功举办。中国科学院计算技术研究所副所长、北京开源芯片研究院首席科学家包云岗研究员在香山如意生态大会上作了题为《RISC-V：十二年认知之路与十年趋势展望（2015-2035）》的报告，回顾 RISC-V 的发展历程，展望至 2035 年的产业趋势，并分享了对开源芯片技术与产业演进的见解。
+
+![包云岗研究员在香山如意生态大会上作报告](./figs/biweekly-114/rvsc1.jpg)
+
+峰会期间，香山团队举办了香山处理器专场，介绍了香山处理器的高性能架构演进与工业级验证实践。该专场的演讲 PPT 现已全部公开，欢迎访问 [Talks-and-Publications](https://github.com/OpenXiangShan/Talks-and-Publications)。
+
+![团队合影](./figs/biweekly-114/rvsc2.jpg)
+
+关于香山近期开发进展，前端修复地址符号扩展、ICache ECC 检查及异常传递问题；后端补齐新译码单元对 `mnret`、`dret` 指令的支持，并将默认 ROB 容量扩大至 160 项；访存与缓存推进 CoupledL2 分 bank 设计和专用 L1–L2 互连，修复 StoreQueue 转发与异常地址报告问题；XSAI 支持 CUTE 独立异步时钟域，优化多通道访存调度与矩阵寄存器写入，并完善矩阵验证与调试工具；基础设施增强 FPGA DiffTest 并行检查和 trace 录制回放，完善昆明湖 V2 参考模型集成，修复向量存储异常处理问题并优化存储校验。
 
 <!-- more -->
 
@@ -98,14 +106,15 @@ categories:
 
 ## 性能评估
 
-<!-- TODO: 核对处理器、SoC 及编译参数配置，补充 commit、评估日期与性能数据。 -->
+<!-- TODO: 核对处理器、SoC 及完整编译参数配置。 -->
+<!-- 数据来源：cr261023-f85a1f71d-DefaultConfig/score-spec06-rva23-novec-gcc16-1.0c.txt 和 score-spec06-rv64gcb-xscc-1.0c.txt；原始每 GHz 分数乘以 3，保留两位小数。 -->
 
 处理器及 SoC 参数如下所示：
 
 | 参数      | 选项       |
 | --------- | ---------- |
-| commit    | TBD        |
-| 日期      | TBD        |
+| commit    | f85a1f71d  |
+| 日期      | 2026/10/23 |
 | L1 ICache | 64 KB      |
 | L1 DCache | 64 KB      |
 | L2 Cache  | 2 MB       |
@@ -118,24 +127,24 @@ categories:
 
 | SPECint 2006 @ 3 GHz | GCC16  | XSCC   | SPECfp 2006 @ 3 GHz | GCC16  | XSCC   |
 | :------------------- | :----: | :----: | :------------------ | :----: | :----: |
-| 400.perlbench        | TBD    | TBD    | 410.bwaves          | TBD    | TBD    |
-| 401.bzip2            | TBD    | TBD    | 416.gamess          | TBD    | TBD    |
-| 403.gcc              | TBD    | TBD    | 433.milc            | TBD    | TBD    |
-| 429.mcf              | TBD    | TBD    | 434.zeusmp          | TBD    | TBD    |
-| 445.gobmk            | TBD    | TBD    | 435.gromacs         | TBD    | TBD    |
-| 456.hmmer            | TBD    | TBD    | 436.cactusADM       | TBD    | TBD    |
-| 458.sjeng            | TBD    | TBD    | 437.leslie3d        | TBD    | TBD    |
-| 462.libquantum       | TBD    | TBD    | 444.namd            | TBD    | TBD    |
-| 464.h264ref          | TBD    | TBD    | 447.dealII          | TBD    | TBD    |
-| 471.omnetpp          | TBD    | TBD    | 450.soplex          | TBD    | TBD    |
-| 473.astar            | TBD    | TBD    | 453.povray          | TBD    | TBD    |
-| 483.xalancbmk        | TBD    | TBD    | 454.calculix        | TBD    | TBD    |
-| GEOMEAN              | TBD    | TBD    | 459.GemsFDTD        | TBD    | TBD    |
-|                      |        |        | 465.tonto           | TBD    | TBD    |
-|                      |        |        | 470.lbm             | TBD    | TBD    |
-|                      |        |        | 481.wrf             | TBD    | TBD    |
-|                      |        |        | 482.sphinx3         | TBD    | TBD    |
-|                      |        |        | GEOMEAN             | TBD    | TBD    |
+| 400.perlbench        | 57.53  | 60.40  | 410.bwaves          | 146.72 | 150.20 |
+| 401.bzip2            | 30.95  | 32.28  | 416.gamess          | 61.81  | 57.66  |
+| 403.gcc              | 64.24  | 62.22  | 433.milc            | 77.21  | 74.60  |
+| 429.mcf              | 84.00  | 79.38  | 434.zeusmp          | 78.97  | 78.48  |
+| 445.gobmk            | 45.78  | 44.21  | 435.gromacs         | 43.31  | 42.56  |
+| 456.hmmer            | 55.18  | 67.22  | 436.cactusADM       | 89.34  | 95.97  |
+| 458.sjeng            | 45.02  | 46.60  | 437.leslie3d        | 68.38  | 67.27  |
+| 462.libquantum       | 167.32 | 381.31 | 444.namd            | 47.58  | 48.50  |
+| 464.h264ref          | 69.68  | 73.92  | 447.dealII          | 85.14  | 163.77 |
+| 471.omnetpp          | 59.22  | 60.62  | 450.soplex          | 69.18  | 80.89  |
+| 473.astar            | 34.86  | 33.78  | 453.povray          | 79.90  | 69.32  |
+| 483.xalancbmk        | 91.13  | 136.41 | 454.calculix        | 47.76  | 47.60  |
+| GEOMEAN              | 60.48  | 68.41  | 459.GemsFDTD        | 82.64  | 82.59  |
+|                      |        |        | 465.tonto           | 60.73  | 51.96  |
+|                      |        |        | 470.lbm             | 128.11 | 151.49 |
+|                      |        |        | 481.wrf             | 62.47  | 61.18  |
+|                      |        |        | 482.sphinx3         | 68.15  | 98.99  |
+|                      |        |        | GEOMEAN             | 72.56  | 76.95  |
 
 编译参数如下所示：
 

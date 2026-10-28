@@ -9,7 +9,15 @@ categories:
 
 Welcome to the XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 114th issue of the biweekly report.
 
-<!-- TODO: Summarize the development highlights for this issue. -->
+RISC-V Summit China 2026 was successfully held from October 18 to 20 at the Shenzhen Convention and Exhibition Center (Futian). Researcher Bao Yungang, Deputy Director of the Institute of Computing Technology, Chinese Academy of Sciences, and Chief Scientist of the Beijing Institute of Open Source Chip, delivered a talk at the XiangShan Ruyi Ecosystem Conference titled "RISC-V: A 12-Year Journey of Understanding and a 10-Year Outlook on Trends (2015-2035)" (translated from the Chinese title). He reviewed the development of RISC-V, discussed industry trends through 2035, and shared his perspectives on the evolution of open-source chip technology and the industry.
+
+![Bao Yungang presenting at the XiangShan Ruyi Ecosystem Conference](./figs/biweekly-114/rvsc1.jpg)
+
+During the summit, the XiangShan team hosted the XiangShan Processor Session, featuring presentations on the evolution of XiangShan's high-performance architecture and industrial-grade validation practices. All presentation slides from the session are now publicly available in [Talks-and-Publications](https://github.com/OpenXiangShan/Talks-and-Publications).
+
+![Team photo](./figs/biweekly-114/rvsc2.jpg)
+
+Recent XiangShan development includes frontend fixes for address sign extension, ICache ECC checks, and exception propagation; backend support for `mnret` and `dret` in the new decoder and an increase in the default ROB capacity to 160 entries; banked CoupledL2 SRAMs and a custom L1–L2 interconnect, alongside fixes for StoreQueue forwarding and fault-address reporting; and an independent asynchronous CUTE clock domain, improved multi-channel memory access scheduling and matrix register writes, and enhanced matrix verification and debugging tools in XSAI. Infrastructure updates strengthen FPGA DiffTest parallel checking and trace recording/replay, improve Kunminghu V2 reference-model integration, fix vector-store exception handling, and optimize store checking.
 
 <!-- more -->
 
@@ -98,14 +106,15 @@ Welcome to the XiangShan biweekly column! Through this column, we will regularly
 
 ## Performance Evaluation
 
-<!-- TODO: Confirm the processor/SoC and compiler configurations, then fill in the commit, evaluation date, and performance scores. -->
+<!-- TODO: Confirm the processor/SoC and full compiler configurations. -->
+<!-- Sources: cr261023-f85a1f71d-DefaultConfig/score-spec06-rva23-novec-gcc16-1.0c.txt and score-spec06-rv64gcb-xscc-1.0c.txt; multiply the original per-GHz scores by 3 and display two decimal places. -->
 
 Processor and SoC parameters are as follows:
 
 | Parameters           | Options    |
 | -------------------- | ---------- |
-| Commit               | TBD        |
-| Date                 | TBD        |
+| Commit               | f85a1f71d  |
+| Date                 | 2026/10/23 |
 | L1 ICache            | 64 KB      |
 | L1 DCache            | 64 KB      |
 | L2 Cache             | 2 MB       |
@@ -118,24 +127,24 @@ The SPEC CPU2006 scores are as follows:
 
 | SPECint 2006 @ 3 GHz | GCC16  | XSCC   | SPECfp 2006 @ 3 GHz | GCC16  | XSCC   |
 | :------------------- | :----: | :----: | :------------------ | :----: | :----: |
-| 400.perlbench        | TBD    | TBD    | 410.bwaves          | TBD    | TBD    |
-| 401.bzip2            | TBD    | TBD    | 416.gamess          | TBD    | TBD    |
-| 403.gcc              | TBD    | TBD    | 433.milc            | TBD    | TBD    |
-| 429.mcf              | TBD    | TBD    | 434.zeusmp          | TBD    | TBD    |
-| 445.gobmk            | TBD    | TBD    | 435.gromacs         | TBD    | TBD    |
-| 456.hmmer            | TBD    | TBD    | 436.cactusADM       | TBD    | TBD    |
-| 458.sjeng            | TBD    | TBD    | 437.leslie3d        | TBD    | TBD    |
-| 462.libquantum       | TBD    | TBD    | 444.namd            | TBD    | TBD    |
-| 464.h264ref          | TBD    | TBD    | 447.dealII          | TBD    | TBD    |
-| 471.omnetpp          | TBD    | TBD    | 450.soplex          | TBD    | TBD    |
-| 473.astar            | TBD    | TBD    | 453.povray          | TBD    | TBD    |
-| 483.xalancbmk        | TBD    | TBD    | 454.calculix        | TBD    | TBD    |
-| GEOMEAN              | TBD    | TBD    | 459.GemsFDTD        | TBD    | TBD    |
-|                      |        |        | 465.tonto           | TBD    | TBD    |
-|                      |        |        | 470.lbm             | TBD    | TBD    |
-|                      |        |        | 481.wrf             | TBD    | TBD    |
-|                      |        |        | 482.sphinx3         | TBD    | TBD    |
-|                      |        |        | GEOMEAN             | TBD    | TBD    |
+| 400.perlbench        | 57.53  | 60.40  | 410.bwaves          | 146.72 | 150.20 |
+| 401.bzip2            | 30.95  | 32.28  | 416.gamess          | 61.81  | 57.66  |
+| 403.gcc              | 64.24  | 62.22  | 433.milc            | 77.21  | 74.60  |
+| 429.mcf              | 84.00  | 79.38  | 434.zeusmp          | 78.97  | 78.48  |
+| 445.gobmk            | 45.78  | 44.21  | 435.gromacs         | 43.31  | 42.56  |
+| 456.hmmer            | 55.18  | 67.22  | 436.cactusADM       | 89.34  | 95.97  |
+| 458.sjeng            | 45.02  | 46.60  | 437.leslie3d        | 68.38  | 67.27  |
+| 462.libquantum       | 167.32 | 381.31 | 444.namd            | 47.58  | 48.50  |
+| 464.h264ref          | 69.68  | 73.92  | 447.dealII          | 85.14  | 163.77 |
+| 471.omnetpp          | 59.22  | 60.62  | 450.soplex          | 69.18  | 80.89  |
+| 473.astar            | 34.86  | 33.78  | 453.povray          | 79.90  | 69.32  |
+| 483.xalancbmk        | 91.13  | 136.41 | 454.calculix        | 47.76  | 47.60  |
+| GEOMEAN              | 60.48  | 68.41  | 459.GemsFDTD        | 82.64  | 82.59  |
+|                      |        |        | 465.tonto           | 60.73  | 51.96  |
+|                      |        |        | 470.lbm             | 128.11 | 151.49 |
+|                      |        |        | 481.wrf             | 62.47  | 61.18  |
+|                      |        |        | 482.sphinx3         | 68.15  | 98.99  |
+|                      |        |        | GEOMEAN             | 72.56  | 76.95  |
 
 Compilation parameters are as follows:
 

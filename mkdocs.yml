@@ -60,8 +60,9 @@ nav:
         # - 香山项目总体介绍: index.md
         - Introduction: guide.md
         - Publications: tutorials/publications.md
-        - Talks: tutorials/talks.md
         - Acknowledgments: acknowledgments.md
+    - 会议报告 Talks & Tutorials:
+        - Talks: tutorials/talks.md
         - Tutorials:
             - HPCA'26: tutorials/hpca26.md
             - MICRO'25: tutorials/micro25.md
@@ -77,18 +78,6 @@ nav:
             - MICRO'23: tutorials/micro23.md
             - RVSC'23: tutorials/rvsc23.md
             - ASPLOS'23: tutorials/asplos23.md
-    - 集成 Integration:
-        - NANHU Core: integration/overview.md
-        - SoC Integration: integration/soc.md
-        - DFT: integration/dft.md
-        - Synthesis: integration/synthesis.md
-        - Floorplan: integration/floorplan.md
-        - JTAG and Debug: integration/debug.md
-        - FPGA Prototype: 
-            - Overview: integration/fpga/fpga.md
-            - FPGA JTAG: integration/fpga/fpga_jtag.md
-            - FPGA IO: integration/fpga/fpga_io.md
-        - Docker Instruction: integration/docker.md
     - 用户手册 User Guide: https://docs.xiangshan.cc/projects/user-guide/zh-cn/latest/
     - 设计 Design: https://docs.xiangshan.cc/projects/design/zh-cn/latest/
         # - 总体架构: arch.md
@@ -165,14 +154,26 @@ nav:
             - OracleBP: tools/oraclebp.md
             - NEMU: tools/nemu.md
             # - 常用脚本: tools/scripts.md
+        - 集成 Integration:
+            - NANHU Core: integration/overview.md
+            - SoC Integration: integration/soc.md
+            - DFT: integration/dft.md
+            - Synthesis: integration/synthesis.md
+            - Floorplan: integration/floorplan.md
+            - JTAG and Debug: integration/debug.md
+            - FPGA Prototype:
+                - Overview: integration/fpga/fpga.md
+                - FPGA JTAG: integration/fpga/fpga_jtag.md
+                - FPGA IO: integration/fpga/fpga_io.md
+            - Docker Instruction: integration/docker.md
+        - 工作负载 Workloads:
+            - 概述 overview: workloads/overview.md
+            - 编译工具链 toolchains: workloads/toolchain.md
+            - 基于 AM 构建自定义裸机工作负载: workloads/gen-workload-with-am.md
+            - 编译使用 RISCV-pk 的 Linux Kernel: workloads/linux-kernel-for-xs.md
+            - 编译使用 OpenSBI 的 Linux Kernel: workloads/opensbi-kernel-for-xs.md
+            - 制作 Debian 镜像: workloads/debian.md
         - Troubleshooting: tools/troubleshoot-zh.md
-    - 工作负载 Workloads:
-        - 概述 overview: workloads/overview.md
-        - 编译工具链 toolchains: workloads/toolchain.md
-        - 基于 AM 构建自定义裸机工作负载: workloads/gen-workload-with-am.md
-        - 编译使用 RISCV-pk 的 Linux Kernel: workloads/linux-kernel-for-xs.md
-        - 编译使用 OpenSBI 的 Linux Kernel: workloads/opensbi-kernel-for-xs.md
-        - 制作 Debian 镜像: workloads/debian.md
     - 贡献 Contribution:
         # - 概览: contribution/index.md
         # - 代码规范: contribution/code-style.md

@@ -9,7 +9,7 @@ categories:
 
 Welcome to the XiangShan biweekly column! Through this column, we will regularly share the latest development progress of XiangShan. This is the 114th issue of the biweekly report.
 
-RISC-V Summit China 2026 was successfully held from October 18 to 20 at the Shenzhen Convention and Exhibition Center (Futian). Researcher Bao Yungang, Deputy Director of the Institute of Computing Technology, Chinese Academy of Sciences, and Chief Scientist of the Beijing Institute of Open Source Chip, delivered a talk at the XiangShan Ruyi Ecosystem Conference titled "RISC-V: A 12-Year Journey of Understanding and a 10-Year Outlook on Trends (2015-2035)" (translated from the Chinese title). He reviewed the development of RISC-V, discussed industry trends through 2035, and shared his perspectives on the evolution of open-source chip technology and the industry.
+RISC-V Summit China 2026 was successfully held from October 18 to 20 in Shenzhen. Researcher Bao Yungang, Deputy Director of the Institute of Computing Technology, Chinese Academy of Sciences, and Chief Scientist of the Beijing Institute of Open Source Chip, delivered a talk at the summit titled "RISC-V: A 12-Year Journey of Understanding and a 10-Year Outlook on Trends (2015-2035)" (translated from the Chinese title). He reviewed the development of RISC-V, discussed industry trends through 2035, and shared his perspectives on the evolution of open-source chip technology and the industry.
 
 ![Bao Yungang presenting at the XiangShan Ruyi Ecosystem Conference](./figs/biweekly-114/rvsc1.jpg)
 

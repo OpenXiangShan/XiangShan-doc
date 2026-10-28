@@ -5,8 +5,9 @@ hide:
 
 # 欢迎访问香山官方文档！
 
-![香山 Logo](figs/LOGO.png)
+<img src="figs/LOGO.png" alt="香山 Logo">
 
+<!--
 ## Recent Updates
 
 **Upcoming: 我们将在于韩国首尔举行的 MICRO'25 会议期间举办香山项目的上手教程。Look forward to seeing you at MICRO'25 in Seoul, South Korea. Learn more on [the MICRO'25 Tutorial Page](tutorials/micro25.md).**
@@ -34,6 +35,7 @@ hide:
 我们在 APSLOS'23 会议期间同地举办了一次香山项目的上手教程。We have hosted tutorials at ASPLOS'23. Learn more on [the ASPLOS'23 Tutorial Page](tutorials/asplos23.md).
 
 **For publications by the XiangShan team, check out [the Publications Page](tutorials/publications.md).**
+-->
 
 ## 导引 Introduction
 

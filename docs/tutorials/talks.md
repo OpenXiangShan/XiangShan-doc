@@ -1,10 +1,162 @@
-# Talks
+# 会议报告 Talks
 
 <!--
 致文档编者：
 * 演示文稿请上传至仓库：https://github.com/OpenXiangShan/Talks-and-Publications
 * 该仓库已启用 GitHub Pages，可使用 https://talks-pubs.xiangshan.cc/ 访问，请参考已有条目添加链接。
 -->
+
+## RISC-V Summit China 2026 (2026 RISC-V 中国峰会)
+
+所有的报告均是中文的。All talks are in Chinese.
+
+- 第三代昆明湖处理器核 IP 与香山家族 [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-01-%E7%AC%AC%E4%B8%89%E4%BB%A3%E6%98%86%E6%98%8E%E6%B9%96%E5%A4%84%E7%90%86%E5%99%A8%E6%A0%B8%20IP%20%E4%B8%8E%E9%A6%99%E5%B1%B1%E5%AE%B6%E6%97%8F.pdf)
+
+- 香山昆明湖 V3 前端架构 [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-02-%E9%A6%99%E5%B1%B1%E6%98%86%E6%98%8E%E6%B9%96V3%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84.pdf)
+
+- 香山处理器昆明湖后端流水线的设计演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-03-%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E6%98%86%E6%98%8E%E6%B9%96%E5%90%8E%E7%AB%AF%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%BC%94%E8%BF%9B.pdf)
+
+- 香山处理器访存缓存架构解决方案与演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-04-%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E8%AE%BF%E5%AD%98%E7%BC%93%E5%AD%98%E6%9E%B6%E6%9E%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B8%8E%E6%BC%94%E8%BF%9B.pdf)
+
+- XSAI 香山原生的通推一体 AICPU [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-05-XSAI%20%E9%A6%99%E5%B1%B1%E5%8E%9F%E7%94%9F%E7%9A%84%E9%80%9A%E6%8E%A8%E4%B8%80%E4%BD%93%20AICPU.pdf)
+
+- XS-GEM5 XS-RTL 对齐的高性能微架构模拟器 [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-06-XS-GEM5%20XS-RTL%E5%AF%B9%E9%BD%90%E7%9A%84%E9%AB%98%E6%80%A7%E8%83%BD%E5%BE%AE%E6%9E%B6%E6%9E%84%E6%A8%A1%E6%8B%9F%E5%99%A8.pdf)
+
+- 香山系统验证平台 [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-07-%E9%A6%99%E5%B1%B1%E7%B3%BB%E7%BB%9F%E9%AA%8C%E8%AF%81%E5%B9%B3%E5%8F%B0.pdf)
+
+- 香山处理器敏捷开发基础设施建设 [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-08-%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E5%BB%BA%E8%AE%BE.pdf)
+
+- XSCC 高性能 RISC-V 编译器 [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-09-XSCC%20%E9%AB%98%E6%80%A7%E8%83%BDRISC-V%E7%BC%96%E8%AF%91%E5%99%A8.pdf)
+
+- 玉泉 开源高性能内存控制器 IP 及硅前系统验证工具集 [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-10-%E7%8E%89%E6%B3%89%20%E5%BC%80%E6%BA%90%E9%AB%98%E6%80%A7%E8%83%BD%E5%86%85%E5%AD%98%E6%8E%A7%E5%88%B6%E5%99%A8%20IP%20%E5%8F%8A%E7%A1%85%E5%89%8D%E7%B3%BB%E7%BB%9F%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7%E9%9B%86.pdf)
+
+- 开源 IOMMU 设计和软硬件协同验证解决方案 [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-11-%E5%BC%80%E6%BA%90IOMMU%E8%AE%BE%E8%AE%A1%E5%92%8C%E8%BD%AF%E7%A1%AC%E4%BB%B6%E5%8D%8F%E5%90%8C%E9%AA%8C%E8%AF%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.pdf)
+
+- XiangShanLab-香山开发者课程与生态 [Slides](https://talks-pubs.xiangshan.cc/slides/20261018-RVSC-12-XiangShanLab-%E9%A6%99%E5%B1%B1%E5%BC%80%E5%8F%91%E8%80%85%E8%AF%BE%E7%A8%8B%E4%B8%8E%E7%94%9F%E6%80%81.pdf)
+
+- DifftestH：突破 30MHz 的高性能处理器验证实践 [Slides](https://talks-pubs.xiangshan.cc/slides/20261020-RVSC-DifftestH_%E7%AA%81%E7%A0%B430MHz%E7%9A%84%E9%AB%98%E6%80%A7%E8%83%BD%E5%A4%84%E7%90%86%E5%99%A8%E9%AA%8C%E8%AF%81%E5%AE%9E%E8%B7%B5.pdf)
+
+- Wolvrix 面向芯片架构研究的 RTL 编译基础设施 [Slides](https://talks-pubs.xiangshan.cc/slides/20261020-RVSC-Wolvrix%20%E9%9D%A2%E5%90%91%E8%8A%AF%E7%89%87%E6%9E%B6%E6%9E%84%E7%A0%94%E7%A9%B6%E7%9A%84RTL%E7%BC%96%E8%AF%91%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD.pdf)
+
+- 面向复杂 RISC-V SoC 的统一验证平台实践 [Slides](https://talks-pubs.xiangshan.cc/slides/20261020-RVSC-%E9%9D%A2%E5%90%91%E5%A4%8D%E6%9D%82RISC-V%20SoC%20%E7%9A%84%E7%BB%9F%E4%B8%80%E9%AA%8C%E8%AF%81%E5%B9%B3%E5%8F%B0%E5%AE%9E%E8%B7%B5.pdf)
+
+- 面向通用高性能计算的向量扩展设计 [Slides](https://talks-pubs.xiangshan.cc/slides/20261020-RVSC-%E9%9D%A2%E5%90%91%E9%80%9A%E7%94%A8%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97%E7%9A%84%E5%90%91%E9%87%8F%E6%89%A9%E5%B1%95%E8%AE%BE%E8%AE%A1.pdf)
+
+## RISC-V Summit China 2025 (2025 RISC-V 中国峰会)
+
+所有的报告均是中文的。All talks are in Chinese.
+
+- 香山：迈向产业实践的开源高性能 RISC-V 处理器 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716-RVSC-香山：迈向产业实践的开源高性能%20RISC-V%20处理器.pdf)
+
+- 香山社区：2024~2025 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716-RVSC-香山社区20242025.pdf)
+
+- 香山昆明湖 V3 前端架构 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716-RVSC-香山昆明湖V3前端架构.pdf)
+
+- 香山处理器昆明湖后端流水线的设计演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716-RVSC-香山处理器昆明湖后端流水线的设计演进.pdf)
+
+- 香山处理器访存、缓存架构解决方案与演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716-RVSC-香山处理器访存缓存架构解决方案与演进.pdf)
+
+- SVM：用可综合方法实现 RISC-V 处理器的高效验证 [Slides](https://talks-pubs.xiangshan.cc/slides/20250718-RVSC-SVM-用可综合方法实现RISC-V处理器的高效验证.pdf)
+
+- 构建香山开源芯片研发的基础设施 [Slides](https://talks-pubs.xiangshan.cc/slides/20250719-RVSC-构建香山开源芯片研发的基础设施.pdf)
+
+- XSAI：以 CPU 的编程范式支持现代 LLM 核函数 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716&0718-RVSC-XSAI：以CPU的编程范式支持现代LLM核函数.pdf)
+
+## RISC-V Summit China 2024 (2024 RISC-V 中国峰会)
+
+所有的报告均是中文的。All talks are in Chinese.
+
+- 香山服务器 IP 当前状态和路线图 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-香山服务器IP当前状态和路线图.pdf)
+
+- 香山开源处理器昆明湖架构的设计演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-香山开源处理器昆明湖架构的设计演进.pdf)
+
+- 香山处理器昆明湖架构向量扩展的设计与演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-香山处理器昆明湖架构向量扩展的设计与演进.pdf)
+
+- 面向服务器的香山处理器开源多核解决方案 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-面向服务器的香山处理器开源多核解决方案.pdf)
+
+- 万众一芯：基于开源众包芯片验证的探索与实践 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-万众一芯：基于开源众包芯片验证的探索与实践.pdf)
+
+- 香山缓存系统的形式化验证 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-香山缓存系统的形式化验证.pdf)
+
+- 香山开源处理器社区发展与展望 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-香山开源处理器社区发展与展望.pdf)
+
+## RISC-V Summit China 2023 (2023 RISC-V 中国峰会)
+
+所有的报告均是中文的。All talks are in Chinese.
+
+- 敏捷开发工具链助力香山高性能处理器核 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-敏捷开发工具链助力香山高性能处理器核.pdf)
+
+- 香山昆明湖架构前端架构的设计演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山昆明湖架构前端架构的设计演进.pdf)
+
+- 香山昆明湖后端流水线的设计演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山昆明湖后端流水线的设计演进.pdf)
+
+- 香山昆明湖架构访存单元的设计和演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山昆明湖架构访存单元的设计和演进.pdf)
+
+- 昆明湖架构 CoupledL2 缓存设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-昆明湖架构CoupledL2缓存设计与实现.pdf)
+
+- 香山昆明湖架构虚拟化扩展的设计和技术规划 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山昆明湖架构虚拟化扩展的设计和技术规划.pdf)
+
+- 香山昆明湖架构向量扩展的设计和实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山昆明湖架构向量扩展的设计和实现.pdf)
+
+- 香山微结构模拟器_XS_GEM5 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山微结构模拟器_XS_GEM5.pdf)
+
+## RISC-V Summit Europe 2023
+
+Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
+
+- RISC-V in China: Embracing the Era of Open-Source Chip [Video](https://www.youtube.com/watch?v=d0UVSAd6NC8)
+
+## RISC-V Summit China 2022 (2022 RISC-V 中国峰会)
+
+所有的报告均是中文的。All talks are in Chinese.
+
+- 香山开源高性能 RISC-V 处理器敏捷设计实践 [Slides](https://talks-pubs.xiangshan.cc/slides/20220824-RVSC-%E9%A6%99%E5%B1%B1%E5%BC%80%E6%BA%90%E9%AB%98%E6%80%A7%E8%83%BDRISC-V%E5%A4%84%E7%90%86%E5%99%A8%E6%95%8F%E6%8D%B7%E8%AE%BE%E8%AE%A1%E5%AE%9E%E8%B7%B5.pdf)
+
+- 南湖架构 Fudian FPU 设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%8D%97%E6%B9%96%E6%9E%B6%E6%9E%84Fudian%20FPU%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf)
+
+- 南湖架构 HuanCun Non-blocking Cache 设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%8D%97%E6%B9%96%E6%9E%B6%E6%9E%84HuanCun%20Non-blocking%20Cache%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf)
+
+- 南湖架构 MMU 的设计与改进 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%8D%97%E6%B9%96%E6%9E%B6%E6%9E%84MMU%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%94%B9%E8%BF%9B.pdf)
+
+- 南湖架构后端流水线的设计与改进 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%8D%97%E6%B9%96%E6%9E%B6%E6%9E%84%E5%90%8E%E7%AB%AF%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%94%B9%E8%BF%9B.pdf)
+
+- 南湖架构访存子系统的设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%8D%97%E6%B9%96%E6%9E%B6%E6%9E%84%E8%AE%BF%E5%AD%98%E5%AD%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf)
+
+- 基于香山处理器的标签化体系结构设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%9F%BA%E4%BA%8E%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E6%A0%87%E7%AD%BE%E5%8C%96%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf)
+
+- 香山处理器前端取指架构演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E5%89%8D%E7%AB%AF%E5%8F%96%E6%8C%87%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.pdf)
+
+- 香山处理器的 DFT 设计 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84DFT%E8%AE%BE%E8%AE%A1.pdf)
+
+- 香山性能瓶颈分析 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E9%A6%99%E5%B1%B1%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88%E5%88%86%E6%9E%90.pdf)
+
+- DiffTest 基于香山处理器的敏捷验证实践 [Slides](https://talks-pubs.xiangshan.cc/slides/20220826-RVSC-DiffTest%E5%9F%BA%E4%BA%8E%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E6%95%8F%E6%8D%B7%E9%AA%8C%E8%AF%81%E5%AE%9E%E8%B7%B5.pdf)
+
+- TL-Test 香山处理器缓存一致性验证框架 [Slides](https://talks-pubs.xiangshan.cc/slides/20220826-RVSC-TL_Test%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E9%AA%8C%E8%AF%81%E6%A1%86%E6%9E%B6.pdf)
+
+- 香山分支预测器内外快速性能评估工具 [Slides](https://talks-pubs.xiangshan.cc/slides/20220826-RVSC-%E9%A6%99%E5%B1%B1%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E5%99%A8%E5%86%85%E5%A4%96%E5%BF%AB%E9%80%9F%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0%E5%B7%A5%E5%85%B7.pdf)
+
+## RISC-V Summit 2021
+
+Dr. Bao gave a talk in English at the RISC-V Summit 2021.
+
+- XiangShan: an Open-Source High-Performance RISC-V Processor [Slides](https://talks-pubs.xiangshan.cc/slides/20211206-RISC-V-Summit-Yungang-Bao-XiangShan.pdf), [Video](https://www.youtube.com/watch?v=LSiBKxoszz4)
+
+## Chisel Community Conference (CCC) 2021
+
+The Chisel Community Conference (CCC) is co-located with RVWC'21. We have some talks in English.
+
+- Chisel in a Nutshell [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Chisel-in-a-Nutshell.pdf)
+
+- Implementation of a Highly Configurable Wallace Tree Multiplier with Chisel [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Implementation%20of%20a%20Highly%20Configurable%20Wallace%20Tree%20Multiplier%20with%20Chisel.pdf)
+
+- Practice of High-Performance Chip Agile Development with Chisel [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Practice.of.High.perf.Chip.Agile.Dev.with.Chisel.pdf)
+
+- Summary of Problems and Experiences during the Processor Development based on Chisel [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Summary%20of%20Problems%20and%20Experiences%20during%20the.pdf)
+
+- Top 10 Common Misconceptions about Chisel [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Top%2010%20Common%20Misconceptions%20about%20Chisel.pdf)
+
+- Use Firrtl Transform to Control the Effective Range of printf in Large Scale Circuits [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Use%20Firrtl%20Transform%20to%20Control%20the%20Effective%20Range%20of%20%E2%80%98printf%E2%80%99%20in%20Large%20Scale%20Circuits.pdf)
 
 ## RISC-V World Conference 2021 (2021 RISC-V 中国峰会)
 
@@ -39,122 +191,6 @@ RVWC'21 was held in Shanghai. All talks are in Chinese. 所有的报告均是中
 - 香山处理器访存流水线的设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20210625-RVWC-%E8%AE%BF%E5%AD%98%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf), [Video](https://www.bilibili.com/video/BV1Y64y1X7Pw)
 
 - 香山处理器非阻塞 DCache 的设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20210625-RVWC-%E9%9D%9E%E9%98%BB%E5%A1%9EDCache%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf), [Video](https://www.bilibili.com/video/BV1s44y127cW)
-
-## Chisel Community Conference (CCC) 2021
-
-The Chisel Community Conference (CCC) is co-located with RVWC'21. We have some talks in English.
-
-- Chisel in a Nutshell [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Chisel-in-a-Nutshell.pdf)
-
-- Implementation of a Highly Configurable Wallace Tree Multiplier with Chisel [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Implementation%20of%20a%20Highly%20Configurable%20Wallace%20Tree%20Multiplier%20with%20Chisel.pdf)
-
-- Practice of High-Performance Chip Agile Development with Chisel [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Practice.of.High.perf.Chip.Agile.Dev.with.Chisel.pdf)
-
-- Summary of Problems and Experiences during the Processor Development based on Chisel [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Summary%20of%20Problems%20and%20Experiences%20during%20the.pdf)
-
-- Top 10 Common Misconceptions about Chisel [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Top%2010%20Common%20Misconceptions%20about%20Chisel.pdf)
-
-- Use Firrtl Transform to Control the Effective Range of printf in Large Scale Circuits [Slides](https://talks-pubs.xiangshan.cc/slides/20210626-CCC-Use%20Firrtl%20Transform%20to%20Control%20the%20Effective%20Range%20of%20%E2%80%98printf%E2%80%99%20in%20Large%20Scale%20Circuits.pdf)
-
-## RISC-V Summit 2021
-
-Dr. Bao gave a talk in English at the RISC-V Summit 2021.
-
-- XiangShan: an Open-Source High-Performance RISC-V Processor [Slides](https://talks-pubs.xiangshan.cc/slides/20211206-RISC-V-Summit-Yungang-Bao-XiangShan.pdf), [Video](https://www.youtube.com/watch?v=LSiBKxoszz4)
-
-## RISC-V Summit China 2022 (2022 RISC-V 中国峰会)
-
-所有的报告均是中文的。All talks are in Chinese.
-
-- 香山开源高性能 RISC-V 处理器敏捷设计实践 [Slides](https://talks-pubs.xiangshan.cc/slides/20220824-RVSC-%E9%A6%99%E5%B1%B1%E5%BC%80%E6%BA%90%E9%AB%98%E6%80%A7%E8%83%BDRISC-V%E5%A4%84%E7%90%86%E5%99%A8%E6%95%8F%E6%8D%B7%E8%AE%BE%E8%AE%A1%E5%AE%9E%E8%B7%B5.pdf)
-
-- 南湖架构 Fudian FPU 设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%8D%97%E6%B9%96%E6%9E%B6%E6%9E%84Fudian%20FPU%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf)
-
-- 南湖架构 HuanCun Non-blocking Cache 设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%8D%97%E6%B9%96%E6%9E%B6%E6%9E%84HuanCun%20Non-blocking%20Cache%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf)
-
-- 南湖架构 MMU 的设计与改进 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%8D%97%E6%B9%96%E6%9E%B6%E6%9E%84MMU%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%94%B9%E8%BF%9B.pdf)
-
-- 南湖架构后端流水线的设计与改进 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%8D%97%E6%B9%96%E6%9E%B6%E6%9E%84%E5%90%8E%E7%AB%AF%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%94%B9%E8%BF%9B.pdf)
-
-- 南湖架构访存子系统的设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%8D%97%E6%B9%96%E6%9E%B6%E6%9E%84%E8%AE%BF%E5%AD%98%E5%AD%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf)
-
-- 基于香山处理器的标签化体系结构设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E5%9F%BA%E4%BA%8E%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E6%A0%87%E7%AD%BE%E5%8C%96%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf)
-
-- 香山处理器前端取指架构演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E5%89%8D%E7%AB%AF%E5%8F%96%E6%8C%87%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.pdf)
-
-- 香山处理器的 DFT 设计 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84DFT%E8%AE%BE%E8%AE%A1.pdf)
-
-- 香山性能瓶颈分析 [Slides](https://talks-pubs.xiangshan.cc/slides/20220825-RVSC-%E9%A6%99%E5%B1%B1%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88%E5%88%86%E6%9E%90.pdf)
-
-- DiffTest 基于香山处理器的敏捷验证实践 [Slides](https://talks-pubs.xiangshan.cc/slides/20220826-RVSC-DiffTest%E5%9F%BA%E4%BA%8E%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E6%95%8F%E6%8D%B7%E9%AA%8C%E8%AF%81%E5%AE%9E%E8%B7%B5.pdf)
-
-- TL-Test 香山处理器缓存一致性验证框架 [Slides](https://talks-pubs.xiangshan.cc/slides/20220826-RVSC-TL_Test%E9%A6%99%E5%B1%B1%E5%A4%84%E7%90%86%E5%99%A8%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E9%AA%8C%E8%AF%81%E6%A1%86%E6%9E%B6.pdf)
-
-- 香山分支预测器内外快速性能评估工具 [Slides](https://talks-pubs.xiangshan.cc/slides/20220826-RVSC-%E9%A6%99%E5%B1%B1%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E5%99%A8%E5%86%85%E5%A4%96%E5%BF%AB%E9%80%9F%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0%E5%B7%A5%E5%85%B7.pdf)
-
-## RISC-V Summit Europe 2023
-
-Dr. Bao gave a talk (in English) at the RISC-V Summit Europe 2023.
-
-- RISC-V in China: Embracing the Era of Open-Source Chip [Video](https://www.youtube.com/watch?v=d0UVSAd6NC8)
-
-## RISC-V Summit China 2023 (2023 RISC-V 中国峰会)
-
-所有的报告均是中文的。All talks are in Chinese.
-
-- 敏捷开发工具链助力香山高性能处理器核 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-敏捷开发工具链助力香山高性能处理器核.pdf)
-
-- 香山昆明湖架构前端架构的设计演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山昆明湖架构前端架构的设计演进.pdf)
-
-- 香山昆明湖后端流水线的设计演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山昆明湖后端流水线的设计演进.pdf)
-
-- 香山昆明湖架构访存单元的设计和演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山昆明湖架构访存单元的设计和演进.pdf)
-
-- 昆明湖架构 CoupledL2 缓存设计与实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-昆明湖架构CoupledL2缓存设计与实现.pdf)
-
-- 香山昆明湖架构虚拟化扩展的设计和技术规划 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山昆明湖架构虚拟化扩展的设计和技术规划.pdf)
-
-- 香山昆明湖架构向量扩展的设计和实现 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山昆明湖架构向量扩展的设计和实现.pdf)
-
-- 香山微结构模拟器_XS_GEM5 [Slides](https://talks-pubs.xiangshan.cc/slides/20230824-RVSC-香山微结构模拟器_XS_GEM5.pdf)
-
-## RISC-V Summit China 2024 (2024 RISC-V 中国峰会)
-
-所有的报告均是中文的。All talks are in Chinese.
-
-- 香山服务器 IP 当前状态和路线图 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-香山服务器IP当前状态和路线图.pdf)
-
-- 香山开源处理器昆明湖架构的设计演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-香山开源处理器昆明湖架构的设计演进.pdf)
-
-- 香山处理器昆明湖架构向量扩展的设计与演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-香山处理器昆明湖架构向量扩展的设计与演进.pdf)
-
-- 面向服务器的香山处理器开源多核解决方案 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-面向服务器的香山处理器开源多核解决方案.pdf)
-
-- 万众一芯：基于开源众包芯片验证的探索与实践 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-万众一芯：基于开源众包芯片验证的探索与实践.pdf)
-
-- 香山缓存系统的形式化验证 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-香山缓存系统的形式化验证.pdf)
-
-- 香山开源处理器社区发展与展望 [Slides](https://talks-pubs.xiangshan.cc/slides/20240822-RVSC-香山开源处理器社区发展与展望.pdf)
-
-## RISC-V Summit China 2025 (2025 RISC-V 中国峰会)
-
-所有的报告均是中文的。All talks are in Chinese.
-
-- 香山：迈向产业实践的开源高性能 RISC-V 处理器 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716-RVSC-香山：迈向产业实践的开源高性能%20RISC-V%20处理器.pdf)
-
-- 香山社区：2024~2025 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716-RVSC-香山社区20242025.pdf)
-
-- 香山昆明湖 V3 前端架构 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716-RVSC-香山昆明湖V3前端架构.pdf)
-
-- 香山处理器昆明湖后端流水线的设计演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716-RVSC-香山处理器昆明湖后端流水线的设计演进.pdf)
-
-- 香山处理器访存、缓存架构解决方案与演进 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716-RVSC-香山处理器访存缓存架构解决方案与演进.pdf)
-
-- SVM：用可综合方法实现 RISC-V 处理器的高效验证 [Slides](https://talks-pubs.xiangshan.cc/slides/20250718-RVSC-SVM-用可综合方法实现RISC-V处理器的高效验证.pdf)
-
-- 构建香山开源芯片研发的基础设施 [Slides](https://talks-pubs.xiangshan.cc/slides/20250719-RVSC-构建香山开源芯片研发的基础设施.pdf)
-
-- XSAI：以 CPU 的编程范式支持现代 LLM 核函数 [Slides](https://talks-pubs.xiangshan.cc/slides/20250716&0718-RVSC-XSAI：以CPU的编程范式支持现代LLM核函数.pdf)
 
 ## More Talks 更多的报告
 

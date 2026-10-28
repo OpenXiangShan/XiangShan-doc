@@ -33,9 +33,9 @@ Recent XiangShan development includes frontend fixes for address sign extension,
 ### Backend
 
 - Bug fixes
-  - (V3) Add the missing decode tables and micro-op mappings for Smrnmi's `mnret` and Sdext's `dret` instructions in the new decoder ([#6692](https://github.com/OpenXiangShan/XiangShan/pull/6692))
+  - Add the missing decode tables and micro-op mappings for Smrnmi's `mnret` and Sdext's `dret` instructions in the new decoder ([#6692](https://github.com/OpenXiangShan/XiangShan/pull/6692))
 - Performance optimizations
-  - (V3) Increase the default ROB capacity from 144 to 160 entries ([#6730](https://github.com/OpenXiangShan/XiangShan/pull/6730))
+  - Increase the default ROB capacity from 144 to 160 entries ([#6730](https://github.com/OpenXiangShan/XiangShan/pull/6730))
 
 ### MemBlock and Cache
 

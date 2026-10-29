@@ -5,7 +5,7 @@ hide:
 
 # 欢迎访问香山官方文档！
 
-<img src="figs/LOGO.png" alt="香山 Logo">
+<img src="figs/LOGO.png" alt="香山 Logo" style="display: block; margin: 0 auto;">
 
 <!--
 ## Recent Updates

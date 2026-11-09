@@ -105,15 +105,22 @@ Recent XiangShan development unifies software instruction-prefetch scheduling, i
 ### XS-GEM5
 
 - New Feature Exploration
-  - Add late value-prediction interfaces and EgDiff to predict load results after operands become available; add an optional BPU context-flush model triggered by retired fence.i on the SE Kunminghu V3 branch ([XS-GEM5 #1186](https://github.com/OpenXiangShan/GEM5/pull/1186), [XS-GEM5 #1248](https://github.com/OpenXiangShan/GEM5/pull/1248))
-  - Tune default ROB, LQ and SQ dynamic-borrowing configurations for SMT based on parameter sweeps and extend their configuration interfaces ([XS-GEM5 #1283](https://github.com/OpenXiangShan/GEM5/pull/1283))
+  - Add late value-prediction interfaces and EgDiff to predict load results after operands become available ([XS-GEM5 #1186](https://github.com/OpenXiangShan/GEM5/pull/1186))
+  - Tune default ROB, LQ and SQ dynamic-borrowing configurations for SMT based on parameter sweeps and extend their configuration interfaces ([XS-GEM5 #1283](https://github.com/OpenXiangShan/GEM5/pull/1283)) [Thanks to our colleagues from Alibaba for their contribution]
+  - Add optional decode fusion compaction to refill decode slots across Fetch bundles ([XS-GEM5 #1184](https://github.com/OpenXiangShan/GEM5/pull/1184))
 - Bug fixes
+  - Fix TraceRTL control-flow fault recovery and EStride in-flight tracking after squashes ([XS-GEM5 #1251](https://github.com/OpenXiangShan/GEM5/pull/1251), [XS-GEM5 #1245](https://github.com/OpenXiangShan/GEM5/pull/1245))
+  - Fix memory ordering between SBuffer and loads, and adjust L2 latency configurations ([XS-GEM5 #1243](https://github.com/OpenXiangShan/GEM5/pull/1243))
+  - Fix virtualized PTW request coalescing, Nextline configuration propagation and SV48 two-stage translation initialization ([XS-GEM5 #1240](https://github.com/OpenXiangShan/GEM5/pull/1240), [XS-GEM5 #1247](https://github.com/OpenXiangShan/GEM5/pull/1247), [XS-GEM5 #1266](https://github.com/OpenXiangShan/GEM5/pull/1266))
+  - Fix CDP detection of L2 prefetch request sources ([XS-GEM5 #1258](https://github.com/OpenXiangShan/GEM5/pull/1258))
   - Support `vwsll.vi`, fix source-register mapping for the first vector slide-up micro-op, and align FS/SD Dirty state for scalar floating-point and virtualized execution ([XS-GEM5 #1280](https://github.com/OpenXiangShan/GEM5/pull/1280), [XS-GEM5 #1281](https://github.com/OpenXiangShan/GEM5/pull/1281))
-  - Filter queued and incoming resolve results with the oldest same-cycle squash boundary, preventing wrong-path results from re-entering the BPU training queue after recovery ([XS-GEM5 #1282](https://github.com/OpenXiangShan/GEM5/pull/1282))
+  - Filter resolve results with the oldest same-cycle squash boundary to prevent wrong-path results from re-entering the BPU training queue ([XS-GEM5 #1282](https://github.com/OpenXiangShan/GEM5/pull/1282))
 - Debugging tools
-  - Add optional TEA time-proportional event analysis with sample attribution by PC and event signature and visualization exports, and track committed instruction bytes for fetch blocks ([XS-GEM5 #1255](https://github.com/OpenXiangShan/GEM5/pull/1255), [XS-GEM5 #1291](https://github.com/OpenXiangShan/GEM5/pull/1291))
+  - Add optional TEA time-proportional event analysis and visualization exports, and track committed instruction bytes for fetch blocks ([XS-GEM5 #1255](https://github.com/OpenXiangShan/GEM5/pull/1255), [XS-GEM5 #1291](https://github.com/OpenXiangShan/GEM5/pull/1291))
 - Infrastructure
-  - Add Google Workload Traces and CBP traces to CI, update the weekly XSCC checkpoint pool, support selecting manually triggered weekly jobs, and correct TEA configuration for Ruby multi-core CI ([XS-GEM5 #1272](https://github.com/OpenXiangShan/GEM5/pull/1272), [XS-GEM5 #1274](https://github.com/OpenXiangShan/GEM5/pull/1274), [XS-GEM5 #1300](https://github.com/OpenXiangShan/GEM5/pull/1300), [XS-GEM5 #1269](https://github.com/OpenXiangShan/GEM5/pull/1269))
+  - Add RISC-V Sstc timer extension support ([XS-GEM5 #1250](https://github.com/OpenXiangShan/GEM5/pull/1250))
+  - Update checkpoint configurations for H-extension and weekly XSCC regressions ([XS-GEM5 #1252](https://github.com/OpenXiangShan/GEM5/pull/1252), [XS-GEM5 #1274](https://github.com/OpenXiangShan/GEM5/pull/1274))
+  - Add Google Workload Traces and CBP traces to CI, support selectable manual weekly jobs, and correct TEA configuration for Ruby multi-core CI ([XS-GEM5 #1272](https://github.com/OpenXiangShan/GEM5/pull/1272), [XS-GEM5 #1300](https://github.com/OpenXiangShan/GEM5/pull/1300), [XS-GEM5 #1269](https://github.com/OpenXiangShan/GEM5/pull/1269))
 
 ## Performance Evaluation
 

@@ -105,15 +105,22 @@ categories:
 ### XS-GEM5
 
 - 新特性探索
-  - 新增延迟值预测接口及 EgDiff 预测器，支持在操作数就绪后预测 load 结果；在 SE 昆明湖 V3 分支新增由已退休 fence.i 触发的可选 BPU 上下文刷新模型（[XS-GEM5 #1186](https://github.com/OpenXiangShan/GEM5/pull/1186)、[XS-GEM5 #1248](https://github.com/OpenXiangShan/GEM5/pull/1248)）
-  - 根据参数扫描调整 SMT 动态借用的 ROB、LQ、SQ 默认配置，并扩展相关参数接口（[XS-GEM5 #1283](https://github.com/OpenXiangShan/GEM5/pull/1283)）
+  - 新增延迟值预测接口及 EgDiff 预测器，支持在操作数就绪后预测 load 结果（[XS-GEM5 #1186](https://github.com/OpenXiangShan/GEM5/pull/1186)）
+  - 根据参数扫描调整 SMT 动态借用的 ROB、LQ、SQ 默认配置，并扩展相关参数接口（[XS-GEM5 #1283](https://github.com/OpenXiangShan/GEM5/pull/1283)）[感谢来自阿里同事的贡献]
+  - 增加可选的译码融合压缩机制，支持跨 Fetch bundle 回填译码槽位（[XS-GEM5 #1184](https://github.com/OpenXiangShan/GEM5/pull/1184)）
 - Bug 修复
+  - 修复 TraceRTL 控制流异常恢复及 EStride 在 squash 后的在途指令跟踪（[XS-GEM5 #1251](https://github.com/OpenXiangShan/GEM5/pull/1251)、[XS-GEM5 #1245](https://github.com/OpenXiangShan/GEM5/pull/1245)）
+  - 修复 SBuffer 与 load 的访存顺序，并调整 L2 延迟配置（[XS-GEM5 #1243](https://github.com/OpenXiangShan/GEM5/pull/1243)）
+  - 修复虚拟化 PTW 请求合并、Nextline 配置传递及 SV48 两阶段地址翻译初始化（[XS-GEM5 #1240](https://github.com/OpenXiangShan/GEM5/pull/1240)、[XS-GEM5 #1247](https://github.com/OpenXiangShan/GEM5/pull/1247)、[XS-GEM5 #1266](https://github.com/OpenXiangShan/GEM5/pull/1266)）
+  - 修复 CDP 对 L2 预取请求来源的识别（[XS-GEM5 #1258](https://github.com/OpenXiangShan/GEM5/pull/1258)）
   - 支持 `vwsll.vi` 并修复首个向量 slide-up 微操作的源寄存器映射；对齐标量浮点及虚拟化执行的 FS/SD Dirty 状态（[XS-GEM5 #1280](https://github.com/OpenXiangShan/GEM5/pull/1280)、[XS-GEM5 #1281](https://github.com/OpenXiangShan/GEM5/pull/1281)）
-  - 使用同周期最老 squash 边界过滤已排队和新到达的 resolve 结果，防止错误路径结果在冲刷后重新进入 BPU 训练队列（[XS-GEM5 #1282](https://github.com/OpenXiangShan/GEM5/pull/1282)）
+  - 使用同周期最老 squash 边界过滤 resolve 结果，防止错误路径结果重新进入 BPU 训练队列（[XS-GEM5 #1282](https://github.com/OpenXiangShan/GEM5/pull/1282)）
 - 调试工具
-  - 引入可选的 TEA 时间占比事件分析，按 PC 和事件签名归因采样时间并导出可视化数据；补充取指块已提交指令字节统计（[XS-GEM5 #1255](https://github.com/OpenXiangShan/GEM5/pull/1255)、[XS-GEM5 #1291](https://github.com/OpenXiangShan/GEM5/pull/1291)）
+  - 引入可选的 TEA 时间占比事件分析和可视化数据导出，并补充取指块已提交指令字节统计（[XS-GEM5 #1255](https://github.com/OpenXiangShan/GEM5/pull/1255)、[XS-GEM5 #1291](https://github.com/OpenXiangShan/GEM5/pull/1291)）
 - 基础设施
-  - 将 Google Workload Traces 和 CBP traces 纳入 CI，更新每周 XSCC 切片池并支持选择手工周回归任务；修正 Ruby 多核 CI 的 TEA 配置（[XS-GEM5 #1272](https://github.com/OpenXiangShan/GEM5/pull/1272)、[XS-GEM5 #1274](https://github.com/OpenXiangShan/GEM5/pull/1274)、[XS-GEM5 #1300](https://github.com/OpenXiangShan/GEM5/pull/1300)、[XS-GEM5 #1269](https://github.com/OpenXiangShan/GEM5/pull/1269)）
+  - 增加 RISC-V Sstc 定时器扩展支持（[XS-GEM5 #1250](https://github.com/OpenXiangShan/GEM5/pull/1250)）
+  - 更新 H 扩展和 XSCC 每周回归使用的 checkpoint 配置（[XS-GEM5 #1252](https://github.com/OpenXiangShan/GEM5/pull/1252)、[XS-GEM5 #1274](https://github.com/OpenXiangShan/GEM5/pull/1274)）
+  - 将 Google Workload Traces 和 CBP traces 纳入 CI，支持选择手工周回归任务，并修正 Ruby 多核 CI 的 TEA 配置（[XS-GEM5 #1272](https://github.com/OpenXiangShan/GEM5/pull/1272)、[XS-GEM5 #1300](https://github.com/OpenXiangShan/GEM5/pull/1300)、[XS-GEM5 #1269](https://github.com/OpenXiangShan/GEM5/pull/1269)）
 
 ## 性能评估
 

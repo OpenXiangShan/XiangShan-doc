@@ -83,9 +83,9 @@ categories:
   - 新增 `--ila-size`，按已通过 SLOW 检查的前缀限制 DUT 超前执行周期，以配合 ILA 波形窗口；支持分别配置 CPU 工作时钟与时序目标，保持 UART 时钟固定（[difftest #1026](https://github.com/OpenXiangShan/difftest/pull/1026)、[env-scripts #185](https://github.com/OpenXiangShan/env-scripts/pull/185)）
   - 在 MinJie 中接入 BOOM 的 RTL、发布和 FPGA DiffTest 流程，并更新共享参考模型及 fast/fork 配置选择（[minjie-playground #42](https://github.com/OpenXiangShan/minjie-playground/pull/42)、[minjie-playground #43](https://github.com/OpenXiangShan/minjie-playground/pull/43)、[minjie-playground #44](https://github.com/OpenXiangShan/minjie-playground/pull/44)）
 - NEMU 参考模型
-  - 在主线和昆明湖 V2 分支保留 HVICTL 注入中断的原始 IID，避免错误转换 `vscause` 及向量陷入入口（[NEMU #1272](https://github.com/OpenXiangShan/NEMU/pull/1272)、[NEMU #1279](https://github.com/OpenXiangShan/NEMU/pull/1279)）
-  - 在主线和昆明湖 V2 分支为成功执行的零长度向量 load 更新 VS Dirty 状态，保持不访问内存的行为（[NEMU #1277](https://github.com/OpenXiangShan/NEMU/pull/1277)、[NEMU #1278](https://github.com/OpenXiangShan/NEMU/pull/1278)）
-  - 新增 NutShell FastRef 配置；昆明湖 V2 更新 ready-to-run，采用主线中的 V2 专用参考配置及共享 FAST HostTLB 支持（[NEMU #1273](https://github.com/OpenXiangShan/NEMU/pull/1273)、[#6792](https://github.com/OpenXiangShan/XiangShan/pull/6792)）
+  - 保留 HVICTL 注入中断的原始 IID，避免错误转换 `vscause` 及向量陷入入口（[NEMU #1272](https://github.com/OpenXiangShan/NEMU/pull/1272)、[NEMU #1279](https://github.com/OpenXiangShan/NEMU/pull/1279)）
+  - 为成功执行的零长度向量 load 更新 VS Dirty 状态，保持不访问内存的行为（[NEMU #1277](https://github.com/OpenXiangShan/NEMU/pull/1277)、[NEMU #1278](https://github.com/OpenXiangShan/NEMU/pull/1278)）
+  - 新增 NutShell FastRef 配置；更新昆明湖 V2 的 ready-to-run，采用专用参考配置及共享 FAST HostTLB 支持（[NEMU #1273](https://github.com/OpenXiangShan/NEMU/pull/1273)、[#6792](https://github.com/OpenXiangShan/XiangShan/pull/6792)）
 - 测试负载及采样切片
   - 为 BOOM 新增独立 Linux、设备树及 SPEC CPU2006 配置，限制编译器生成该核支持的指令；新增 GCC16 SPEC06 动态 LMUL 构建配置（[workload-builder #83](https://github.com/OpenXiangShan/workload-builder/pull/83)、[workload-builder #84](https://github.com/OpenXiangShan/workload-builder/pull/84)）
   - 将 Linux 释放 initramfs 时的填充值改为零，避免 checkpoint 恢复时为无用的非零页面分配内存（[workload-builder #85](https://github.com/OpenXiangShan/workload-builder/pull/85)）

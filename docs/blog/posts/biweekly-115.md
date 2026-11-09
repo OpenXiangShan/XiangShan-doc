@@ -47,9 +47,9 @@ categories:
   - 在 Oceanus 开发分支中对齐 CoupledL2 的 Data/Tag/Meta 存储组织和 DRRIP 替换策略，并增加基于 SRAM 与 CAM 的替换状态实现及发布参数（[XSCache #45](https://github.com/OpenXiangShan/XSCache/pull/45)）
 - Bug 修复
   - 在同一 ROB 条目同时发生 RAR 与 RAW 违规时，优先选择需要重新执行当前指令的回滚，避免 RAW 重放信息被覆盖（[#6678](https://github.com/OpenXiangShan/XiangShan/pull/6678)）
-  - 排除已经退休的 MDP 预测目标，避免 StoreQueue 指针回绕后让 load 永久等待不存在的 STA；修正跨 16 字节非对齐转发掩码，防止循环旋转带入不重叠的 store 字节（[#6714](https://github.com/OpenXiangShan/XiangShan/pull/6714)、[#6718](https://github.com/OpenXiangShan/XiangShan/pull/6718)）
+  - 排除已经退休的 MDP 预测目标，避免 StoreQueue 指针回绕后让 load 永久等待不存在的 STA；修复跨 16 字节非对齐转发掩码（[#6714](https://github.com/OpenXiangShan/XiangShan/pull/6714)、[#6718](https://github.com/OpenXiangShan/XiangShan/pull/6718)）
   - 等待当前 `cbo.zero` 请求实际进入存储数据队列后再排空 Sbuffer，避免更老 store 的出队提前推进 CBO 状态机（[#6762](https://github.com/OpenXiangShan/XiangShan/pull/6762)）
-  - 禁止 store 合并到已由互连接管 Acquire 的推测 load miss，避免返回权限不足以支持写入并导致后续 load 读到旧数据（[#6842](https://github.com/OpenXiangShan/XiangShan/pull/6842)）
+  - 禁止 store 合并到已由互连接管 Acquire 的推测 load miss 的 MSHR，避免返回权限不足以支持写入并导致后续 load 读到旧数据（[#6842](https://github.com/OpenXiangShan/XiangShan/pull/6842)）
   - 将 CoupledL2 的 L1 hint 仲裁改为带初始化的轮询仲裁，并更新主仓库集成，避免部分 slice 的 hint 长期被阻塞（[XSCache #46](https://github.com/OpenXiangShan/XSCache/pull/46)、[XSCache #48](https://github.com/OpenXiangShan/XSCache/pull/48)、[#6803](https://github.com/OpenXiangShan/XiangShan/pull/6803)）
 
 ### XSAI

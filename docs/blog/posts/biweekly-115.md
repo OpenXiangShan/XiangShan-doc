@@ -9,8 +9,7 @@ categories:
 # 【香山双周报 115】20261111 期
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 115 期双周报。
-
-关于香山近期开发进展，前端统一软件指令预取调度，优化 TAGE 训练并修复分支预测问题；后端恢复 CSR 只读操作的乱序执行，修正 CBO 译码和提交类型；访存与缓存修复回滚、转发和一致性问题，并推进 Oceanus 开发；XSAI 完善精简矩阵配置和 NoLLC 内存桥，优化矩阵数据通路与验证；基础设施增强远程 FPGA DiffTest、BOOM 支持、切片与 GSIM 波形能力；XS-GEM5 推进值预测、SMT 资源分配与性能分析工具。
+关于香山近期开发进展，前端统一软件指令预取调度，优化 TAGE 训练并修复分支预测问题；后端恢复 CSR 只读操作的乱序执行，修正 CBO 译码和提交类型；访存与缓存修复回滚、转发和一致性问题，并推进 Oceanus 开发；XSAI 完善精简矩阵配置和 NoLLC 内存桥，优化矩阵数据通路与验证；基础设施增强远程 FPGA DiffTest、BOOM 支持、切片与 GSIM 波形能力，并新增对ACT的测试资产贡献能力；XS-GEM5 推进值预测、SMT 资源分配与性能分析工具。
 
 <!-- more -->
 
@@ -101,6 +100,9 @@ categories:
 - GSIM 仿真器
   - 在 DiffTest 中接入 GSIM FST 波形及 LightSSS，支持 CI 出错后的自动波形生成；将周期调度移入仿真后端，修复波形采样时输入和输出错拍的问题（[difftest #867](https://github.com/OpenXiangShan/difftest/pull/867)、[#6802](https://github.com/OpenXiangShan/XiangShan/pull/6802)、[difftest #1030](https://github.com/OpenXiangShan/difftest/pull/1030)）
   - 抑制 FST 中重复的信号值变化以减少波形生成开销，并修复启用波形支持后的 Nix 构建依赖和头文件安装（[gsim #150](https://github.com/OpenXiangShan/gsim/pull/150)、[gsim #151](https://github.com/OpenXiangShan/gsim/pull/151)）
+- ACT4资产贡献工具
+  - [ACT4](https://github.com/riscv/riscv-arch-test) 是 RISC-V 架构认证测试（Architectural Certification Tests，ACT）配套的新一代测试框架，旨在检查处理器实现是否符合 RISC-V 指令集规范。它根据目标处理器支持的扩展和参数选择适用测试，利用 Sail 参考模型计算预期结果，再生成能够自行判断并报告通过或失败的测试程序，供用户在目标处理器上运行。通过认证测试计划（CTP）、规范条款与覆盖点之间的映射，以及功能覆盖率采集，ACT4 将“规范要求检查什么”与“测试实际检查了什么”联系起来。[UCAgent](https://github.com/XS-MLVP/UCAgent)（UnityChip Verification Agent）是一个基于大语言模型的硬件验证 AI 代理，主要面向芯片设计的单元测试，能够辅助完成设计分析、验证规划、测试用例生成、仿真执行、覆盖率分析和缺陷定位等工作。它的核心理念是用明确的工作流和可核验的证据约束 AI 的执行过程：将验证任务划分为多个阶段，通过检查器核验文档、代码、测试结果及其关联关系，并结合真实执行结果和波形证据判断任务是否达到阶段要求。UCAgent 支持与多种大模型及编程代理协同，也可通过插件扩展到 RTL 规格文档生成、RISC-V 测试资产开发与审查、面向 PPA 的设计优化等独立场景，旨在降低重复性工程工作的成本，提高验证过程的可控性与结果的可追溯性。[UCAgent ACT4 插件](https://github.com/XS-MLVP/UCAgent/tree/main/plugins/ACT4)是在 ACT4 原生工具链之上构建的 AI 辅助测试资产开发与审查工具。UCAgent的ACT4插件既支持符合ACT要求的测试资产生成，也支持对ACT既有测试资产进行审查、修复和复验。
+  - 目前 UCAgent ACT4 插件支持自动化生成特权测试资产，也支持对既有测试资产进行审查、修复和复验。ACT4插件开发过程中，已发现了多个第三方库的问题，其中部分已提交，包括[UDB](https://github.com/riscv/riscv-unified-db/issues/2626)、[qemu](https://patchwork.ozlabs.org/project/qemu-devel/patch/20260925-riscv-hgatp-warl-v2-1-2aa9aa7718cd@bosc.ac.cn/)，其他的issue经检查已被修复。UCAgent ACT4插件为Hypervisor扩展生成了部分测试资产，正在等待接收[H-ext pr](https://github.com/riscv/riscv-arch-test/pull/2383)
 
 ### XS-GEM5
 

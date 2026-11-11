@@ -12,7 +12,7 @@ categories:
 
 关于香山近期开发进展，前端统一软件指令预取调度，优化 TAGE 训练并修复分支预测问题；后端恢复 CSR 只读操作的乱序执行，修正 CBO 译码和提交类型；访存与缓存修复回滚、转发和一致性问题，并推进 Oceanus 开发；XSAI 完善精简矩阵配置和 NoLLC 内存桥，优化矩阵数据通路与验证；基础设施增强远程 FPGA DiffTest、BOOM 支持、切片与 GSIM 波形能力，并推进 ACT4 特权测试资产开发；XS-GEM5 推进值预测、SMT 资源分配与性能分析工具。
 
-[ACT4](https://github.com/riscv/riscv-arch-test) 是 RISC-V 架构认证测试（Architectural Certification Tests，ACT）配套的新一代框架。它依据目标处理器支持的扩展和参数选取测试，使用 Sail 参考模型计算预期结果，生成供目标处理器运行、可自行判定通过或失败的测试程序。通过关联认证测试计划（CTP）、规范条款、覆盖点和功能覆盖率，ACT4 让规范要求与实际测试范围可追溯。
+其中，架构测试资产工作以 [ACT4](https://github.com/riscv/riscv-arch-test) 为基础。作为 RISC-V 架构认证测试（Architectural Certification Tests，ACT）配套的新一代框架，ACT4 依据目标处理器支持的扩展和参数选取测试，使用 Sail 参考模型计算预期结果，生成供目标处理器运行、可自行判定通过或失败的测试程序。通过关联认证测试计划（CTP）、规范条款、覆盖点和功能覆盖率，ACT4 让规范要求与实际测试范围可追溯。
 
 <!-- more -->
 
@@ -105,7 +105,7 @@ categories:
   - 抑制 FST 中重复的信号值变化以减少波形生成开销，并修复启用波形支持后的 Nix 构建依赖和头文件安装（[gsim #150](https://github.com/OpenXiangShan/gsim/pull/150)、[gsim #151](https://github.com/OpenXiangShan/gsim/pull/151)）
 
 - ACT4 资产贡献工具
-  - [UCAgent ACT4 插件](https://github.com/XS-MLVP/UCAgent/tree/main/plugins/ACT4)基于 ACT4 原生工具链，支持特权测试资产生成及既有资产的审查、修复和复验；已辅助生成部分 Hypervisor（H）扩展 CSR 测试生成器与覆盖资产，相关 [H 扩展 PR](https://github.com/riscv/riscv-arch-test/pull/2383) 仍在上游评审。开发中报告了 UDB 对零个 guest external interrupt 的配置约束问题（[UDB #2626](https://github.com/riscv/riscv-unified-db/issues/2626)），并向 QEMU 提交 `hgatp` WARL 合法化[补丁](https://patchwork.ozlabs.org/project/qemu-devel/patch/20260925-riscv-hgatp-warl-v2-1-2aa9aa7718cd@bosc.ac.cn/)；另发现 QEMU `vsstatus` 暴露保留位及 RV32 SD 汇总位错误，尚待提交。核对发现的其他相关问题已有上游修复（[QEMU d29412c](https://github.com/qemu/qemu/commit/d29412cca54899ba87d5ea5d61e8bad7643b15f0)、[QEMU 9b6fc2a](https://github.com/qemu/qemu/commit/9b6fc2a75102ff1713deb1d86bca90ebdf9594fc)、[Spike 5d4f1c3](https://github.com/riscv-software-src/riscv-isa-sim/commit/5d4f1c33f753e252a0a895682557d6e4f0f6a982)、[Whisper 1513205](https://github.com/tenstorrent/whisper/commit/1513205e0d74433cecd1a483656122ded5f22dc3)）。
+  - [UCAgent ACT4 插件](https://github.com/XS-MLVP/UCAgent/tree/main/plugins/ACT4)基于 ACT4 原生工具链，支持特权测试资产生成及既有资产的审查、修复和复验；已辅助生成部分 Hypervisor（H）扩展 CSR 测试生成器与覆盖资产，相关 [H 扩展 PR](https://github.com/riscv/riscv-arch-test/pull/2383) 仍在上游评审。开发中报告了 UDB 对零个 guest external interrupt 的配置约束问题（[UDB #2626](https://github.com/riscv/riscv-unified-db/issues/2626)），并向 QEMU 提交 `hgatp` WARL 合法化[补丁](https://patchwork.ozlabs.org/project/qemu-devel/patch/20260925-riscv-hgatp-warl-v2-1-2aa9aa7718cd@bosc.ac.cn/)。
 
 ### XS-GEM5
 

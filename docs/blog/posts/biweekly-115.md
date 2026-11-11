@@ -12,8 +12,6 @@ categories:
 
 关于香山近期开发进展，前端统一软件指令预取调度，优化 TAGE 训练并修复分支预测问题；后端恢复 CSR 只读操作的乱序执行，修正 CBO 译码和提交类型；访存与缓存修复回滚、转发和一致性问题，并推进 Oceanus 开发；XSAI 完善精简矩阵配置和 NoLLC 内存桥，优化矩阵数据通路与验证；基础设施增强远程 FPGA DiffTest、BOOM 支持、切片与 GSIM 波形能力，并推进 RISC-V 架构认证测试的生成与审查；XS-GEM5 推进值预测、SMT 资源分配与性能分析工具。
 
-为检查处理器实现是否符合 RISC-V 指令集规范，可以使用 [ACT4](https://github.com/riscv/riscv-arch-test) 测试框架生成架构认证测试（Architectural Certification Tests，ACT）。它根据处理器支持的扩展和参数挑选适用测试，用 Sail 参考模型算出预期结果，再生成能在目标处理器上运行、自动报告通过或失败的测试程序。ACT4 还把认证测试计划（CTP）、规范条款与测试覆盖点关联起来，并记录功能覆盖率，方便对照“规范要求检查什么”和“测试实际检查了什么”。
-
 <!-- more -->
 
 ## 近期进展
@@ -105,7 +103,7 @@ categories:
   - 抑制 FST 中重复的信号值变化以减少波形生成开销，并修复启用波形支持后的 Nix 构建依赖和头文件安装（[gsim #150](https://github.com/OpenXiangShan/gsim/pull/150)、[gsim #151](https://github.com/OpenXiangShan/gsim/pull/151)）
 
 - ACT4 资产贡献工具
-  - [UCAgent ACT4 插件](https://github.com/XS-MLVP/UCAgent/tree/main/plugins/ACT4)基于 ACT4 原生工具链，支持特权测试资产生成及既有资产的审查、修复和复验；已辅助生成部分 Hypervisor（H）扩展 CSR 测试生成器与覆盖资产，相关 [H 扩展 PR](https://github.com/riscv/riscv-arch-test/pull/2383) 仍在上游评审。开发中报告了 UDB 对零个 guest external interrupt 的配置约束问题（[UDB #2626](https://github.com/riscv/riscv-unified-db/issues/2626)），并向 QEMU 提交 `hgatp` WARL 合法化[补丁](https://patchwork.ozlabs.org/project/qemu-devel/patch/20260925-riscv-hgatp-warl-v2-1-2aa9aa7718cd@bosc.ac.cn/)。
+  - [ACT4](https://github.com/riscv/riscv-arch-test) 是 RISC-V 架构认证测试框架，可根据处理器配置生成自检测试并记录功能覆盖率，用于检查实现是否符合指令集规范。[UCAgent ACT4 插件](https://github.com/XS-MLVP/UCAgent/tree/main/plugins/ACT4)基于 ACT4 原生工具链，支持特权测试资产生成及既有资产的审查、修复和复验；已辅助生成部分 Hypervisor（H）扩展 CSR 测试生成器与覆盖资产，相关 [H 扩展 PR](https://github.com/riscv/riscv-arch-test/pull/2383) 仍在上游评审。开发中报告了 UDB 对零个 guest external interrupt 的配置约束问题（[UDB #2626](https://github.com/riscv/riscv-unified-db/issues/2626)），并向 QEMU 提交 `hgatp` WARL 合法化[补丁](https://patchwork.ozlabs.org/project/qemu-devel/patch/20260925-riscv-hgatp-warl-v2-1-2aa9aa7718cd@bosc.ac.cn/)。
 
 ### XS-GEM5
 

@@ -12,7 +12,7 @@ Welcome to the XiangShan biweekly column! Through this column, we regularly shar
 
 Recent XiangShan development unifies software instruction-prefetch scheduling, improves TAGE training and fixes branch prediction; restores out-of-order CSR reads and corrects CBO decoding and commit types; fixes memory rollback, forwarding and coherence while advancing Oceanus development; and improves minimal XSAI matrix configurations, the NoLLC memory bridge, matrix datapaths and verification. Infrastructure updates extend remote FPGA DiffTest, BOOM support, checkpoint handling and GSIM waveforms, and advance the generation and review of RISC-V architectural certification tests. XS-GEM5 advances value prediction, SMT resource allocation and performance-analysis tools.
 
-The open-source community continues to help find and fix issues in XiangShan. [vincent-163](https://github.com/vincent-163) from Tencent contributed a fix for ITTAGE allocation state initialization. [youzi27](https://github.com/youzi27) from the National University of Singapore (NUS) reported simulation assertion failures involving software instruction prefetching, CBO decoding errors, and forwarding issues for misaligned memory accesses, and provided reproducers that helped XiangShan developers diagnose and fix them. Through public issue reports, reproduction and validation, and discussions of fixes, community contributors and XiangShan developers work together to refine the processor. Thank you for the careful testing and helpful feedback. We welcome more developers to contribute through GitHub issues and pull requests.
+Community contributions helped XiangShan identify and fix several issues in this release. [vincent-163](https://github.com/vincent-163) contributed a fix for ITTAGE allocation state initialization, while [youzi27](https://github.com/youzi27) reported CBO decoding and misaligned memory forwarding issues and provided reproducers that helped developers diagnose and fix them. From reporting issues and sharing reproducers to submitting patches, community contributors and XiangShan developers work together in the open to refine the processor. Thank you for the careful testing and helpful feedback. We welcome more developers to contribute through GitHub issues and pull requests.
 
 <!-- more -->
 
@@ -21,11 +21,11 @@ The open-source community continues to help find and fix issues in XiangShan. [v
 ### Frontend
 
 - RTL features
-  - Add FtqPrefetchQueue to buffer and schedule software instruction prefetches alongside FDIP, reducing dropped same-cycle requests and FDIP blocking while combining prefetch requests when banks do not conflict ([#6691](https://github.com/OpenXiangShan/XiangShan/pull/6691)) [Thanks to [youzi27](https://github.com/youzi27) from NUS for their contribution]
+  - Add FtqPrefetchQueue to buffer and schedule software instruction prefetches alongside FDIP, reducing dropped same-cycle requests and FDIP blocking while combining prefetch requests when banks do not conflict ([#6691](https://github.com/OpenXiangShan/XiangShan/pull/6691))
 - Bug fixes
   - Fix MainBTB allocation incorrectly suppressed by hidden VBTB hits, and update conditional-branch target payloads only for taken branches to avoid recording sequential PCs as targets ([#6750](https://github.com/OpenXiangShan/XiangShan/pull/6750))
   - Hold SC prediction responses with DataHoldBypass, preventing training re-reads from overwriting prediction data during S1 stalls ([#6764](https://github.com/OpenXiangShan/XiangShan/pull/6764))
-  - Explicitly zero-initialize ITTAGE allocation controls, fixing stale allocation state in GSIM that could cause spurious target-region writes and incorrect allocation counts ([#6837](https://github.com/OpenXiangShan/XiangShan/pull/6837)) [Thanks to [vincent-163](https://github.com/vincent-163) from Tencent for their contribution]
+  - Explicitly zero-initialize ITTAGE allocation controls, fixing stale allocation state in GSIM that could cause spurious target-region writes and incorrect allocation counts ([#6837](https://github.com/OpenXiangShan/XiangShan/pull/6837)) [Thanks to [vincent-163](https://github.com/vincent-163) for their contribution]
 - Performance optimizations
   - Include folded history in TAGE bank indexing so different histories can access entries across banks, and retain alternate-predictor metadata to reduce SRAM re-read conflicts when training correct predictions ([#6771](https://github.com/OpenXiangShan/XiangShan/pull/6771), [#6800](https://github.com/OpenXiangShan/XiangShan/pull/6800))
 - PPA optimizations
@@ -38,7 +38,7 @@ The open-source community continues to help find and fix issues in XiangShan. [v
 - RTL features
   - Restore out-of-order execution of CSR reads in the new decoder, handle zero-source CSR set/clear and immediate forms consistently, and complete special decoding for VL/VLENB ([#6779](https://github.com/OpenXiangShan/XiangShan/pull/6779))
 - Bug fixes
-  - Select the complete opcode when CBIE converts `cbo.inval` to flush, avoiding an OR operation that incorrectly decoded it as `cbo.zero` ([#6754](https://github.com/OpenXiangShan/XiangShan/pull/6754)) [Thanks to [youzi27](https://github.com/youzi27) from NUS for their contribution]
+  - Select the complete opcode when CBIE converts `cbo.inval` to flush, avoiding an OR operation that incorrectly decoded it as `cbo.zero` ([#6754](https://github.com/OpenXiangShan/XiangShan/pull/6754)) [Thanks to [youzi27](https://github.com/youzi27) for their contribution]
   - Classify CBO commits as STORE ([#6847](https://github.com/OpenXiangShan/XiangShan/pull/6847))
 - Debugging tools
   - Preserve decoded remaining writeback counts for both halves of CROB entries in backend debug configurations to aid compressed-commit debugging ([#6749](https://github.com/OpenXiangShan/XiangShan/pull/6749))
@@ -51,7 +51,7 @@ The open-source community continues to help find and fix issues in XiangShan. [v
 - Bug fixes
   - Prioritize rollback that re-executes the current instruction when one ROB entry raises both RAR and RAW violations, preserving the required RAW replay ([#6678](https://github.com/OpenXiangShan/XiangShan/pull/6678))
   - Exclude retired MDP targets so StoreQueue pointer wraparound cannot leave loads waiting indefinitely for an STA ([#6714](https://github.com/OpenXiangShan/XiangShan/pull/6714))
-  - Fix forwarding masks for misaligned accesses crossing 16-byte boundaries ([#6718](https://github.com/OpenXiangShan/XiangShan/pull/6718)) [Thanks to [youzi27](https://github.com/youzi27) from NUS for their contribution]
+  - Fix forwarding masks for misaligned accesses crossing 16-byte boundaries ([#6718](https://github.com/OpenXiangShan/XiangShan/pull/6718)) [Thanks to [youzi27](https://github.com/youzi27) for their contribution]
   - Wait for the current `cbo.zero` request to enter the store-data queue before draining Sbuffer, preventing an older store dequeue from advancing the CBO state machine early ([#6762](https://github.com/OpenXiangShan/XiangShan/pull/6762))
   - Reject store merges into MSHRs for speculative load misses once the interconnect has taken ownership of their Acquire requests, preventing insufficient write permission and stale data on subsequent loads ([#6842](https://github.com/OpenXiangShan/XiangShan/pull/6842))
   - Use initialized round-robin arbitration for CoupledL2 L1 hints and integrate the change into XiangShan, preventing prolonged blocking of hints from some slices ([XSCache #46](https://github.com/OpenXiangShan/XSCache/pull/46), [XSCache #48](https://github.com/OpenXiangShan/XSCache/pull/48), [#6803](https://github.com/OpenXiangShan/XiangShan/pull/6803))

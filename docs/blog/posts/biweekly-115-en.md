@@ -1,7 +1,6 @@
 ---
 slug: biweekly-115-en
 date: 2026-11-11
-draft: true
 categories:
   - Biweekly-en
 ---

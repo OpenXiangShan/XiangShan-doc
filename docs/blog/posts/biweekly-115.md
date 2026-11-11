@@ -12,6 +12,8 @@ categories:
 
 关于香山近期开发进展，前端统一软件指令预取调度，优化 TAGE 训练并修复分支预测问题；后端恢复 CSR 只读操作的乱序执行，修正 CBO 译码和提交类型；访存与缓存修复回滚、转发和一致性问题，并推进 Oceanus 开发；XSAI 完善精简矩阵配置和 NoLLC 内存桥，优化矩阵数据通路与验证；基础设施增强远程 FPGA DiffTest、BOOM 支持、切片与 GSIM 波形能力，并推进 RISC-V 架构认证测试的生成与审查；XS-GEM5 推进值预测、SMT 资源分配与性能分析工具。
 
+本期，开源社区继续参与香山的问题发现与修复。来自腾讯的 [vincent-163](https://github.com/vincent-163) 提交了 ITTAGE 分配状态初始化问题的修复；来自 NUS 的 [youzi27](https://github.com/youzi27) 报告了软件指令预取的仿真断言、CBO 译码和非对齐访存转发等问题，并提供复现用例，帮助香山开发者定位并完成修复。社区贡献者与香山开发者通过公开的问题反馈、复现验证和修复讨论，一起打磨处理器实现。感谢大家的细致测试和积极反馈，也欢迎更多开发者通过 Issue 和 PR 参与香山共建。
+
 <!-- more -->
 
 ## 近期进展
@@ -19,11 +21,11 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 新增 FtqPrefetchQueue，统一缓存和调度软件指令预取与 FDIP 请求，减少同周期软件预取丢失及其对 FDIP 的阻塞，并允许在无 bank 冲突时组合发出预取请求（[#6691](https://github.com/OpenXiangShan/XiangShan/pull/6691)）
+  - 新增 FtqPrefetchQueue，统一缓存和调度软件指令预取与 FDIP 请求，减少同周期软件预取丢失及其对 FDIP 的阻塞，并允许在无 bank 冲突时组合发出预取请求（[#6691](https://github.com/OpenXiangShan/XiangShan/pull/6691)）[感谢来自 NUS 的 [youzi27](https://github.com/youzi27) 的贡献]
 - Bug 修复
   - 修复 VBTB 隐藏分支命中时错误抑制 MainBTB 分配的问题，并仅在条件分支实际跳转时更新目标信息，避免使用顺序 PC 污染分支目标（[#6750](https://github.com/OpenXiangShan/XiangShan/pull/6750)）
   - 使用 DataHoldBypass 保持 SC 预测响应，修复 S1 阻塞时训练重读覆盖预测数据的问题（[#6764](https://github.com/OpenXiangShan/XiangShan/pull/6764)）
-  - 将 ITTAGE 分配控制显式初始化为零，修复 GSIM 中旧分配状态残留导致目标区域错误写入及分配计数失真的问题（[#6837](https://github.com/OpenXiangShan/XiangShan/pull/6837)）
+  - 将 ITTAGE 分配控制显式初始化为零，修复 GSIM 中旧分配状态残留导致目标区域错误写入及分配计数失真的问题（[#6837](https://github.com/OpenXiangShan/XiangShan/pull/6837)）[感谢来自腾讯的 [vincent-163](https://github.com/vincent-163) 的贡献]
 - 性能优化
   - 将折叠历史纳入 TAGE bank 索引，使不同历史能够使用不同 bank 的表项；同时保存备用预测器元数据，减少正确预测训练时的 SRAM 重读冲突（[#6771](https://github.com/OpenXiangShan/XiangShan/pull/6771)、[#6800](https://github.com/OpenXiangShan/XiangShan/pull/6800)）
 - PPA 优化
@@ -36,7 +38,8 @@ categories:
 - RTL 新特性
   - 恢复新译码单元对 CSR 只读操作的乱序执行支持，并将零源操作数的 CSR 置位、清位及立即数形式纳入相同处理，补齐 VL/VLENB 的特殊译码（[#6779](https://github.com/OpenXiangShan/XiangShan/pull/6779)）
 - Bug 修复
-  - 在 CBIE 要求将 `cbo.inval` 转换为 flush 时直接选择完整 opcode，避免按位或误译码为 `cbo.zero`；同时将 CBO 的提交类型修正为 STORE（[#6754](https://github.com/OpenXiangShan/XiangShan/pull/6754)、[#6847](https://github.com/OpenXiangShan/XiangShan/pull/6847)）
+  - 在 CBIE 要求将 `cbo.inval` 转换为 flush 时直接选择完整 opcode，避免按位或误译码为 `cbo.zero`（[#6754](https://github.com/OpenXiangShan/XiangShan/pull/6754)）[感谢来自 NUS 的 [youzi27](https://github.com/youzi27) 的贡献]
+  - 将 CBO 的提交类型修正为 STORE（[#6847](https://github.com/OpenXiangShan/XiangShan/pull/6847)）
 - 调试工具
   - 在后端调试配置下保留 CROB 前、后半条目剩余写回次数的解码结果，便于定位压缩提交问题（[#6749](https://github.com/OpenXiangShan/XiangShan/pull/6749)）
 
@@ -47,7 +50,8 @@ categories:
   - 在 Oceanus 开发分支中对齐 CoupledL2 的 Data/Tag/Meta 存储组织和 DRRIP 替换策略，并增加基于 SRAM 与 CAM 的替换状态实现及发布参数（[XSCache #45](https://github.com/OpenXiangShan/XSCache/pull/45)）
 - Bug 修复
   - 在同一 ROB 条目同时发生 RAR 与 RAW 违规时，优先选择需要重新执行当前指令的回滚，避免 RAW 重放信息被覆盖（[#6678](https://github.com/OpenXiangShan/XiangShan/pull/6678)）
-  - 排除已经退休的 MDP 预测目标，避免 StoreQueue 指针回绕后让 load 永久等待不存在的 STA；修复跨 16 字节非对齐转发掩码（[#6714](https://github.com/OpenXiangShan/XiangShan/pull/6714)、[#6718](https://github.com/OpenXiangShan/XiangShan/pull/6718)）
+  - 排除已经退休的 MDP 预测目标，避免 StoreQueue 指针回绕后让 load 永久等待不存在的 STA（[#6714](https://github.com/OpenXiangShan/XiangShan/pull/6714)）
+  - 修复跨 16 字节非对齐转发掩码（[#6718](https://github.com/OpenXiangShan/XiangShan/pull/6718)）[感谢来自 NUS 的 [youzi27](https://github.com/youzi27) 的贡献]
   - 等待当前 `cbo.zero` 请求实际进入存储数据队列后再排空 Sbuffer，避免更老 store 的出队提前推进 CBO 状态机（[#6762](https://github.com/OpenXiangShan/XiangShan/pull/6762)）
   - 禁止 store 合并到已由互连接管 Acquire 的推测 load miss 的 MSHR，避免返回权限不足以支持写入并导致后续 load 读到旧数据（[#6842](https://github.com/OpenXiangShan/XiangShan/pull/6842)）
   - 将 CoupledL2 的 L1 hint 仲裁改为带初始化的轮询仲裁，并更新主仓库集成，避免部分 slice 的 hint 长期被阻塞（[XSCache #46](https://github.com/OpenXiangShan/XSCache/pull/46)、[XSCache #48](https://github.com/OpenXiangShan/XSCache/pull/48)、[#6803](https://github.com/OpenXiangShan/XiangShan/pull/6803)）
@@ -102,7 +106,7 @@ categories:
   - 在 DiffTest 中接入 GSIM FST 波形及 LightSSS，支持 CI 出错后的自动波形生成；将周期调度移入仿真后端，修复波形采样时输入和输出错拍的问题（[difftest #867](https://github.com/OpenXiangShan/difftest/pull/867)、[#6802](https://github.com/OpenXiangShan/XiangShan/pull/6802)、[difftest #1030](https://github.com/OpenXiangShan/difftest/pull/1030)）
   - 抑制 FST 中重复的信号值变化以减少波形生成开销，并修复启用波形支持后的 Nix 构建依赖和头文件安装（[gsim #150](https://github.com/OpenXiangShan/gsim/pull/150)、[gsim #151](https://github.com/OpenXiangShan/gsim/pull/151)）
 
-- ACT4 资产贡献工具
+- ACT4 测试生成与审查
   - [ACT4](https://github.com/riscv/riscv-arch-test) 是 RISC-V 架构认证测试框架，可根据处理器配置生成自检测试并记录功能覆盖率，用于检查实现是否符合指令集规范。[UCAgent ACT4 插件](https://github.com/XS-MLVP/UCAgent/tree/main/plugins/ACT4)基于 ACT4 原生工具链，支持特权测试资产生成及既有资产的审查、修复和复验；已辅助生成部分 Hypervisor（H）扩展 CSR 测试生成器与覆盖资产，相关 [H 扩展 PR](https://github.com/riscv/riscv-arch-test/pull/2383) 仍在上游评审。开发中报告了 UDB 对零个 guest external interrupt 的配置约束问题（[UDB #2626](https://github.com/riscv/riscv-unified-db/issues/2626)），并向 QEMU 提交 `hgatp` WARL 合法化[补丁](https://patchwork.ozlabs.org/project/qemu-devel/patch/20260925-riscv-hgatp-warl-v2-1-2aa9aa7718cd@bosc.ac.cn/)。
 
 ### XS-GEM5
@@ -126,9 +130,6 @@ categories:
   - 将 Google Workload Traces 和 CBP traces 纳入 CI，支持选择手工周回归任务，并修正 Ruby 多核 CI 的 TEA 配置（[XS-GEM5 #1272](https://github.com/OpenXiangShan/GEM5/pull/1272)、[XS-GEM5 #1300](https://github.com/OpenXiangShan/GEM5/pull/1300)、[XS-GEM5 #1269](https://github.com/OpenXiangShan/GEM5/pull/1269)）
 
 ## 性能评估
-
-性能数据来自 2026 年 11 月 6 日启动的 [Weekly Regression](https://github.com/OpenXiangShan/XiangShan/actions/runs/42199436965)，实际测试 DefaultConfig / a253c1163（提交日期 2026 年 11 月 5 日）。GCC16 与 XSCC 分别完成 1094/1094 和 1099/1099 个 checkpoint，均无失败负载。
-
 
 处理器及 SoC 参数如下所示：
 
@@ -179,8 +180,6 @@ categories:
 | 链接优化 | -flto | -flto |
 | 浮点优化 | -ffast-math（povray 除外） | -ffast-math |
 | -mcpu | - | xiangshan-kunminghu |
-
-GCC16 配置还包含 -static、-fno-strict-aliasing、-fno-tree-vectorize 和 -fno-tree-loop-vectorize；具体语言及子项参数以切片池保存的构建配置为准。XSCC 编译参数按本期编辑要求沿用第 114 期，尚未重新核验本次切片的完整构建元数据。
 
 注：我们使用 SimPoint 对程序进行采样，基于我们自定义的 checkpoint 格式制作检查点镜像，SimPoint 聚类的覆盖率为 100%。上述分数为基于程序片段的分数估计，非完整 SPEC CPU2006 评估，和真实芯片实际性能可能存在偏差。
 

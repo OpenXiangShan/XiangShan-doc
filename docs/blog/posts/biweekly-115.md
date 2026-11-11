@@ -12,7 +12,7 @@ categories:
 
 关于香山近期开发进展，前端统一软件指令预取调度，优化 TAGE 训练并修复分支预测问题；后端恢复 CSR 只读操作的乱序执行，修正 CBO 译码和提交类型；访存与缓存修复回滚、转发和一致性问题，并推进 Oceanus 开发；XSAI 完善精简矩阵配置和 NoLLC 内存桥，优化矩阵数据通路与验证；基础设施增强远程 FPGA DiffTest、BOOM 支持、切片与 GSIM 波形能力，并推进 RISC-V 架构认证测试的生成与审查；XS-GEM5 推进值预测、SMT 资源分配与性能分析工具。
 
-本期，开源社区继续参与香山的问题发现与修复。来自腾讯的 [vincent-163](https://github.com/vincent-163) 提交了 ITTAGE 分配状态初始化问题的修复；来自新加坡国立大学（NUS）的 [youzi27](https://github.com/youzi27) 报告了软件指令预取的仿真断言、CBO 译码和非对齐访存转发等问题，并提供复现用例，帮助香山开发者定位并完成修复。社区贡献者与香山开发者通过公开的问题反馈、复现验证和修复讨论，一起打磨处理器实现。感谢大家的细致测试和积极反馈，也欢迎更多开发者通过 Issue 和 PR 参与香山共建。
+本期，开源社区的参与帮助香山发现并修复了多项问题。[vincent-163](https://github.com/vincent-163) 提交了 ITTAGE 分配状态初始化问题的修复；[youzi27](https://github.com/youzi27) 报告了 CBO 译码和非对齐访存转发问题，并提供复现用例，帮助开发者定位并完成修复。从反馈问题、提供用例到提交补丁，社区贡献者与香山开发者通过公开协作，共同打磨处理器实现。感谢大家的细致测试和积极反馈，也欢迎更多开发者通过 Issue 和 PR 参与香山共建。
 
 <!-- more -->
 
@@ -21,11 +21,11 @@ categories:
 ### 前端
 
 - RTL 新特性
-  - 新增 FtqPrefetchQueue，统一缓存和调度软件指令预取与 FDIP 请求，减少同周期软件预取丢失及其对 FDIP 的阻塞，并允许在无 bank 冲突时组合发出预取请求（[#6691](https://github.com/OpenXiangShan/XiangShan/pull/6691)）[感谢来自 NUS 的 [youzi27](https://github.com/youzi27) 的贡献]
+  - 新增 FtqPrefetchQueue，统一缓存和调度软件指令预取与 FDIP 请求，减少同周期软件预取丢失及其对 FDIP 的阻塞，并允许在无 bank 冲突时组合发出预取请求（[#6691](https://github.com/OpenXiangShan/XiangShan/pull/6691)）
 - Bug 修复
   - 修复 VBTB 隐藏分支命中时错误抑制 MainBTB 分配的问题，并仅在条件分支实际跳转时更新目标信息，避免使用顺序 PC 污染分支目标（[#6750](https://github.com/OpenXiangShan/XiangShan/pull/6750)）
   - 使用 DataHoldBypass 保持 SC 预测响应，修复 S1 阻塞时训练重读覆盖预测数据的问题（[#6764](https://github.com/OpenXiangShan/XiangShan/pull/6764)）
-  - 将 ITTAGE 分配控制显式初始化为零，修复 GSIM 中旧分配状态残留导致目标区域错误写入及分配计数失真的问题（[#6837](https://github.com/OpenXiangShan/XiangShan/pull/6837)）[感谢来自腾讯的 [vincent-163](https://github.com/vincent-163) 的贡献]
+  - 将 ITTAGE 分配控制显式初始化为零，修复 GSIM 中旧分配状态残留导致目标区域错误写入及分配计数失真的问题（[#6837](https://github.com/OpenXiangShan/XiangShan/pull/6837)）[感谢 [vincent-163](https://github.com/vincent-163) 的贡献]
 - 性能优化
   - 将折叠历史纳入 TAGE bank 索引，使不同历史能够使用不同 bank 的表项；同时保存备用预测器元数据，减少正确预测训练时的 SRAM 重读冲突（[#6771](https://github.com/OpenXiangShan/XiangShan/pull/6771)、[#6800](https://github.com/OpenXiangShan/XiangShan/pull/6800)）
 - PPA 优化
@@ -38,7 +38,7 @@ categories:
 - RTL 新特性
   - 恢复新译码单元对 CSR 只读操作的乱序执行支持，并将零源操作数的 CSR 置位、清位及立即数形式纳入相同处理，补齐 VL/VLENB 的特殊译码（[#6779](https://github.com/OpenXiangShan/XiangShan/pull/6779)）
 - Bug 修复
-  - 在 CBIE 要求将 `cbo.inval` 转换为 flush 时直接选择完整 opcode，避免按位或误译码为 `cbo.zero`（[#6754](https://github.com/OpenXiangShan/XiangShan/pull/6754)）[感谢来自 NUS 的 [youzi27](https://github.com/youzi27) 的贡献]
+  - 在 CBIE 要求将 `cbo.inval` 转换为 flush 时直接选择完整 opcode，避免按位或误译码为 `cbo.zero`（[#6754](https://github.com/OpenXiangShan/XiangShan/pull/6754)）[感谢 [youzi27](https://github.com/youzi27) 的贡献]
   - 将 CBO 的提交类型修正为 STORE（[#6847](https://github.com/OpenXiangShan/XiangShan/pull/6847)）
 - 调试工具
   - 在后端调试配置下保留 CROB 前、后半条目剩余写回次数的解码结果，便于定位压缩提交问题（[#6749](https://github.com/OpenXiangShan/XiangShan/pull/6749)）
@@ -51,7 +51,7 @@ categories:
 - Bug 修复
   - 在同一 ROB 条目同时发生 RAR 与 RAW 违规时，优先选择需要重新执行当前指令的回滚，避免 RAW 重放信息被覆盖（[#6678](https://github.com/OpenXiangShan/XiangShan/pull/6678)）
   - 排除已经退休的 MDP 预测目标，避免 StoreQueue 指针回绕后让 load 永久等待不存在的 STA（[#6714](https://github.com/OpenXiangShan/XiangShan/pull/6714)）
-  - 修复跨 16 字节非对齐转发掩码（[#6718](https://github.com/OpenXiangShan/XiangShan/pull/6718)）[感谢来自 NUS 的 [youzi27](https://github.com/youzi27) 的贡献]
+  - 修复跨 16 字节非对齐转发掩码（[#6718](https://github.com/OpenXiangShan/XiangShan/pull/6718)）[感谢 [youzi27](https://github.com/youzi27) 的贡献]
   - 等待当前 `cbo.zero` 请求实际进入存储数据队列后再排空 Sbuffer，避免更老 store 的出队提前推进 CBO 状态机（[#6762](https://github.com/OpenXiangShan/XiangShan/pull/6762)）
   - 禁止 store 合并到已由互连接管 Acquire 的推测 load miss 的 MSHR，避免返回权限不足以支持写入并导致后续 load 读到旧数据（[#6842](https://github.com/OpenXiangShan/XiangShan/pull/6842)）
   - 将 CoupledL2 的 L1 hint 仲裁改为带初始化的轮询仲裁，并更新主仓库集成，避免部分 slice 的 hint 长期被阻塞（[XSCache #46](https://github.com/OpenXiangShan/XSCache/pull/46)、[XSCache #48](https://github.com/OpenXiangShan/XSCache/pull/48)、[#6803](https://github.com/OpenXiangShan/XiangShan/pull/6803)）

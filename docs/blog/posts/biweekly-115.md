@@ -10,7 +10,7 @@ categories:
 
 欢迎来到香山双周报专栏，我们将通过这一专栏定期介绍香山的开发进展。本次是第 115 期双周报。
 
-关于香山近期开发进展，前端统一软件指令预取调度，优化 TAGE 训练并修复分支预测问题；后端恢复 CSR 只读操作的乱序执行，修正 CBO 译码和提交类型；访存与缓存修复回滚、转发和一致性问题，并推进 Oceanus 开发；XSAI 完善精简矩阵配置和 NoLLC 内存桥，优化矩阵数据通路与验证；基础设施增强远程 FPGA DiffTest、BOOM 支持、切片与 GSIM 波形能力；XS-GEM5 推进值预测、SMT 资源分配与性能分析工具。
+关于香山近期开发进展，前端统一软件指令预取调度，优化 TAGE 训练并修复分支预测问题；后端恢复 CSR 只读操作的乱序执行，修正 CBO 译码和提交类型；访存与缓存修复回滚、转发和一致性问题，并推进 Oceanus 开发；XSAI 完善精简矩阵配置和 NoLLC 内存桥，优化矩阵数据通路与验证；基础设施增强远程 FPGA DiffTest、BOOM 支持、切片与 GSIM 波形能力；ACT4 资产贡献工具支持特权测试资产生成与审查，推进 H 扩展测试并反馈上游工具问题；XS-GEM5 推进值预测、SMT 资源分配与性能分析工具。
 
 <!-- more -->
 
@@ -101,6 +101,15 @@ categories:
 - GSIM 仿真器
   - 在 DiffTest 中接入 GSIM FST 波形及 LightSSS，支持 CI 出错后的自动波形生成；将周期调度移入仿真后端，修复波形采样时输入和输出错拍的问题（[difftest #867](https://github.com/OpenXiangShan/difftest/pull/867)、[#6802](https://github.com/OpenXiangShan/XiangShan/pull/6802)、[difftest #1030](https://github.com/OpenXiangShan/difftest/pull/1030)）
   - 抑制 FST 中重复的信号值变化以减少波形生成开销，并修复启用波形支持后的 Nix 构建依赖和头文件安装（[gsim #150](https://github.com/OpenXiangShan/gsim/pull/150)、[gsim #151](https://github.com/OpenXiangShan/gsim/pull/151)）
+
+### ACT4 资产贡献工具
+
+- 框架与 AI 辅助
+  - [ACT4](https://github.com/riscv/riscv-arch-test) 是 RISC-V 架构认证测试（Architectural Certification Tests，ACT）配套的新一代框架：根据目标处理器支持的扩展与参数选取测试，使用 Sail 参考模型计算预期结果，生成可在目标处理器上运行、并自行判定和报告结果的测试程序。认证测试计划（CTP）、规范条款与覆盖点的映射，以及功能覆盖率记录，使规范要求和实际测试范围可追溯。
+  - [UCAgent](https://github.com/XS-MLVP/UCAgent)（UnityChip Verification Agent）是基于大语言模型的硬件验证 AI 代理，通过分阶段工作流、检查器及实际执行和波形证据，辅助设计分析、验证规划、测试生成、覆盖率分析与缺陷定位。其 [ACT4 插件](https://github.com/XS-MLVP/UCAgent/tree/main/plugins/ACT4)基于原生工具链，支持特权测试资产自动生成，也可审查、修复和复验既有资产。
+- 测试资产与上游反馈
+  - 插件已辅助生成部分 Hypervisor（H）扩展 CSR 测试生成器与覆盖资产；相关 [H 扩展 PR](https://github.com/riscv/riscv-arch-test/pull/2383) 仍在上游评审。
+  - 开发过程中发现 UDB 对零个 guest external interrupt 的配置约束问题（[UDB #2626](https://github.com/riscv/riscv-unified-db/issues/2626)），并向 QEMU 提交 `hgatp` WARL 合法化[补丁](https://patchwork.ozlabs.org/project/qemu-devel/patch/20260925-riscv-hgatp-warl-v2-1-2aa9aa7718cd@bosc.ac.cn/)；另发现 QEMU `vsstatus` 暴露保留位及 RV32 SD 汇总位错误，尚待提交。核对发现的其他相关问题已有上游修复（[QEMU d29412c](https://github.com/qemu/qemu/commit/d29412cca54899ba87d5ea5d61e8bad7643b15f0)、[QEMU 9b6fc2a](https://github.com/qemu/qemu/commit/9b6fc2a75102ff1713deb1d86bca90ebdf9594fc)、[Spike 5d4f1c3](https://github.com/riscv-software-src/riscv-isa-sim/commit/5d4f1c33f753e252a0a895682557d6e4f0f6a982)、[Whisper 1513205](https://github.com/tenstorrent/whisper/commit/1513205e0d74433cecd1a483656122ded5f22dc3)）。
 
 ### XS-GEM5
 

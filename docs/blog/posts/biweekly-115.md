@@ -191,4 +191,4 @@ categories:
 - 香山用户手册：<https://docs.xiangshan.cc/projects/user-guide/>
 - 香山设计文档：<https://docs.xiangshan.cc/projects/design/>
 
-编辑：李衍君、曾锦鸿、杨泽辰、张韩乐、游昆霖、李昕、燕翼鸣
+编辑：李衍君、曾锦鸿、杨泽辰、张韩乐、游昆霖、李昕、吴天择、燕翼鸣

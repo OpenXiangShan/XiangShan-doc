@@ -61,6 +61,7 @@ nav:
         - Introduction: guide.md
         - Publications: tutorials/publications.md
         - Acknowledgments: acknowledgments.md
+        - Tapeout: tapeout.md
     - 会议报告 Talks & Tutorials:
         - Talks: tutorials/talks.md
         - Tutorials:

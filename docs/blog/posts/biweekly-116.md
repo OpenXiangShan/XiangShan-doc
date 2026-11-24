@@ -70,18 +70,23 @@ categories:
 ### XSAI
 
 - RTL 新特性
-  - 支持将 CUTE 的 A、B 矩阵寄存器按普通、转置或整寄存器形式写回内存，并在 DiffTest 中跟踪 TR 写回。普通 A、B 加载可使用任一 TR 加载单元（[CUTE #55](https://github.com/OpenXiangShan/CUTE/pull/55)、[difftest #1044](https://github.com/OpenXiangShan/difftest/pull/1044)、[XSAI #177](https://github.com/OpenXiangShan/XSAI/pull/177)）
-  - 支持 XSAICache 的 CHI 桥连接珠江互连的原生异步 socket（[XSAICache #18](https://github.com/OpenXiangShan/XSAICache/pull/18)）
+  - 支持将 CUTE 的 A、B 矩阵寄存器按普通、转置或整寄存器形式写回内存，并在 DiffTest 中跟踪 TR 写回；普通 A、B 加载可使用任一 TR 加载单元（[CUTE #55](https://github.com/OpenXiangShan/CUTE/pull/55)、[difftest #1044](https://github.com/OpenXiangShan/difftest/pull/1044)、[XSAI #177](https://github.com/OpenXiangShan/XSAI/pull/177)）
+  - 支持四核珠江互连拓扑，并对齐原生 CHI 节点 ID（[XSAI #178](https://github.com/OpenXiangShan/XSAI/pull/178)）
+  - 支持珠江可选的独立 NoC 时钟域，完善原生异步 socket、跨域接口与旁带信号连接（[XSAICache #18](https://github.com/OpenXiangShan/XSAICache/pull/18)、[XSAI #179](https://github.com/OpenXiangShan/XSAI/pull/179)、[XSAI #180](https://github.com/OpenXiangShan/XSAI/pull/180)）
 - Bug 修复
-  - 同步昆明湖 V2 的 bug-fix（[XSAI #176](https://github.com/OpenXiangShan/XSAI/pull/176)）
-  - 为 CoupledL2 解耦 CHI 接口的出站请求、响应和数据补上本地节点 ID，使接收方能识别发送节点（[XSAICache #17](https://github.com/OpenXiangShan/XSAICache/pull/17)）
+  - 同步昆明湖 V2 的 bug-fix（[XSAI #176](https://github.com/OpenXiangShan/XSAI/pull/176)、[XSAI #181](https://github.com/OpenXiangShan/XSAI/pull/181)）
+  - 修复 CoupledL2 解耦 CHI 接口出站请求、响应与数据的源节点 ID（[XSAICache #17](https://github.com/OpenXiangShan/XSAICache/pull/17)）
 - 调试工具
-  - 优化 CPU 参考模型的矩阵乘加校验，并行计算独立结果并复用已解码的浮点操作数，便于编译器向量化（[difftest #1038](https://github.com/OpenXiangShan/difftest/pull/1038)）
-  - 将异步 CPU MMA 校验移入独立进程，通过共享线程池并行处理多个 DUT 核的请求，并按各核的请求顺序返回结果（[difftest #1050](https://github.com/OpenXiangShan/difftest/pull/1050)）
-  - 减少矩阵 DiffTest 对软件 ROB 的扫描，在 DUT 完成 `mrelease` 或回放恢复后才检查释放顺序，有条目等待参考模型的控制事件时才扫描匹配项（[difftest #1047](https://github.com/OpenXiangShan/difftest/pull/1047)、[difftest #1049](https://github.com/OpenXiangShan/difftest/pull/1049)）
+  - 优化 CPU 参考模型的矩阵乘加校验，复用已解码的浮点操作数并改善自动向量化（[difftest #1038](https://github.com/OpenXiangShan/difftest/pull/1038)）
+  - 将异步 CPU MMA 校验移入独立进程，通过共享线程池并行处理多个 DUT 核的请求，并保持每核结果顺序（[difftest #1050](https://github.com/OpenXiangShan/difftest/pull/1050)）
+  - 减少矩阵 DiffTest 中不必要的软件 ROB 扫描（[difftest #1047](https://github.com/OpenXiangShan/difftest/pull/1047)、[difftest #1049](https://github.com/OpenXiangShan/difftest/pull/1049)）
   - 在 NEMU 的共享参考模型中启用矩阵访存的整行拷贝和 AVX2 转置路径，加快矩阵 load/store 校验（[NEMU #1284](https://github.com/OpenXiangShan/NEMU/pull/1284)）
+  - 修复 NEMU 浮点矩阵乘加控制事件的舍入模式上报错误（[NEMU #1311](https://github.com/OpenXiangShan/NEMU/pull/1311)）（感谢社区贡献者 [@Aharrypotter](https://github.com/Aharrypotter)）
+  - 支持本地 XDMA FIFO 批量读取，减少 FPGA DiffTest 通信开销（[difftest #1048](https://github.com/OpenXiangShan/difftest/pull/1048)、[dma_ip_drivers #3](https://github.com/klin02/dma_ip_drivers/pull/3)）
   - 在矩阵缓存测试分支接入 L2-only 测试顶层，由 CHI 从节点模型直接响应 L2 请求，支持在 VCS 中独立回放访存轨迹（[XSAICache #16](https://github.com/OpenXiangShan/XSAICache/pull/16)、[tl-test-new #105](https://github.com/OpenXiangShan/tl-test-new/pull/105)）
-  - 为矩阵缓存 VCS 测试平台增加轨迹结束后的回读校验，覆盖缓存和 MMIO 访问过的所有地址，并在缓存行换出后再次核对数据（[tl-test-new #106](https://github.com/OpenXiangShan/tl-test-new/pull/106)）
+  - 为矩阵缓存 VCS 测试轨迹补充结束后的回读校验，并在缓存行换出后再次核对数据（[tl-test-new #106](https://github.com/OpenXiangShan/tl-test-new/pull/106)）
+- 代码质量
+  - 支持配置多核固件的 SMP、CPU 与 hart 数量，并更新环境中的多核珠江 RTL 版本（[xsai-env #3](https://github.com/OpenXiangShan/xsai-env/pull/3)、[xsai-env #5](https://github.com/OpenXiangShan/xsai-env/pull/5)）
 
 ### 基础设施
 

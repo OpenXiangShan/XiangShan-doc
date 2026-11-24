@@ -70,18 +70,23 @@ Recent XiangShan development fixes fault addresses for virtualized instruction f
 ### XSAI
 
 - RTL features
-  - Support ordinary, transposed and whole-register stores from CUTE’s A and B matrix registers to memory and track TR stores in DiffTest. Ordinary A and B loads can use either TR loader ([CUTE #55](https://github.com/OpenXiangShan/CUTE/pull/55), [difftest #1044](https://github.com/OpenXiangShan/difftest/pull/1044), [XSAI #177](https://github.com/OpenXiangShan/XSAI/pull/177))
-  - Allow the XSAICache CHI bridge to connect to a native asynchronous ZhuJiang socket ([XSAICache #18](https://github.com/OpenXiangShan/XSAICache/pull/18))
+  - Support ordinary, transposed and whole-register stores from CUTE’s A and B matrix registers to memory and track TR stores in DiffTest; ordinary A and B loads can use either TR loader ([CUTE #55](https://github.com/OpenXiangShan/CUTE/pull/55), [difftest #1044](https://github.com/OpenXiangShan/difftest/pull/1044), [XSAI #177](https://github.com/OpenXiangShan/XSAI/pull/177))
+  - Support a four-core ZhuJiang topology and align CHI node IDs with native endpoints ([XSAI #178](https://github.com/OpenXiangShan/XSAI/pull/178))
+  - Support an optional independent ZhuJiang NoC clock domain, completing native asynchronous sockets, clock-domain crossings and sideband connections ([XSAICache #18](https://github.com/OpenXiangShan/XSAICache/pull/18), [XSAI #179](https://github.com/OpenXiangShan/XSAI/pull/179), [XSAI #180](https://github.com/OpenXiangShan/XSAI/pull/180))
 - Bug fixes
-  - Synchronize Kunminghu V2 bug fixes ([XSAI #176](https://github.com/OpenXiangShan/XSAI/pull/176))
-  - Set the local source ID on outgoing request, response and data flits of the decoupled CoupledL2 CHI interface so receivers can identify the sender ([XSAICache #17](https://github.com/OpenXiangShan/XSAICache/pull/17))
+  - Synchronize Kunminghu V2 bug fixes ([XSAI #176](https://github.com/OpenXiangShan/XSAI/pull/176), [XSAI #181](https://github.com/OpenXiangShan/XSAI/pull/181))
+  - Fix source node IDs on outgoing requests, responses and data of the decoupled CoupledL2 CHI interface ([XSAICache #17](https://github.com/OpenXiangShan/XSAICache/pull/17))
 - Debugging tools
-  - Restructure CPU matrix multiply-accumulate checks so the compiler can vectorize independent outputs and reuse decoded floating-point operands ([difftest #1038](https://github.com/OpenXiangShan/difftest/pull/1038))
-  - Move asynchronous CPU MMA checks into a worker process with a shared thread pool so requests from multiple DUT cores can run in parallel and return in order within each core ([difftest #1050](https://github.com/OpenXiangShan/difftest/pull/1050))
-  - Reduce software ROB scans in matrix DiffTest by checking release ordering only after the DUT completes an `mrelease` or replay restores state, and scanning for matching reference-model control events only when an entry is waiting ([difftest #1047](https://github.com/OpenXiangShan/difftest/pull/1047), [difftest #1049](https://github.com/OpenXiangShan/difftest/pull/1049))
+  - Optimize CPU reference-model MMA checks by reusing decoded floating-point operands and improving auto-vectorization ([difftest #1038](https://github.com/OpenXiangShan/difftest/pull/1038))
+  - Move asynchronous CPU MMA checks into a worker process with a shared thread pool to process requests from multiple DUT cores in parallel while preserving per-core result ordering ([difftest #1050](https://github.com/OpenXiangShan/difftest/pull/1050))
+  - Reduce unnecessary software ROB scans in matrix DiffTest ([difftest #1047](https://github.com/OpenXiangShan/difftest/pull/1047), [difftest #1049](https://github.com/OpenXiangShan/difftest/pull/1049))
   - Enable row copies and the AVX2 transpose path for matrix memory accesses in shared NEMU references to speed up load/store verification ([NEMU #1284](https://github.com/OpenXiangShan/NEMU/pull/1284))
+  - Fix rounding-mode reporting for floating-point MMA control events in NEMU ([NEMU #1311](https://github.com/OpenXiangShan/NEMU/pull/1311)) (thanks to community contributor [@Aharrypotter](https://github.com/Aharrypotter))
+  - Support batched local XDMA FIFO reads to reduce FPGA DiffTest communication overhead ([difftest #1048](https://github.com/OpenXiangShan/difftest/pull/1048), [dma_ip_drivers #3](https://github.com/klin02/dma_ip_drivers/pull/3))
   - Connect the L2-only test top on the matrix-cache test branch and use a CHI subordinate-node model to respond directly to L2 requests for standalone trace replay in VCS ([XSAICache #16](https://github.com/OpenXiangShan/XSAICache/pull/16), [tl-test-new #105](https://github.com/OpenXiangShan/tl-test-new/pull/105))
-  - Add end-of-trace readback checks to the VCS matrix-cache testbench for every address touched by cache or MMIO traces, and recheck cache data after eviction ([tl-test-new #106](https://github.com/OpenXiangShan/tl-test-new/pull/106))
+  - Add end-of-trace readback checks to VCS matrix-cache test traces and recheck data after cache-line eviction ([tl-test-new #106](https://github.com/OpenXiangShan/tl-test-new/pull/106))
+- Code quality
+  - Support configurable SMP, CPU and hart counts in multicore firmware, and update the environment’s multicore ZhuJiang RTL revision ([xsai-env #3](https://github.com/OpenXiangShan/xsai-env/pull/3), [xsai-env #5](https://github.com/OpenXiangShan/xsai-env/pull/5))
 
 ### Infra
 

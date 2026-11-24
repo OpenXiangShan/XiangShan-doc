@@ -46,22 +46,22 @@ categories:
 - RTL 新特性
   - 新增监管态 CSR `stsoctl`，支持在昆明湖 V2 上为可缓存访存启用 TSO，复位后默认使用 RVWMO。TSO 模式下需保持 load-load 违规检查开启，SBuffer 按序排空。软件须在启用 TSO 后、关闭 TSO 前分别执行 `fence rw,rw`（[#6940](https://github.com/OpenXiangShan/XiangShan/pull/6940)、[#6962](https://github.com/OpenXiangShan/XiangShan/pull/6962)）
   - 在 L2 TLB 回填时跳过会引发页故障的页表项，并默认在 L1 TLB 使用页故障项后将其清除。软件可通过 `smblockctl` 控制 L1 TLB 的刷新行为，NEMU 同步支持该控制位（[#6928](https://github.com/OpenXiangShan/XiangShan/pull/6928)、[NEMU #1285](https://github.com/OpenXiangShan/NEMU/pull/1285)）
-- 地址翻译
+- 地址翻译 Bug 修复
   - 缓存无效页表项时忽略其全局位，避免在地址空间之间复用页故障项，并允许按 ASID 执行的 `sfence.vma` 清除旧故障（[#6698](https://github.com/OpenXiangShan/XiangShan/pull/6698)）
   - 在一级翻译命中时清除上次页表遍历遗留的状态，使越界客户物理地址能正确上报故障。二级遍历响应与匹配的访存请求同拍到达时，保留重复请求的等待状态（[#6898](https://github.com/OpenXiangShan/XiangShan/pull/6898)、[#7002](https://github.com/OpenXiangShan/XiangShan/pull/7002)）
   - 按一级页表遍历响应实际覆盖的页匹配等待请求，并在 L1 TLB 多路命中时清除全部冲突项，避免重叠回填反复触发重放（[#6973](https://github.com/OpenXiangShan/XiangShan/pull/6973)、[#6978](https://github.com/OpenXiangShan/XiangShan/pull/6978)）
   - 在取指或数据翻译长期收不到响应时，暂停向 L2 TLB 送入新请求，让在途请求先完成（[#7018](https://github.com/OpenXiangShan/XiangShan/pull/7018)）
-- 访存流水线
+- 访存流水线 Bug 修复
   - 修复跨 16 字节边界的 store 误用旧整行写和预取标记的问题，并将跨页 store 对第二页的转发保护保持到 StoreQueue 出队，避免后续 load 读到旧数据（[#6770](https://github.com/OpenXiangShan/XiangShan/pull/6770)、[#6822](https://github.com/OpenXiangShan/XiangShan/pull/6822)）
   - 在不可缓存 load 的写回路径上，V3 锁存等待写回的数据和错误标记，避免请求编号复用后被覆盖。发生重定向时，V2 取消已缓冲的不可缓存 load，避免错误路径写回（[#6773](https://github.com/OpenXiangShan/XiangShan/pull/6773)、[#6873](https://github.com/OpenXiangShan/XiangShan/pull/6873)）
   - 将发生客户页故障的 load 推迟到 ROB 队首再重放，并在标量与向量 store 争用地址通路时优先选择较老指令，避免等待客户物理地址的访存阻塞较老指令（[#6989](https://github.com/OpenXiangShan/XiangShan/pull/6989)、[#6992](https://github.com/OpenXiangShan/XiangShan/pull/6992)）
   - 按共享 DTLB 端口的实际使用者选择取消信号，并在原子指令接管端口时取消第一级流水中的预取，避免预取使用错误的物理地址（[#6970](https://github.com/OpenXiangShan/XiangShan/pull/6970)、[#6994](https://github.com/OpenXiangShan/XiangShan/pull/6994)）
   - 在单位步长向量访存触发断点时，将实际命中的字节地址写入 `mtval`，便于定位触发断点的元素（[#6882](https://github.com/OpenXiangShan/XiangShan/pull/6882)）
   - 为等待下游接收的缓存管理请求锁存通道号，避免昆明湖 V3 在背压时将请求发往错误通道。修正 V2 StoreQueue 的 MMIO 和缓存管理状态机，防止出错后重复发起请求，并在 `cbo.zero` 完成后恢复空闲状态（[#6907](https://github.com/OpenXiangShan/XiangShan/pull/6907)、[#6991](https://github.com/OpenXiangShan/XiangShan/pull/6991)）
-- 缓存与一致性
+- 缓存与一致性 Bug 修复
   - 从 L1 DCache 收到首拍回填数据起阻塞对同一块、同一别名的 probe，避免探测请求越过尚未完成的回填（[#6931](https://github.com/OpenXiangShan/XiangShan/pull/6931)）
   - 计算 CoupledL2 的 CHI 发送队列预留空间时保留加法进位，修复四个在途预留被计为零的问题（[XSCache #58](https://github.com/OpenXiangShan/XSCache/pull/58)）
-- Oceanus 开发分支
+- Oceanus L2 开发
   - 为 L2 命中增加默认关闭的快速返回选项，将目录 SRAM 的请求和响应分别寄存，并在仲裁前查询各请求的替换 CAM，缩短选择路径（[XSCache #56](https://github.com/OpenXiangShan/XSCache/pull/56)、[XSCache #67](https://github.com/OpenXiangShan/XSCache/pull/67)、[XSCache #73](https://github.com/OpenXiangShan/XSCache/pull/73)、[XSCache #74](https://github.com/OpenXiangShan/XSCache/pull/74)）
   - 为需要分配缓存路的替换操作加锁，等标签和元数据就绪后再释放命中路，并修复目录回写选错路和释放请求停滞的问题（[XSCache #59](https://github.com/OpenXiangShan/XSCache/pull/59)、[XSCache #60](https://github.com/OpenXiangShan/XSCache/pull/60)、[XSCache #79](https://github.com/OpenXiangShan/XSCache/pull/79)）
   - 将冲突的 snoop 延后到预填充状态提交后处理，并在处理读请求和 MakeUnique 时排除别名匹配的请求方，避免其自身副本被误置为无效（[XSCache #68](https://github.com/OpenXiangShan/XSCache/pull/68)、[XSCache #72](https://github.com/OpenXiangShan/XSCache/pull/72)）
